@@ -1,5 +1,17 @@
-{{- $email := promptString "email" -}}
-{{- $focus := promptString "focus" -}}
+{{- $email := "" -}}
+{{- if hasKey . "email" -}}
+{{-   $email = .email -}}
+{{- else -}}
+{{-   $email := promptString "email" -}}
+{{- end -}}
+
+
+{{- $focus := "" -}}
+{{- if hasKey . "focus" -}}
+{{-   $focus = .focus -}}
+{{- else -}}
+{{-   $focus := promptString "focus" -}}
+{{- end -}}
 
 [data]
   focus = {{ $focus | quote }}
