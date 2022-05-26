@@ -1,1 +1,3 @@
-{{ (index (onepassword "id_bat_devices").fields 0).value }}
+{{- if .area.personal }}
+{{- (index (onepassword "id_bat_devices").fields 0).value }}
+{{- end }}
