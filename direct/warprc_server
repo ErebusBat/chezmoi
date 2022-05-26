@@ -1,3 +1,7 @@
 chezmoi:~/.local/share/chezmoi
+dashy:/myserver/internal/dashy
+internal:/myserver/internal
+myserver:/myserver
+plex:/myserver/plex
 restic:~/.restic
 stow:~/src/erebusbat/dotfiles-stow
