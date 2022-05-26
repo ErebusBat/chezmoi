@@ -18,6 +18,7 @@ direct/
 
 {{- if not .area.tractionguest }}
 .ssh/assh.d/tractionguest.yml
+.config/nvim/spell/tractionguest.*
 .tmuxp/guest-server.yaml
 {{- end }}
 
