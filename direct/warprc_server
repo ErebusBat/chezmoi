@@ -1,2 +1,3 @@
+chezmoi:~/.local/share/chezmoi
 restic:~/.restic
 stow:~/src/erebusbat/dotfiles-stow
