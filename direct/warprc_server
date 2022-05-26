@@ -5,3 +5,5 @@ myserver:/myserver
 plex:/myserver/plex
 restic:~/.restic
 stow:~/src/erebusbat/dotfiles-stow
+tmuxp:~/.tmuxp
+tmux:~/.tmux
