@@ -1,1 +1,6 @@
-src/erebusbat/dotfiles-stow/dartp6/.warprc
+chezmoi:~/.local/share/chezmoi
+restic:~/.restic
+src:~/src
+ssh:~/.ssh
+tmux:~/.tmux
+tmuxp:~/.tmuxp
