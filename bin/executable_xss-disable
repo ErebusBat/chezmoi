@@ -1,0 +1,41 @@
+#!/bin/bash
+
+# Max time to run, <0 is infinity
+MAX=$1
+[[ -z $MAX ]] && MAX=-1
+if [[ $MAX -gt 0 ]]; then
+  if [[ $MAX -lt 5 ]]; then
+    # If <5 assume it is hours
+    (( MAX = $MAX * 3600 ))
+  elif [[ $MAX -lt 60 ]]; then
+    # If <60 assume it is minutes
+    (( MAX = $MAX * 60 ))
+  fi
+  echo "Will exit after ~${MAX}s"
+fi
+
+# Keep a loop count so we can have a semi-decent UI
+LOOP=0
+while [ true ]; do
+  # Reoughly every 10m output our title line
+  if (( $LOOP % 600 == 0 )); then
+    printf "\n[$(date)] Disabling XScreensaver Auto Activation"
+  fi
+
+  # XScreensaver lowest timeout is 60s so we poke it at just under this lower limit
+  if (( $LOOP % 50 == 0 )); then
+    xscreensaver-command -deactivate > /dev/null
+    printf "."
+  fi
+
+  # Loop control
+  sleep 1
+  (( LOOP = $LOOP + 1 ))
+  if [[ $MAX -gt 0 ]]; then
+    if [[ $LOOP -ge $MAX ]]; then
+      echo "Max horizon has expired.... re-enabling screensaver"
+      break
+    fi
+  fi
+done
+

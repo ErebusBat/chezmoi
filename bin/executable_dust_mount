@@ -1,0 +1,195 @@
+#!/bin/bash
+
+# CIFS_MOUNT_POINT=~/dustbin
+CIFS_MOUNT_POINT=/tmp/cifs_dustbin
+# IMG_FILE=$CIFS_MOUNT_POINT/AABackup-Drive/disks/img/dustbin.img
+IMG_FILE=$CIFS_MOUNT_POINT/AABackup-Drive/disks/img/dust2.img
+# HDD_PATH=/dev/disk/by-uuid/43ab03b8-09d5-49e1-810e-20b2cb51d8ee
+LUKS_NAME=dust_ext
+MAP_PATH=/dev/mapper/$LUKS_NAME
+FS_MOUNT_POINT=~/dust_ext
+# FS_MOUNT_POINT=/tmp/dust_ext
+VC_SLOT=13
+VC_FILE=$CIFS_MOUNT_POINT/AABackup-Drive/disks/img/randimg
+VC_MOUNT_POINT=/media/veracrypt${VC_SLOT}
+
+# veracrypt -t -k "" --pim=$(read -e a\?PIM=) --protect-hidden=no --slot=13 /tmp/cifs_dustbin/AABackup-Drive/disks/img/randpoolT ''
+
+# Volume Setup Notes:
+# dd of=dustbin.img bs=1 count=0 seek=2T
+# sudo cryptsetup luksFormat --type=luks2 dustbin.img
+# sudo cryptsetup luksOpen ~/dustbin/AABackup-Drive/disks/img/dustbin.img dust
+# sudo mkfs.btrfs -L @dust -m dup -f /dev/mapper/dust
+# btrfs-progs v5.4.1
+# See http://btrfs.wiki.kernel.org for more information.
+
+# Label:              @dust
+# UUID:               3c1208f6-bac3-44cf-b92a-31b1782ad2d5
+# Node size:          16384
+# Sector size:        4096
+# Filesystem size:    2.00TiB
+# Block group profiles:
+#   Data:             single            8.00MiB
+#   Metadata:         DUP               1.00GiB
+#   System:           DUP               8.00MiB
+# SSD detected:       yes
+# Incompat features:  extref, skinny-metadata
+# Checksum:           crc32c
+# Number of devices:  1
+# Devices:
+#    ID        SIZE  PATH
+#     1     2.00TiB  /dev/mapper/dust
+#
+# Then mount AFS on mbp and sync with:
+# rsync -av --progress 'mbp2019:/Volumes/Dustbin 1/l' ~/dust/
+
+## SNAPSHOTS -
+# HDD crypt UUID = ecd2d452-b79a-4b2a-a2ec-7a919d5623df
+# sudo cryptsetup luksOpen /dev/disk/by-uuid/ecd2d452-b79a-4b2a-a2ec-7a919d5623df dust_snap
+
+## ADD MIRROR - https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices
+#               Recovery: https://linuxnatives.net/2015/using-raid-btrfs-recovering-broken-disks
+# - Encrypt/mount underlying block device (/dev/sdc) as above
+# - then add device to fs
+# - Re-balance/convert to raid1 (mirror)
+# sudo cryptsetup luksFormat --type=luks2 /dev/sdc
+# sudo cryptsetup luksOpen /dev/disk/by-uuid/43ab03b8-09d5-49e1-810e-20b2cb51d8ee dust_bak
+#                         new_dev_luks_dev   existing_btrfs_mount
+# sudo btrfs device add /dev/mapper/dust_bak ~/dust
+# sudo btrfs balance start -dconvert=raid1 ~/dust
+# -wait-  Status commands below vv
+# sudo btrfs filesystem show ~/dust
+# sudo btrfs filesystem usage ~/dust
+# sudo btrfs filesystem df ~/dust   # Shows how much data is on 'single' vs raid1
+# sudo btrfs balance status ~/dust
+# while [ 1 ]; do echo -n "\n[$(date)] $(sudo btrfs balance status ~/dust | tail -n1)"; sleep 30; done
+#
+# remove raid1
+# sudo btrfs balance start -dconvert=single  ~/dust
+# sudo btrfs device remove /dev/mapper/dust_bak ~/dust
+
+function mount() {
+  if [[ ! -f $IMG_FILE ]]; then
+    if [[ ! -d $CIFS_MOUNT_POINT ]]; then
+      mkdir $CIFS_MOUNT_POINT
+    fi
+    echo "Mounting CIFS Share..."
+    sudo mount -t cifs -o "uid=aburns,gid=aburns,credentials=$HOME/.freenas-smb-credentials" //10.0.1.50/dustbin $CIFS_MOUNT_POINT
+  fi
+  if [[ ! -f $IMG_FILE ]]; then
+    echo "*** ERROR: Could not mount CIFS share!?"
+    exit 1
+  fi
+
+  if [[ ! -b $MAP_PATH ]]; then
+    echo "Unlocking encrypted volume..."
+    sudo cryptsetup luksOpen $IMG_FILE $LUKS_NAME
+    if [[ -b $HDD_PATH ]]; then
+      echo "Mounting HD"
+      sudo cryptsetup luksOpen $HDD_PATH "${LUKS_NAME}_HDD"
+    else
+      echo "Not mounting HDD"
+    fi
+  fi
+  if [[ ! -b $MAP_PATH ]]; then
+    echo "*** ERROR: Could mount encrypted volume"
+    exit 1
+  fi
+
+  if [[ -f $FS_MOUNT_POINT/.dartp6 ]]; then
+    FS_ALREADY_MOUNTED=2
+  else
+    if [[ ! -d $FS_MOUNT_POINT ]]; then
+      mkdir $FS_MOUNT_POINT
+    fi
+    echo "Mounting fs"
+    sudo mount $MAP_PATH $FS_MOUNT_POINT
+    # sudo mount -o ro,degraded $MAP_PATH $FS_MOUNT_POINT
+  fi
+  if [[ ! -f $FS_MOUNT_POINT/.dartp6 ]]; then
+    echo "*** ERROR: Could not mount fs drive?"
+    exit 1
+  fi
+
+  if [[ -x $FS_MOUNT_POINT/links/links.sh ]]; then
+    if [[ -z $FS_ALREADY_MOUNTED ]]; then
+      $FS_MOUNT_POINT/links/links.sh
+    else
+      echo "Not running links... was already mounted"
+    fi
+  fi
+
+  # temp veracrypt
+  if [[ ! -f $VC_MOUNT_POINT/.dartp6 ]]; then
+    echo "Mounting veracrypt..."
+    # veracrypt -t -k "" --protect-hidden=no --slot=$VC_SLOT $VC_FILE $VC_MOUNT_POINT
+    veracrypt --protect-hidden=no --slot=$VC_SLOT $VC_FILE $VC_MOUNT_POINT
+  fi
+}
+
+function unmount() {
+  # Unmount fs
+  if [[ -f $FS_MOUNT_POINT/.dartp6 ]]; then
+    echo "Making sure apps are closed"
+    killall xdg-document-portal
+    killall gthumb; sleep 3; killall -s9 gthumb
+    killall vlc; sleep 3; killall -s9 vlc
+
+    if [[ -x $FS_MOUNT_POINT/links/links.sh ]]; then
+      $FS_MOUNT_POINT/links/links.sh u
+    fi
+
+    echo "Triggering fs sync"
+    # btrfs filesystem sync $FS_MOUNT_POINT
+    sync
+    echo "Unmounting fs"
+    sudo umount $FS_MOUNT_POINT
+  fi
+  if [[ -f $FS_MOUNT_POINT/.dartp6 ]]; then
+    echo "*** ERROR: Could not unmount fs drive?"
+    exit 1
+  fi
+
+  # temp veracrypt
+  if [[ -f $VC_MOUNT_POINT/.dartp6 ]]; then
+    echo "Unmounting veracrypt..."
+    veracrypt -t --slot=$VC_SLOT -d $VC_FILE
+  fi
+
+  if [[ -b $MAP_PATH ]]; then
+    echo "Locking encrypted CIFS volume..."
+    sudo cryptsetup close $LUKS_NAME
+  fi
+  if [[ -b "${MAP_PATH}_HDD" ]]; then
+    echo "Locking encrypted HDD volume..."
+      sudo cryptsetup close "${LUKS_NAME}_HDD"
+  fi
+  if [[ -b $MAP_PATH ]]; then
+    echo "*** ERROR: Could not lock encrypted volume?"
+    exit 1
+  fi
+
+  if [[ "$1" == "unmount" ]]; then
+    if [[ -f $IMG_FILE ]]; then
+      echo "Unmounting CIFS..."
+      sudo umount $CIFS_MOUNT_POINT
+    fi
+    if [[ -f $IMG_FILE ]]; then
+      echo "*** ERROR: Could not lock encrypted volume?"
+      exit 1
+    fi
+  else
+    echo "Not unmounting CIFS (specify 'unmount' to fully unmount everything, including CIFS)"
+  fi
+}
+
+if [[ -n $1 ]]; then
+  unmount $1
+else
+  mount
+fi
+
+sudo cryptsetup status $LUKS_NAME
+sudo cryptsetup status "${LUKS_NAME}_HDD"
+echo "Veracrypt Volume Status:"
+veracrypt -t -l
