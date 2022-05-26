@@ -1,24 +1,47 @@
 {{- $email := "" -}}
 {{- if hasKey . "email" -}}
 {{-   $email = .email -}}
-{{- else -}}
-{{-   $email := promptString "email" -}}
 {{- end -}}
-
+{{- if eq $email "" -}}
+{{-   $email = promptString "email" -}}
+{{- end -}}
 
 {{- $focus := "" -}}
 {{- if hasKey . "focus" -}}
 {{-   $focus = .focus -}}
-{{- else -}}
-{{-   $focus := promptString "focus" -}}
+{{- end -}}
+{{- if eq $focus "" -}}
+{{-   $focus = promptString "focus" -}}
+{{- end -}}
+
+{{- $a_fetlife := eq $focus "fetlife" }}
+{{- $a_personal := eq $focus "personal" }}
+{{- $a_server := eq $focus "server" }}
+{{- $a_tractionguest := eq $focus "tractionguest" }}
+
+
+{{- if hasKey .area "fetlife" -}}
+{{-   $a_fetlife = .area.fetlife -}}
+{{- end -}}
+
+{{- if hasKey .area "personal" -}}
+{{-   $a_personal = .area.personal -}}
+{{- end -}}
+
+{{- if hasKey .area "server" -}}
+{{-   $a_server = .area.server -}}
+{{- end -}}
+
+{{- if hasKey .area "tractionguest" -}}
+{{-   $a_tractionguest = .area.tractionguest -}}
 {{- end -}}
 
 [data]
   focus = {{ $focus | quote }}
   email = {{ $email | quote }}
   [data.area]
-    fetlife = {{ eq $focus "fetlife" }}
-    personal = {{ eq $focus "personal" }}
-    server = {{ eq $focus "server" }}
-    tractionguest = {{ eq $focus "tractionguest" }}
+    fetlife = {{ $a_fetlife }}
+    personal = {{ $a_personal }}
+    server = {{ $a_server }}
+    tractionguest = {{ $a_tractionguest }}
 
