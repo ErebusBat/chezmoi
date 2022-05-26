@@ -1,0 +1,18 @@
+session_name: hassio
+start_directory: ~/src/pers/hassio
+shell_command_before:
+  - wd hassio
+windows:
+- window_name: hass
+  layout: 3e18,190x102,0,0[190x31,0,0,43,190x70,0,32,44]
+  panes:
+    - shell_command:
+      - ssh -t hassio -- bpytop
+    - pane
+- window_name: zsh
+  options:
+    automatic-rename: 'off'
+  panes:
+    - pane
+        - neofetch
+    - pane

@@ -1,0 +1,12 @@
+{{- $email := promptString "email" -}}
+{{- $focus := promptString "focus" -}}
+
+[data]
+  focus = {{ $focus | quote }}
+  email = {{ $email | quote }}
+  [data.area]
+    fetlife = {{ eq $focus "fetlife" }}
+    personal = {{ eq $focus "personal" }}
+    server = {{ eq $focus "server" }}
+    tractionguest = {{ eq $focus "tractionguest" }}
+
