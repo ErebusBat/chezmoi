@@ -1,0 +1,54 @@
+session_name: system
+start_directory: ~/src
+windows:
+- window_name: wiki
+  focus: true
+  panes:
+    - shell_command:
+        - wd vimwiki
+        # - vimlog -- tguest/scim_rails.md $(vimlog -p -y)
+        - vimlog -- y 0 tguest/sst18230.md tguest/scim_rails.md top.md
+    - shell_command:
+        - wd vimwiki
+        - neofetch
+
+- window_name: stow
+  panes:
+    - shell_command:
+      - neofetch
+      - wd stow
+    - shell_command:
+      - wd stow
+
+- window_name: vim
+  panes:
+    - shell_command:
+      - neofetch
+      - wd vim
+    - shell_command:
+      - wd vim
+
+- window_name: tmux
+  panes:
+    - wd tmux
+    - wd tmux
+
+# - window_name: pchef
+#   panes:
+#     - wd pchef
+#     - wd pchef
+
+- window_name: zsh
+  options:
+    automatic-rename: 'off'
+  suppress_history: false
+  panes:
+    - shell_command:
+        - neofetch
+    - pane:
+      focus: true
+
+- window_name: go
+  panes:
+    - cd $GOSRCME
+    - cd $GOSRCME

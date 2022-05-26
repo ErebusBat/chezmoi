@@ -1,0 +1,32 @@
+# tmux display-message -p "#{window_layout}" | pbcopy
+session_name: left-middle
+start_directory: ~/src/fetlife/fetlife-systems
+windows:
+  # Normal 3x(k8s), bpytop
+- window_name: system
+  # layout: 1eef,157x40,0,0[157x3,0,0{54x3,0,0,35,51x3,55,0,36,50x3,107,0,37},157x36,0,4,38]
+  suppress_history: false
+  panes:
+    # - shell_command: while [ true ]; do kubectl get deploy/web-puma -w; sleep 5; done
+    # - shell_command: while [ true ]; do kubectl get deploy/web-sidekiq -w; sleep 5; done
+    # - shell_command: while [ true ]; do kubectl get deploy/cable-puma -w; sleep 5; done
+    - shell_command:
+      - bpytop
+
+  # 3x(k8s), monitor, bpytop
+# - window_name: system
+#   layout: 084f,158x45,0,0[158x5,0,0{55x5,0,0,41,51x5,56,0,42,50x5,108,0,43},158x9,0,6,45,158x29,0,16,44]
+#   suppress_history: false
+#   panes:
+#     - shell_command: while [ true ]; do kubectl get deploy/web-puma -w; sleep 5; done
+#     - shell_command: while [ true ]; do kubectl get deploy/web-sidekiq -w; sleep 5; done
+#     - shell_command: while [ true ]; do kubectl get deploy/cable-puma -w; sleep 5; done
+#     - shell_command:
+#       - gssh maindb-dragon -- replication_lag.sh
+#     - shell_command:
+#       - bpytop
+
+# - window_name: dbmon
+#   panes:
+#     - gssh maindb-rat -- 'watch -n30 ./watch.sh'
+#     - gssh maindb-dragon -- -L 33306:127.0.0.1:3306 'watch -n30 ~/watch.sh'
