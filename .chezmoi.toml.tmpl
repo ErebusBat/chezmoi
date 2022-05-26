@@ -1,0 +1,6 @@
+{{- $email := promptString "email" -}}
+
+[data]
+  focus = "personal"
+  email = {{ $email | quote }}
+
