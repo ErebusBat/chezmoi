@@ -21,6 +21,7 @@ direct/
 {{- end }}
 
 {{- if not .area.personal }}
+.ssh/id_bat_devices
 .tmuxp/hassio.yaml
 .tmuxp/system.yaml
 {{- end }}
