@@ -1,0 +1,16 @@
+session_name: system
+start_directory: ~/src
+windows:
+- window_name: zsh
+  options:
+    automatic-rename: 'off'
+  suppress_history: false
+  panes:
+    - shell_command:
+        - neofetch
+    - pane:
+      focus: true
+- window_name: zsh
+  panes:
+    - pane
+    - pane
