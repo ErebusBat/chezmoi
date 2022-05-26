@@ -1,0 +1,22 @@
+hosts:
+  openwrt:
+    HostName: 10.0.1.1
+    User: root
+    GatewayConnectTimeout: 5
+    Gateways:
+      - direct
+      - thelio-ts
+  cpr-pf:
+    Hostname: 10.0.1.249
+    User: admin
+    IdentitiesOnly: true
+  hassio:
+    Hostname: 10.0.0.150
+    User: pi
+    IdentitiesOnly: yes
+    ForwardAgent: yes
+  freenas:
+    Hostname: 10.0.1.50
+    User: aburns
+    IdentitiesOnly: yes
+    ForwardAgent: yes

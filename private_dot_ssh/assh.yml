@@ -1,0 +1,14 @@
+# https://github.com/moul/advanced-ssh-config
+# assh config build > ~/.ssh/config
+
+
+  # https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Proxies_and_Jump_Hosts#ProxyCommand_with_Netcat
+  # $ ssh -o VerifyHostKeyDNS=no -o ProxyCommand="nc -X 5 -x localhost:9050 %h %p" server.example.org
+
+  # hassio.onion:
+  #   Hostname: 2yas7xwis62ws4mw.onion
+  #   Inherits: hassio
+  #   ProxyCommand: "/usr/bin/nc -X 5 -x localhost:9150 %h %p"
+
+includes:
+- ~/.ssh/assh.d/*.yml
