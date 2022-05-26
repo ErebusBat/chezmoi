@@ -1,22 +1,126 @@
 hosts:
+############################################################
+# Devices
+############################################################
+  cpr-pf:
+    Hostname: 10.0.1.249
+    Inherits: bat-devices-admin
+
+  hass-droid:
+    Hostname: 10.0.0.236
+    User: aburns
+    Inherits: bat-devices
+
   openwrt:
     HostName: 10.0.1.1
     User: root
+    Inherits: bat-devices
     GatewayConnectTimeout: 5
     Gateways:
       - direct
       - thelio-ts
-  cpr-pf:
-    Hostname: 10.0.1.249
-    User: admin
-    IdentitiesOnly: true
+
+#############################################################
+# UniFi
+#############################################################
+  unifi:
+    Hostname: 10.0.1.250
+    User: root
+    Inherits: bat-devices-admin
+
+  us24:
+    Hostname: 10.0.1.2
+    Inherits: bat-devices-admin
+  us16:
+    Hostname: 10.0.1.4
+    Inherits: bat-devices-admin
+  us8poe:
+    Hostname: 10.0.1.3
+    Inherits: bat-devices-admin
+  es8desk:
+    Hostname: 10.0.1.5
+    User: ubnt
+    Inherits: bat-devices
+
+  ap-living-room:
+    Hostname: 10.0.1.20
+    Inherits: bat-devices-admin
+  ap-garage:
+    Hostname: 10.0.1.21
+    Inherits: bat-devices-admin
+
+#############################################################
+# Servers
+#############################################################
   hassio:
     Hostname: 10.0.0.150
-    User: pi
-    IdentitiesOnly: yes
-    ForwardAgent: yes
+    Inherits: raspi
+  hass:
+    Inherits: hassio
   freenas:
     Hostname: 10.0.1.50
-    User: aburns
-    IdentitiesOnly: yes
+    Inherits: personal
+  nuc:
+    Inherits: personal
+    Hostname: 10.0.0.80
+  nuc01:
+    Inherits: personal-allowpass
+    Hostname: 10.0.0.80
+
+#############################################################
+# Linux PCs
+#############################################################
+  thelio:
+    Inherits: personal
+    Hostname: 10.0.1.75
+  thelio-wifi:
+    Inherits: personal
+    Hostname: 10.0.0.75
+  dartp6:
+    Inherits: personal
+    Hostname: 10.0.0.207
+
+#############################################################
+# Raspberry Pis
+#############################################################
+  officepi:
+    Hostname: 10.0.0.20
+    Inherits: raspi
+  rpi.bat:
+    Hostname: 10.0.1.167
+    Inherits: raspi
+  rpi2.bat:
+    Hostname: 10.0.1.168
+    Inherits: raspi
+  batpi.bat:
+    Hostname: 10.0.1.164
+    Inherits: raspi
+  batpi:
+    Hostname: 10.0.1.164
+    Inherits: raspi
+
+
+#############################################################
+# Templates
+#############################################################
+templates:
+  bat-devices:
+    IdentityFile: ~/.ssh/id_bat_devices
     ForwardAgent: yes
+    IdentitiesOnly: yes
+  bat-devices-admin:
+    User: admin
+    Inherits: bat-devices
+  personal:
+    User: aburns
+    ForwardAgent: yes
+    IdentitiesOnly: yes
+  personal-allowpass:
+    User: aburns
+    ForwardAgent: yes
+  raspi:
+    User: pi
+    ForwardAgent: yes
+    IdentityFile: ~/.ssh/id_bat_devices
+
+
