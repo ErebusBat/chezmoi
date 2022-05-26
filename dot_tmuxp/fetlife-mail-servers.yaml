@@ -1,0 +1,119 @@
+# tmux display-message -p "#{window_layout}" | pbcopy
+#clear;mon_log | rg '(hotmail|outlook|live\.)'
+session_name: fl-mail
+start_directory: ~/src/fetlife/fetlife-systems
+windows:
+# - window_name: logs
+#   layout: even-vertical
+#   panes:
+#     - shell_command:
+#         - ssh abuse01
+#         - clear; mon_notsent
+#       focus: 'true'
+#     - shell_command:
+#         - ssh mail11
+#         - clear; mon_notsent
+#     - shell_command:
+#         - ssh mail13
+#         - clear; mon_notsent
+#     - shell_command:
+#         - ssh mail14
+#         - clear; mon_notsent
+#     - shell_command:
+#         - ssh mail15
+#         - clear; mon_notsent
+#   options_after:
+#       synchronize-panes: on
+
+
+# - window_name: logs-ms
+#   layout: even-vertical
+#   focus: 'true'
+#   panes:
+#     - shell_command:
+#         - ssh abuse01
+#         - clear;mon_log | rg '(hotmail|outlook|live\.)'
+#       focus: 'true'
+#     - shell_command:
+#         - ssh mail11
+#         - clear;mon_log | rg '(hotmail|outlook|live\.)'
+#     - shell_command:
+#         - ssh mail13
+#         - clear;mon_log | rg '(hotmail|outlook|live\.)'
+#     - shell_command:
+#         - ssh mail14
+#         - clear;mon_log | rg '(hotmail|outlook|live\.)'
+#     # - shell_command:
+#     #     - ssh mail15
+#     #     - clear;mon_log | rg '(hotmail|outlook|live\.)'
+#   options_after:
+#       synchronize-panes: on
+
+
+- window_name: shells
+  layout: even-vertical
+  panes:
+    - shell_command:
+        - ssh mail11
+    - shell_command:
+        - ssh mail13
+    - shell_command:
+        - ssh mail14
+    - shell_command:
+        - ssh mail16
+    - shell_command:
+        - ssh mail17
+    - shell_command:
+        - ssh mail18
+      focus: 'true'
+  options_after:
+      synchronize-panes: on
+
+- window_name: vim
+  layout: even-vertical
+  options:
+    automatic-rename: 'off'
+  panes:
+    - shell_command:
+        - vim cookbooks/fetlife-postfix/files/default/bounce_parser_new.rb cookbooks/fetlife-postfix/attributes/domain_routes.rb
+      focus: 'true'
+    - shell_command:
+        - tmux resize-pane -y 4 -t "$TMUX_PANE"
+
+- window_name: logs-load
+  layout: even-vertical
+  panes:
+    - shell_command:
+        - cd ~/src/fetlife/fetlife-systems/scripts/email
+        - ./live_load.sh mail11
+        # - ssh mail11 -- journalctl -fu influx-loader
+    - shell_command:
+        - cd ~/src/fetlife/fetlife-systems/scripts/email
+        - ./live_load.sh mail13
+    - shell_command:
+        - cd ~/src/fetlife/fetlife-systems/scripts/email
+        - ./live_load.sh mail14
+    - shell_command:
+        - cd ~/src/fetlife/fetlife-systems/scripts/email
+        # - ssh mail16 -- journalctl -fu influx-loader
+        - ./live_load.sh mail16
+    - shell_command:
+        - cd ~/src/fetlife/fetlife-systems/scripts/email
+        # - ssh mail17 -- journalctl -fu influx-loader
+        - ./live_load.sh mail17
+    - shell_command:
+        - cd ~/src/fetlife/fetlife-systems/scripts/email
+        # - ssh mail18 -- journalctl -fu influx-loader
+        - ./live_load.sh mail18
+  options_after:
+      synchronize-panes: on
+- window_name: grafana
+  panes:
+    - shell_command:
+      - cd ~/src/fetlife/fetlife-systems/scripts/email/docker
+      - systemctl --user status fetlife-influx
+      - docker-compose ps
+    - shell_command:
+      - cd ~/src/fetlife/fetlife-systems/scripts/email/
+
+

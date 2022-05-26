@@ -1,0 +1,26 @@
+session_name: fetlife-statuspage
+start_directory: ~/src/fetlife/statuspage
+windows:
+- window_name: foreman
+  # use list-windows to get layout string
+  options:
+    automatic-rename: 'off'
+  suppress_history: false
+  panes:
+    - shell_command:
+        - rails s -p 3030
+    - shell_command:
+        - rails c
+      focus: true
+- window_name: vim
+  layout: d396,164x77,0,0[164x4,0,0,4,164x72,0,5,5]
+  focus: true
+  panes:
+    - shell_command:
+        - vimls
+    - shell_command:
+        - tmux resize-pane -y 4 -t "$TMUX_PANE"
+- window_name: zsh
+  panes:
+    - pane
+    - pane

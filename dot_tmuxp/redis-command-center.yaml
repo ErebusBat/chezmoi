@@ -1,0 +1,79 @@
+session_name: redis-cc-sidekiq
+start_directory: ~/src/fetlife/fetlife-systems
+windows:
+- window_name: redis-cli
+  layout: "even-vertical"
+  panes:
+    - shell_command:
+      - kubectl exec -it redis-sidekiq-0 -c redis -- redis-cli -p 16379
+    - shell_command:
+      - kubectl exec -it redis-sidekiq-1 -c redis -- redis-cli -p 16379
+    # - shell_command:
+    #   - kubectl exec -it redis-sidekiq-2 -c redis -- redis-cli -p 16379
+- window_name: sidekiq-repl
+  layout: "even-vertical"
+  panes:
+    - shell_command:
+      - watch -n1 'kubectl exec -it redis-sidekiq-0 -c redis -- /usr/local/bin/redis-cli -p 16379 info Replication'
+    - shell_command:
+      - watch -n1 'kubectl exec -it redis-sidekiq-1 -c redis -- /usr/local/bin/redis-cli -p 16379 info Replication'
+    # - shell_command:
+    #   - watch -n1 'kubectl exec -it redis-sidekiq-2 -c redis -- /usr/local/bin/redis-cli -p 16379 info Replication'
+- window_name: sidekiq-pers
+  layout: "even-vertical"
+  panes:
+    - shell_command:
+      - watch -n1 'kubectl exec -it redis-sidekiq-0 -c redis -- /usr/local/bin/redis-cli -p 16379 info Persistence'
+    - shell_command:
+      - watch -n1 'kubectl exec -it redis-sidekiq-1 -c redis -- /usr/local/bin/redis-cli -p 16379 info Persistence'
+    # - shell_command:
+    #   - watch -n1 'kubectl exec -it redis-sidekiq-2 -c redis -- /usr/local/bin/redis-cli -p 16379 info Persistence'
+- window_name: redis-logs
+  layout: "even-vertical"
+  focus: true
+  panes:
+    - shell_command:
+      - cd ~/Sites/fetlife-web
+      - fetzeug redis sentinel info -i sidekiq
+      focus: true
+    - shell_command:
+      - podlogs redis-sidekiq-0 -c redis
+    - shell_command:
+      - podlogs redis-sidekiq-1 -c redis
+    # - shell_command:
+    #   - podlogs redis-sidekiq-2 -c redis
+- window_name: SSH
+  layout: "even-vertical"
+  panes:
+    - shell_command:
+      - kubectl exec -it redis-sidekiq-0 -- bash
+    - shell_command:
+      - kubectl exec -it redis-sidekiq-1 -- bash
+    # - shell_command:
+    #   - kubectl exec -it redis-sidekiq-2 -- bash
+- window_name: sentinel-logs
+  layout: "even-vertical"
+  panes:
+    - shell_command:
+      - podlogs redis-sentinel-sidekiq-0
+    - shell_command:
+      - podlogs redis-sentinel-sidekiq-1
+    - shell_command:
+      - podlogs redis-sentinel-sidekiq-2
+    - shell_command:
+      - podlogs redis-sentinel-sidekiq-3
+    - shell_command:
+      - podlogs redis-sentinel-sidekiq-4
+- window_name: sentinel-cli
+  layout: "even-vertical"
+  panes:
+    - shell_command:
+      - kubectl exec -it redis-sentinel-sidekiq-0 -- /usr/local/bin/redis-cli -p 26379
+    - shell_command:
+      - kubectl exec -it redis-sentinel-sidekiq-1 -- /usr/local/bin/redis-cli -p 26379
+    - shell_command:
+      - kubectl exec -it redis-sentinel-sidekiq-2 -- /usr/local/bin/redis-cli -p 26379
+    - shell_command:
+      - kubectl exec -it redis-sentinel-sidekiq-3 -- /usr/local/bin/redis-cli -p 26379
+    - shell_command:
+      - kubectl exec -it redis-sentinel-sidekiq-4 -- /usr/local/bin/redis-cli -p 26379

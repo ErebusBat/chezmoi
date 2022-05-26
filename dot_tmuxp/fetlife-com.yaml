@@ -1,0 +1,49 @@
+session_name: fetlife-com
+start_directory: ~/src/fetlife/fetlife-web
+windows:
+- window_name: foreman
+  # use list-windows to get layout string
+  # layout: 5e41,91x54,0,0[91x7,0,0,110,91x13,0,8,111,91x32,0,22,112]
+  layout: 58b9,176x92,0,0[176x20,0,0{83x20,0,0,1,92x20,84,0,24},176x26,0,21,2,176x44,0,48,3]
+  options:
+    automatic-rename: 'off'
+  suppress_history: false
+  panes:
+    - shell_command:
+        # - make run_noserver
+        # fetlife_web_background_tasks is a script added by stow/fetlife
+        - fetlife_web_background_tasks up
+    - shell_command:
+        - script/update
+        - rails s
+    - shell_command:
+        - ":>log/development.log; script/log"
+    - shell_command:
+        # - sleep 60; be rails c
+        - rails c
+      focus: true
+- window_name: vim
+  layout: d396,164x77,0,0[164x4,0,0,4,164x72,0,5,5]
+  focus: true
+  panes:
+    - shell_command:
+        - vimls
+    - shell_command:
+        - tmux resize-pane -y 4 -t "$TMUX_PANE"
+- window_name: zsh
+  panes:
+    # - shell_command:
+    #     # - vimr -n ../fldc-feed/feed.rb ~/daily-log.md
+    #     - fz web console -e maintenance
+    # - shell_command:
+    #     - fz web console -e maintenance
+    - pane
+    - pane
+- window_name: con
+  panes:
+    - fz web console -e production
+    - pane
+- window_name: comm
+  panes:
+    - wd comm
+    - wd comm

@@ -1,0 +1,35 @@
+# tmux display-message -p "#{window_layout}" | pbcopy
+session_name: fl-gcp
+start_directory: ~/src/fetlife/fetlife-systems
+windows:
+- window_name: db
+  panes:
+    # - gssh maindb-rat -- 'watch -n30 ./watch.sh'
+    # - gssh maindb-dragon -- -L 33306:127.0.0.1:3306 'watch -n30 ~/watch.sh'
+    - pane
+    - pane
+
+- window_name: zsh
+  focus: true
+  layout: even-vertical
+  options:
+    automatic-rename: 'off'
+  suppress_history: false
+  panes:
+    - shell_command:
+      focus: true
+    - pane:
+
+- window_name: k8s
+  panes:
+    - wd k8s
+    - wd k8s
+
+- window_name: chef
+  panes:
+    - wd chef
+    - wd chef
+# - window_name: rigger
+#   panes:
+#     - cd ~/src/fetlife/fetlife-systems/kubernetes/fetlife-rigger
+#     - wd rigger

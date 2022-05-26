@@ -1,0 +1,70 @@
+session_name: redis-cc-feed
+start_directory: ~/src/fetlife/fetlife-systems
+windows:
+- window_name: redis-cli
+  layout: "even-vertical"
+  panes:
+    - shell_command:
+      - gssh redis-feed-0 -- redis-cli -p 16379
+    - shell_command:
+      - gssh redis-feed-1 -- redis-cli -p 16379
+- window_name: feed-repl
+  layout: "even-vertical"
+  panes:
+    - shell_command:
+      - gssh redis-feed-0 -- "watch -n1 'date;hostname; redis-cli -p 16379 info Replication'"
+    - shell_command:
+      - gssh redis-feed-1 -- "watch -n1 'date;hostname; redis-cli -p 16379 info Replication'"
+- window_name: feed-pers
+  layout: "even-vertical"
+  panes:
+    - shell_command:
+      - gssh redis-feed-0 -- "watch -n1 'date;hostname; redis-cli -p 16379 info Persistence'"
+    - shell_command:
+      - gssh redis-feed-1 -- "watch -n1 'date;hostname; redis-cli -p 16379 info Persistence'"
+- window_name: redis-logs
+  layout: "even-vertical"
+  focus: true
+  panes:
+    - shell_command:
+      - cd ~/Sites/fetlife-web
+      - fetzeug redis sentinel info -i feed
+    - shell_command:
+      - gssh redis-feed-0 -- sudo journalctl -n100 -fu redis@feed
+    - shell_command:
+      - gssh redis-feed-1 -- sudo journalctl -n100 -fu redis@feed
+- window_name: SSH
+  layout: "even-vertical"
+  focus: true
+  panes:
+    - shell_command:
+      - gssh redis-feed-0
+    - shell_command:
+      - gssh redis-feed-1
+- window_name: sentinel-logs
+  layout: "even-vertical"
+  panes:
+    - shell_command:
+      - kubectl logs -f redis-sentinel-feed-0
+    - shell_command:
+      - kubectl logs -f redis-sentinel-feed-1
+    - shell_command:
+      - kubectl logs -f redis-sentinel-feed-2
+    - shell_command:
+      - kubectl logs -f redis-sentinel-feed-3
+    - shell_command:
+      - kubectl logs -f redis-sentinel-feed-4
+- window_name: sentinel-cli
+  layout: "even-vertical"
+  focus: true
+  panes:
+    - shell_command:
+      - kubectl exec -it redis-sentinel-feed-0 -- /usr/local/bin/redis-cli -p 26379
+    - shell_command:
+      - kubectl exec -it redis-sentinel-feed-1 -- /usr/local/bin/redis-cli -p 26379
+    - shell_command:
+      - kubectl exec -it redis-sentinel-feed-2 -- /usr/local/bin/redis-cli -p 26379
+    - shell_command:
+      - kubectl exec -it redis-sentinel-feed-3 -- /usr/local/bin/redis-cli -p 26379
+    - shell_command:
+      - kubectl exec -it redis-sentinel-feed-4 -- /usr/local/bin/redis-cli -p 26379

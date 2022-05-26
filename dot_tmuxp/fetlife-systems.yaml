@@ -1,0 +1,33 @@
+session_name: fl-sys
+start_directory: ~/Sites/fetlife-systems
+windows:
+- window_name: mon
+  options:
+    automatic-rename: 'off'
+  suppress_history: false
+  panes:
+    - shell_command:
+    - pane:
+      focus: true
+  focus: true
+- window_name: zsh
+  panes:
+    - pane
+    - pane
+- window_name: status
+  layout: f2cd,204x77,0,0[204x31,0,0,24,204x26,0,32,25,204x9,0,59,31,204x8,0,69,36]
+  panes:
+    - shell_command:
+        - kubectl logs -f redis-feed-0 -c redis
+      focus: true
+    - shell_command:
+        - kubectl logs -f redis-feed-1 -c redis
+    - shell_command:
+        - kubectl exec -it redis-feed-0 -- redis-cli -p 16379
+    - shell_command:
+        - kubectl exec -it redis-feed-1 -- redis-cli -p 16379
+- window_name: zsh
+  panes:
+    - pane
+    - pane
+

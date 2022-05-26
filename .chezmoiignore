@@ -1,6 +1,14 @@
 direct/
 {{- if not .area.fetlife }}
+.tmuxp/fetlife-com.yaml
+.tmuxp/fetlife-gcp.yaml
+.tmuxp/fetlife-mail-servers.yaml
+.tmuxp/fetlife-statuspage.yaml
+.tmuxp/fetlife-systems.yaml
+.tmuxp/fetlife-td-agent.yaml
 .tmuxp/fltmux.zsh
+.tmuxp/redis-cc-feed.yaml
+.tmuxp/redis-command-center.yaml
 {{- end }}
 
 {{- if not .area.tractionguest }}

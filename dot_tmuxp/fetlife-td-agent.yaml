@@ -1,0 +1,21 @@
+# tmux display-message -p "#{window_layout}" | pbcopy
+session_name: td-agent
+start_directory: ~/Sites/fetlife-systems/kubernetes/fetlife-td-agent
+windows:
+- window_name: logs
+  # layout: 6696,191x52,0,0[191x18,0,0,21,191x11,0,19,22,191x21,0,31,23]
+  layout: 64ea,180x100,0,0[180x24,0,0,38,180x24,0,25,39,180x24,0,50,40,180x25,0,75,41]
+  panes:
+    - shell_command:
+      - make tail
+    - shell_command:
+      - POD=1 make tail
+    - shell_command:
+      - POD=2 make tail
+    - shell_command:
+      - POD=3 make tail
+- window_name: zsh
+  panes:
+    - pane
+    - pane
+  focus: true
