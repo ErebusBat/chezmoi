@@ -1,1 +1,17 @@
 direct/
+{{- if not .area.fetlife }}
+.tmuxp/fltmux.zsh
+{{- end }}
+
+{{- if not .area.tractionguest }}
+.tmuxp/guest-server.yaml
+{{- end }}
+
+{{- if not .area.personal }}
+.tmuxp/hassio.yaml
+.tmuxp/system.yaml
+{{- end }}
+
+{{- if not .area.server }}
+.tmuxp/left.yaml
+{{- end }}
