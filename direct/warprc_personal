@@ -2,5 +2,6 @@ chezmoi:~/.local/share/chezmoi
 restic:~/.restic
 src:~/src
 ssh:~/.ssh
-tmux:~/.tmux
+stow:~/src/erebusbat/dotfiles-stow
 tmuxp:~/.tmuxp
+tmux:~/.tmux

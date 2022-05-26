@@ -1,0 +1,68 @@
+# This is Git's per-user configuration file.
+[user]
+   name = Andrew Burns
+	email = {{ .email }}
+
+[color]
+        branch = auto
+        status = auto
+        diff = auto
+	ui = true
+[alias]
+        br = branch
+        ci = commit
+        co = checkout
+        cp = cherry-pick
+        df = diff
+        g = \"!git gui\"
+        k = !gitk
+        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+        lsig = ls-files --others -i --exclude-standard
+        rem = remote
+        st = status
+        who = shortlog -s --
+        lol = log --decorate --oneline --graph
+
+[core]
+        excludesfile = ~/.git-ignore
+        quotepath = false
+        ; attributesFile = /Users/{{ .chezmoi.group }}/.gitattributes
+        pager = diff-so-fancy | less -RFX
+[push]
+        default = simple
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+        required = true
+	process = git-lfs filter-process
+[difftool "sourcetree"]
+        cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+        path =
+[mergetool "sourcetree"]
+        cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+        trustExitCode = true
+[diff "code"]
+        wordRegex = [^[:space:],()\\.]+
+[diff-so-fancy]
+        markEmptyLines = false
+[github]
+	user = ErebusBat
+[pull]
+	rebase = false
+; [url "git@github.com:"]
+; 	insteadOf = https://github.com/
+[credential "https://github.com"]
+	helper = !gh auth git-credential
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	func = 146 bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse

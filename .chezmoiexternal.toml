@@ -5,4 +5,4 @@
 [".config/tmux/theme-tomorrow"]
   type = "git-repo"
   url = "https://github.com/edouard-lopez/tmux-tomorrow.git"
-  refreshPeriod = "30d"
+  refreshPeriod = "720h"
