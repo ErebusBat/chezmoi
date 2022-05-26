@@ -1,4 +1,6 @@
+# Direct is where we store files that are symlinked (like stow)
 direct/
+
 {{- if not .area.fetlife }}
 .tmuxp/fetlife-com.yaml
 .tmuxp/fetlife-gcp.yaml
