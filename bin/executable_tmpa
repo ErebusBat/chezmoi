@@ -10,6 +10,11 @@ if [[ ! -d $SESSION_DIR ]]; then
   exit 1
 fi
 
+# Authenticate with 1Password so that our ChezMoi status indicator works
+if [[ -x ~/.tmux/op_auth.sh ]]; then
+  eval $(~/.tmux/op_auth.sh)
+fi
+
 # --query Start fzf with query that was specified on command line
 # -1      auto select if only 1 result
 # -0      exit if none
