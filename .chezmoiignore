@@ -33,3 +33,7 @@ bin/ptmux.zsh
 {{- if not .area.server }}
 .tmuxp/left.yaml
 {{- end }}
+
+{{- if ne .chezmoi.os "darwin" }}
+Library/LaunchAgents/local.chezmoi-pull.plist
+{{- end }}
