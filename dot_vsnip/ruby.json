@@ -1,0 +1,37 @@
+{
+  "Binding.pry": {
+    "prefix": "pryh",
+    "body": [
+      "binding.pry"
+    ],
+    "description": "Binding.pry"
+  },
+
+  "Binding.pry (/w require)": {
+    "prefix": "pryhr",
+    "body": [
+      "require 'pry'; binding.pry"
+    ],
+    "description": "Binding.pry (/w require)"
+  },
+
+  "Method Definition": {
+    "prefix": "method",
+    "description": "Method Definition",
+    "body": [
+      "def ${1:name}",
+      "  $0",
+      "end"
+    ]
+  },
+  "Method /w Params Definition": {
+    "prefix": "methodp",
+    "description": "Method w params Definition",
+    "body": [
+      "def ${1:name}(${2:params})",
+      "  $0",
+      "end"
+    ]
+  }
+
+}

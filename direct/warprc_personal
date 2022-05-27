@@ -5,3 +5,4 @@ ssh:~/.ssh
 stow:~/src/erebusbat/dotfiles-stow
 tmuxp:~/.tmuxp
 tmux:~/.tmux
+vim:~/.config/nvim
