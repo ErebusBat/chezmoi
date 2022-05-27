@@ -27,6 +27,7 @@ bin/tgtmux.zsh
 .ssh/id_bat_devices
 .tmuxp/hassio.yaml
 .tmuxp/system.yaml
+bin/ptmux.zsh
 {{- end }}
 
 {{- if not .area.server }}
