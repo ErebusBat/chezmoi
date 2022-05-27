@@ -1,0 +1,122 @@
+#!/bin/bash
+# !/usr/local/bin/zsh
+
+# Make sure that we can access tmuxp command
+if [[ -d $HOME/Library/Python/3.7/bin ]]; then
+  export PATH=$PATH:$HOME/Library/Python/3.7/bin
+fi
+
+# abort if we're already inside a TMUX session
+[ "$TMUX" == "" ] || exit 0
+
+clear
+export NOMENU=1
+export SHELL=/usr/local/bin/zsh
+# if [[ "$TERM" == ipad* ]]; then
+#     export TERM=screen-256color
+#     export IPAD=yes
+#     alias tmux="IPAD=$IPAD $(which tmux)"
+#     echo "You are on your iPad.. changing term to $TERM"
+# else
+#     export IPAD=
+# fi
+if [[ -z $TERM ]]; then
+    export TERM=screen-256color
+    echo "\$TERM was unset, set to $TERM"
+fi
+export PATH=/usr/local/bin:$HOME/bin:$PATH
+export COLUMNS=1
+export DISABLE_AUTO_TITLE='true'
+
+function printLineSep() {
+    clear
+    echo -e "\n==============================================="
+}
+function newSessionTX() {
+    NEWK="==== NEW TMUX SESSION"
+    PS3="Create new TMUX Session: "
+    # tmuxinator_dir=$HOME/.tmuxinator
+    # Remove the directory, make it prettier
+    # sessions=$(print -rl -- ~/.tmuxp/*.yaml(:t:r))
+    # sessions=( $HOME/.tmuxp/*.yaml(:t:r) )
+    sessions=$( ls -1 $HOME/.tmuxp/*.yaml | cut -d/ -f5 | sed -e 's/\.yaml$//' )
+    options=("$NEWK" $sessions)
+    select opt in "${options[@]}"
+    do
+        case $opt in
+        $NEWK)
+            if [[ -z $(tmux list-sessions -F "#S") ]]; then
+              echo "No existing sessions... starting up"
+              $HOME/.tmuxp/fltmux.zsh
+            else
+              read -p "Enter new session name: " SESSION_NAME
+              printLineSep
+              tmux new -s "$SESSION_NAME"
+            fi
+            break
+            ;;
+        *)
+            tmuxp load $opt
+            break
+            ;;
+       esac
+    done
+}
+function mainMenu() {
+    # present menu for user to choose which workspace to open
+    PS3="Please choose your session: "
+    NEWTX="==== NEW SESSION (tx)"
+    RAWK="==== RAW ZSH (no tmux)"
+    options=("$NEWTX" $(tmux list-sessions -F "#S") "$RAWK")
+    echo -e "\n\n"
+    echo "Available sessions"
+    echo "------------------"
+    echo " "
+    select opt in "${options[@]}"
+    do
+        case $opt in
+        $NEWK)
+            printLineSep
+            newSession
+            break
+            ;;
+        $NEWTX)
+            printLineSep
+            newSessionTX
+            break
+            ;;
+        $RAWK)
+            zsh --login
+            break;;
+        *)
+            printLineSep
+            tmux -2 attach-session -t $opt
+            break
+            ;;
+        esac
+    done
+}
+
+# Show a looping menu as long as there are tmux sessions active (or it is the first run)
+SHOWMENU=1
+while [ "$SHOWMENU" == "1" ]; do
+    SHOWMENU=0
+    echo "TERM=$TERM IPAD=$IPAD"
+
+
+    if [[ -z "$(tmux list-sessions)" ]]; then
+      echo -e "\n\nNo tmux sessions detected."
+      read -t 3 -p "Hit ENTER or wait 3 seconds to load tmux sessions" OPT
+      if [[ -z $OPT ]]; then
+        $HOME/.tmuxp/fltmux.zsh
+      fi
+    fi
+
+    mainMenu
+
+    # Check to see if we still have sessions, if we do, then let them choose again
+    if [[ -n "$(tmux list-sessions)" ]]; then
+      SHOWMENU=1
+      clear
+    fi
+done
