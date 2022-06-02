@@ -43,4 +43,5 @@ bin/pbpaste
 {{- if ne .chezmoi.os "darwin" }}
 # OS IS NOT MacOS, so DO NOT include these files
 Library/LaunchAgents/
+Library/Application Support/
 {{- end }}
