@@ -32,6 +32,7 @@ bin/ptmux.zsh
 
 {{- if not .area.server }}
 .tmuxp/left.yaml
+bin/stmux.zsh
 {{- end }}
 
 {{- if eq .chezmoi.os "darwin" }}
