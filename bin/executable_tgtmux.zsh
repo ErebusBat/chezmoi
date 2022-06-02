@@ -12,7 +12,7 @@ sessions=(
   system
 )
 START_SESS=$1
-[[ -z $START_SESS ]] && START_SESS=guest-server
+[[ -z $START_SESS ]] && START_SESS=$sessions[1]
 
 echo "Starting sessions... will switch to $START_SESS when done."
 for s in $sessions; do
