@@ -2,6 +2,10 @@
   type = "git-repo"
   url = "https://github.com/tmux-plugins/tpm"
   refreshPeriod = "168h"
+# [".config/tmux/theme-tomorrow"]
+#   type = "git-repo"
+#   url = "https://github.com/edouard-lopez/tmux-tomorrow.git"
+#   refreshPeriod = "720h"
 [".config/tmux/theme-tomorrow"]
   type = "git-repo"
   url = "https://github.com/edouard-lopez/tmux-tomorrow.git"
