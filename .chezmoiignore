@@ -34,6 +34,13 @@ bin/ptmux.zsh
 .tmuxp/left.yaml
 {{- end }}
 
+{{- if eq .chezmoi.os "darwin" }}
+# OS IS MacOS, so DO NOT include these files
+bin/pbcopy
+bin/pbpaste
+{{- end }}
+
 {{- if ne .chezmoi.os "darwin" }}
+# OS IS NOT MacOS, so DO NOT include these files
 Library/LaunchAgents/
 {{- end }}

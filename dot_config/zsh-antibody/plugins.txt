@@ -1,0 +1,28 @@
+# Misc
+ohmyzsh/ohmyzsh path:plugins/wd
+~/.config/zsh-antibody/aliases type:zsh
+~/.config/zsh-antibody/exa type:zsh
+
+# Dev Stuff
+~/.config/zsh-antibody/git type:zsh
+~/.config/zsh-antibody/golang type:zsh
+~/.config/zsh-antibody/rbenv type:zsh
+
+
+# Rust package is REQUIRED if you are using starship_prompt below
+~/.config/zsh-antibody/rust type:zsh
+
+~/.config/zsh-antibody/setec-astronomy type:zsh
+~/.config/zsh-antibody/scm-breeze type:zsh
+
+# Hooks from other stow packages
+~/.config/zsh-antibody/stow-hooks type:zsh
+
+# Prompt & Visuals
+~/.config/zsh-antibody/starship_prompt type:zsh
+zsh-users/zsh-syntax-highlighting
+
+# Order of these is important
+~/.config/zsh-antibody/zshvimode type:zsh
+~/.config/zsh-antibody/fzf type:zsh
+~/.config/zsh-antibody/zsh-options type:zsh
