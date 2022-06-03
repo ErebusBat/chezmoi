@@ -24,5 +24,6 @@ else
     chown $USER $SESSION_FILE
     chmod 400 $SESSION_FILE
   done
+  cat $SESSION_FILE
 fi
 
