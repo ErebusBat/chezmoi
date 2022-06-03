@@ -39,9 +39,14 @@
 [data]
   focus = {{ $focus | quote }}
   email = {{ $email | quote }}
+
   [data.area]
     fetlife = {{ $a_fetlife }}
     personal = {{ $a_personal }}
     server = {{ $a_server }}
     tractionguest = {{ $a_tractionguest }}
 
+  [data.synergy]
+    enabled = false
+    mode = "client"
+    server = "10.0.1.70"

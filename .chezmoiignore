@@ -46,3 +46,16 @@ bin/pbpaste
 Library/LaunchAgents/
 Library/Application Support/
 {{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+.config/Synergy/
+{{- end }}
+
+{{- if eq .chezmoi.os "linux" }}
+{{- if and (not .synergy.enabled) ( ne .synergy.mode "client" ) }}
+.config/Synergy/Synergy.conf
+{{- end }}
+{{- if and (not .synergy.enabled) ( ne .synergy.mode "server" ) }}
+.config/Synergy/Synergy.conf.server
+{{- end }}
+{{- end }}
