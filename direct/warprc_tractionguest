@@ -19,6 +19,7 @@ linuxserver.io:~/src/pers/linuxserver.io
 mm:~/src/erebusbat/mm
 nebula:~/src/erebusbat/nebula/ca-batcavern
 pchef:~/src/erebusbat/pchef76
+regportal:~/src/guest/register
 restic:~/.restic
 scim_rails:~/src/guest/scim_rails
 shc_query_service:~/src/guest/shc_query_service
