@@ -8,6 +8,7 @@ drop_keyboard:~/Dropbox/Library/D/drop_keyboard
 dropqmk:~/src/vendor/qmk_firmware/keyboards/massdrop/ctrl
 duply:~/.duply
 espanso:~/src/erebusbat/dotfiles-stow/espanso/.config/espanso
+gconnect:~/src/guest/connect
 gosrcme:~/go/src/github.com/ErebusBat
 guest:~/src/guest
 hassio:~/src/erebusbat/hassio
@@ -18,14 +19,15 @@ linuxserver.io:~/src/pers/linuxserver.io
 mm:~/src/erebusbat/mm
 nebula:~/src/erebusbat/nebula/ca-batcavern
 pchef:~/src/erebusbat/pchef76
+regportal:~/src/guest/register
 restic:~/.restic
 scim_rails:~/src/guest/scim_rails
 shc_query_service:~/src/guest/shc_query_service
 sidekiq_autoscaling:~/src/guest/sidekiq_autoscaling
 snippets:~/.config/ulauncher/snippets
 sparks:~/src/guest/sparks
-ssh:~/.ssh
 src:~/src
+ssh:~/.ssh
 stow:~/src/erebusbat/dotfiles-stow
 sys76qmk:~/src/vendor/qmk_firmware/keyboards/system76/launch_1/keymaps/erebusbat
 tgf:~/src/guest/frontend

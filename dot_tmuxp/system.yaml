@@ -6,19 +6,26 @@ windows:
   panes:
     - shell_command:
         - wd vimwiki
-        # - vimlog -- tguest/scim_rails.md $(vimlog -p -y)
-        - vimlog -- y 0 tguest/sst18230.md tguest/scim_rails.md top.md
+        - vimlog -- y 0
     - shell_command:
         - wd vimwiki
         - neofetch
 
-- window_name: stow
+- window_name: chezmoi
   panes:
     - shell_command:
+      - wd chezmoi
       - neofetch
-      - wd stow
     - shell_command:
-      - wd stow
+      - wd chezmoi
+
+# - window_name: stow
+#   panes:
+#     - shell_command:
+#       - wd stow
+#       - neofetch
+#     - shell_command:
+#       - wd stow
 
 - window_name: vim
   panes:

@@ -1,0 +1,22 @@
+#!/bin/zsh
+#
+# tmpa: tmuxp attach script
+#
+
+SESSION_DIR=$HOME/.tmuxp
+
+if [[ ! -d $SESSION_DIR ]]; then
+  echo "***FATAL: Could not find $SESSION_DIR!"
+  exit 1
+fi
+
+# --query Start fzf with query that was specified on command line
+# -1      auto select if only 1 result
+# -0      exit if none
+session=$(cd $SESSION_DIR; fd -g '*.yaml' | fzf --query="$*" -1 -0)
+if [[ -n $session ]]; then
+  # Assume we want to actually attach if we are running this ;)
+  TMUX_OPTS="--yes"
+
+  tmuxp load $TMUX_OPTS $SESSION_DIR/$session
+fi

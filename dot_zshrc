@@ -1,0 +1,49 @@
+# https://htr3n.github.io/2018/07/faster-zsh/
+# zmodload zsh/zprof
+################################################################################
+# Antibody ZSHRC
+################################################################################
+
+export PATH=$HOME/bin:/usr/local/bin:$PATH
+export SHELL=/bin/zsh
+
+################################################################################
+# Antibody
+################################################################################
+autoload -U +X compinit
+
+if [[ -f ~/.zsh_antibody_static.zsh ]]; then
+  # Can generate with something like:
+  #   cd ~/.config/zsh-antibody
+  #   make static
+  source ~/.zsh_antibody_static.zsh
+else
+  echo "Antibody Dynamic Loading"
+  source <(antibody init)
+  antibody bundle < ~/.config/zsh-antibody/plugins.txt
+fi
+
+################################################################################
+# Completion
+#   NOTE: ZSH will create .zcompdump on start up so in the even of a brand
+#         new file the DB will be out of date.   This shouldn't be an issue
+#         day-to-day... but if that happens then `compinit` will fix it
+################################################################################
+# See:
+#   https://gist.github.com/ctechols/ca1035271ad134841284
+#   https://carlosbecker.com/posts/speeding-up-zsh
+# On slow systems, checking the cached .zcompdump file to see if it must be
+# regenerated adds a noticable delay to zsh startup.  This little hack restricts
+# it to once a day.  It should be pasted into your own completion file.
+#
+compinit -d ~/.zcompdump
+if [[ $(date -r ~/.zcompdump +'%Y%j') != $(date +'%Y%j') ]]; then
+  # echo "Dumping compinit"
+  compdump
+  zcompile ~/.zcompdump
+else
+  # echo "Loading Compinit"
+  compinit
+fi
+
+# zprof

@@ -37,34 +37,42 @@ windows:
   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
   panes:
     - shell_command:
-      - cd ~/src/guest/frontend
+      - wd tgf
       - yarn start:prod
     - shell_command:
-      - cd ~/src/guest/frontend
+      - wd tgf
+
+- window_name: connect
+  layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
+  panes:
+    - shell_command:
+      - wd gconnect
+    - shell_command:
+      - wd gconnect
 
 # - window_name: shc_query_service
 #   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
 #   panes:
 #     - shell_command:
-#       - cd /Users/andrew.burns/src/guest/shc_query_service
+#       - wd shc_query_service
 #     - shell_command:
-#       - cd /Users/andrew.burns/src/guest/shc_query_service
+#       - wd shc_query_service
 
 # - window_name: sparks
 #   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
 #   panes:
 #     - shell_command:
-#       - cd ~/src/guest/sparks
+#       - wd sparks
 #     - shell_command:
-#       - cd ~/src/guest/sparks
+#       - wd sparks
 
-- window_name: scim
-  layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
-  panes:
-    - shell_command:
-      - cd ~/src/guest/scim_rails
-    - shell_command:
-      - cd ~/src/guest/scim_rails
+# - window_name: scim
+#   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
+#   panes:
+#     - shell_command:
+#       - wd scim_rails
+#     - shell_command:
+#       - wd scim_rails
 
 # - window_name: scim_upstream
 #   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
@@ -74,14 +82,14 @@ windows:
 #     - shell_command:
 #       - cd ~/src/guest/scim_rails_upstream
 
-- window_name: regportal
-  layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
-  panes:
-    - shell_command:
-      - cd ~/src/guest/register
-      - npm run dev
-    - shell_command:
-      - cd ~/src/guest/register
+# - window_name: regportal
+#   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
+#   panes:
+#     - shell_command:
+#       - wd regportal
+#       - npm run dev
+#     - shell_command:
+#       - wd regportal
 
 - window_name: scratch
   panes:

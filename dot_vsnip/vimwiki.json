@@ -1,0 +1,28 @@
+{
+  "Obsidian Front Matter": {
+    "prefix": "ofm",
+    "body": [
+      "---",
+      "tags:",
+      "- ${1:tag}",
+      "---"
+    ],
+    "description": "Obsidian Front Matter"
+  },
+  "Daily Log - Alice": {
+    "prefix": "dlalice",
+    "body": [
+      "## Alice (standup) M/W/F",
+      "  - **What did you work on yesterday?**",
+      "    - ${1:answer}",
+      "  - **What will you work on today?**",
+      "    - ",
+      "  - **When do you think you'll be done with that?**",
+      "    - ",
+      "  - **And impediments in your way?**",
+      "    - ",
+      ""
+    ],
+    "description": "Daily Log - Alice"
+  }
+}

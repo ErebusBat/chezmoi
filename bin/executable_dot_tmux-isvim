@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# exit code 0  means we ARE in vim (and should send C-hjkl)
+# exit code !0 means we are NOT in vim and should switch panes
+pane_tty=$1
+
+ps -o state= -o comm= -t "$pane_tty" | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|n?vim?x?)(diff)?$'
+is_vim=$?
+
+if [[ $is_vim -ne 0 ]]; then
+  # We are not in vim so early exit
+  exit $is_vim
+fi
+
+# Okay we are *maybe* in vim.  Check for GUI that launches a background process.  If we find that assume the nvim process is the backend for that
+ps -o state= -o comm= -t "$pane_tty" | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?neovide$'
+if [[ $? -eq 0 ]]; then
+  # Found GUI process, so tell tmux we are NOT in vim
+  exit 1
+else
+  exit 0
+fi

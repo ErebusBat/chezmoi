@@ -1,0 +1,9 @@
+{{- if .area.personal -}}
+# 'Setec Astronomy - Env'
+{{ (index (onepassword "Setec Astronomy - Env").fields 0).value }}
+{{- end }}
+
+{{ if .area.tractionguest }}
+# 'Setec Astronomy - Env - Traction Guest'
+{{ (index (onepassword "Setec Astronomy - Env - Traction Guest").fields 0).value }}
+{{- end }}

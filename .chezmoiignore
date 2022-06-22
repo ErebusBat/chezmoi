@@ -17,16 +17,45 @@ direct/
 {{- end }}
 
 {{- if not .area.tractionguest }}
+.config/nvim/spell/tractionguest.*
 .ssh/assh.d/tractionguest.yml
 .tmuxp/guest-server.yaml
+bin/tgtmux.zsh
 {{- end }}
 
 {{- if not .area.personal }}
 .ssh/id_bat_devices
 .tmuxp/hassio.yaml
 .tmuxp/system.yaml
+bin/ptmux.zsh
 {{- end }}
 
 {{- if not .area.server }}
 .tmuxp/left.yaml
+bin/stmux.zsh
+{{- end }}
+
+{{- if eq .chezmoi.os "darwin" }}
+# OS IS MacOS, so DO NOT include these files
+bin/pbcopy
+bin/pbpaste
+{{- end }}
+
+{{- if ne .chezmoi.os "darwin" }}
+# OS IS NOT MacOS, so DO NOT include these files
+Library/LaunchAgents/
+Library/Application Support/
+{{- end }}
+
+{{- if ne .chezmoi.os "linux" }}
+.config/Synergy/
+{{- end }}
+
+{{- if eq .chezmoi.os "linux" }}
+{{- if and (not .synergy.enabled) ( ne .synergy.mode "client" ) }}
+.config/Synergy/Synergy.conf
+{{- end }}
+{{- if and (not .synergy.enabled) ( ne .synergy.mode "server" ) }}
+.config/Synergy/Synergy.conf.server
+{{- end }}
 {{- end }}
