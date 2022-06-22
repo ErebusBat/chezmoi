@@ -19,34 +19,21 @@
 {{- $a_server := eq $focus "server" }}
 {{- $a_tractionguest := eq $focus "tractionguest" }}
 
-
-{{- if hasKey .area "fetlife" -}}
-{{-   $a_fetlife = .area.fetlife -}}
-{{- end -}}
-
-{{- if hasKey .area "personal" -}}
-{{-   $a_personal = .area.personal -}}
-{{- end -}}
-
-{{- if hasKey .area "server" -}}
-{{-   $a_server = .area.server -}}
-{{- end -}}
-
-{{- if hasKey .area "tractionguest" -}}
-{{-   $a_tractionguest = .area.tractionguest -}}
-{{- end -}}
-
 [data]
   focus = {{ $focus | quote }}
   email = {{ $email | quote }}
 
   [data.area]
-    fetlife = {{ $a_fetlife }}
-    personal = {{ $a_personal }}
-    server = {{ $a_server }}
-    tractionguest = {{ $a_tractionguest }}
+    fetlife = {{ default false .area.fetlife }}
+    personal = {{ default false .area.personal }}
+    server = {{ default false .area.server }}
+    tractionguest = {{ default false .area.tractionguest }}
 
   [data.synergy]
-    enabled = false
-    mode = "client"
-    server = "10.0.1.70"
+    enabled = {{ default false .synergy.enabled }}
+    mode = {{ default "client" .synergy.mode | quote }}
+    server = {{ default "10.0.1.70" .synergy.server | quote }}
+
+[git]
+  # autoAdd = true
+  autoCommit = true
