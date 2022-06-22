@@ -1,0 +1,70 @@
+---
+targets:
+  local_ssd:
+    uri: /scratch/restic
+    checks:
+      local_path:
+
+  thelio:
+    uri: rest:http://plex:brMNwbwGXJ@10.0.0.75:8000
+    checks:
+      ping: :host
+
+  batpi:
+    uri: rest:http://plex:brMNwbwGXJ@100.125.71.35:8000
+    checks:
+      ping: :host
+
+vaults:
+  plex:
+    keyfile: ~/.restic_pass
+policies:
+  unspecified:
+    keep_last: 7
+    keep_hourly: 8
+    keep_daily: 7
+    keep_weekly: 2
+    keep_monthly: 1
+    keep_yearly: 1
+    keep_within: 5h
+  daily:
+    keep_last: 2
+    keep_hourly: 6
+    keep_daily: 14
+    keep_weekly: 4
+    keep_monthly: 1
+    keep_yearly: 5
+    keep_within: 2h
+
+datasets:
+  myserver:
+    vault: plex
+    paths:
+      - /myserver
+    restic_opts:
+      exclude_file: /myserver/support/nuc01/restic-hourly-excludes
+      exclude_larger_than: 100M
+
+  plex:
+    vault: plex
+    paths:
+      - /myserver/plex/config/Library/Application Support/Plex Media Server/Plug-in Support/Databases/
+
+  plex_cold:
+    vault: plex
+    policy: daily
+    tags:
+      - cold
+    paths:
+      - /myserver/plex/
+    restic_opts:
+      exclude_file: /myserver/plex/support/restic-cold-excludes
+    pre_commands:
+      dataset_backup:
+        - cd /myserver/plex && docker-compose stop
+    post_commands:
+      dataset_backup:
+        - cd /myserver/plex && docker-compose up -d
+
+defaults:
+  latest: 1
