@@ -1,0 +1,106 @@
+---
+targets:
+  sea_back:
+    uri: /media/aburns/SeaBack1/backups
+    checks:
+      local_path:
+
+  # USB Thumb - Sandisk Orange
+  usbt_sandisk_orange:
+    uri: /media/aburns/BigOrgange/.bak
+    checks:
+      local_path:
+
+  # USB Thumb Backup - Black
+  usbt_black:
+    uri: /media/aburns/usbt_black/.bak
+    checks:
+      local_path:
+
+  # USB Thumb Backup - Red
+  usbt_red:
+    uri: /media/aburns/usbt_red/.bak
+    checks:
+      local_path:
+
+  thelio:
+    uri: rest:http://aabmbp:3R7ZEADxYz@10.0.1.75:8000
+    checks:
+      ping: :host
+      local_path: "!/media/aburns/SeaBack1"
+
+  minio:
+    enabled: true
+    uri: s3:http://10.0.1.50:9000/restic
+    env_file: ~/.restic/.freenas-minio-creds.env
+    checks:
+      ping: :host
+vaults:
+  erebusbat:
+    keyfile: ~/.restic/.erebusbat.key
+policies:
+  unspecified:
+    keep_last: 7
+    keep_hourly: 8
+    keep_daily: 7
+    keep_weekly: 2
+    keep_monthly: 1
+    keep_yearly: 1
+    keep_within: 5h
+  daily:
+    keep_last: 2
+    keep_hourly: 6
+    keep_daily: 14
+    keep_weekly: 4
+    keep_monthly: 1
+    keep_yearly: 5
+    keep_within: 2h
+
+datasets:
+  myserver:
+    vault: erebusbat
+    paths:
+      - /myserver
+    restic_opts:
+      exclude:
+        - /myserver/downloader/sabnzbd/logs/
+        - /myserver/downloader/tubesync/
+        - /myserver/gitea/
+        - /myserver/plex/
+
+  # gitea_cold _must_ be ran as root
+  gitea_cold:
+    vault: erebusbat
+    paths:
+      - /myserver/gitea
+    tags:
+      - cold
+    pre_commands:
+      dataset_backup:
+        - cd /myserver/gitea && docker-compose stop
+    post_commands:
+      dataset_backup:
+        - cd /myserver/gitea && docker-compose start
+
+  obsidian:
+    vault: erebusbat
+    paths:
+      - ~/vimwiki/
+      - ~/JellyBean/
+      - ~/Documents/Journal/
+    tags:
+      - obsidian
+
+  src:
+    vault: erebusbat
+    paths:
+      - ~/src/pers/
+      - ~/src/vendor/
+    restic_opts:
+      exclude:
+        - fetlife/
+        - "/**/tmp/*"
+        - ~/src/pers/mm/
+        - ~/src/pers/pchef76/nodes/
+        - ~/src/pers/pchef76/local-mode-cache/
+        - ~/src/pers/pchef76/tmp/
