@@ -104,3 +104,6 @@ datasets:
         - ~/src/pers/pchef76/nodes/
         - ~/src/pers/pchef76/local-mode-cache/
         - ~/src/pers/pchef76/tmp/
+
+defaults:
+  latest: 1
