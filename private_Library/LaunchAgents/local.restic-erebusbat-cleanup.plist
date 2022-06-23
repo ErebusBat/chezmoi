@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Disabled</key>
+	<false/>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>HOME</key>
+		<string>/Users/andrew.burns</string>
+		<key>PATH</key>
+		<string>/usr/local/bin:/bin:/usr/bin:/sbin</string>
+	</dict>
+	<key>Label</key>
+	<string>local.restic-erebusbat-cleanup</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/fdautil</string>
+		<string>exec</string>
+		<string>/Users/andrew.burns/.restic/restic-multi.rb</string>
+		<string>src</string>
+		<string>cleanup</string>
+		<string>daily</string>
+	</array>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/local.restic-erebusbat.err</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/local.restic-erebusbat.out</string>
+	<key>StartCalendarInterval</key>
+	<array>
+		<dict>
+			<key>Hour</key>
+			<integer>16</integer>
+			<key>Minute</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+</dict>
+</plist>
