@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Disabled</key>
+	<false/>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>HOME</key>
+		<string>/Users/andrew.burns</string>
+		<key>PATH</key>
+		<string>/usr/local/bin:/bin:/usr/bin:/sbin</string>
+	</dict>
+	<key>Label</key>
+	<string>local.restic-traction_guest_cold-backup</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/fdautil</string>
+		<string>exec</string>
+		<string>/Users/andrew.burns/.restic/restic-multi.rb</string>
+		<string>tguest_cold</string>
+		<string>backup</string>
+		<string>--tag=cron</string>
+	</array>
+	<key>RunAtLoad</key>
+	<false/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/local.restic-traction_guest.err</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/local.restic-traction_guest.out</string>
+	<key>StartCalendarInterval</key>
+	<array>
+		<dict>
+			<key>Hour</key>
+			<integer>17</integer>
+			<key>Minute</key>
+			<integer>15</integer>
+		</dict>
+	</array>
+</dict>
+</plist>
