@@ -2,7 +2,7 @@
 
 # If we have a 1Password helper, then source it
 if [[ -x ~/.tmux/op_auth.sh ]]; then
-  eval $(~/.tmux/op_auth.sh)
+  eval $(~/.tmux/op_auth.sh RO)
 fi
 
 chezmoi verify
