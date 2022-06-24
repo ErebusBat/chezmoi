@@ -67,13 +67,19 @@ datasets:
     paths:
       - ~/src
     restic_opts:
-      exclude: ~/src/guest
-      exclude: ~/src/fetlife
-      exclude: ~/src/vendor
-  fetlife:
-    vault: fetlife
-    paths:
-      - ~/src/fetlife
+      exclude:
+        - "**/.git/*"
+        - ~/src/erebusbat/dotfiles-stow/.git
+        - ~/src/erebusbat/dotfiles-stow/fetlife
+        - ~/src/erebusbat/linuxserver.io/media
+        - ~/src/erebusbat/pchef/.chef
+        - ~/src/erebusbat/pchef/nodes
+        - ~/src/erebusbat/pchef76/local-mode-cache
+        - ~/src/erebusbat/pchef76/nodes
+        - ~/src/erebusbat/pchef76/tmp
+        - ~/src/fetlife
+        - ~/src/guest
+        - ~/src/vendor
 
 defaults:
   latest: 1
