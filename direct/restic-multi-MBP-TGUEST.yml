@@ -118,5 +118,5 @@ datasets:
     paths:
       - ~/src/guest
 defaults:
-  latest: 3
+  latest: 1
 
