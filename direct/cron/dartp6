@@ -1,0 +1,3 @@
+05 */2 * * * ~/.restic/restic-multi.rb --tag=cron src backup
+
+* */15 * * * ~/.restic/restic-multi.rb --tag=cron obsidian backup
