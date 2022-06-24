@@ -1,4 +1,5 @@
 #!/bin/zsh
+exit 0
 
 # If we have a 1Password helper, then source it
 if [[ -x ~/.tmux/op_auth.sh ]]; then
