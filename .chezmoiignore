@@ -5,6 +5,7 @@ direct/
 .tmux/plugins
 
 {{- if not .area.fetlife }}
+.restic/.fetlife.key
 .tmuxp/fetlife-com.yaml
 .tmuxp/fetlife-gcp.yaml
 .tmuxp/fetlife-mail-servers.yaml
@@ -18,12 +19,14 @@ direct/
 
 {{- if not .area.tractionguest }}
 .config/nvim/spell/tractionguest.*
+.restic/.traction_guest.key
 .ssh/assh.d/tractionguest.yml
 .tmuxp/guest-server.yaml
 bin/tgtmux.zsh
 {{- end }}
 
 {{- if not .area.personal }}
+.restic/.erebusbat.key
 .ssh/id_bat_devices
 .tmuxp/hassio.yaml
 .tmuxp/system.yaml

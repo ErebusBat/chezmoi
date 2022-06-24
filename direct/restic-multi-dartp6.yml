@@ -1,0 +1,80 @@
+---
+targets:
+  usbt_sandisk_orange:
+    uri: /Volumes/BigOrgange/.bak
+    checks:
+      local_path:
+
+  usbt_black:
+    uri: /Volumes/usbt_black/.bak
+    checks:
+      local_path:
+
+  usbt_red:
+    uri: /Volumes/usbt_red/.bak
+    checks:
+      local_path:
+
+  thelio:
+    uri: rest:http://dartp6:sNV52iMFYj@100.76.155.42:8000
+    checks:
+      ping: :host
+
+  minio:
+    uri: s3:http://10.0.1.50:9000/restic
+    env_file: ~/.restic/.freenas-minio-creds.env
+    checks:
+      ping: :host
+
+  batpi:
+    uri: rest:http://dartp6:sNV52iMFYj@100.125.71.35:8000
+    checks:
+      ping: :host
+vaults:
+  erebusbat:
+    keyfile: ~/.restic/.erebusbat.key
+  tguest:
+    keyfile: ~/.restic/.fetlife.key
+policies:
+  unspecified:
+    keep_last: 7
+    keep_hourly: 8
+    keep_daily: 7
+    keep_weekly: 2
+    keep_monthly: 1
+    keep_yearly: 1
+    keep_within: 5h
+  daily:
+    keep_last: 2
+    keep_hourly: 6
+    keep_daily: 14
+    keep_weekly: 4
+    keep_monthly: 1
+    keep_yearly: 5
+    keep_within: 2h
+
+datasets:
+  obsidian:
+    vault: erebusbat
+    paths:
+      - ~/Documents/vimwiki
+    tags:
+      - obsidian
+    restic_opts:
+      exclude: .DS_Store
+  src:
+    vault: erebusbat
+    paths:
+      - ~/src
+    restic_opts:
+      exclude: ~/src/guest
+      exclude: ~/src/fetlife
+      exclude: ~/src/vendor
+  fetlife:
+    vault: fetlife
+    paths:
+      - ~/src/fetlife
+
+defaults:
+  latest: 1
+
