@@ -21,19 +21,14 @@ else
   while [[ $EC -ne 0 ]]; do
     echo "EC=$EC" >&2
     if [[ -f $SESSION_FILE ]]; then
-      echo "removing $SESSION_FILE" >&2
       rm -f $SESSION_FILE
     fi
 
     op signin -f > $SESSION_FILE
     EC=$?
-    echo "after EC=$EC" >&2
-    cat $SESSION_FILE >&2
-    echo "^^^ file" >&2
     chown $USER $SESSION_FILE
     chmod 400 $SESSION_FILE
   done
-    cat $SESSION_FILE >&2
   cat $SESSION_FILE
 fi
 
