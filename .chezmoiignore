@@ -27,6 +27,7 @@ bin/tgtmux.zsh
 
 {{- if not .area.personal }}
 .restic/.erebusbat.key
+.restic/.freenas-minio-creds.env
 .ssh/id_bat_devices
 .tmuxp/hassio.yaml
 .tmuxp/system.yaml
