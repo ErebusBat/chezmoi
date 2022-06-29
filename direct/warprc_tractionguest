@@ -37,7 +37,7 @@ tgs:~/src/guest/server
 tmux:~/.tmux
 tmuxp:~/.tmuxp
 ulauncher:~/src/erebusbat/dotfiles-stow/ulauncher/.config/ulauncher
-vim:~/src/erebusbat/dotfiles-stow/vim/.config/nvim
+vim:~/.config/nvim
 vimwiki:~/Documents/vimwiki
 wezterm:~/src/erebusbat/dotfiles-stow/wezterm/.config/wezterm
 wiki:~/Documents/vimwiki
