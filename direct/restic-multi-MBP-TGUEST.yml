@@ -75,6 +75,7 @@ datasets:
     tags:
       - obsidian
     restic_opts:
+      exclude-caches: true
       exclude: .DS_Store
   src:
     vault: erebusbat
@@ -97,6 +98,7 @@ datasets:
     paths:
       - ~/src/guest
     restic_opts:
+      exclude-caches: true
       exclude:
         - ~/src/guest/my_docker_env
         - ~/src/guest/server/tmp/
@@ -119,6 +121,8 @@ datasets:
         - cd ~/src/guest/my_docker_env && make start
     paths:
       - ~/src/guest
+    restic_opts:
+      exclude-caches: true
 defaults:
   latest: 1
 
