@@ -120,4 +120,4 @@ call plug#end()
 " let g:tslime_always_current_session = 1
 " let g:tslime_always_current_window = 1
 " let test#ruby#rspec#executable = 'rbenv exec rspec -f d'
-let test#ruby#rspec#executable = 'clear; bundle exec rspec -f d'
+let test#ruby#rspec#executable = 'clear; bundle exec spring rspec -f d'
