@@ -86,7 +86,7 @@ source ~/.config/nvim/spell/plugin.vim
 Plug 'morhetz/gruvbox'
 " Plug 'preservim/vim-colors-pencil'
 " Plug 'altercation/vim-colors-solarized'
-Plug 'chriskempson/base16-vim'
+Plug 'base16-project/base16-vim'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntaxes / FileTypes
