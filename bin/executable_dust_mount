@@ -74,7 +74,7 @@ function mount() {
       mkdir $CIFS_MOUNT_POINT
     fi
     echo "Mounting CIFS Share..."
-    sudo mount -t cifs -o "uid=aburns,gid=aburns,credentials=$HOME/.freenas-smb-credentials" //10.0.1.50/dustbin $CIFS_MOUNT_POINT
+    sudo mount -t cifs -o "uid=aburns,gid=aburns,vers=3,credentials=$HOME/.freenas-smb-credentials" //nas.erebusbat.net/dustbin $CIFS_MOUNT_POINT
   fi
   if [[ ! -f $IMG_FILE ]]; then
     echo "*** ERROR: Could not mount CIFS share!?"
