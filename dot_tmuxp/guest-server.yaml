@@ -13,7 +13,7 @@ windows:
         # - make run_noserver
         - rbenv exec foreman start -f Procfile.local -m all=1,web=0
     - shell_command:
-        - rails s -b 0.0.0.0
+      - "rails s -b ::"
     - shell_command:
         - ":>log/development.log; tail -f log/development.log"
     - shell_command:
@@ -42,13 +42,13 @@ windows:
     - shell_command:
       - wd tgf
 
-- window_name: connect
-  layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
-  panes:
-    - shell_command:
-      - wd gconnect
-    - shell_command:
-      - wd gconnect
+# - window_name: connect
+#   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
+#   panes:
+#     - shell_command:
+#       - wd gconnect
+#     - shell_command:
+#       - wd gconnect
 
 # - window_name: shc_query_service
 #   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
@@ -82,14 +82,14 @@ windows:
 #     - shell_command:
 #       - cd ~/src/guest/scim_rails_upstream
 
-# - window_name: regportal
-#   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
-#   panes:
-#     - shell_command:
-#       - wd regportal
-#       - npm run dev
-#     - shell_command:
-#       - wd regportal
+- window_name: drp
+  layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
+  panes:
+    - shell_command:
+      - wd regportal
+      - npm run dev
+    - shell_command:
+      - wd regportal
 
 - window_name: scratch
   panes:
