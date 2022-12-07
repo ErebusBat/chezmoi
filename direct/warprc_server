@@ -2,6 +2,9 @@ chezmoi:~/.local/share/chezmoi
 dashy:/myserver/internal/dashy
 internal:/myserver/internal
 myserver:/myserver
+pchef:~/src/erebusbat/pchef76
+photoprisim:/myserver/photoprism
+photoprism:/myserver/photoprism
 plex:/myserver/plex
 restic:~/.restic
 stow:~/src/erebusbat/dotfiles-stow
