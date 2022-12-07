@@ -1,18 +1,18 @@
 ---
 targets:
   thelio:
-    uri: rest:http://aabmbp:3R7ZEADxYz@10.0.1.75:8000
+    uri: rest:http://aabmbp:3R7ZEADxYz@thelio.erebusbat.net:8000
     checks:
       ping: :host
 
   minio:
-    uri: s3:http://10.0.1.50:9000/restic
+    uri: s3:http://nas.erebusbat.net:9000/restic
     env_file: ~/.restic/.freenas-minio-creds.env
     checks:
       ping: :host
 
   batpi:
-    uri: rest:http://aabmbp:3R7ZEADxYz@100.125.71.35:8000
+    uri: rest:http://aabmbp:3R7ZEADxYz@batpi.erebusbat.net:8000
     checks:
       ping: :host
 
@@ -71,7 +71,6 @@ datasets:
       - ~/Documents/vimwiki
       - ~/Documents/Journal
       - ~/Documents/KnotsAndThoughts
-      - ~/JellyBeanWriting
     tags:
       - obsidian
     restic_opts:
