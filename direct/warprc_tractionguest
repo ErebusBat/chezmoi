@@ -1,3 +1,4 @@
+KnotsAndThoughts:~/Documents/KnotsAndThoughts
 alactritty:~/src/erebusbat/dotfiles-stow/alacritty/.config/alacritty
 ansible:~/src/ansible
 antibody:~/src/erebusbat/dotfiles-stow/zsh-antibody/.config
@@ -6,6 +7,7 @@ docker_dev:~/src/guest/my_docker_env
 downloads:~/downloads
 drop_keyboard:~/Dropbox/Library/D/drop_keyboard
 dropqmk:~/src/vendor/qmk_firmware/keyboards/massdrop/ctrl
+drp:~/src/guest/register
 duply:~/.duply
 espanso:~/src/erebusbat/dotfiles-stow/espanso/.config/espanso
 gconnect:~/src/guest/connect
@@ -32,12 +34,13 @@ src:~/src
 ssh:~/.ssh
 stow:~/src/erebusbat/dotfiles-stow
 sys76qmk:~/src/vendor/qmk_firmware/keyboards/system76/launch_1/keymaps/erebusbat
+tf:~/src/guest/terraform
 tgf:~/src/guest/frontend
 tgs:~/src/guest/server
 tmux:~/.tmux
 tmuxp:~/.tmuxp
 ulauncher:~/src/erebusbat/dotfiles-stow/ulauncher/.config/ulauncher
-vim:~/src/erebusbat/dotfiles-stow/vim/.config/nvim
+vim:~/.config/nvim
 vimwiki:~/Documents/vimwiki
 wezterm:~/src/erebusbat/dotfiles-stow/wezterm/.config/wezterm
 wiki:~/Documents/vimwiki

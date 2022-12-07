@@ -1,4 +1,4 @@
 github.com:
     user: ErebusBat
-    oauth_token: {{ (index (onepassword "GitHub - OAuth Token").fields 0).value }}
+    oauth_token: {{ (gopassRaw "erebusbat/github" | mustFromJson).oauth_token }}
     git_protocol: ssh

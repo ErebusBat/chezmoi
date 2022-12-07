@@ -77,7 +77,7 @@ if g:aab_search == 'fzf'
   nnoremap <F5> :Buffers<CR>
   " nnoremap <F7> :FzfSwitchProject<CR>
 
-  nnoremap <Leader>f :Files<CR>
+  nnoremap <Leader>e :Files<CR>
   nnoremap <F8> :Files<CR>
 
   nnoremap <Leader>h :History<CR>
@@ -171,10 +171,10 @@ nnoremap <leader>[ :cprev<CR>
 " Moving Text (w/o messing up registers)
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-inoremap <C-j> <esc>:m .+1<CR>==
-inoremap <C-k> <esc>:m .-2<CR>==
-nnoremap <leader>j :m .+1<CR>==
-nnoremap <leader>k :m .-2<CR>==
+" inoremap <C-j> <esc>:m .+1<CR>==
+" inoremap <C-k> <esc>:m .-2<CR>==
+" nnoremap <leader>j :m .+1<CR>==
+" nnoremap <leader>k :m .-2<CR>==
 
 " Insert Spaces to col 80  https://vi.stackexchange.com/a/10501
 function! SpacePadRight (len)

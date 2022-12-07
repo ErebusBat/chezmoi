@@ -20,6 +20,9 @@ let g:vim_markdown_new_list_item_indent = 0
 " Reset text width for gitcommits
 au FileType gitcommit setlocal tw&
 
+" Stupid work around for LSP stealing my keeb
+autocmd FocusGained * nmap <C-k> :TmuxNavigateUp<CR>
+
 " Auto-save/read when losing/gaining foucs
 autocmd FocusGained * call AutoSaveLoadFocus('FocusGained')
 autocmd FocusLost   * call AutoSaveLoadFocus('FocusLost')

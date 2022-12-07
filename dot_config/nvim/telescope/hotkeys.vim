@@ -5,7 +5,7 @@ nnoremap <leader>bb <cmd>lua require('telescope.builtin').buffers()<cr>
 
 nnoremap <F8> <cmd>lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>f <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+" nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
 
 " nnoremap <F6> <cmd>lua require('telescope.builtin').current_buffer_tags()<cr>
 " nnoremap <leader>r <cmd>lua require('telescope.builtin').current_buffer_tags()<cr>

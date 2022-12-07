@@ -4,7 +4,7 @@
 
 # Authenticate with 1Password so that our ChezMoi status indicator works
 if [[ -x ~/.tmux/op_auth.sh ]]; then
-  eval $(~/.tmux/op_auth.sh)
+  # eval $(~/.tmux/op_auth.sh)
 fi
 
 sessions=(
