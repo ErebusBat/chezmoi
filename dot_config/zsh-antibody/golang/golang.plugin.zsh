@@ -1,4 +1,11 @@
-if [[ `type go` =~ 'not found' ]]; then return 0; fi
+# if [[ `type go` =~ 'not found' ]]; then return 0; fi
+if [[ `type go` =~ 'not found' ]]; then 
+  if [[ -x /usr/local/go/bin/go ]]; then
+	  export PATH=$PATH:/usr/local/go/bin
+  else
+		return 
+	fi
+fi
 
 # If not set, use go tool to devine GOPATH
 [[ -z $GOPATH ]] && GOPATH=$(go env GOPATH)
