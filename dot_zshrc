@@ -10,8 +10,7 @@ export SHELL=/bin/zsh
 ################################################################################
 # Antibody
 ################################################################################
-#autoload -U +X compinit
-autoload -Uz compinit
+autoload -U +X compinit
 
 if [[ -f ~/.zsh_antibody_static.zsh ]]; then
   # Can generate with something like:
