@@ -1,9 +1,9 @@
 ---
 targets:
-  sea_back:
-    uri: /media/aburns/SeaBack2/backups
-    checks:
-      local_path:
+  # sea_back:
+  #   uri: /media/aburns/SeaBack2/backups
+  #   checks:
+  #     local_path:
 
   # USB Thumb - Sandisk Orange
   usbt_sandisk_orange:
@@ -25,9 +25,9 @@ targets:
 
   thelio:
     uri: rest:http://aabmbp:3R7ZEADxYz@thelio.erebusbat.net:8000
-    checks:
-      ping: :host
-      local_path: "!/media/aburns/SeaBack"
+    # checks:
+    #   ping: :host
+    #   local_path: "!/media/aburns/SeaBack"
 
   minio:
     enabled: true
@@ -36,10 +36,10 @@ targets:
     checks:
       ping: :host
 
-  batpi:
-    uri: rest:http://aabmbp:3R7ZEADxYz@batpi.erebusbat.net:8000
-    checks:
-      ping: :host
+  # batpi:
+  #   uri: rest:http://aabmbp:3R7ZEADxYz@batpi.erebusbat.net:8000
+  #   checks:
+  #     ping: :host
 vaults:
   erebusbat:
     keyfile: ~/.restic/.erebusbat.key

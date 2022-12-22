@@ -1,6 +1,8 @@
 #!/bin/zsh
 # This script is ran from tmux menu to setup sessions
 
+chezmoi status
+
 sessions=(
   system
   left
