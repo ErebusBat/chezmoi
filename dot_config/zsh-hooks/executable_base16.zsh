@@ -7,7 +7,7 @@ if [[ -f "$HOME/.config/base16-shell/base16-shell.plugin.zsh" ]]; then
   # export BASE16_THEME_DEFAULT=gruvbox-light-hard
   # export BASE16_THEME_DEFAULT=ocean
   # export BASE16_THEME_DEFAULT=dracula
-  export BASE16_THEME_DEFAULT=darkviolet
+  export BASE16_THEME_DEFAULT=unikitty-dark
 
   source "$HOME/.config/base16-shell/base16-shell.plugin.zsh"
 fi
