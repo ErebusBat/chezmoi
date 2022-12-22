@@ -1,4 +1,9 @@
-set termguicolors
+if exists("$TMUX")
+  set t_Co=256
+  set notermguicolors
+else
+  set termguicolors
+endif
 
 " [tinted-theming/base16-shell](https://github.com/tinted-theming/base16-shell)
 lua <<EOF

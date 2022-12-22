@@ -1,5 +1,6 @@
 chezmoi:~/.local/share/chezmoi
 dashy:/myserver/internal/dashy
+gopass:~/.local/share/gopass/stores/root
 internal:/myserver/internal
 myserver:/myserver
 pchef:~/src/erebusbat/pchef76
@@ -10,3 +11,4 @@ restic:~/.restic
 stow:~/src/erebusbat/dotfiles-stow
 tmuxp:~/.tmuxp
 tmux:~/.tmux
+vim:~/.config/nvim
