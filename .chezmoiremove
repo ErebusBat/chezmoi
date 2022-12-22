@@ -1,1 +1,3 @@
 .tmux-status.conf
+.config/nvim/color_plumbing.vim
+.tmux/op_auth.sh

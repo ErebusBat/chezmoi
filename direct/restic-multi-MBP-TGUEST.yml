@@ -1,5 +1,21 @@
 ---
 targets:
+  thelio:
+    uri: rest:http://aabmbp:3R7ZEADxYz@thelio.erebusbat.net:8000
+    checks:
+      ping: :host
+
+  minio:
+    uri: s3:http://nas.erebusbat.net:9000/restic
+    env_file: ~/.restic/.freenas-minio-creds.env
+    checks:
+      ping: :host
+
+  batpi:
+    uri: rest:http://aabmbp:3R7ZEADxYz@batpi.erebusbat.net:8000
+    checks:
+      ping: :host
+
   # sea_back is for when the drive is physically connected
   # The `thelio` target is the same data, just exposed over rest-server
   sea_back:
@@ -9,36 +25,22 @@ targets:
       local_path:
 
   usbt_sandisk_orange:
+    enabled: false
     uri: /Volumes/BigOrgange/.bak
     checks:
       local_path:
 
   usbt_black:
+    enabled: false
     uri: /Volumes/usbt_black/.bak
     checks:
       local_path:
 
   usbt_red:
+    enabled: false
     uri: /Volumes/usbt_red/.bak
     checks:
       local_path:
-
-  thelio:
-    uri: rest:http://aabmbp:3R7ZEADxYz@10.0.1.75:8000
-    checks:
-      local_path: "!/Volumes/SeaBack/backups"
-      ping: :host
-
-  minio:
-    uri: s3:http://10.0.1.50:9000/restic
-    env_file: ~/.restic/.freenas-minio-creds.env
-    checks:
-      ping: :host
-
-  batpi:
-    uri: rest:http://aabmbp:3R7ZEADxYz@100.125.71.35:8000
-    checks:
-      ping: :host
 vaults:
   erebusbat:
     keyfile: ~/.restic/.erebusbat.key
@@ -69,10 +71,10 @@ datasets:
       - ~/Documents/vimwiki
       - ~/Documents/Journal
       - ~/Documents/KnotsAndThoughts
-      - ~/JellyBeanWriting
     tags:
       - obsidian
     restic_opts:
+      exclude-caches: true
       exclude: .DS_Store
   src:
     vault: erebusbat
@@ -95,6 +97,7 @@ datasets:
     paths:
       - ~/src/guest
     restic_opts:
+      exclude-caches: true
       exclude:
         - ~/src/guest/my_docker_env
         - ~/src/guest/server/tmp/
@@ -117,6 +120,8 @@ datasets:
         - cd ~/src/guest/my_docker_env && make start
     paths:
       - ~/src/guest
+    restic_opts:
+      exclude-caches: true
 defaults:
   latest: 1
 

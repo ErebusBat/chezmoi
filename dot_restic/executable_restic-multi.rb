@@ -7,7 +7,7 @@ require 'uri'
 require 'shellwords'
 require 'yaml'
 
-BACKUP_ONLY_ARGS = %w(exclude exclude_file exclude_larger_than).freeze
+BACKUP_ONLY_ARGS = %w(exclude exclude_file exclude_larger_than exclude-caches).freeze
 
 class ResticConfig
   attr_accessor :file, :dry_run, :additional_tags, :only_targets, :not_targets, :perform_target_checks, :latest

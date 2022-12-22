@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>serialKey</key>
-	<string>{{ (onepasswordDetailsFields "Synergy 1 Pro").reg_code.value }}</string>
+  <string>{{- (gopassRaw "app/Synergy_1_Pro" | mustFromJson).serialKey }}</string>
 	<key>useExternalConfig</key>
 	<false />
 	<key>configFile</key>

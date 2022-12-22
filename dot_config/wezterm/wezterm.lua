@@ -17,8 +17,8 @@ return {
 
   font = wezterm.font({
     --family="Comic Code",
-    -- family="Comic Code Ligatures",
-    family="ComicCodeLigatures Nerd Font",
+    family="Comic Code Ligatures",
+    weight="Regular",
     harfbuzz_features={"calt=1", "clig=1", "liga=1"},
   }),
   -- => == !=

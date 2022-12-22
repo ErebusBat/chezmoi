@@ -77,7 +77,7 @@ if g:aab_search == 'fzf'
   nnoremap <F5> :Buffers<CR>
   " nnoremap <F7> :FzfSwitchProject<CR>
 
-  nnoremap <Leader>f :Files<CR>
+  nnoremap <Leader>e :Files<CR>
   nnoremap <F8> :Files<CR>
 
   nnoremap <Leader>h :History<CR>
