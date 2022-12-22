@@ -16,5 +16,5 @@
   refreshPeriod = "720h"
 [".config/base16-shell"]
   type = "git-repo"
-  url = "https://github.com/chriskempson/base16-shell.git"
+  url = "https://github.com/tinted-theming/base16-shell.git"
   refreshPeriod = "720h"
