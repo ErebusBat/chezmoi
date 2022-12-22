@@ -2,10 +2,8 @@
 # $HOME/bin/tgtmux.zsh
 # This script is ran from tmux menu to setup sessions
 
-# Authenticate with 1Password so that our ChezMoi status indicator works
-if [[ -x ~/.tmux/op_auth.sh ]]; then
-  # eval $(~/.tmux/op_auth.sh)
-fi
+# Authenticate with GPG so that our ChezMoi status indicator works
+chezmoi status
 
 sessions=(
   guest-server
