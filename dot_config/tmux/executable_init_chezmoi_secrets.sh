@@ -4,6 +4,6 @@
 # so that the chezmoi widget functions
 
 echo "================================================================================"
-echo "Chezmoi Status:"
+echo "Dotfiles Status:"
 chezmoi status
 echo "================================================================================"

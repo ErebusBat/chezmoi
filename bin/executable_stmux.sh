@@ -1,7 +1,9 @@
 #!/bin/zsh
 # This script is ran from tmux menu to setup sessions
 
-chezmoi status
+if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
+  source ~/.config/tmux/init_chezmoi_secrets.sh
+fi
 
 sessions=(
   system

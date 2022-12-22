@@ -2,8 +2,9 @@
 # $HOME/bin/tgtmux.zsh
 # This script is ran from tmux menu to setup sessions
 
-# Authenticate with GPG so that our ChezMoi status indicator works
-chezmoi status
+if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
+  source ~/.config/tmux/init_chezmoi_secrets.sh
+fi
 
 sessions=(
   guest-server
