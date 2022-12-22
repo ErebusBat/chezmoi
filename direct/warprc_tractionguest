@@ -11,6 +11,7 @@ drp:~/src/guest/register
 duply:~/.duply
 espanso:~/src/erebusbat/dotfiles-stow/espanso/.config/espanso
 gconnect:~/src/guest/connect
+gopass:~/.local/share/gopass/stores/root
 gosrcme:~/go/src/github.com/ErebusBat
 guest:~/src/guest
 hassio:~/src/erebusbat/hassio
