@@ -16,18 +16,18 @@ targets:
       local_path:
 
   thelio:
-    uri: rest:http://dartp6:sNV52iMFYj@100.76.155.42:8000
+    uri: rest:http://dartp6:sNV52iMFYj@thelio:8000
     checks:
       ping: :host
 
   minio:
-    uri: s3:http://10.0.1.50:9000/restic
+    uri: s3:http://nas.erebusbat.net:9000/restic
     env_file: ~/.restic/.freenas-minio-creds.env
     checks:
       ping: :host
 
   batpi:
-    uri: rest:http://dartp6:sNV52iMFYj@100.125.71.35:8000
+    uri: rest:http://dartp6:sNV52iMFYj@batpi.erebusbat.net:8000
     checks:
       ping: :host
 vaults:

@@ -1,4 +1,6 @@
 chezmoi:~/.local/share/chezmoi
+docker_dev:~/src/guest/my_docker_env
+pchef:~/src/erebusbat/pchef76
 restic:~/.restic
 src:~/src
 ssh:~/.ssh
