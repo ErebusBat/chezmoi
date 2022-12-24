@@ -23,5 +23,5 @@ return {
   }),
   -- => == !=
   -- font = wezterm.font("JetBrainsMono Nerd Font Mono"),
-  font_size = 15,
+  font_size = 12,
 }
