@@ -14,7 +14,7 @@ vaults:
   erebusbat:
     keyfile: ~/.restic/.erebusbat.key
   tguest:
-    keyfile: ~/.restic/.fetlife.key
+    keyfile: ~/.restic/.traction_guest.key
 policies:
   unspecified:
     keep_last: 7
