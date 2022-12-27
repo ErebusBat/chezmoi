@@ -8,8 +8,8 @@ targets:
   minio:
     uri: s3:http://nas.erebusbat.net:9000/restic
     env_file: ~/.restic/.freenas-minio-creds.env
-    checks:
-      ping: :host
+    # checks:
+    #   ping: :host
 vaults:
   erebusbat:
     keyfile: ~/.restic/.erebusbat.key
@@ -99,7 +99,15 @@ datasets:
       - ~/src/guest
     restic_opts:
       exclude-caches: true
-
+  home:
+    vault: erebusbat
+    tags:
+      - cron
+    paths:
+      - ~/
+    restic_opts:
+      exclude-caches: true
+      exclude-file: ~/.restic/system-excludes.lst
 defaults:
   latest: 1
 

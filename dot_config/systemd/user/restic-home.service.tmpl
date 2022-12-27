@@ -1,0 +1,10 @@
+[Unit]
+Description=Backs up TractionGuest/SIE Source Files
+Wants=restic=tguest.timer
+
+[Service]
+Type=oneshot
+ExecStart={{ .chezmoi.homeDir }}/.rbenv/bin/rbenv exec ruby {{ .chezmoi.homeDir }}/.restic/restic-multi.rb tguest backup --tag=cron
+
+[Install]
+WantedBy=multi-user.target
