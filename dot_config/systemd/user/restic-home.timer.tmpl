@@ -1,0 +1,10 @@
+[Unit]
+Description=Backs up Home Folder
+Requires=restic-home.service
+
+[Timer]
+Unit=restic-home.service
+OnCalendar=*:00:00/5
+
+[Install]
+WantedBy=timers.target
