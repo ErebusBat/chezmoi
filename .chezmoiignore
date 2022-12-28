@@ -53,7 +53,7 @@ Library/Application Support/
 
 {{- if ne .chezmoi.os "linux" }}
 .config/Synergy/
-.config/systemd/**/*
+.config/systemd
 {{- end }}
 
 {{- if eq .chezmoi.os "linux" }}
