@@ -107,7 +107,7 @@ datasets:
       - ~/
     restic_opts:
       exclude-caches: true
-      exclude-file: ~/.restic/system-excludes.lst
+      exclude-file: ~/.restic/home-excludes.lst
 defaults:
   latest: 1
 
