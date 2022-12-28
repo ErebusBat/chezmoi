@@ -23,11 +23,13 @@ direct/
 .ssh/assh.d/tractionguest.yml
 .tmuxp/guest-server.yaml
 bin/tgtmux.zsh
+.config/systemd/user/restic-tguest.*
 {{- end }}
 
 {{- if not .area.personal }}
 .restic/.erebusbat.key
 .restic/.freenas-minio-creds.env
+.config/systemd/user/restic-home.*
 .ssh/id_bat_devices
 .tmuxp/hassio.yaml
 .tmuxp/system.yaml
