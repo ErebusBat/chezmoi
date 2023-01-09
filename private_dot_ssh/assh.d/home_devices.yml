@@ -76,6 +76,15 @@ hosts:
 #############################################################
 # Raspberry Pis
 #############################################################
+  arcade:
+    Hostname: 192.168.68.70
+    Inherits: raspi
+
+  retropie:
+    # Specify full TS domain because it is on a different account
+    Hostname: retropie.tail16501.ts.net
+    Inherits: raspi
+
   # officepi:
   #   Hostname: 10.0.0.20
   #   Inherits: raspi
