@@ -14,25 +14,21 @@
 {{-   $focus = promptString "focus" -}}
 {{- end -}}
 
-{{- $a_fetlife := eq $focus "fetlife" }}
-{{- $a_personal := eq $focus "personal" }}
-{{- $a_server := eq $focus "server" }}
-{{- $a_tractionguest := eq $focus "tractionguest" }}
 
 [data]
   focus = {{ $focus | quote }}
   email = {{ $email | quote }}
 
   [data.area]
-    fetlife = {{ default false .area.fetlife }}
-    personal = {{ default false .area.personal }}
-    server = {{ default false .area.server }}
-    tractionguest = {{ default false .area.tractionguest }}
+    fetlife = false
+    personal = {{ default false (eq $focus "personal") }}
+    server = {{ default false (eq $focus "server") }}
+    tractionguest = {{ default false (eq $focus "sie") }}
 
   [data.synergy]
-    enabled = {{ default false .synergy.enabled }}
-    mode = {{ default "client" .synergy.mode | quote }}
-    server = {{ default "10.0.1.70" .synergy.server | quote }}
+    enabled = false
+    mode = "client"
+    server = "sie-mbp.erebusbat.net"
 
 [git]
   # autoAdd = true
