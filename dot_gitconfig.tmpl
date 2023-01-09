@@ -66,3 +66,8 @@
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+
+[safe]
+{{- if eq .focus "server" }}
+  directory = /myserver
+{{- end }}
