@@ -6,7 +6,8 @@ windows:
   panes:
     - shell_command:
         - wd vimwiki
-        - vimlog -- y 0
+        # - vimlog -- y 0
+        - neofetch
     - shell_command:
         - wd vimwiki
         - neofetch
