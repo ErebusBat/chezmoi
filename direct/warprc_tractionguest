@@ -1,7 +1,7 @@
 KnotsAndThoughts:~/Documents/KnotsAndThoughts
 alactritty:~/src/erebusbat/dotfiles-stow/alacritty/.config/alacritty
 ansible:~/src/ansible
-antibody:~/src/erebusbat/dotfiles-stow/zsh-antibody/.config
+antibody:~/.config/zsh-antibody
 chezmoi:~/.local/share/chezmoi
 docker_dev:~/src/guest/my_docker_env
 downloads:~/downloads
@@ -42,6 +42,6 @@ tmux:~/.tmux
 tmuxp:~/.tmuxp
 ulauncher:~/src/erebusbat/dotfiles-stow/ulauncher/.config/ulauncher
 vim:~/.config/nvim
-vimwiki:~/Documents/vimwiki
-wezterm:~/src/erebusbat/dotfiles-stow/wezterm/.config/wezterm
+vimwiki:~/Documents/Obsidian/vimwiki
+wezterm:~/.config/wezterm
 wiki:~/Documents/vimwiki
