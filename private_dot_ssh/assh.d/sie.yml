@@ -1,0 +1,8 @@
+hosts:
+  mbp:
+    HostName: 192.168.68.63
+    User: andrew.burns
+  mbpm1:
+    HostName: 192.168.68.101
+    User: andrew.burns
+
