@@ -1,0 +1,127 @@
+---
+targets:
+  thelio:
+    uri: rest:http://aabmbp:3R7ZEADxYz@thelio.erebusbat.net:8000
+    checks:
+      ping: :host
+
+  minio:
+    uri: s3:http://nas.erebusbat.net:9000/restic
+    env_file: ~/.restic/.freenas-minio-creds.env
+    checks:
+      ping: :host
+
+  batpi:
+    uri: rest:http://aabmbp:3R7ZEADxYz@batpi.erebusbat.net:8000
+    checks:
+      ping: :host
+
+  # sea_back is for when the drive is physically connected
+  # The `thelio` target is the same data, just exposed over rest-server
+  sea_back:
+    enabled: false
+    uri: /Volumes/SeaBack/backups
+    checks:
+      local_path:
+
+  usbt_sandisk_orange:
+    enabled: false
+    uri: /Volumes/BigOrgange/.bak
+    checks:
+      local_path:
+
+  usbt_black:
+    enabled: false
+    uri: /Volumes/usbt_black/.bak
+    checks:
+      local_path:
+
+  usbt_red:
+    enabled: false
+    uri: /Volumes/usbt_red/.bak
+    checks:
+      local_path:
+vaults:
+  erebusbat:
+    keyfile: ~/.restic/.erebusbat.key
+  tguest:
+    keyfile: ~/.restic/.traction_guest.key
+policies:
+  unspecified:
+    keep_last: 7
+    keep_hourly: 8
+    keep_daily: 7
+    keep_weekly: 2
+    keep_monthly: 1
+    keep_yearly: 1
+    keep_within: 5h
+  daily:
+    keep_last: 2
+    keep_hourly: 6
+    keep_daily: 14
+    keep_weekly: 4
+    keep_monthly: 1
+    keep_yearly: 5
+    keep_within: 2h
+
+datasets:
+  obsidian:
+    vault: erebusbat
+    paths:
+      - ~/Documents/vimwiki
+      - ~/Documents/Journal
+      - ~/Documents/KnotsAndThoughts
+    tags:
+      - obsidian
+    restic_opts:
+      exclude-caches: true
+      exclude: .DS_Store
+  src:
+    vault: erebusbat
+    paths:
+      - ~/src
+    restic_opts:
+      exclude: ~/src/guest
+
+  tguest:
+    vault: tguest
+    paths:
+      - ~/src/guest
+    restic_opts:
+      exclude:
+        - ~/src/guest/my_docker_env
+        - guest/server/tmp/
+        - guest/shc_query_service/tmp/
+  tguest_no_frontend:
+    vault: tguest
+    paths:
+      - ~/src/guest
+    restic_opts:
+      exclude-caches: true
+      exclude:
+        - ~/src/guest/my_docker_env
+        - ~/src/guest/server/tmp/
+        - ~/src/guest/server/frontend/
+        - ~/src/guest/server/gopro/
+        - ~/src/guest/server/kiosk/
+        - ~/src/guest/server/register/
+        - ~/src/guest/server/web/
+        - ~/src/guest/server/server/
+        - ~/src/guest/shc_query_service/tmp/
+  tguest_cold:
+    vault: tguest
+    tags:
+      - cold
+    pre_commands:
+      dataset_backup:
+        - cd ~/src/guest/my_docker_env && make stop
+    post_commands:
+      dataset_backup:
+        - cd ~/src/guest/my_docker_env && make start
+    paths:
+      - ~/src/guest
+    restic_opts:
+      exclude-caches: true
+defaults:
+  latest: 1
+
