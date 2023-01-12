@@ -1,5 +1,5 @@
 session_name: guest-server
-start_directory: ~/src/guest/server
+start_directory: ~/src/sie/server
 windows:
 
 - window_name: foreman
