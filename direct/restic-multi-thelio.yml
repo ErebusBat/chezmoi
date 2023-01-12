@@ -4,6 +4,10 @@ targets:
   #   uri: /media/aburns/SeaBack2/backups
   #   checks:
   #     local_path:
+  tmp:
+    uri: /tmp
+    checks:
+      local_path:
 
   # USB Thumb - Sandisk Orange
   usbt_sandisk_orange:
@@ -42,6 +46,8 @@ targets:
   #     ping: :host
 vaults:
   erebusbat:
+    keyfile: ~/.restic/.erebusbat.key
+  restic:
     keyfile: ~/.restic/.erebusbat.key
 policies:
   unspecified:
@@ -108,6 +114,15 @@ datasets:
         - ~/src/pers/pchef76/nodes/
         - ~/src/pers/pchef76/local-mode-cache/
         - ~/src/pers/pchef76/tmp/
+  home:
+    vault: restic
+    tags:
+      - cron
+    paths:
+      - ~/
+    restic_opts:
+      exclude-caches: true
+      exclude-file: ~/.restic/home-excludes.lst
 
 defaults:
   latest: 1

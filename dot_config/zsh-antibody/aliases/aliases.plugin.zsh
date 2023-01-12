@@ -76,6 +76,10 @@ if [[ $(uname) == "Linux" ]]; then
   alias syscudr='systemctl --user daemon-reload'
 fi
 
+if [[ -x $(which chezmoi) ]]; then
+  alias cz=chezmoi
+fi
+
 ################################################################################
 # Network
 ################################################################################
