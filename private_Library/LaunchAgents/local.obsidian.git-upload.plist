@@ -8,10 +8,14 @@
 	<array>
 		<string>/usr/local/bin/fdautil</string>
 		<string>exec</string>
-		<string>/Users/andrew.burns/Documents/vimwiki/.git_upload</string>
+		<string>/Users/andrew.burns/Documents/Obsidian/vimwiki/.git_upload</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/local.obsidian.git-upload.stderr</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/local.obsidian.git-upload.stdout</string>
 	<key>StartCalendarInterval</key>
 	<array>
 		<dict>
