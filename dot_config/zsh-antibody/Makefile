@@ -15,7 +15,7 @@ static: clean compile
 
 compile:
 	@echo "\n*** [static] Compling antibody into static startup script..."
-	/usr/local/bin/antibody bundle < $(PLUGINS) > $(STATIC)
+	/opt/homebrew/bin/antibody bundle < $(PLUGINS) > $(STATIC)
 	zsh -c 'autoload -Uz compinit; compinit; compdump; zcompile $(STATIC); zcompile $(COMPDUMP)'
 
 watch_compdump:

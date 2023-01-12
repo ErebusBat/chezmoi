@@ -1,9 +1,9 @@
 # if [[ `type go` =~ 'not found' ]]; then return 0; fi
-if [[ `type go` =~ 'not found' ]]; then 
+if [[ `type go` =~ 'not found' ]]; then
   if [[ -x /usr/local/go/bin/go ]]; then
 	  export PATH=$PATH:/usr/local/go/bin
   else
-		return 
+		return
 	fi
 fi
 
@@ -11,6 +11,7 @@ fi
 [[ -z $GOPATH ]] && GOPATH=$(go env GOPATH)
 if [[ ! -d $GOPATH ]]; then
   # Go is installed, but not setup so don't do anything here
+  echo "WARN: Go is installed, but not setup (Could not find $GOPATH)"
   unset GOPATH
   return 0
 fi

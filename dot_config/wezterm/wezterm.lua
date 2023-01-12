@@ -7,21 +7,19 @@ return {
     shell = "/bin/zsh",
   },
 
+  -- Color schme should be overriden by base16 shell settings,
+  -- but this provides a good default until that
+  color_scheme = "Gruvbox Dark",
+
   -- Font Info
-  -- color_scheme = "Hipster Green",
-  -- color_scheme = "HaX0R_GR33N",
-  color_scheme = "Guezwhoz",
-  color_scheme = "Hybrid",
-  color_scheme = "Dracula",
-  -- color_scheme = "Gruvbox Dark",
 
   font = wezterm.font({
-    --family="Comic Code",
-    family="Comic Code Ligatures",
+    -- family="Comic Code",
+    -- family="Comic Code Ligatures",
+    family="ComicCodeLigatures Nerd Font",
     weight="Regular",
     harfbuzz_features={"calt=1", "clig=1", "liga=1"},
   }),
   -- => == !=
-  -- font = wezterm.font("JetBrainsMono Nerd Font Mono"),
-  font_size = 12,
+  font_size = 14,
 }

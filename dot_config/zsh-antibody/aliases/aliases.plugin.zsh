@@ -27,9 +27,13 @@ function todo() {
 }
 
 # todo today
-function todot() {
-  todo "$1" t
-}
+# function todot() {
+#   todo "$1" t
+# }
+
+if [[ -d ~/Library/Python/3.9/bin ]]; then
+  export PATH=~/Library/Python/3.9/bin:$PATH
+fi
 
 ################################################################################
 # Editing / Navigation / File Management

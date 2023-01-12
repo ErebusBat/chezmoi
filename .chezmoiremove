@@ -1,3 +1,4 @@
-.tmux-status.conf
 .config/nvim/color_plumbing.vim
+.ssh/assh.d/tractionguest.yml
+.tmux-status.conf
 .tmux/op_auth.sh
