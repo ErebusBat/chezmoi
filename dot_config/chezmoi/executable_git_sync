@@ -15,6 +15,14 @@ MSG="$PREFIX: ${CHANGE_COUNT} local changes"
 
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
+# Commit any local changes
+if [[ $CHANGE_COUNT -gt 0 ]]; then
+  echo "$PREFIX: Commiting changes"
+  git add .
+  git commit -q -m ${MSG}
+fi
+
+# Merge all remote changes into local
 for r in $(git remote)
 do
   echo "$PREFIX: Pulling changes from $r/$CURRENT_BRANCH"
@@ -22,15 +30,7 @@ do
   echo ""
 done
 
-if [[ $CHANGE_COUNT -eq 0 ]]; then
-  echo "[$(date)] No local changes"
-  exit 0
-fi
-
-echo "$PREFIX: Commiting changes"
-git add .
-git commit -q -m ${MSG}
-
+# Push to all remotes
 for r in $(git remote)
 do
   echo "$PREFIX: Pushing All Changes to $r"
