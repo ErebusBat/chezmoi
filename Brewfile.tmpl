@@ -1,0 +1,45 @@
+tap "homebrew/bundle"
+tap "homebrew/cask"
+tap "homebrew/core"
+tap "homebrew/services"
+tap "wez/wezterm"
+
+
+################################################################################
+# Development
+################################################################################
+brew "go"
+brew "rbenv"
+
+################################################################################
+# System Utilities
+################################################################################
+brew "antibody"
+brew "assh"
+brew "docker-compose"
+brew "exa"
+brew "fzf"
+brew "gnupg"
+brew "gopass"
+brew "jq"
+brew "neofetch"
+brew "neovim"
+brew "restic"
+brew "ripgrep"
+brew "tmux"
+brew "tmuxp"
+cask "wezterm"
+
+{{ if eq .area.tractionguest true }}
+################################################################################
+# Sign In Enterprise
+################################################################################
+brew "awscli"
+brew "gh"
+brew "libffi"
+brew "libsodium"
+brew "node@14", link: true
+brew "postgresql@14"
+brew "shared-mime-info"
+brew "yarn"
+{{ end }}
