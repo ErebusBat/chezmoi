@@ -10,12 +10,8 @@ REPO_PATH=$(chezmoi data | jq -r '.chezmoi.sourceDir')
 cd ${REPO_PATH}
 
 CHANGE_COUNT=$(git status --porcelain | wc -l | awk '{print $1}')
-
-if [[ $CHANGE_COUNT -eq 0 ]]; then
-  exit 0
-fi
 PREFIX="[$(hostname -s)]-$(date +"%Y%m%d_%H%M%S")"
-MSG="$PREFIX: ${CHANGE_COUNT} changes"
+MSG="$PREFIX: ${CHANGE_COUNT} local changes"
 
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
@@ -25,6 +21,11 @@ do
   git pull -q $r $CURRENT_BRANCH
   echo ""
 done
+
+if [[ $CHANGE_COUNT -eq 0 ]]; then
+  echo "[$(date)] No local changes"
+  exit 0
+fi
 
 echo "$PREFIX: Commiting changes"
 git add .
