@@ -1,4 +1,10 @@
 #!/usr/bin/env zsh
+if [[ ! -x $(which jq) ]]; then
+  export PATH=/opt/homebrew/bin:$PATH
+fi
+if [[ ! -x $(which chezmoi) ]]; then
+  export PATH=$HOME/bin:$PATH
+fi
 REPO_PATH=$(chezmoi data | jq -r '.chezmoi.sourceDir')
 
 cd ${REPO_PATH}
