@@ -8,6 +8,7 @@ photoprisim:/myserver/photoprism
 photoprism:/myserver/photoprism
 plex:/myserver/plex
 restic:~/.restic
+stash:/myserver/stashappcc
 stow:~/src/erebusbat/dotfiles-stow
 tmuxp:~/.tmuxp
 tmux:~/.tmux
