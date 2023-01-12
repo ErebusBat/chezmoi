@@ -11,10 +11,10 @@ targets:
     checks:
       ping: :host
 
-  batpi:
-    uri: rest:http://aabmbp:3R7ZEADxYz@batpi.erebusbat.net:8000
-    checks:
-      ping: :host
+  # batpi:
+  #   uri: rest:http://aabmbp:3R7ZEADxYz@batpi.erebusbat.net:8000
+  #   checks:
+  #     ping: :host
 
   # sea_back is for when the drive is physically connected
   # The `thelio` target is the same data, just exposed over rest-server
@@ -68,9 +68,9 @@ datasets:
   obsidian:
     vault: erebusbat
     paths:
-      - ~/Documents/vimwiki
-      - ~/Documents/Journal
-      - ~/Documents/KnotsAndThoughts
+      - ~/Documents/Obsidian/vimwiki
+      - ~/Documents/Obsidian/Journal
+      - ~/Documents/Obsidian/KnotsAndThoughts
     tags:
       - obsidian
     restic_opts:
@@ -81,45 +81,45 @@ datasets:
     paths:
       - ~/src
     restic_opts:
-      exclude: ~/src/guest
+      exclude: ~/src/sie
 
   tguest:
     vault: tguest
     paths:
-      - ~/src/guest
+      - ~/src/sie
     restic_opts:
       exclude:
-        - ~/src/guest/my_docker_env
+        - ~/src/sie/my_docker_env
         - guest/server/tmp/
         - guest/shc_query_service/tmp/
   tguest_no_frontend:
     vault: tguest
     paths:
-      - ~/src/guest
+      - ~/src/sie
     restic_opts:
       exclude-caches: true
       exclude:
-        - ~/src/guest/my_docker_env
-        - ~/src/guest/server/tmp/
-        - ~/src/guest/server/frontend/
-        - ~/src/guest/server/gopro/
-        - ~/src/guest/server/kiosk/
-        - ~/src/guest/server/register/
-        - ~/src/guest/server/web/
-        - ~/src/guest/server/server/
-        - ~/src/guest/shc_query_service/tmp/
+        - ~/src/sie/my_docker_env
+        - ~/src/sie/server/tmp/
+        - ~/src/sie/server/frontend/
+        - ~/src/sie/server/gopro/
+        - ~/src/sie/server/kiosk/
+        - ~/src/sie/server/register/
+        - ~/src/sie/server/web/
+        - ~/src/sie/server/server/
+        - ~/src/sie/shc_query_service/tmp/
   tguest_cold:
     vault: tguest
     tags:
       - cold
     pre_commands:
       dataset_backup:
-        - cd ~/src/guest/my_docker_env && make stop
+        - cd ~/src/sie/my_docker_env && make stop
     post_commands:
       dataset_backup:
-        - cd ~/src/guest/my_docker_env && make start
+        - cd ~/src/sie/my_docker_env && make start
     paths:
-      - ~/src/guest
+      - ~/src/sie
     restic_opts:
       exclude-caches: true
 defaults:
