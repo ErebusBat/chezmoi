@@ -3,21 +3,19 @@
 <plist version="1.0">
 <dict>
 	<key>Label</key>
-	<string>local.chezmoi-pull</string>
+	<string>local.chezmoi-sync</string>
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/local/bin/fdautil</string>
 		<string>exec</string>
-		<string>/Users/andrew.burns/bin/chezmoi</string>
-		<string>git</string>
-		<string>pull</string>
+		<string>/Users/andrew.burns/.config/chezmoi/git_sync</string>
 	</array>
 	<key>RunAtLoad</key>
 	<true/>
 	<key>StandardErrorPath</key>
-	<string>/tmp/local.chezmoi-pull.stderr</string>
+	<string>/tmp/local.chezmoi-sync.stderr</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/local.chezmoi-pull.stdout</string>
+	<string>/tmp/local.chezmoi-sync.stdout</string>
 	<key>StartInterval</key>
 	<integer>3600</integer>
 </dict>

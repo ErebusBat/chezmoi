@@ -1,0 +1,34 @@
+#!/usr/bin/env zsh
+REPO_PATH=$(chezmoi data | jq -r '.chezmoi.sourceDir')
+
+cd ${REPO_PATH}
+
+CHANGE_COUNT=$(git status --porcelain | wc -l | awk '{print $1}')
+
+if [[ $CHANGE_COUNT -eq 0 ]]; then
+  exit 0
+fi
+PREFIX="[$(hostname -s)]-$(date +"%Y%m%d_%H%M%S")"
+MSG="$PREFIX: ${CHANGE_COUNT} changes"
+
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+for r in $(git remote)
+do
+  echo "$PREFIX: Pulling changes from $r/$CURRENT_BRANCH"
+  git pull -q $r $CURRENT_BRANCH
+  echo ""
+done
+
+echo "$PREFIX: Commiting changes"
+git add .
+git commit -q -m ${MSG}
+
+for r in $(git remote)
+do
+  echo "$PREFIX: Pushing All Changes to $r"
+  git push -q $r --all
+  echo ""
+done
+
+echo "$PREFIX: done."

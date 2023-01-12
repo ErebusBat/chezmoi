@@ -2,3 +2,4 @@
 .ssh/assh.d/tractionguest.yml
 .tmux-status.conf
 .tmux/op_auth.sh
+Library/LaunchAgents/local.chezmoi-pull.plist
