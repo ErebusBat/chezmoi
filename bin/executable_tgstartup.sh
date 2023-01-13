@@ -16,6 +16,8 @@ APPS=(
   /Applications/Synergy.app
   /System/Applications/Messages.app
   /Applications/Messenger.app
+
+  /Applications/Docker.app
 )
 
 # APPS=()
