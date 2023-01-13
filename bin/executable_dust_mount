@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# CIFS_MOUNT_POINT=~/dustbin
-CIFS_MOUNT_POINT=/tmp/cifs_dustbin
+CIFS_MOUNT_POINT=/var/dustbin
+# CIFS_MOUNT_POINT=/tmp/cifs_dustbin
 # IMG_FILE=$CIFS_MOUNT_POINT/AABackup-Drive/disks/img/dustbin.img
 IMG_FILE=$CIFS_MOUNT_POINT/AABackup-Drive/disks/img/dust2.img
 # HDD_PATH=/dev/disk/by-uuid/43ab03b8-09d5-49e1-810e-20b2cb51d8ee
@@ -170,13 +170,15 @@ function unmount() {
   fi
 
   if [[ "$1" == "unmount" ]]; then
-    if [[ -f $IMG_FILE ]]; then
+    if [[ -f $IMG_FILE && $CIFS_MOUNT_POINT == "/var/dustbin" ]]; then
+      echo "Not unmounting CIFS mount $CIFS_MOUNT_POINT"
+    elif [[ -f $IMG_FILE ]]; then
       echo "Unmounting CIFS..."
       sudo umount $CIFS_MOUNT_POINT
-    fi
-    if [[ -f $IMG_FILE ]]; then
-      echo "*** ERROR: Could not lock encrypted volume?"
-      exit 1
+      if [[ -f $IMG_FILE ]]; then
+        echo "*** ERROR: Could not lock encrypted volume?"
+        exit 1
+      fi
     fi
   else
     echo "Not unmounting CIFS (specify 'unmount' to fully unmount everything, including CIFS)"
