@@ -1,5 +1,7 @@
 chezmoi:~/.local/share/chezmoi
 dashy:/myserver/internal/dashy
+downloader:/myserver/downloader
+gatus:/myserver/gatus
 gopass:~/.local/share/gopass/stores/root
 internal:/myserver/internal
 myserver:/myserver
