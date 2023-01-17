@@ -78,6 +78,8 @@ datasets:
         - /myserver/downloader/tubesync/
         - /myserver/gitea/
         - /myserver/plex/
+        - /myserver/stashappcc/data/media/
+        - /myserver/stashappcc/data/media_incoming/
 
   # gitea_cold _must_ be ran as root
   gitea_cold:
