@@ -100,13 +100,22 @@ source ~/.config/nvim/spell/after.vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editor / Client specific settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:is_gui_vim=0
 if has("gui_vimr")
+  let g:is_gui_vim=1
   source ~/.config/nvim/vimr.vim
 endif
 if exists('g:gnvim')
+  let g:is_gui_vim=1
   source ~/.config/nvim/gnvim.vim
 endif
 if exists('g:neovide')
+  let g:is_gui_vim=1
   source ~/.config/nvim/neovide.vim
 endif
 
+" Disable mouse in terminal so that clicking on terminal window won't
+" affect cursor or anything like that
+if g:is_gui_vim == 0
+  set mouse=
+endif
