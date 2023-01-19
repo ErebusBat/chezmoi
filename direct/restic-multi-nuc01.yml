@@ -6,12 +6,12 @@ targets:
       local_path:
 
   thelio:
-    uri: rest:http://plex:brMNwbwGXJ@10.0.0.75:8000
+    uri: rest:http://plex:brMNwbwGXJ@thelio.erebusbat.net:8000
     checks:
       ping: :host
 
   batpi:
-    uri: rest:http://plex:brMNwbwGXJ@100.125.71.35:8000
+    uri: rest:http://plex:brMNwbwGXJ@batpi.erebusbat.net:8000
     checks:
       ping: :host
 
