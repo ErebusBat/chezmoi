@@ -23,4 +23,6 @@ else
   alias lsda='exa -lDa'
   alias lsdt='exa -lDT -L2'
   alias lsdta='exa -lDTa -L2'
+
+  alias tree='exa --tree'
 fi
