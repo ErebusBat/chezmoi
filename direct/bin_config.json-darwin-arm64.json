@@ -64,6 +64,15 @@
             "provider": "github",
             "package_path": "lazygit"
         },
+        "/Users/andrew.burns/bin/lf": {
+            "path": "/Users/andrew.burns/bin/lf",
+            "remote_name": "lf",
+            "version": "r28",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/gokcehan/lf",
+            "provider": "github",
+            "package_path": "lf"
+        },
         "/Users/andrew.burns/bin/starship": {
             "path": "/Users/andrew.burns/bin/starship",
             "remote_name": "starship",
