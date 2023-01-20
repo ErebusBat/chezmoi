@@ -1,5 +1,5 @@
 # tmux display-message -p "#{window_layout}" | pbcopy
-session_name: left-middle
+session_name: left
 start_directory: ~/
 windows:
 - window_name: system
@@ -16,5 +16,4 @@ windows:
   suppress_history: false
   panes:
     - shell_command:
-      - ssh nuc -t -- bpytop
-      - exit
+      - ssh nuc -t -- bpytop; exit
