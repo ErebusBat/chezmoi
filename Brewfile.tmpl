@@ -17,6 +17,8 @@ tap "wez/wezterm"
 # Development
 ################################################################################
 brew "go"
+brew "lazydocker"
+brew "lazygit"
 brew "rbenv"
 
 ################################################################################
@@ -25,6 +27,7 @@ brew "rbenv"
 brew "antibody"
 brew "assh"
 brew "git", link: true
+brew "docker"
 brew "docker-compose"
 brew "exa"
 brew "fzf"
@@ -38,6 +41,13 @@ brew "ripgrep"
 brew "tmux"
 brew "tmuxp"
 cask "wezterm"
+
+{{ if eq .area.personal true }}
+################################################################################
+# Personal Utilities
+################################################################################
+cask "plexamp"
+{{ end }}
 
 {{ if eq .area.tractionguest true }}
 ################################################################################
