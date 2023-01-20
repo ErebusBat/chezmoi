@@ -38,6 +38,7 @@ stow:~/src/erebusbat/dotfiles-stow
 sys76qmk:~/src/vendor/qmk_firmware/keyboards/system76/launch_1/keymaps/erebusbat
 tf:~/src/sie/terraform
 tgf:~/src/sie/frontend
+tgmd:~/src/erebusbat/traction-guest-link
 tgs:~/src/sie/server
 tmux:~/.tmux
 tmuxp:~/.tmuxp
