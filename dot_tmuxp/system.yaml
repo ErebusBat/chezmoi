@@ -20,31 +20,10 @@ windows:
     - shell_command:
       - wd chezmoi
 
-# - window_name: stow
-#   panes:
-#     - shell_command:
-#       - wd stow
-#       - neofetch
-#     - shell_command:
-#       - wd stow
-
-- window_name: vim
+- window_name: src
   panes:
-    - shell_command:
-      - neofetch
-      - wd vim
-    - shell_command:
-      - wd vim
-
-- window_name: tmux
-  panes:
-    - wd tmux
-    - wd tmux
-
-# - window_name: pchef
-#   panes:
-#     - wd pchef
-#     - wd pchef
+    - wd src
+    - wd src
 
 - window_name: zsh
   options:
@@ -56,7 +35,28 @@ windows:
     - pane:
       focus: true
 
-- window_name: go
-  panes:
-    - cd $GOSRCME
-    - cd $GOSRCME
+# - window_name: stow
+#   panes:
+#     - shell_command:
+#       - wd stow
+#       - neofetch
+#     - shell_command:
+#       - wd stow
+
+# - window_name: vim
+#   panes:
+#     - shell_command:
+#       - neofetch
+#       - wd vim
+#     - shell_command:
+#       - wd vim
+
+# - window_name: tmux
+#   panes:
+#     - wd tmux
+#     - wd tmux
+
+# - window_name: pchef
+#   panes:
+#     - wd pchef
+#     - wd pchef
