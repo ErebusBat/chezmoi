@@ -17,32 +17,38 @@ tap "wez/wezterm"
 # Development
 ################################################################################
 brew "go"
-brew "lazydocker"
-brew "lazygit"
 brew "rbenv"
 
 ################################################################################
 # System Utilities
 ################################################################################
 brew "antibody"
-brew "assh"
 brew "git", link: true
 brew "docker"
 brew "docker-compose"
-brew "exa"
-brew "fzf"
 brew "gnupg"
 brew "gopass"
-brew "jq"
 brew "ncdu"
 brew "neofetch"
 brew "neovim"
-brew "restic"
-brew "ripgrep"
 brew "tmux"
 brew "tmuxp"
 brew "wget"
 cask "wezterm"
+
+# The following are NOT managed by bin because the projects do not release
+# arm64 native binaries and we care deeply about the performance of these
+brew "exa"
+brew "jq"
+brew "ripgrep"
+
+# The Following have homebrew packaged but are actually managed by bin (bin ensure)
+# brew "assh"
+# brew "fzf"
+# brew "lazydocker"
+# brew "lazygit"
+# brew "restic"
+# brew "starship"
 
 {{ if eq .area.personal true }}
 ################################################################################
