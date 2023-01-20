@@ -7,8 +7,8 @@
             "version": "v2.15.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/moul/assh",
-            "provider": "github",
-            "package_path": "assh"
+            "provider": "",
+            "package_path": ""
         },
         "/home/aburns/bin/bin": {
             "path": "/home/aburns/bin/bin",
@@ -43,8 +43,8 @@
             "version": "v8.6.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/sharkdp/fd",
-            "provider": "github",
-            "package_path": "fd-v8.6.0-x86_64-unknown-linux-gnu/fd"
+            "provider": "",
+            "package_path": ""
         },
         "/home/aburns/bin/fzf": {
             "path": "/home/aburns/bin/fzf",
@@ -52,8 +52,8 @@
             "version": "0.36.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/junegunn/fzf",
-            "provider": "github",
-            "package_path": "fzf"
+            "provider": "",
+            "package_path": ""
         },
         "/home/aburns/bin/jq": {
             "path": "/home/aburns/bin/jq",
@@ -61,7 +61,7 @@
             "version": "jq-1.6",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/stedolan/jq",
-            "provider": "github",
+            "provider": "",
             "package_path": ""
         },
         "/home/aburns/bin/lazydocker": {
@@ -70,8 +70,8 @@
             "version": "v0.20.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/jesseduffield/lazydocker",
-            "provider": "github",
-            "package_path": "lazydocker"
+            "provider": "",
+            "package_path": ""
         },
         "/home/aburns/bin/lazygit": {
             "path": "/home/aburns/bin/lazygit",
@@ -79,8 +79,8 @@
             "version": "v0.36.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/jesseduffield/lazygit",
-            "provider": "github",
-            "package_path": "lazygit"
+            "provider": "",
+            "package_path": ""
         },
         "/home/aburns/bin/restic": {
             "path": "/home/aburns/bin/restic",
@@ -88,7 +88,7 @@
             "version": "v0.15.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/restic/restic",
-            "provider": "github",
+            "provider": "",
             "package_path": ""
         },
         "/home/aburns/bin/rg": {
@@ -97,8 +97,8 @@
             "version": "13.0.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/burntsushi/ripgrep",
-            "provider": "github",
-            "package_path": "ripgrep-13.0.0-x86_64-unknown-linux-musl/rg"
+            "provider": "",
+            "package_path": ""
         },
         "/home/aburns/bin/starship": {
             "path": "/home/aburns/bin/starship",
@@ -106,8 +106,8 @@
             "version": "v1.12.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/starship/starship",
-            "provider": "github",
-            "package_path": "starship"
+            "provider": "",
+            "package_path": ""
         }
     }
 }
