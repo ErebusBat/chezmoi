@@ -1,0 +1,113 @@
+{
+    "default_path": "/home/aburns/bin",
+    "bins": {
+        "/home/aburns/bin/assh": {
+            "path": "/home/aburns/bin/assh",
+            "remote_name": "assh",
+            "version": "v2.15.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/moul/assh",
+            "provider": "github",
+            "package_path": "assh"
+        },
+        "/home/aburns/bin/bin": {
+            "path": "/home/aburns/bin/bin",
+            "remote_name": "bin",
+            "version": "v0.15.2",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/marcosnils/bin",
+            "provider": "github",
+            "package_path": ""
+        },
+        "/home/aburns/bin/duf": {
+            "path": "/home/aburns/bin/duf",
+            "remote_name": "duf",
+            "version": "v0.8.1",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/muesli/duf",
+            "provider": "github",
+            "package_path": "duf"
+        },
+        "/home/aburns/bin/exa": {
+            "path": "/home/aburns/bin/exa",
+            "remote_name": "exa",
+            "version": "v0.10.1",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/ogham/exa",
+            "provider": "",
+            "package_path": ""
+        },
+        "/home/aburns/bin/fd": {
+            "path": "/home/aburns/bin/fd",
+            "remote_name": "fd",
+            "version": "v8.6.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/sharkdp/fd",
+            "provider": "github",
+            "package_path": "fd-v8.6.0-x86_64-unknown-linux-gnu/fd"
+        },
+        "/home/aburns/bin/fzf": {
+            "path": "/home/aburns/bin/fzf",
+            "remote_name": "fzf",
+            "version": "0.36.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/junegunn/fzf",
+            "provider": "github",
+            "package_path": "fzf"
+        },
+        "/home/aburns/bin/jq": {
+            "path": "/home/aburns/bin/jq",
+            "remote_name": "jq",
+            "version": "jq-1.6",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/stedolan/jq",
+            "provider": "github",
+            "package_path": ""
+        },
+        "/home/aburns/bin/lazydocker": {
+            "path": "/home/aburns/bin/lazydocker",
+            "remote_name": "lazydocker",
+            "version": "v0.20.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/jesseduffield/lazydocker",
+            "provider": "github",
+            "package_path": "lazydocker"
+        },
+        "/home/aburns/bin/lazygit": {
+            "path": "/home/aburns/bin/lazygit",
+            "remote_name": "lazygit",
+            "version": "v0.36.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/jesseduffield/lazygit",
+            "provider": "github",
+            "package_path": "lazygit"
+        },
+        "/home/aburns/bin/restic": {
+            "path": "/home/aburns/bin/restic",
+            "remote_name": "",
+            "version": "v0.15.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/restic/restic",
+            "provider": "github",
+            "package_path": ""
+        },
+        "/home/aburns/bin/rg": {
+            "path": "/home/aburns/bin/rg",
+            "remote_name": "rg",
+            "version": "13.0.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/burntsushi/ripgrep",
+            "provider": "github",
+            "package_path": "ripgrep-13.0.0-x86_64-unknown-linux-musl/rg"
+        },
+        "/home/aburns/bin/starship": {
+            "path": "/home/aburns/bin/starship",
+            "remote_name": "starship",
+            "version": "v1.12.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/starship/starship",
+            "provider": "github",
+            "package_path": "starship"
+        }
+    }
+}
