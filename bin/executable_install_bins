@@ -1,0 +1,32 @@
+#!/bin/zsh
+BIN_INSTALL_VERSION=0.15.2
+BIN_PATH=~/bin
+
+# Is bin installed?
+if [[ ! -x ~BIN_PATH/bin ]]; then
+  arch=$(uname -m)
+  platform=$(uname)
+  bin_url=https://github.com/marcosnils/bin/releases/download/v${BIN_INSTALL_VERSION}/bin_${BIN_INSTALL_VERSION}_${platform}_${arch}
+  echo "bin not installed... downloading temporary v${BIN_INSTALL_VERSION}..."
+  echo "  ${bin_url}"
+  wget ${bin_url} -O/tmp/bin
+  chmod +x /tmp/bin
+  /tmp/bin install github.com/marcosnils/bin
+fi
+
+funcion bin_install() {
+  local url=$1
+  local bin_name=$2
+  [[ -z $bin_name ]] && bin_name=${url:t}
+  local local_bin_path=$BIN_PATH/$bin_name
+
+  if [[ -f $local_bin_path ]]; then
+    echo "Skipping $url ($local_bin_path exists)"
+  else
+    bin install $url
+  fi
+}
+
+bin_install github.com/muesli/duf
+bin_install github.com/ogham/exa
+bin_install github.com/restic/restic
