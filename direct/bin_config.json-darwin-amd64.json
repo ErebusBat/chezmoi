@@ -64,6 +64,15 @@
             "provider": "github",
             "package_path": "lazygit"
         },
+        "/Users/andrew.burns/bin/restic": {
+            "path": "/Users/andrew.burns/bin/restic",
+            "remote_name": "",
+            "version": "v0.15.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/restic/restic",
+            "provider": "github",
+            "package_path": ""
+        },
         "/Users/andrew.burns/bin/starship": {
             "path": "/Users/andrew.burns/bin/starship",
             "remote_name": "starship",
@@ -79,7 +88,7 @@
             "version": "v0.15.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/restic/restic",
-            "provider": "",
+            "provider": "github",
             "package_path": ""
         }
     }
