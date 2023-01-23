@@ -100,6 +100,15 @@
             "provider": "",
             "package_path": ""
         },
+        "/home/aburns/bin/spt": {
+            "path": "/home/aburns/bin/spt",
+            "remote_name": "spt",
+            "version": "v0.25.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/Rigellute/spotify-tui",
+            "provider": "github",
+            "package_path": "spt"
+        },
         "/home/aburns/bin/starship": {
             "path": "/home/aburns/bin/starship",
             "remote_name": "starship",
