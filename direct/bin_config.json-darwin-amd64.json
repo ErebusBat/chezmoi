@@ -1,0 +1,95 @@
+{
+    "default_path": "/Users/andrew.burns/bin",
+    "bins": {
+        "/Users/andrew.burns/bin/assh": {
+            "path": "/Users/andrew.burns/bin/assh",
+            "remote_name": "assh",
+            "version": "v2.15.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/moul/assh",
+            "provider": "github",
+            "package_path": "assh"
+        },
+        "/Users/andrew.burns/bin/bin": {
+            "path": "/Users/andrew.burns/bin/bin",
+            "remote_name": "bin",
+            "version": "v0.15.2",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/marcosnils/bin",
+            "provider": "github",
+            "package_path": ""
+        },
+        "/Users/andrew.burns/bin/duf": {
+            "path": "/Users/andrew.burns/bin/duf",
+            "remote_name": "duf",
+            "version": "v0.8.1",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/muesli/duf",
+            "provider": "github",
+            "package_path": "duf"
+        },
+        "/Users/andrew.burns/bin/fd": {
+            "path": "/Users/andrew.burns/bin/fd",
+            "remote_name": "fd",
+            "version": "v8.6.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/sharkdp/fd",
+            "provider": "github",
+            "package_path": "fd-v8.6.0-x86_64-apple-darwin/fd"
+        },
+        "/Users/andrew.burns/bin/fzf": {
+            "path": "/Users/andrew.burns/bin/fzf",
+            "remote_name": "fzf",
+            "version": "0.36.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/junegunn/fzf",
+            "provider": "github",
+            "package_path": "fzf"
+        },
+        "/Users/andrew.burns/bin/lazydocker": {
+            "path": "/Users/andrew.burns/bin/lazydocker",
+            "remote_name": "lazydocker",
+            "version": "v0.20.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/jesseduffield/lazydocker",
+            "provider": "github",
+            "package_path": "lazydocker"
+        },
+        "/Users/andrew.burns/bin/lazygit": {
+            "path": "/Users/andrew.burns/bin/lazygit",
+            "remote_name": "lazygit",
+            "version": "v0.36.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/jesseduffield/lazygit",
+            "provider": "github",
+            "package_path": "lazygit"
+        },
+        "/Users/andrew.burns/bin/restic": {
+            "path": "/Users/andrew.burns/bin/restic",
+            "remote_name": "",
+            "version": "v0.15.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/restic/restic",
+            "provider": "github",
+            "package_path": ""
+        },
+        "/Users/andrew.burns/bin/starship": {
+            "path": "/Users/andrew.burns/bin/starship",
+            "remote_name": "starship",
+            "version": "v1.12.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/starship/starship",
+            "provider": "github",
+            "package_path": "starship"
+        },
+        "restic": {
+            "path": "/Users/andrew.burns/bin/restic",
+            "remote_name": "",
+            "version": "v0.15.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/restic/restic",
+            "provider": "github",
+            "package_path": ""
+        }
+    }
+}
