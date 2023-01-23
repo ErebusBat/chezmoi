@@ -18,12 +18,20 @@
 [data]
   focus = {{ $focus | quote }}
   email = {{ $email | quote }}
+  otherKey = true
 
   [data.area]
+    {{- if (index . "otherKey" ) }}
+    fetlife = {{ .area.fetlife }}
+    personal = {{ .area.personal }}
+    server = {{ .area.server }}
+    tractionguest = {{ .area.tractionguest }}
+    {{- else }}
     fetlife = false
     personal = {{ default false (eq $focus "personal") }}
     server = {{ default false (eq $focus "server") }}
     tractionguest = {{ default false (eq $focus "sie") }}
+    {{ end }}
 
   [data.synergy]
     enabled = false
