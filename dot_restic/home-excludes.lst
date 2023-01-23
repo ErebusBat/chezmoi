@@ -3,18 +3,18 @@
 **/.cache/**
 **/.cargo/git/**
 **/.chef/syntaxcache/**
-**/.config/Slack/Cache/**
-**/.config/Slack/Service Worker/**
 **/.config/google-chrome-backup-crashrecovery-*/**
 **/.config/google-chrome/AutofillStates/**
 **/.config/google-chrome/Default/**
+**/.config/Slack/Cache/**
+**/.config/Slack/Service Worker/**
 **/.dropbox/logs/**
 **/.duply/**
 **/.kube/cache/**
 **/.kube/http-cache/**
-**/.local/share/Trash/**
 **/.local/share/flatpak/**
 **/.local/share/lutris/**
+**/.local/share/Trash/**
 **/.local/share/trash/**
 **/.local/state/**
 **/.mozilla/firefox/*.default-release-backup-crashrecovery-*/**
@@ -22,23 +22,24 @@
 **/.npm/**
 **/.rustup/**
 **/.steam/debian-installation/**
+**/.Trash/**
 **/.vim/plugged/**
+**/bee_mem_card-2020-1217.tar.gz
 **/Cache/**
+**/cache/**
 **/Caches/**
 **/Code Cache/**
 **/Crash Reports/**
 **/Crash Reports/**
 **/Dropbox/**
-**/GPUCache/**
-**/Games/Sony PlayStation/**
-**/Slack/logs/**
-**/bee_mem_card-2020-1217.tar.gz
-**/cache/**
 **/dust/**
 **/dust_tmp/**
 **/dustbin/**
 **/file-cache/**
+**/Games/Sony PlayStation/**
 **/gcloud/logs/**
+**/GPUCache/**
+**/Slack/logs/**
 **/src/erebusbat/pchef76/local-mode-cache/**
 **/src/erebusbat/pchef76/nodes/**
 **/src/erebusbat/pchef76/tmp/**

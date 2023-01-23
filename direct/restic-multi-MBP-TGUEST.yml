@@ -11,10 +11,10 @@ targets:
     checks:
       ping: :host
 
-  batpi:
-    uri: rest:http://aabmbp:3R7ZEADxYz@batpi.erebusbat.net:8000
-    checks:
-      ping: :host
+  # batpi:
+  #   uri: rest:http://aabmbp:3R7ZEADxYz@batpi.erebusbat.net:8000
+  #   checks:
+  #     ping: :host
 
   # sea_back is for when the drive is physically connected
   # The `thelio` target is the same data, just exposed over rest-server
