@@ -1,5 +1,7 @@
 .config/nvim/color_plumbing.vim
 .ssh/assh.d/tractionguest.yml
 .tmux-status.conf
+.tmux.conf
+.tmux/**
 .tmux/op_auth.sh
 Library/LaunchAgents/local.chezmoi-pull.plist

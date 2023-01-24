@@ -12,6 +12,6 @@ plex:/myserver/plex
 restic:~/.restic
 stash:/myserver/stashappcc
 stow:~/src/erebusbat/dotfiles-stow
+tmux:~/.config/tmux
 tmuxp:~/.tmuxp
-tmux:~/.tmux
 vim:~/.config/nvim
