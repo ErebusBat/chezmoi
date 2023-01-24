@@ -15,8 +15,13 @@ fi
 # Testing line, for color
 # printf "#[fg=brightblack, bg=default]&"
 
+# Seperator character + coloring for actual song
+printf "#[fg=brightblack, bg=default]|#[fg=blue]"
+
+nowplaying=$(gospt nowplaying)
+
 if [[ $NO_PLAY_INDICATOR -eq 1 ]]; then
-  printf "$(gospt nowplaying | cut -c5-${SONG_LIMIT})"
+  printf "$(echo "${nowplaying}" | sed -E 's/^[⏸▶ ]+//g')"
 else
-  printf "$(gospt nowplaying)"
+  printf "${nowplaying}"
 fi
