@@ -57,6 +57,7 @@ Library/Application Support/
 {{- if ne .chezmoi.os "linux" }}
 .config/Synergy/
 .config/systemd
+.config/gospt/client.yml
 {{- end }}
 
 {{- if eq .chezmoi.os "linux" }}
