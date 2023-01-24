@@ -40,7 +40,7 @@ tf:~/src/sie/terraform
 tgf:~/src/sie/frontend
 tgmd:~/src/erebusbat/traction-guest-link
 tgs:~/src/sie/server
-tmux:~/.tmux
+tmux:~/.config/tmux
 tmuxp:~/.tmuxp
 ulauncher:~/src/erebusbat/dotfiles-stow/ulauncher/.config/ulauncher
 vim:~/.config/nvim
