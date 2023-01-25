@@ -19,6 +19,15 @@
             "provider": "github",
             "package_path": ""
         },
+        "/home/aburns/bin/chezmoi": {
+            "path": "/home/aburns/bin/chezmoi",
+            "remote_name": "chezmoi",
+            "version": "v2.29.4",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/twpayne/chezmoi",
+            "provider": "github",
+            "package_path": ""
+        },
         "/home/aburns/bin/duf": {
             "path": "/home/aburns/bin/duf",
             "remote_name": "duf",
