@@ -1,4 +1,4 @@
-right_format = """$battery$time$os"""
+right_format = """$battery$time$localip$os"""
 
 [battery]
 disabled = false
@@ -13,11 +13,15 @@ style = "bold yellow"
 threshold = 95
 style = "bold green"
 
+[localip]
+disabled = false
+ssh_only = false
+
 [os]
 disabled = false
 
 [time]
-disabled = false
+disabled = true
 
 [status]
 disabled = false
