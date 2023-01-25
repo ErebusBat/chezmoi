@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+# Getting API Rate Limits :/
+exit 0
+
 NO_PLAY_INDICATOR=1
 
 TMUX_RIGHT_WIDTH=55 # This should match tmux status-right-length
