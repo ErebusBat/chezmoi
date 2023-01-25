@@ -1,5 +1,7 @@
+right_format = """$battery$time$os"""
+
 [battery]
-disabled = true
+disabled = false
 
 [[battery.display]]  # "bold red" style when capacity is between 0% and 10%
 threshold = 10
@@ -11,6 +13,11 @@ style = "bold yellow"
 threshold = 95
 style = "bold green"
 
+[os]
+disabled = false
+
+[time]
+disabled = false
 
 [status]
 disabled = false
