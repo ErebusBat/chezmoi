@@ -1,19 +1,23 @@
 # tmux display-message -p "#{window_layout}" | pbcopy
 session_name: left
 start_directory: ~/
+layout: 4dce,140x64,0,0[140x32,0,0,12,140x31,0,33,10
 windows:
 - window_name: system
   suppress_history: false
   panes:
     - shell_command:
-      - bpytop
+      - neofetch
 - window_name: xss-disable
   panes:
     - shell_command:
       - xss-disable $(( 8 * 3600 ))
 
-- window_name: nuc
+- window_name: top
+  focus: true
   suppress_history: false
   panes:
     - shell_command:
       - ssh nuc -t -- bpytop; exit
+    - shell_command:
+      - bpytop
