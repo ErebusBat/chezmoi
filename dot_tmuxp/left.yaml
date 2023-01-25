@@ -18,6 +18,6 @@ windows:
   suppress_history: false
   panes:
     - shell_command:
-      - ssh nuc -t -- bpytop; exit
+      - ssh nuc -t -- ~/bin/btop; exit
     - shell_command:
-      - bpytop
+      - btop
