@@ -1,4 +1,4 @@
-session_name: sie
+session_name: guest-server
 start_directory: ~/src/sie/server
 windows:
 
