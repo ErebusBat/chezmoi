@@ -27,10 +27,11 @@ bin/tgtmux.zsh
 {{- end }}
 
 {{- if not .area.personal }}
-.restic/.erebusbat.key
-.restic/.freenas-minio-creds.env
 .config/spotify-tui/*
 .config/systemd/user/restic-home.*
+.restic/.erebusbat.key
+.restic/.freenas-minio-creds.env
+.s3cfg-truenas
 .ssh/id_bat_devices
 .tmuxp/hassio.yaml
 .tmuxp/system.yaml
