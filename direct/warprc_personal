@@ -1,3 +1,4 @@
+antibody:~/.config/zsh-antibody
 chezmoi:~/.local/share/chezmoi
 docker_dev:~/src/guest/my_docker_env
 docker:~/src/guest/my_docker_env
@@ -7,6 +8,7 @@ src:~/src
 ssh:~/.ssh
 stow:~/src/erebusbat/dotfiles-stow
 tgf:~/src/guest/frontend
+tmux:~/.config/tmux
 tmuxp:~/.tmuxp
-tmux:~/.tmux
 vim:~/.config/nvim
+gopass:~/.local/share/gopass/stores/root

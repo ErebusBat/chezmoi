@@ -11,7 +11,7 @@ photoprism:/myserver/photoprism
 plex:/myserver/plex
 restic:~/.restic
 stash:/myserver/stashappcc
-stow:~/src/erebusbat/dotfiles-stow
 tmux:~/.config/tmux
 tmuxp:~/.tmuxp
 vim:~/.config/nvim
+antibody:~/.config/zsh-antibody
