@@ -128,3 +128,10 @@ for cmd in $SUDO_CMDS; do
   alias $cmd="sudo $cmd"
 done
 unset SUDO_CMDS
+
+################################################################################
+# OSX Commands
+################################################################################
+if [[ $(uname) -eq "Darwin" ]]; then
+  alias tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
+fi
