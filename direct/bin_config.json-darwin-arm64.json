@@ -19,6 +19,15 @@
             "provider": "github",
             "package_path": ""
         },
+        "/Users/andrew.burns/bin/chezmoi": {
+            "path": "/Users/andrew.burns/bin/chezmoi",
+            "remote_name": "chezmoi",
+            "version": "v2.29.4",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/twpayne/chezmoi",
+            "provider": "github",
+            "package_path": ""
+        },
         "/Users/andrew.burns/bin/dua": {
             "path": "/Users/andrew.burns/bin/dua",
             "remote_name": "dua",
