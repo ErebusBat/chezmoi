@@ -5,3 +5,6 @@
 .tmux/**
 .tmux/op_auth.sh
 Library/LaunchAgents/local.chezmoi-pull.plist
+{{- if not .area.fetlife }}
+.s3cfg-fetlife
+{{- end }}
