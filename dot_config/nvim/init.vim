@@ -44,9 +44,6 @@ nnoremap == :set rnu! <CR>
 " Display all matching files when we tab complete on command line
 set wildmenu
 
-set colorcolumn=80,120
-set cursorline
-
 " Don't display whitespace by default
 set nolist
 
@@ -95,7 +92,7 @@ source ~/.config/nvim/harpoon/after.vim
 source ~/.config/nvim/lang_go/after.vim
 source ~/.config/nvim/snip/after.vim
 source ~/.config/nvim/spell/after.vim
-" luafile ~/.config/nvim/lualine/after.lua
+luafile ~/.config/nvim/lualine/after.lua
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editor / Client specific settings

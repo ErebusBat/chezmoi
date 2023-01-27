@@ -7,6 +7,27 @@ return {
     shell = "/bin/zsh",
   },
 
+  --
+  -- Background
+  --
+  window_background_opacity = 0.5,
+  background = {
+    {
+      source = {
+        File = '/Users/andrew.burns/Documents/term.jpeg',
+      },
+      -- repeat_x = 'Mirror',
+      horizontal_align = "Center",
+      vertical_align = "Middle",
+      -- height = 'Contain',
+      -- width = 'Contain',
+      hsb = {
+        brightness = 0.01,
+      },
+      -- opacity = 0.99,
+    },
+  },
+
   -- Color schme should be overriden by base16 shell settings,
   -- but this provides a good default until that
   color_scheme = "Gruvbox Dark",

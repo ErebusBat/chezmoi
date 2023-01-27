@@ -15,3 +15,12 @@ EOF
 
 highlight Comment cterm=italic gui=italic
 
+" set colorcolumn=80,120
+set cursorline
+
+"" Allow transparent bg
+highlight Normal ctermbg=NONE guibg=NONE
+" highlight CursorLine ctermbg=NONE guibg=NONE
+highlight LineNr ctermbg=NONE guibg=NONE
+"" highlight StatusLine ctermbg=NONE guibg=NONE
+
