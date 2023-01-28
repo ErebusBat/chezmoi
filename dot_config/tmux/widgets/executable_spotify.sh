@@ -24,6 +24,8 @@ RATE_LIMIT_GRACE_SECS=2 # Time to add to 'now' when writing timestamp file
 NO_PLAY_INDICATOR=1
 HIDE_WHEN_PAUSED=1
 RATE_LIMITED=0
+BO_HOUR_START=17
+BO_HOUR_END=9
 
 TMUX_RIGHT_WIDTH=55 # This should match tmux status-right-length
 # tmux right status is 25 wide w/o song
@@ -67,6 +69,13 @@ if [[ $RATE_LIMIT_RUN_ONLY_EVERY_SECS -gt 0 ]]; then
     # echo "$DELTA <= $RATE_LIMIT_RUN_ONLY_EVERY_SECS" >&2
     RATE_LIMITED=1
   fi
+fi
+
+
+# Don't actually query betwen 18:00-07:00
+HOUR=$(date +%H)
+if [[ $HOUR -ge $BO_HOUR_START || $HOUR -le $BO_HOUR_END ]]; then
+  exit 0
 fi
 
 SONG_CACHE_FILE=/tmp/tmux-spotify.cache
