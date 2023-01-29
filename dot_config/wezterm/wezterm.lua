@@ -14,7 +14,8 @@ return {
   background = {
     {
       source = {
-        File = '/Users/andrew.burns/Documents/term.jpeg',
+        -- File = '/Users/andrew.burns/Documents/term.jpeg',
+        File = '/Users/andrew.burns/Documents/bg/doom/i32usc7bvqr41.jpg',
       },
       -- repeat_x = 'Mirror',
       horizontal_align = "Center",
