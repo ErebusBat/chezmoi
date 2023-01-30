@@ -82,7 +82,7 @@ SONG_CACHE_FILE=/tmp/tmux-spotify.cache
 # [[ -f $SONG_CACHE_FILE ]] || RATE_LIMITED=0
 
 if [[ $RATE_LIMITED -ge 1 ]]; then
-  # echo "Rate Limited"
+  echo "Rate Limited"
 else
   # Not rate limited, so run actual command
   gospt nowplaying > $SONG_CACHE_FILE
@@ -93,18 +93,19 @@ fi
 
 # Figure out what is actually running
 nowplaying=$(cat $SONG_CACHE_FILE)
-if [[ $? -ne 0 ]]; then
+# if [[ $? -ne 0 ]]; then
   # printf "#[fg=brightred]gospt err"
-  exit 0
-fi
+  # exit 0
+# fi
 
 
 IS_PAUSED=0
 grep '⏸' /tmp/tmux-spotify.cache > /dev/null 2>&1                                                                                                78% 192.168.68.101 🍎
-if [[ $ec -eq 0 ]]; then
+if [[ $? -eq 0 ]]; then
   IS_PAUSED=1
 fi
 if [[ $HIDE_WHEN_PAUSED -ge 1 && $IS_PAUSED -ge 1 ]]; then
+  printf '⏸'
   exit 0
 fi
 
