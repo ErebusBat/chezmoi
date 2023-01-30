@@ -4,6 +4,8 @@ vim.cmd([[autocmd User PackerComplete source ~/.config/nvim/lua/custom/after_plu
 vim.opt.relativenumber = true
 
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume', noremap = true })
+vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { desc = '[G]it [B]ranches', noremap = true })
+vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = '[G]it [F]iles', noremap = true })
 
 --------------------------------------------------------------------------------
 -- Hotkeys
@@ -50,6 +52,19 @@ vim.cmd('highlight EndOfBuffer ctermbg=NONE guibg=NONE')
 
 -- Misc System
 vim.api.nvim_set_keymap("n", "<leader>rv", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false })
+
+--------------------------------------------------------------------------------
+-- Source Control / Fugitive
+--------------------------------------------------------------------------------
+vim.cmd([[set diffopt+=vertical]])
+vim.api.nvim_set_keymap("n", "<leader>gs", ":Git<CR>", { noremap = true })
+
+-- Diff options
+-- vim.api.nvim_set_keymap("n", "<leader>gf", ":diffget //2<CR>", { noremap = true })
+-- vim.api.nvim_set_keymap("n", "<leader>gj", ":diffget //3<CR>", { noremap = true })
+
+-- Git Push (intentionally meant to be harder to push)
+vim.cmd('autocmd FileType fugitive nnoremap g<C-p> :Git push<CR>')
 
 
 --------------------------------------------------------------------------------
@@ -135,4 +150,3 @@ function! AutoSaveLoadFocus(event)
 endfunction
 ]])
 
-print("after_plugin")

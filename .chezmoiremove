@@ -63,7 +63,6 @@ Library/LaunchAgents/local.chezmoi-pull.plist
 .config/nvim/snip/after.vim
 .config/nvim/snip/plugin.vim
 .config/nvim/spell/after.vim
-.config/nvim/spell/git_upload.zsh
 .config/nvim/spell/plugin.vim
 .config/nvim/telescope
 .config/nvim/telescope/hotkeys.vim
