@@ -28,7 +28,7 @@ require('packer').startup(function(use)
 
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+    requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip', 'f3fora/cmp-spell' },
   }
 
   use { -- Highlight, edit, and navigate code
@@ -49,7 +49,7 @@ require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
 
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-  use 'nvim-lualine/lualine.nvim' -- Fancier statusline
+  -- use 'nvim-lualine/lualine.nvim' -- Fancier statusline, see lua/custom/plugins.lua
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -153,14 +153,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- Set lualine as statusline
 -- See `:help lualine.txt`
-require('lualine').setup {
-  options = {
-    icons_enabled = false,
-    theme = 'onedark',
-    component_separators = '|',
-    section_separators = '',
-  },
-}
 
 -- Enable Comment.nvim
 require('Comment').setup()
@@ -424,6 +416,18 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- 
+-- START: Custom AAB Code 
+-- 
+-- Add custom code from ~/.config/nvim/lua/custom/init.lua
+local has_custom_init, custom_init = pcall(require, 'custom.init')
+if has_custom_init then
+  custom_init(use)
+end
+-- 
+-- END: Custom AAB Code 
+-- 
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

@@ -84,15 +84,15 @@ _G.packer_plugins = {
     path = "/Users/andrew.burns/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["base16-vim"] = {
-    loaded = true,
-    path = "/Users/andrew.burns/.local/share/nvim/site/pack/packer/start/base16-vim",
-    url = "https://github.com/base16-project/base16-vim"
-  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "/Users/andrew.burns/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
     url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-spell"] = {
+    loaded = true,
+    path = "/Users/andrew.burns/.local/share/nvim/site/pack/packer/start/cmp-spell",
+    url = "https://github.com/f3fora/cmp-spell"
   },
   cmp_luasnip = {
     loaded = true,
@@ -115,6 +115,7 @@ _G.packer_plugins = {
     url = "https://github.com/lukas-reineke/indent-blankline.nvim"
   },
   ["lualine.nvim"] = {
+    config = { "\27LJ\2\n–\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\foptions\1\0\0\1\0\4\23section_separators\5\ntheme\vbase16\18icons_enabled\2\25component_separators\6|\nsetup\flualine\frequire\0" },
     loaded = true,
     path = "/Users/andrew.burns/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
@@ -133,6 +134,18 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/andrew.burns/.local/share/nvim/site/pack/packer/start/neodev.nvim",
     url = "https://github.com/folke/neodev.nvim"
+  },
+  ["nvim-autopairs"] = {
+    config = { "\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0" },
+    loaded = true,
+    path = "/Users/andrew.burns/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
+  },
+  ["nvim-base16"] = {
+    config = { "\27LJ\2\n?\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0 colorscheme base16-ayu-dark\bcmd\bvim\0" },
+    loaded = true,
+    path = "/Users/andrew.burns/.local/share/nvim/site/pack/packer/start/nvim-base16",
+    url = "https://github.com/RRethy/nvim-base16"
   },
   ["nvim-cmp"] = {
     loaded = true,
@@ -205,7 +218,7 @@ _G.packer_plugins = {
     url = "https://github.com/tpope/vim-sleuth"
   },
   ["vim-spellsync"] = {
-    config = { "\27LJ\2\nm\0\0\4\0\6\0\t6\0\0\0009\0\1\0006\1\0\0009\1\3\0019\1\4\1'\3\5\0B\1\2\2=\1\2\0K\0\1\0*$HOME/.config/nivm/spell.en.utf-8.add\vexpand\afn\14spellfile\bopt\bvim\0" },
+    config = { "\27LJ\2\nç\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0Ç\1        set spellfile+=~/.config/nvim/spell/en.utf-8.add\n        set spellfile+=~/.config/nvim/spell/tractionguest.utf-8.add\n        set spellfile+=~/.config/nvim/spell/personal.utf-8.add\n      \bcmd\bvim\0" },
     loaded = true,
     path = "/Users/andrew.burns/.local/share/nvim/site/pack/packer/start/vim-spellsync",
     url = "https://github.com/micarmst/vim-spellsync"
@@ -225,8 +238,20 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: vim-spellsync
 time([[Config for vim-spellsync]], true)
-try_loadstring("\27LJ\2\nm\0\0\4\0\6\0\t6\0\0\0009\0\1\0006\1\0\0009\1\3\0019\1\4\1'\3\5\0B\1\2\2=\1\2\0K\0\1\0*$HOME/.config/nivm/spell.en.utf-8.add\vexpand\afn\14spellfile\bopt\bvim\0", "config", "vim-spellsync")
+try_loadstring("\27LJ\2\nç\1\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0Ç\1        set spellfile+=~/.config/nvim/spell/en.utf-8.add\n        set spellfile+=~/.config/nvim/spell/tractionguest.utf-8.add\n        set spellfile+=~/.config/nvim/spell/personal.utf-8.add\n      \bcmd\bvim\0", "config", "vim-spellsync")
 time([[Config for vim-spellsync]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+try_loadstring("\27LJ\2\n–\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\foptions\1\0\0\1\0\4\23section_separators\5\ntheme\vbase16\18icons_enabled\2\25component_separators\6|\nsetup\flualine\frequire\0", "config", "lualine.nvim")
+time([[Config for lualine.nvim]], false)
+-- Config for: nvim-autopairs
+time([[Config for nvim-autopairs]], true)
+try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
+time([[Config for nvim-autopairs]], false)
+-- Config for: nvim-base16
+time([[Config for nvim-base16]], true)
+try_loadstring("\27LJ\2\n?\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0 colorscheme base16-ayu-dark\bcmd\bvim\0", "config", "nvim-base16")
+time([[Config for nvim-base16]], false)
 -- Conditional loads
 time([[Conditional loading of telescope-fzf-native.nvim]], true)
   require("packer.load")({"telescope-fzf-native.nvim"}, {}, _G.packer_plugins)
