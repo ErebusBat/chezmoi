@@ -342,6 +342,14 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+
+  -- solargraph = {
+  --   useBundler = true,
+  --   bundlerPath = "/Users/andrew.burns/.rbenv/shims/bundler",
+  --   solargraph = "/Users/andrew.burns/.rbenv/shims/solargraph",
+  --   commandPath = "/Users/andrew.burns/.rbenv/versions/2.7.4/bin/solargraph",
+  --   diagnostics = true,
+  -- },
 }
 
 -- Setup neovim lua configuration
@@ -417,17 +425,17 @@ cmp.setup {
   },
 }
 
--- 
--- START: Custom AAB Code 
--- 
+--
+-- START: Custom AAB Code
+--
 -- Add custom code from ~/.config/nvim/lua/custom/init.lua
 local has_custom_init, custom_init = pcall(require, 'custom.init')
 if has_custom_init then
   custom_init(use)
 end
--- 
--- END: Custom AAB Code 
--- 
+--
+-- END: Custom AAB Code
+--
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

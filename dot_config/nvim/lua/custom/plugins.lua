@@ -3,6 +3,8 @@ return function(use)
   use({ "qpkorr/vim-bufkill" })
   use({ "tpope/vim-surround" })
 
+  use({ "wting/gitsessions.vim" })
+
   use({
     "micarmst/vim-spellsync",
     config = function()
