@@ -14,10 +14,9 @@ return {
   background = {
     {
       source = {
-        -- File = '/Users/andrew.burns/Documents/term.jpeg',
-        File = '/Users/andrew.burns/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg',
-        -- File = '/Users/andrew.burns/Dropbox/Library/T/terminal/wallpaper/lar/denver_hp_001.jpeg',
-        -- File = '/Users/andrew.burns/Documents/bg/term.jpg',
+        -- File = '/Users/andrew.burns/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg',
+        -- File = '/Users/andrew.burns/.config/wezterm/wallpaper/lar/denver_hp_001.jpeg',
+        File = '/Users/andrew.burns/.config/wezterm/wallpaper/abstract/pexels-anni-roenkae-2156881.jpg',
       },
       -- repeat_x = 'Mirror',
       horizontal_align = "Center",
