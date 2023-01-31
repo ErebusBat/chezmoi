@@ -20,12 +20,6 @@ vim.keymap.set('v', '<F12>', '"+y', { desc = 'Copy selection', noremap = true })
 vim.keymap.set('n', '<C-s>', ':wa<CR>', { desc = 'Save', noremap = true })
 vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>', { desc = 'Save', noremap = true })
 
--- Comments
-local api = require('Comment.api')
--- vim.keymap.set('n', '\\\\', require('Comment.api').toggle.linewise.current, { desc = 'Toogle Comment Line', noremap = true }) -- Literal `\\`
--- vim.keymap.set('n', '\\\\', api.call('toggle.linewise', 'g@'), { desc = 'Toogle Comment Line', noremap = true }) -- Literal `\\`
--- vim.keymap.set('v', '\\\\', api.toggle.linewise(vim.fn.visualmode()), { desc = 'Toogle Comment Block', noremap = true }) -- Literal `\\`
-
 -- Viewport
 vim.keymap.set('n', '<F9>', ':set wrap!<CR>', { desc = 'Toogle Word Wrap', noremap = true })
 vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode', noremap = true })
@@ -118,39 +112,23 @@ vim.cmd([[
       \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 ]])
 
--- " Auto-save/read when losing/gaining foucs
-vim.cmd([[
-autocmd FocusGained * call AutoSaveLoadFocus('FocusGained')
-autocmd FocusLost   * call AutoSaveLoadFocus('FocusLost')
-
-function! AutoSaveLoadFocus(event)
-  let curBufNum = winbufnr(winnr())
-  let curBufName = bufname(curBufNum)
-  let curBufHasFile = filereadable(curBufName)
-  " echo "Current buffer readable: " . curBufHasFile
-  " if curBufHasFile < 1
-  "   echo "Current buffer does not have a backing file..."
-  "   return
-  " endif
-
-  if mode() == 'n' && expand('%') != ''
-    if a:event == 'FocusGained'
-      " :edit
-      " normal! mq
-      " :edit
-      " normal! `q
-    elseif a:event == 'FocusLost'
-      if &modified
-        " Auto remove trailing whitespace and save
-        sil! :%s/\s\+$//e
-        :write
-      endif
-    else
-      echo "Unknown event: " . a:event
+-- Auto-save when losing foucs
+vim.api.nvim_create_autocmd({ "FocusLost" }, {
+  pattern = { "*" },
+  -- Remove trailing spaces, then update(save):
+  command = [[
+    if expand('%') != ''
+      %s/\s\+$//e
+      update
     endif
-  endif
-endfunction
-]])
+  ]],
+})
+
+-- Remove trailing whitespace on save
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
 
 -- Blank vim notify area so we don't have Config Reloading...
 vim.notify("", vim.log.levels.INFO)

@@ -1,4 +1,5 @@
-.DS_Store
+**/.DS_Store
+.config/nvim/plugin/packer_compiled.lua
 
 # Direct is where we store files that are symlinked (like stow)
 direct/
