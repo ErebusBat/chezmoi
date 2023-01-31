@@ -38,9 +38,12 @@ vim.keymap.set('n', '<leader><space>', ':e #<CR>', { desc = 'Toggle last buffer'
 vim.keymap.set('n', '<leader>w', ':BD<CR>', { desc = 'Close current buffer', noremap = true })
 
 -- Line Movement
-vim.keymap.set('v', 'J', [[:move '>+1<CR>gv=gv]], { desc = 'Move line(s) down', noremap = true })
-vim.keymap.set('v', 'K', [[:move '<-2<CR>gv=gv]], { desc = 'Move line(s) up', noremap = true })
--- vnoremap K :m '<-2<CR>gv=gv
+vim.keymap.set('v', 'J', [[ :move '>+1<CR>gv=gv ]], { desc = 'Move line(s) down', noremap = true })
+vim.keymap.set('v', 'K', [[ :move '<-2<CR>gv=gv ]], { desc = 'Move line(s) up', noremap = true })
+
+-- Source Code Related
+vim.keymap.set('n', '<leader>sm', [[ [mV]M ]], { desc = '[S]elect [M]ethod', noremap = true })
+vim.keymap.set('n', '<leader>ym', [[ mT[mV]M"+y`T ]], { desc = '[Y]ank [M]ethod (System Pasteboard)', noremap = true })
 
 --------------------------------------------------------------------------------
 -- Colors / Appearance / Themes
