@@ -15,8 +15,4 @@ function _G.ReloadConfig()
   require('packer').sync()
 
   vim.notify("Reloading config...", vim.log.levels.INFO)
-  -- vim.defer_fn(function ()
-    -- Clear notification area
-    -- vim.notify("", vim.log.levels.INFO)
-  -- end, 10000)
 end
