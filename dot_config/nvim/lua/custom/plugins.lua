@@ -140,5 +140,7 @@ return function(use)
       },
     }),
   })
+  use({ 'vim-test/vim-test' })
+  use({ 'jgdavey/tslime.vim' })
 end
 

@@ -11,10 +11,18 @@ vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc
 -- Hotkeys
 --------------------------------------------------------------------------------
 
+-- Search
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Search next, keep centered', noremap = true })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Search prev, keep centered', noremap = true })
+vim.keymap.set('n', 'J', 'mzJ`z', { desc = '', noremap = true })
+vim.keymap.set('n', '<leader>/', ':set nohlsearch!<CR>', { desc = '', noremap = true })
+
 -- Pasteboard / Clipboard
 vim.keymap.set('i', '<F12>', '<Esc>:set paste<CR>"+p:set nopaste<CR>', { desc = 'Paste', noremap = true })
 vim.keymap.set('v', '<F12>', '"+y', { desc = 'Copy selection', noremap = true })
--- vim.keymap.set('n', '<F12>', ':set paste<CR>"+p:set nopaste<CR>', { desc = 'Paste', noremap = true })
+vim.keymap.set('n', '<leader>yf', 'gg"+yG', { desc = 'Yank File', noremap = true })
+vim.keymap.set('n', 'Y', 'y$', { desc = 'Yank Line', noremap = true })
+vim.keymap.set('n', '<F7>', 'gg"+yG', { desc = 'Yank File', noremap = true })
 
 -- Save
 vim.keymap.set('n', '<C-s>', ':wa<CR>', { desc = 'Save', noremap = true })
@@ -40,6 +48,7 @@ vim.cmd('set cursorline')
 -- Allow transparent bg
 -- for further Highlight Groups see: https://neovim.io/doc/user/syntax.html#highlight-groups
 vim.cmd('highlight Normal ctermbg=NONE guibg=NONE')
+vim.cmd('highlight NormalNC ctermbg=NONE guibg=NONE')
 -- vim.cmd('highlight CursorLine ctermbg=NONE guibg=NONE')
 vim.cmd('highlight LineNr ctermbg=NONE guibg=NONE')
 vim.cmd('highlight SignColumn ctermbg=NONE guibg=NONE')
@@ -47,7 +56,7 @@ vim.cmd('highlight EndOfBuffer ctermbg=NONE guibg=NONE')
 -- vim.cmd('highlight StatusLine ctermbg=NONE guibg=NONE')
 
 -- Misc System
-vim.api.nvim_set_keymap("n", "<leader>rv", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false })
+vim.api.nvim_set_keymap("n", "<leader>rv", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false }) -- See reload.lua
 
 --------------------------------------------------------------------------------
 -- Source Control / Fugitive
@@ -62,9 +71,8 @@ vim.api.nvim_set_keymap("n", "<leader>gs", ":Git<CR>", { noremap = true })
 -- Git Push (intentionally meant to be harder to push)
 vim.cmd('autocmd FileType fugitive nnoremap g<C-p> :Git push<CR>')
 
-
 --------------------------------------------------------------------------------
--- Misc
+-- File Type Specifics
 --------------------------------------------------------------------------------
 
 -- Disable auto comment continuation
@@ -77,6 +85,18 @@ vim.cmd('autocmd Filetype zsh setlocal formatoptions-=cro')
 vim.cmd('au FileType lua inoremap <M-Space> <CR><CR>end<Esc>-cc')
 vim.cmd('au FileType ruby inoremap <M-Space> <CR><CR>end<Esc>-cc')
 vim.cmd('au FileType sh inoremap <M-Space> <CR><CR>fi<Esc>-cc')
+
+-- FileType setting
+vim.cmd([[au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,Capfile,Guardfile,.Guardfile,config.ru,.railsrc,.irbrc,.pryrc} set ft=ruby]])
+vim.cmd([[au BufRead,BufNewFile *.zone set ft=bindzone]])
+vim.cmd([[au BufRead,BufNewFile */tmux/*.conf set ft=tmux]])
+
+-- Reset text width for gitcommits
+vim.cmd([[au FileType gitcommit setlocal tw&]])
+
+--------------------------------------------------------------------------------
+-- Misc
+--------------------------------------------------------------------------------
 
 -- Spelling
 vim.cmd('autocmd BufRead,BufNewFile *.md setlocal spell spelllang=en_us')
@@ -129,6 +149,15 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
   command = [[%s/\s\+$//e]],
 })
+
+-- " Undo break points (i.e. create a new "undo" block when one of these characters are typed)
+vim.keymap.set('i', ',', ',<C-g>u', { desc = 'Create a undo block', noremap = true })
+vim.keymap.set('i', '.', '.<C-g>u', { desc = 'Create a undo block', noremap = true })
+vim.keymap.set('i', ';', ';<C-g>u', { desc = 'Create a undo block', noremap = true })
+vim.keymap.set('i', '(', '(<C-g>u', { desc = 'Create a undo block', noremap = true })
+vim.keymap.set('i', ')', ')<C-g>u', { desc = 'Create a undo block', noremap = true })
+vim.keymap.set('i', '[', '[<C-g>u', { desc = 'Create a undo block', noremap = true })
+vim.keymap.set('i', ']', ']<C-g>u', { desc = 'Create a undo block', noremap = true })
 
 -- Blank vim notify area so we don't have Config Reloading...
 vim.notify("", vim.log.levels.INFO)
