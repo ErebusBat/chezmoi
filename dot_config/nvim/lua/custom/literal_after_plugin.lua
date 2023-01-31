@@ -37,6 +37,11 @@ vim.keymap.set('n', '<tab>', '<C-w><C-p>', { desc = 'Toggle last split', noremap
 vim.keymap.set('n', '<leader><space>', ':e #<CR>', { desc = 'Toggle last buffer', noremap = true })
 vim.keymap.set('n', '<leader>w', ':BD<CR>', { desc = 'Close current buffer', noremap = true })
 
+-- Line Movement
+vim.keymap.set('v', 'J', [[:move '>+1<CR>gv=gv]], { desc = 'Move line(s) down', noremap = true })
+vim.keymap.set('v', 'K', [[:move '<-2<CR>gv=gv]], { desc = 'Move line(s) up', noremap = true })
+-- vnoremap K :m '<-2<CR>gv=gv
+
 --------------------------------------------------------------------------------
 -- Colors / Appearance / Themes
 --------------------------------------------------------------------------------
