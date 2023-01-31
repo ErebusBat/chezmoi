@@ -6,7 +6,7 @@ return function(use)
   use({
     "micarmst/vim-spellsync",
     config = function()
-      -- vim.opt.spellfile = vim.fn.expand('$HOME/.config/nivm/spell.en.utf-8.add') .. '@' .. '~/.config/nvim/spell/tractionguest.utf-8.add' 
+      -- vim.opt.spellfile = vim.fn.expand('$HOME/.config/nivm/spell.en.utf-8.add') .. '@' .. '~/.config/nvim/spell/tractionguest.utf-8.add'
       -- vim.opt.spellfile = vim.fn.expand('$HOME/.config/nivm/spell.en.utf-8.add')
       vim.cmd([[
         set spellfile+=~/.config/nvim/spell/en.utf-8.add
@@ -17,7 +17,7 @@ return function(use)
   })
 
   -- Appearance
-  -- use({ 
+  -- use({
     -- "base16-project/base16-vim",
     -- config = function()
       -- local fn = vim.fn
@@ -34,8 +34,20 @@ return function(use)
   use({
     "RRethy/nvim-base16",
     config = function()
-      vim.cmd('colorscheme base16-ayu-dark')
+      -- vim.cmd('colorscheme base16-ayu-dark')
       -- vim.cmd('colorscheme base16-ayu-light')
+
+      -- local fn = vim.fn
+      local cmd = vim.cmd
+      local set_theme_path = "$HOME/.config/tinted-theming/set_theme.lua"
+      local is_set_theme_file_readable = vim.fn.filereadable(vim.fn.expand(set_theme_path)) == 1 and true or false
+
+      if is_set_theme_file_readable then
+        vim.cmd("let base16colorspace=256")
+        vim.cmd("source " .. set_theme_path)
+      else
+        vim.cmd('colorscheme base16-ayu-dark')
+      end
     end
   })
   use({
@@ -59,16 +71,17 @@ return function(use)
   use({
     "windwp/nvim-autopairs",
     requires = { 'nvim-cmp' },
-    config = function() 
-      require("nvim-autopairs").setup({}) 
+    config = function()
+      -- https://github.com/windwp/nvim-autopairs
+      require("nvim-autopairs").setup({})
 
       -- If you want insert `(` after select function or method item
       local cmp_autopairs = require('nvim-autopairs.completion.cmp')
       local cmp = require('cmp')
-      cmp.event:on(
-        'confirm_done',
-        cmp_autopairs.on_confirm_done()
-      )
+      -- cmp.event:on(
+        -- 'confirm_done',
+        -- cmp_autopairs.on_confirm_done()
+      -- )
 
       local handlers = require('nvim-autopairs.completion.handlers')
 
@@ -108,6 +121,24 @@ return function(use)
         })
       )
     end
+  })
+  use({
+    'numToStr/Comment.nvim',
+    require('Comment').setup({
+      toggler = {
+        line = [[\\]],
+        block = 'gbc',
+      },
+      opleader = {
+        line = [[\\]],
+        block = 'gb',
+      },
+      extra = {
+        above = 'gcO',  ---Add comment on the line above
+        below = 'gco',  ---Add comment on the line below
+        eol = 'gcA',    ---Add comment at the end of line
+      },
+    }),
   })
 end
 

@@ -21,8 +21,10 @@ vim.keymap.set('n', '<C-s>', ':wa<CR>', { desc = 'Save', noremap = true })
 vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>', { desc = 'Save', noremap = true })
 
 -- Comments
-vim.keymap.set('n', '\\\\', ':normal gcc<CR>', { desc = 'Toogle Comment Line', noremap = true }) -- Literal `\\`
-vim.keymap.set('v', '\\\\', ':normal gcc<CR>', { desc = 'Toogle Comment Block', noremap = true }) -- Literal `\\`
+local api = require('Comment.api')
+-- vim.keymap.set('n', '\\\\', require('Comment.api').toggle.linewise.current, { desc = 'Toogle Comment Line', noremap = true }) -- Literal `\\`
+-- vim.keymap.set('n', '\\\\', api.call('toggle.linewise', 'g@'), { desc = 'Toogle Comment Line', noremap = true }) -- Literal `\\`
+-- vim.keymap.set('v', '\\\\', api.toggle.linewise(vim.fn.visualmode()), { desc = 'Toogle Comment Block', noremap = true }) -- Literal `\\`
 
 -- Viewport
 vim.keymap.set('n', '<F9>', ':set wrap!<CR>', { desc = 'Toogle Word Wrap', noremap = true })
@@ -150,3 +152,5 @@ function! AutoSaveLoadFocus(event)
 endfunction
 ]])
 
+-- Blank vim notify area so we don't have Config Reloading...
+vim.notify("", vim.log.levels.INFO)
