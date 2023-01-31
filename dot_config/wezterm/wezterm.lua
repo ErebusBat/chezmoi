@@ -15,8 +15,9 @@ return {
     {
       source = {
         -- File = '/Users/andrew.burns/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg',
-        -- File = '/Users/andrew.burns/.config/wezterm/wallpaper/lar/denver_hp_001.jpeg',
-        File = '/Users/andrew.burns/.config/wezterm/wallpaper/abstract/pexels-anni-roenkae-2156881.jpg',
+        File = '/Users/andrew.burns/.config/wezterm/wallpaper/lar/denver_hp_001.jpeg',
+        -- File = '/Users/andrew.burns/.config/wezterm/wallpaper/abstract/pexels-anni-roenkae-2156881.jpg',
+        -- File = '/Users/andrew.burns/.config/wezterm/wallpaper/abstract/1ub6r4ns7eopdsol.jpg',
       },
       -- repeat_x = 'Mirror',
       horizontal_align = "Center",
