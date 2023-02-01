@@ -1,5 +1,6 @@
 -- Setup autocmd so that we get our overrides after a PackerSync operation is complete
 vim.cmd([[autocmd User PackerComplete source ~/.config/nvim/lua/custom/after_plugin.lua]])
+vim.cmd([[autocmd User PackerCompileDone source ~/.config/nvim/lua/custom/after_plugin.lua]])
 
 vim.opt.relativenumber = true
 vim.opt.tabstop = 2
