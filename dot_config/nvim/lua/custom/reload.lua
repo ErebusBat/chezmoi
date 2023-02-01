@@ -12,7 +12,8 @@ function _G.ReloadConfig()
   dofile(vim.env.MYVIMRC)
 
   -- Make sure packer is up to date
-  require('packer').sync()
+  -- require('packer').sync()
+  require('packer').compile()
 
   vim.notify("Reloading config...", vim.log.levels.INFO)
 end
