@@ -58,7 +58,7 @@ if [[ $RATE_LIMIT_RUN_ONLY_EVERY_SECS -gt 0 ]]; then
   ((DELTA = $NOW_TS - $LAST_WRITE_TS ))
   # echo " D: $DELTA"
 
-  if [[ $DELTA -ge $RATE_LIMIT_RUN_ONLY_EVERY_SECS ]]; then
+  if [[ $DELTA -le 0 || $DELTA -ge $RATE_LIMIT_RUN_ONLY_EVERY_SECS ]]; then
     # echo "$DELTA >= $RATE_LIMIT_RUN_ONLY_EVERY_SECS" >&2
 
     # Write timestamp file
@@ -75,14 +75,15 @@ fi
 # Don't actually query betwen 18:00-07:00
 HOUR=$(date +%H)
 if [[ $HOUR -ge $BO_HOUR_START || $HOUR -le $BO_HOUR_END ]]; then
+  echo "Blackout Period Active; HOUR=${HOUR}, S=${BO_HOUR_START} E=${BO_HOUR_END}" >&2
   exit 0
 fi
 
 SONG_CACHE_FILE=/tmp/tmux-spotify.cache
 # [[ -f $SONG_CACHE_FILE ]] || RATE_LIMITED=0
 
-if [[ $RATE_LIMITED -ge 1 ]]; then
-  echo "Rate Limited"
+if [[ $RATE_LIMITED -ge 1 && -f $SONG_CACHE_FILE ]]; then
+  echo "Rate Limited" >&2
 else
   # Not rate limited, so run actual command
   gospt nowplaying > $SONG_CACHE_FILE
