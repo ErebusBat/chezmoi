@@ -2,7 +2,6 @@
 vim.cmd([[autocmd User PackerComplete source ~/.config/nvim/lua/custom/after_plugin.lua]])
 vim.cmd([[autocmd User PackerCompileDone source ~/.config/nvim/lua/custom/after_plugin.lua]])
 
-vim.opt.relativenumber = true
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
@@ -170,6 +169,13 @@ vim.keymap.set('i', '(', '(<C-g>u', { desc = 'Create a undo block', noremap = tr
 vim.keymap.set('i', ')', ')<C-g>u', { desc = 'Create a undo block', noremap = true })
 vim.keymap.set('i', '[', '[<C-g>u', { desc = 'Create a undo block', noremap = true })
 vim.keymap.set('i', ']', ']<C-g>u', { desc = 'Create a undo block', noremap = true })
+
+-- solargraph hacking
+
+-- relativenumber
+vim.opt.relativenumber = true
+vim.cmd([[source ~/.config/nvim/plugin/relativenum.vim]])
+vim.keymap.set('n', '==', ':set relativenumber!<CR>', { desc = 'Toggle Relative Number', noremap = true })
 
 -- Blank vim notify area so we don't have Config Reloading...
 vim.notify("", vim.log.levels.INFO)
