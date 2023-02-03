@@ -47,5 +47,7 @@ return function(use)
   use({ 'othree/html5.vim'  })
   use({ 'pangloss/vim-javascript' })
   use({ 'evanleck/vim-svelte' })
+
+  use { 'mihyaeru21/nvim-lspconfig-bundler', requires = 'neovim/nvim-lspconfig' }
 end
 

@@ -174,7 +174,16 @@ vim.keymap.set('i', ')', ')<C-g>u', { desc = 'Create a undo block', noremap = tr
 vim.keymap.set('i', '[', '[<C-g>u', { desc = 'Create a undo block', noremap = true })
 vim.keymap.set('i', ']', ']<C-g>u', { desc = 'Create a undo block', noremap = true })
 
--- solargraph hacking
+-- solargraph config
+
+require('lspconfig').solargraph.setup(
+  {
+    solargraph = {
+      useBundler = true,
+      diagnostics = true
+    }
+  }
+)
 
 -- relativenumber
 vim.opt.relativenumber = true
