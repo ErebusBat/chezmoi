@@ -42,5 +42,10 @@ return function(use)
   -- Testing
   use({ 'vim-test/vim-test' })
   use({ 'jgdavey/tslime.vim' })
+
+  -- Languages
+  use({ 'othree/html5.vim'  })
+  use({ 'pangloss/vim-javascript' })
+  use({ 'evanleck/vim-svelte' })
 end
 
