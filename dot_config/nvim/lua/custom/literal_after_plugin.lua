@@ -155,6 +155,10 @@ vim.api.nvim_create_autocmd({ "FocusLost" }, {
   ]],
 })
 
+-- Session Management
+vim.keymap.set('n', '<leader>ss', ':GitSessionSave<CR>', { desc = 'Save Session', noremap = true })
+vim.keymap.set('n', '<leader>ls', ':GitSessionLoad<CR>', { desc = 'Load Session', noremap = true })
+
 -- Remove trailing whitespace on save
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
