@@ -27,6 +27,15 @@ return function(use)
     config = get_setup('lualine'),
   })
 
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly', -- optional, updated every week. (see issue #1193)
+    config = get_setup('tree'),
+  }
+
   -- Code Formatting
   use({ "tpope/vim-surround" })
   use({

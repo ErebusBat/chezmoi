@@ -39,6 +39,7 @@ vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode', noremap = true }
 vim.keymap.set('n', '<tab>', '<C-w><C-p>', { desc = 'Toggle last split', noremap = true })
 vim.keymap.set('n', '<leader><space>', ':e #<CR>', { desc = 'Toggle last buffer', noremap = true })
 vim.keymap.set('n', '<leader>w', ':BD<CR>', { desc = 'Close current buffer', noremap = true })
+vim.keymap.set('n', '<leader><F7>', ':NvimTreeFindFileToggle<CR>', { desc = 'Toggle Tree View for current file', noremap = true })
 
 -- Line Movement
 vim.keymap.set('v', 'J', [[ :move '>+1<CR>gv=gv ]], { desc = 'Move line(s) down', noremap = true })
@@ -98,7 +99,7 @@ vim.cmd('au FileType ruby inoremap <M-Space> <CR><CR>end<Esc>-cc')
 vim.cmd('au FileType sh inoremap <M-Space> <CR><CR>fi<Esc>-cc')
 
 -- FileType setting
-vim.cmd([[au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,Capfile,Guardfile,.Guardfile,config.ru,.railsrc,.irbrc,.pryrc} set ft=ruby]])
+vim.cmd([[au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,Procfile,Capfile,Guardfile,.Guardfile,config.ru,.railsrc,.irbrc,.pryrc,*.gemspec} set ft=ruby]])
 vim.cmd([[au BufRead,BufNewFile *.zone set ft=bindzone]])
 vim.cmd([[au BufRead,BufNewFile */tmux/*.conf set ft=tmux]])
 
@@ -148,12 +149,13 @@ vim.api.nvim_create_autocmd({ "FocusLost" }, {
   pattern = { "*" },
   -- Remove trailing spaces, then update(save):
   command = [[
-    if expand('%') != ''
+    if &modifiable && expand('%') != ''
       %s/\s\+$//e
       update
     endif
   ]],
 })
+
 
 -- Session Management
 vim.keymap.set('n', '<leader>ss', ':GitSessionSave<CR>', { desc = 'Save Session', noremap = true })
