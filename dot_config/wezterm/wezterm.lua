@@ -1,5 +1,28 @@
+function tablelength(T)
+  local count = 0
+  for _ in pairs(T) do count = count + 1 end
+  return count
+end
+
 -- https://wezfurlong.org/wezterm/config/lua/wezterm/index.html
 local wezterm = require 'wezterm';
+local monitor_count = tablelength(wezterm.gui.screens()["by_name"])
+local hostname = wezterm.hostname()
+
+if (hostname == 'MBP-ABURNS') then
+  -- Depends if we are docked or not
+  if (monitor_count == 2)
+  then
+    My_font_size = 16
+  else
+    My_font_size = 12
+  end
+elseif (hostname == 'thelio')  then
+    My_font_size = 14
+else
+  My_font_size = 12
+end
+
 return {
   hide_tab_bar_if_only_one_tab = true,
   default_prog = { "/bin/zsh" },
@@ -46,7 +69,8 @@ return {
     harfbuzz_features={"calt=1", "clig=1", "liga=1"},
   }),
   -- => == !=
-  font_size = 14,
+
+  font_size = My_font_size,
 
   mouse_bindings = {
     -- Change the default click behavior so that it populates
