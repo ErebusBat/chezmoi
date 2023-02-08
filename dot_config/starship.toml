@@ -51,6 +51,8 @@ disabled = true
 # format = 'on [☸ $context \($namespace\)](dimmed yellow) '
 [kubernetes]
 disabled = false
+# detect_folders = ['/Users/andrew.burns/src/sie/server', 'server', 'app']
+detect_files = ['.helmignore', '.dockerignore']
 
 [kubernetes.context_aliases]
 "arn:aws:eks:ca-central-1:000300003469:cluster/ca" = "ca (ca-central-1)"
