@@ -48,3 +48,15 @@ disabled = true
 [nodejs]
 disabled = true
 
+# format = 'on [☸ $context \($namespace\)](dimmed yellow) '
+[kubernetes]
+disabled = false
+
+[kubernetes.context_aliases]
+"arn:aws:eks:ca-central-1:000300003469:cluster/ca" = "ca (ca-central-1)"
+"arn:aws:eks:eu-west-1:329798432074:cluster/gore" = "gore (eu-west-1)"
+"arn:aws:eks:eu-west-1:392519143284:cluster/moog" = "moog (eu-west-1)"
+"arn:aws:eks:eu-west-1:393569031037:cluster/eu" = "eu (eu-west-1)"
+"arn:aws:eks:us-west-2:204538655979:cluster/dev" = "dev (us-west-2)"
+"arn:aws:eks:us-west-2:582828833424:cluster/leidos" = "leidos (us-west-2)"
+"arn:aws:eks:us-west-2:791291319152:cluster/us" = "us (us-west-2)"
