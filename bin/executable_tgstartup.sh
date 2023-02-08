@@ -1,17 +1,9 @@
 #!/bin/zsh
 
-# TractionGuest/SIE startup script
+# TractionGuest startup script
 #
 # Starts apps / sessions after a cold boot
 # Will not launch a terminal as it assumes you will be launching a terminal to execute this script.  This also allows for easily switching terminal emulators.
-
-# This same thing is done in tgtmux below... however we want the password prompt prior
-# to starting all the apps, it will have duplicate output, but that is okay as it is
-# generally <1/day
-if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
-  source ~/.config/tmux/init_chezmoi_secrets.sh
-fi
-
 
 APPS=(
   /Applications/Fantastical.app
