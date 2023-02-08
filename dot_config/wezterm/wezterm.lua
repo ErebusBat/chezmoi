@@ -6,10 +6,11 @@ end
 
 -- https://wezfurlong.org/wezterm/config/lua/wezterm/index.html
 local wezterm = require 'wezterm';
-local monitor_count = tablelength(wezterm.gui.screens()["by_name"])
 local hostname = wezterm.hostname()
 
 if (hostname == 'MBP-ABURNS') then
+  -- This can fail on linux, and we don't need it there so only call here
+  local monitor_count = tablelength(wezterm.gui.screens()["by_name"])
   -- Depends if we are docked or not
   if (monitor_count == 2)
   then
@@ -18,7 +19,7 @@ if (hostname == 'MBP-ABURNS') then
     My_font_size = 12
   end
 elseif (hostname == 'thelio')  then
-    My_font_size = 14
+    My_font_size = 12
 else
   My_font_size = 12
 end
