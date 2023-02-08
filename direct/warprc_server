@@ -1,3 +1,4 @@
+antibody:~/.config/zsh-antibody
 chezmoi:~/.local/share/chezmoi
 dashy:/myserver/internal/dashy
 downloader:/myserver/downloader
@@ -9,9 +10,9 @@ pchef:~/src/erebusbat/pchef76
 photoprisim:/myserver/photoprism
 photoprism:/myserver/photoprism
 plex:/myserver/plex
+qmk_sys76:~/src/vendor/qmk_firmware/keyboards/system76/launch_1/keymaps/erebusbat
 restic:~/.restic
 stash:/myserver/stashappcc
 tmux:~/.config/tmux
 tmuxp:~/.tmuxp
 vim:~/.config/nvim
-antibody:~/.config/zsh-antibody

@@ -31,10 +31,10 @@
         "/home/aburns/bin/chezmoi": {
             "path": "/home/aburns/bin/chezmoi",
             "remote_name": "chezmoi",
-            "version": "v2.29.4",
+            "version": "v2.30.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/twpayne/chezmoi",
-            "provider": "github",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.30.0",
+            "provider": "",
             "package_path": ""
         },
         "/home/aburns/bin/duf": {
@@ -67,11 +67,11 @@
         "/home/aburns/bin/fzf": {
             "path": "/home/aburns/bin/fzf",
             "remote_name": "fzf",
-            "version": "0.36.0",
+            "version": "0.37.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/junegunn/fzf",
+            "url": "https://github.com/junegunn/fzf/releases/tag/0.37.0",
             "provider": "",
-            "package_path": ""
+            "package_path": "fzf"
         },
         "/home/aburns/bin/jq": {
             "path": "/home/aburns/bin/jq",
@@ -94,18 +94,18 @@
         "/home/aburns/bin/lazygit": {
             "path": "/home/aburns/bin/lazygit",
             "remote_name": "lazygit",
-            "version": "v0.36.0",
+            "version": "v0.37.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/jesseduffield/lazygit",
+            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.37.0",
             "provider": "",
-            "package_path": ""
+            "package_path": "lazygit"
         },
         "/home/aburns/bin/restic": {
             "path": "/home/aburns/bin/restic",
             "remote_name": "",
-            "version": "v0.15.0",
+            "version": "v0.15.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/restic/restic",
+            "url": "https://github.com/restic/restic/releases/tag/v0.15.1",
             "provider": "",
             "package_path": ""
         },
