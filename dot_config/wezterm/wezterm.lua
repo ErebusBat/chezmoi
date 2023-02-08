@@ -14,11 +14,10 @@ return {
   background = {
     {
       source = {
-        -- File = wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg',
+        File = wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg',
         -- File = wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_hp_001.jpeg',
         -- File = wezterm.home_dir .. '/.config/wezterm/wallpaper/abstract/1ub6r4ns7eopdsol.jpg',
         -- File = wezterm.home_dir .. '/.config/wezterm/wallpaper/abstract/pexels-anni-roenkae-2156881.jpg',
-        File = wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg',
       },
       -- repeat_x = 'Mirror',
       horizontal_align = "Center",
