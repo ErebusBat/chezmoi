@@ -51,8 +51,30 @@ return function(use)
   })
 
   -- Testing
-  use({ 'vim-test/vim-test' })
-  use({ 'jgdavey/tslime.vim' })
+  use({
+    'vim-test/vim-test',
+
+    requires = { 'jgdavey/tslime.vim' },
+
+    config = function()
+      -- vim.cmd [[ let test#ruby#rspec#executable = 'clear; bundle exec spring rspec -f d' ]]
+      vim.cmd [[ let test#ruby#rspec#executable = 'clear; bundle exec  rspec -f d' ]]
+      vim.cmd [[
+        nmap <silent> t<C-n> :TestNearest<CR>
+        nmap <silent> t<C-f> :TestFile<CR>
+        nmap <silent> t<C-s> :TestSuite<CR>
+        nmap <silent> t<C-l> :TestLast<CR>
+        nmap <silent> t<C-g> :TestVisit<CR>
+        " Leader versions which will start the test (using maps above) then switch back to
+        " code pane (via <leader><leader> shortcut).  Meant to be used with harpoon terminal
+        nmap <silent> <leader>tn <C-s>t<C-n><leader><leader>
+        nmap <silent> <leader>tl <C-s>t<C-l><leader><leader>
+        nmap <silent> <leader>tf <C-s>t<C-f><leader><leader>
+      ]]
+    end,
+
+  })
+  -- use({ 'jgdavey/tslime.vim' })
 
   -- Languages
   use({ 'othree/html5.vim'  })
