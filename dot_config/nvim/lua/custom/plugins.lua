@@ -2,6 +2,8 @@ function get_setup(name)
   return string.format('require("setup/%s")', name)
 end
 
+vim.cmd [[ let g:gitsessions_disable_auto_load = 1 ]]
+
 return function(use)
   -- System / Session Management
   use({ "christoomey/vim-tmux-navigator" })
