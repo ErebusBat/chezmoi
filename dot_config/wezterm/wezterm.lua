@@ -44,7 +44,7 @@ if (hostname == 'MBP-ABURNS') then
   then
     my_font_size = 16
   else
-    my_font_size = 12
+    my_font_size = 14
   end
 elseif (hostname == 'thelio')  then
   my_font_size = 12
