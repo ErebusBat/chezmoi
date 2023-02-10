@@ -1,10 +1,12 @@
 return {
   'hrsh7th/nvim-cmp',
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
     'L3MON4D3/LuaSnip',
-    'saadparwaiz1/cmp_luasnip',
+    'epwalsh/obsidian.nvim',
     'f3fora/cmp-spell',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
+    'saadparwaiz1/cmp_luasnip',
   },
   config = function ()
     -- nvim-cmp setup
@@ -47,6 +49,7 @@ return {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'path' },
       },
     }
   end,
