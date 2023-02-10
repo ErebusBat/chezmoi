@@ -4,6 +4,7 @@ return {
     'L3MON4D3/LuaSnip',
     'epwalsh/obsidian.nvim',
     'f3fora/cmp-spell',
+    'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'saadparwaiz1/cmp_luasnip',
@@ -48,6 +49,7 @@ return {
       },
       sources = {
         { name = 'nvim_lsp' },
+        { name = 'buffer' },
         { name = 'luasnip' },
         { name = 'path' },
       },

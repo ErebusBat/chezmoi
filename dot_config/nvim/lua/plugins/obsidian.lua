@@ -1,6 +1,5 @@
 local M= {
   follow_link = function()
-    return "<cmd>ObsidianFollowLink<CR>"
     if require('obsidian').util.cursor_on_markdown_link() then
       return "<cmd>ObsidianFollowLink<CR>"
     else
@@ -8,8 +7,10 @@ local M= {
     end
   end,
 }
+
 return {
   'epwalsh/obsidian.nvim',
+  enabled = false,
   config = function()
     require("obsidian").setup({
       dir = "/Users/andrew.burns/Documents/Obsidian/vimwiki",
@@ -21,5 +22,5 @@ return {
   ft = { 'markdown' },
   keys = {
     {'n', 'gf', M.follow_link, desc = 'Obsidian [F]ollow Link'}
-  }
+  },
 }
