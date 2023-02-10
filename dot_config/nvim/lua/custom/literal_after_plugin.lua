@@ -1,6 +1,6 @@
 -- Setup autocmd so that we get our overrides after a PackerSync operation is complete
-vim.cmd([[autocmd User PackerComplete source ~/.config/nvim/lua/custom/after_plugin.lua]])
-vim.cmd([[autocmd User PackerCompileDone source ~/.config/nvim/lua/custom/after_plugin.lua]])
+-- vim.cmd([[autocmd User PackerComplete source ~/.config/nvim/lua/custom/after_plugin.lua]])
+-- vim.cmd([[autocmd User PackerCompileDone source ~/.config/nvim/lua/custom/after_plugin.lua]])
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -38,8 +38,6 @@ vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode', noremap = true }
 -- Window Management
 vim.keymap.set('n', '<tab>', '<C-w><C-p>', { desc = 'Toggle last split', noremap = true })
 vim.keymap.set('n', '<leader><space>', ':e #<CR>', { desc = 'Toggle last buffer', noremap = true })
-vim.keymap.set('n', '<leader>w', ':BD<CR>', { desc = 'Close current buffer', noremap = true })
-vim.keymap.set('n', '<leader><F7>', ':NvimTreeFindFileToggle<CR>', { desc = 'Toggle Tree View for current file', noremap = true })
 
 -- Line Movement
 vim.keymap.set('v', 'J', [[ :move '>+1<CR>gv=gv ]], { desc = 'Move line(s) down', noremap = true })
@@ -159,14 +157,6 @@ vim.api.nvim_create_autocmd({ "FocusLost" }, {
 
 
 -- Session Management
-vim.keymap.set('n', '<leader>ss', ':GitSessionSave<CR>', { desc = 'Save Session', noremap = true })
-vim.keymap.set('n', '<leader>ls', ':GitSessionLoad<CR>', { desc = 'Load Session', noremap = true })
-
--- Remove trailing whitespace on save
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*" },
-  command = [[%s/\s\+$//e]],
-})
 
 -- " Undo break points (i.e. create a new "undo" block when one of these characters are typed)
 vim.keymap.set('i', ',', ',<C-g>u', { desc = 'Create a undo block', noremap = true })
@@ -189,9 +179,6 @@ require('lspconfig').solargraph.setup(
 )
 
 -- relativenumber
-vim.opt.relativenumber = true
-vim.cmd([[source ~/.config/nvim/plugin/relativenum.vim]])
-vim.keymap.set('n', '==', ':set relativenumber!<CR>', { desc = 'Toggle Relative Number', noremap = true })
 
 -- Blank vim notify area so we don't have Config Reloading...
 vim.notify("", vim.log.levels.INFO)
