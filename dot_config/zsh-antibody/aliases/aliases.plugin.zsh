@@ -38,6 +38,9 @@ fi
 if [[ -f ~/.config/wezterm/wezterm.lua ]]; then
   alias viwezterm='vim ~/.config/wezterm/wezterm.lua'
 fi
+if [[ -f ~/.config/chezmoi/chezmoi.toml ]]; then
+  alias vicz='vim ~/.config/chezmoi/chezmoi.toml'
+fi
 
 ################################################################################
 # Editing / Navigation / File Management
