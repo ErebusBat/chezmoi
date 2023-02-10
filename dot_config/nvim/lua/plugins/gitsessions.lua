@@ -1,5 +1,6 @@
 return {
   "wting/gitsessions.vim",
+  lazy = false,  -- Can't lazy load or `vimls` script doesn't work
   init = function()
     vim.g.gitsessions_disable_auto_load = 1
   end,
