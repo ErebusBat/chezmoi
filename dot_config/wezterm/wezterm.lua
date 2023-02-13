@@ -14,6 +14,7 @@ local my_font_size = 14
 -- Randomized Wallpaper
 --
 local wallpapers = {
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230208.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/abstract/1ub6r4ns7eopdsol.jpg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/abstract/pexels-anni-roenkae-2156881.jpg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg',
