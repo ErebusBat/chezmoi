@@ -1,0 +1,60 @@
+session_name: sis-jwt
+start_directory: ~/src/sie/sisjwt-rails
+windows:
+
+- window_name: foreman
+  # use list-windows to get layout string
+  layout: 58b9,176x92,0,0[176x20,0,0{83x20,0,0,1,92x20,84,0,24},176x26,0,21,2,176x44,0,48,3]
+  options:
+    automatic-rename: 'off'
+  suppress_history: false
+  panes:
+    - shell_command:
+        # - rbenv exec foreman start -f Procfile.local -m all=1,web=0
+        - pane
+    - shell_command:
+        # - "rails s -b ::"
+        - pane
+    - shell_command:
+        - ":>log/development.log; tail -f log/development.log"
+    - shell_command:
+        # - be rails c
+        - pane
+      focus: true
+
+- window_name: jwtrb
+  layout: 9092,272x75,0,0[272x64,0,0,123,272x10,0,65,124] # vim layout, small bottom console pane
+  panes:
+    - shell_command:
+      - wd jwtrb
+      - vimls
+    - shell_command:
+      - wd jwtrb
+
+- window_name: jwt-rails
+  # layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
+  layout: 9092,272x75,0,0[272x64,0,0,123,272x10,0,65,124] # vim layout, small bottom console pane
+  panes:
+    - shell_command:
+      - wd jwtrails
+      - vimls
+    - shell_command:
+      - wd jwtrails
+
+- window_name: con
+  panes:
+    - pane
+    - pane
+
+# - window_name: sie-server
+#   layout: 9092,272x75,0,0[272x64,0,0,123,272x10,0,65,124]
+#   panes:
+#     - shell_command:
+#       - wd tgs
+#     - shell_command:
+#       - wd tgs
+
+- window_name: scratch
+  panes:
+    - pane
+    - pane

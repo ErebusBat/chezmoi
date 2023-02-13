@@ -1,5 +1,0 @@
-  require'navigator'.setup({
-    keymaps = {
-    }
-  })
-

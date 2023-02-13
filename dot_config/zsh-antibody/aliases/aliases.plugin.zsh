@@ -35,6 +35,10 @@ if [[ -d ~/Library/Python/3.9/bin ]]; then
   export PATH=~/Library/Python/3.9/bin:$PATH
 fi
 
+if [[ -f ~/.config/wezterm/wezterm.lua ]]; then
+  alias viwezterm='vim ~/.config/wezterm/wezterm.lua'
+fi
+
 ################################################################################
 # Editing / Navigation / File Management
 ################################################################################

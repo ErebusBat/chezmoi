@@ -31,20 +31,20 @@
         "/Users/andrew.burns/bin/chezmoi": {
             "path": "/Users/andrew.burns/bin/chezmoi",
             "remote_name": "chezmoi",
-            "version": "v2.29.4",
+            "version": "v2.30.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/twpayne/chezmoi",
-            "provider": "github",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.30.0",
+            "provider": "",
             "package_path": ""
         },
         "/Users/andrew.burns/bin/dua": {
             "path": "/Users/andrew.burns/bin/dua",
             "remote_name": "dua",
-            "version": "v2.19.0",
+            "version": "v2.19.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/Byron/dua-cli",
-            "provider": "github",
-            "package_path": "dua-v2.19.0-x86_64-apple-darwin/dua"
+            "url": "https://github.com/Byron/dua-cli/releases/tag/v2.19.1",
+            "provider": "",
+            "package_path": "dua-v2.19.1-x86_64-apple-darwin/dua"
         },
         "/Users/andrew.burns/bin/duf": {
             "path": "/Users/andrew.burns/bin/duf",
@@ -67,11 +67,20 @@
         "/Users/andrew.burns/bin/fzf": {
             "path": "/Users/andrew.burns/bin/fzf",
             "remote_name": "fzf",
-            "version": "0.36.0",
+            "version": "0.37.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/junegunn/fzf",
-            "provider": "github",
+            "url": "https://github.com/junegunn/fzf/releases/tag/0.37.0",
+            "provider": "",
             "package_path": "fzf"
+        },
+        "/Users/andrew.burns/bin/hx": {
+            "path": "/Users/andrew.burns/bin/hx",
+            "remote_name": "hx_x86_64-apple",
+            "version": "v0.4.2",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "github.com/sitkevij/hex",
+            "provider": "github",
+            "package_path": ""
         },
         "/Users/andrew.burns/bin/lazydocker": {
             "path": "/Users/andrew.burns/bin/lazydocker",
@@ -85,11 +94,20 @@
         "/Users/andrew.burns/bin/lazygit": {
             "path": "/Users/andrew.burns/bin/lazygit",
             "remote_name": "lazygit",
-            "version": "v0.36.0",
+            "version": "v0.37.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/jesseduffield/lazygit",
-            "provider": "github",
+            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.37.0",
+            "provider": "",
             "package_path": "lazygit"
+        },
+        "/Users/andrew.burns/bin/restic": {
+            "path": "/Users/andrew.burns/bin/restic",
+            "remote_name": "",
+            "version": "v0.15.1",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/restic/restic/releases/tag/v0.15.1",
+            "provider": "",
+            "package_path": ""
         },
         "/Users/andrew.burns/bin/spt": {
             "path": "/Users/andrew.burns/bin/spt",

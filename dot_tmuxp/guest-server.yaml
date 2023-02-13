@@ -82,14 +82,22 @@ windows:
 #     - shell_command:
 #       - cd ~/src/guest/scim_rails_upstream
 
-- window_name: drp
-  layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
-  panes:
-    - shell_command:
-      - wd regportal
-      - npm run dev
-    - shell_command:
-      - wd regportal
+# - window_name: drp
+#   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
+#   panes:
+#     - shell_command:
+#       - wd regportal
+#       - npm run dev
+#     - shell_command:
+#       - wd regportal
+
+# - window_name: jwtrb
+#   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
+#   panes:
+#     - shell_command:
+#       - wd jwtrb
+#     - shell_command:
+#       - wd jwtrb
 
 - window_name: scratch
   panes:
