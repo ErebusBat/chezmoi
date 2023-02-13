@@ -68,7 +68,12 @@ local config = {
       key = 'F12',
       mods = 'SUPER|CTRL|SHIFT|ALT',
       action = wezterm.action.ReloadConfiguration,
-    }
+    },
+    {
+      key = 'n',
+      mods = 'SHIFT|CTRL',
+      action = wezterm.action.ToggleFullScreen,
+    },
   },
 
   -- See below for background
