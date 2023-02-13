@@ -117,8 +117,9 @@ if wallpaper_enabled then
       horizontal_align = "Center",
       vertical_align = "Middle",
       hsb = {
-        brightness = 0.0125,  -- Abstract
+        -- brightness = 0.0125,  -- Abstract
         -- brightness = 0.01, -- Photos
+        brightness = 0.05, -- Travel
       },
     }
   }
