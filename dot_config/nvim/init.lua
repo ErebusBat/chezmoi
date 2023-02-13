@@ -132,3 +132,8 @@ require('fidget').setup()
 
 
 require "erebusbat"
+
+vim.cmd [[
+  au FileType ruby nmap <M-CR> oend<ESC>O
+  au FileType ruby imap <M-CR> <ESC>oend<ESC>O
+]]
