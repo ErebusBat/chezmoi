@@ -1,0 +1,28 @@
+#!/bin/zsh
+# vim: ft=zsh sw=2 ts=2 et
+
+STATIC_FILE=/tmp/wezterm-wallpaper.static
+CONFIG_FILE=~/.config/Wezterm/wezterm.lua
+
+function make_static() {
+  if [[ -f $STATIC_FILE ]]; then
+    echo "Already in static mode! $STATIC_FILE exists"
+  else
+    touch $STATIC_FILE
+    echo "Wezterm wallpaper will not rotate"
+  fi
+
+  exit 0
+}
+
+function touch_config() {
+  touch $CONFIG_FILE
+}
+
+if [[ $1 == "stop" ]]; then
+  make_static
+else
+  touch_config
+fi
+
+
