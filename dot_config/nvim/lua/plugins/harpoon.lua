@@ -11,5 +11,10 @@ return {
     { '<leader>h3', ':lua require("harpoon.ui").nav_file(3)<CR>', desc = 'Navigate to Harpoon File 3', remap = true },
     { '<leader>h4', ':lua require("harpoon.ui").nav_file(4)<CR>', desc = 'Navigate to Harpoon File 4', remap = true },
     { '<leader>h5', ':lua require("harpoon.ui").nav_file(5)<CR>', desc = 'Navigate to Harpoon File 5', remap = true },
+    { '<leader>h6', ':lua require("harpoon.ui").nav_file(6)<CR>', desc = 'Navigate to Harpoon File 6', remap = true },
+    { '<leader>h7', ':lua require("harpoon.ui").nav_file(7)<CR>', desc = 'Navigate to Harpoon File 7', remap = true },
+    { '<leader>h8', ':lua require("harpoon.ui").nav_file(8)<CR>', desc = 'Navigate to Harpoon File 8', remap = true },
+    { '<leader>h9', ':lua require("harpoon.ui").nav_file(9)<CR>', desc = 'Navigate to Harpoon File 9', remap = true },
+    { '<leader>h0', ':lua require("harpoon.ui").nav_file(10)<CR>', desc = 'Navigate to Harpoon File 10', remap = true },
   },
 }
