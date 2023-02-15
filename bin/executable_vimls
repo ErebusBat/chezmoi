@@ -1,2 +1,6 @@
 #!/bin/zsh
-nvim -c :GitSessionLoad
+if [[ -f Session.vim ]]; then
+  nvim -S
+else
+  nvim -c :GitSessionLoad
+fi
