@@ -16,16 +16,30 @@ local my_font_size = 14
 local wallpapers = {
   wezterm.home_dir .. '/.config/wezterm/wallpaper/abstract/1ub6r4ns7eopdsol.jpg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/abstract/pexels-anni-roenkae-2156881.jpg',
-  wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/doom-doom-slayer-4k-xm.jpg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/doom-ed-slayer-3h-1800x1169.jpg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/doom-vfr-5k-sg-1800x1169.jpg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_hp_001.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_hp_002.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_hp_003.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_hp_004.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_lights_01.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_lights_02.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/dk_signs.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/ny22_001.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/ny22_002.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20220918a.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230208.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230216.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ifly.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/linux_001.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/linux_002.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/van01.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/van02.jpeg',
+
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230208.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230216.jpeg',
 }
 local wallpaper_to_use = wallpapers[math.random(#wallpapers)]
 
@@ -35,6 +49,7 @@ local wallpaper_to_use = wallpapers[math.random(#wallpapers)]
 if (hostname == 'MBP-ABURNS') then
   -- wallpaper_enabled = false
   -- wallpaper_to_use =   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/doom-vfr-5k-sg-1800x1169.jpg'
+  -- wallpaper_to_use = wallpapers[#wallpapers]
 
   -- wallpaper_enabled = false
   -- This can fail on linux, and we don't need it there so only call here
@@ -68,7 +83,12 @@ local config = {
       key = 'F12',
       mods = 'SUPER|CTRL|SHIFT|ALT',
       action = wezterm.action.ReloadConfiguration,
-    }
+    },
+    {
+      key = 'n',
+      mods = 'SHIFT|CTRL',
+      action = wezterm.action.ToggleFullScreen,
+    },
   },
 
   -- See below for background
@@ -112,8 +132,9 @@ if wallpaper_enabled then
       horizontal_align = "Center",
       vertical_align = "Middle",
       hsb = {
-        brightness = 0.0125,  -- Abstract
+        -- brightness = 0.0125,  -- Abstract
         -- brightness = 0.01, -- Photos
+        brightness = 0.05, -- Travel
       },
     }
   }

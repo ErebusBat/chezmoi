@@ -115,8 +115,8 @@ if [[ $SONG_LIMIT -gt 0 ]]; then
   # nowplaying="${nowplaying}┅"
 fi
 
-# Seperator character + coloring for actual song
-printf "#[fg=brightblack, bg=default]|#[fg=blue]"
+# coloring for actual song
+printf "#[fg=blue]"
 
 # Actual output
 if [[ $NO_PLAY_INDICATOR -eq 1 ]]; then
