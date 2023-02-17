@@ -3,6 +3,7 @@
 
 STATIC_FILE=/tmp/wezterm-wallpaper.static
 CONFIG_FILE=~/.config/Wezterm/wezterm.lua
+WALLPAPER_LUA_FILE=~/.config/wezterm/wallpapers.lua
 
 function make_static() {
   if [[ -f $STATIC_FILE ]]; then
@@ -16,6 +17,10 @@ function make_static() {
 }
 
 function touch_config() {
+  if [[ ! -s $WALLPAPER_LUA_FILE ]]; then
+    echo "WALLPAPER_LUA_FILE ($WALLPAPER_LUA_FILE) does not exist, attempting to generate"
+    ~/.config/wezterm/build-wallpapers.rb
+  fi
   touch $CONFIG_FILE
 }
 
