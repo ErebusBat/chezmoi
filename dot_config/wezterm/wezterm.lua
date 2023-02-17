@@ -29,7 +29,9 @@ local wallpapers = {
   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/dk_signs.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/ny22_001.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/ny22_002.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20220918a.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230208.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230216.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ifly.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/linux_001.jpeg',
   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/linux_002.jpeg',
@@ -37,6 +39,7 @@ local wallpapers = {
   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/van02.jpeg',
 
   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230208.jpeg',
+  wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230216.jpeg',
 }
 local wallpaper_to_use = wallpapers[math.random(#wallpapers)]
 
