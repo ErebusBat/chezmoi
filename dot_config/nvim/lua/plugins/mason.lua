@@ -55,7 +55,8 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
 
-  sumneko_lua = {
+  -- Fix for sumneko_lua: https://github.com/nvim-lua/kickstart.nvim/issues/179#issuecomment-1433664471
+  lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
