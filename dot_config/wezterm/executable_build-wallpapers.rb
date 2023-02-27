@@ -148,18 +148,17 @@ def read_config(app)
 
   cfg = YAML.load(config.read)
   cfg.each do |entry|
+    path = entry["path"]
+    enabled=  entry.fetch("enabled", true)
     weight = entry.fetch("weight", 1).to_i
     recurse = entry.fetch("recurse", 255).to_i
-    app.add_path(entry["path"], weight: weight, recurse: recurse)
+    weight = 0 unless enabled
+    app.add_path(path, weight: weight, recurse: recurse)
   end
 end
 
 app = MyApp.new
 read_config(app)
-# app.add_path("~/.config/wezterm/wallpaper/photos/ah_*", weight: 5)
-app.add_path("~/.config/wezterm/wallpaper/lar", weight: 2)
-app.add_path("~/.config/wezterm/wallpaper/abstract", weight: 3)
-app.add_path("~/.config/wezterm/wallpaper/doom", weight: 3)
 app.add_path("~/.config/wezterm/wallpaper")
-# puts app.output.string
+# # puts app.output.string
 app.write_file
