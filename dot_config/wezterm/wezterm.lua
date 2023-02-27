@@ -1,45 +1,20 @@
 -- https://wezfurlong.org/wezterm/config/lua/wezterm/index.html
 local wezterm = require 'wezterm';
--- local hostname = wezterm.hostname()
+local hostname = wezterm.hostname()
 -- local wallpaper_enabled = true
 local my_font_size = 14
 
---
--- Randomized Wallpaper
---
--- local wallpapers = {
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/abstract/1ub6r4ns7eopdsol.jpg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/abstract/pexels-anni-roenkae-2156881.jpg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/doom-doom-slayer-4k-xm.jpg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/doom-ed-slayer-3h-1800x1169.jpg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/doom-vfr-5k-sg-1800x1169.jpg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_hp_001.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_hp_002.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_hp_003.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_hp_004.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_lights_01.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/denver_lights_02.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/dk_signs.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/ny22_001.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/lar/ny22_002.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20220918a.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230208.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230216.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ifly.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/linux_001.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/linux_002.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/van01.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/van02.jpeg',
---
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230208.jpeg',
---   wezterm.home_dir .. '/.config/wezterm/wallpaper/photos/ah_20230216.jpeg',
--- }
--- local wallpaper_to_use = wallpapers[math.random(#wallpapers)]
 local wallpaper_info = require('wallpaper')
--- echo(wallpaper_info)
 local wallpaper_to_use = wallpaper_info.File
 local wallpaper_enabled = wallpaper_info.Enabled
+
+-- Defaults, can be overriden below in monitor setup
+local background_hsb = {
+  -- brightness = 0.00625,
+  -- brightness = 0.0125,  -- Abstract
+  -- brightness = 0.01, -- Photos
+  brightness = 0.05, -- Travel
+}
 
 
 --
@@ -53,12 +28,14 @@ if (hostname == 'MBP-ABURNS') then
   -- wallpaper_enabled = false
   -- This can fail on linux, and we don't need it there so only call here
   local monitor_count = tablelength(wezterm.gui.screens()["by_name"])
+  print("MBP-ABURNS monitor_count: " .. monitor_count)
   -- Depends if we are docked or not
   if (monitor_count == 2)
   then
-    my_font_size = 16
-  else
+    background_hsb["brightness"] = 0.00625
     my_font_size = 14
+  else
+    my_font_size = 12
   end
 elseif (hostname == 'thelio')  then
   my_font_size = 12
@@ -121,6 +98,8 @@ local config = {
 --
 -- Add in Background, if configured
 --
+print("background_hsb = ")
+print(background_hsb)
 if wallpaper_enabled then
   config["window_background_opacity"] = 0.5
   config["background"] = {
@@ -130,11 +109,7 @@ if wallpaper_enabled then
       },
       horizontal_align = "Center",
       vertical_align = "Middle",
-      hsb = {
-        -- brightness = 0.0125,  -- Abstract
-        -- brightness = 0.01, -- Photos
-        brightness = 0.05, -- Travel
-      },
+      hsb = background_hsb,
     }
   }
 end

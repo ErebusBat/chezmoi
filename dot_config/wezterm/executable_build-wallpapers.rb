@@ -2,6 +2,7 @@
 require 'date'
 require 'pathname'
 require 'stringio'
+require 'yaml'
 
 class MyApp
   class PathInfo
@@ -141,8 +142,21 @@ class MyApp
   end
 end
 
+def read_config(app)
+  config = Pathname.new("~/.config/wezterm/wallpaper.yaml").expand_path
+  return app unless config.file?
+
+  cfg = YAML.load(config.read)
+  cfg.each do |entry|
+    weight = entry.fetch("weight", 1).to_i
+    recurse = entry.fetch("recurse", 255).to_i
+    app.add_path(entry["path"], weight: weight, recurse: recurse)
+  end
+end
+
 app = MyApp.new
-app.add_path("~/.config/wezterm/wallpaper/photos/ah_*", weight: 5)
+read_config(app)
+# app.add_path("~/.config/wezterm/wallpaper/photos/ah_*", weight: 5)
 app.add_path("~/.config/wezterm/wallpaper/lar", weight: 2)
 app.add_path("~/.config/wezterm/wallpaper/abstract", weight: 3)
 app.add_path("~/.config/wezterm/wallpaper/doom", weight: 3)
