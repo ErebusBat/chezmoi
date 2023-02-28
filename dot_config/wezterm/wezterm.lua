@@ -2,7 +2,6 @@
 local wezterm = require 'wezterm';
 local hostname = wezterm.hostname()
 -- local wallpaper_enabled = true
-local my_font_size = 14
 
 local wallpaper_info = require('wallpaper')
 local wallpaper_to_use = wallpaper_info.File
@@ -15,36 +14,6 @@ local background_hsb = {
   -- brightness = 0.01, -- Photos
   brightness = 0.05, -- Travel
 }
-
-
---
--- Host Specific Settings
---
-config["text_background_opacity"] = 0.9
-if (hostname == 'MBP-ABURNS') then
-  -- wallpaper_enabled = false
-  -- wallpaper_to_use =   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/doom-vfr-5k-sg-1800x1169.jpg'
-  -- wallpaper_to_use = wallpapers[#wallpapers]
-
-  -- wallpaper_enabled = false
-  -- This can fail on linux, and we don't need it there so only call here
-  local monitor_count = tablelength(wezterm.gui.screens()["by_name"])
-  print("MBP-ABURNS monitor_count: " .. monitor_count)
-  -- Depends if we are docked or not
-  if (monitor_count == 2)
-  then
-    background_hsb["brightness"] = 0.02
-    my_font_size = 14
-  else
-    my_font_size = 12
-  end
-elseif (hostname == 'thelio')  then
-  my_font_size = 12
-
-  -- Don't use random wallpaper on thelio
-  wallpaper_to_use = wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg'
-  config["text_background_opacity"] = 0.5
-end
 
 --
 -- Build Base Config
@@ -84,7 +53,7 @@ local config = {
     harfbuzz_features={"calt=1", "clig=1", "liga=1"},
   }),
 
-  font_size = my_font_size,
+  font_size = 14,
 
   mouse_bindings = {
     -- Change the default click behavior so that it populates
@@ -96,6 +65,35 @@ local config = {
     },
   }
 }
+
+--
+-- Host Specific Settings
+--
+config["text_background_opacity"] = 0.9
+if (hostname == 'MBP-ABURNS') then
+  -- wallpaper_enabled = false
+  -- wallpaper_to_use =   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/doom-vfr-5k-sg-1800x1169.jpg'
+  -- wallpaper_to_use = wallpapers[#wallpapers]
+
+  -- wallpaper_enabled = false
+  -- This can fail on linux, and we don't need it there so only call here
+  local monitor_count = tablelength(wezterm.gui.screens()["by_name"])
+  print("MBP-ABURNS monitor_count: " .. monitor_count)
+  -- Depends if we are docked or not
+  if (monitor_count == 2)
+  then
+    background_hsb["brightness"] = 0.02
+    config["font_size"] = 14
+  else
+    config["font_size"] = 12
+  end
+elseif (hostname == 'thelio')  then
+  config["font_size"] = 12
+
+  -- Don't use random wallpaper on thelio
+  wallpaper_to_use = wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg'
+  config["text_background_opacity"] = 0.5
+end
 
 --
 -- Add in Background, if configured
