@@ -102,7 +102,7 @@ local config = {
 -- wezterm.GLOBAL.wallpaper
 if wallpaper_enabled then
   wezterm.GLOBAL.wallpaper = wallpaper_to_use
-  config["text_background_opacity"] = 0.3
+  config["text_background_opacity"] = 0.9
   config["background"] = {
     {
       source = {
