@@ -32,7 +32,7 @@ if (hostname == 'MBP-ABURNS') then
   -- Depends if we are docked or not
   if (monitor_count == 2)
   then
-    background_hsb["brightness"] = 0.00625
+    background_hsb["brightness"] = 0.02
     my_font_size = 14
   else
     my_font_size = 12
@@ -98,10 +98,11 @@ local config = {
 --
 -- Add in Background, if configured
 --
-print("background_hsb = ")
-print(background_hsb)
+-- CTRL-SHIFT-L
+-- wezterm.GLOBAL.wallpaper
 if wallpaper_enabled then
-  config["window_background_opacity"] = 0.5
+  wezterm.GLOBAL.wallpaper = wallpaper_to_use
+  config["text_background_opacity"] = 0.3
   config["background"] = {
     {
       source = {
@@ -110,8 +111,15 @@ if wallpaper_enabled then
       horizontal_align = "Center",
       vertical_align = "Middle",
       hsb = background_hsb,
-    }
+    },
   }
+else
+  wezterm.GLOBAL.wallpaper = ""
 end
+
+wezterm.log_info("background:")
+wezterm.log_info(config["background"])
+wezterm.log_info("text_background_opacity:")
+wezterm.log_info(config["text_background_opacity"])
 
 return config
