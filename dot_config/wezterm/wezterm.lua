@@ -20,6 +20,7 @@ local background_hsb = {
 --
 -- Host Specific Settings
 --
+config["text_background_opacity"] = 0.9
 if (hostname == 'MBP-ABURNS') then
   -- wallpaper_enabled = false
   -- wallpaper_to_use =   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/doom-vfr-5k-sg-1800x1169.jpg'
@@ -42,6 +43,7 @@ elseif (hostname == 'thelio')  then
 
   -- Don't use random wallpaper on thelio
   wallpaper_to_use = wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg'
+  config["text_background_opacity"] = 0.5
 end
 
 --
@@ -102,7 +104,6 @@ local config = {
 -- wezterm.GLOBAL.wallpaper
 if wallpaper_enabled then
   wezterm.GLOBAL.wallpaper = wallpaper_to_use
-  config["text_background_opacity"] = 0.9
   config["background"] = {
     {
       source = {
@@ -115,6 +116,7 @@ if wallpaper_enabled then
   }
 else
   wezterm.GLOBAL.wallpaper = ""
+  config["text_background_opacity"] = 1.0
 end
 
 wezterm.log_info("background:")
