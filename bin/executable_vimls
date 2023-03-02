@@ -1,5 +1,6 @@
 #!/bin/zsh
 if [[ -f Session.vim ]]; then
+  echo "Restoring from Session.vim"
   nvim -S
 else
   nvim -c :GitSessionLoad

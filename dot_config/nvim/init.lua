@@ -82,6 +82,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
+-- Simple session management, see also plugins/gitsessions.lua
+vim.keymap.set({ 'n', 'v' }, '<leader>ms', "<Cmd>mksession!<CR><Cmd>echo 'Session.vim saved!'<CR>", { desc = '[M]ake [S]ession', silent = false })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
