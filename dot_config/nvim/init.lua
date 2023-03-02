@@ -91,6 +91,9 @@ vim.keymap.set({ 'n', 'v' }, '<leader>ms', "<Cmd>Lazy load nvim-tree.lua<CR><Cmd
 -- Don't save terminal sessions because they become 'detached' from Harpoon and it is a pia
 vim.opt.sessionoptions:remove('terminal')
 
+-- Window management
+vim.keymap.set({ 'n', 'v' }, '<C-w>z', '<C-w>|<C-w>_', { desc = '[Z]oom' })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
