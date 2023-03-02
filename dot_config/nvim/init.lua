@@ -82,8 +82,14 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
--- Simple session management, see also plugins/gitsessions.lua
-vim.keymap.set({ 'n', 'v' }, '<leader>ms', "<Cmd>mksession!<CR><Cmd>echo 'Session.vim saved!'<CR>", { desc = '[M]ake [S]ession', silent = false })
+-- Simple session management, see also plugins/gitsessions.lua This will:
+--   Make sure NVimTree is loaded; so that it can:
+--   Close NVimTree, if opened
+--   Use inbuilt :mksession! command
+--   Echo a message to indicate that the session was saved
+vim.keymap.set({ 'n', 'v' }, '<leader>ms', "<Cmd>Lazy load nvim-tree.lua<CR><Cmd>NvimTreeClose<CR><Cmd>mksession!<CR><Cmd>echo 'Session.vim saved!'<CR>", { desc = '[M]ake [S]ession', silent = false })
+-- Don't save terminal sessions because they become 'detached' from Harpoon and it is a pia
+vim.opt.sessionoptions:remove('terminal')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
