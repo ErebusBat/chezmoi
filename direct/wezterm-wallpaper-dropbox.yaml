@@ -1,0 +1,17 @@
+ah_common: &ah_common
+  enabled: true
+  weight: 7
+paths:
+- <<: *ah_common
+  path: ~/.config/wezterm/wallpaper/photos/ah_20230216.jpeg
+  weight: 10
+- <<: *ah_common
+  path: ~/.config/wezterm/wallpaper/photos/ah_*
+- path: ~/.config/wezterm/wallpaper/abstract
+  weight: 3
+- path: ~/.config/wezterm/wallpaper/doom
+  weight: 3
+- path: ~/.config/wezterm/wallpaper/lar
+  weight: 2
+- path: ~/.config/wezterm/wallpaper
+  weight: 1

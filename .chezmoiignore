@@ -1,7 +1,6 @@
 **/.DS_Store
 **/Session.vim
 .config/nvim/plugin/packer_compiled.lua
-.config/wezterm/wallpaper.yaml
 
 # Direct is where we store files that are symlinked (like stow)
 direct/
@@ -34,6 +33,7 @@ bin/tgtmux.zsh
 {{- if not .area.personal }}
 .config/spotify-tui/*
 .config/systemd/user/restic-home.*
+.config/wezterm/wallpaper.yaml
 .restic/.erebusbat.key
 .restic/.freenas-minio-creds.env
 .s3cfg-truenas
