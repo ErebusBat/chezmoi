@@ -147,7 +147,7 @@ def read_config(app)
   return app unless config.file?
 
   cfg = YAML.load(config.read)
-  cfg.each do |entry|
+  cfg["paths"].each do |entry|
     path = entry["path"]
     enabled=  entry.fetch("enabled", true)
     weight = entry.fetch("weight", 1).to_i
