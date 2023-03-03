@@ -91,8 +91,8 @@ elseif (hostname == 'thelio')  then
   config["font_size"] = 12
 
   -- Don't use random wallpaper on thelio
-  wallpaper_to_use = wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg'
-  config["text_background_opacity"] = 0.5
+  -- wallpaper_to_use = wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg'
+  -- config["text_background_opacity"] = 0.5
 end
 
 --
