@@ -1,0 +1,2 @@
+# Rotate wezterm wallpaper
+33 06-23 * * * ~/bin/rotate-wezterm-wallpaper

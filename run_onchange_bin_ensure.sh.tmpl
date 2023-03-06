@@ -1,0 +1,5 @@
+#!/bin/bash
+{{- $filePath := joinPath .chezmoi.homeDir "/.config/bin/config.json" -}}
+# {{ include $filePath | sha256sum }} ~/.config/bin/config.json
+cd ~
+bin ensure
