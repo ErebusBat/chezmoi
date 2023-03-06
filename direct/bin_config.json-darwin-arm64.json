@@ -37,6 +37,15 @@
             "provider": "",
             "package_path": ""
         },
+        "/Users/andrew.burns/bin/delta": {
+            "path": "/Users/andrew.burns/bin/delta",
+            "remote_name": "delta",
+            "version": "0.15.1",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/dandavison/delta",
+            "provider": "github",
+            "package_path": "delta-0.15.1-aarch64-apple-darwin/delta"
+        },
         "/Users/andrew.burns/bin/dua": {
             "path": "/Users/andrew.burns/bin/dua",
             "remote_name": "dua",
