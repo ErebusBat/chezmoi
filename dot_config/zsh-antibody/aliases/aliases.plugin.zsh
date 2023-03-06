@@ -36,7 +36,7 @@ if [[ -d ~/Library/Python/3.9/bin ]]; then
 fi
 
 if [[ -f ~/.config/wezterm/wezterm.lua ]]; then
-  alias viwezterm='vim ~/.config/wezterm/wezterm.lua ~/.config/wezterm/wallpaper.yaml'
+  alias viwezterm='vim ~/.config/wezterm/wezterm.lua ~/.config/wezterm/wallpaper.yaml && ~/.config/wezterm/build-wallpapers.rb'
 fi
 if [[ -f ~/.config/chezmoi/chezmoi.toml ]]; then
   alias vicz='vim ~/.config/chezmoi/chezmoi.toml'
