@@ -37,6 +37,15 @@
             "provider": "",
             "package_path": ""
         },
+        "/home/aburns/bin/delta": {
+            "path": "/home/aburns/bin/delta",
+            "remote_name": "delta",
+            "version": "0.15.1",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/dandavison/delta",
+            "provider": "github",
+            "package_path": "delta-0.15.1-x86_64-unknown-linux-gnu/delta"
+        },
         "/home/aburns/bin/duf": {
             "path": "/home/aburns/bin/duf",
             "remote_name": "duf",
@@ -49,11 +58,11 @@
         "/home/aburns/bin/dust": {
             "path": "/home/aburns/bin/dust",
             "remote_name": "dust",
-            "version": "v0.8.3",
+            "version": "v0.8.4",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/bootandy/dust",
-            "provider": "github",
-            "package_path": "dust-v0.8.3-x86_64-unknown-linux-gnu/dust"
+            "provider": "",
+            "package_path": ""
         },
         "/home/aburns/bin/exa": {
             "path": "/home/aburns/bin/exa",
