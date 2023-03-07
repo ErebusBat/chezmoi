@@ -43,8 +43,8 @@
             "version": "0.15.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "https://github.com/dandavison/delta",
-            "provider": "github",
-            "package_path": "delta-0.15.1-x86_64-unknown-linux-gnu/delta"
+            "provider": "",
+            "package_path": ""
         },
         "/home/aburns/bin/duf": {
             "path": "/home/aburns/bin/duf",
