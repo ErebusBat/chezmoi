@@ -14,13 +14,12 @@
 {{-   $focus = promptString "focus" -}}
 {{- end -}}
 
-
 [data]
   focus = {{ $focus | quote }}
   email = {{ $email | quote }}
 
   [data.area]
-    {{- if (index . "otherKey" ) }}
+    {{- if (index . "area" ) }}
     fetlife = {{ .area.fetlife }}
     personal = {{ .area.personal }}
     server = {{ .area.server }}

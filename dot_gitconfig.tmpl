@@ -27,7 +27,9 @@
         excludesfile = ~/.git-ignore
         quotepath = false
         ; attributesFile = /Users/{{ .chezmoi.group }}/.gitattributes
-        pager = diff-so-fancy | less -RFX
+        pager = delta
+[interactive]
+        diffFilter = delta --color-only
 [push]
         default = simple
 [filter "lfs"]
@@ -35,14 +37,21 @@
 	smudge = git-lfs smudge -- %f
         required = true
 	process = git-lfs filter-process
+[merge]
+        conflictstyle = diff3
 [difftool "sourcetree"]
         cmd = opendiff \"$LOCAL\" \"$REMOTE\"
         path =
 [mergetool "sourcetree"]
         cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
         trustExitCode = true
+[diff]
+        colorMoved = default
 [diff "code"]
         wordRegex = [^[:space:],()\\.]+
+[delta]
+        navigate = true
+        light = false
 [diff-so-fancy]
         markEmptyLines = false
 [github]
