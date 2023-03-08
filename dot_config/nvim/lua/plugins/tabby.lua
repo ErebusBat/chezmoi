@@ -8,7 +8,7 @@ return {
     require('tabby.tabline').use_preset('tab_only')
   end,
   keys = {
-    { ']', "gt", { desc = 'Goto Next Tab', silent = false } },
-    { '[', "gT", { desc = 'Goto Prev Tab', silent = false } },
+    { '<leader>]', "gt", { desc = 'Goto Next Tab', silent = false } },
+    { '<leader>[', "gT", { desc = 'Goto Prev Tab', silent = false } },
   }
 }
