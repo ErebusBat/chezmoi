@@ -1,0 +1,10 @@
+#!/bin/bash
+NVIM_PATH=$(which nvim)
+if [[ $? -ne 0 ]]; then
+        echo "Could not find 'nvim' binary"
+        exit 1
+fi
+{{ $filePath := joinPath .chezmoi.homeDir "/.config/nvim/lazy-lock.json" }}
+# Config HASH: {{ include $filePath | sha256sum }} ~/.config/nvim/lazy-lock.json
+echo "Restoring NeoVim Plugin State (Lazy.nvim)..."
+$NVIM_PATH --headless "+Lazy! restore" +qa
