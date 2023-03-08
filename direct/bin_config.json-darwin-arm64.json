@@ -13,10 +13,10 @@
         "/Users/andrew.burns/bin/bin": {
             "path": "/Users/andrew.burns/bin/bin",
             "remote_name": "bin",
-            "version": "v0.15.2",
+            "version": "v0.16.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/marcosnils/bin",
-            "provider": "github",
+            "url": "https://github.com/marcosnils/bin/releases/tag/v0.16.2",
+            "provider": "",
             "package_path": ""
         },
         "/Users/andrew.burns/bin/btop": {
@@ -31,9 +31,9 @@
         "/Users/andrew.burns/bin/chezmoi": {
             "path": "/Users/andrew.burns/bin/chezmoi",
             "remote_name": "chezmoi",
-            "version": "v2.30.0",
+            "version": "v2.31.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.30.0",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.31.1",
             "provider": "",
             "package_path": ""
         },
@@ -49,11 +49,11 @@
         "/Users/andrew.burns/bin/dua": {
             "path": "/Users/andrew.burns/bin/dua",
             "remote_name": "dua",
-            "version": "v2.19.1",
+            "version": "v2.19.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/Byron/dua-cli/releases/tag/v2.19.1",
+            "url": "https://github.com/Byron/dua-cli/releases/tag/v2.19.2",
             "provider": "",
-            "package_path": "dua-v2.19.1-x86_64-apple-darwin/dua"
+            "package_path": "dua-v2.19.2-x86_64-apple-darwin/dua"
         },
         "/Users/andrew.burns/bin/duf": {
             "path": "/Users/andrew.burns/bin/duf",
@@ -67,18 +67,18 @@
         "/Users/andrew.burns/bin/fd": {
             "path": "/Users/andrew.burns/bin/fd",
             "remote_name": "fd",
-            "version": "v8.6.0",
+            "version": "v8.7.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/sharkdp/fd",
-            "provider": "github",
-            "package_path": "fd-v8.6.0-x86_64-apple-darwin/fd"
+            "url": "https://github.com/sharkdp/fd/releases/tag/v8.7.0",
+            "provider": "",
+            "package_path": "fd-v8.7.0-x86_64-apple-darwin/fd"
         },
         "/Users/andrew.burns/bin/fzf": {
             "path": "/Users/andrew.burns/bin/fzf",
             "remote_name": "fzf",
-            "version": "0.37.0",
+            "version": "0.38.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/junegunn/fzf/releases/tag/0.37.0",
+            "url": "https://github.com/junegunn/fzf/releases/tag/0.38.0",
             "provider": "",
             "package_path": "fzf"
         },
@@ -126,15 +126,6 @@
             "url": "github.com/Rigellute/spotify-tui",
             "provider": "github",
             "package_path": "spt"
-        },
-        "/Users/andrew.burns/bin/starship": {
-            "path": "/Users/andrew.burns/bin/starship",
-            "remote_name": "starship",
-            "version": "v1.12.0",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/starship/starship",
-            "provider": "github",
-            "package_path": "starship"
         },
         "restic": {
             "path": "/Users/andrew.burns/bin/restic",
