@@ -25,8 +25,8 @@
             "version": "v1.2.13",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/aristocratos/btop",
-            "provider": "github",
-            "package_path": "./btop/bin/btop"
+            "provider": "",
+            "package_path": ""
         },
         "/home/aburns/bin/chezmoi": {
             "path": "/home/aburns/bin/chezmoi",
@@ -52,8 +52,8 @@
             "version": "v0.8.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/muesli/duf",
-            "provider": "github",
-            "package_path": "duf"
+            "provider": "",
+            "package_path": ""
         },
         "/home/aburns/bin/dust": {
             "path": "/home/aburns/bin/dust",
@@ -80,7 +80,7 @@
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "https://github.com/sharkdp/fd/releases/tag/v8.7.0",
             "provider": "",
-            "package_path": "fd-v8.7.0-x86_64-unknown-linux-gnu/fd"
+            "package_path": ""
         },
         "/home/aburns/bin/fzf": {
             "path": "/home/aburns/bin/fzf",
@@ -89,7 +89,7 @@
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "https://github.com/junegunn/fzf/releases/tag/0.38.0",
             "provider": "",
-            "package_path": "fzf"
+            "package_path": ""
         },
         "/home/aburns/bin/jq": {
             "path": "/home/aburns/bin/jq",
@@ -116,7 +116,7 @@
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.37.0",
             "provider": "",
-            "package_path": "lazygit"
+            "package_path": ""
         },
         "/home/aburns/bin/restic": {
             "path": "/home/aburns/bin/restic",
@@ -142,8 +142,8 @@
             "version": "v0.25.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/Rigellute/spotify-tui",
-            "provider": "github",
-            "package_path": "spt"
+            "provider": "",
+            "package_path": ""
         },
         "/home/aburns/bin/starship": {
             "path": "/home/aburns/bin/starship",
@@ -152,7 +152,7 @@
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "https://github.com/starship/starship/releases/tag/v1.13.1",
             "provider": "",
-            "package_path": "starship"
+            "package_path": ""
         }
     }
 }
