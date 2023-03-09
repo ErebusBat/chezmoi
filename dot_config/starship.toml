@@ -62,3 +62,4 @@ detect_files = ['.helmignore', '.dockerignore']
 "arn:aws:eks:us-west-2:204538655979:cluster/dev" = "dev (us-west-2)"
 "arn:aws:eks:us-west-2:582828833424:cluster/leidos" = "leidos (us-west-2)"
 "arn:aws:eks:us-west-2:791291319152:cluster/us" = "us (us-west-2)"
+"arn:aws:eks:us-west-2:012498362054:cluster/us2" = "us2 (us-west-2)"
