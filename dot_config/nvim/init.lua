@@ -91,6 +91,9 @@ vim.keymap.set({ 'n', 'v' }, '<leader>ms', "<Cmd>Lazy load nvim-tree.lua<CR><Cmd
 -- Don't save terminal sessions because they become 'detached' from Harpoon and it is a pia
 vim.opt.sessionoptions:remove('terminal')
 
+-- Terminal
+vim.keymap.set( { 't' }, '<leader><esc>', '<C-\\><C-n>', { desc = 'Exit Terminal Mode', noremap = true } )
+
 -- Tabs
 vim.opt.sessionoptions:append('tabpages')
 -- vim.keymap.set({ 'n', 'v' }, '>', "gt", { desc = 'Goto Next Tab', silent = false })
