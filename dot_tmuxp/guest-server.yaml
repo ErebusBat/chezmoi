@@ -10,14 +10,16 @@ windows:
   suppress_history: false
   panes:
     - shell_command:
-        # - make run_noserver
-        - rbenv exec foreman start -f Procfile.local -m all=1,web=0
+        # - rbenv exec foreman start -f Procfile.local -m all=1,web=0
+        - dip foreman
     - shell_command:
-      - "rails s -b ::"
+      # - "rails s -b ::"
+      - dip rails s
     - shell_command:
         - ":>log/development.log; tail -f log/development.log"
     - shell_command:
-        - be rails c
+        # - be rails c
+        - dip con
       focus: true
 
 - window_name: vim
