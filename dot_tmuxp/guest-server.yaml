@@ -19,7 +19,7 @@ windows:
         - ":>log/development.log; tail -f log/development.log"
     - shell_command:
         # - be rails c
-        - dip con
+        - dip rails c
       focus: true
 
 - window_name: vim
