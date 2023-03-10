@@ -1,0 +1,7 @@
+@tractionguest:registry=https://npm.pkg.github.com/
+//npm.pkg.github.com/:_authToken={{- (gopassRaw "tguest/tokens" | mustFromJson).github }}
+@xlts.dev:registry=https://registry.xlts.dev/
+always-auth=true
+//registry.xlts.dev/:always-auth=true
+//registry.xlts.dev/:_authToken={{- (gopassRaw "tguest/tokens" | mustFromJson).xlts }}
+

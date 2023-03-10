@@ -23,11 +23,12 @@ direct/
 
 {{- if not .area.tractionguest }}
 .config/nvim/spell/tractionguest.*
+.config/systemd/user/restic-tguest.*
+.npmrc
 .restic/.traction_guest.key
 .ssh/assh.d/tractionguest.yml
 .tmuxp/guest-server.yaml
 bin/tgtmux.zsh
-.config/systemd/user/restic-tguest.*
 {{- end }}
 
 {{- if not .area.personal }}
