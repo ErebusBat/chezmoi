@@ -11,15 +11,15 @@ windows:
   panes:
     - shell_command:
         # - rbenv exec foreman start -f Procfile.local -m all=1,web=0
-        - dip foreman
+      - dip up
     - shell_command:
       # - "rails s -b ::"
       - dip rails s
     - shell_command:
-        - ":>log/development.log; tail -f log/development.log"
+      - ":>log/development.log; tail -f log/development.log"
     - shell_command:
-        # - be rails c
-        - dip rails c
+      # - be rails c
+      - dip rails c
       focus: true
 
 - window_name: vim
@@ -35,14 +35,14 @@ windows:
     - pane
     - pane
 
-- window_name: frontend
-  layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
-  panes:
-    - shell_command:
-      - wd tgf
-      - yarn start:prod
-    - shell_command:
-      - wd tgf
+# - window_name: frontend
+#   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
+#   panes:
+#     - shell_command:
+#       - wd tgf
+#       - yarn start:prod
+#     - shell_command:
+#       - wd tgf
 
 # - window_name: connect
 #   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
