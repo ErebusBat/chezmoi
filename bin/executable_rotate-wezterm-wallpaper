@@ -7,7 +7,7 @@ WALLPAPER_LUA_FILE=~/.config/wezterm/wallpapers.lua
 
 function make_static() {
   if [[ -f $STATIC_FILE ]]; then
-    echo "Already in static mode! $STATIC_FILE exists"
+    echo "Already frozen! $STATIC_FILE exists"
   else
     touch $STATIC_FILE
     echo "Wezterm wallpaper will not rotate"
@@ -21,24 +21,42 @@ function touch_config() {
     echo "WALLPAPER_LUA_FILE ($WALLPAPER_LUA_FILE) does not exist, attempting to generate"
     ~/.config/wezterm/build-wallpapers.rb
   fi
+  echo "Rotating Wallpaper..."
   touch $CONFIG_FILE
 }
 
-if [[ -z $1 ]]; then
+function maybe_touch_config() {
   if [[ -f $STATIC_FILE ]]; then
     echo "Not rotating; $STATIC_FILE exists"
     exit 1
+  else
+    touch_config
   fi
-  touch_config
-elif [[ $1 == "resume" || $1 == "force" ]]; then
-  if [[ -f $STATIC_FILE ]]; then
-    echo "Removing static file $STATIC_FILE"
-    rm $STATIC_FILE
-  fi
-  touch_config
-  exit 0
-else
-  make_static
-fi
+}
 
+case $1 in
+  freeze|static|stop)
+    make_static
+    echo "hello"
+    ;;
+  unfreeze|rotate|start|resume)
+    if [[ -f $STATIC_FILE ]]; then
+      rm $STATIC_FILE
+    fi
+    echo "wallpaper unfrozen"
+    maybe_touch_config
+    ;;
+  help|\?)
+    echo "WezTerm Wallpaper Rotation Tool"
+    echo "USAGE"
+    echo "  ${0:t} [freeze|static|stop]    - Temporarily stop wallpaper rotation"
+    echo "  ${0:t} [unfreeze|resume|start] - Resume wallpaper rotation"
+    ;;
+  force)
+    touch_config
+    ;;
+  *)
+    maybe_touch_config
+    ;;
+esac
 
