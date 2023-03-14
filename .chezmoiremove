@@ -5,6 +5,7 @@
 .tmux/**
 .tmux/op_auth.sh
 Library/LaunchAgents/local.chezmoi-pull.plist
+.config/tmux/init_chezmoi_secrets.sh
 
 {{- if not .area.fetlife }}
 .s3cfg-fetlife
