@@ -19,4 +19,5 @@ stash:/myserver/stashappcc
 tmux:~/.config/tmux
 tmuxp:~/.tmuxp
 vim:~/.config/nvim
+watchtower:/myserver/watchtower
 wezterm:~/.config/wezterm
