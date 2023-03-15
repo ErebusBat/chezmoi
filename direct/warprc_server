@@ -6,6 +6,7 @@ gatus:/myserver/gatus
 gopass:~/.local/share/gopass/stores/root
 internal:/myserver/internal
 myserver:/myserver
+npm:/myserver/thelio-npm
 orbital-sync:/myserver/pihole-orbital-sync
 pchef:~/src/erebusbat/pchef76
 photoprisim:/myserver/photoprism
