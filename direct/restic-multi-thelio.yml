@@ -93,7 +93,8 @@ datasets:
         - cd /myserver/gitea && docker-compose stop
     post_commands:
       dataset_backup:
-        - cd /myserver/gitea && docker-compose start
+        - cd /myserver/gitea && docker-compose up -d
+        - curl -q http://uptime-kuma.erebusbat.net/api/push/0zBdwR9w3H?status=up&msg=OK&ping=
 
   obsidian:
     vault: erebusbat

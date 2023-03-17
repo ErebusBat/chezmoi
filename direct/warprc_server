@@ -3,11 +3,12 @@ chezmoi:~/.local/share/chezmoi
 dashy:/myserver/internal/dashy
 downloader:/myserver/downloader
 gatus:/myserver/gatus
+gitea:/myserver/gitea
 gopass:~/.local/share/gopass/stores/root
 internal:/myserver/internal
 myserver:/myserver
-npm_thelio:/myserver/thelio-npm
 npm_nuc:/myserver/nuc01-npm
+npm_thelio:/myserver/thelio-npm
 orbital-sync:/myserver/pihole-orbital-sync
 pchef:~/src/erebusbat/pchef76
 photoprisim:/myserver/photoprism
@@ -20,6 +21,7 @@ restic:~/.restic
 stash:/myserver/stashappcc
 tmux:~/.config/tmux
 tmuxp:~/.tmuxp
+utils:/myserver/utils
 vim:~/.config/nvim
 watchtower:/myserver/watchtower
 wezterm:~/.config/wezterm

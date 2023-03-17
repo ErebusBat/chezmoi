@@ -353,9 +353,11 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
     end
 
     unless (cmd_array = command_set[:pre]).empty?
-      log "EXEC  PRE: " + cmd_array.join(" ")
-      if !opts.dry_run
-        system *cmd_array
+      cmd_array.each do |cmd|
+        log "EXEC  PRE: " + cmd
+        if !opts.dry_run
+          system *cmd
+        end
       end
     end
 
@@ -367,9 +369,11 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
     end
 
     unless (cmd_array = command_set[:post]).empty?
-      log "EXEC POST: " + cmd_array.join(" ")
-      if !opts.dry_run
-        system *cmd_array
+      cmd_array.each do |cmd|
+        log "EXEC  POST: " + cmd
+        if !opts.dry_run
+          system *cmd
+        end
       end
     end
 
@@ -380,9 +384,11 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
   end
 
   unless (cmd_array = dataset.fetch(:post_commands, {}).fetch("dataset_#{cmd}", [])).empty?
-    log "EXEC  DS-POST: " + cmd_array.join(" ")
-    if !opts.dry_run
-      system *cmd_array
+    cmd_array.each do |cmd|
+      log "EXEC  DS-POST: " + cmd
+      if !opts.dry_run
+        system *cmd
+      end
     end
   end
 
