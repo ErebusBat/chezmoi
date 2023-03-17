@@ -78,7 +78,7 @@ datasets:
       exclude: .DS_Store
     post_commands:
       dataset_backup:
-        - curl -s http://uptime-kuma.erebusbat.net/api/push/w6NdR9GvPb?status=up&msg=OK&ping=
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/w6NdR9GvPb?status=up&msg=OK&ping='
 
   src:
     vault: erebusbat
@@ -88,7 +88,7 @@ datasets:
       exclude: ~/src/sie
     post_commands:
       dataset_backup:
-        - curl -s http://uptime-kuma.erebusbat.net/api/push/cY5MUMy3Yv?status=up&msg=OK&ping=
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/cY5MUMy3Yv?status=up&msg=OK&ping='
 
   tguest:
     vault: tguest
@@ -101,7 +101,7 @@ datasets:
         - guest/shc_query_service/tmp/
     post_commands:
       dataset_backup:
-        - curl -s http://uptime-kuma.erebusbat.net/api/push/DsPMC5Nlfe?status=up&msg=OK&ping=
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/DsPMC5Nlfe?status=up&msg=OK&ping='
 
   tguest_no_frontend:
     vault: tguest
@@ -136,7 +136,7 @@ datasets:
       exclude-caches: true
     post_commands:
       dataset_backup:
-        - curl -s http://uptime-kuma.erebusbat.net/api/push/55dflCicIq?status=up&msg=OK&ping=
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/55dflCicIq?status=up&msg=OK&ping='
 
 defaults:
   latest: 1

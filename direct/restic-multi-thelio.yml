@@ -82,7 +82,7 @@ datasets:
         - /myserver/stashappcc/data/media_incoming/
     post_commands:
       dataset_backup:
-        - curl -s http://uptime-kuma.erebusbat.net/api/push/0wyUz6qHDS?status=up&msg=OK&ping=
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/0wyUz6qHDS?status=up&msg=OK&ping='
 
   # gitea_cold _must_ be ran as root
   gitea_cold:
@@ -97,7 +97,7 @@ datasets:
     post_commands:
       dataset_backup:
         - cd /myserver/gitea && docker-compose up -d
-        - curl -s http://uptime-kuma.erebusbat.net/api/push/0zBdwR9w3H?status=up&msg=OK&ping=
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/0zBdwR9w3H?status=up&msg=OK&ping='
 
   obsidian:
     vault: erebusbat
@@ -108,7 +108,7 @@ datasets:
       - obsidian
     post_commands:
       dataset_backup:
-        - curl -s http://uptime-kuma.erebusbat.net/api/push/wTU4mguCVS?status=up&msg=OK&ping=
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/wTU4mguCVS?status=up&msg=OK&ping='
 
   src:
     vault: erebusbat
@@ -125,7 +125,7 @@ datasets:
         - ~/src/pers/pchef76/tmp/
     post_commands:
       dataset_backup:
-        - curl -s http://uptime-kuma.erebusbat.net/api/push/Uqkxc6x5FB?status=up&msg=OK&ping=
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/Uqkxc6x5FB?status=up&msg=OK&ping='
 
   home:
     vault: restic

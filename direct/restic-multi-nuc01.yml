@@ -46,7 +46,7 @@ datasets:
       exclude_larger_than: 100M
     post_commands:
       dataset_backup:
-        - curl -s http://uptime-kuma.erebusbat.net/api/push/ZcaGeElLBW?status=up&msg=OK&ping=
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/ZcaGeElLBW?status=up&msg=OK&ping='
 
   plex:
     vault: plex
@@ -68,7 +68,7 @@ datasets:
     post_commands:
       dataset_backup:
         - cd /myserver/plex && docker-compose up -d
-        - curl -s http://uptime-kuma.erebusbat.net/api/push/rR6zls55F6?status=up&msg=OK&ping=
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/rR6zls55F6?status=up&msg=OK&ping='
 
 defaults:
   latest: 1
