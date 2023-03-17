@@ -76,12 +76,19 @@ datasets:
     restic_opts:
       exclude-caches: true
       exclude: .DS_Store
+    post_commands:
+      dataset_backup:
+        - curl -s http://uptime-kuma.erebusbat.net/api/push/w6NdR9GvPb?status=up&msg=OK&ping=
+
   src:
     vault: erebusbat
     paths:
       - ~/src
     restic_opts:
       exclude: ~/src/sie
+    post_commands:
+      dataset_backup:
+        - curl -s http://uptime-kuma.erebusbat.net/api/push/cY5MUMy3Yv?status=up&msg=OK&ping=
 
   tguest:
     vault: tguest
@@ -92,6 +99,10 @@ datasets:
         - ~/src/sie/my_docker_env
         - guest/server/tmp/
         - guest/shc_query_service/tmp/
+    post_commands:
+      dataset_backup:
+        - curl -s http://uptime-kuma.erebusbat.net/api/push/DsPMC5Nlfe?status=up&msg=OK&ping=
+
   tguest_no_frontend:
     vault: tguest
     paths:
@@ -108,6 +119,7 @@ datasets:
         - ~/src/sie/server/web/
         - ~/src/sie/server/server/
         - ~/src/sie/shc_query_service/tmp/
+
   tguest_cold:
     vault: tguest
     tags:
@@ -122,6 +134,10 @@ datasets:
       - ~/src/sie
     restic_opts:
       exclude-caches: true
+    post_commands:
+      dataset_backup:
+        - curl -s http://uptime-kuma.erebusbat.net/api/push/55dflCicIq?status=up&msg=OK&ping=
+
 defaults:
   latest: 1
 
