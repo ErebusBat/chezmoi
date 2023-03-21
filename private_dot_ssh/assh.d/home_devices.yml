@@ -53,9 +53,13 @@ hosts:
   #   Inherits: raspi
   # hass:
   #   Inherits: hassio
-  freenas:
+  truenas:
     Hostname: 192.168.68.80
     Inherits: personal
+  freenas:
+    Inherits: truenas
+  nas:
+    Inherits: truenas
   nuc-deco:
     Inherits: personal
     Hostname: 192.168.69.69
