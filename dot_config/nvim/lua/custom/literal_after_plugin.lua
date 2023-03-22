@@ -26,6 +26,8 @@ vim.keymap.set('v', '<F12>', '"+y', { desc = 'Copy selection', noremap = true })
 vim.keymap.set('n', '<leader>yf', 'gg"+yG', { desc = 'Yank File', noremap = true })
 vim.keymap.set('n', 'Y', 'y$', { desc = 'Yank Line', noremap = true })
 vim.keymap.set('n', '<F7>', 'gg"+yG', { desc = 'Yank File', noremap = true })
+vim.keymap.set('n', '<leader>cp', '<CMD>let @+=expand("%")<CR><CMD>echo "Copied: " expand("%")<CR>', { desc = '[C]opy [P]roject path', noremap = true } )
+vim.keymap.set('n', '<leader>cf', '<CMD>let @+=expand("%:p")<CR><CMD>echo "Copied: " expand("%:p")<CR>', { desc = '[C]opy [F]ull path', noremap = true } )
 
 -- Save
 vim.keymap.set('n', '<C-s>', ':wa<CR>', { desc = 'Save', noremap = true })
