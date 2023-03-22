@@ -1,3 +1,4 @@
 return {
-  'PProvost/vim-ps1'
+  'PProvost/vim-ps1',
+  ft = { 'ps1' },
 }
