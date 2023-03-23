@@ -14,6 +14,7 @@ clean:
 static: clean compile gen_sums
 
 compile:
+	@echo "# Cache file Invalidated, REBUILDING IN PROGRESS, started at $(shell date)"> .shasum
 	@echo "\n*** [static] Compling antibody into static startup script..."
 	antibody bundle < $(PLUGINS) > $(STATIC)
 	zsh -c 'autoload -Uz compinit; compinit; compdump; zcompile $(STATIC); zcompile $(COMPDUMP)'
