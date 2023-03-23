@@ -1,0 +1,9 @@
+#!/bin/bash
+if [[ ! -x ~/bin/bin ]]; then
+        echo "Could not find 'bin' binary"
+        exit 1
+fi
+{{ $filePath := joinPath .chezmoi.homeDir "/.config/bin/config.json" }}
+# Config HASH: {{ include $filePath | sha256sum }} ~/.config/bin/config.json
+cd ~
+~/bin/bin ensure
