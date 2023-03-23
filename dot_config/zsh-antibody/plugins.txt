@@ -4,6 +4,7 @@ ohmyzsh/ohmyzsh path:plugins/wd
 ~/.config/zsh-antibody/exa type:zsh
 
 # Dev Stuff
+~/.config/zsh-antibody/docker type:zsh
 ~/.config/zsh-antibody/git type:zsh
 ~/.config/zsh-antibody/golang type:zsh
 ~/.config/zsh-antibody/rbenv type:zsh

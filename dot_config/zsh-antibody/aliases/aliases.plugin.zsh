@@ -8,6 +8,9 @@ alias du="du -h"
 alias hgrep='history 0 | grep'
 alias h='history 0 | tail -50'
 
+alias cp='cp -v'
+alias mv='mv -v'
+
 function todo() {
   local projID=377155580 # Inbox
   local task=$1
