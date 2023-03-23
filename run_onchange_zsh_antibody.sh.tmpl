@@ -3,7 +3,15 @@ if [[ ! -x ~/bin/bin ]]; then
         echo "Could not find 'bin' binary"
         exit 1
 fi
-{{ $filePath := joinPath .chezmoi.homeDir "/.config/bin/config.json" }}
-# Config HASH: {{ include $filePath | sha256sum }} ~/.config/bin/config.json
-cd ~
-~/bin/bin ensure
+{{ $theDir := joinPath .chezmoi.homeDir "/.config/zsh-antibody/" }}
+{{ $sumFilePath := joinPath $theDir ".shasum" -}}
+# Config HASH: {{ include $sumFilePath | sha256sum }} {{ $sumFilePath }}
+
+echo "################################################################################"
+echo "# Rebuilding ZSH Antibody Static File"
+echo "################################################################################"
+cd {{ $theDir }}
+make static
+echo "##################################### DONE #####################################"
+echo "  WARNING: You will need to re-launch any open shells to get changes"
+echo "################################################################################"
