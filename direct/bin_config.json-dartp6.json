@@ -14,7 +14,7 @@
             "path": "/home/aburns/bin/bin",
             "remote_name": "bin",
             "version": "v0.16.2",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hash": "",
             "url": "https://github.com/marcosnils/bin/releases/tag/v0.16.2",
             "provider": "",
             "package_path": ""
@@ -31,9 +31,9 @@
         "/home/aburns/bin/chezmoi": {
             "path": "/home/aburns/bin/chezmoi",
             "remote_name": "chezmoi",
-            "version": "v2.32.0",
+            "version": "v2.33.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.32.0",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.33.0",
             "provider": "",
             "package_path": ""
         },
@@ -62,7 +62,7 @@
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "https://github.com/bootandy/dust/releases/tag/v0.8.5",
             "provider": "",
-            "package_path": "dust-v0.8.5-x86_64-unknown-linux-gnu/dust"
+            "package_path": ""
         },
         "/home/aburns/bin/exa": {
             "path": "/home/aburns/bin/exa",
