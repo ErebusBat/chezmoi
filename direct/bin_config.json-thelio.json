@@ -62,7 +62,7 @@
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "https://github.com/bootandy/dust/releases/tag/v0.8.5",
             "provider": "",
-            "package_path": "dust-v0.8.5-x86_64-unknown-linux-gnu/dust"
+            "package_path": ""
         },
         "/home/aburns/bin/exa": {
             "path": "/home/aburns/bin/exa",
