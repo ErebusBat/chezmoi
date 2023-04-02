@@ -70,12 +70,8 @@ local config = {
 -- Host Specific Settings
 --
 config["text_background_opacity"] = 0.9
+config["font_size"] = 12
 if (hostname == 'MBP-ABURNS') then
-  -- wallpaper_enabled = false
-  -- wallpaper_to_use =   wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/doom-vfr-5k-sg-1800x1169.jpg'
-  -- wallpaper_to_use = wallpapers[#wallpapers]
-
-  -- wallpaper_enabled = false
   -- This can fail on linux, and we don't need it there so only call here
   local monitor_count = tablelength(wezterm.gui.screens()["by_name"])
   print("MBP-ABURNS monitor_count: " .. monitor_count)
@@ -89,10 +85,8 @@ if (hostname == 'MBP-ABURNS') then
   end
 elseif (hostname == 'thelio')  then
   config["font_size"] = 12
-
-  -- Don't use random wallpaper on thelio
-  -- wallpaper_to_use = wezterm.home_dir .. '/.config/wezterm/wallpaper/doom/slayer_mark_neon.jpg'
-  -- config["text_background_opacity"] = 0.5
+elseif (hostname == 'dartp6')  then
+  config["font_size"] = 10
 end
 
 --
