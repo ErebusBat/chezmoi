@@ -2,6 +2,15 @@
 GH_DEFAULT_ORG: tractionguest
 GH_DEFAULT_REPO: guest-server
 
+JIRA_PROJECT_SERVER_MAP:
+  signinsolutions:
+    - CU
+    - EINT
+    - SIS
+  tractionguest:
+    - SST
+    - "*"
+
 # Log Levels:
 # -1 Trace
 #  0 Debug
