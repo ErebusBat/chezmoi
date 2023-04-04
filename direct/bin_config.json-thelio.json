@@ -31,9 +31,9 @@
         "/home/aburns/bin/chezmoi": {
             "path": "/home/aburns/bin/chezmoi",
             "remote_name": "chezmoi",
-            "version": "v2.32.0",
+            "version": "v2.33.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.32.0",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.33.0",
             "provider": "",
             "package_path": ""
         },
@@ -85,11 +85,11 @@
         "/home/aburns/bin/fzf": {
             "path": "/home/aburns/bin/fzf",
             "remote_name": "fzf",
-            "version": "0.38.0",
+            "version": "0.39.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/junegunn/fzf/releases/tag/0.38.0",
+            "url": "https://github.com/junegunn/fzf/releases/tag/0.39.0",
             "provider": "",
-            "package_path": ""
+            "package_path": "fzf"
         },
         "/home/aburns/bin/jq": {
             "path": "/home/aburns/bin/jq",
