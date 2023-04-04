@@ -19,7 +19,7 @@ return {
   -- Git related plugins
   'tpope/vim-fugitive',
   'tpope/vim-rhubarb',
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- 'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
 
   -- System / Session Management
