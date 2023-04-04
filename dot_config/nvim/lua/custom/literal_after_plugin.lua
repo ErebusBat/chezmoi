@@ -3,8 +3,12 @@
 -- vim.cmd([[autocmd User PackerCompileDone source ~/.config/nvim/lua/custom/after_plugin.lua]])
 
 vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
 vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.smartindent = false
+vim.opt.smarttab = true
 
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume', noremap = true })
 vim.keymap.set('n', '<leader>gb', require('telescope.builtin').git_branches, { desc = '[G]it [B]ranches', noremap = true })
