@@ -15,6 +15,7 @@ gopass:~/.local/share/gopass/stores/root
 gosrcme:~/go/src/github.com/ErebusBat
 guest:~/src/sie
 hassio:~/src/erebusbat/hassio
+image-marker:~/src/erebusbat/image-marker
 journal:~/Documents/Journal
 jwtrails:~/src/sie/sisjwt-rails
 jwtrb:~/src/sie/sisjwt-ruby
