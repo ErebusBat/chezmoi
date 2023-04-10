@@ -84,7 +84,7 @@ if (hostname == 'MBP-ABURNS') then
     config["font_size"] = 12
   end
 elseif (hostname == 'thelio')  then
-  config["font_size"] = 12
+  config["font_size"] = 11
 elseif (hostname == 'dartp6')  then
   config["font_size"] = 10
 end
