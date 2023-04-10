@@ -4,7 +4,6 @@
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume', noremap = true })
@@ -50,7 +49,7 @@ vim.keymap.set('v', 'K', [[ :move '<-2<CR>gv=gv ]], { desc = 'Move line(s) up', 
 vim.keymap.set('n', '<leader>sm', [[ [mV]M ]], { desc = '[S]elect [M]ethod', noremap = true })
 vim.keymap.set('n', '<leader>ym', [[ mT[mV]M"+y`T ]], { desc = '[Y]ank [M]ethod (System Pasteboard)', noremap = true })
 
--- vim.keymap.set('n', '<leader><F12>', [[ :set ft=ruby<CR> ]], { desc = 'Set FileType to Ruby', noremap = true })
+vim.keymap.set('n', '<leader><F12>', [[ :set ft=ruby<CR> ]], { desc = 'Set FileType to Ruby', noremap = true })
 --------------------------------------------------------------------------------
 -- Colors / Appearance / Themes
 --------------------------------------------------------------------------------
@@ -76,7 +75,7 @@ vim.api.nvim_set_keymap("n", "<leader>rv", "<cmd>lua ReloadConfig()<CR>", { nore
 -- Source Control / Fugitive
 --------------------------------------------------------------------------------
 vim.cmd([[set diffopt+=vertical]])
-vim.api.nvim_set_keymap("n", "<leader>gs", "<CMD>w<CR><CMD>Git<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<leader>gs", ":Git<CR>", { noremap = true })
 
 -- Diff options
 -- vim.api.nvim_set_keymap("n", "<leader>gf", ":diffget //2<CR>", { noremap = true })
