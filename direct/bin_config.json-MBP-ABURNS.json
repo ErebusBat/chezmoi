@@ -127,6 +127,15 @@
             "provider": "github",
             "package_path": "spt"
         },
+        "/Users/andrew.burns/bin/xsv": {
+            "path": "/Users/andrew.burns/bin/xsv",
+            "remote_name": "xsv",
+            "version": "0.13.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/BurntSushi/xsv",
+            "provider": "github",
+            "package_path": "xsv"
+        },
         "restic": {
             "path": "/Users/andrew.burns/bin/restic",
             "remote_name": "",
