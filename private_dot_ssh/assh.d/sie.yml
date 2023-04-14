@@ -1,8 +1,5 @@
 hosts:
   mbp:
-    HostName: mbp-tguest
-    User: andrew.burns
-  mbpm1:
-    HostName: 192.168.68.101
+    HostName: mbp-aburns
     User: andrew.burns
 
