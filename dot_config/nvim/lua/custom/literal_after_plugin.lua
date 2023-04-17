@@ -47,8 +47,8 @@ vim.keymap.set('v', 'J', [[ :move '>+1<CR>gv=gv ]], { desc = 'Move line(s) down'
 vim.keymap.set('v', 'K', [[ :move '<-2<CR>gv=gv ]], { desc = 'Move line(s) up', noremap = true })
 
 -- Source Code Related
-vim.keymap.set('n', '<leader>sm', [[ [mV]M ]], { desc = '[S]elect [M]ethod', noremap = true })
-vim.keymap.set('n', '<leader>ym', [[ mT[mV]M"+y`T ]], { desc = '[Y]ank [M]ethod (System Pasteboard)', noremap = true })
+vim.keymap.set('n', '<leader>sm', '[mV]M', { desc = '[S]elect [M]ethod', noremap = false })
+vim.keymap.set('n', '<leader>ym', 'mT[mV]M"+y`T', { desc = '[Y]ank [M]ethod (System Pasteboard)', noremap = false })
 
 -- vim.keymap.set('n', '<leader><F12>', [[ :set ft=ruby<CR> ]], { desc = 'Set FileType to Ruby', noremap = true })
 --------------------------------------------------------------------------------
@@ -169,6 +169,14 @@ vim.keymap.set('i', '(', '(<C-g>u', { desc = 'Create a undo block', noremap = tr
 vim.keymap.set('i', ')', ')<C-g>u', { desc = 'Create a undo block', noremap = true })
 vim.keymap.set('i', '[', '[<C-g>u', { desc = 'Create a undo block', noremap = true })
 vim.keymap.set('i', ']', ']<C-g>u', { desc = 'Create a undo block', noremap = true })
+
+
+-- Alice copy block (see tguest/logs/2021-11-12.md#vim) and [[2022-04-20-Wed#Alice VIM]]
+-- vim.cmd('autocmd FileType vimwiki nnoremap g<C-p> :Git push<CR>')
+-- autocmd FileType vimwiki nnoremap <leader>fal :set ts=2 sts=2 noet<CR>gv:retab!<CR>:set ts=4 sts=4 shiftwidth=4 et<CR>gv:retab<CR>
+-- autocmd FileType vimwiki nnoremap <leader>ald :set ts=2 sts=2 shiftwidth=2 et<CR>
+-- autocmd FileType vimwiki vnoremap <leader>al <gv"+ygv>gv<ESC>jj0ww
+-- autocmd FileType vimwiki nnoremap <leader>al V<gv"+ygv>gv<ESC>jj0ww
 
 -- solargraph config
 

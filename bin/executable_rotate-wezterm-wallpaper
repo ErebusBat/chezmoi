@@ -21,7 +21,12 @@ function touch_config() {
     echo "WALLPAPER_LUA_FILE ($WALLPAPER_LUA_FILE) does not exist, attempting to generate"
     ~/.config/wezterm/build-wallpapers.rb
   fi
-  touch $CONFIG_FILE
+  if [[ -x ~/.config/wezterm/build-wallpapers.rb ]]; then
+    echo "Attempting to re-generate wallpapers"
+    ~/.config/wezterm/build-wallpapers.rb
+  else
+    touch $CONFIG_FILE
+  fi
 }
 
 if [[ -z $1 ]]; then
