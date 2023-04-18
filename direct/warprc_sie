@@ -23,6 +23,7 @@ kiosk:~/src/sie/kiosk
 library:~/Dropbox/Library
 linuxserver.io:~/src/pers/linuxserver.io
 mm:~/src/erebusbat/mm
+mmm:~/src/erebusbat/myserver/mmm
 myserver:~/src/erebusbat/myserver
 nebula:~/src/erebusbat/nebula/ca-batcavern
 pchef:~/src/erebusbat/pchef76
