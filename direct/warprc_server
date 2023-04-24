@@ -6,6 +6,7 @@ gatus:/myserver/gatus
 gitea:/myserver/gitea
 gopass:~/.local/share/gopass/stores/root
 internal:/myserver/internal
+mmm:/myserver/mmm
 myserver:/myserver
 npm_nuc:/myserver/nuc01-npm
 npm_thelio:/myserver/thelio-npm
