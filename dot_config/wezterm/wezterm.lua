@@ -81,7 +81,7 @@ if (hostname == 'MBP-ABURNS') then
     background_hsb["brightness"] = 0.02
     config["font_size"] = 14
   else
-    config["font_size"] = 12
+    config["font_size"] = 14
   end
 elseif (hostname == 'thelio')  then
   config["font_size"] = 11
