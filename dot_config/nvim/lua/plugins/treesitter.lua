@@ -12,7 +12,7 @@ return { -- Highlight, edit, and navigate code
       ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'vim', 'ruby' },
 
       highlight = { enable = true },
-      indent = { enable = true, disable = { 'python' } },
+      indent = { enable = false, disable = { 'python' } },
       incremental_selection = {
         enable = true,
         keymaps = {
