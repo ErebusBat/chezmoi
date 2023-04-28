@@ -13,7 +13,7 @@ targets:
 
   airplane:
     enabled: true
-    uri: /Users/andrew.burns/.cache/restic_local/
+    uri: /Users/andrew.burns/.cache/restic_local
     # checks:
     #   local_path:
 
