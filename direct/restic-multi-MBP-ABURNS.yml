@@ -11,6 +11,12 @@ targets:
     checks:
       ping: :host
 
+  airplane:
+    enabled: true
+    uri: /Users/andrew.burns/.cache/restic_local/
+    # checks:
+    #   local_path:
+
   # batpi:
   #   uri: rest:http://aabmbp:3R7ZEADxYz@batpi.erebusbat.net:8000
   #   checks:
@@ -41,6 +47,7 @@ targets:
     uri: /Volumes/usbt_red/.bak
     checks:
       local_path:
+
 vaults:
   erebusbat:
     keyfile: ~/.restic/.erebusbat.key

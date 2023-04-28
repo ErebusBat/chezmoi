@@ -510,8 +510,9 @@ def main
     do_cleanup(opts, dataset, policy_name: ARGV.shift)
   when "eval"
     target_name = ARGV.shift
+    fatal! "USAGE: DATASET eval TARGET" if target_name.to_s.strip.size == 0
     target = opts.available_targets[target_name]
-    fatal! "Unknown or unavailable target #{target_name}" if target.nil?
+    fatal! "Unknown or unavailable target: #{target_name}" if target.nil?
     do_eval(opts, dataset, target)
   else
     fatal! "Unknown command #{command}"
