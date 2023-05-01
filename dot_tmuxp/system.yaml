@@ -35,6 +35,16 @@ windows:
     - pane:
       focus: true
 
+- window_name: servers
+  options:
+    automatic-rename: 'off'
+  suppress_history: false
+  panes:
+    - shell_command:
+        - ssh nuc
+    - shell_command:
+        - ssh thelio
+
 # - window_name: stow
 #   panes:
 #     - shell_command:

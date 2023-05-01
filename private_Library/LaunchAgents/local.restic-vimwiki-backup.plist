@@ -9,7 +9,7 @@
 		<key>HOME</key>
 		<string>/Users/andrew.burns</string>
 		<key>PATH</key>
-		<string>/usr/local/bin:/bin:/usr/bin:/sbin</string>
+		<string>/Users/andrew.burns/bin:/usr/local/bin:/bin:/usr/bin:/sbin</string>
 	</dict>
 	<key>Label</key>
 	<string>local.restic-vimwiki-backup</string>

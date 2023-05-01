@@ -6,6 +6,7 @@ targets:
       ping: :host
 
   minio:
+    enabled: false
     uri: s3:http://nas.erebusbat.net:9000/restic
     env_file: ~/.restic/.freenas-minio-creds.env
     checks:
@@ -77,14 +78,13 @@ datasets:
     paths:
       - ~/Documents/Obsidian/vimwiki
       - ~/Documents/Obsidian/Journal
-      - ~/Documents/Obsidian/KnotsAndThoughts
     tags:
       - obsidian
     restic_opts:
       exclude-caches: true
       exclude: .DS_Store
     post_commands:
-      dataset_backup:
+      backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/w6NdR9GvPb?status=up&msg=OK&ping='
 
   src:

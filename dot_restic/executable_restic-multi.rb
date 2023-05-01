@@ -347,6 +347,7 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
   end
 
   commands = build_commands(opts, dataset, cmd)
+  had_errors = false
   commands.each do |tname, command_set|
     ENV["RESTIC_MULTI_TARGET"] = tname
     log "▼▼▼▼▼ #{tname} ".ljust(80, "▼")
@@ -362,6 +363,7 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
           ret_val = system(*cmd)
           if !ret_val
             log "PRE command failed! #{$?}", prefix: "ERROR: "
+            had_errors = true
             next
           end
         end
@@ -374,7 +376,9 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
     if !opts.dry_run
       ret_val = system(*cmd_array)
       if !ret_val
+        # fatal! "Restic command failed! #{$?}"
         log "Restic command failed! #{$?}", prefix: "ERROR: "
+        had_errors = true
         next
       end
     end
@@ -386,6 +390,7 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
           ret_val = system(*cmd)
           if !ret_val
             log "POST command failed! #{$?}", prefix: "ERROR: "
+            had_errors = true
             next
           end
         end
@@ -398,6 +403,7 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
     log "▲▲▲▲▲ #{tname} ".ljust(80, "▲")
   end
 
+  # Post Commands
   unless (cmd_array = dataset.fetch(:post_commands, {}).fetch("dataset_#{cmd}", [])).empty?
     cmd_array.each do |cmd|
       log "EXEC  DS-POST: " + cmd
@@ -405,6 +411,20 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
         ret_val = system(*cmd)
         if !ret_val
           log "DS-POST command failed! #{$?}", prefix: "ERROR: "
+        end
+      end
+    end
+  end
+  # Post - backup_success
+  if had_errors
+    log "Dataset had errors, not running post success commands"
+  elsif !(cmd_array = dataset.fetch(:post_commands, {}).fetch("#{cmd}_success", [])).empty?
+    cmd_array.each do |cmd|
+      log "EXEC  DS-SUCCESS: " + cmd
+      if !opts.dry_run
+        ret_val = system(*cmd)
+        if !ret_val
+          log "DS-SUCCESS command failed! #{$?}", prefix: "ERROR: "
         end
       end
     end
