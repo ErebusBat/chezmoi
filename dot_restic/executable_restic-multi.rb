@@ -12,6 +12,11 @@ BACKUP_ONLY_ARGS = %w(exclude exclude_file exclude_larger_than exclude-caches).f
 class ResticConfig
   attr_accessor :file, :dry_run, :additional_tags, :only_targets, :not_targets, :perform_target_checks, :latest
 
+  def restic_bin_path
+    return @restic_bin_path unless @restic_bin_path.nil?
+    @restic_bin_path = `which restic`.strip
+  end
+
   def self.from_args_and_file!(path: "~/.restic-multi.yml")
     path = Pathname.new(path).expand_path
 
@@ -170,8 +175,18 @@ class ResticConfig
     Shellwords.escape(target["uri"] + "/" + vault["name"])
   end
 
-  def build_restic_command(target:, vault: , cmd: nil)
-    args = %w(restic)
+  def build_restic_command(target:, vault: , cmd: nil, sudo: false)
+    args = []
+
+    if sudo
+      # Use full path when using sudo
+      args += [
+        "sudo",
+        restic_bin_path,
+      ]
+    else
+      args << "restic"
+    end
 
     args += [
       "-r",
@@ -239,7 +254,7 @@ def build_commands(opts, dataset, cmd)
 
     cmds[:pre] = dataset.fetch("pre_commands", {}).fetch(cmd, []) #.map! { |c| c.end_with?(";") ? c : "#{c};" }
 
-    cmds[:cmd] = opts.build_restic_command(target: target, vault: dataset.vault, cmd: cmd)
+    cmds[:cmd] = opts.build_restic_command(target: target, vault: dataset.vault, cmd: cmd, sudo: dataset.fetch("sudo", false))
 
     cmds[:post] = dataset.fetch("post_commands", {}).fetch(cmd, []) #.map! { |c| c.end_with?(";") ? c : "#{c};" }
 
