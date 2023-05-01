@@ -11,6 +11,7 @@ targets:
       ping: :host
 
   batpi:
+    enabled: false
     uri: rest:http://plex:brMNwbwGXJ@batpi.erebusbat.net:8000
     checks:
       ping: :host

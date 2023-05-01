@@ -339,7 +339,10 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
   unless (cmd_array = dataset.fetch(:pre_commands, {}).fetch("dataset_#{cmd}", [])).empty?
     log "EXEC  DS-PRE: " + cmd_array.join(" ")
     if !opts.dry_run
-      system *cmd_array
+      ret_val = system(*cmd_array)
+      if !ret_val
+        fatal! "DS-PRE command failed! #{$?}"
+      end
     end
   end
 
@@ -356,7 +359,11 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
       cmd_array.each do |cmd|
         log "EXEC  PRE: " + cmd
         if !opts.dry_run
-          system *cmd
+          ret_val = system(*cmd)
+          if !ret_val
+            log "PRE command failed! #{$?}", prefix: "ERROR: "
+            next
+          end
         end
       end
     end
@@ -365,14 +372,22 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
     cmd_array += extra_args
     log "     EXEC: " + cmd_array.join(" ")
     if !opts.dry_run
-      system *cmd_array
+      ret_val = system(*cmd_array)
+      if !ret_val
+        log "Restic command failed! #{$?}", prefix: "ERROR: "
+        next
+      end
     end
 
     unless (cmd_array = command_set[:post]).empty?
       cmd_array.each do |cmd|
         log "EXEC  POST: " + cmd
         if !opts.dry_run
-          system *cmd
+          ret_val = system(*cmd)
+          if !ret_val
+            log "POST command failed! #{$?}", prefix: "ERROR: "
+            next
+          end
         end
       end
     end
@@ -387,7 +402,10 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
     cmd_array.each do |cmd|
       log "EXEC  DS-POST: " + cmd
       if !opts.dry_run
-        system *cmd
+        ret_val = system(*cmd)
+        if !ret_val
+          log "DS-POST command failed! #{$?}", prefix: "ERROR: "
+        end
       end
     end
   end
@@ -438,7 +456,7 @@ def do_backup(opts, dataset)
   paths = dataset.paths.map do |path|
     next if path.nil?
     p = Pathname.new(path).expand_path
-    Shellwords.escape(p.to_s)
+    p.to_s
   end.compact
 
   tags = get_cmd_tags(opts, dataset)
