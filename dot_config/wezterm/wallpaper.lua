@@ -4,13 +4,10 @@ function tablelength(T)
   return count
 end
 
--- local wezterm = require 'wezterm';
--- local wallpaper_enabled = true
-
 local wallpapers = require('wallpapers')
 local wallpaper_to_use = wallpapers[math.random(#wallpapers)]
 
 return {
   File = wallpaper_to_use,
-  Enabled = true,
+  Enabled = false,
 }

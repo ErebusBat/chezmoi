@@ -44,6 +44,9 @@ fi
 if [[ -f ~/.config/chezmoi/chezmoi.toml ]]; then
   alias vicz='vim ~/.config/chezmoi/chezmoi.toml'
 fi
+if [[ -x ~/.restic/restic-multi.rb ]]; then
+  alias restic-multi="$HOME/.restic/restic-multi.rb"
+fi
 
 ################################################################################
 # Editing / Navigation / File Management
