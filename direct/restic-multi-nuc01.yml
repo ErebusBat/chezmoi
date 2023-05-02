@@ -1,6 +1,7 @@
 ---
 targets:
   local_ssd:
+    sudo: true
     uri: /scratch/restic
     checks:
       local_path:
