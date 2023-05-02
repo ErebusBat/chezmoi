@@ -75,6 +75,7 @@ policies:
 
 datasets:
   obsidian:
+    sudo: false
     vault: erebusbat
     paths:
       - ~/Documents/Obsidian/vimwiki

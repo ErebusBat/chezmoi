@@ -170,10 +170,16 @@ class ResticConfig
     Shellwords.escape(target["uri"] + "/" + vault["name"])
   end
 
-  def build_restic_command(target:, vault: , cmd: nil)
+  def build_restic_command(target:, vault:, dataset:, cmd: nil)
     args = []
 
-    if target.fetch("sudo", false)
+    # Should we use sudo?  It can be set on the target level
+    # OR the dataset level
+    sudo = false
+    sudo ||= target.fetch("sudo", false)
+    sudo ||= dataset.fetch("sudo", false)
+
+    if sudo
       args << 'sudo'
     end
     args << `which restic`.strip
@@ -244,7 +250,7 @@ def build_commands(opts, dataset, cmd)
 
     cmds[:pre] = dataset.fetch("pre_commands", {}).fetch(cmd, []) #.map! { |c| c.end_with?(";") ? c : "#{c};" }
 
-    cmds[:cmd] = opts.build_restic_command(target: target, vault: dataset.vault, cmd: cmd)
+    cmds[:cmd] = opts.build_restic_command(target: target, vault: dataset.vault, cmd: cmd, dataset: dataset)
 
     cmds[:post] = dataset.fetch("post_commands", {}).fetch(cmd, []) #.map! { |c| c.end_with?(";") ? c : "#{c};" }
 
