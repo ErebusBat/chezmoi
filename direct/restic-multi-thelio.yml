@@ -91,6 +91,9 @@ datasets:
         - /myserver/stashappcc/data/media/
         - /myserver/stashappcc/data/media_incoming/
         - /myserver/stashappcc/data/metadata/
+    pre_commands:
+      dataset_backup:
+        - /home/aburns/.restic/dump_docker_info /myserver/.dockerinfo
     post_commands:
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/0wyUz6qHDS?status=up&msg=OK&ping='
@@ -101,10 +104,12 @@ datasets:
     sudo: true
     paths:
       - /myserver/gitea
+      - /myserver/.dockerinfo
     tags:
       - cold
     pre_commands:
       dataset_backup:
+        - /home/aburns/.restic/dump_docker_info /myserver/.dockerinfo
         - cd /myserver/gitea && docker-compose stop
     post_commands:
       dataset_backup:

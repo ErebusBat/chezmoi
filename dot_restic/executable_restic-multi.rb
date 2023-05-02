@@ -347,12 +347,14 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
   extra_args += hash_to_restic_args(dataset["restic_opts"], exclude_restic_args: exclude_restic_args)
   extra_args += post_args
 
-  unless (cmd_array = dataset.fetch(:pre_commands, {}).fetch("dataset_#{cmd}", [])).empty?
-    log "EXEC  DS-PRE: " + cmd_array.join(" ")
-    if !opts.dry_run
-      ret_val = system(*cmd_array)
-      if !ret_val
-        fatal! "DS-PRE command failed! #{$?}"
+  unless (cmd_array_lines = dataset.fetch(:pre_commands, {}).fetch("dataset_#{cmd}", [])).empty?
+    cmd_array_lines.each do |cmd_array|
+      log "EXEC  DS-PRE: " + cmd_array
+      if !opts.dry_run
+        ret_val = system(*cmd_array)
+        if !ret_val
+          fatal! "DS-PRE command failed! #{$?}"
+        end
       end
     end
   end

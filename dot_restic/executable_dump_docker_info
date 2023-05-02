@@ -1,5 +1,6 @@
 #!/bin/zsh
 set -e
+unsetopt nomatch
 OUTPUT_FOLDER=$1
 if [[ -z $OUTPUT_FOLDER ]]; then
   echo "USAGE: $0 [OUTPUT_FOLDER]"
@@ -24,5 +25,12 @@ for cid in $CONTAINER_IDS; do
   file_name="container_${name}-${cid}.json"
   echo "${name} - $cid"
 
+  # Cleanup older images
+  file_pattern=$OUTPUT_FOLDER/container_$name-*.json
+  if [[ -n $(ls ${~file_pattern} 2>/dev/null) ]]; then
+    rm -f ${~file_pattern} #2>/dev/null
+  fi
+
+  # Copy into final output
   cp $TMP_FILE $OUTPUT_FOLDER/$file_name
 done
