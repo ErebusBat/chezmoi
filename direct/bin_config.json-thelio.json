@@ -10,6 +10,15 @@
             "provider": "",
             "package_path": ""
         },
+        "/home/aburns/bin/bat": {
+            "path": "/home/aburns/bin/bat",
+            "remote_name": "bat",
+            "version": "v0.23.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/sharkdp/bat",
+            "provider": "github",
+            "package_path": "bat-v0.23.0-x86_64-unknown-linux-gnu/bat"
+        },
         "/home/aburns/bin/bin": {
             "path": "/home/aburns/bin/bin",
             "remote_name": "bin",

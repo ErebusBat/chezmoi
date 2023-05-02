@@ -7,24 +7,28 @@ targets:
   tmp:
     enabled: false
     uri: /tmp
+    sudo: true
     checks:
       local_path:
 
   # USB Thumb - Sandisk Orange
   usbt_sandisk_orange:
     uri: /media/aburns/BigOrgange/.bak
+    sudo: true
     checks:
       local_path:
 
   # USB Thumb Backup - Black
   usbt_black:
     uri: /media/aburns/usbt_black/.bak
+    sudo: true
     checks:
       local_path:
 
   # USB Thumb Backup - Red
   usbt_red:
     uri: /media/aburns/usbt_red/.bak
+    sudo: true
     checks:
       local_path:
 
@@ -71,6 +75,7 @@ policies:
 datasets:
   myserver:
     vault: erebusbat
+    sudo: true
     paths:
       - /myserver
     restic_opts:
@@ -79,8 +84,13 @@ datasets:
         - /myserver/downloader/tubesync/
         - /myserver/gitea/
         - /myserver/plex/
+        - /myserver/stashappcc/data/blobs/
+        - /myserver/stashappcc/data/cache/
+        - /myserver/stashappcc/data/generated/
+        - /myserver/stashappcc/data/lost+found/
         - /myserver/stashappcc/data/media/
         - /myserver/stashappcc/data/media_incoming/
+        - /myserver/stashappcc/data/metadata/
     post_commands:
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/0wyUz6qHDS?status=up&msg=OK&ping='
