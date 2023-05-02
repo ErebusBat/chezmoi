@@ -46,7 +46,7 @@ datasets:
       - /myserver
     restic_opts:
       exclude_file: /myserver/support/nuc01/restic-hourly-excludes
-      exclude_larger_than: 100M
+      # exclude_larger_than: 100M
     post_commands:
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/ZcaGeElLBW?status=up&msg=OK&ping='
