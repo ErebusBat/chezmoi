@@ -144,6 +144,8 @@ datasets:
       - ~/src/sie
     restic_opts:
       exclude-caches: true
+      exclude:
+        - ~/src/sie/influxtest/data/config/
     post_commands:
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/55dflCicIq?status=up&msg=OK&ping='
