@@ -13,7 +13,7 @@ targets:
       ping: :host
 
   airplane:
-    enabled: true
+    enabled: false
     sudo: false
     uri: /Users/andrew.burns/.cache/restic_local
     # checks:

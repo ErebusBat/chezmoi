@@ -10,6 +10,15 @@
             "provider": "github",
             "package_path": "assh"
         },
+        "/Users/andrew.burns/bin/bat": {
+            "path": "/Users/andrew.burns/bin/bat",
+            "remote_name": "bat",
+            "version": "v0.23.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/sharkdp/bat",
+            "provider": "github",
+            "package_path": "bat-v0.23.0-x86_64-apple-darwin/bat"
+        },
         "/Users/andrew.burns/bin/bin": {
             "path": "/Users/andrew.burns/bin/bin",
             "remote_name": "bin",
