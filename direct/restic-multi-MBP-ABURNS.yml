@@ -54,6 +54,7 @@ vaults:
     keyfile: ~/.restic/.erebusbat.key
   tguest:
     keyfile: ~/.restic/.traction_guest.key
+    sudo: false
 policies:
   unspecified:
     keep_last: 7
