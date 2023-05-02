@@ -173,7 +173,7 @@ class ResticConfig
   def build_restic_command(target:, vault: , cmd: nil)
     args = []
 
-    if vault.fetch("sudo", false)
+    if target.fetch("sudo", false)
       args << 'sudo'
     end
     args << `which restic`.strip

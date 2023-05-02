@@ -13,7 +13,8 @@ targets:
       ping: :host
 
   airplane:
-    enabled: false
+    enabled: true
+    sudo: false
     uri: /Users/andrew.burns/.cache/restic_local
     # checks:
     #   local_path:
@@ -54,7 +55,6 @@ vaults:
     keyfile: ~/.restic/.erebusbat.key
   tguest:
     keyfile: ~/.restic/.traction_guest.key
-    sudo: false
 policies:
   unspecified:
     keep_last: 7
