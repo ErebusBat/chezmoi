@@ -31,9 +31,9 @@
         "/home/aburns/bin/chezmoi": {
             "path": "/home/aburns/bin/chezmoi",
             "remote_name": "chezmoi",
-            "version": "v2.33.0",
+            "version": "v2.33.3",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.33.0",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.33.3",
             "provider": "",
             "package_path": ""
         },
@@ -85,9 +85,9 @@
         "/home/aburns/bin/fzf": {
             "path": "/home/aburns/bin/fzf",
             "remote_name": "fzf",
-            "version": "0.39.0",
+            "version": "0.40.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/junegunn/fzf/releases/tag/0.39.0",
+            "url": "https://github.com/junegunn/fzf/releases/tag/0.40.0",
             "provider": "",
             "package_path": "fzf"
         },
@@ -112,18 +112,18 @@
         "/home/aburns/bin/lazygit": {
             "path": "/home/aburns/bin/lazygit",
             "remote_name": "lazygit",
-            "version": "v0.37.0",
+            "version": "v0.38.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.37.0",
+            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.38.1",
             "provider": "",
-            "package_path": ""
+            "package_path": "lazygit"
         },
         "/home/aburns/bin/restic": {
             "path": "/home/aburns/bin/restic",
             "remote_name": "",
-            "version": "v0.15.1",
+            "version": "v0.15.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/restic/restic/releases/tag/v0.15.1",
+            "url": "https://github.com/restic/restic/releases/tag/v0.15.2",
             "provider": "",
             "package_path": ""
         },
@@ -148,11 +148,11 @@
         "/home/aburns/bin/starship": {
             "path": "/home/aburns/bin/starship",
             "remote_name": "starship",
-            "version": "v1.13.1",
+            "version": "v1.14.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/starship/starship/releases/tag/v1.13.1",
+            "url": "https://github.com/starship/starship/releases/tag/v1.14.2",
             "provider": "",
-            "package_path": ""
+            "package_path": "starship"
         }
     }
 }
