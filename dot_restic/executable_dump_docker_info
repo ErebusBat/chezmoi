@@ -1,0 +1,28 @@
+#!/bin/zsh
+set -e
+OUTPUT_FOLDER=$1
+if [[ -z $OUTPUT_FOLDER ]]; then
+  echo "USAGE: $0 [OUTPUT_FOLDER]"
+  exit 1
+fi
+if [[ ! -d $OUTPUT_FOLDER ]]; then
+  echo "FATAL: OUTPUT_FOLDER ($OUTPUT_FOLDER) does not exist"
+  exit 1
+fi
+
+echo "docker ps"
+docker ps --format json > $OUTPUT_FOLDER/docker_ps.json
+
+
+TMP_FILE=/tmp/docker_container.json
+CONTAINER_IDS=($(docker ps -q))
+for cid in $CONTAINER_IDS; do
+  docker container inspect $cid > $TMP_FILE
+  name=$(jq '.[] .Name' $TMP_FILE)
+  name=${name:gs/\//}
+  name=${name:gs/\"/}
+  file_name="container_${name}-${cid}.json"
+  echo "${name} - $cid"
+
+  cp $TMP_FILE $OUTPUT_FOLDER/$file_name
+done
