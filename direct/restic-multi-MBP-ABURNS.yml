@@ -106,8 +106,9 @@ datasets:
     restic_opts:
       exclude:
         - ~/src/sie/my_docker_env
-        - guest/server/tmp/
-        - guest/shc_query_service/tmp/
+        - ~/src/sie/server/tmp/
+        - ~/src/sie/shc_query_service/tmp/
+        - ~/src/sie/influxtest/data/config/
     post_commands:
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/DsPMC5Nlfe?status=up&msg=OK&ping='
