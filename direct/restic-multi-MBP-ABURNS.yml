@@ -1,6 +1,7 @@
 ---
 targets:
   thelio:
+    enabled: false
     uri: rest:http://aabmbp:3R7ZEADxYz@thelio.erebusbat.net:8000
     checks:
       ping: :host
@@ -13,7 +14,7 @@ targets:
       ping: :host
 
   airplane:
-    enabled: false
+    enabled: true
     sudo: false
     uri: /Users/andrew.burns/.cache/restic_local
     # checks:
@@ -149,6 +150,14 @@ datasets:
     post_commands:
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/55dflCicIq?status=up&msg=OK&ping='
+
+  home:
+    vault: erebusbat
+    paths:
+      - "~"
+    restic_opts:
+      exclude-caches: true
+      exclude-file: ~/.restic/home-excludes.lst
 
 defaults:
   latest: 1
