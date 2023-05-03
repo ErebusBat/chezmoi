@@ -100,6 +100,15 @@
             "provider": "github",
             "package_path": ""
         },
+        "/Users/andrew.burns/bin/jira": {
+            "path": "/Users/andrew.burns/bin/jira",
+            "remote_name": "jira",
+            "version": "v1.3.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/ankitpokhrel/jira-cli",
+            "provider": "github",
+            "package_path": "jira_1.3.0_macOS_arm64/bin/jira"
+        },
         "/Users/andrew.burns/bin/lazydocker": {
             "path": "/Users/andrew.burns/bin/lazydocker",
             "remote_name": "lazydocker",

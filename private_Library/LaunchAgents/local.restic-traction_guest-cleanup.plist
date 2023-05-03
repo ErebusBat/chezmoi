@@ -35,6 +35,8 @@
 			<integer>16</integer>
 			<key>Minute</key>
 			<integer>30</integer>
+			<key>Weekday</key>
+			<integer>4</integer>
 		</dict>
 	</array>
 </dict>
