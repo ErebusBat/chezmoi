@@ -158,7 +158,7 @@ datasets:
     restic_opts:
       exclude-caches: true
       exclude-file: ~/.restic/home-excludes.lst
-      exclude-larger-than: 500M
+      # exclude-larger-than: 500M
 
 defaults:
   latest: 1
