@@ -95,8 +95,8 @@ $HOME/synergy.log*
 
 $HOME/Documents/DownloadsToKeep/amiga/**
 $HOME/Documents/DownloadsToKeep/Apps/**
-$HOME/Documents/Obsidian/Journal/**
-$HOME/Documents/Obsidian/vimwiki/**
+# $HOME/Documents/Obsidian/Journal/**
+# $HOME/Documents/Obsidian/vimwiki/**
 $HOME/Downloads/**
 $HOME/go/pkg/**
 $HOME/iCloud Drive (Archive)/**

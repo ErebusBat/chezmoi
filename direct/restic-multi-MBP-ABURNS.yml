@@ -17,8 +17,8 @@ targets:
     enabled: true
     sudo: false
     uri: /Users/andrew.burns/.cache/restic_local
-    # checks:
-    #   local_path:
+    checks:
+      local_path:
 
   # batpi:
   #   uri: rest:http://aabmbp:3R7ZEADxYz@batpi.erebusbat.net:8000
