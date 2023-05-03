@@ -1,53 +1,207 @@
-**/.bundle/**
-**/.bundle/cache/**
-**/.cache/**
-**/.cargo/git/**
-**/.chef/syntaxcache/**
-**/.config/google-chrome-backup-crashrecovery-*/**
-**/.config/google-chrome/AutofillStates/**
-**/.config/google-chrome/Default/**
-**/.config/Slack/Cache/**
-**/.config/Slack/Service Worker/**
-**/.dropbox/logs/**
-**/.duply/**
-**/.kube/cache/**
-**/.kube/http-cache/**
-**/.local/share/flatpak/**
-**/.local/share/lutris/**
-**/.local/share/Trash/**
-**/.local/share/trash/**
-**/.local/state/**
-**/.mozilla/firefox/*.default-release-backup-crashrecovery-*/**
-**/.mozilla/firefox/*.default-release/storage/**
-**/.npm/**
-**/.rustup/**
-**/.steam/debian-installation/**
-**/.Trash/**
-**/.vim/plugged/**
-**/bee_mem_card-2020-1217.tar.gz
-**/Cache/**
+# Very Specific File excludes
+$HOME/bee_mem_card-2020-1217.tar.gz
+
+# Exclude these directories in ANY sub path
+**/.yardoc/**
 **/cache/**
+
+#
+# Linux / Posix
+#
+$HOME/.bundle/**
+$HOME/.bundle/cache/**
+$HOME/.cache/**
+$HOME/.cargo/git/**
+$HOME/.chef/syntaxcache/**
+$HOME/.config/chezmoi/chezmoistate.boltdb
+$HOME/.config/google-chrome-backup-crashrecovery-*/**
+$HOME/.config/google-chrome/AutofillStates/**
+$HOME/.config/google-chrome/Default/**
+$HOME/.config/Slack/Cache/**
+$HOME/.config/Slack/Service Worker/**
+$HOME/.docker/*.sqlite3*
+$HOME/.docker/contexts/**
+$HOME/.docker/instance*/**
+$HOME/.docker/metrics/**
+$HOME/.docker/QuitReports/**
+$HOME/.docker/sbom/**
+$HOME/.docker/scout/**
+$HOME/.dropbox/**
+$HOME/.duply/**
+$HOME/.gnupg/.#lk0x*.*
+$HOME/.gnupg/random_seed
+$HOME/.kube/cache/**
+$HOME/.kube/http-cache/**
+$HOME/.local/share/flatpak/**
+$HOME/.local/share/lutris/**
+$HOME/.local/share/Trash/**
+$HOME/.local/share/trash/**
+$HOME/.local/state/**
+$HOME/.mozilla/firefox/*.default-release-backup-crashrecovery-*/**
+$HOME/.mozilla/firefox/*.default-release/storage/**
+$HOME/.node-gyp/**
+$HOME/.npm/**
+$HOME/.rustup/**
+$HOME/.steam/debian-installation/**
+$HOME/.vim/plugged/**
+$HOME/.zsh_sessions/**
+$HOME/Dropbox/**
+$HOME/dust/**
+$HOME/dust_tmp/**
+$HOME/dustbin/**
+$HOME/file-cache/**
+$HOME/Games/Sony PlayStation/**
+$HOME/gcloud/logs/**
+$HOME/GPUCache/**
+$HOME/Slack/logs/**
+$HOME/src/**/tmp/**
+$HOME/src/erebusbat/**/.git/**
+$HOME/src/erebusbat/image-marker/in/**
+$HOME/src/erebusbat/image-marker/out/**
+$HOME/src/erebusbat/pchef76/local-mode-cache/**
+$HOME/src/erebusbat/pchef76/nodes/**
+$HOME/src/erebusbat/pchef76/tmp/**
+$HOME/src/fetlife/**
+$HOME/src/guest/connect/**
+$HOME/src/guest/frontend/**
+$HOME/src/guest/kiosk/**
+$HOME/src/guest/node_modules/**
+$HOME/src/guest/register/**
+$HOME/src/guest/server/**
+$HOME/src/guest/web/**
+$HOME/src/sie/**/.git/**
+$HOME/src/sie/connect/**
+$HOME/src/sie/frontend/**
+$HOME/src/sie/influxtest/data/config/**
+$HOME/src/sie/kiosk/**
+$HOME/src/sie/my_docker_env/data/**
+$HOME/src/sie/my_docker_env/snapshot/**
+$HOME/src/sie/node_modules/**
+$HOME/src/sie/register/**
+$HOME/src/sie/server/**
+$HOME/src/sie/web/**
+$HOME/synergy.log*
+
+#
+# MacOSX
+#
+**/.DS_Store
+**/.localized
+**/.Trash/**
 **/Caches/**
+**/Cache/**
 **/Code Cache/**
 **/Crash Reports/**
-**/Crash Reports/**
-**/Dropbox/**
-**/dust/**
-**/dust_tmp/**
-**/dustbin/**
-**/file-cache/**
-**/Games/Sony PlayStation/**
-**/gcloud/logs/**
-**/GPUCache/**
-**/Slack/logs/**
-**/src/erebusbat/pchef76/local-mode-cache/**
-**/src/erebusbat/pchef76/nodes/**
-**/src/erebusbat/pchef76/tmp/**
-**/src/fetlife/**
-**/src/guest/connect/**
-**/src/guest/frontend/**
-**/src/guest/kiosk/**
-**/src/guest/node_modules/**
-**/src/guest/register/**
-**/src/guest/server/**
-**/src/guest/web/**
+
+$HOME/Documents/DownloadsToKeep/amiga/**
+$HOME/Documents/DownloadsToKeep/Apps/**
+$HOME/Documents/Obsidian/Journal/**
+$HOME/Documents/Obsidian/vimwiki/**
+$HOME/Downloads/**
+$HOME/go/pkg/**
+$HOME/iCloud Drive (Archive)/**
+$HOME/Library/.dash_yard/**
+$HOME/Library/Accessibility/**
+$HOME/Library/AppleMediaServices/**
+$HOME/Library/Application Support/**/com.microsoft.appcenter/**
+$HOME/Library/Application Support/AddressBook/**
+$HOME/Library/Application Support/Animoji/**
+$HOME/Library/Application Support/com.apple.ap.promotedcontentd/**
+$HOME/Library/Application Support/com.apple.ap.sbd/**
+$HOME/Library/Application Support/com.apple.sharedfilelist/**
+$HOME/Library/Application Support/com.apple.spotlight/**
+$HOME/Library/Application Support/com.bugsnag.Bugsnag/**
+$HOME/Library/Application Support/CrashReporter/**
+$HOME/Library/Application Support/discord/**
+$HOME/Library/Application Support/Docker Desktop/**
+$HOME/Library/Application Support/Dropbox/**
+$HOME/Library/Application Support/DropboxElectron/**
+$HOME/Library/Application Support/Facetime/**
+$HOME/Library/Application Support/Firefox/Profiles/**/datareporting/**
+$HOME/Library/Application Support/Firefox/Profiles/**/saved-telemetery-pings/**
+$HOME/Library/Application Support/Firefox/Profiles/**/storage-sync-v2.sqlite*
+$HOME/Library/Application Support/Firefox/Profiles/**/storage/**
+$HOME/Library/Application Support/Firefox/Profiles/**/support@lastpass.com.xpi
+$HOME/Library/Application Support/Firefox/Profiles/**/synced-tabs.db*
+$HOME/Library/Application Support/GIMP/**
+$HOME/Library/Application Support/Google/Chrome/**
+# $HOME/Library/Application Support/Google/Chrome/AutofillStates/**
+# $HOME/Library/Application Support/Google/Chrome/Crashpad/**
+# $HOME/Library/Application Support/Google/Chrome/**/CacheStorage/**
+# $HOME/Library/Application Support/Google/Chrome/**/optimization_guide_prediction_model_downloads/**
+$HOME/Library/Application Support/Hazel/*.hazellock
+$HOME/Library/Application Support/iCloud/**
+$HOME/Library/Application Support/Knowledge/**
+$HOME/Library/Application Support/Messenger/**
+$HOME/Library/Application Support/Microsoft/Teams/**
+$HOME/Library/Application Support/OBSBOT_WebCam/profiler/**
+$HOME/Library/Application Support/OBSBOT_WebCam/webcamLogs/**
+$HOME/Library/Application Support/obsidian/*Cache/**
+$HOME/Library/Application Support/obsidian/blob_storage/**
+$HOME/Library/Application Support/obsidian/IndexedDB/**
+$HOME/Library/Application Support/obsidian/Local Storage/**
+$HOME/Library/Application Support/obsidian/obsidian.log
+$HOME/Library/Application Support/obsidian/Service Worker/**
+$HOME/Library/Application Support/obsidian/Session Storage/**
+$HOME/Library/Application Support/obsidian/Singleton*/**
+$HOME/Library/Application Support/obsidian/Web Storage/**
+$HOME/Library/Application Support/Plexamp/**
+$HOME/Library/Application Support/Postman/Crashpad/**
+$HOME/Library/Application Support/Postman/logs/**
+$HOME/Library/Application Support/SonosV2/updates/**
+$HOME/Library/Application Support/Spotify/PersistentCache/**
+$HOME/Library/Application Support/SyncServices/**
+$HOME/Library/Application Support/Todoist/**
+$HOME/Library/Application Support/zoom.us/**
+$HOME/Library/Assistant/**
+$HOME/Library/Biome/**
+$HOME/Library/Calendars/**
+$HOME/Library/com.apple.icloud.searchpartyd/**
+$HOME/Library/Containers/**
+$HOME/Library/Daemon Containers/**
+$HOME/Library/Finance/**
+$HOME/Library/Google/GoogleSoftwareUpdate/**
+$HOME/Library/Google/GoogleSoftwareUpdate/Stats/**
+$HOME/Library/Group Containers/**
+$HOME/Library/Group Containers/group.com.apple.secure-control-center-preferences/**
+$HOME/Library/HTTPStorages/**
+$HOME/Library/IdentityService/**
+$HOME/Library/IntelligencePlatform/**
+$HOME/Library/Intents/**
+$HOME/Library/LanguageModeling/**
+$HOME/Library/Logs/**
+$HOME/Library/Mail/**
+$HOME/Library/Metadata/**
+$HOME/Library/WebKit/**
+$HOME/Library/Translation/**
+$HOME/Library/StatusKit/**
+$HOME/Library/Shortcuts/**
+$HOME/Library/Sharing/**
+$HOME/Library/ResponseKit/**
+$HOME/Library/QuickLook/**
+$HOME/Library/Messages/*Cache/**
+$HOME/Movies/**
+$HOME/Music/Music/**
+$HOME/Library/News/**
+$HOME/Library/PersonalizationPortrait/**
+$HOME/Library/Photos/Libraries/Syndication.photoslibrary/**
+$HOME/Library/Reminders/**
+$HOME/Library/Safari/**
+$HOME/Library/Saved Application State/**
+$HOME/Library/Suggestions/**
+$HOME/Library/Trial/**
+$HOME/Library/Webkit/**
+$HOME/Pictures/Photos Library.photoslibrary/private/com.apple.mediaanalysisd/**
+$HOME/Pictures/Photos Library.photoslibrary/private/com.apple.photoanalysisd/**
+$HOME/Pictures/Photos Library.photoslibrary/resources/**
+$HOME/Pictures/Photos Library.photoslibrary/scopes/syndication/**
+$HOME/Pictures/Photos Library.photoslibrary/scopes/cloudsharing/**
+
+
+#
+# Testing / temporary
+#
+# Just for testing other items
+# $HOME/src
+# $HOME/.rbenv
+# $HOME/.gem
