@@ -1,7 +1,7 @@
 ---
 targets:
   thelio:
-    enabled: false
+    enabled: true
     uri: rest:http://aabmbp:3R7ZEADxYz@thelio.erebusbat.net:8000
     checks:
       ping: :host
