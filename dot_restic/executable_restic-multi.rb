@@ -16,7 +16,17 @@ BACKUP_ONLY_ARGS = %w(
 ).freeze
 
 class ResticConfig
-  attr_accessor :file, :dry_run, :additional_tags, :only_targets, :not_targets, :perform_target_checks, :latest
+  attr_accessor *[
+    :additional_tags,
+    :dry_run,
+    :file,
+    :latest,
+    :not_targets,
+    :only_targets,
+    :perform_target_checks,
+    :use_host_for_snapshots,
+    :use_path_for_snapshots,
+  ]
 
   def self.from_args_and_file!(path: "~/.restic-multi.yml")
     path = Pathname.new(path).expand_path
@@ -28,6 +38,8 @@ class ResticConfig
     cfg.additional_tags = []
     cfg.only_targets = []
     cfg.not_targets = []
+    cfg.use_path_for_snapshots = false
+    cfg.use_host_for_snapshots = false
 
     # Parse file
     cfg.file = Hashie::Mash.new(YAML.load(path.read))
@@ -44,6 +56,14 @@ class ResticConfig
 
       opts.on("--[no-]target-checks", "Skip target checks for this one invokation") do |v|
         cfg.perform_target_checks = v
+      end
+
+      opts.on("--[no-]path", "Pass path to snapshot command") do |v|
+        cfg.use_path_for_snapshots = v
+      end
+
+      opts.on("--[no-]host", "Pass host to snapshot command") do |v|
+        cfg.use_host_for_snapshots = v
       end
 
       opts.on("-t", "--tag=TAG", Array, "Additional tags to add to this backup") do |v|
@@ -487,6 +507,16 @@ def do_snapshots(opts, dataset)
   args += get_cmd_tags(opts, dataset, use_dataset: false)
   if opts.latest.to_i > 0
     args << "--latest=#{opts.latest}"
+  end
+  if opts.use_path_for_snapshots
+    dataset.paths.each do |path|
+      p = Pathname.new(path).expand_path
+      args << "--path=#{Shellwords.escape(p)}"
+    end
+  end
+  if opts.use_host_for_snapshots
+    hostname = `hostname`.strip
+    args << "--host=#{hostname}"
   end
   exec_command(opts, dataset, "snapshots", pre_args: args, exclude_restic_args: BACKUP_ONLY_ARGS)
 end

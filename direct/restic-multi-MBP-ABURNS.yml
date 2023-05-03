@@ -155,10 +155,14 @@ datasets:
     vault: erebusbat
     paths:
       - "~"
+    tags:
+      - home
     restic_opts:
       exclude-caches: true
       exclude-file: ~/.restic/home-excludes.lst
-      # exclude-larger-than: 500M
+    post_commands:
+      backup_success:
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/NLkywkUH56?status=up&msg=OK&ping='
 
 defaults:
   latest: 1
