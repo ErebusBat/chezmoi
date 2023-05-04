@@ -111,12 +111,14 @@ $HOME/Library/Application Support/com.apple.ap.sbd/**
 $HOME/Library/Application Support/com.apple.sharedfilelist/**
 $HOME/Library/Application Support/com.apple.spotlight/**
 $HOME/Library/Application Support/com.bugsnag.Bugsnag/**
+$HOME/Library/Application Support/com.facebook.archon.developerID/RCTAsyncLocalStorage_V1
 $HOME/Library/Application Support/CrashReporter/**
 $HOME/Library/Application Support/discord/**
 $HOME/Library/Application Support/Docker Desktop/**
 $HOME/Library/Application Support/Dropbox/**
 $HOME/Library/Application Support/DropboxElectron/**
 $HOME/Library/Application Support/Facetime/**
+$HOME/Library/Application Support/Firefox/Profiles/**/*.sqlite*
 $HOME/Library/Application Support/Firefox/Profiles/**/datareporting/**
 $HOME/Library/Application Support/Firefox/Profiles/**/saved-telemetery-pings/**
 $HOME/Library/Application Support/Firefox/Profiles/**/storage-sync-v2.sqlite*
@@ -145,6 +147,7 @@ $HOME/Library/Application Support/obsidian/Service Worker/**
 $HOME/Library/Application Support/obsidian/Session Storage/**
 $HOME/Library/Application Support/obsidian/Singleton*/**
 $HOME/Library/Application Support/obsidian/Web Storage/**
+$HOME/Library/Application Support/obsidian/WebStorage/**
 $HOME/Library/Application Support/Plexamp/**
 $HOME/Library/Application Support/Postman/Crashpad/**
 $HOME/Library/Application Support/Postman/logs/**
