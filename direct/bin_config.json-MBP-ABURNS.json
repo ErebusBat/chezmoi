@@ -127,6 +127,15 @@
             "provider": "",
             "package_path": "lazygit"
         },
+        "/Users/andrew.burns/bin/rclone": {
+            "path": "/Users/andrew.burns/bin/rclone",
+            "remote_name": "rclone",
+            "version": "v1.62.2",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/rclone/rclone",
+            "provider": "github",
+            "package_path": "rclone-v1.62.2-osx-arm64/rclone"
+        },
         "/Users/andrew.burns/bin/restic": {
             "path": "/Users/andrew.burns/bin/restic",
             "remote_name": "",
