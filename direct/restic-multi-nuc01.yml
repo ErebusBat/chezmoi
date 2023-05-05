@@ -22,6 +22,8 @@ vaults:
     keyfile: ~/.restic_pass
 policies:
   unspecified:
+    keep_tag:
+      - archive
     keep_last: 7
     keep_hourly: 8
     keep_daily: 7
@@ -30,6 +32,8 @@ policies:
     keep_yearly: 1
     keep_within: 5h
   daily:
+    keep_tag:
+      - archive
     keep_last: 2
     keep_hourly: 6
     keep_daily: 14
