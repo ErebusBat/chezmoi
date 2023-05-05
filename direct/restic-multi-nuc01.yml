@@ -45,8 +45,8 @@ datasets:
     paths:
       - /myserver
     restic_opts:
-      exclude_file: /myserver/support/nuc01/restic-hourly-excludes
-      # exclude_larger_than: 100M
+      exclude-file: /myserver/support/nuc01/restic-hourly-excludes
+      # exclude-larger-than: 100M
     post_commands:
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/ZcaGeElLBW?status=up&msg=OK&ping='
@@ -64,7 +64,7 @@ datasets:
     paths:
       - /myserver/plex/
     restic_opts:
-      exclude_file: /myserver/plex/support/restic-cold-excludes
+      exclude-file: /myserver/plex/support/restic-cold-excludes
     pre_commands:
       dataset_backup:
         - cd /myserver/plex && docker-compose stop
