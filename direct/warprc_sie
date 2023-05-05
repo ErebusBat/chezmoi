@@ -37,6 +37,7 @@ sidekiq_autoscaling:~/src/sie/sidekiq_autoscaling
 snippets:~/.config/ulauncher/snippets
 sparks:~/src/sie/sparks
 src:~/src
+srcme:~/src/erebusbat
 ssh:~/.ssh
 stow:~/src/erebusbat/dotfiles-stow
 sys76qmk:~/src/vendor/qmk_firmware/keyboards/system76/launch_1/keymaps/erebusbat
