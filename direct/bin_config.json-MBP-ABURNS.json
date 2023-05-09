@@ -58,11 +58,11 @@
         "/Users/andrew.burns/bin/dua": {
             "path": "/Users/andrew.burns/bin/dua",
             "remote_name": "dua",
-            "version": "v2.19.2",
+            "version": "v2.20.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/Byron/dua-cli/releases/tag/v2.19.2",
+            "url": "https://github.com/Byron/dua-cli/releases/tag/v2.20.1",
             "provider": "",
-            "package_path": "dua-v2.19.2-x86_64-apple-darwin/dua"
+            "package_path": "dua-v2.20.1-x86_64-apple-darwin/dua"
         },
         "/Users/andrew.burns/bin/duf": {
             "path": "/Users/andrew.burns/bin/duf",
@@ -90,6 +90,15 @@
             "url": "https://github.com/junegunn/fzf/releases/tag/0.40.0",
             "provider": "",
             "package_path": "fzf"
+        },
+        "/Users/andrew.burns/bin/grcpass": {
+            "path": "/Users/andrew.burns/bin/grcpass",
+            "remote_name": "grcpass",
+            "version": "v1.0.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "http://gitlab.erebusbat.net/ErebusBat/grcpass",
+            "provider": "gitlab",
+            "package_path": ""
         },
         "/Users/andrew.burns/bin/hx": {
             "path": "/Users/andrew.burns/bin/hx",
@@ -121,9 +130,9 @@
         "/Users/andrew.burns/bin/lazygit": {
             "path": "/Users/andrew.burns/bin/lazygit",
             "remote_name": "lazygit",
-            "version": "v0.38.1",
+            "version": "v0.38.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.38.1",
+            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.38.2",
             "provider": "",
             "package_path": "lazygit"
         },
