@@ -4,6 +4,7 @@ dashy:/myserver/internal/dashy
 downloader:/myserver/downloader
 gatus:/myserver/gatus
 gitea:/myserver/gitea
+gitlab:/myserver/gitlab
 gopass:~/.local/share/gopass/stores/root
 internal:/myserver/internal
 mmm:/myserver/mmm
