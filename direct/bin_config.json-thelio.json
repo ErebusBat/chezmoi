@@ -40,9 +40,9 @@
         "/home/aburns/bin/chezmoi": {
             "path": "/home/aburns/bin/chezmoi",
             "remote_name": "chezmoi",
-            "version": "v2.33.3",
+            "version": "v2.33.4",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.33.3",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.33.4",
             "provider": "",
             "package_path": ""
         },
@@ -67,11 +67,11 @@
         "/home/aburns/bin/dust": {
             "path": "/home/aburns/bin/dust",
             "remote_name": "dust",
-            "version": "v0.8.5",
+            "version": "v0.8.6",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/bootandy/dust/releases/tag/v0.8.5",
+            "url": "https://github.com/bootandy/dust/releases/tag/v0.8.6",
             "provider": "",
-            "package_path": ""
+            "package_path": "dust-v0.8.6-x86_64-unknown-linux-gnu/dust"
         },
         "/home/aburns/bin/exa": {
             "path": "/home/aburns/bin/exa",
@@ -121,9 +121,9 @@
         "/home/aburns/bin/lazygit": {
             "path": "/home/aburns/bin/lazygit",
             "remote_name": "lazygit",
-            "version": "v0.38.1",
+            "version": "v0.38.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.38.1",
+            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.38.2",
             "provider": "",
             "package_path": "lazygit"
         },
