@@ -91,6 +91,15 @@
             "provider": "",
             "package_path": "fzf"
         },
+        "/Users/andrew.burns/bin/grcpass": {
+            "path": "/Users/andrew.burns/bin/grcpass",
+            "remote_name": "grcpass",
+            "version": "v1.0.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "http://gitlab.erebusbat.net/ErebusBat/grcpass",
+            "provider": "gitlab",
+            "package_path": ""
+        },
         "/Users/andrew.burns/bin/hx": {
             "path": "/Users/andrew.burns/bin/hx",
             "remote_name": "hx_x86_64-apple",
