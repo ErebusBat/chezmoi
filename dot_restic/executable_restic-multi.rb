@@ -373,7 +373,7 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
   extra_args += hash_to_restic_args(dataset["restic_opts"], exclude_restic_args: exclude_restic_args)
   extra_args += post_args
 
-  unless (cmd_array_lines = dataset.fetch(:pre_commands, {}).fetch("dataset_#{cmd}", [])).empty?
+  unless (cmd_array_lines = dataset.fetch(:pre_commands, {}).fetch("dataset_#{cmd}", [])).nil?
     cmd_array_lines.each do |cmd_array|
       log "EXEC  DS-PRE: " + cmd_array
       if !opts.dry_run
@@ -443,7 +443,7 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
   end
 
   # Post Commands
-  unless (cmd_array = dataset.fetch(:post_commands, {}).fetch("dataset_#{cmd}", [])).empty?
+  unless (cmd_array = dataset.fetch(:post_commands, {}).fetch("dataset_#{cmd}", [])).nil?
     cmd_array.each do |cmd|
       log "EXEC  DS-POST: " + cmd
       if !opts.dry_run
@@ -457,7 +457,7 @@ def exec_command(opts, dataset, cmd, exclude_restic_args: [], pre_args: [], post
   # Post - backup_success
   if had_errors
     log "Dataset had errors, not running post success commands"
-  elsif !(cmd_array = dataset.fetch(:post_commands, {}).fetch("#{cmd}_success", [])).empty?
+  elsif !(cmd_array = dataset.fetch(:post_commands, {}).fetch("#{cmd}_success", [])).nil?
     cmd_array.each do |cmd|
       log "EXEC  DS-SUCCESS: " + cmd
       if !opts.dry_run

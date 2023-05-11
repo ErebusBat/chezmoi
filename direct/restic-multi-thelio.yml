@@ -102,6 +102,50 @@ datasets:
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/0wyUz6qHDS?status=up&msg=OK&ping='
 
+  # gitlab _must_ be ran as root
+  gitlab:
+    vault: erebusbat
+    sudo: true
+    paths:
+      - /myserver/.dockerinfo
+      # - /myserver/gitlab/data/data/backups/
+      - /myserver/gitlab/
+      # - /myserver/gitlab/data/data/backups/
+      # - /myserver/gitlab/data/config/
+    restic_opts:
+      exclude:
+        - /myserver/gitlab/data/data/alertmanager
+        - /myserver/gitlab/data/data/git-data
+        - /myserver/gitlab/data/data/gitaly
+        - /myserver/gitlab/data/data/gitlab-ci
+        - /myserver/gitlab/data/data/gitlab-exporter
+        - /myserver/gitlab/data/data/gitlab-kas
+        - /myserver/gitlab/data/data/gitlab-rails
+        - /myserver/gitlab/data/data/gitlab-shell
+        - /myserver/gitlab/data/data/gitlab-workhorse
+        - /myserver/gitlab/data/data/logrotate
+        - /myserver/gitlab/data/data/nginx
+        - /myserver/gitlab/data/data/postgres-exporter
+        - /myserver/gitlab/data/data/postgresql
+        - /myserver/gitlab/data/data/prometheus
+        - /myserver/gitlab/data/data/redis
+        - /myserver/gitlab/data/logs/
+    tags:
+      - cold
+      - gitlab
+    pre_commands:
+      dataset_backup:
+        - /home/aburns/.restic/dump_docker_info /myserver/.dockerinfo
+        #                                                 720mins == 12h
+        # - sudo find /myserver/gitlab/data/data/backups/ -mmin +720 -delete
+        - sudo find /myserver/gitlab/backups/ -mmin +720 -delete
+        - cd /myserver/gitlab && docker-compose exec -T web gitlab-backup
+    post_commands:
+      # dataset_backup:
+      #   - cd /myserver/gitea && docker-compose up -d
+      backup_success:
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/YLv03OggqP?status=up&msg=OK&ping='
+
   # gitea_cold _must_ be ran as root
   gitea_cold:
     vault: erebusbat
