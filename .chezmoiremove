@@ -1,3 +1,4 @@
+bin/grc_passwords.rb
 .config/nvim/color_plumbing.vim
 .ssh/assh.d/tractionguest.yml
 .tmux-status.conf
@@ -14,59 +15,3 @@ Library/LaunchAgents/local.chezmoi-pull.plist
 {{- if ne .chezmoi.os "darwin" }}
 {{- end }}
 
-# 23q1 Vim Redo
-.config/nvim/_zoom.vim
-.config/nvim/autoload
-.config/nvim/autoload/plug.vim
-.config/nvim/bug.vim
-.config/nvim/coc-settings-OLD.json
-.config/nvim/coc-settings.json
-.config/nvim/coc.vim
-.config/nvim/color.vim
-.config/nvim/file.vim
-.config/nvim/firevim
-.config/nvim/firevim/after.vim
-.config/nvim/firevim/color.vim
-.config/nvim/firevim/plugin.vim
-.config/nvim/git
-.config/nvim/git/after.vim
-.config/nvim/git/plugin.vim
-.config/nvim/gnvim.vim
-.config/nvim/harpoon
-.config/nvim/harpoon/after.vim
-.config/nvim/harpoon/plugin.vim
-.config/nvim/hotkeys.vim
-.config/nvim/init.vim
-.config/nvim/lang_go
-.config/nvim/lang_go/after.vim
-.config/nvim/lang_go/lsp.lua
-.config/nvim/lang_go/plugin.vim
-.config/nvim/lang_rust
-.config/nvim/lang_rust/lsp.vim
-.config/nvim/lang_rust/plugin.vim
-.config/nvim/lualine
-.config/nvim/lualine/after.lua
-.config/nvim/lualine/plugin.vim
-.config/nvim/navigator.lua
-.config/nvim/neovide.vim
-.config/nvim/nvim-cmp
-.config/nvim/nvim-cmp/plugin.vim
-.config/nvim/nvim-cmp/setup.lua
-.config/nvim/open-browser
-.config/nvim/open-browser/after.vim
-.config/nvim/open-browser/plugin.vim
-.config/nvim/plugins.vim
-.config/nvim/relativenum
-.config/nvim/relativenum/after.vim
-.config/nvim/s_colors.vim
-.config/nvim/s_colorsx.vim
-.config/nvim/snip
-.config/nvim/snip/after.vim
-.config/nvim/snip/plugin.vim
-.config/nvim/spell/after.vim
-.config/nvim/spell/plugin.vim
-.config/nvim/telescope
-.config/nvim/telescope/hotkeys.vim
-.config/nvim/telescope/plugin.vim
-.config/nvim/telescope/setup.lua
-.config/nvim/vimr.vim
