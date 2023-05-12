@@ -14,7 +14,6 @@ fi
 echo "docker ps"
 docker ps --format json > $OUTPUT_FOLDER/docker_ps.json
 
-
 TMP_FILE=/tmp/docker_container.json
 CONTAINER_IDS=($(docker ps -q))
 for cid in $CONTAINER_IDS; do
@@ -22,8 +21,15 @@ for cid in $CONTAINER_IDS; do
   name=$(jq '.[] .Name' $TMP_FILE)
   name=${name:gs/\//}
   name=${name:gs/\"/}
-  file_name="container_${name}-${cid}.json"
+  container_file_name="container_${name}-${cid}.json"
   echo "${name} - $cid"
+
+  # Extract Image ID, setup image inspect output file
+  IMAGE_ID=$(jq -r '.[] .Image' $TMP_FILE)
+  image_file_name="image_${name}-${IMAGE_ID}.json"
+
+  # Capture image information, including the all important repo hashes
+  docker image inspect $IMAGE_ID > $TMP_FILE.image
 
   # Cleanup older images
   file_pattern=$OUTPUT_FOLDER/container_$name-*.json
@@ -32,5 +38,6 @@ for cid in $CONTAINER_IDS; do
   fi
 
   # Copy into final output
-  cp $TMP_FILE $OUTPUT_FOLDER/$file_name
+  cp $TMP_FILE $OUTPUT_FOLDER/$container_file_name
+  cp $TMP_FILE.image $OUTPUT_FOLDER/$image_file_name
 done
