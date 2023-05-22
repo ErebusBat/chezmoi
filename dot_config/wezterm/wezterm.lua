@@ -79,7 +79,7 @@ if (hostname == 'MBP-ABURNS') then
   if (monitor_count == 2)
   then
     background_hsb["brightness"] = 0.02
-    config["font_size"] = 12
+    config["font_size"] = 14
   else
     config["font_size"] = 14
   end

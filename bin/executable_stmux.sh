@@ -5,6 +5,9 @@ if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
   source ~/.config/tmux/init_chezmoi_secrets.sh
 fi
 
+echo "Starting Magic Mirror Chrome App..."
+google-chrome --user-data-dir=/tmp/mmm-chrome --bwsi --app=http://mmm.erebusbat.net &
+
 sessions=(
   system
   left
