@@ -10,13 +10,14 @@ windows:
   suppress_history: false
   panes:
     - shell_command:
-        # - rbenv exec foreman start -f Procfile.local -m all=1,web=0
-      - dip up
+      # - rbenv exec foreman start -f Procfile.local -m all=1,web=0
+      - dip up -d; dip compose logs -f --tail 25
     - shell_command:
       # - "rails s -b ::"
       - dip rails s
     - shell_command:
       - ":>log/development.log; tail -f log/development.log"
+      - cd .dockerdev/ && lazydocker
     - shell_command:
       # - be rails c
       - dip rails c
