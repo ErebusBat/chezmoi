@@ -38,6 +38,10 @@ if [[ -f $USER_SETTINGS_PATH ]]; then
   source $USER_SETTINGS_PATH
 fi
 
+if [[ -n $TMUX_SPOTIFY_DISABLED ]]; then
+  exit 0
+fi
+
 if [[ $RATE_LIMIT_RUN_ONLY_EVERY_SECS -gt 0 ]]; then
   # echo "Checking Rate Limit" >&2
   RATE_LIMIT_FILE_PATH=/tmp/tmux-spotify.stamp
