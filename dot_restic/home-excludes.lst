@@ -118,6 +118,7 @@ $HOME/Library/Application Support/Docker Desktop/**
 $HOME/Library/Application Support/Dropbox/**
 $HOME/Library/Application Support/DropboxElectron/**
 $HOME/Library/Application Support/Facetime/**
+$HOME/Library/Application Support/FileProvider/**
 $HOME/Library/Application Support/Firefox/Profiles/**/*.sqlite*
 $HOME/Library/Application Support/Firefox/Profiles/**/datareporting/**
 $HOME/Library/Application Support/Firefox/Profiles/**/saved-telemetery-pings/**
