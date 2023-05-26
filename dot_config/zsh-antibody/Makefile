@@ -9,7 +9,7 @@ dynamic: clean
 
 clean:
 	@echo "\n*** [dynamic] Removing antibody static startup script..."
-	rm -fv $(STATIC) $(STATIC).zwc $(COMPDUMP) $(COMPDUMP).zwc
+	/bin/rm -fv $(STATIC) $(STATIC).zwc $(COMPDUMP) $(COMPDUMP).zwc
 
 static: clean compile gen_sums
 
