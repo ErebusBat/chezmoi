@@ -1,9 +1,13 @@
 return {
   'rmagatti/auto-session',
-  lazy = false,
+  lazy = true,
+  -- enabled = false,
   config = function()
+    -- vim.cmd([[ let g:auto_session_root_dir = "." ]])
+    vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,localoptions"
     require("auto-session").setup {
       log_level = "error",
+      auto_session_use_git_branch = true,
       auto_save_enabled = false,
       auto_restore_enabled = true,
       auto_session_allowed_dirs = {
@@ -19,10 +23,17 @@ return {
       -- },
     }
   end,
+  cmd = {
+    'Autosession',
+    'SessionDelete',
+    'SessionRestore',
+    'SessionRestoreFromFile',
+    'SessionSave',
+  },
   keys = {
     -- https://github.com/rmagatti/auto-session
-    { '<leader>ss', ':SaveSession<CR>', { desc = '[S]ave [S]ession', noremap = true } },
-    { '<leader>ls', ':RestoreSession<CR>', { desc = '[L]oad [S]ession', noremap = true } },
+    { '<leader>ss', ':SessionSave<CR>', { desc = '[S]ave [S]ession', noremap = true } },
+    { '<leader>ls', ':SessionRestore<CR>', { desc = '[L]oad [S]ession', noremap = true } },
   },
   save_extra_cmds = {
     -- tabby: tabs name
