@@ -19,7 +19,7 @@ targets:
       ping: :host
 
   minio:
-    enabled: true
+    enabled: false
     uri: s3:http://nas.erebusbat.net:9000/restic
     env_file: ~/.restic/.freenas-minio-creds.env
     checks:
