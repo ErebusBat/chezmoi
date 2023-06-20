@@ -15,6 +15,16 @@ done
 # Strip leading and trailing spaces
 ENTRY=${(MS)ENTRY##[[:graph:]]*[[:graph:]]}
 
+# Does the entry have the special pasteboard indicator?
+PASTEBOARD=$(echo $ENTRY | grep '%%')
+PB_SEACH_EC=$?
+if [[ $PB_SEACH_EC -eq 0 ]]; then
+  PASTEBOARD=$(tg-markdown)
+  PASTEBOARD=${(MS)PASTEBOARD##[[:graph:]]*[[:graph:]]}
+  # Replace %% with the contents of tg-markdown-ified pasteboard
+  ENTRY="${ENTRY//\%\%/$PASTEBOARD}"
+fi
+
 if [[ -z $ENTRY ]]; then
   echo "*** FATAL: No log message provided; aborting." >&2
   exit 1
