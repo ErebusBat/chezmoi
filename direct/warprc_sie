@@ -9,6 +9,7 @@ drop_keyboard:~/Dropbox/Library/D/drop_keyboard
 dropqmk:~/src/vendor/qmk_firmware/keyboards/massdrop/ctrl
 drp:~/src/sie/register
 duply:~/.duply
+eint152:~/Downloads/_keep/abb/eint152
 espanso:~/src/erebusbat/dotfiles-stow/espanso/.config/espanso
 ffmpeg:~/src/erebusbat/myserver/utils/ffmpeg
 gconnect:~/src/sie/connect
