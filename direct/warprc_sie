@@ -36,6 +36,7 @@ restic:~/.restic
 scim_rails:~/src/sie/scim_rails
 shc_query_service:~/src/sie/shc_query_service
 sidekiq_autoscaling:~/src/sie/sidekiq_autoscaling
+sips:~/src/sie/sign-in-print-server
 snippets:~/.config/ulauncher/snippets
 sparks:~/src/sie/sparks
 src:~/src
