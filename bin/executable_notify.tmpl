@@ -1,0 +1,52 @@
+#!/bin/bash
+# set -x
+
+function notify_pushover() {
+  curl -s \
+    -F "token=${PUSHOVER_TOKEN}" \
+    -F "user=${PUSHOVER_USER}" \
+    -F "sound=${PUSHOVER_SOUND}" \
+    -F "message=${MSG}" \
+    https://api.pushover.net/1/messages.json > /dev/null
+}
+
+function notify_telegram() {
+  curl -s \
+    --data "text=$MSG" \
+    --data "chat_id=$TELEGRAM_CHAT" \
+    "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" > /dev/null
+}
+
+MSG=$1
+SHOULD_SAY=$2
+PUSHOVER_TOKEN={{- (gopassRaw "erebusbat/pushover" | mustFromJson).token }}
+PUSHOVER_USER={{- (gopassRaw "erebusbat/pushover" | mustFromJson).user }}
+PUSHOVER_SOUND=bugle
+TELEGRAM_TOKEN={{- (gopassRaw "erebusbat/batsignal_bot" | mustFromJson).token }}
+TELEGRAM_CHAT=-1001748048923
+
+if [[ -z $MSG ]]; then
+  MSG="Task Done"
+fi
+
+# Set these to `0` and they will auto turn on/off based on if the environment variables are set correctly
+# Set them to `-1` to disable them
+SEND_PUSHOVER=-1
+SEND_TELEGRAM=0
+
+# Figure out which notification options we should be using
+if [[ $SEND_PUSHOVER -eq 0 && -n $PUSHOVER_USER && -n $PUSHOVER_TOKEN ]]; then SEND_PUSHOVER=1; fi
+if [[ $SEND_TELEGRAM -eq 0 && -n $TELEGRAM_CHAT && -n $TELEGRAM_TOKEN ]]; then SEND_TELEGRAM=1; fi
+
+# Send messages that are enabled
+if [[ $SEND_PUSHOVER -gt 0 ]]; then
+  notify_pushover
+fi
+if [[ $SEND_TELEGRAM -gt 0 ]]; then
+  notify_telegram
+fi
+
+
+if [[ -n $SHOULD_SAY ]]; then
+  beep
+fi
