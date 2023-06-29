@@ -4,6 +4,7 @@ return {
   keys ={
     { '<C-t><C-t>', '<leader>ht', desc = 'Open Harpoon Terminal', remap = true },
     { '<leader>ht', ':lua require("harpoon.term").gotoTerminal(1)<CR>', desc = 'Open Harpoon Terminal', remap = true },
+    { '<leader>hm', ':Telescope harpoon marks<CR>', desc = 'Open Harpoon Marks', remap = true },
     { '<leader>ha', ':lua require("harpoon.mark").add_file()<CR>', desc = 'Add file to harpoon', remap = true },
     { '<leader>hl', ':lua require("harpoon.ui").toggle_quick_menu()<CR>', desc = 'Show Harpoon List', remap = true },
     { '<leader>h1', ':lua require("harpoon.ui").nav_file(1)<CR>', desc = 'Navigate to Harpoon File 1', remap = true },
