@@ -1,9 +1,13 @@
 return {
   'ThePrimeagen/harpoon',
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope.nvim',
+  },
   keys ={
     { '<C-t><C-t>', '<leader>ht', desc = 'Open Harpoon Terminal', remap = true },
     { '<leader>ht', ':lua require("harpoon.term").gotoTerminal(1)<CR>', desc = 'Open Harpoon Terminal', remap = true },
+    { '<leader>hm', ':Telescope harpoon marks<CR>', desc = 'Open Harpoon Marks', remap = true },
     { '<leader>ha', ':lua require("harpoon.mark").add_file()<CR>', desc = 'Add file to harpoon', remap = true },
     { '<leader>hl', ':lua require("harpoon.ui").toggle_quick_menu()<CR>', desc = 'Show Harpoon List', remap = true },
     { '<leader>h1', ':lua require("harpoon.ui").nav_file(1)<CR>', desc = 'Navigate to Harpoon File 1', remap = true },
@@ -17,4 +21,12 @@ return {
     { '<leader>h9', ':lua require("harpoon.ui").nav_file(9)<CR>', desc = 'Navigate to Harpoon File 9', remap = true },
     { '<leader>h0', ':lua require("harpoon.ui").nav_file(10)<CR>', desc = 'Navigate to Harpoon File 10', remap = true },
   },
+  config = function()
+    require("telescope").load_extension('harpoon')
+    require("harpoon").setup({
+      menu = {
+        width = vim.api.nvim_win_get_width(0) - 20,
+      }
+    })
+  end,
 }
