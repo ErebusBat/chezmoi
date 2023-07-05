@@ -161,6 +161,7 @@ $HOME/Library/Assistant/**
 $HOME/Library/Biome/**
 $HOME/Library/Calendars/**
 $HOME/Library/com.apple.icloud.searchpartyd/**
+$HOME/Library/CloudStorage/Dropbox/**
 $HOME/Library/Containers/**
 $HOME/Library/Daemon Containers/**
 $HOME/Library/Finance/**
