@@ -170,6 +170,7 @@ datasets:
     paths:
       - ~/vimwiki/
       - ~/Documents/Journal/
+      - ~/Sync/Obsidian
     tags:
       - obsidian
     post_commands:
