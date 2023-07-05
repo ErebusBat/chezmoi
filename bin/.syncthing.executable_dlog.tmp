@@ -1,0 +1,50 @@
+#!/bin/zsh
+
+WIKI_ROOT_PATH=~/Documents/Obsidian/vimwiki
+LOGS_PATH="tguest/logs/$(date +%Y/%m-%b)"
+FILE_NAME="$(date +%F-%a).md"
+
+FULL_DIR_PATH="$WIKI_ROOT_PATH/$LOGS_PATH"
+FULL_FILE_PATH="$FULL_DIR_PATH/$FILE_NAME"
+
+# echo "[$(date)] --------------------------------------------------------------------------------" >> /tmp/dlog.log
+
+ENTRY=""
+while [[ -n $1 ]]; do
+  ENTRY="${ENTRY} ${1}"
+  shift
+done
+# Strip leading and trailing spaces
+ENTRY=${(MS)ENTRY##[[:graph:]]*[[:graph:]]}
+
+# echo "[$(date)] ENTRY>>>$ENTRY<<<" >> /tmp/dlog.log
+
+# Does the entry have the special pasteboard indicator?
+PASTEBOARD=$(echo $ENTRY | grep '%%')
+PB_SEACH_EC=$?
+if [[ $PB_SEACH_EC -eq 0 ]]; then
+  # echo "[$(date)] pbpaste>>>$(pbpaste)<<<" >> /tmp/dlog.log
+  PASTEBOARD=$(~/bin/tg-markdown -)
+  # echo "[$(date)] PASTEBOARD>>>$PASTEBOARD<<<" >> /tmp/dlog.log
+  PASTEBOARD=${(MS)PASTEBOARD##[[:graph:]]*[[:graph:]]}
+  # echo "[$(date)] PASTEBOARD>>>$PASTEBOARD<<<" >> /tmp/dlog.log
+  # Replace %% with the contents of tg-markdown-ified pasteboard
+  ENTRY="${ENTRY//\%\%/$PASTEBOARD}"
+fi
+# echo "[$(date)] ENTRY>>>$ENTRY<<<" >> /tmp/dlog.log
+
+if [[ -z $ENTRY ]]; then
+  echo "*** FATAL: No log message provided; aborting." >&2
+  exit 1
+fi
+if [[ ! -f $FULL_FILE_PATH ]]; then
+  echo "*** FATAL: Could not find log file, create in Obsidian first.  Looking for $FULL_FILE_PATH" >&2
+  exit 2
+fi
+
+TIMESTAMP=$(date +%H:%M)
+MD_TEXT="\n- ${TIMESTAMP} - ${ENTRY}"
+# echo "[$(date)] MD_TEXT>>>$MD_TEXT<<<" >> /tmp/dlog.log
+
+# echo "Would have added '${MD_TEXT}' to ${FULL_FILE_PATH}"
+echo $MD_TEXT >> $FULL_FILE_PATH

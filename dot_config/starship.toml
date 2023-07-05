@@ -66,3 +66,4 @@ detect_files = ['.helmignore', '.dockerignore']
 "arn:aws:eks:us-west-2:304543615135:cluster/viasat" = "viasat (usw2)"
 "arn:aws:eks:us-west-2:582828833424:cluster/leidos" = "leidos (usw2)"
 "arn:aws:eks:us-west-2:791291319152:cluster/us" = "us (usw2)"
+"arn:aws:eks:us-west-2:380981841607:cluster/thermofisher" = "thermofisher (usw2)"
