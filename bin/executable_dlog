@@ -48,3 +48,6 @@ MD_TEXT="\n- ${TIMESTAMP} - ${ENTRY}"
 
 # echo "Would have added '${MD_TEXT}' to ${FULL_FILE_PATH}"
 echo $MD_TEXT >> $FULL_FILE_PATH
+
+# Remove trailing LF from file
+echo -n "$(cat $FULL_FILE_PATH)" > $FULL_FILE_PATH
