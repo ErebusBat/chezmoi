@@ -49,8 +49,8 @@ vim.o.hlsearch = false
 -- Make line numbers default
 vim.wo.number = true
 
--- Enable mouse mode
-vim.o.mouse = 'a'
+-- Disable mouse mode
+vim.o.mouse = false
 
 -- Enable break indent
 vim.o.breakindent = true
