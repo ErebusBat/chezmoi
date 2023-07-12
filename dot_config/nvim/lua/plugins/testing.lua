@@ -32,9 +32,10 @@ return {
     {'t<C-s>', '<cmd>TestSuite<CR>', desc = '[T]est [S]uite', remap = true },
 
     -- Leader versions which will start the test (using maps above) then switch back to
-    -- code pane (via <leader><leader> shortcut).  Meant to be used with harpoon terminal
-    {'<leader>tn', '<C-s>t<C-n><leader><leader>', desc = '[T]est [N]earest (harpoon)', remap = true },
-    {'<leader>tf', '<C-s>t<C-f><leader><leader>', desc = '[T]est [F]ile (harpoon)', remap = true },
-    {'<leader>tl', '<C-s>t<C-l><leader><leader>', desc = '[T]est [L]ast (harpoon)', remap = true },
+    -- code pane while preserving active/alt buffers using global marks Q (active),W (alt).
+    -- Meant to be used with harpoon terminal
+    {'<leader>tn', 'mQ<leader><leader>mW<leader><leader><C-s>t<C-n>`W`Q', desc = '[T]est [N]earest (harpoon)', remap = true },
+    {'<leader>tf', 'mQ<leader><leader>mW<leader><leader><C-s>t<C-f>`W`Q', desc = '[T]est [F]ile (harpoon)', remap = true },
+    {'<leader>tl', 'mQ<leader><leader>mW<leader><leader><C-s>t<C-l>`W`Q', desc = '[T]est [L]ast (harpoon)', remap = true },
   }
 }
