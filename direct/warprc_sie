@@ -4,6 +4,7 @@ ansible:~/src/ansible
 antibody:~/.config/zsh-antibody
 chezmoi:~/.local/share/chezmoi
 docker_dev:~/src/sie/my_docker_env
+docs:~/Documents
 downloads:~/downloads
 drop_keyboard:~/Dropbox/Library/D/drop_keyboard
 dropqmk:~/src/vendor/qmk_firmware/keyboards/massdrop/ctrl
