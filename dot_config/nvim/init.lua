@@ -50,7 +50,7 @@ vim.o.hlsearch = false
 vim.wo.number = true
 
 -- Disable mouse mode
-vim.o.mouse = false
+vim.o.mouse = ''
 
 -- Enable break indent
 vim.o.breakindent = true
