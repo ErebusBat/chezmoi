@@ -46,14 +46,14 @@ local config = {
 
   -- Font Info => == !=
   font = wezterm.font({
-    -- family="Comic Code",
-    -- family="Comic Code Ligatures",
-    family="ComicCodeLigatures Nerd Font",
+    family="Comic Code Ligatures",
+    -- family="Fira Code",
     weight="Regular",
     harfbuzz_features={"calt=1", "clig=1", "liga=1"},
   }),
 
-  font_size = 14,
+  -- See below for font size overriding based on machine we are on
+  -- font_size = 14,
 
   mouse_bindings = {
     -- Change the default click behavior so that it populates
@@ -79,7 +79,7 @@ if (hostname == 'MBP-ABURNS') then
   if (monitor_count == 2)
   then
     background_hsb["brightness"] = 0.02
-    config["font_size"] = 11
+    config["font_size"] = 12
   else
     config["font_size"] = 14
   end
