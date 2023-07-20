@@ -22,9 +22,9 @@
         "/Users/andrew.burns/bin/bin": {
             "path": "/Users/andrew.burns/bin/bin",
             "remote_name": "bin",
-            "version": "v0.16.2",
+            "version": "v0.17.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/marcosnils/bin/releases/tag/v0.16.2",
+            "url": "https://github.com/marcosnils/bin/releases/tag/v0.17.0",
             "provider": "",
             "package_path": ""
         },
@@ -40,9 +40,9 @@
         "/Users/andrew.burns/bin/chezmoi": {
             "path": "/Users/andrew.burns/bin/chezmoi",
             "remote_name": "chezmoi",
-            "version": "v2.33.3",
+            "version": "v2.35.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.33.3",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.35.2",
             "provider": "",
             "package_path": ""
         },
@@ -85,20 +85,11 @@
         "/Users/andrew.burns/bin/fzf": {
             "path": "/Users/andrew.burns/bin/fzf",
             "remote_name": "fzf",
-            "version": "0.40.0",
+            "version": "0.42.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/junegunn/fzf/releases/tag/0.40.0",
+            "url": "https://github.com/junegunn/fzf/releases/tag/0.42.0",
             "provider": "",
             "package_path": "fzf"
-        },
-        "/Users/andrew.burns/bin/grcpass": {
-            "path": "/Users/andrew.burns/bin/grcpass",
-            "remote_name": "grcpass",
-            "version": "v1.0.0",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "http://gitlab.erebusbat.net/ErebusBat/grcpass",
-            "provider": "gitlab",
-            "package_path": ""
         },
         "/Users/andrew.burns/bin/hx": {
             "path": "/Users/andrew.burns/bin/hx",
