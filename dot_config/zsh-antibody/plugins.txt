@@ -10,7 +10,8 @@ ohmyzsh/ohmyzsh path:plugins/wd
 ~/.config/zsh-antibody/golang type:zsh
 ~/.config/zsh-antibody/rbenv type:zsh
 ~/.config/zsh-antibody/sign_in_solutions type:zsh
-~/.config/zsh-antibody/powershell type:zsh
+# ~/.config/zsh-antibody/powershell type:zsh
+~/.config/zsh-antibody/flutter type:zsh
 
 # Rust package is REQUIRED if you are using starship_prompt below
 ~/.config/zsh-antibody/rust type:zsh
