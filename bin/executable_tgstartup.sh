@@ -6,7 +6,7 @@
 # Will not launch a terminal as it assumes you will be launching a terminal to execute this script.  This also allows for easily switching terminal emulators.
 
 APPS=(
-  /Applications/Docker.app
+  /Applications/OrbStack.app
 
   /Applications/Fantastical.app
   /Applications/Firefox.app
