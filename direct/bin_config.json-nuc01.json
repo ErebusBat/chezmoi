@@ -22,9 +22,9 @@
         "/home/aburns/bin/bin": {
             "path": "/home/aburns/bin/bin",
             "remote_name": "bin",
-            "version": "v0.16.2",
+            "version": "v0.17.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/marcosnils/bin/releases/tag/v0.16.2",
+            "url": "https://github.com/marcosnils/bin/releases/tag/v0.17.0",
             "provider": "",
             "package_path": ""
         },
@@ -40,20 +40,20 @@
         "/home/aburns/bin/chezmoi": {
             "path": "/home/aburns/bin/chezmoi",
             "remote_name": "chezmoi",
-            "version": "v2.33.4",
+            "version": "v2.35.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.33.4",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.35.2",
             "provider": "",
             "package_path": ""
         },
         "/home/aburns/bin/delta": {
             "path": "/home/aburns/bin/delta",
             "remote_name": "delta",
-            "version": "0.15.1",
+            "version": "0.16.5",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/dandavison/delta",
+            "url": "https://github.com/dandavison/delta/releases/tag/0.16.5",
             "provider": "",
-            "package_path": ""
+            "package_path": "delta-0.16.5-x86_64-unknown-linux-gnu/delta"
         },
         "/home/aburns/bin/duf": {
             "path": "/home/aburns/bin/duf",
@@ -94,9 +94,9 @@
         "/home/aburns/bin/fzf": {
             "path": "/home/aburns/bin/fzf",
             "remote_name": "fzf",
-            "version": "0.40.0",
+            "version": "0.42.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/junegunn/fzf/releases/tag/0.40.0",
+            "url": "https://github.com/junegunn/fzf/releases/tag/0.42.0",
             "provider": "",
             "package_path": "fzf"
         },
@@ -121,18 +121,18 @@
         "/home/aburns/bin/lazydocker": {
             "path": "/home/aburns/bin/lazydocker",
             "remote_name": "lazydocker",
-            "version": "v0.20.0",
+            "version": "v0.21.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/jesseduffield/lazydocker",
+            "url": "https://github.com/jesseduffield/lazydocker/releases/tag/v0.21.0",
             "provider": "",
-            "package_path": ""
+            "package_path": "lazydocker"
         },
         "/home/aburns/bin/lazygit": {
             "path": "/home/aburns/bin/lazygit",
             "remote_name": "lazygit",
-            "version": "v0.38.2",
+            "version": "v0.39.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.38.2",
+            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.39.1",
             "provider": "",
             "package_path": "lazygit"
         },
@@ -166,9 +166,9 @@
         "/home/aburns/bin/starship": {
             "path": "/home/aburns/bin/starship",
             "remote_name": "starship",
-            "version": "v1.14.2",
+            "version": "v1.15.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/starship/starship/releases/tag/v1.14.2",
+            "url": "https://github.com/starship/starship/releases/tag/v1.15.0",
             "provider": "",
             "package_path": "starship"
         }

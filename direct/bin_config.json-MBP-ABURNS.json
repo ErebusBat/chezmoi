@@ -49,11 +49,11 @@
         "/Users/andrew.burns/bin/delta": {
             "path": "/Users/andrew.burns/bin/delta",
             "remote_name": "delta",
-            "version": "0.15.1",
+            "version": "0.16.5",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/dandavison/delta",
-            "provider": "github",
-            "package_path": "delta-0.15.1-aarch64-apple-darwin/delta"
+            "url": "https://github.com/dandavison/delta/releases/tag/0.16.5",
+            "provider": "",
+            "package_path": "delta-0.16.5-aarch64-apple-darwin/delta"
         },
         "/Users/andrew.burns/bin/dua": {
             "path": "/Users/andrew.burns/bin/dua",
@@ -103,47 +103,38 @@
         "/Users/andrew.burns/bin/jira": {
             "path": "/Users/andrew.burns/bin/jira",
             "remote_name": "jira",
-            "version": "v1.3.0",
+            "version": "v1.4.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/ankitpokhrel/jira-cli",
-            "provider": "github",
-            "package_path": "jira_1.3.0_macOS_arm64/bin/jira"
+            "url": "https://github.com/ankitpokhrel/jira-cli/releases/tag/v1.4.0",
+            "provider": "",
+            "package_path": "jira_1.4.0_macOS_arm64/bin/jira"
         },
         "/Users/andrew.burns/bin/lazydocker": {
             "path": "/Users/andrew.burns/bin/lazydocker",
             "remote_name": "lazydocker",
-            "version": "v0.20.0",
+            "version": "v0.21.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/jesseduffield/lazydocker",
-            "provider": "github",
+            "url": "https://github.com/jesseduffield/lazydocker/releases/tag/v0.21.0",
+            "provider": "",
             "package_path": "lazydocker"
         },
         "/Users/andrew.burns/bin/lazygit": {
             "path": "/Users/andrew.burns/bin/lazygit",
             "remote_name": "lazygit",
-            "version": "v0.38.2",
+            "version": "v0.39.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.38.2",
+            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.39.1",
             "provider": "",
             "package_path": "lazygit"
         },
         "/Users/andrew.burns/bin/rclone": {
             "path": "/Users/andrew.burns/bin/rclone",
             "remote_name": "rclone",
-            "version": "v1.62.2",
+            "version": "v1.63.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/rclone/rclone",
-            "provider": "github",
-            "package_path": "rclone-v1.62.2-osx-arm64/rclone"
-        },
-        "/Users/andrew.burns/bin/restic": {
-            "path": "/Users/andrew.burns/bin/restic",
-            "remote_name": "",
-            "version": "v0.15.2",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/restic/restic/releases/tag/v0.15.2",
+            "url": "https://github.com/rclone/rclone/releases/tag/v1.63.1",
             "provider": "",
-            "package_path": ""
+            "package_path": "rclone-v1.63.1-osx-arm64/rclone"
         },
         "/Users/andrew.burns/bin/spt": {
             "path": "/Users/andrew.burns/bin/spt",
