@@ -13,6 +13,7 @@ duply:~/.duply
 eint152:~/Downloads/_keep/abb/eint152
 espanso:~/src/erebusbat/dotfiles-stow/espanso/.config/espanso
 ffmpeg:~/src/erebusbat/myserver/utils/ffmpeg
+flutter:~/src/sia/flutter-companion-v2
 gconnect:~/src/sie/connect
 gopass:~/.local/share/gopass/stores/root
 gosrcme:~/go/src/github.com/ErebusBat
