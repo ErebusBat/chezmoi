@@ -46,14 +46,15 @@ $HOME/.steam/debian-installation/**
 $HOME/.vim/plugged/**
 $HOME/.zsh_sessions/**
 $HOME/Dropbox/**
+$HOME/GPUCache/**
+$HOME/Games/Sony PlayStation/**
+$HOME/OrbStack/**
+$HOME/Slack/logs/**
 $HOME/dust/**
 $HOME/dust_tmp/**
 $HOME/dustbin/**
 $HOME/file-cache/**
-$HOME/Games/Sony PlayStation/**
 $HOME/gcloud/logs/**
-$HOME/GPUCache/**
-$HOME/Slack/logs/**
 $HOME/src/**/tmp/**
 $HOME/src/erebusbat/**/.git/**
 $HOME/src/erebusbat/image-marker/in/**
