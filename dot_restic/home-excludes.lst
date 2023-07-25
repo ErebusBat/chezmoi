@@ -41,6 +41,8 @@ $HOME/.mozilla/firefox/*.default-release-backup-crashrecovery-*/**
 $HOME/.mozilla/firefox/*.default-release/storage/**
 $HOME/.node-gyp/**
 $HOME/.npm/**
+$HOME/.orbstack/**
+$HOME/.pub-cache/**
 $HOME/.rustup/**
 $HOME/.steam/debian-installation/**
 $HOME/.vim/plugged/**
