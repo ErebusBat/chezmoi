@@ -67,6 +67,12 @@ local config = {
 }
 
 --
+-- Clipboard
+--
+config.selection_word_boundary = "|│ \t\n{}[]()\"'`<>=:;"
+
+
+--
 -- Host Specific Settings
 --
 config["text_background_opacity"] = 0.9
