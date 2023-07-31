@@ -15,8 +15,6 @@
 	<string>local.restic-vimwiki-backup</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/usr/local/bin/fdautil</string>
-		<string>exec</string>
 		<string>/Users/andrew.burns/.restic/restic-multi.rb</string>
 		<string>obsidian</string>
 		<string>backup</string>

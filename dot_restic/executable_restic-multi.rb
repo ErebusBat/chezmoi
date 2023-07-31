@@ -208,7 +208,12 @@ class ResticConfig
     if sudo
       args << 'sudo'
     end
-    args << `which restic`.strip
+
+    restic_bin_path = `which restic`.strip
+    if !$?.success? || !File.executable?(restic_bin_path)
+      raise "Could not find restic binary! Got >>#{restic_bin_path}<<\n$PATH=#{ENV['PATH']}"
+    end
+    args << restic_bin_path
 
     args += [
       "-r",
