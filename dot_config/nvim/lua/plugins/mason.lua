@@ -20,6 +20,7 @@ local on_attach = function(_, bufnr)
 
   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap('gR', vim.lsp.buf.references, '[G]oto Buffer [R]eferences')
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
@@ -76,9 +77,12 @@ return {
   'williamboman/mason.nvim',
 
   dependencies = {
-    'williamboman/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
+    'williamboman/mason-lspconfig.nvim',
   },
+  init = function()
+    -- vim.keymap.del('n', '<leader>ds')
+  end,
   config = function ()
     require('mason').setup()
 
@@ -92,11 +96,15 @@ return {
     mason_lspconfig.setup_handlers {
       function(server_name)
         require('lspconfig')[server_name].setup {
-          capabilities = capabilities,
+          -- capabilities = capabilities,
           on_attach = on_attach,
           settings = servers[server_name],
         }
       end,
     }
   end,
+  keys = {
+    -- Stupid work around for keymaps above not working :angry:
+    { '<leader>ds', ':lua require("telescope.builtin").lsp_document_symbols()<CR>', desc = '[D]ocument [S]ymbols' },
+  },
 }
