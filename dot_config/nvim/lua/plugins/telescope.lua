@@ -4,9 +4,11 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim' ,
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
+    'gbrlsnchs/telescope-lsp-handlers.nvim'
   },
   config = function()
-    require('telescope').setup {
+    telescope = require('telescope')
+    telescope.setup {
       defaults = {
         mappings = {
           i = {
@@ -16,6 +18,7 @@ return {
         },
       },
     }
+    telescope.load_extension('lsp_handlers')
 
     pcall(require('telescope').load_extension, 'fzf')
     vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -34,5 +37,6 @@ return {
     vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
     vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
     vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+    -- See also mason.lua for LSP specific mappings
   end,
 }
