@@ -21,6 +21,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
     nmap('<leader>ps', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[P]roject [S]ymbols')
 
+    -- Nice Telescope version of '*'
     nmap('*', function()
       require('telescope.builtin').current_buffer_fuzzy_find({default_text=vim.fn.expand('<cword>')})
     end, 'Search Current Buffer for Symbol Under Cursor')
