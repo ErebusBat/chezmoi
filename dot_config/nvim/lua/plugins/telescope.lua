@@ -19,6 +19,7 @@ return {
       },
     }
     telescope.load_extension('lsp_handlers')
+    telescope.load_extension('harpoon')
 
     pcall(require('telescope').load_extension, 'fzf')
     vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
