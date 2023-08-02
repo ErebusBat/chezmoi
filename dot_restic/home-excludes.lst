@@ -105,22 +105,18 @@ $HOME/go/pkg/**
 $HOME/iCloud Drive (Archive)/**
 $HOME/Library/.dash_yard/**
 $HOME/Library/Accessibility/**
+$HOME/Library/Accounts/**
 $HOME/Library/AppleMediaServices/**
 $HOME/Library/Application Support/**/com.microsoft.appcenter/**
 $HOME/Library/Application Support/AddressBook/**
 $HOME/Library/Application Support/Animoji/**
-$HOME/Library/Application Support/com.apple.ap.promotedcontentd/**
-$HOME/Library/Application Support/com.apple.ap.sbd/**
-$HOME/Library/Application Support/com.apple.sharedfilelist/**
-$HOME/Library/Application Support/com.apple.spotlight/**
-$HOME/Library/Application Support/com.bugsnag.Bugsnag/**
-$HOME/Library/Application Support/com.facebook.archon.developerID/RCTAsyncLocalStorage_V1
+$HOME/Library/Application Support/CallHistoryDB/**
+$HOME/Library/Application Support/CallHistoryTransactions/**
 $HOME/Library/Application Support/CrashReporter/**
-$HOME/Library/Application Support/discord/**
 $HOME/Library/Application Support/Docker Desktop/**
 $HOME/Library/Application Support/Dropbox/**
 $HOME/Library/Application Support/DropboxElectron/**
-$HOME/Library/Application Support/Facetime/**
+$HOME/Library/Application Support/FaceTime/**
 $HOME/Library/Application Support/FileProvider/**
 $HOME/Library/Application Support/Firefox/Profiles/**/*.sqlite*
 $HOME/Library/Application Support/Firefox/Profiles/**/datareporting/**
@@ -131,27 +127,13 @@ $HOME/Library/Application Support/Firefox/Profiles/**/support@lastpass.com.xpi
 $HOME/Library/Application Support/Firefox/Profiles/**/synced-tabs.db*
 $HOME/Library/Application Support/GIMP/**
 $HOME/Library/Application Support/Google/Chrome/**
-# $HOME/Library/Application Support/Google/Chrome/AutofillStates/**
-# $HOME/Library/Application Support/Google/Chrome/Crashpad/**
-# $HOME/Library/Application Support/Google/Chrome/**/CacheStorage/**
-# $HOME/Library/Application Support/Google/Chrome/**/optimization_guide_prediction_model_downloads/**
 $HOME/Library/Application Support/Hazel/*.hazellock
-$HOME/Library/Application Support/iCloud/**
 $HOME/Library/Application Support/Knowledge/**
 $HOME/Library/Application Support/Messenger/**
 $HOME/Library/Application Support/Microsoft/Teams/**
+$HOME/Library/Application Support/MobileSync/**
 $HOME/Library/Application Support/OBSBOT_WebCam/profiler/**
 $HOME/Library/Application Support/OBSBOT_WebCam/webcamLogs/**
-$HOME/Library/Application Support/obsidian/*Cache/**
-$HOME/Library/Application Support/obsidian/blob_storage/**
-$HOME/Library/Application Support/obsidian/IndexedDB/**
-$HOME/Library/Application Support/obsidian/Local Storage/**
-$HOME/Library/Application Support/obsidian/obsidian.log
-$HOME/Library/Application Support/obsidian/Service Worker/**
-$HOME/Library/Application Support/obsidian/Session Storage/**
-$HOME/Library/Application Support/obsidian/Singleton*/**
-$HOME/Library/Application Support/obsidian/Web Storage/**
-$HOME/Library/Application Support/obsidian/WebStorage/**
 $HOME/Library/Application Support/Plexamp/**
 $HOME/Library/Application Support/Postman/Crashpad/**
 $HOME/Library/Application Support/Postman/logs/**
@@ -159,46 +141,77 @@ $HOME/Library/Application Support/SonosV2/updates/**
 $HOME/Library/Application Support/Spotify/PersistentCache/**
 $HOME/Library/Application Support/SyncServices/**
 $HOME/Library/Application Support/Todoist/**
+$HOME/Library/Application Support/com.apple.TCC/**
+$HOME/Library/Application Support/com.apple.ap.promotedcontentd/**
+$HOME/Library/Application Support/com.apple.ap.sbd/**
+$HOME/Library/Application Support/com.apple.avfoundation/**
+$HOME/Library/Application Support/com.apple.sharedfilelist/**
+$HOME/Library/Application Support/com.apple.spotlight/**
+$HOME/Library/Application Support/com.bugsnag.Bugsnag/**
+$HOME/Library/Application Support/com.facebook.archon.developerID/RCTAsyncLocalStorage_V1
+$HOME/Library/Application Support/discord/**
+$HOME/Library/Application Support/iCloud/**
+$HOME/Library/Application Support/obsidian/*Cache/**
+$HOME/Library/Application Support/obsidian/IndexedDB/**
+$HOME/Library/Application Support/obsidian/Local Storage/**
+$HOME/Library/Application Support/obsidian/Service Worker/**
+$HOME/Library/Application Support/obsidian/Session Storage/**
+$HOME/Library/Application Support/obsidian/Singleton*/**
+$HOME/Library/Application Support/obsidian/Web Storage/**
+$HOME/Library/Application Support/obsidian/WebStorage/**
+$HOME/Library/Application Support/obsidian/blob_storage/**
+$HOME/Library/Application Support/obsidian/obsidian.log
 $HOME/Library/Application Support/zoom.us/**
 $HOME/Library/Assistant/**
+$HOME/Library/Autosave Information/**
 $HOME/Library/Biome/**
 $HOME/Library/Calendars/**
-$HOME/Library/com.apple.icloud.searchpartyd/**
 $HOME/Library/CloudStorage/Dropbox/**
 $HOME/Library/Containers/**
+$HOME/Library/Cookies/**
+$HOME/Library/CoreFollowUp/**
 $HOME/Library/Daemon Containers/**
+$HOME/Library/DoNotDisturb/**
+$HOME/Library/DuetExpertCenter/**
 $HOME/Library/Finance/**
 $HOME/Library/Google/GoogleSoftwareUpdate/**
 $HOME/Library/Google/GoogleSoftwareUpdate/Stats/**
 $HOME/Library/Group Containers/**
 $HOME/Library/Group Containers/group.com.apple.secure-control-center-preferences/**
 $HOME/Library/HTTPStorages/**
+$HOME/Library/HomeKit/**
 $HOME/Library/IdentityService/**
+$HOME/Library/IdentityServices/**
 $HOME/Library/IntelligencePlatform/**
 $HOME/Library/Intents/**
 $HOME/Library/LanguageModeling/**
 $HOME/Library/Logs/**
 $HOME/Library/Mail/**
-$HOME/Library/Metadata/**
-$HOME/Library/WebKit/**
-$HOME/Library/Translation/**
-$HOME/Library/StatusKit/**
-$HOME/Library/Shortcuts/**
-$HOME/Library/Sharing/**
-$HOME/Library/ResponseKit/**
-$HOME/Library/QuickLook/**
+$HOME/Library/Messages/**
 $HOME/Library/Messages/*Cache/**
-$HOME/Movies/**
-$HOME/Music/Music/**
+$HOME/Library/Metadata/**
 $HOME/Library/News/**
 $HOME/Library/PersonalizationPortrait/**
 $HOME/Library/Photos/Libraries/Syndication.photoslibrary/**
+$HOME/Library/Preferences/com.apple.homed.plist
+$HOME/Library/QuickLook/**
 $HOME/Library/Reminders/**
+$HOME/Library/ResponseKit/**
 $HOME/Library/Safari/**
 $HOME/Library/Saved Application State/**
+$HOME/Library/Sharing/**
+$HOME/Library/Shortcuts/**
+$HOME/Library/StatusKit/**
 $HOME/Library/Suggestions/**
+$HOME/Library/Translation/**
 $HOME/Library/Trial/**
+$HOME/Library/Weather/**
+$HOME/Library/WebKit/**
 $HOME/Library/Webkit/**
+$HOME/Library/com.apple.aiml.instrumentation/**
+$HOME/Library/com.apple.icloud.searchpartyd/**
+$HOME/Movies/**
+$HOME/Music/Music/**
 $HOME/Pictures/Photos Library.photoslibrary/private/com.apple.mediaanalysisd/**
 $HOME/Pictures/Photos Library.photoslibrary/private/com.apple.photoanalysisd/**
 $HOME/Pictures/Photos Library.photoslibrary/resources/**
