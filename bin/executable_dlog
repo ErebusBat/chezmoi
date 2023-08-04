@@ -42,6 +42,30 @@ if [[ ! -f $FULL_FILE_PATH ]]; then
   exit 2
 fi
 
+################################################################################
+# Some Global Replacements
+################################################################################
+#- Personal
+ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}
+ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
+#- SIE - Entities
+ENTRY=${ENTRY:gs/LEIDOS/[[Leidos]]}
+ENTRY=${ENTRY:gs/LIEDOS/[[Leidos]]}
+ENTRY=${ENTRY:gs/MOOG/[[Moog]]}
+ENTRY=${ENTRY:gs/TESLA/[[Tesla]]}
+#- SIE - People
+ENTRY=${ENTRY:gs/ALINA/[[Alina Roshchupkina|Alina]]}
+ENTRY=${ENTRY:gs/CAM/[[Cameron Wiebe|Cam]]}
+ENTRY=${ENTRY:gs/DIEGO/[[Diego De Oliveira Toral|Diego]]}
+ENTRY=${ENTRY:gs/GREG/[[Greg Underwood|Greg]]}
+ENTRY=${ENTRY:gs/JOLIE/[[Jolie Summers|Jolie]]}
+ENTRY=${ENTRY:gs/JON/[[Jon Sangster|Jon]]}
+ENTRY=${ENTRY:gs/KIRAN/[[Kirandeep Virdi|Kiran]]}
+ENTRY=${ENTRY:gs/MATHEUS/[[Matheus Bastos|Matheus]]}
+ENTRY=${ENTRY:gs/RYAN/[[Ryan Canby]]}
+#- SIE - Projects / Pages
+ENTRY=${ENTRY:gs/HOSTCACHE/[[Hosts Cache Issue]]}
+
 TIMESTAMP=$(date +%H:%M)
 MD_TEXT="\n- ${TIMESTAMP} - ${ENTRY}"
 # echo "[$(date)] MD_TEXT>>>$MD_TEXT<<<" >> /tmp/dlog.log
