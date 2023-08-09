@@ -25,7 +25,8 @@ return {
     require("telescope").load_extension('harpoon')
     require("harpoon").setup({
       menu = {
-        width = vim.api.nvim_win_get_width(0) - 20,
+        -- On vertical screen we needed a +20 adjustment, not a -20... weird
+        width = vim.api.nvim_win_get_width(0) + 20,
       }
     })
   end,
