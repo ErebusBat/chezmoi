@@ -2,6 +2,7 @@
 **/Session.vim
 .config/nvim/plugin/packer_compiled.lua
 .local/share/chezmoi/
+.syncthing.*
 
 # Direct is where we store files that are symlinked (like stow)
 direct/
