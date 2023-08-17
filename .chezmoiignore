@@ -24,6 +24,7 @@ direct/
 {{- end }}
 
 {{- if not .area.tractionguest }}
+src/sie/**
 .config/nvim/spell/tractionguest.*
 .config/systemd/user/restic-tguest.*
 .npmrc
