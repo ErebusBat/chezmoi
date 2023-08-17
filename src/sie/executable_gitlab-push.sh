@@ -15,6 +15,7 @@ for proj in $PROJECTS; do
   cd $full_path
 
   echo "[$(date)] Pushing $proj to bat-gitlab"
+  git fetch origin 2>&1
   git push bat-gitlab --all 2>&1
   git push bat-gitlab --tags 2>&1
 done
