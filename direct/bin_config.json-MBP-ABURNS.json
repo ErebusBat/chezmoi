@@ -10,6 +10,15 @@
             "provider": "github",
             "package_path": "assh"
         },
+        "/Users/andrew.burns/bin/ax": {
+            "path": "/Users/andrew.burns/bin/ax",
+            "remote_name": "ax",
+            "version": "v0.3.3",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/egnyte/ax",
+            "provider": "github",
+            "package_path": "ax"
+        },
         "/Users/andrew.burns/bin/bat": {
             "path": "/Users/andrew.burns/bin/bat",
             "remote_name": "bat",
@@ -97,7 +106,7 @@
             "version": "v0.4.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/sitkevij/hex",
-            "provider": "github",
+            "provider": "",
             "package_path": ""
         },
         "/Users/andrew.burns/bin/jira": {
