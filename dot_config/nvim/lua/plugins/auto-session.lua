@@ -1,7 +1,7 @@
 return {
   'rmagatti/auto-session',
   lazy = true,
-  -- enabled = false,
+  enabled = false,
   config = function()
     -- vim.cmd([[ let g:auto_session_root_dir = "." ]])
     vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,localoptions"
