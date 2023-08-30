@@ -45,6 +45,11 @@ fi
 ################################################################################
 # Some Global Replacements
 ################################################################################
+if [[ $ENTRY == *SONG* ]]; then
+  SONG=$(gospt now | sed -E 's/^[⏸▶ ]+//g' )
+  SONG="🎵 ${SONG}"
+  ENTRY=${ENTRY:gs/SONG/$SONG}
+fi
 #- Personal
 ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}
 ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
