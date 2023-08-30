@@ -1,10 +1,28 @@
 #!/bin/zsh
+set -e
 
-WIKI_ROOT_PATH=~/Documents/Obsidian/vimwiki
+# Setup paths, support known locations for vault root
 LOGS_PATH="tguest/logs/$(date +%Y/%m-%b)"
 FILE_NAME="$(date +%F-%a).md"
+WIKI_ROOT_PATHS=(
+  ~/Documents/Obsidian/vimwiki   # Mac
+  ~/vimwiki                      # Thelio
+)
 
+# Find root path, error if not found
+for p in $WIKI_ROOT_PATHS; do
+  if [[ -d $p ]]; then
+    WIKI_ROOT_PATH=$p
+  fi
+done
+if [[ ! -d $WIKI_ROOT_PATH ]]; then
+  echo "*** FATAL: Could not find wiki root path!"
+  exit 1
+fi
+
+# Build final paths
 FULL_DIR_PATH="$WIKI_ROOT_PATH/$LOGS_PATH"
 FULL_FILE_PATH="$FULL_DIR_PATH/$FILE_NAME"
 
+# Finally run the command
 grep '^## Log' -A50 $FULL_FILE_PATH
