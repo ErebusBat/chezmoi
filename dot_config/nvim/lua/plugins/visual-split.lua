@@ -1,6 +1,6 @@
 return {
   'wellle/visual-split.vim',
-  -- enabled = false,
+  enabled = true,
   cmd = {
     'VSSplit',
     'VSSplitAbove',
