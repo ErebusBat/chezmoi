@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+WIKI_ROOT_PATH=~/Documents/Obsidian/vimwiki
+LOGS_PATH="tguest/logs/$(date +%Y/%m-%b)"
+FILE_NAME="$(date +%F-%a).md"
+
+FULL_DIR_PATH="$WIKI_ROOT_PATH/$LOGS_PATH"
+FULL_FILE_PATH="$FULL_DIR_PATH/$FILE_NAME"
+
+grep '^## Log' -A50 $FULL_FILE_PATH
