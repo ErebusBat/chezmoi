@@ -88,6 +88,20 @@ ENTRY=${ENTRY:gs/RYAN/[[Ryan Canby]]}
 ENTRY=${ENTRY:gs/VIVI/[[Viviam Gusmao Silva Hymino|Viviam]]}
 #- SIE - Projects / Pages
 ENTRY=${ENTRY:gs/HOSTCACHE/[[Hosts Cache Issue]]}
+#- EMOJIs
+ENTRY=${ENTRY:gs/:duck:/🦆}
+ENTRY=${ENTRY:gs/:bee:/🐝}
+ENTRY=${ENTRY:gs/:pizza:/🍕}
+ENTRY=${ENTRY:gs/:taco:/🌮}
+ENTRY=${ENTRY:gs/:pill:/💊}
+ENTRY=${ENTRY:gs/:pin:/📌}
+ENTRY=${ENTRY:gs/:pray:/🙏}
+ENTRY=${ENTRY:gs/:evil:/😈}
+ENTRY=${ENTRY:gs/:love:/🥰}
+ENTRY=${ENTRY:gs/:hot:/🥵}
+ENTRY=${ENTRY:gs/:bun:/🐇}
+ENTRY=${ENTRY:gs/:puzzle:/🧩}
+ENTRY=${ENTRY:gs/:cherry:/🍒}
 
 TIMESTAMP=$(date +%H:%M)
 MD_TEXT="\n- ${TIMESTAMP} - ${ENTRY}"
