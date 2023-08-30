@@ -1,2 +1,3 @@
 .DS_Store
 .syncthing.*
+*.sync-conflict-*
