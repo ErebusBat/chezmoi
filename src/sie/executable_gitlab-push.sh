@@ -1,4 +1,5 @@
 #!/bin/zsh
+set -e
 ROOT_PATH=~/src/sie
 PROJECTS=(
   server
@@ -16,11 +17,12 @@ for proj in $PROJECTS; do
 
   echo "[$(date)] Pushing $proj to bat-gitlab"
   git fetch origin 2>&1
-  git push bat-gitlab --all 2>&1
+  git push bat-gitlab --all --force 2>&1
   git push bat-gitlab --tags 2>&1
 done
 
 echo -n "[$(date)] Notifying UptimeKuma..."
-curl -s http://uptime-kuma.erebusbat.net/api/push/3JmHurF7XG?status=up&msg=OK&ping=
+curl -s 'http://uptime-kuma.erebusbat.net/api/push/3JmHurF7XG?status=up&msg=OK&ping='
+echo ""
 
 echo "[$(date)] Done."
