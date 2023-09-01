@@ -66,6 +66,28 @@ if [[ $ENTRY == *SONG* ]]; then
   SONG="🎵 ${SONG}"
   ENTRY=${ENTRY:gs/SONG/$SONG}
 fi
+#- Emojis
+ENTRY=${ENTRY:gs/:100:/💯}
+ENTRY=${ENTRY:gs/:bee:/🐝}
+ENTRY=${ENTRY:gs/:book:/📖}
+ENTRY=${ENTRY:gs/:broom:/🧹}
+ENTRY=${ENTRY:gs/:bun:/🐇}
+ENTRY=${ENTRY:gs/:cherries:/🍒}
+ENTRY=${ENTRY:gs/:cherry:/🍒}
+ENTRY=${ENTRY:gs/:duck:/🦆}
+ENTRY=${ENTRY:gs/:evil:/😈}
+ENTRY=${ENTRY:gs/:hot:/🥵}
+ENTRY=${ENTRY:gs/:kiss:/😘}
+ENTRY=${ENTRY:gs/:music:/🎵}
+ENTRY=${ENTRY:gs/:pill:/💊}
+ENTRY=${ENTRY:gs/:pin:/📌}
+ENTRY=${ENTRY:gs/:pray:/🙏}
+ENTRY=${ENTRY:gs/:puzzle:/🧩}
+ENTRY=${ENTRY:gs/:rofl:/🤣}
+ENTRY=${ENTRY:gs/:shh:/🤫}
+ENTRY=${ENTRY:gs/:pizza:/🍕}
+ENTRY=${ENTRY:gs/:taco:/🌮}
+ENTRY=${ENTRY:gs/:🧀:/}
 #- Personal
 ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}
 ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
