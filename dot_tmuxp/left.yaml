@@ -24,11 +24,11 @@ windows:
       - cd /myserver/pihole && make lcd
     - shell_command:
       - ssh nuc -t -- 'cd /myserver/pihole2 && make lcd'
+    # - shell_command:
+    #   - wd deco
+    #   - while [ true ]; do docker compose logs -f ping; sleep 5; done
     - shell_command:
-      # - tail -f /tmp/docker_unhealthy_restart.log
-      # - cd /myserver/gatus/support && ./ping_loop.sh loop
-      - wd deco
-      - while [ true ]; do docker compose logs -f ping; sleep 5; done
+      - while [ true ]; do clear; dlog-tail; sleep 5; done
     - shell_command:
       # - tmux select-layout 'bb2a,166x76,0,0[166x38,0,0{83x38,0,0,12,82x38,84,0[82x19,84,0,23,82x18,84,20,24]},166x37,0,39{83x37,0,39,13,82x37,84,39,14}]'
       - tmux select-layout '1dc9,166x76,0,0[166x38,0,0{103x38,0,0,3,62x38,104,0[62x19,104,0,4,62x18,104,20,5]},166x37,0,39{58x37,0,39,6,107x37,59,39,7}]'
