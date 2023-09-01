@@ -5,13 +5,15 @@ LOGS_PATH="tguest/logs/$(date +%Y/%m-%b)"
 FILE_NAME="$(date +%F-%a).md"
 WIKI_ROOT_PATHS=(
   ~/Documents/Obsidian/vimwiki   # Mac
-  ~/vimwiki                      # Thelio
+  ~/Sync/Obsidian/vimwiki        # Thelio (SyncThing)
+  ~/vimwiki                      # Thelio (Obsidian)
 )
 
 # Find root path, error if not found
 for p in $WIKI_ROOT_PATHS; do
   if [[ -d $p ]]; then
     WIKI_ROOT_PATH=$p
+    break
   fi
 done
 if [[ ! -d $WIKI_ROOT_PATH ]]; then
