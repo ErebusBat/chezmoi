@@ -19,4 +19,8 @@ for proj in $PROJECTS; do
   git push bat-gitlab --all 2>&1
   git push bat-gitlab --tags 2>&1
 done
+
+echo -n "[$(date)] Notifying UptimeKuma..."
+curl -s http://uptime-kuma.erebusbat.net/api/push/3JmHurF7XG?status=up&msg=OK&ping=
+
 echo "[$(date)] Done."
