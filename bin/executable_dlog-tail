@@ -5,9 +5,10 @@ set -e
 LOGS_PATH="tguest/logs/$(date +%Y/%m-%b)"
 FILE_NAME="$(date +%F-%a).md"
 WIKI_ROOT_PATHS=(
-  ~/Documents/Obsidian/vimwiki   # Mac
-  ~/Sync/Obsidian/vimwiki        # Thelio (SyncThing)
-  ~/vimwiki                      # Thelio (Obsidian)
+  ~/Documents/Obsidian/vimwiki   # Mac           (Obsidian)
+  ~/Sync/Obsidian/vimwiki        # Thelio        (SyncThing)
+  ~/vimwiki                      # Thelio        (Obsidian)
+  ~/Obsidian/vimwiki             # nuc01,dartp6  (SyncThing)
 )
 
 # Find root path, error if not found
