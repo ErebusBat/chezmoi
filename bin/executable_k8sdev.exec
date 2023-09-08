@@ -9,6 +9,10 @@ else
   NS_ARG="-n $BRANCH_NAME"
 fi
 set -x
-# POD_NAME=$(kubectl ${NS_ARG} get pod -l component=backend --no-headers | awk '{print $1}' | sort -uR | head -n1)
 POD_NAME=$(kubectl ${NS_ARG} get pod -l component=backend -o json | jq -r '.items[].metadata.name' | sort -uR | head -n1)
-kubectl ${NS_ARG}  exec -it pod/${POD_NAME} -- bin/exec.sh $THE_CMD
+
+if [[ $THE_CMD == "logs" ]]; then
+  kubectl ${NS_ARG} logs -f pod/${POD_NAME}
+else
+  kubectl ${NS_ARG} exec -it pod/${POD_NAME} -- bin/exec.sh $THE_CMD
+fi
