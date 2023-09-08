@@ -9,8 +9,8 @@ echo "Starting Magic Mirror Chrome App..."
 google-chrome --user-data-dir=/tmp/mmm-chrome --bwsi --app=http://mmm.erebusbat.net &
 
 sessions=(
-  system
   left
+  system
 )
 START_SESS=$1
 [[ -z $START_SESS ]] && START_SESS=$sessions[1]

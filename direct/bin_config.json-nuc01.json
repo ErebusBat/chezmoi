@@ -40,9 +40,9 @@
         "/home/aburns/bin/chezmoi": {
             "path": "/home/aburns/bin/chezmoi",
             "remote_name": "chezmoi",
-            "version": "v2.35.2",
+            "version": "v2.39.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.35.2",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.39.1",
             "provider": "",
             "package_path": ""
         },
@@ -112,36 +112,36 @@
         "/home/aburns/bin/jq": {
             "path": "/home/aburns/bin/jq",
             "remote_name": "jq",
-            "version": "jq-1.6",
+            "version": "jq-1.7",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/stedolan/jq",
+            "url": "https://github.com/jqlang/jq/releases/tag/jq-1.7",
             "provider": "",
             "package_path": ""
         },
         "/home/aburns/bin/lazydocker": {
             "path": "/home/aburns/bin/lazydocker",
             "remote_name": "lazydocker",
-            "version": "v0.21.0",
+            "version": "v0.21.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/jesseduffield/lazydocker/releases/tag/v0.21.0",
+            "url": "https://github.com/jesseduffield/lazydocker/releases/tag/v0.21.1",
             "provider": "",
             "package_path": "lazydocker"
         },
         "/home/aburns/bin/lazygit": {
             "path": "/home/aburns/bin/lazygit",
             "remote_name": "lazygit",
-            "version": "v0.39.1",
+            "version": "v0.40.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.39.1",
+            "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.40.2",
             "provider": "",
             "package_path": "lazygit"
         },
         "/home/aburns/bin/restic": {
             "path": "/home/aburns/bin/restic",
             "remote_name": "",
-            "version": "v0.15.2",
+            "version": "v0.16.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/restic/restic/releases/tag/v0.15.2",
+            "url": "https://github.com/restic/restic/releases/tag/v0.16.0",
             "provider": "",
             "package_path": ""
         },
@@ -166,9 +166,9 @@
         "/home/aburns/bin/starship": {
             "path": "/home/aburns/bin/starship",
             "remote_name": "starship",
-            "version": "v1.15.0",
+            "version": "v1.16.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/starship/starship/releases/tag/v1.15.0",
+            "url": "https://github.com/starship/starship/releases/tag/v1.16.0",
             "provider": "",
             "package_path": "starship"
         }
