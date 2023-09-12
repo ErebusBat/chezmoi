@@ -28,4 +28,8 @@ FULL_FILE_PATH="$FULL_DIR_PATH/$FILE_NAME"
 
 # Finally run the command
 echo "${FILE_NAME}"
-grep '^## Log' -A50 $FULL_FILE_PATH
+if [[ -x $(which glow) ]]; then
+  grep '^## Log' -A50 $FULL_FILE_PATH | glow
+else
+  grep '^## Log' -A50 $FULL_FILE_PATH
+fi
