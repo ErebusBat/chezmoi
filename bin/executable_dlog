@@ -112,7 +112,7 @@ ENTRY=${ENTRY:gs/JON/[[Jon Sangster|Jon]]}
 ENTRY=${ENTRY:gs/KIRAN/[[Kirandeep Virdi|Kiran]]}
 ENTRY=${ENTRY:gs/MATHEUS/[[Matheus Bastos|Matheus]]}
 ENTRY=${ENTRY:gs/RYAN/[[Ryan Canby]]}
-ENTRY=${ENTRY:gs/VIVI/[[Viviam Gusmao Silva Hymino|Viviam]]}
+ENTRY=${ENTRY:gs/TYLER/[[Tyler Kim|Tyler]]}
 #- SIE - Projects / Pages
 ENTRY=${ENTRY:gs/HOSTCACHE/[[Hosts Cache Issue]]}
 
