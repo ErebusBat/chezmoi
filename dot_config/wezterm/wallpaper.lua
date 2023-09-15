@@ -9,5 +9,5 @@ local wallpaper_to_use = wallpapers[math.random(#wallpapers)]
 
 return {
   File = wallpaper_to_use,
-  Enabled = true,
+  Enabled = false,
 }
