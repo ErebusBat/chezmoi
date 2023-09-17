@@ -27,15 +27,18 @@ cask "orbstack"
 cask "tad"
 
 ################################################################################
-# System Utilities
+# System Utilities / Essentials
 ################################################################################
+cask "obsidian"
+cask "wezterm"
+
 brew "antibody"
-brew "git", link: true
 # Using OrbStack
 # brew "docker"
 # brew "docker-compose"
-brew "gnupg"
+brew "git", link: true
 brew "gnu-sed"
+brew "gnupg"
 brew "gopass"
 brew "ncdu"
 brew "neofetch"
@@ -44,7 +47,6 @@ brew "pv"
 brew "tmux"
 brew "tmuxp"
 brew "wget"
-cask "wezterm"
 
 # The following are NOT managed by bin because the projects do not release
 # arm64 native binaries and we care deeply about the performance of these
