@@ -1,5 +1,6 @@
 antibody:~/.config/zsh-antibody
 chezmoi:~/.local/share/chezmoi
+dashy2:/myserver/dashy2
 dashy:/myserver/internal/dashy
 deco:/myserver/deco-tools
 downloader:/myserver/downloader
