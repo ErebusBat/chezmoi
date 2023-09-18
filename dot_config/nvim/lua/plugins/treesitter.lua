@@ -20,6 +20,11 @@ return { -- Highlight, edit, and navigate code
         'vimdoc',
         'vim',
         'ruby',
+        -- Added after the fact
+        'regex',
+        'bash',
+        'markdown',
+        'markdown_inline',
       },
 
       highlight = { enable = true },
