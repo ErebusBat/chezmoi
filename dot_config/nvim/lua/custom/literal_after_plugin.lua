@@ -72,7 +72,7 @@ vim.cmd('highlight EndOfBuffer ctermbg=NONE guibg=NONE')
 -- vim.cmd('highlight StatusLine ctermbg=NONE guibg=NONE')
 
 -- Misc System
-vim.api.nvim_set_keymap("n", "<leader>rv", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false }) -- See reload.lua
+-- vim.api.nvim_set_keymap("n", "<leader>rv", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false }) -- See reload.lua
 
 --------------------------------------------------------------------------------
 -- Source Control / Fugitive

@@ -9,10 +9,8 @@ Library/LaunchAgents/local.chezmoi-pull.plist
 .config/tmux/init_chezmoi_secrets.sh
 
 # Retired Vim plugins
-.config/nvim/color_plumbing.vim
-.config/nvim/lua/plugins/auto-session.lua
-.config/nvim/lua/plugins/gitsessions.lua
-.config/nvim/lua/plugins/indent_blankline.lua
+.config/nvim/*.vim
+.config/nvim/lua/custom/reload.lua
 
 {{- if not .area.fetlife }}
 .s3cfg-fetlife
