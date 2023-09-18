@@ -1,3 +1,4 @@
 return {
-  'darrikonn/vim-gofmt'
+  'darrikonn/vim-gofmt',
+  enabled = false,
 }

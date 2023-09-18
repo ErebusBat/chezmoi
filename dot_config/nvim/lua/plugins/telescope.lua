@@ -2,7 +2,7 @@ return {
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
   dependencies = {
-    'nvim-lua/plenary.nvim' ,
+    'nvim-lua/plenary.nvim',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
     'gbrlsnchs/telescope-lsp-handlers.nvim'
   },
@@ -19,6 +19,7 @@ return {
       },
     }
 
+    require("telescope").load_extension("git_worktree")
     pcall(require('telescope').load_extension, 'fzf')
     vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
     -- vim.keymap.set('n', '<leader><space>', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })

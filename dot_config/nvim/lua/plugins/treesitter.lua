@@ -9,7 +9,18 @@ return { -- Highlight, edit, and navigate code
   config = function()
     require('nvim-treesitter.configs').setup {
       -- Add languages to be installed here that you want installed for treesitter
-      ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'typescript', 'help', 'vim', 'ruby' },
+      ensure_installed = {
+        -- 'c',
+        -- 'cpp',
+        'go',
+        'lua',
+        'python',
+        'rust',
+        -- 'typescript',
+        'vimdoc',
+        'vim',
+        'ruby',
+      },
 
       highlight = { enable = true },
       indent = { enable = false, disable = { 'python' } },
@@ -69,4 +80,3 @@ return { -- Highlight, edit, and navigate code
     }
   end,
 }
-
