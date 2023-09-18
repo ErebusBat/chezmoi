@@ -102,7 +102,8 @@ ENTRY=${ENTRY:gs/LIEDOS/[[Leidos]]}
 ENTRY=${ENTRY:gs/MOOG/[[Moog]]}
 ENTRY=${ENTRY:gs/TESLA/[[Tesla]]}
 #- SIE - People
-ENTRY=${ENTRY:gs/ALINA/[[Alina Roshchupkina|Alina]]}
+ENTRY=${ENTRY:gs/ALINA/[[Alina Roshchupkina|Alina]}
+ENTRY=${ENTRY:gs/BRUNO/[[Bruno Fontanella|Bruno]]}
 ENTRY=${ENTRY:gs/CAM/[[Cameron Wiebe|Cam]]}
 ENTRY=${ENTRY:gs/DIEGO/[[Diego De Oliveira Toral|Diego]]}
 ENTRY=${ENTRY:gs/FABMAN/[[Fabricio Ribeiro|Fabricio]]}
