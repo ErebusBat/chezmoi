@@ -209,6 +209,13 @@ class ResticConfig
       args << 'sudo'
     end
 
+    # Include ~/bin in path, if it exists
+    home_bin = Pathname.new("~/bin").expand_path
+    if home_bin.directory?
+      log "Adding #{home_bin} to $PATH"
+      ENV["PATH"] = home_bin.realpath.to_s + ":" + ENV["PATH"]
+    end
+
     restic_bin_path = `which restic`.strip
     if !$?.success? || !File.executable?(restic_bin_path)
       raise "Could not find restic binary! Got >>#{restic_bin_path}<<\n$PATH=#{ENV['PATH']}"
