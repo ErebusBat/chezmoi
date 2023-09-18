@@ -87,12 +87,14 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 --   Close NVimTree, if opened
 --   Use inbuilt :mksession! command
 --   Echo a message to indicate that the session was saved
-vim.keymap.set({ 'n', 'v' }, '<leader>ms', "<Cmd>Lazy load nvim-tree.lua<CR><Cmd>NvimTreeClose<CR><Cmd>mksession!<CR><Cmd>echo 'Session.vim saved!'<CR>", { desc = '[M]ake [S]ession', silent = false })
+vim.keymap.set({ 'n', 'v' }, '<leader>ms',
+  "<Cmd>Lazy load nvim-tree.lua<CR><Cmd>NvimTreeClose<CR><Cmd>mksession!<CR><Cmd>echo 'Session.vim saved!'<CR>",
+  { desc = '[M]ake [S]ession', silent = false })
 -- Don't save terminal sessions because they become 'detached' from Harpoon and it is a pia
 vim.opt.sessionoptions:remove('terminal')
 
 -- Terminal
-vim.keymap.set( { 't' }, '<leader><esc>', '<C-\\><C-n>', { desc = 'Exit Terminal Mode', noremap = true } )
+vim.keymap.set({ 't' }, '<leader><esc>', '<C-\\><C-n>', { desc = 'Exit Terminal Mode', noremap = true })
 
 -- Tabs
 vim.opt.sessionoptions:append('tabpages')
@@ -132,8 +134,8 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 -- See `:help nvim-treesitter`
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '[d', ':lua vim.diagnostic.goto_prev()<CR>zz')
+vim.keymap.set('n', ']d', ':lua vim.diagnostic.goto_next()<CR>zz')
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
