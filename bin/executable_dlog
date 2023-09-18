@@ -115,6 +115,7 @@ ENTRY=${ENTRY:gs/MATHEUS/[[Matheus Bastos|Matheus]]}
 ENTRY=${ENTRY:gs/RYAN/[[Ryan Canby]]}
 ENTRY=${ENTRY:gs/TYLER/[[Tyler Kim|Tyler]]}
 ENTRY=${ENTRY:gs/WILL/[[Will Freeman|Will]]}
+ENTRY=${ENTRY:gs/VLAD/[[Vlad Dzhabarov|Vlad]]}
 #- SIE - Projects / Pages
 ENTRY=${ENTRY:gs/HOSTCACHE/[[Hosts Cache Issue]]}
 
