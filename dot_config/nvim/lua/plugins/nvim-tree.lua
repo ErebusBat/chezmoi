@@ -36,6 +36,19 @@ return {
     --   },
     -- })
   end,
+  cmd = {
+    'NvimTreeClipboard',
+    'NvimTreeClose',
+    'NvimTreeCloseKeepBuffers',
+    'NvimTreeCollapse',
+    'NvimTreeFindFile',
+    'NvimTreeFindFileToggle',
+    'NvimTreeFocus',
+    'NvimTreeOpen',
+    'NvimTreeRefresh',
+    'NvimTreeResize',
+    'NvimTreeToggle',
+  },
   keys = {
     -- vim.keymap.set('n', '<leader><F7>', ':NvimTreeFindFileToggle<CR>', { desc = 'Toggle Tree View for current file', noremap = true })
     {'<leader><F7>', ':NvimTreeFindFileToggle<CR>', { desc = 'Toggle Tree View for current file', noremap = true }},

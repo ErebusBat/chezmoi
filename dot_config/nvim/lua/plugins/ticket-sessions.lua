@@ -10,7 +10,7 @@ return {
     vim.g.ticket_use_fzf_default = 1
   end,
   keys = {
-    { '<leader>ss', ':SaveSession<CR>',     { desc = '[S]ave [S]ession', noremap = true } },
+    { '<leader>ss', ':NvimTreeClose<CR>:SaveSession<CR>',     { desc = '[S]ave [S]ession', noremap = true } },
     { '<leader>ls', ':OpenSession<CR>',     { desc = '[L]oad [S]ession', noremap = true } },
     { '<leader>cs', ':CleanupSessions<CR>', { desc = '[C]leanup [S]essions', noremap = true } },
   },
