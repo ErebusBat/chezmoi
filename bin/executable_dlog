@@ -98,9 +98,9 @@ ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}
 ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
 #- SIE - Entities
 ENTRY=${ENTRY:gs/LEIDOS/[[Leidos]]}
-ENTRY=${ENTRY:gs/LIEDOS/[[Leidos]]}
 ENTRY=${ENTRY:gs/MOOG/[[Moog]]}
 ENTRY=${ENTRY:gs/TESLA/[[Tesla]]}
+ENTRY=${ENTRY:gs/THERMO/[[ThermoFisher]]}
 #- SIE - People
 ENTRY=${ENTRY:gs/ALINA/[[Alina Roshchupkina|Alina]}
 ENTRY=${ENTRY:gs/BRUNO/[[Bruno Fontanella|Bruno]]}
