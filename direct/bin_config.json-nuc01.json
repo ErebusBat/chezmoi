@@ -40,9 +40,9 @@
         "/home/aburns/bin/chezmoi": {
             "path": "/home/aburns/bin/chezmoi",
             "remote_name": "chezmoi",
-            "version": "v2.39.1",
+            "version": "v2.40.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.39.1",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.40.0",
             "provider": "",
             "package_path": ""
         },
@@ -125,7 +125,7 @@
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "https://github.com/jesseduffield/lazydocker/releases/tag/v0.21.1",
             "provider": "",
-            "package_path": "lazydocker"
+            "package_path": ""
         },
         "/home/aburns/bin/lazygit": {
             "path": "/home/aburns/bin/lazygit",
