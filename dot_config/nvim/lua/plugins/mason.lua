@@ -14,6 +14,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
     -- https://github.com/nvim-telescope/telescope.nvim#pickers
+    -- See also telescope.lua for other commands
     nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
     nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
@@ -21,9 +22,14 @@ vim.api.nvim_create_autocmd('LspAttach', {
     nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
     nmap('<leader>ps', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[P]roject [S]ymbols')
 
-    -- Nice Telescope version of '*'
+    -- Telescope - Live Grep BUFFER for Word under Cursor
     nmap('*', function()
-      require('telescope.builtin').current_buffer_fuzzy_find({default_text=vim.fn.expand('<cword>')})
+      require('telescope.builtin').current_buffer_fuzzy_find({ default_text = vim.fn.expand('<cword>') })
+    end, 'Search Current Buffer for Symbol Under Cursor')
+
+    -- Telescope - Live Grep Project for Word under Cursor
+    nmap('&', function()
+      require('telescope.builtin').live_grep({ default_text = vim.fn.expand('<cword>') })
     end, 'Search Current Buffer for Symbol Under Cursor')
 
     vim.api.nvim_buf_create_user_command(ev.buf, 'Format', function(_)
@@ -117,7 +123,7 @@ return {
   init = function()
     -- vim.keymap.del('n', '<leader>ds')
   end,
-  config = function ()
+  config = function()
     require('mason').setup()
 
     -- Ensure the servers above are installed

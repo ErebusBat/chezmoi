@@ -20,7 +20,7 @@ return {
     }
 
     require("telescope").load_extension("git_worktree")
-    require("telescope").load_extension("noice")
+    -- require("telescope").load_extension("noice")
     pcall(require('telescope').load_extension, 'fzf')
 
     vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
