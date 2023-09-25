@@ -33,7 +33,10 @@ return {
       })
     end, { desc = '[/] Fuzzily search in current buffer]' })
 
-    vim.keymap.set('n', '<leader>sb', require('telescope.builtin').buffers, { desc = '[ ] Find existing buffers' })
+    -- See https://github.com/nvim-telescope/telescope.nvim/issues/791#issuecomment-841862208
+    vim.keymap.set('n', '<leader>sb', function()
+      require('telescope.builtin').buffers({sort_lastused = true})
+    end, { desc = '[S]earch open [B]uffers' })
     vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
     vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
     vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
