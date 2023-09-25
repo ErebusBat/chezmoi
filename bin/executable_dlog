@@ -74,8 +74,11 @@ ENTRY=${ENTRY:gs/:bee:/🐝}
 ENTRY=${ENTRY:gs/:book:/📖}
 ENTRY=${ENTRY:gs/:broom:/🧹}
 ENTRY=${ENTRY:gs/:bun:/🐇}
+ENTRY=${ENTRY:gs/:cheese:/🧀}
 ENTRY=${ENTRY:gs/:cherries:/🍒}
 ENTRY=${ENTRY:gs/:cherry:/🍒}
+ENTRY=${ENTRY:gs/:coffee:/☕️}
+ENTRY=${ENTRY:gs/:cofin:/⚰️}
 ENTRY=${ENTRY:gs/:duck:/🦆}
 ENTRY=${ENTRY:gs/:evil:/😈}
 ENTRY=${ENTRY:gs/:hot:/🥵}
@@ -85,6 +88,7 @@ ENTRY=${ENTRY:gs/:pen:/✒️}
 ENTRY=${ENTRY:gs/:pill:/💊}
 ENTRY=${ENTRY:gs/:pin:/📌}
 ENTRY=${ENTRY:gs/:pizza:/🍕}
+ENTRY=${ENTRY:gs/:ppcot:/🙏🍒}
 ENTRY=${ENTRY:gs/:pray:/🙏}
 ENTRY=${ENTRY:gs/:puzzle:/🧩}
 ENTRY=${ENTRY:gs/:rofl:/🤣}
@@ -93,7 +97,6 @@ ENTRY=${ENTRY:gs/:school:/🎓}
 ENTRY=${ENTRY:gs/:shh:/🤫}
 ENTRY=${ENTRY:gs/:shower:/🚿}
 ENTRY=${ENTRY:gs/:taco:/🌮}
-ENTRY=${ENTRY:gs/:cheese:/🧀}
 #- Personal
 ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}
 ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
@@ -120,6 +123,7 @@ ENTRY=${ENTRY:gs/TYLER/[[Tyler Kim|Tyler]]}
 ENTRY=${ENTRY:gs/WILL/[[Will Freeman|Will]]}
 ENTRY=${ENTRY:gs/VLAD/[[Vlad Dzhabarov|Vlad]]}
 #- SIE - Projects / Pages
+ENTRY=${ENTRY:gs/COMPAPP/[[Companion App Integration]]}
 ENTRY=${ENTRY:gs/HOSTCACHE/[[Hosts Cache Issue]]}
 
 TIMESTAMP=$(date +%H:%M)
