@@ -23,12 +23,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     nmap('<leader>ps', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[P]roject [S]ymbols')
 
     -- Telescope - Live Grep BUFFER for Word under Cursor
-    nmap('*', function()
+    nmap('&', function()
       require('telescope.builtin').current_buffer_fuzzy_find({ default_text = vim.fn.expand('<cword>') })
     end, 'Search Current Buffer for Symbol Under Cursor')
 
     -- Telescope - Live Grep Project for Word under Cursor
-    nmap('&', function()
+    nmap('*', function()
       require('telescope.builtin').live_grep({ default_text = vim.fn.expand('<cword>') })
     end, 'Search Current Buffer for Symbol Under Cursor')
 

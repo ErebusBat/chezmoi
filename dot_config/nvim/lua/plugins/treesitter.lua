@@ -5,6 +5,7 @@ return { -- Highlight, edit, and navigate code
   end,
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    'nvim-treesitter/nvim-treesitter-refactor',
   },
   config = function()
     require('nvim-treesitter.configs').setup {
