@@ -45,21 +45,13 @@ windows:
     - shell_command:
         - ssh thelio
 
-# - window_name: stow
-#   panes:
-#     - shell_command:
-#       - wd stow
-#       - neofetch
-#     - shell_command:
-#       - wd stow
-
-# - window_name: vim
-#   panes:
-#     - shell_command:
-#       - neofetch
-#       - wd vim
-#     - shell_command:
-#       - wd vim
+- window_name: vim
+  panes:
+    - shell_command:
+      - neofetch
+      - wd vim
+    - shell_command:
+      - wd vim
 
 # - window_name: tmux
 #   panes:
