@@ -1,5 +1,6 @@
 return {
   "windwp/nvim-autopairs",
+  enabled = true,
   dependencies = { 'nvim-cmp' },
   config = function ()
     -- https://github.com/windwp/nvim-autopairs
