@@ -4,6 +4,15 @@
 - Older
   - Has awk cmd: https://jdhao.github.io/2018/10/19/tmux_nvim_true_color/
 
+## Styles
+
+```shell
+cat styles.txt
+```
+
+You should be able to see the different styles.
+File from [comment on wez/wezterm#2898](https://github.com/wez/wezterm/pull/2898#issuecomment-1365644190)
+
 ## Quick Reference
 
 ```shell
