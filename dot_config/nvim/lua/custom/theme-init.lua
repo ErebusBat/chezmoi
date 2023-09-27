@@ -14,14 +14,13 @@ vim.g.x_darkmode = true
 -- Specific Logic
 if vim.g.x_darkmode then
   -- vim.g.x_vim_colorscheme = 'base16-catppuccin'
+  -- vim.g.x_lualine_theme = 'base16'
   vim.g.x_vim_colorscheme = 'catppuccin-mocha'
-  vim.g.x_lualine_theme = 'base16'
-  vim.g.x_tabby_theme = 'base16'
+  vim.g.x_lualine_theme = vim.g.x_vim_colorscheme
 else
   -- catppuccin catppuccin-latte, catppuccin-frappe, catppuccin-macchiato, catppuccin-mocha
   vim.g.x_vim_colorscheme = 'catppuccin-latte'
-  vim.g.x_lualine_theme = 'catppuccin-latte'
-  vim.g.x_tabby_theme = 'catppuccin-latte'
+  vim.g.x_lualine_theme = vim.g.x_vim_colorscheme
 end
 
 -- See lua/custom/theme-after-plugin.lua for code that runs after plugins are up and running
