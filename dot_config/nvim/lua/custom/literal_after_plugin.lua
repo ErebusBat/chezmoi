@@ -32,7 +32,7 @@ vim.keymap.set('n', '<leader>cf', '<CMD>let @+=expand("%:p")<CR><CMD>echo "Copie
 
 -- Save
 vim.keymap.set('n', '<C-s>', ':wa<CR>', { desc = 'Save', noremap = true })
-vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>', { desc = 'Save', noremap = true })
+vim.keymap.set('i', '<C-s>', '<Esc>:wa<CR>', { desc = 'Save', noremap = true })
 
 -- Viewport
 vim.keymap.set('n', '<F9>', ':set wrap!<CR>', { desc = 'Toogle Word Wrap', noremap = true })
