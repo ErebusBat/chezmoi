@@ -1,7 +1,7 @@
 
 function SetupGUIFont()
-  vim.o.guifont = "Comic Code Ligatures:h14" -- text below applies for VimScript
-  -- vim.o.guifont = "Fira Code:h14" -- text below applies for VimScript
+  vim.o.guifont = "Comic Code Ligatures:h14"
+  -- vim.o.guifont = "Fira Code:h14"
 
   vim.g.neovide_hide_mouse_when_typing = true
 
