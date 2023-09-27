@@ -12,7 +12,8 @@ local background_hsb = {
   -- brightness = 0.00625,
   -- brightness = 0.0125,  -- Abstract
   -- brightness = 0.01, -- Photos
-  brightness = 0.05, -- Travel
+  -- brightness = 0.05, -- Travel
+  brightness = 0.0,
 }
 
 --
@@ -42,15 +43,16 @@ local config = {
 
   -- Color schme should be overriden by base16 shell settings,
   -- but this provides a good default until that
-  color_scheme = "Gruvbox Dark",
+  color_scheme = "catppuccin-mocha",
 
   -- Font Info => == !=
-  font = wezterm.font({
-    family="Comic Code Ligatures",
-    -- family="Fira Code",
-    weight="Regular",
-    harfbuzz_features={"calt=1", "clig=1", "liga=1"},
-  }),
+  -- font = wezterm.font({
+  --   family="Comic Code Ligatures",
+  --   -- family="Fira Code",
+  --   weight="Regular",
+  --   harfbuzz_features={"calt=1", "clig=1", "liga=1"},
+  -- }),
+  font = wezterm.font 'Comic Code Ligatures',
 
   -- See below for font size overriding based on machine we are on
   -- font_size = 14,
@@ -73,27 +75,40 @@ config.selection_word_boundary = "|│ \t\n{}[]()\"'`<>=:;"
 
 
 --
--- Host Specific Settings
+-- Font Size / Host Specific Settings
 --
 config["text_background_opacity"] = 0.9
-config["font_size"] = 12
-if (hostname == 'MBP-ABURNS') then
-  -- This can fail on linux, and we don't need it there so only call here
+function calc_set_font_size(window)
+  local overrides = window:get_config_overrides() or {}
   local monitor_count = tablelength(wezterm.gui.screens()["by_name"])
-  print("MBP-ABURNS monitor_count: " .. monitor_count)
-  -- Depends if we are docked or not
-  if (monitor_count == 2)
-  then
-    background_hsb["brightness"] = 0.02
-    config["font_size"] = 12
-  else
-    config["font_size"] = 14
+  overrides.font_size = 10
+  print(hostname .. " monitor_count: " .. monitor_count)
+
+  if (hostname == 'MBP-ABURNS') then
+    -- This can fail on linux, and we don't need it there so only call here
+    -- Depends if we are docked or not
+    if (monitor_count == 2)
+    then
+      background_hsb["brightness"] = 0.02
+      overrides.font_size = 12
+    else
+      overrides.font_size = 14
+    end
+  elseif (hostname == 'thelio')  then
+    overrides.font_size = 8
+  elseif (hostname == 'dartp6')  then
+    overrides.font_size = 10
   end
-elseif (hostname == 'thelio')  then
-  config["font_size"] = 8
-elseif (hostname == 'dartp6')  then
-  config["font_size"] = 10
+  print("Setting font_size to " .. overrides.font_size .. " for " .. hostname .. " monitors=" .. monitor_count)
+
+  window:set_config_overrides(overrides)
 end
+wezterm.on('window-config-reloaded', function(window)
+  calc_set_font_size(window)
+end)
+wezterm.on('window-resized', function(window, _pane)
+  calc_set_font_size(window)
+end)
 
 --
 -- Add in Background, if configured
