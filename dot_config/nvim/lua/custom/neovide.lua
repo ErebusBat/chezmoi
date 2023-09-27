@@ -45,6 +45,17 @@ function SetupNeovideGUI()
   vim.g.neovide_cursor_vfx_mode = "railgun"
 end
 
+function PasteboardIntegration()
+  vim.keymap.set('i', '<D-s>', '<Esc>:wa<CR>') -- Save all - insert mode
+  vim.keymap.set('n', '<D-s>', ':wa<CR>') -- Save all - normal mode
+  vim.keymap.set('v', '<D-c>', '"+y') -- Copy
+  -- vim.keymap.set('n', '<D-v>', '"+P') -- Paste normal mode
+  vim.keymap.set('v', '<D-v>', '"+P') -- Paste visual mode
+  vim.keymap.set('c', '<D-v>', '<C-R>+') -- Paste command mode
+  vim.keymap.set('i', '<D-v>', '<Esc>:set paste<CR>"+p:set nopaste<CR>') -- Paste insert mode
+end
+
+PasteboardIntegration()
 SetupGUIFont()
 SetupNeovideGUI()
 -- MakeTransparent()
