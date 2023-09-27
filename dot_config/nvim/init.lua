@@ -16,6 +16,9 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Sets variables needs for configurig themeing plugins so it needs to happen BEFORE they are loaded
+require "custom.theme-init"
+
 require('lazy').setup('plugins')
 
 
