@@ -7,7 +7,8 @@ return {
     vim.opt.sessionoptions:append('terminal')
     require('tabby.tabline').use_preset('tab_only', {
       nerdfont = true, -- whether use nerdfont
-      lualine_theme = 'base16' -- lualine theme named
+      -- lualine_theme = 'base16' -- lualine theme named
+      lualine_theme = vim.g.x_tabby_theme -- see custom/theming.lua
     })
     end,
   keys = {

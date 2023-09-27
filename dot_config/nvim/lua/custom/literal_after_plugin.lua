@@ -56,23 +56,7 @@ vim.keymap.set('n', '<leader>ym', 'mT[mV]M"+y`T', { desc = '[Y]ank [M]ethod (Sys
 --------------------------------------------------------------------------------
 -- Colors / Appearance / Themes
 --------------------------------------------------------------------------------
-vim.cmd('highlight Comment cterm=italic gui=italic')
-
--- vim.cmd('set colorcolumn=80,120')
-vim.cmd('set cursorline')
-
--- Allow transparent bg
--- for further Highlight Groups see: https://neovim.io/doc/user/syntax.html#highlight-groups
-vim.cmd('highlight Normal ctermbg=NONE guibg=NONE')
-vim.cmd('highlight NormalNC ctermbg=NONE guibg=NONE')
--- vim.cmd('highlight CursorLine ctermbg=NONE guibg=NONE')
-vim.cmd('highlight LineNr ctermbg=NONE guibg=NONE')
-vim.cmd('highlight SignColumn ctermbg=NONE guibg=NONE')
-vim.cmd('highlight EndOfBuffer ctermbg=NONE guibg=NONE')
--- vim.cmd('highlight StatusLine ctermbg=NONE guibg=NONE')
-
--- Misc System
--- vim.api.nvim_set_keymap("n", "<leader>rv", "<cmd>lua ReloadConfig()<CR>", { noremap = true, silent = false }) -- See reload.lua
+require("custom.theme-after-plugin")
 
 --------------------------------------------------------------------------------
 -- Source Control / Fugitive
@@ -190,6 +174,10 @@ require('lspconfig').solargraph.setup(
     }
   }
 )
+
+if vim.g.neovide then
+  require('custom.neovide')
+end
 
 -- relativenumber
 
