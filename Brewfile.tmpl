@@ -8,7 +8,6 @@
 ################################################################################
 tap "homebrew/bundle"
 tap "homebrew/cask"
-tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
 tap "wez/wezterm"
@@ -99,7 +98,15 @@ brew "postgresql@14"
 brew "shared-mime-info"
 brew "yarn"
 cask "postman"
-{{ end }}
+{{ end -}}
+
+################################################################################
+# Fonts / UI Tweaks / Etc
+################################################################################
+# https://www.nerdfonts.com/font-downloads
+tap "homebrew/cask-fonts"
+cask "font-go-mono-nerd-font"
+cask "font-open-dyslexic-nerd-font"
 
 #===============================================================================
 # THIS FILE IS TEMPLATED, DO NOT EDIT DIRECTLY!
