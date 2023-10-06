@@ -175,6 +175,10 @@ require('lspconfig').solargraph.setup(
   }
 )
 
+-- Folding
+vim.cmd('set foldmethod=expr')
+vim.cmd('set foldexpr=nvim_treesitter#foldexpr()')
+
 if vim.g.neovide then
   require('custom.neovide')
 end

@@ -1,5 +1,6 @@
 return {
   'nanozuki/tabby.nvim',
+  enabled = not vim.g.started_by_firenvim,
   lazy = false,
   config = function ()
     vim.o.showtabline = 2
