@@ -1,4 +1,4 @@
-# vim: set ft=ruby
+# vim: set noai ts=4 sw=4 ft=ruby:
 #===============================================================================
 # THIS FILE IS TEMPLATED, DO NOT EDIT DIRECTLY!
 #===============================================================================
@@ -17,7 +17,9 @@ tap "wez/wezterm"
 # Development
 ################################################################################
 brew "fblog"  # Structured log viewer
+brew "git-delta"
 brew "go"
+brew "xsv"
 brew "rbenv"
 cask "font-fira-code"
 cask "insomnia"
@@ -34,13 +36,23 @@ cask "obsidian"
 cask "wezterm"
 
 brew "antibody"
+brew "assh"
+brew "bat"
+brew "btop"
+brew "chezmoi"
+brew "dua-cli"
+brew "duf"
+brew "fd"
 # Using OrbStack
 # brew "docker"
 # brew "docker-compose"
 brew "git", link: true
 brew "gnu-sed"
+brew "fzf"
 brew "gnupg"
 brew "gopass"
+brew "lazydocker"
+brew "lazygit"
 brew "ncdu"
 brew "neofetch"
 brew "neovim", args: ["HEAD"]
@@ -48,26 +60,21 @@ brew "pv"
 brew "tmux"
 brew "tmuxp"
 brew "wget"
-
-# The following are NOT managed by bin because the projects do not release
-# arm64 native binaries and we care deeply about the performance of these
 brew "dust"
 brew "exa"
 brew "jq"
+brew "restic"
 brew "ripgrep"
+brew "starship"
 
-# The Following have homebrew packaged but are actually managed by bin (bin ensure)
-# brew "assh"
-# brew "fzf"
-# brew "lazydocker"
-# brew "lazygit"
-# brew "restic"
-# brew "starship"
+# The following are NOT managed by bin because the projects do not release
+# arm64 native binaries and we care deeply about the performance of these
 
 {{ if eq .area.personal true }}
 ################################################################################
 # Personal Utilities
 ################################################################################
+brew "rclone"
 brew "s3cmd"
 cask "plexamp"
 cask "sonos"
