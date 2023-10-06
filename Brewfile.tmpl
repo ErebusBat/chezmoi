@@ -67,8 +67,11 @@ brew "restic"
 brew "ripgrep"
 brew "starship"
 
-# The following are NOT managed by bin because the projects do not release
-# arm64 native binaries and we care deeply about the performance of these
+# The following are managed by bin because they do not support homebrew
+# https://github.com/egnyte/ax              - Structured log viewer
+# https://github.com/sitkevij/hex           - Hex viewer
+# https://github.com/ankitpokhrel/jira-cli  - Jira CLI Tool
+# github.com/Rigellute/spotify-tui          - Spotify TUI
 
 {{ if eq .area.personal true }}
 ################################################################################
