@@ -36,6 +36,7 @@ recurrence_service:~/src/sie/recurrence_service
 regportal:~/src/sie/register
 restic:~/.restic
 scim_rails:~/src/sie/scim_rails
+sessions-vim:~/.local/share/tickets-vim
 shc_query_service:~/src/sie/shc_query_service
 sidekiq_autoscaling:~/src/sie/sidekiq_autoscaling
 sips:~/src/sie/sign-in-print-server
