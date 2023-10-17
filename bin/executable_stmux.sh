@@ -5,7 +5,7 @@
 if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
   source ~/.config/tmux/init_chezmoi_secrets.sh
 
-  if [[ -f $(which chezmoi) ]]; then
+  if [[ -x $(which chezmoi) ]]; then
     echo "Current Dotfile Status:"
     chezmoi status
   fi
