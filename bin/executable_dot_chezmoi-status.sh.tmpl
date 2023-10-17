@@ -1,5 +1,5 @@
 #!/bin/bash
-# vim: set ft=bash ts=8 sw=8 sts=8 et ai si sta:
+# vim: set ft=bash ts=2 sw=2 sts=2 et ai si sta:
 UK_SERVICE_ID={{- get (gopassRaw "erebusbat/scripts" | mustFromJson).chezmoi_checker .chezmoi.hostname}}
 
 # Check to make sure we have a service ID
@@ -11,6 +11,9 @@ fi
 # Should we loop?
 if [[ $1 == "loop" ]]; then
   SLEEP_TIME=150
+  if [[ $2 -ge 30 ]]; then
+    SLEEP_TIME=$2
+  fi
   echo "[$(date)] Starting monitor loop at an interval of ${SLEEP_TIME}"
   while [ true ]; do
     ~/bin/.chezmoi-status.sh
