@@ -1,8 +1,11 @@
 #!/bin/zsh
-# vim: set ft=zsh ts=8 sw=8 sts=8 et ai si sta:
+# vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
 
 # TractionGuest startup script
-#
+if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
+  source ~/.config/tmux/init_chezmoi_secrets.sh
+fi
+
 # Starts apps / sessions after a cold boot
 # Will not launch a terminal as it assumes you will be launching a terminal to execute this script.  This also allows for easily switching terminal emulators.
 
