@@ -9,6 +9,8 @@ windows:
   panes:
     - shell_command:
       - ~/bin/.chezmoi-status.sh loop
+    - shell_command:
+      - neofetch
 - window_name: xss-disable
   panes:
     - shell_command:
