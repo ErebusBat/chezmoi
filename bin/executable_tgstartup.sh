@@ -10,6 +10,7 @@ APPS=(
 
   /Applications/Fantastical.app
   /Applications/Firefox.app
+  /Applications/Safari.app
   /Applications/Google\ Chrome.app
   /Applications/Obsidian.app
   /Applications/Slack.app
