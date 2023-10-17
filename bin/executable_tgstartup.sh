@@ -1,4 +1,5 @@
 #!/bin/zsh
+# vim: set ft=zsh ts=8 sw=8 sts=8 et ai si sta:
 
 # TractionGuest startup script
 #

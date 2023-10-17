@@ -1,10 +1,22 @@
 #!/bin/bash
+# vim: set ft=bash ts=8 sw=8 sts=8 et ai si sta:
 UK_SERVICE_ID={{- get (gopassRaw "erebusbat/scripts" | mustFromJson).chezmoi_checker .chezmoi.hostname}}
 
 # Check to make sure we have a service ID
 if [[ -z $UK_SERVICE_ID ]]; then
   echo "[$(date)] No Uptime Kuma service set"
   exit 1
+fi
+
+# Should we loop?
+if [[ $1 == "loop" ]]; then
+  SLEEP_TIME=150
+  echo "[$(date)] Starting monitor loop at an interval of ${SLEEP_TIME}"
+  while [ true ]; do
+    ~/bin/.chezmoi-status.sh
+    sleep $SLEEP_TIME
+  done
+  exit 0
 fi
 
 # Run the actual verify / notify
