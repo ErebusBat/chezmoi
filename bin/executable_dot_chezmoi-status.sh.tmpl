@@ -1,14 +1,18 @@
 #!/bin/bash
 UK_SERVICE_ID={{- get (gopassRaw "erebusbat/scripts" | mustFromJson).chezmoi_checker .chezmoi.hostname}}
 
+# Check to make sure we have a service ID
 if [[ -z $UK_SERVICE_ID ]]; then
-  echo "No Uptime Kuma service set"
+  echo "[$(date)] No Uptime Kuma service set"
   exit 1
 fi
 
+# Run the actual verify / notify
 chezmoi verify
 if [[ $? -eq 0 ]]; then
+  echo -n "[$(date)] Notifying UptimeKuma: "
   curl -q "http://uptime-kuma.erebusbat.net/api/push/${UK_SERVICE_ID}?status=up&msg=OK&ping="
+  echo ""
 else
-  echo "Chezmoi verify failed; not notifying UptimeKuma"
+  echo "[$(date)] Chezmoi verify failed; not notifying UptimeKuma"
 fi
