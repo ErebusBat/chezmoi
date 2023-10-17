@@ -1,5 +1,5 @@
 #!/bin/bash
-UK_SERVICE_ID=zke3jE6inR
+UK_SERVICE_ID={{- get (gopassRaw "erebusbat/scripts" | mustFromJson).chezmoi_checker .chezmoi.hostname}}
 
 if [[ -z $UK_SERVICE_ID ]]; then
   echo "No Uptime Kuma service set"
