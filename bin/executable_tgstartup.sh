@@ -4,11 +4,6 @@
 # TractionGuest startup script
 if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
   source ~/.config/tmux/init_chezmoi_secrets.sh
-
-  if [[ -x $(which chezmoi) ]]; then
-    echo "Current Dotfile Status:"
-    chezmoi status
-  fi
 fi
 
 # Starts apps / sessions after a cold boot
