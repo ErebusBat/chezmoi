@@ -2,9 +2,13 @@
 # vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
 
 # TractionGuest startup script
-if [[ -f $(which chezmoi) ]]; then
-  echo "Current Dotfile Status:"
-  chezmoi status
+if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
+  source ~/.config/tmux/init_chezmoi_secrets.sh
+
+  if [[ -f $(which chezmoi) ]]; then
+    echo "Current Dotfile Status:"
+    chezmoi status
+  fi
 fi
 
 # Starts apps / sessions after a cold boot

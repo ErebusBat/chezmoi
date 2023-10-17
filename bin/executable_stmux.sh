@@ -1,8 +1,14 @@
 #!/bin/zsh
 # This script is ran from tmux menu to setup sessions
 
+# chezmoi status loop
 if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
   source ~/.config/tmux/init_chezmoi_secrets.sh
+
+  if [[ -f $(which chezmoi) ]]; then
+    echo "Current Dotfile Status:"
+    chezmoi status
+  fi
 fi
 
 echo "Starting Magic Mirror Chrome App..."
