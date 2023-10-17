@@ -1,0 +1,14 @@
+#!{{ .chezmoi.pathSeparator }}bin{{ .chezmoi.pathSeparator }}bash
+UK_SERVICE_ID=zke3jE6inR
+
+if [[ -z $UK_SERVICE_ID ]]; then
+  echo "No Uptime Kuma service set"
+  exit 1
+fi
+
+chezmoi verify
+if [[ $? -eq 0 ]]; then
+  curl -q "http{{ .chezmoi.pathListSeparator }}{{ .chezmoi.pathSeparator }}{{ .chezmoi.pathSeparator }}uptime-kuma.erebusbat.net{{ .chezmoi.pathSeparator }}api{{ .chezmoi.pathSeparator }}push{{ .chezmoi.pathSeparator }}${UK_SERVICE_ID}?status=up&msg=OK&ping="
+else
+  echo "Chezmoi verify failed; not notifying UptimeKuma"
+fi
