@@ -6,7 +6,6 @@ bin/grc_passwords.rb
 .tmux/**
 .tmux/op_auth.sh
 Library/LaunchAgents/local.chezmoi-pull.plist
-.config/tmux/init_chezmoi_secrets.sh
 
 # Retired Vim plugins
 .config/nvim/*.vim
