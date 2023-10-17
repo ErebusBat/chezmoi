@@ -8,7 +8,7 @@ windows:
   suppress_history: false
   panes:
     - shell_command:
-      - neofetch
+      - ~/bin/.chezmoi-status.sh loop
 - window_name: xss-disable
   panes:
     - shell_command:
