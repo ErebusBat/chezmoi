@@ -176,6 +176,7 @@ require('lspconfig').solargraph.setup(
 )
 
 -- Folding
+vim.cmd('set foldlevel=99')
 vim.cmd('set foldmethod=expr')
 vim.cmd('set foldexpr=nvim_treesitter#foldexpr()')
 
