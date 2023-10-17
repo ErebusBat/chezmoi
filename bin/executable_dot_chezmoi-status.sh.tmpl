@@ -14,7 +14,7 @@ if [[ $1 == "loop" ]]; then
   if [[ $2 -ge 30 ]]; then
     SLEEP_TIME=$2
   fi
-  echo "[$(date)] Starting monitor loop at an interval of ${SLEEP_TIME}"
+  echo "[$(date)] Starting monitor loop at an interval of ${SLEEP_TIME}s"
   while [ true ]; do
     ~/bin/.chezmoi-status.sh
     sleep $SLEEP_TIME
