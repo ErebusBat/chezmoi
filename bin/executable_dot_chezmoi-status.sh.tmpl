@@ -11,7 +11,7 @@ fi
 # Should we loop?
 if [[ $1 == "loop" ]]; then
   SLEEP_TIME=150
-  if [[ $2 -ge 30 ]]; then
+  if [[ $2 -ge 5 ]]; then
     SLEEP_TIME=$2
   fi
   echo "[$(date)] Starting monitor loop at an interval of ${SLEEP_TIME}s"
@@ -24,10 +24,11 @@ fi
 
 # Run the actual verify / notify
 chezmoi verify
-if [[ $? -eq 0 ]]; then
+CZ_EC=$?
+if [[ $CZ_EC -eq 0 ]]; then
   echo -n "[$(date)] Notifying UptimeKuma: "
   curl -q "http://uptime-kuma.erebusbat.net/api/push/${UK_SERVICE_ID}?status=up&msg=OK&ping="
   echo ""
 else
-  echo "[$(date)] Chezmoi verify failed; not notifying UptimeKuma"
+  echo "[$(date)] Chezmoi verify failed (ec=${CZ_EC}); not notifying UptimeKuma"
 fi
