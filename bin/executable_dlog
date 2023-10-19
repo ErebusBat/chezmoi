@@ -63,11 +63,6 @@ fi
 ################################################################################
 # Some Global Replacements
 ################################################################################
-if [[ $ENTRY == *SONG* ]]; then
-  SONG=$(gospt now | sed -E 's/^[⏸▶ ]+//g' )
-  SONG="🎵 ${SONG}"
-  ENTRY=${ENTRY:gs/SONG/$SONG}
-fi
 #- Emojis
 ENTRY=${ENTRY:gs/:100:/💯}
 ENTRY=${ENTRY:gs/:bee:/🐝}
@@ -126,6 +121,17 @@ ENTRY=${ENTRY:gs/WILL/[[Will Freeman|Will]]}
 #- SIE - Projects / Pages
 ENTRY=${ENTRY:gs/COMPAPP/[[Companion App Integration]]}
 ENTRY=${ENTRY:gs/HOSTCACHE/[[Hosts Cache Issue]]}
+
+# Spotify
+if [[ $ENTRY == *SONG* ]]; then
+  SONG=$(gospt now | sed -E 's/^[⏸▶ ]+//g' )
+  if [[ -z $SONG ]]; then
+    SONG="🎵 *ERR*: could not get song from spotify"
+  else
+    SONG="🎵 ${SONG}"
+  fi
+  ENTRY=${ENTRY:gs/SONG/$SONG}
+fi
 
 TIMESTAMP=$(date +%H:%M)
 MD_TEXT="\n- ${TIMESTAMP} - ${ENTRY}"
