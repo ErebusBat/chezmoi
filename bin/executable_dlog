@@ -113,6 +113,7 @@ ENTRY=${ENTRY:gs/JON/[[Jon Sangster|Jon]]}
 ENTRY=${ENTRY:gs/KIRAN/[[Kirandeep Virdi|Kiran]]}
 ENTRY=${ENTRY:gs/MATHEUS/[[Matheus Bastos|Matheus]]}
 ENTRY=${ENTRY:gs/PETE/[[Pete Akeley|Pete]]}
+ENTRY=${ENTRY:gs/RON/[[Ron Hook|Ron]]}
 ENTRY=${ENTRY:gs/RYAN/[[Ryan Canby]]}
 ENTRY=${ENTRY:gs/SHAMA/[[Kshama Manjrekar|Shama]]}
 ENTRY=${ENTRY:gs/TYLER/[[Tyler Kim|Tyler]]}
