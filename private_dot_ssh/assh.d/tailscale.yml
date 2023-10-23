@@ -10,6 +10,12 @@ hosts:
   nuc:
     HostName: nuc01.erebusbat.net
     User: aburns
+  nuc02:
+    User: aburns
+    HostName: maze.erebusbat.net
+  maze:
+    User: aburns
+    HostName: maze.erebusbat.net
   thelio:
     HostName: 100.76.155.42
     User: aburns

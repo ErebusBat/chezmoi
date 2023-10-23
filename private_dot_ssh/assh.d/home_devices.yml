@@ -60,12 +60,20 @@ hosts:
     Inherits: truenas
   nas:
     Inherits: truenas
+
   nuc-deco:
     Inherits: personal
     Hostname: 192.168.69.69
   nuc01-deco:
     Inherits: personal-allowpass
     Hostname: 192.168.69.69
+
+  nuc02-deco:
+    Inherits: personal-allowpass
+    Hostname: 192.168.70.70
+  maze-deco:
+    Inherits: personal-allowpass
+    Hostname: 192.168.70.70
 
 #############################################################
 # Linux PCs
