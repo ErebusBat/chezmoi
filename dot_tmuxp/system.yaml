@@ -5,8 +5,8 @@ windows:
   focus: true
   panes:
     - shell_command:
-      # - vimlog -- y 0
-      - ~/bin/.chezmoi-status.sh loop
+      - vimlog -- y 0
+      # - ~/bin/.chezmoi-status.sh loop
     - shell_command:
       - wd vimwiki
       - neofetch
