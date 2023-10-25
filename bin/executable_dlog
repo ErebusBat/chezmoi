@@ -1,4 +1,4 @@
-#!/bin/zsh
+!/bin/zsh
 
 # Setup paths, support known locations for vault root
 LOGS_PATH="tguest/logs/$(date +%Y/%m-%b)"
@@ -93,6 +93,7 @@ ENTRY=${ENTRY:gs/:shh:/🤫}
 ENTRY=${ENTRY:gs/:shower:/🚿}
 ENTRY=${ENTRY:gs/:taco:/🌮}
 #- Personal
+ENTRY=${ENTRY:gs/MAZE/[[IntelNUC 2 - Maze|Maze]]}
 ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}
 ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
 #- SIE - Entities
