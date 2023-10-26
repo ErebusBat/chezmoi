@@ -1,4 +1,4 @@
-!/bin/zsh
+#!/bin/zsh
 
 # Setup paths, support known locations for vault root
 LOGS_PATH="tguest/logs/$(date +%Y/%m-%b)"
