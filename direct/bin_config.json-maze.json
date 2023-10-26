@@ -1,0 +1,14 @@
+{
+    "default_path": "/home/aburns/bin",
+    "bins": {
+        "/home/aburns/bin/lazydocker": {
+            "path": "/home/aburns/bin/lazydocker",
+            "remote_name": "lazydocker",
+            "version": "v0.23.1",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/jesseduffield/lazydocker",
+            "provider": "github",
+            "package_path": "lazydocker"
+        }
+    }
+}
