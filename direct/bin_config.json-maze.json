@@ -1,6 +1,15 @@
 {
     "default_path": "/home/aburns/bin",
     "bins": {
+        "/home/aburns/bin/assh": {
+            "path": "/home/aburns/bin/assh",
+            "remote_name": "assh",
+            "version": "v2.16.0",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/moul/assh",
+            "provider": "github",
+            "package_path": "assh"
+        },
         "/home/aburns/bin/lazydocker": {
             "path": "/home/aburns/bin/lazydocker",
             "remote_name": "lazydocker",
