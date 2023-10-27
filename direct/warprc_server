@@ -22,9 +22,11 @@ qmk_sys76:~/src/vendor/qmk_firmware/keyboards/system76/launch_1/keymaps/erebusba
 restic:~/.restic
 stash:/myserver/stashappcc
 syncthing:/myserver/syncthing
+telegraf:/myserver/telegraf
 tgf:~/src/sie/frontend
 tmux:~/.config/tmux
 tmuxp:~/.tmuxp
+uk:/myserver/uptime_kuma
 utils:/myserver/utils
 vim:~/.config/nvim
 watchtower:/myserver/watchtower
