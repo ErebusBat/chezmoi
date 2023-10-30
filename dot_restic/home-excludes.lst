@@ -167,6 +167,7 @@ $HOME/Library/Autosave Information/**
 $HOME/Library/Biome/**
 $HOME/Library/Calendars/**
 $HOME/Library/CloudStorage/Dropbox/**
+$HOME/Library/ContainerManager/**
 $HOME/Library/Containers/**
 $HOME/Library/Cookies/**
 $HOME/Library/CoreFollowUp/**
@@ -194,6 +195,7 @@ $HOME/Library/News/**
 $HOME/Library/PersonalizationPortrait/**
 $HOME/Library/Photos/Libraries/Syndication.photoslibrary/**
 $HOME/Library/Preferences/com.apple.homed.plist
+$HOME/Library/Preferences/com.apple.MobileSMS*.*
 $HOME/Library/QuickLook/**
 $HOME/Library/Reminders/**
 $HOME/Library/ResponseKit/**
