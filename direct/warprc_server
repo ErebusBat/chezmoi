@@ -7,6 +7,7 @@ gatus:/myserver/gatus
 gitea:/myserver/gitea
 gitlab:/myserver/gitlab
 gopass:~/.local/share/gopass/stores/root
+influx:/myserver/influx
 internal:/myserver/internal
 mmm:/myserver/mmm
 myserver:/myserver
