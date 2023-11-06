@@ -42,6 +42,8 @@ windows:
     - shell_command:
         - ssh nuc
     - shell_command:
+        - ssh maze
+    - shell_command:
         - ssh thelio
 
 - window_name: vim
