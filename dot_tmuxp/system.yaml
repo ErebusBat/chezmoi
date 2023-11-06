@@ -35,6 +35,8 @@ windows:
       focus: true
 
 - window_name: servers
+  # use list-windows to get layout string
+  layout: d421,249x79,0,0[249x25,0,0,36,249x25,0,26,37,249x27,0,52,38]
   options:
     automatic-rename: 'off'
   suppress_history: false
