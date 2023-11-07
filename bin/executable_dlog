@@ -117,6 +117,7 @@ ENTRY=${ENTRY:gs/PETE/[[Pete Akeley|Pete]]}
 ENTRY=${ENTRY:gs/RON/[[Ron Hook|Ron]]}
 ENTRY=${ENTRY:gs/RYAN/[[Ryan Canby|Ryan]]}
 ENTRY=${ENTRY:gs/SHAMA/[[Kshama Manjrekar|Shama]]}
+ENTRY=${ENTRY:gs/SRIKANT/[[Srikant Talluri|Srikant]]}
 ENTRY=${ENTRY:gs/TYLER/[[Tyler Kim|Tyler]]}
 ENTRY=${ENTRY:gs/VLAD/[[Vlad Dzhabarov|Vlad]]}
 ENTRY=${ENTRY:gs/WILL/[[Will Freeman|Will]]}
