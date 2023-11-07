@@ -5,6 +5,7 @@ windows:
   focus: true
   panes:
     - shell_command:
+      - wd vimwiki
       - vimlog -- y 0
       # - ~/bin/.chezmoi-status.sh loop
     - shell_command:
