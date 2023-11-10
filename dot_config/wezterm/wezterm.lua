@@ -83,6 +83,21 @@ local config = {
         harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
       })
     },
+
+    --
+    -- Bold (highlighting)
+    --
+    {
+      intensity = 'Bold',
+      italic = false,
+      font = wezterm.font({
+        family="Monaspace Krypton",
+        weight="Light",
+        stretch="Normal",
+        style="Normal",
+        harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
+      })
+    },
   },
 
   -- See below for font size overriding based on machine we are on
