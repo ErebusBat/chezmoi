@@ -124,6 +124,7 @@ ENTRY=${ENTRY:gs/WILL/[[Will Freeman|Will]]}
 #- SIE - Projects / Pages
 ENTRY=${ENTRY:gs/COMPAPP/[[Companion App Integration]]}
 ENTRY=${ENTRY:gs/HOSTCACHE/[[Hosts Cache Issue]]}
+ENTRY=${ENTRY:gs/STATSD/[[statsd]]}
 
 # Spotify
 if [[ $ENTRY == *SONG* ]]; then
