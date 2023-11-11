@@ -18,6 +18,7 @@ return {
 
     -- vim.cmd [[ let test#ruby#rspec#executable = 'clear; bundle exec spring rspec -f d' ]]
     vim.cmd [[ let test#ruby#rspec#executable = 'clear; bundle exec  rspec -f d' ]]
+    vim.cmd [[ let test#go#gotest#executable = 'clear; go test' ]]
   end,
   cmd = {
     'TestNearest',
