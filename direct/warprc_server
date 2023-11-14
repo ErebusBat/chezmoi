@@ -29,6 +29,7 @@ tgf:~/src/sie/frontend
 tmux:~/.config/tmux
 tmuxp:~/.tmuxp
 uk:/myserver/uptime_kuma
+uptime_kuma:/myserver/uptime_kuma
 utils:/myserver/utils
 vim:~/.config/nvim
 watchtower:/myserver/watchtower
