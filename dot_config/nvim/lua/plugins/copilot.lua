@@ -21,6 +21,7 @@ return {
     }
     vim.keymap.set("i", "<C-q>", '<Plug>(copilot-previous)')
     vim.keymap.set("i", "<C-w>", '<Plug>(copilot-next)')
+    vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#AcceptWord("")', { silent = true, expr = true })
   end,
 }
 
