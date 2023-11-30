@@ -7,8 +7,6 @@ return {
   end,
   config = function()
     vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-    -- vim.api.nvim_set_keymap("i", "<C-q>", '<Plug>(copilot-previous)', { silent = true, expr = true })
-    -- vim.api.nvim_set_keymap("i", "<C-w>", '<Plug>(copilot-next)', { silent = true, expr = true })
     vim.g.copilot_filetypes = {
       ["*"] = false,
       ["javascript"] = true,
@@ -21,6 +19,8 @@ return {
       ["go"] = true,
       ["python"] = true,
     }
+    vim.keymap.set("i", "<C-q>", '<Plug>(copilot-previous)')
+    vim.keymap.set("i", "<C-w>", '<Plug>(copilot-next)')
   end,
 }
 
