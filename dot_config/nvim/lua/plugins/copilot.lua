@@ -6,7 +6,6 @@ return {
     vim.g.copilot_no_tab_map = true
   end,
   config = function()
-    vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
     vim.g.copilot_filetypes = {
       ["*"] = false,
       ["javascript"] = true,
@@ -19,9 +18,13 @@ return {
       ["go"] = true,
       ["python"] = true,
     }
-    vim.keymap.set("i", "<C-q>", '<Plug>(copilot-previous)')
-    vim.keymap.set("i", "<C-w>", '<Plug>(copilot-next)')
-    vim.api.nvim_set_keymap("i", "<C-l>", 'copilot#AcceptWord("")', { silent = true, expr = true })
+    vim.api.nvim_set_keymap("i", "<C-J>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
+    vim.keymap.set("i", "<C-t>", '<Plug>(copilot-previous)')
+    vim.keymap.set("i", "<C-y>", '<Plug>(copilot-next)')
+    -- vim.keymap.set("i", "<C-q>", 'copilot#Accept("")', { silent = true, expr = true })
+    vim.api.nvim_set_keymap("i", "<C-q>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+    vim.keymap.set("i", "<C-w>", 'copilot#AcceptWord("")', { silent = true, expr = true })
   end,
 }
 
