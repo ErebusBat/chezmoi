@@ -39,7 +39,7 @@ vim.keymap.set('n', '<F9>', ':set wrap!<CR>', { desc = 'Toogle Word Wrap', norem
 vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode', noremap = true })
 
 -- Window Management
-vim.keymap.set('n', '<tab>', '<C-w><C-p>', { desc = 'Toggle last split', noremap = true })
+-- vim.keymap.set('n', '<tab>', '<C-w><C-p>', { desc = 'Toggle last split', noremap = true })
 vim.keymap.set('n', '<leader><space>', ':e #<CR>', { desc = 'Toggle last buffer', noremap = true })
 vim.keymap.set('n', '<M-]>', ':bnext<CR>', { desc = 'Next Buffer', noremap = true })
 vim.keymap.set('n', '<M-[>', ':bprev<CR>', { desc = 'Previous Buffer', noremap = true })
