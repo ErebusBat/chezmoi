@@ -11,6 +11,7 @@ return {
       ["javascript"] = true,
       ["typescript"] = true,
       ["lua"] = false,
+      ["ruby"] = true,
       ["rust"] = true,
       ["c"] = true,
       ["c#"] = true,
