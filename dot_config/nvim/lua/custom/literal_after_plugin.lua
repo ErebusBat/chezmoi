@@ -45,8 +45,8 @@ vim.keymap.set('n', '<M-]>', ':bnext<CR>', { desc = 'Next Buffer', noremap = tru
 vim.keymap.set('n', '<M-[>', ':bprev<CR>', { desc = 'Previous Buffer', noremap = true })
 
 -- Line Movement
-vim.keymap.set('v', 'J', [[ :move '>+1<CR>gv=gv ]], { desc = 'Move line(s) down', noremap = true })
-vim.keymap.set('v', 'K', [[ :move '<-2<CR>gv=gv ]], { desc = 'Move line(s) up', noremap = true })
+-- vim.keymap.set('v', 'J', [[ :move '>+1<CR>gv=gv ]], { desc = 'Move line(s) down', noremap = true })
+-- vim.keymap.set('v', 'K', [[ :move '<-2<CR>gv=gv ]], { desc = 'Move line(s) up', noremap = true })
 
 -- Source Code Related
 vim.keymap.set('n', '<leader>sm', '[mV]M', { desc = '[S]elect [M]ethod', noremap = false })
