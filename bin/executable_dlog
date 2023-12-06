@@ -94,8 +94,9 @@ ENTRY=${ENTRY:gs/:shh:/🤫}
 ENTRY=${ENTRY:gs/:shower:/🚿}
 ENTRY=${ENTRY:gs/:taco:/🌮}
 #- Personal
-ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}
+ENTRY=${ENTRY:gs/FreeNAS/[[FreeNAS]]}
 ENTRY=${ENTRY:gs/MAZE/[[IntelNUC 2 - Maze|Maze]]}
+ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}
 ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
 #- SIE - Entities
 ENTRY=${ENTRY:gs/LEIDOS/[[Leidos]]}
