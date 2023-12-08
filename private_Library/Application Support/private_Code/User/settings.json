@@ -1,0 +1,16 @@
+{
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "editor.accessibilitySupport": "off",
+    "editor.fontFamily": "Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "editor.codeLensFontFamily": "Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontVariations": false,
+    "files.autoSave": "onFocusChange",
+    "go.testOnSave": true,
+    "editor.tabSize": 2,
+    "git.autofetch": true,
+    "editor.codeActionsOnSave": {
+        
+    }
+}
