@@ -1,4 +1,5 @@
 antibody:~/.config/zsh-antibody
+aoc:~/src/erebusbat/aoc/2023
 chezmoi:~/.local/share/chezmoi
 docker_dev:~/src/sie/my_docker_env
 docker:~/src/sie/my_docker_env
