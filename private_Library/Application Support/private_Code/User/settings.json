@@ -1,16 +1,90 @@
 {
     "workbench.colorTheme": "Catppuccin Mocha",
     "editor.accessibilitySupport": "off",
-    "editor.fontFamily": "Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontLigatures": true,
+    "editor.fontFamily": "Monaspace Neon, Comic Code, Menlo, Monaco, 'Courier New', monospace",
+    "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07'",
     "editor.fontSize": 14,
-    "editor.codeLensFontFamily": "Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
+    "editor.codeLensFontFamily": "Monaspace Neon, Comic Code, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontVariations": false,
     "files.autoSave": "onFocusChange",
     "go.testOnSave": true,
     "editor.tabSize": 2,
     "git.autofetch": true,
+    "editor.lineNumbers": "relative",
     "editor.codeActionsOnSave": {
-        
-    }
+
+    },
+    "editor.indentSize": "tabSize",
+    "vim.leader": "<Space>",
+    "vim.hlsearch": false,
+    "vim.foldfix": true,
+    "vim.useSystemClipboard": false,
+    "vim.highlightedyank.enable": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        // NAVIGATION
+        // switch b/w buffers
+        { "before": ["<S-h>"], "commands": [":bprevious"] },
+        { "before": ["<S-l>"], "commands": [":bnext"] }, 
+
+        // splits
+        { "before": ["leader", "v"], "commands": [":vsplit"] },
+        { "before": ["leader", "s"], "commands": [":split"] },
+
+        // panes
+        {
+        "before": ["leader", "h"],
+        "commands": ["workbench.action.focusLeftGroup"]
+        },
+        {
+        "before": ["leader", "j"],
+        "commands": ["workbench.action.focusBelowGroup"]
+        },
+        {
+        "before": ["leader", "k"],
+        "commands": ["workbench.action.focusAboveGroup"]
+        },
+        {
+        "before": ["leader", "l"],
+        "commands": ["workbench.action.focusRightGroup"]
+        },
+        // NICE TO HAVE
+        { "before": ["leader", "w"], "commands": [":w!"] },
+        { "before": ["leader", "q"], "commands": [":q!"] },
+        { "before": ["leader", "x"], "commands": [":x!"] },
+        {
+        "before": ["[", "d"],
+        "commands": ["editor.action.marker.prev"]
+        },
+        {
+        "before": ["]", "d"],
+        "commands": ["editor.action.marker.next"]
+        },
+        {
+        "before": ["<leader>", "c", "a"],
+        "commands": ["editor.action.quickFix"]
+        },
+        { "before": ["leader", "s", "f"], "commands": ["workbench.action.quickOpen"] },
+        { "before": ["leader", "p"], "commands": ["editor.action.formatDocument"] },
+        {
+        "before": ["g", "h"],
+        "commands": ["editor.action.showDefinitionPreviewHover"]
+        }
+    ],
+    "vim.visualModeKeyBindings": [
+        // Stay in visual mode while indenting
+        { "before": ["<"], "commands": ["editor.action.outdentLines"] },
+        { "before": [">"], "commands": ["editor.action.indentLines"] },
+        // Move selected lines while staying in visual mode
+        { "before": ["J"], "commands": ["editor.action.moveLinesDownAction"] },
+        { "before": ["K"], "commands": ["editor.action.moveLinesUpAction"] },
+        // toggle comment selection
+        { "before": ["leader", "c"], "commands": ["editor.action.commentLine"] }
+	],
+    "rubyLsp.formatter": "syntax_tree",
+    "git.enableSmartCommit": true,
+    "restoreGitBranchTabs.delayUpdate": 5,
+    "restoreGitBranchTabs.skipCommitsWithoutBranch": true,
+    "ruby.specCommand": "clear; bundle exec rspec -f d ",
+    "ruby.specSaveFile": true,
+    "ruby.specFocusTerminal": false,
 }
