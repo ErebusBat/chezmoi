@@ -2,3 +2,6 @@ github.com:
     user: ErebusBat
     oauth_token: {{ (gopassRaw "erebusbat/github" | mustFromJson).oauth_token }}
     git_protocol: ssh
+    users:
+        ErebusBat:
+            oauth_token: {{ (gopassRaw "erebusbat/github" | mustFromJson).oauth_token }}
