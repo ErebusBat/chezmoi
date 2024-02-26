@@ -1,80 +1,104 @@
 # This is Git's per-user configuration file.
 [user]
-   name = Andrew Burns
-	email = {{ .email }}
+  name = Andrew Burns
+  email = {{ .email }}
 
 [color]
-        branch = auto
-        status = auto
-        diff = auto
-	ui = true
+  branch = auto
+  status = auto
+  diff = auto
+  ui = true
+
 [alias]
-        br = branch
-        ci = commit
-        co = checkout
-        cp = cherry-pick
-        df = diff
-        g = \"!git gui\"
-        k = !gitk
-        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-        lsig = ls-files --others -i --exclude-standard
-        rem = remote
-        st = status
-        who = shortlog -s --
-        lol = log --decorate --oneline --graph
+  br = branch
+  ci = commit
+  co = checkout
+  cp = cherry-pick
+  df = diff
+  g = \"!git gui\"
+  k = !gitk
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lsig = ls-files --others -i --exclude-standard
+  rem = remote
+  st = status
+  who = shortlog -s --
+  lol = log --decorate --oneline --graph
 
 [core]
-        excludesfile = ~/.git-ignore
-        quotepath = false
-        ; attributesFile = /Users/{{ .chezmoi.group }}/.gitattributes
-        pager = delta
+  excludesfile = ~/.git-ignore
+  quotepath = false
+  ; attributesFile = /Users/{{ .chezmoi.group }}/.gitattributes
+  ;pager = delta
+
 [interactive]
-        diffFilter = delta --color-only
+  diffFilter = delta --color-only
+
 [push]
-        default = simple
+  default = simple
+
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-        required = true
-	process = git-lfs filter-process
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true
+  process = git-lfs filter-process
+
 [merge]
-        conflictstyle = diff3
+  conflictstyle = diff3
+
+[pager]
+  difftool = true
+
 [difftool "sourcetree"]
-        cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-        path =
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
+
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+
 [mergetool "sourcetree"]
-        cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-        trustExitCode = true
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
+
 [diff]
-        colorMoved = default
+  colorMoved = default
+  external = difft
+
+[difftool]
+  prompt = false
+
 [diff "code"]
-        wordRegex = [^[:space:],()\\.]+
+  wordRegex = [^[:space:],()\\.]+
+
 [delta]
-        navigate = true
-        light = false
+  navigate = true
+  light = false
+
 [diff-so-fancy]
-        markEmptyLines = false
+  markEmptyLines = false
+
 [github]
-	user = ErebusBat
+  user = ErebusBat
+
 [pull]
-	rebase = false
-; [url "git@github.com:"]
-; 	insteadOf = https://github.com/
+  rebase = false
+
 [credential "https://github.com"]
-	helper = !gh auth git-credential
+  helper = !gh auth git-credential
+
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+
 [color "diff"]
-	meta = 11
-	frag = magenta bold
-	func = 146 bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+  meta = 11
+  frag = magenta bold
+  func = 146 bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
 
 [safe]
 {{- if eq .focus "server" }}
