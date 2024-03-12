@@ -4,6 +4,7 @@ ansible:~/src/ansible
 antibody:~/.config/zsh-antibody
 aoc:~/src/erebusbat/aoc/2023
 chezmoi:~/.local/share/chezmoi
+divorce:~/Dropbox/Library/D/Divorce
 docker_dev:~/src/sie/my_docker_env
 docs:~/Documents
 downloads:~/downloads
