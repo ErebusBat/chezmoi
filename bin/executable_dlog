@@ -133,6 +133,7 @@ ENTRY=${ENTRY:gs/SICREG/[[SIC Registration Support]]}
 ENTRY=${ENTRY:gs/SLACK/[[Slack App Integration Grants]]}
 ENTRY=${ENTRY:gs/STATSD/[[statsd]]}
 ENTRY=${ENTRY:gs/SAFELIST/[[Watchlist Safelist]]}
+ENTRY=${ENTRY:gs/AIP/[[AI Project]]}
 
 # Spotify
 if [[ $ENTRY == *SONG* ]]; then
