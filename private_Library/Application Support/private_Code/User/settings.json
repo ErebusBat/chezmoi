@@ -87,4 +87,8 @@
     "ruby.specCommand": "clear; bundle exec rspec -f d ",
     "ruby.specSaveFile": true,
     "ruby.specFocusTerminal": false,
+    "editor.multiCursorModifier": "ctrlCmd",
+    "[ruby]": {
+        "editor.defaultFormatter": "Shopify.ruby-lsp"
+    },
 }
