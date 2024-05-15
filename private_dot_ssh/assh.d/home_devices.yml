@@ -60,6 +60,8 @@ hosts:
     Inherits: truenas
   nas:
     Inherits: truenas
+  maze:
+    Inherits: personal-allowpass
 
   nuc-deco:
     Inherits: personal

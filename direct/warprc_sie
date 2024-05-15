@@ -3,7 +3,9 @@ alactritty:~/src/erebusbat/dotfiles-stow/alacritty/.config/alacritty
 ansible:~/src/ansible
 antibody:~/.config/zsh-antibody
 aoc:~/src/erebusbat/aoc/2023
+bedrock-gem:~/src/sie/ruby-amazon-bedrock
 chezmoi:~/.local/share/chezmoi
+divorce:~/Dropbox/Library/D/Divorce
 docker_dev:~/src/sie/my_docker_env
 docs:~/Documents
 downloads:~/downloads

@@ -106,7 +106,7 @@ ENTRY=${ENTRY:gs/LEIDOS/[[Leidos]]}
 ENTRY=${ENTRY:gs/MOOG/[[Moog]]}
 ENTRY=${ENTRY:gs/TESLA/[[Tesla]]}
 ENTRY=${ENTRY:gs/THERMO/[[ThermoFisher]]}
-ENTRY=${ENTRY:gs/SLACK/[[SalesForce|SF\/Slack]]}
+ENTRY=${ENTRY:gs/SF/[[SalesForce|SF\/Slack]]}
 #- SIE - People
 ENTRY=${ENTRY:gs/ALINA/[[Alina Roshchupkina|Alina]]}
 ENTRY=${ENTRY:gs/BRUNO/[[Bruno Fontanella|Bruno]]}
@@ -129,7 +129,11 @@ ENTRY=${ENTRY:gs/WILL/[[Will Freeman|Will]]}
 #- SIE - Projects / Pages
 ENTRY=${ENTRY:gs/COMPAPP/[[Companion App Integration]]}
 ENTRY=${ENTRY:gs/HOSTCACHE/[[Hosts Cache Issue]]}
+ENTRY=${ENTRY:gs/SICREG/[[SIC Registration Support]]}
+ENTRY=${ENTRY:gs/SLACK/[[Slack App Integration Grants]]}
 ENTRY=${ENTRY:gs/STATSD/[[statsd]]}
+ENTRY=${ENTRY:gs/SAFELIST/[[Watchlist Safelist]]}
+ENTRY=${ENTRY:gs/AIP/[[AI Project]]}
 
 # Spotify
 if [[ $ENTRY == *SONG* ]]; then
