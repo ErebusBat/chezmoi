@@ -21,7 +21,7 @@ alias gu='gpm && gbda && gsu'
 # See working/scm-breeze/scm-breeze.plugin.zsh for more aliases
 
 # Additional useful aliases
-alias gbda='git branch --merged | command grep -vE "^(\*|\s*master\s*$|\*main\*)" | command xargs -n 1 git branch -d'
+alias gbda='git branch --merged | command grep -vE "^(\*|\s*master\s*$|\s*main\s*)" | command xargs -n 1 git branch -d'
 alias gca!='git commit -v -a --amend'
 alias gdw='git diff --word-diff'
 alias glo='git log --oneline --decorate --color'
