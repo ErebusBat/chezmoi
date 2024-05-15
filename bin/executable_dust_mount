@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CIFS_MOUNT_POINT=/var/dustbin
-# CIFS_MOUNT_POINT=/tmp/cifs_dustbin
+# CIFS_MOUNT_POINT=/var/dustbin
+CIFS_MOUNT_POINT=/tmp/cifs_dustbin
 # IMG_FILE=$CIFS_MOUNT_POINT/AABackup-Drive/disks/img/dustbin.img
 IMG_FILE=$CIFS_MOUNT_POINT/AABackup-Drive/disks/img/dust2.img
 # HDD_PATH=/dev/disk/by-uuid/43ab03b8-09d5-49e1-810e-20b2cb51d8ee
