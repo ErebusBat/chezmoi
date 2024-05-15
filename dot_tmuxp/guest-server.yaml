@@ -106,3 +106,8 @@ windows:
   panes:
     - pane
     - pane
+
+- window_name: bedrock
+  panes:
+    - wd bedrock-gem
+    - wd bedrock-gem
