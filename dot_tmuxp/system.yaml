@@ -45,7 +45,8 @@ windows:
     - shell_command:
         - ssh nuc
     - shell_command:
-        - ssh maze
+        - ssh-add ~/.ssh/id_ecdsa
+        - ssh -A maze
     - shell_command:
         - ssh thelio
 
