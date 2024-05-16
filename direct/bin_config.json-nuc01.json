@@ -175,9 +175,9 @@
         "/home/aburns/bin/starship": {
             "path": "/home/aburns/bin/starship",
             "remote_name": "starship",
-            "version": "v1.16.0",
+            "version": "v1.19.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/starship/starship/releases/tag/v1.16.0",
+            "url": "https://github.com/starship/starship/releases/tag/v1.19.0",
             "provider": "",
             "package_path": "starship"
         }

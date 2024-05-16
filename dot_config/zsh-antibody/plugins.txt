@@ -5,6 +5,7 @@ ohmyzsh/ohmyzsh path:plugins/wd
 
 # Dev Stuff
 ~/.config/zsh-antibody/docker type:zsh
+~/.config/zsh-antibody/k8s type:zsh
 #~/.config/zsh-antibody/podman type:zsh
 ~/.config/zsh-antibody/git type:zsh
 ~/.config/zsh-antibody/golang type:zsh
