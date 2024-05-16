@@ -1,7 +1,7 @@
 # Misc
 ohmyzsh/ohmyzsh path:plugins/wd
 ~/.config/zsh-antibody/aliases type:zsh
-~/.config/zsh-antibody/exa type:zsh
+~/.config/zsh-antibody/eza type:zsh
 
 # Dev Stuff
 ~/.config/zsh-antibody/docker type:zsh
