@@ -10,6 +10,15 @@
             "provider": "github",
             "package_path": "assh"
         },
+        "/home/aburns/bin/eza": {
+            "path": "/home/aburns/bin/eza",
+            "remote_name": "eza",
+            "version": "v0.18.15",
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "url": "https://github.com/eza-community/eza",
+            "provider": "github",
+            "package_path": "./eza"
+        },
         "/home/aburns/bin/lazydocker": {
             "path": "/home/aburns/bin/lazydocker",
             "remote_name": "lazydocker",
