@@ -51,19 +51,22 @@ disabled = true
 # format = 'on [☸ $context \($namespace\)](dimmed yellow) '
 [kubernetes]
 disabled = false
-# detect_folders = ['/Users/andrew.burns/src/sie/server', 'server', 'app']
 detect_files = ['.helmignore', '.dockerignore']
+contexts = [
+  # Non-Production Envs
+  { context_alias = "staging (usw2)", context_pattern = "arn:aws:eks:us-west-2:065720365788:cluster/staging", style = "green", symbol = ""},
+  { context_alias = "dev (usw2)", context_pattern = "arn:aws:eks:us-west-2:204538655979:cluster/dev", style = "green", symbol = ""},
 
-[kubernetes.context_aliases]
-"arn:aws:eks:ca-central-1:000300003469:cluster/ca" = "ca (ca-central-1)"
-"arn:aws:eks:eu-west-1:329798432074:cluster/gore" = "gore (euw1)"
-"arn:aws:eks:eu-west-1:392519143284:cluster/moog" = "moog (euw1)"
-"arn:aws:eks:eu-west-1:393569031037:cluster/eu" = "eu (euw1)"
-"arn:aws:eks:us-west-2:012498362054:cluster/us2" = "us2 (usw2)"
-"arn:aws:eks:us-west-2:065720365788:cluster/staging" = "staging (usw2)"
-"arn:aws:eks:us-west-2:204538655979:cluster/dev" = "dev (usw2)"
-"arn:aws:eks:us-west-2:271195599959:cluster/abb" = "abb (usw2)"
-"arn:aws:eks:us-west-2:304543615135:cluster/viasat" = "viasat (usw2)"
-"arn:aws:eks:us-west-2:582828833424:cluster/leidos" = "leidos (usw2)"
-"arn:aws:eks:us-west-2:791291319152:cluster/us" = "us (usw2)"
-"arn:aws:eks:us-west-2:380981841607:cluster/thermofisher" = "thermofisher (usw2)"
+  # Production
+  { context_alias = "abb (usw2)", context_pattern = "arn:aws:eks:us-west-2:271195599959:cluster/abb", style = "red", symbol = "‼️"},
+  { context_alias = "ca (ca-central-1)", context_pattern = "arn:aws:eks:ca-central-1:000300003469:cluster/ca", style = "red", symbol = "‼️"},
+  { context_alias = "eu (euw1)", context_pattern = "arn:aws:eks:eu-west-1:393569031037:cluster/eu", style = "red", symbol = "‼️"},
+  { context_alias = "gore (euw1)", context_pattern = "arn:aws:eks:eu-west-1:329798432074:cluster/gore", style = "red", symbol = "‼️"},
+  { context_alias = "leidos (usw2)", context_pattern = "arn:aws:eks:us-west-2:582828833424:cluster/leidos", style = "red", symbol = "‼️"},
+  { context_alias = "moog (euw1)", context_pattern = "arn:aws:eks:eu-west-1:392519143284:cluster/moog", style = "red", symbol = "‼️"},
+  { context_alias = "thermofisher (usw2)", context_pattern = "arn:aws:eks:us-west-2:380981841607:cluster/thermofisher", style = "red", symbol = "‼️"},
+  { context_alias = "us (usw2)", context_pattern = "arn:aws:eks:us-west-2:791291319152:cluster/us", style = "red", symbol = "‼️"},
+  { context_alias = "us2 (usw2)", context_pattern = "arn:aws:eks:us-west-2:012498362054:cluster/us2", style = "red", symbol = "‼️"},
+  { context_alias = "viasat (usw2)", context_pattern = "arn:aws:eks:us-west-2:304543615135:cluster/viasat", style = "red", symbol = "‼️"},
+]
+

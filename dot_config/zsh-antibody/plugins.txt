@@ -1,10 +1,11 @@
 # Misc
 ohmyzsh/ohmyzsh path:plugins/wd
 ~/.config/zsh-antibody/aliases type:zsh
-~/.config/zsh-antibody/exa type:zsh
+~/.config/zsh-antibody/eza type:zsh
 
 # Dev Stuff
 ~/.config/zsh-antibody/docker type:zsh
+~/.config/zsh-antibody/k8s type:zsh
 #~/.config/zsh-antibody/podman type:zsh
 ~/.config/zsh-antibody/git type:zsh
 ~/.config/zsh-antibody/golang type:zsh
