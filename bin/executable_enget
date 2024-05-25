@@ -1,0 +1,2 @@
+#!/bin/bash
+wget --config=$HOME/.config/easynews_wget.rc -c  --show-progress $*

@@ -11,6 +11,7 @@ restic:~/.restic
 src:~/src
 ssh:~/.ssh
 stow:~/src/erebusbat/dotfiles-stow
+syncthing:~/src/erebusbat/myserver/syncthing
 tgf:~/src/sie/frontend
 tmux:~/.config/tmux
 tmuxp:~/.tmuxp
