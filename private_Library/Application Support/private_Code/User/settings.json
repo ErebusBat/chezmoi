@@ -91,4 +91,5 @@
     "[ruby]": {
         "editor.defaultFormatter": "Shopify.ruby-lsp"
     },
+    "github.copilot.editor.enableAutoCompletions": true,
 }
