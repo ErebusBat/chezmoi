@@ -47,8 +47,8 @@ windows:
     - shell_command:
         - ssh-add ~/.ssh/id_ecdsa
         - ssh -A maze
-    - shell_command:
-        - ssh thelio
+    # - shell_command:
+    #     - ssh thelio
 
 - window_name: vim
   panes:
