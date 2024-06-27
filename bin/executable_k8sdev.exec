@@ -11,6 +11,23 @@ elif [[ -z $BRANCH_NAME ]]; then
 else
   NS_ARG="-n $BRANCH_NAME"
 fi
+
+if [[ $THE_CMD == "eval" ]]; then
+  (return 0 2>/dev/null) && sourced=1 || sourced=0
+  if [[ $sourced -ne 1 ]]; then
+    echo "***FATAL: Must call in shell scope: source \$($0 eval)" >&2
+    exit 1
+  fi
+  if [[ -z $NS_ARG ]]; then
+    echo "Setting up kns without namespace (production)" >&2
+    alias kns="kubectl"
+  else
+    echo "Setting up kns to access $NS_ARG" >&2
+    alias kns="kubectl $NS_ARG"
+  fi
+  return 0
+fi
+
 set -x
 POD_NAME=$(kubectl ${NS_ARG} get pod -l component=backend -o json | jq -r '.items[].metadata.name' | sort -uR | head -n1)
 
