@@ -56,8 +56,8 @@ local config = {
 
 
   font = wezterm.font({
-    -- family="Comic Code Ligatures",
-    family='Monaspace Neon',
+    family="Comic Code Ligatures",
+    -- family='Monaspace Neon',
     -- family='Monaspace Argon',  -- This one
     -- family='Monaspace Xenon',
     -- family='Monaspace Radon',
