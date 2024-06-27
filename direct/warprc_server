@@ -19,6 +19,7 @@ pchef:~/src/erebusbat/pchef76
 photoprism:/myserver/photoprism
 pihole2:/myserver/pihole2
 pihole:/myserver/pihole
+plex_music:/nas_media/plex/music/albums
 plex:/myserver/plex
 qmk_sys76:~/src/vendor/qmk_firmware/keyboards/system76/launch_1/keymaps/erebusbat
 restic:~/.restic
