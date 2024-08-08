@@ -79,10 +79,10 @@ datasets:
       exclude-file: /myserver/plex/support/restic-cold-excludes
     pre_commands:
       dataset_backup:
-        - cd /myserver/plex && docker-compose stop
+        - cd /myserver/plex && docker compose stop
     post_commands:
       dataset_backup:
-        - cd /myserver/plex && docker-compose up -d
+        - cd /myserver/plex && docker compose up -d
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/rR6zls55F6?status=up&msg=OK&ping='
 
