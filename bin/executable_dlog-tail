@@ -1,6 +1,11 @@
 #!/bin/zsh
 set -e
 
+if [[ $1 -gt 0 ]]; then
+  echo "***  INFO: Watch mode enabled"
+  WATCH=$1
+fi
+
 # Setup paths, support known locations for vault root
 LOGS_PATH="tguest/logs/$(date +%Y/%m-%b)"
 FILE_NAME="$(date +%F-%a).md"
@@ -27,9 +32,22 @@ FULL_DIR_PATH="$WIKI_ROOT_PATH/$LOGS_PATH"
 FULL_FILE_PATH="$FULL_DIR_PATH/$FILE_NAME"
 
 # Finally run the command
-echo "${FILE_NAME}"
-if [[ -x $(which glow) ]]; then
-  grep '^## Log' -A50 $FULL_FILE_PATH | glow
-else
-  grep '^## Log' -A50 $FULL_FILE_PATH
-fi
+while [ 1 ]; do
+  if [[ $WATCH -gt 0 ]]; then clear; fi
+
+  echo "${FULL_FILE_PATH}"
+  if [[ -x $(which glow) ]]; then
+    grep '^## Log' -A50 $FULL_FILE_PATH | glow
+  else
+    grep '^## Log' -A50 $FULL_FILE_PATH
+  fi
+
+  if [[ $WATCH -le 0 ]]; then
+    break
+  elif [[ -x $(which fswatch) ]]; then
+    fswatch -1 $FULL_FILE_PATH 2>&1 1>/dev/null
+  else
+    echo "*** WARN: Consider installing fswatch for a better experience"
+    sleep $WATCH
+  fi
+done
