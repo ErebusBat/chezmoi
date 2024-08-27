@@ -29,8 +29,11 @@ APPS=(
 # APPS=()
 for app in $APPS; do
   echo "[$(date)] Launching ${app:r:t}"
-  open $app
+  open -g $app
 done
+
+# Terminal apps - With Options
+open /Applications/Alacritty.app --args -e dlog-tail 1
 
 # Startup Tmux
 if [[ -x ~/bin/tgtmux.zsh ]]; then
