@@ -37,7 +37,7 @@ while [ 1 ]; do
 
   echo "${FULL_FILE_PATH}"
   if [[ -x $(which glow) ]]; then
-    grep '^## Log' -A50 $FULL_FILE_PATH | glow
+    grep '^## Log' -A50 $FULL_FILE_PATH | glow --style ~/.config/dlog/glow.json
   else
     grep '^## Log' -A50 $FULL_FILE_PATH
   fi
