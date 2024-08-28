@@ -118,6 +118,7 @@ ENTRY=${ENTRY:gs/CAM/[[Cameron Wiebe|Cam]]}
 ENTRY=${ENTRY:gs/DIEGO/[[Diego De Oliveira Toral|Diego]]}
 ENTRY=${ENTRY:gs/FABMAN/[[Fabricio Ribeiro|Fabricio]]}
 ENTRY=${ENTRY:gs/GREG/[[Greg Underwood|Greg]]}
+ENTRY=${ENTRY:gs/GUSTAVO/[[Gustavo Alves|Gustavo]]}
 ENTRY=${ENTRY:gs/JOLIE/[[Jolie Summers|Jolie]]}
 ENTRY=${ENTRY:gs/JON/[[Jon Sangster|Jon]]}
 ENTRY=${ENTRY:gs/KIRAN/[[Kirandeep Virdi|Kiran]]}
