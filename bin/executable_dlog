@@ -97,12 +97,12 @@ ENTRY=${ENTRY:gs/:taco:/🌮}
 ENTRY=${ENTRY:gs/DARTER/[[dartp6]]}
 ENTRY=${ENTRY:gs/FreeNAS/[[FreeNAS]]}
 ENTRY=${ENTRY:gs/LUNCH/🍱 Lunch}
-ENTRY=${ENTRY:gs/MAZE/[[IntelNUC 2 - Maze|Maze]]}
 ENTRY=${ENTRY:gs/MEDITATE/🧠 Meditation}
 ENTRY=${ENTRY:gs/NAS/[[FreeNAS]]}
 ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}   # Needs to be BEFORE MAZE or we will have conflicts
 ENTRY=${ENTRY:gs/SHOWER/🚿 Shower}
 ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
+ENTRY=${ENTRY:gs/MAZE/[[IntelNUC 2 - Maze|Maze]]}
 #- SIE - Entities
 ENTRY=${ENTRY:gs/LEIDOS/[[Leidos]]}
 ENTRY=${ENTRY:gs/MOOG/[[Moog]]}
