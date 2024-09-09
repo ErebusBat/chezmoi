@@ -80,6 +80,7 @@ ENTRY=${ENTRY:gs/:food:/🍱}
 ENTRY=${ENTRY:gs/:hot:/🥵}
 ENTRY=${ENTRY:gs/:kiss:/😘}
 ENTRY=${ENTRY:gs/:music:/🎵}
+ENTRY=${ENTRY:gs/:meet:/🧑‍🤝‍🧑}
 ENTRY=${ENTRY:gs/:pen:/✒️}
 ENTRY=${ENTRY:gs/:pill:/💊}
 ENTRY=${ENTRY:gs/:pin:/📌}
