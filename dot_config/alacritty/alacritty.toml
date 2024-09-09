@@ -1,7 +1,7 @@
 import = ["/home/aburns/.config/alacritty/base16/colors/base16-tomorrow-night-256.yml"]
 
 [font]
-size = 20
+size = 12
 
 [font.bold]
 style = "Regular"
