@@ -84,6 +84,7 @@ ENTRY=${ENTRY:gs/:kiss:/😘}
 ENTRY=${ENTRY:gs/:music:/🎵}
 ENTRY=${ENTRY:gs/:meet:/🧑‍🤝‍🧑}
 ENTRY=${ENTRY:gs/:pen:/✒️}
+ENTRY=${ENTRY:gs/:phone:/☎}
 ENTRY=${ENTRY:gs/:pill:/💊}
 ENTRY=${ENTRY:gs/:pin:/📌}
 ENTRY=${ENTRY:gs/:pizza:/🍕}
