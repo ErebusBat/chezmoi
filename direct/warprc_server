@@ -1,4 +1,5 @@
 antibody:~/.config/zsh-antibody
+cfddns:/myserver/cloudflare-ddns
 chezmoi:~/.local/share/chezmoi
 dashy:/myserver/dashy
 deco:/myserver/deco-tools
@@ -23,6 +24,7 @@ plex_music:/nas_media/plex/music/albums
 plex:/myserver/plex
 qmk_sys76:~/src/vendor/qmk_firmware/keyboards/system76/launch_1/keymaps/erebusbat
 restic:~/.restic
+speedtest:/myserver/speedtest-tracker
 stash:/myserver/stashappcc
 syncthing:/myserver/syncthing
 telegraf:/myserver/telegraf
@@ -35,3 +37,4 @@ utils:/myserver/utils
 vim:~/.config/nvim
 watchtower:/myserver/watchtower
 wezterm:~/.config/wezterm
+xorbit:/myserver/xorbit
