@@ -158,7 +158,7 @@ if [[ $ENTRY == *SONG* ]]; then
 fi
 
 TIMESTAMP=$(date +%H:%M)
-MD_TEXT="\n- ${TIMESTAMP} - ${ENTRY}"
+MD_TEXT="\n- *${TIMESTAMP}* - ${ENTRY}"
 # echo "[$(date)] MD_TEXT>>>$MD_TEXT<<<" >> /tmp/dlog.log
 
 # echo "Would have added '${MD_TEXT}' to ${FULL_FILE_PATH}"
