@@ -72,6 +72,7 @@ ENTRY=${ENTRY:gs/:bun:/🐇}
 ENTRY=${ENTRY:gs/:bus:/🚌}
 ENTRY=${ENTRY:gs/:check:/✅}
 ENTRY=${ENTRY:gs/TASK/✅}
+ENTRY=${ENTRY:gs/WORK/⚒️}
 ENTRY=${ENTRY:gs/:cheese:/🧀}
 ENTRY=${ENTRY:gs/:cherries:/🍒}
 ENTRY=${ENTRY:gs/:cherry:/🍒}
