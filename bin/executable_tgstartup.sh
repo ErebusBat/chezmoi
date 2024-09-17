@@ -10,16 +10,16 @@ fi
 # Will not launch a terminal as it assumes you will be launching a terminal to execute this script.  This also allows for easily switching terminal emulators.
 
 APPS=(
-  # /Applications/OrbStack.app
   ~/Applications/Restart\ OrbStack.app
 
   /Applications/Fantastical.app
+  /Applications/Todoist.app
+  /Applications/Due.app
   /Applications/Firefox.app
   /Applications/Safari.app
   /Applications/Google\ Chrome.app
   /Applications/Obsidian.app
   /Applications/Slack.app
-  /Applications/Todoist.app
 
   /System/Applications/Messages.app
   /Applications/Messenger.app
