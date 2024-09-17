@@ -92,4 +92,5 @@
         "editor.defaultFormatter": "Shopify.ruby-lsp"
     },
     "github.copilot.editor.enableAutoCompletions": true,
+    "vscode-run-rspec-file.custom-command": "clear; bundle exec rspec --color",
 }
