@@ -69,6 +69,7 @@ Library/Application Support/
 .config/Synergy/
 .config/systemd
 .config/gospt/client.yml
+bin/lock
 {{- end }}
 
 {{- if eq .chezmoi.os "linux" }}
