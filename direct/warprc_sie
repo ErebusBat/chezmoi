@@ -62,3 +62,4 @@ vim:~/.config/nvim
 vimwiki:~/Documents/Obsidian/vimwiki
 wezterm:~/.config/wezterm
 wiki:~/Documents/Obsidian/vimwiki
+ziglings:~/src/erebusbat/ziglings.org
