@@ -1,0 +1,10 @@
+---
+BUNDLE_RUBYGEMS__PKG__GITHUB__COM: "ErebusBat:{{- (gopassRaw "tguest/tokens" | mustFromJson).github }}"
+BUNDLE_GEMS__CONTRIBSYS__COM: "{{- (gopassRaw "tguest/tokens" | mustFromJson).CONTRIBSYS }}"
+
+BUNDLE_GEM__TEST: "rspec"
+BUNDLE_GEM__CI: "circle"
+BUNDLE_GEM__MIT: "false"
+BUNDLE_GEM__COC: "false"
+BUNDLE_GEM__CHANGELOG: "true"
+BUNDLE_GEM__LINTER: "rubocop"
