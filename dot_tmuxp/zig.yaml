@@ -1,0 +1,18 @@
+session_name: zig
+start_directory: ~/src/erebusbat/
+windows:
+- window_name: zsh
+  panes:
+    -
+    -
+
+- window_name: ziglings
+  focus: true
+  panes:
+    - shell_command:
+      - wd ziglings
+      - alias zig=/Users/andrew.burns/downloads/zig-macos-aarch64-0.14.0-dev.1651+ffd071f55/zig
+    - shell_command:
+      - wd ziglings
+      - alias zig=/Users/andrew.burns/downloads/zig-macos-aarch64-0.14.0-dev.1651+ffd071f55/zig
+
