@@ -8,11 +8,14 @@ windows:
 
 - window_name: ziglings
   focus: true
+  shell_command_before:
+    - wd ziglings
+    - alias zig=/Users/andrew.burns/downloads/zig-macos-aarch64-0.14.0-dev.1651+ffd071f55/zig
   panes:
-    - shell_command:
-      - wd ziglings
-      - alias zig=/Users/andrew.burns/downloads/zig-macos-aarch64-0.14.0-dev.1651+ffd071f55/zig
-    - shell_command:
-      - wd ziglings
-      - alias zig=/Users/andrew.burns/downloads/zig-macos-aarch64-0.14.0-dev.1651+ffd071f55/zig
+    - focus: true
+      shell_command:
+        - tmux resize-pane -Z
+        - cd exercises
+        - vimls
+    -
 
