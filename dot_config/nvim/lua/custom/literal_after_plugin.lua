@@ -53,10 +53,12 @@ vim.keymap.set('n', '<leader>sm', '[mV]M', { desc = '[S]elect [M]ethod', noremap
 vim.keymap.set('n', '<leader>ym', 'mT[mV]M"+y`T', { desc = '[Y]ank [M]ethod (System Pasteboard)', noremap = false })
 
 -- vim.keymap.set('n', '<leader><F12>', [[ :set ft=ruby<CR> ]], { desc = 'Set FileType to Ruby', noremap = true })
+
 --------------------------------------------------------------------------------
 -- Colors / Appearance / Themes
 --------------------------------------------------------------------------------
-require("custom.theme-after-plugin")
+-- require("custom.theme-after-plugin")
+-- see lua/plugins/base16.lua
 
 --------------------------------------------------------------------------------
 -- Source Control / Fugitive
