@@ -1,9 +1,9 @@
 {
-    "workbench.colorTheme": "Tokyo Night Dark",
+    "workbench.colorTheme": "Catppuccin Mocha",
     "editor.accessibilitySupport": "off",
     "editor.fontFamily": "Comic Code, Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07'",
-    "editor.fontSize": 14,
+    "editor.fontSize": 16,
     "editor.codeLensFontFamily": "Monaspace Neon, Comic Code, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontVariations": false,
     "files.autoSave": "onFocusChange",
@@ -242,4 +242,8 @@
     "zig.initialSetupDone": true,
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
+    "terminal.integrated.fontFamily": "Comic Code, Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
+    "chat.editor.fontFamily": "Comic Code, Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
+    "github.copilot.chat.experimental.temporalContext.enabled": true,
+    "github.copilot.chat.scopeSelection": true,
 }

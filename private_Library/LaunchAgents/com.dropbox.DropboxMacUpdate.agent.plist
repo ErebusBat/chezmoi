@@ -17,6 +17,6 @@
 	<key>StandardOutPath</key>
 	<string>/dev/null</string>
 	<key>StartInterval</key>
-	<integer>3621</integer>
+	<integer>3618</integer>
 </dict>
 </plist>

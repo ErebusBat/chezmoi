@@ -28,7 +28,7 @@ targets:
   # sea_back is for when the drive is physically connected
   # The `thelio` target is the same data, just exposed over rest-server
   sea_back:
-    enabled: false
+    enabled: true
     uri: /Volumes/SeaBack/backups
     checks:
       local_path:
