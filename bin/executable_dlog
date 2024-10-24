@@ -127,6 +127,7 @@ ENTRY=${ENTRY:gs/DIEGO/[[Diego De Oliveira Toral|Diego]]}
 ENTRY=${ENTRY:gs/FABMAN/[[Fabricio Ribeiro|Fabricio]]}
 ENTRY=${ENTRY:gs/GREG/[[Greg Underwood|Greg]]}
 ENTRY=${ENTRY:gs/GUSTAVO/[[Gustavo Alves|Gustavo]]}
+ENTRY=${ENTRY:gs/JAQ/[[Jaquan Williams|Jaquan]]}
 ENTRY=${ENTRY:gs/JIM/[[Jim Snodgrass|Jim]]}
 ENTRY=${ENTRY:gs/JOLIE/[[Jolie Summers|Jolie]]}
 ENTRY=${ENTRY:gs/JON/[[Jon Sangster|Jon]]}
