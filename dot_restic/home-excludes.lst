@@ -128,6 +128,7 @@ $HOME/Library/Application Support/Firefox/Profiles/**/synced-tabs.db*
 $HOME/Library/Application Support/GIMP/**
 $HOME/Library/Application Support/Google/Chrome/**
 $HOME/Library/Application Support/Hazel/*.hazellock
+$HOME/Library/Application Support/iMazing/Backups/**
 $HOME/Library/Application Support/Knowledge/**
 $HOME/Library/Application Support/Messenger/**
 $HOME/Library/Application Support/Microsoft/Teams/**
