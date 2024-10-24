@@ -141,6 +141,7 @@ ENTRY=${ENTRY:gs/RON/[[Ron Hook|Ron]]}
 ENTRY=${ENTRY:gs/RYAN/[[Ryan Canby|Ryan]]}
 ENTRY=${ENTRY:gs/SHAMA/[[Kshama Manjrekar|Shama]]}
 ENTRY=${ENTRY:gs/TOM/[[Tom Price|Tom]]}
+ENTRY=${ENTRY:gs/VANESSA/[[Vanessa Henderson|Vanessa]]}
 ENTRY=${ENTRY:gs/VLAD/[[Vlad Dzhabarov|Vlad]]}
 ENTRY=${ENTRY:gs/WILL/[[Will Freeman|Will]]}
 #- SIE - Projects / Pages
