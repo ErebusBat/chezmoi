@@ -8,34 +8,28 @@
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "https://github.com/egnyte/ax",
             "provider": "github",
-            "package_path": "ax"
+            "package_path": "ax",
+            "pinned": false
         },
         "/Users/andrew.burns/bin/bin": {
             "path": "/Users/andrew.burns/bin/bin",
             "remote_name": "bin",
-            "version": "v0.17.0",
+            "version": "v0.19.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/marcosnils/bin/releases/tag/v0.17.0",
+            "url": "https://github.com/marcosnils/bin/releases/tag/v0.19.0",
             "provider": "",
-            "package_path": ""
-        },
-        "/Users/andrew.burns/bin/hx": {
-            "path": "/Users/andrew.burns/bin/hx",
-            "remote_name": "hx_x86_64-apple",
-            "version": "v0.4.2",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/sitkevij/hex",
-            "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/Users/andrew.burns/bin/jira": {
             "path": "/Users/andrew.burns/bin/jira",
             "remote_name": "jira",
-            "version": "v1.4.0",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/ankitpokhrel/jira-cli/releases/tag/v1.4.0",
+            "version": "v1.5.2",
+            "hash": "ace9e695d3d39237f78c70a158575d0a5eef1474a9333ea6449886565413cb22",
+            "url": "https://github.com/ankitpokhrel/jira-cli/releases/tag/v1.5.2",
             "provider": "",
-            "package_path": "jira_1.4.0_macOS_arm64/bin/jira"
+            "package_path": "jira_1.5.2_macOS_arm64/bin/jira",
+            "pinned": false
         },
         "/Users/andrew.burns/bin/spt": {
             "path": "/Users/andrew.burns/bin/spt",
@@ -44,7 +38,8 @@
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "url": "github.com/Rigellute/spotify-tui",
             "provider": "github",
-            "package_path": "spt"
+            "package_path": "spt",
+            "pinned": false
         }
     }
 }

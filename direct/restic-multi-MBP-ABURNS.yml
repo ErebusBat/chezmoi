@@ -94,12 +94,27 @@ datasets:
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/w6NdR9GvPb?status=up&msg=OK&ping='
 
+  home:
+    vault: erebusbat
+    paths:
+      - "~"
+    tags:
+      - home
+    restic_opts:
+      exclude-caches: true
+      exclude-file: ~/.restic/home-excludes.lst
+    post_commands:
+      backup_success:
+        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/NLkywkUH56?status=up&msg=OK&ping='
+
   src:
     vault: erebusbat
     paths:
       - ~/src
     restic_opts:
       exclude: ~/src/sie
+      exclude-caches: true
+      exclude-file: ~/.restic/src-excludes.lst
     post_commands:
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/cY5MUMy3Yv?status=up&msg=OK&ping='
@@ -154,19 +169,6 @@ datasets:
     post_commands:
       backup_success:
         - curl -s 'http://uptime-kuma.erebusbat.net/api/push/55dflCicIq?status=up&msg=OK&ping='
-
-  home:
-    vault: erebusbat
-    paths:
-      - "~"
-    tags:
-      - home
-    restic_opts:
-      exclude-caches: true
-      exclude-file: ~/.restic/home-excludes.lst
-    post_commands:
-      backup_success:
-        - curl -s 'http://uptime-kuma.erebusbat.net/api/push/NLkywkUH56?status=up&msg=OK&ping='
 
 defaults:
   latest: 1
