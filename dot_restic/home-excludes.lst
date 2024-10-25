@@ -59,8 +59,7 @@ $HOME/file-cache/**
 $HOME/gcloud/logs/**
 $HOME/src/**/tmp/**
 $HOME/src/erebusbat/**/.git/**
-$HOME/src/erebusbat/image-marker/in/**
-$HOME/src/erebusbat/image-marker/out/**
+$HOME/src/erebusbat/image-marker/imgs/**
 $HOME/src/erebusbat/pchef76/local-mode-cache/**
 $HOME/src/erebusbat/pchef76/nodes/**
 $HOME/src/erebusbat/pchef76/tmp/**
