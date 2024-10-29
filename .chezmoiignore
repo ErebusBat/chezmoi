@@ -38,8 +38,6 @@ bin/tgtmux.zsh
 .config/spotify-tui/*
 .config/systemd/user/restic-home.*
 .config/wezterm/wallpaper.yaml
-.restic/.erebusbat.key
-.restic/.freenas-minio-creds.env
 .s3cfg-truenas
 .ssh/id_bat_devices
 .tmuxp/hassio.yaml
@@ -50,6 +48,11 @@ bin/ptmux.zsh
 {{- if not .area.server }}
 .tmuxp/left.yaml
 bin/stmux.zsh
+{{- end }}
+
+{{- if and (not .area.personal) (not .area.server) }}
+.restic/.erebusbat.key
+.restic/.freenas-minio-creds.env
 {{- end }}
 
 {{- if eq .chezmoi.os "darwin" }}
