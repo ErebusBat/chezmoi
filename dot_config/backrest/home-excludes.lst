@@ -1,0 +1,288 @@
+# Very Specific File excludes
+/Users/andrew.burns/bee_mem_card-2020-1217.tar.gz
+
+# Exclude these directories in ANY sub path
+**/.tmp/**
+**/.yardoc/**
+**/.zig-cache/**
+**/cache/**
+**/log/**
+**/logs/**
+**/node_modules/**
+.stfolder
+*.log
+*.log.bz2
+*.log.gz
+*.pid
+
+
+#
+# Linux / Posix
+#
+/Users/andrew.burns/.bundle/**
+/Users/andrew.burns/.bundle/cache/**
+/Users/andrew.burns/.cache/**
+/Users/andrew.burns/.cargo/git/**
+/Users/andrew.burns/.chef/syntaxcache/**
+/Users/andrew.burns/.config/Slack/Cache/**
+/Users/andrew.burns/.config/Slack/Service Worker/**
+/Users/andrew.burns/.config/chezmoi/chezmoistate.boltdb
+/Users/andrew.burns/.config/google-chrome-backup-crashrecovery-*/**
+/Users/andrew.burns/.config/google-chrome/AutofillStates/**
+/Users/andrew.burns/.config/google-chrome/Default/**
+/Users/andrew.burns/.docker/*.sqlite3*
+/Users/andrew.burns/.docker/QuitReports/**
+/Users/andrew.burns/.docker/contexts/**
+/Users/andrew.burns/.docker/instance*/**
+/Users/andrew.burns/.docker/metrics/**
+/Users/andrew.burns/.docker/sbom/**
+/Users/andrew.burns/.docker/scout/**
+/Users/andrew.burns/.dropbox/**
+/Users/andrew.burns/.duply/**
+/Users/andrew.burns/.gnupg/.#lk0x*.*
+/Users/andrew.burns/.gnupg/random_seed
+/Users/andrew.burns/.kube/cache/**
+/Users/andrew.burns/.kube/http-cache/**
+/Users/andrew.burns/.local/share/Trash/**
+/Users/andrew.burns/.local/share/chezmoi/.git
+/Users/andrew.burns/.local/share/containers
+/Users/andrew.burns/.local/share/flatpak/**
+/Users/andrew.burns/.local/share/lutris/**
+/Users/andrew.burns/.local/share/trash/**
+/Users/andrew.burns/.local/share/backrest/
+/Users/andrew.burns/.local/state/**
+/Users/andrew.burns/.mozilla/firefox/*.default-release-backup-crashrecovery-*/**
+/Users/andrew.burns/.mozilla/firefox/*.default-release/storage/**
+/Users/andrew.burns/.nix-*
+/Users/andrew.burns/.node-gyp/**
+/Users/andrew.burns/.npm/**
+/Users/andrew.burns/.orbstack/**
+/Users/andrew.burns/.pub-cache/**
+/Users/andrew.burns/.rustup/**
+/Users/andrew.burns/.steam/debian-installation/**
+/Users/andrew.burns/.vim/plugged/**
+/Users/andrew.burns/.zsh_sessions/**
+/Users/andrew.burns/Dropbox/**
+/Users/andrew.burns/GPUCache/**
+/Users/andrew.burns/Games/Sony PlayStation/**
+/Users/andrew.burns/OrbStack/**
+/Users/andrew.burns/Pictures/Photo Booth Library
+/Users/andrew.burns/Pictures/Photos Library.photoslibrary
+/Users/andrew.burns/Slack/logs/**
+/Users/andrew.burns/dust/**
+/Users/andrew.burns/dust_tmp/**
+/Users/andrew.burns/dustbin/**
+/Users/andrew.burns/file-cache/**
+/Users/andrew.burns/gcloud/logs/**
+/Users/andrew.burns/src/**/tmp/**
+# /Users/andrew.burns/src/erebusbat/**/.git/**
+/Users/andrew.burns/src/erebusbat/bat-time
+/Users/andrew.burns/src/erebusbat/dotfiles-stow/
+/Users/andrew.burns/src/erebusbat/grcpass/dist
+/Users/andrew.burns/src/erebusbat/image-marker/dist
+/Users/andrew.burns/src/erebusbat/image-marker/imgs/**
+/Users/andrew.burns/src/erebusbat/myserver/syncthing/config
+/Users/andrew.burns/src/erebusbat/nebula/ca-batcavern/
+/Users/andrew.burns/src/erebusbat/pchef76/local-mode-cache/**
+/Users/andrew.burns/src/erebusbat/pchef76/nodes/**
+/Users/andrew.burns/src/erebusbat/pchef76/tmp/**
+/Users/andrew.burns/src/erebusbat/toggl
+/Users/andrew.burns/src/fetlife/**
+/Users/andrew.burns/src/guest/connect/**
+/Users/andrew.burns/src/guest/frontend/**
+/Users/andrew.burns/src/guest/kiosk/**
+/Users/andrew.burns/src/guest/node_modules/**
+/Users/andrew.burns/src/guest/register/**
+/Users/andrew.burns/src/guest/server/**
+/Users/andrew.burns/src/guest/web/**
+/Users/andrew.burns/src/pers/dotfiles-stow/
+/Users/andrew.burns/src/sia/flutter-companion-v2/build
+/Users/andrew.burns/src/sie/**/.git/**
+/Users/andrew.burns/src/sie/_salesforce_stuff/*.csv
+/Users/andrew.burns/src/sie/connect/**
+/Users/andrew.burns/src/sie/frontend/**
+/Users/andrew.burns/src/sie/influxtest/data/
+/Users/andrew.burns/src/sie/kiosk/**
+/Users/andrew.burns/src/sie/my_docker_env/data/**
+/Users/andrew.burns/src/sie/my_docker_env/snapshot/**
+/Users/andrew.burns/src/sie/register/**
+/Users/andrew.burns/src/sie/server/**
+/Users/andrew.burns/src/sie/web/**
+/Users/andrew.burns/src/vendor/**/.git/**
+/Users/andrew.burns/src/vendor/gitlab
+/Users/andrew.burns/src/vendor/zig
+/Users/andrew.burns/synergy.log*
+
+
+#
+# MacOSX
+#
+**/.DS_Store
+**/.localized
+**/.Trash/**
+**/Caches/**
+**/Cache/**
+**/ScriptCache/**
+**/*GPUCache/**
+**/Dawn*Cache/**
+**/CacheStorage/**
+**/WebStorage/**
+**/Code Cache/**
+**/Crash Reports/**
+
+/Users/andrew.burns/Documents/DownloadsToKeep/Apps/**
+/Users/andrew.burns/Documents/DownloadsToKeep/MIA Prom
+/Users/andrew.burns/Documents/DownloadsToKeep/amiga/**
+/Users/andrew.burns/Documents/DownloadsToKeep/roms
+# /Users/andrew.burns/Documents/Obsidian/Journal/**
+# /Users/andrew.burns/Documents/Obsidian/vimwiki/**
+/Users/andrew.burns/Downloads/**
+/Users/andrew.burns/Library/.dash_yard/**
+/Users/andrew.burns/Library/Accessibility/**
+/Users/andrew.burns/Library/Accounts/**
+/Users/andrew.burns/Library/AppleMediaServices/**
+/Users/andrew.burns/Library/Application Support/**/com.microsoft.appcenter/**
+/Users/andrew.burns/Library/Application Support/AddressBook/**
+/Users/andrew.burns/Library/Application Support/Animoji/**
+/Users/andrew.burns/Library/Application Support/CallHistoryDB/**
+/Users/andrew.burns/Library/Application Support/CallHistoryTransactions/**
+/Users/andrew.burns/Library/Application Support/CloudDocs
+/Users/andrew.burns/Library/Application Support/Code/Cache*
+/Users/andrew.burns/Library/Application Support/Code/Crashpad
+/Users/andrew.burns/Library/Application Support/Code/History
+/Users/andrew.burns/Library/Application Support/Code/User/globalStorage
+/Users/andrew.burns/Library/Application Support/Code/logs
+/Users/andrew.burns/Library/Application Support/CrashReporter/**
+/Users/andrew.burns/Library/Application Support/Dash
+/Users/andrew.burns/Library/Application Support/Syncthing/*.db
+/Users/andrew.burns/Library/Application Support/DifferentialPrivacy
+/Users/andrew.burns/Library/Application Support/Docker Desktop/**
+/Users/andrew.burns/Library/Application Support/Drop Keyboard Configurator/Singleton*
+/Users/andrew.burns/Library/Application Support/Dropbox/**
+/Users/andrew.burns/Library/Application Support/DropboxElectron/**
+/Users/andrew.burns/Library/Application Support/Epic
+/Users/andrew.burns/Library/Application Support/FaceTime/**
+/Users/andrew.burns/Library/Application Support/FileProvider/**
+/Users/andrew.burns/Library/Application Support/Firefox/Profiles/**/*.sqlite*
+/Users/andrew.burns/Library/Application Support/Firefox/Profiles/**/datareporting/**
+/Users/andrew.burns/Library/Application Support/Firefox/Profiles/**/saved-telemetery-pings/**
+/Users/andrew.burns/Library/Application Support/Firefox/Profiles/**/storage-sync-v2.sqlite*
+/Users/andrew.burns/Library/Application Support/Firefox/Profiles/**/storage/**
+/Users/andrew.burns/Library/Application Support/Firefox/Profiles/**/support@lastpass.com.xpi
+/Users/andrew.burns/Library/Application Support/Firefox/Profiles/**/synced-tabs.db*
+/Users/andrew.burns/Library/Application Support/GIMP/**
+/Users/andrew.burns/Library/Application Support/Google/Chrome/**
+/Users/andrew.burns/Library/Application Support/Google/DriveFS
+/Users/andrew.burns/Library/Application Support/Hazel/*.hazellock
+/Users/andrew.burns/Library/Application Support/iMazing/Emojis
+/Users/andrew.burns/Library/Application Support/Knowledge/**
+/Users/andrew.burns/Library/Application Support/Messenger/**
+/Users/andrew.burns/Library/Application Support/Microsoft/Teams/**
+/Users/andrew.burns/Library/Application Support/MobileSync/**
+/Users/andrew.burns/Library/Application Support/OBSBOT_WebCam/profiler/**
+/Users/andrew.burns/Library/Application Support/OBSBOT_WebCam/webcamLogs/**
+/Users/andrew.burns/Library/Application Support/Plexamp/**
+/Users/andrew.burns/Library/Application Support/Postman/Crashpad/**
+/Users/andrew.burns/Library/Application Support/Postman/logs/**
+/Users/andrew.burns/Library/Application Support/SonosV2/updates/**
+/Users/andrew.burns/Library/Application Support/Spotify
+/Users/andrew.burns/Library/Application Support/Steam
+/Users/andrew.burns/Library/Application Support/SyncServices/**
+/Users/andrew.burns/Library/Application Support/Telegram Desktop
+/Users/andrew.burns/Library/Application Support/Todoist/**
+/Users/andrew.burns/Library/Application Support/com.apple.TCC/**
+/Users/andrew.burns/Library/Application Support/com.apple.ap.promotedcontentd/**
+/Users/andrew.burns/Library/Application Support/com.apple.ap.sbd/**
+/Users/andrew.burns/Library/Application Support/com.apple.avfoundation/**
+/Users/andrew.burns/Library/Application Support/com.apple.sharedfilelist/**
+/Users/andrew.burns/Library/Application Support/com.apple.spotlight/**
+/Users/andrew.burns/Library/Application Support/com.bugsnag.Bugsnag/**
+/Users/andrew.burns/Library/Application Support/com.facebook.archon.developerID/RCTAsyncLocalStorage_V1
+/Users/andrew.burns/Library/Application Support/discord/**
+/Users/andrew.burns/Library/Application Support/iCloud/**
+/Users/andrew.burns/Library/Application Support/iMazing/Backups/**
+/Users/andrew.burns/Library/Application Support/obsidian/*Cache/**
+/Users/andrew.burns/Library/Application Support/obsidian/IndexedDB/**
+/Users/andrew.burns/Library/Application Support/obsidian/Local Storage/**
+/Users/andrew.burns/Library/Application Support/obsidian/Service Worker/**
+/Users/andrew.burns/Library/Application Support/obsidian/Session Storage/**
+/Users/andrew.burns/Library/Application Support/obsidian/Singleton*/**
+/Users/andrew.burns/Library/Application Support/obsidian/Web Storage/**
+/Users/andrew.burns/Library/Application Support/obsidian/WebStorage/**
+/Users/andrew.burns/Library/Application Support/obsidian/blob_storage/**
+/Users/andrew.burns/Library/Application Support/obsidian/obsidian.log
+/Users/andrew.burns/Library/Application Support/zoom.us/**
+/Users/andrew.burns/Library/Assistant/**
+/Users/andrew.burns/Library/Autosave Information/**
+/Users/andrew.burns/Library/Biome/**
+/Users/andrew.burns/Library/Calendars/**
+/Users/andrew.burns/Library/CloudStorage/Dropbox/**
+/Users/andrew.burns/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/My Drive/Casamia Lease Agreement*
+/Users/andrew.burns/Library/ContainerManager/**
+/Users/andrew.burns/Library/Containers/**
+/Users/andrew.burns/Library/Cookies/**
+/Users/andrew.burns/Library/CoreFollowUp/**
+/Users/andrew.burns/Library/Daemon Containers/**
+/Users/andrew.burns/Library/DoNotDisturb/**
+/Users/andrew.burns/Library/DuetExpertCenter/**
+/Users/andrew.burns/Library/Finance/**
+/Users/andrew.burns/Library/Google/GoogleSoftwareUpdate/**
+/Users/andrew.burns/Library/Google/GoogleSoftwareUpdate/Stats/**
+/Users/andrew.burns/Library/Group Containers/**
+/Users/andrew.burns/Library/Group Containers/group.com.apple.secure-control-center-preferences/**
+/Users/andrew.burns/Library/HTTPStorages/**
+/Users/andrew.burns/Library/HomeKit/**
+/Users/andrew.burns/Library/IdentityService/**
+/Users/andrew.burns/Library/IdentityServices/**
+/Users/andrew.burns/Library/IntelligencePlatform/**
+/Users/andrew.burns/Library/Intents/**
+/Users/andrew.burns/Library/LanguageModeling/**
+/Users/andrew.burns/Library/Logs/**
+/Users/andrew.burns/Library/Mail/**
+/Users/andrew.burns/Library/Messages/**
+/Users/andrew.burns/Library/Messages/*Cache/**
+/Users/andrew.burns/Library/Metadata/**
+/Users/andrew.burns/Library/News/**
+/Users/andrew.burns/Library/PersonalizationPortrait/**
+/Users/andrew.burns/Library/Photos/Libraries/Syndication.photoslibrary/**
+/Users/andrew.burns/Library/Preferences/com.apple.AddressBook.plist
+/Users/andrew.burns/Library/Preferences/com.apple.MobileSMS*.*
+/Users/andrew.burns/Library/Preferences/com.apple.homed.notbackedup.plist
+/Users/andrew.burns/Library/Preferences/com.apple.homed.plist
+/Users/andrew.burns/Library/Preferences/com.apple.mail-shared.plist
+/Users/andrew.burns/Library/Preferences/com.apple.messages.pinning.plist
+/Users/andrew.burns/Library/QuickLook/**
+/Users/andrew.burns/Library/Reminders/**
+/Users/andrew.burns/Library/ResponseKit/**
+/Users/andrew.burns/Library/Safari/**
+/Users/andrew.burns/Library/Saved Application State/**
+/Users/andrew.burns/Library/Sharing/**
+/Users/andrew.burns/Library/Shortcuts/**
+/Users/andrew.burns/Library/StatusKit/**
+/Users/andrew.burns/Library/Suggestions/**
+/Users/andrew.burns/Library/Translation/**
+/Users/andrew.burns/Library/Trial/**
+/Users/andrew.burns/Library/Weather/**
+/Users/andrew.burns/Library/WebKit/**
+/Users/andrew.burns/Library/Webkit/**
+/Users/andrew.burns/Library/com.apple.aiml.instrumentation/**
+/Users/andrew.burns/Library/com.apple.icloud.searchpartyd/**
+/Users/andrew.burns/Movies/**
+/Users/andrew.burns/Music/Music/**
+/Users/andrew.burns/Pictures/Photos Library.photoslibrary/private/com.apple.mediaanalysisd/**
+/Users/andrew.burns/Pictures/Photos Library.photoslibrary/private/com.apple.photoanalysisd/**
+/Users/andrew.burns/Pictures/Photos Library.photoslibrary/resources/**
+/Users/andrew.burns/Pictures/Photos Library.photoslibrary/scopes/cloudsharing/**
+/Users/andrew.burns/Pictures/Photos Library.photoslibrary/scopes/syndication/**
+/Users/andrew.burns/go/pkg/**
+/Users/andrew.burns/iCloud Drive (Archive)/**
+
+
+#
+# Testing / temporary
+#
+# Just for testing other items
+# /Users/andrew.burns/src
+# /Users/andrew.burns/.rbenv
+# /Users/andrew.burns/.gem
+

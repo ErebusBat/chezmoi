@@ -1,0 +1,39 @@
+#
+# MacOSX
+#
+**/.DS_Store
+**/.localized
+**/.Trash/**
+**/Caches/**
+**/Cache/**
+**/Code Cache/**
+**/Crash Reports/**
+
+# Exclude these directories in ANY sub path
+**/.yardoc/**
+**/cache/**
+**/.zig-cache/**
+
+/Users/andrew.burns/src/erebusbat/dotfiles-stow/fetlife/src/fetlife/docker_dev/snapshot-*.tar.gz
+/Users/andrew.burns/src/erebusbat/image-marker/imgs/**
+/Users/andrew.burns/src/erebusbat/myserver/syncthing/config/**
+/Users/andrew.burns/src/erebusbat/pchef76/local-mode-cache/**
+/Users/andrew.burns/src/erebusbat/pchef76/nodes/**
+/Users/andrew.burns/src/erebusbat/pchef76/tmp/**
+
+/Users/andrew.burns/src/sie/**/logs/**
+
+#
+# Vendor Stuff we don't need to archive
+#
+/Users/andrew.burns/src/vendor/gitlab/**
+/Users/andrew.burns/src/vendor/zig/**
+
+/Users/andrew.burns/src/erebusbat/bat-time
+/Users/andrew.burns/src/erebusbat/dotfiles-stow/zsh-zplug/.zplug/
+/Users/andrew.burns/src/erebusbat/hassio/node-red/node_modules/
+/Users/andrew.burns/src/erebusbat/nebula/ca-batcavern/
+/Users/andrew.burns/src/erebusbat/toggl
+/Users/andrew.burns/src/sie/frontend/node_modules/
+/Users/andrew.burns/src/sie/influxtest/data/
+/Users/andrew.burns/src/sie/kiosk/platforms/ios/build/

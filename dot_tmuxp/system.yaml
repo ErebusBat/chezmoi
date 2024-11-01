@@ -50,13 +50,19 @@ windows:
     # - shell_command:
     #     - ssh thelio
 
-- window_name: vim
+- window_name: misc
   panes:
     - shell_command:
       - neofetch
-      - wd vim
+    - pane:
+      focus: true
+
+- window_name: utils
+  panes:
     - shell_command:
-      - wd vim
+      - /opt/homebrew/opt/backrest/bin/backrest --bind-address :9898
+    - pane:
+      focus: true
 
 # - window_name: tmux
 #   panes:

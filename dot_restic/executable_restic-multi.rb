@@ -207,7 +207,6 @@ class ResticConfig
 
     if sudo
       args << 'sudo'
-      args << '-E'
     end
 
     # Include ~/bin in path, if it exists
