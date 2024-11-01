@@ -3,6 +3,7 @@ alacritty:~/.config/alacritty
 ansible:~/src/ansible
 antibody:~/.config/zsh-antibody
 aoc:~/src/erebusbat/aoc/2023
+backrest:~/.config/backrest
 bedrock-gem:~/src/sie/ruby-amazon-bedrock
 chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy

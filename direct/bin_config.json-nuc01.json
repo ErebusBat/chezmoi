@@ -4,11 +4,11 @@
         "/home/aburns/bin/assh": {
             "path": "/home/aburns/bin/assh",
             "remote_name": "assh",
-            "version": "v2.15.0",
+            "version": "v2.16.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/moul/assh",
+            "url": "https://github.com/moul/assh/releases/tag/v2.16.0",
             "provider": "",
-            "package_path": ""
+            "package_path": "assh"
         },
         "/home/aburns/bin/bat": {
             "path": "/home/aburns/bin/bat",
@@ -85,38 +85,29 @@
         "/home/aburns/bin/eza": {
             "path": "/home/aburns/bin/eza",
             "remote_name": "eza",
-            "version": "v0.18.15",
+            "version": "v0.20.5",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/eza-community/eza",
-            "provider": "github",
+            "url": "https://github.com/eza-community/eza/releases/tag/v0.20.5",
+            "provider": "",
             "package_path": "./eza"
         },
         "/home/aburns/bin/fd": {
             "path": "/home/aburns/bin/fd",
             "remote_name": "fd",
-            "version": "v8.7.0",
+            "version": "v10.2.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/sharkdp/fd/releases/tag/v8.7.0",
+            "url": "https://github.com/sharkdp/fd/releases/tag/v10.2.0",
             "provider": "",
-            "package_path": ""
+            "package_path": "fd-v10.2.0-x86_64-unknown-linux-gnu/fd"
         },
         "/home/aburns/bin/fzf": {
             "path": "/home/aburns/bin/fzf",
             "remote_name": "fzf",
-            "version": "0.42.0",
+            "version": "v0.56.0",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/junegunn/fzf/releases/tag/0.42.0",
+            "url": "https://github.com/junegunn/fzf/releases/tag/v0.56.0",
             "provider": "",
             "package_path": "fzf"
-        },
-        "/home/aburns/bin/grcpass": {
-            "path": "/home/aburns/bin/grcpass",
-            "remote_name": "grcpass",
-            "version": "v1.0.0",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "http://gitlab.erebusbat.net/ErebusBat/grcpass",
-            "provider": "gitlab",
-            "package_path": ""
         },
         "/home/aburns/bin/jq": {
             "path": "/home/aburns/bin/jq",
@@ -130,9 +121,9 @@
         "/home/aburns/bin/lazydocker": {
             "path": "/home/aburns/bin/lazydocker",
             "remote_name": "lazydocker",
-            "version": "v0.23.1",
+            "version": "v0.23.3",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/jesseduffield/lazydocker/releases/tag/v0.23.1",
+            "url": "https://github.com/jesseduffield/lazydocker/releases/tag/v0.23.3",
             "provider": "",
             "package_path": "lazydocker"
         },
@@ -148,20 +139,20 @@
         "/home/aburns/bin/restic": {
             "path": "/home/aburns/bin/restic",
             "remote_name": "",
-            "version": "v0.16.0",
+            "version": "v0.17.2",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/restic/restic/releases/tag/v0.16.0",
+            "url": "https://github.com/restic/restic/releases/tag/v0.17.2",
             "provider": "",
             "package_path": ""
         },
         "/home/aburns/bin/rg": {
             "path": "/home/aburns/bin/rg",
             "remote_name": "rg",
-            "version": "13.0.0",
+            "version": "14.1.1",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/burntsushi/ripgrep",
+            "url": "https://github.com/BurntSushi/ripgrep/releases/tag/14.1.1",
             "provider": "",
-            "package_path": ""
+            "package_path": "ripgrep-14.1.1-x86_64-unknown-linux-musl/rg"
         },
         "/home/aburns/bin/spt": {
             "path": "/home/aburns/bin/spt",

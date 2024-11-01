@@ -1,4 +1,5 @@
 antibody:~/.config/zsh-antibody
+backrest:/myserver/backrest
 cfddns:/myserver/cloudflare-ddns
 chezmoi:~/.local/share/chezmoi
 dashy:/myserver/dashy

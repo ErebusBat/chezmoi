@@ -26,6 +26,8 @@ local config = {
     shell = "/bin/zsh",
   },
 
+  window_close_confirmation = 'NeverPrompt',
+
   keys = {
     {
       key = 'F12',
