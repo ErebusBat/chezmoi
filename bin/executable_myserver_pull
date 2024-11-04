@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+MYSERVER_PATH=/myserver
+if [[ ! -d $MYSERVER_PATH ]]; then
+  if [[ $(uname) == "Darwin" ]]; then
+    MYSERVER_PATH=$HOME/src/erebusbat/myserver
+  fi
+fi
+
+if [[ ! -d $MYSERVER_PATH ]]; then
+  echo "**FATAL: Could not find /myserver path" >&2
+  exit 1
+fi
+
+echo "Pulling remote changes"
+cd $MYSERVER_PATH
+git pull -q
