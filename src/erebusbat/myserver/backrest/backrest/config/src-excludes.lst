@@ -1,0 +1,39 @@
+#
+# MacOSX
+#
+**/.DS_Store
+**/.localized
+**/.Trash/**
+**/Caches/**
+**/Cache/**
+**/Code Cache/**
+**/Crash Reports/**
+
+# Exclude these directories in ANY sub path
+**/.yardoc/**
+**/cache/**
+**/.zig-cache/**
+
+/home/aburns/src/erebusbat/dotfiles-stow/fetlife/src/fetlife/docker_dev/snapshot-*.tar.gz
+/home/aburns/src/erebusbat/image-marker/imgs/**
+/home/aburns/src/erebusbat/myserver/syncthing/config/**
+/home/aburns/src/erebusbat/pchef76/local-mode-cache/**
+/home/aburns/src/erebusbat/pchef76/nodes/**
+/home/aburns/src/erebusbat/pchef76/tmp/**
+
+/home/aburns/src/sie/**/logs/**
+
+#
+# Vendor Stuff we don't need to archive
+#
+/home/aburns/src/vendor/gitlab/**
+/home/aburns/src/vendor/zig/**
+
+/home/aburns/src/erebusbat/bat-time
+/home/aburns/src/erebusbat/dotfiles-stow/zsh-zplug/.zplug/
+/home/aburns/src/erebusbat/hassio/node-red/node_modules/
+/home/aburns/src/erebusbat/nebula/ca-batcavern/
+/home/aburns/src/erebusbat/toggl
+/home/aburns/src/sie/frontend/node_modules/
+/home/aburns/src/sie/influxtest/data/
+/home/aburns/src/sie/kiosk/platforms/ios/build/
