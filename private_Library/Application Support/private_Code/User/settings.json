@@ -244,7 +244,7 @@
     "editor.formatOnPaste": true,
     "terminal.integrated.fontFamily": "Comic Code, Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
     "chat.editor.fontFamily": "Comic Code, Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
-    "github.copilot.chat.experimental.temporalContext.enabled": true,
     "github.copilot.chat.scopeSelection": true,
     "git.confirmSync": false,
+    "github.copilot.chat.temporalContext.enabled": true,
 }
