@@ -1,6 +1,8 @@
 antibody:~/.config/zsh-antibody
 aoc:~/src/erebusbat/aoc/2023
+backrest:~/src/erebusbat/myserver/backrest
 chezmoi:~/.local/share/chezmoi
+dashy:~/src/erebusbat/myserver/dashy
 docker_dev:~/src/sie/my_docker_env
 docker:~/src/sie/my_docker_env
 gopass:~/.local/share/gopass/stores/root

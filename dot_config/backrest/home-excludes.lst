@@ -7,6 +7,7 @@
 **/.rbenv/**/ri/
 
 # Very Specific File excludes
+$HOME/.dust
 $HOME/bee_mem_card-2020-1217.tar.gz
 
 #
@@ -14,7 +15,7 @@ $HOME/bee_mem_card-2020-1217.tar.gz
 #
 $HOME/.bundle/**
 $HOME/.bundle/cache/**
-$HOME/.cache/**
+$HOME/.cache/*
 $HOME/.cargo/git/**
 $HOME/.chef/syntaxcache/**
 $HOME/.config/Slack/Cache/**
@@ -23,6 +24,9 @@ $HOME/.config/chezmoi/chezmoistate.boltdb
 $HOME/.config/google-chrome-backup-crashrecovery-*/**
 $HOME/.config/google-chrome/AutofillStates/**
 $HOME/.config/google-chrome/Default/**
+$HOME/.config/google-chrome/OptimizationGuidePredictionModels
+$HOME/.config/vlc*
+$HOME/.config/gthumb*
 $HOME/.docker/*.sqlite3*
 $HOME/.docker/QuitReports/**
 $HOME/.docker/contexts/**
@@ -30,19 +34,25 @@ $HOME/.docker/instance*/**
 $HOME/.docker/metrics/**
 $HOME/.docker/sbom/**
 $HOME/.docker/scout/**
+$HOME/.dropbox-dist/*
 $HOME/.dropbox/**
 $HOME/.duply/**
+$HOME/.joplin/
 $HOME/.gnupg/.#lk0x*.*
 $HOME/.gnupg/random_seed
 $HOME/.kube/cache/**
 $HOME/.kube/http-cache/**
-$HOME/.local/share/Trash/**
+$HOME/.local/lib
+$HOME/.local/share/Zeal/*
+$HOME/.local/share/Trash/*
+$HOME/.local/share/backrest/
 $HOME/.local/share/chezmoi/.git
 $HOME/.local/share/containers
 $HOME/.local/share/flatpak/**
+$HOME/.local/share/gthumb
+$HOME/.local/share/gthumb.old
 $HOME/.local/share/lutris/**
 $HOME/.local/share/trash/**
-$HOME/.local/share/backrest/
 $HOME/.local/state/**
 $HOME/.mozilla/firefox/*.default-release-backup-crashrecovery-*/**
 $HOME/.mozilla/firefox/*.default-release/storage/**
@@ -51,27 +61,39 @@ $HOME/.node-gyp/**
 $HOME/.npm/**
 $HOME/.orbstack/**
 $HOME/.pub-cache/**
+$HOME/.pwall
 $HOME/.rustup/**
 $HOME/.steam/debian-installation/**
+$HOME/.var
 $HOME/.vim/plugged/**
 $HOME/.zsh_sessions/**
-$HOME/Dropbox/**
-$HOME/GPUCache/**
-$HOME/Games/Sony PlayStation/**
+# $HOME/Games/Sony PlayStation/**
+# $HOME/GPUCache/**
+$HOME/Dropbox/
+$HOME/dust/**
+$HOME/dust_l/
+$HOME/dust_ext/
+$HOME/dust_tmp/**
+$HOME/dustbin/**
+$HOME/file-cache/**
+$HOME/Games
+$HOME/gcloud/logs/**
+$HOME/google-cloud-sdk/
+$HOME/mnt
+$HOME/nasplex/
 $HOME/OrbStack/**
 $HOME/Pictures/Photo Booth Library
 $HOME/Pictures/Photos Library.photoslibrary
 $HOME/Slack/logs/**
-$HOME/dust/**
-$HOME/dust_tmp/**
-$HOME/dustbin/**
-$HOME/file-cache/**
-$HOME/gcloud/logs/**
+$HOME/snap/wickrme
 $HOME/src/**/tmp/**
-# $HOME/src/erebusbat/**/.git/**
 $HOME/src/erebusbat/bat-time
 $HOME/src/erebusbat/dotfiles-stow/
 $HOME/src/erebusbat/grcpass/dist
+$HOME/src/erebusbat/image-marker/**/*.jpeg
+$HOME/src/erebusbat/image-marker/**/*.jpg
+$HOME/src/erebusbat/image-marker/**/*.png
+$HOME/src/erebusbat/image-marker/**/*.zip
 $HOME/src/erebusbat/image-marker/dist
 $HOME/src/erebusbat/image-marker/imgs/**
 $HOME/src/erebusbat/myserver/syncthing/config
@@ -84,6 +106,8 @@ $HOME/src/fetlife/**
 $HOME/src/guest/connect/**
 $HOME/src/guest/frontend/**
 $HOME/src/guest/kiosk/**
+$HOME/src/guest/my_docker_env/data/**
+$HOME/src/guest/my_docker_env/snapshot/**
 $HOME/src/guest/node_modules/**
 $HOME/src/guest/register/**
 $HOME/src/guest/server/**
@@ -103,8 +127,11 @@ $HOME/src/sie/server/**
 $HOME/src/sie/web/**
 $HOME/src/vendor/**/.git/**
 $HOME/src/vendor/gitlab
+$HOME/src/vendor/system76-power
 $HOME/src/vendor/zig
 $HOME/synergy.log*
+$HOME/ttb/
+$HOME/ttb-temp/
 
 
 #

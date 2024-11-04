@@ -9,6 +9,9 @@
 **/.localized
 **/Cache/
 **/CacheStorage/
+**/CachedData/
+**/CachedExtensionVSIXs/
+**/CachedProfilesData/
 **/Caches/
 **/Code Cache/
 **/Crash Reports/
@@ -18,6 +21,7 @@
 
 
 # Exclude these directories in ANY sub path
+**/.cache/*
 **/.stfolder/*
 **/.tmp/**
 **/.yardoc/*
