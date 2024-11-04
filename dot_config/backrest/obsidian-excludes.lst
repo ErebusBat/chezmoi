@@ -1,3 +1,6 @@
-.stfolder
-.DS_Folder
-**/.git/**
+# vim: set ft=zsh:
+
+# See also common-excludes.lst
+
+# Ignore git
+**/.git/*

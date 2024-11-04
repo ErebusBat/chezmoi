@@ -1,13 +1,11 @@
-.DS_Store
-**/.git/**
-**/.stfolder/**
-**/logs/**
-**/tmp/**
-**/node_modules/**
+# vim: set ft=zsh:
 
-/Users/andrew.burns/src/sie/my_docker_env/data
-/Users/andrew.burns/src/sie/my_docker_env/snapshot
-# /Users/andrew.burns/src/sie/server/tmp/
-# /Users/andrew.burns/src/sie/shc_query_service/tmp/
-/Users/andrew.burns/src/sie/influxtest/data/config/
-/Users/andrew.burns/src/sie/kiosk/platforms/ios/build/
+# See also common-excludes.lst
+
+# Ignore git
+**/.git/*
+
+$HOME/src/sie/influxtest/data/config/
+$HOME/src/sie/kiosk/platforms/ios/build/
+$HOME/src/sie/my_docker_env/data
+$HOME/src/sie/my_docker_env/snapshot
