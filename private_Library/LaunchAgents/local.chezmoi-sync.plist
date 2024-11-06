@@ -13,9 +13,9 @@
 	<key>RunAtLoad</key>
 	<true/>
 	<key>StandardErrorPath</key>
-	<string>/tmp/local.chezmoi-sync.stderr</string>
+	<string>/tmp/local.chezmoi-sync.err</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/local.chezmoi-sync.stdout</string>
+	<string>/tmp/local.chezmoi-sync.out</string>
 	<key>StartInterval</key>
 	<integer>3600</integer>
 </dict>
