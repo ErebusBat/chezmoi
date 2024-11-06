@@ -30,6 +30,7 @@ journal:~/Documents/Journal
 jwtrails:~/src/sie/sisjwt-rails
 jwtrb:~/src/sie/sisjwt-ruby
 kiosk:~/src/sie/kiosk
+launch_agents:~/Library/LaunchAgents
 library:~/Dropbox/Library
 linuxserver.io:~/src/pers/linuxserver.io
 mm:~/src/erebusbat/mm
