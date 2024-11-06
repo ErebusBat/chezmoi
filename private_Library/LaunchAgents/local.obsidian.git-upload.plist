@@ -13,9 +13,9 @@
 	<key>RunAtLoad</key>
 	<false/>
 	<key>StandardErrorPath</key>
-	<string>/tmp/local.obsidian.git-upload.stderr</string>
+	<string>/tmp/local.obsidian.git-upload.log</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/local.obsidian.git-upload.stdout</string>
+	<string>/tmp/local.obsidian.git-upload.log</string>
 	<key>StartCalendarInterval</key>
 	<array>
 		<dict>
