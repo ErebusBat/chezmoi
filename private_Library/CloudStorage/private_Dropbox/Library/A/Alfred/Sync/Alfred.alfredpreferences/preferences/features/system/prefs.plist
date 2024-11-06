@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ejectBlacklist</key>
+	<array>
+		<string>[0-9]*-[0-9]*-[0-9]*-*.backup</string>
+		<string>com.apple.TimeMachine*</string>
+		<string>Macintosh HD</string>
+		<string>MobileBackups</string>
+		<string>OrbStack</string>
+	</array>
+	<key>ejectKeywordEnabled</key>
+	<true/>
+	<key>lockConfirm</key>
+	<true/>
+	<key>logoutConfirm</key>
+	<true/>
+	<key>sleepConfirm</key>
+	<true/>
+	<key>sleepdisplaysConfirm</key>
+	<true/>
+</dict>
+</plist>

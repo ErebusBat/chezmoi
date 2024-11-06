@@ -1,0 +1,64 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 4,
+      "subtext" : {
+        "size" : 11,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Helvetica",
+        "color" : "#DFDEDDFF"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Helvetica",
+        "color" : "#8D8070FF"
+      },
+      "backgroundSelected" : "#F97A3FFF",
+      "text" : {
+        "size" : 13,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Helvetica",
+        "color" : "#59C3E8FF"
+      },
+      "iconPaddingHorizontal" : 5,
+      "roundness" : 0,
+      "paddingVertical" : 2,
+      "iconSize" : 40
+    },
+    "search" : {
+      "backgroundSelected" : "#F67A47FF",
+      "paddingHorizontal" : 0,
+      "spacing" : 10,
+      "text" : {
+        "size" : 32,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Helvetica",
+        "color" : "#53C2EAFF"
+      },
+      "background" : "#FFFFFFFF",
+      "roundness" : 0,
+      "paddingVertical" : 2
+    },
+    "window" : {
+      "color" : "#FFFFFFFF",
+      "paddingHorizontal" : 10,
+      "width" : 620,
+      "borderPadding" : 10,
+      "borderColor" : "#7A879133",
+      "blur" : 0,
+      "roundness" : 12,
+      "paddingVertical" : 10
+    },
+    "credit" : "Jack James",
+    "separator" : {
+      "color" : "#F6F1EDFF",
+      "thickness" : 1
+    },
+    "scrollbar" : {
+      "color" : "#F6F1EDFF",
+      "thickness" : 2
+    },
+    "name" : "Control Command Escape (v2)"
+  }
+}
