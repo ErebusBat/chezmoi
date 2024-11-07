@@ -8,5 +8,7 @@
 	<array>
 		<string>features.websearch.google.fallback</string>
 	</array>
+	<key>showFolders</key>
+	<true/>
 </dict>
 </plist>
