@@ -15,8 +15,6 @@
 	</dict>
 	<key>ExitTimeOut</key>
 	<integer>5</integer>
-	<key>KeepAlive</key>
-	<true/>
 	<key>Label</key>
 	<string>local.bezsel-agent</string>
 	<key>ProgramArguments</key>
@@ -31,5 +29,7 @@
 	<string>/tmp/local.bezsel-agent.log</string>
 	<key>StandardOutPath</key>
 	<string>/tmp/local.bezsel-agent.log</string>
+	<key>StartInterval</key>
+	<integer>14400</integer>
 </dict>
 </plist>
