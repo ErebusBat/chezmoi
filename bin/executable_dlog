@@ -150,7 +150,7 @@ ENTRY=${ENTRY:gs/AIL/[[Bedrock Logging]]}
 ENTRY=${ENTRY:gs/AIP/[[AI Project]]}
 ENTRY=${ENTRY:gs/AITF/[[Bedrock Terraform]]}
 ENTRY=${ENTRY:gs/BRTF/[[Bedrock Terraform]]}
-ENTRY=${ENTRY:gs/SIST/[[SIS Tool]]}
+ENTRY=${ENTRY:gs/SISTER/[[SIS Tool|SISTER]]}
 ENTRY=${ENTRY:gs/STATSD/[[statsd]]}
 
 # Spotify
