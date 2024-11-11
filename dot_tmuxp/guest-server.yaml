@@ -45,6 +45,15 @@ windows:
     - shell_command:
       - wd tgf
 
+- window_name: sister
+  layout: 9092,272x75,0,0[272x64,0,0,123,272x10,0,65,124]
+  panes:
+    - shell_command:
+        - wd sister
+        - vimls
+    - shell_command:
+        - wd sister
+
 # - window_name: connect
 #   layout: 1948,272x75,0,0[272x10,0,0,77,272x64,0,11,78] # top pane 10
 #   panes:

@@ -46,6 +46,7 @@ sessions-vim:~/.local/share/tickets-vim
 shc_query_service:~/src/sie/shc_query_service
 sidekiq_autoscaling:~/src/sie/sidekiq_autoscaling
 sips:~/src/sie/sign-in-print-server
+sister:~/src/sie/sister
 snippets:~/.config/ulauncher/snippets
 sparks:~/src/sie/sparks
 src:~/src
