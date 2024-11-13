@@ -1,5 +1,6 @@
 return {
   'gbrlsnchs/telescope-lsp-handlers.nvim',
+  enabled = false,
   dependencies = {
     'nvim-telescope/telescope.nvim',
   },

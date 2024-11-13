@@ -118,6 +118,7 @@ local servers = {
 
 return {
   'williamboman/mason.nvim',
+  -- enabled = false,
 
   dependencies = {
     'neovim/nvim-lspconfig',
