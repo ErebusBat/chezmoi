@@ -60,7 +60,7 @@ windows:
 - window_name: utils
   panes:
     - shell_command:
-      - /opt/homebrew/opt/backrest/bin/backrest --bind-address :9898
+      - # /opt/homebrew/opt/backrest/bin/backrest --bind-address :9898
     - pane:
       focus: true
 
