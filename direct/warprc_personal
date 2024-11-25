@@ -19,3 +19,4 @@ tmux:~/.config/tmux
 tmuxp:~/.tmuxp
 vim:~/.config/nvim
 wezterm:~/.config/wezterm
+wiki:~/Documents/vimwiki
