@@ -247,4 +247,5 @@
     "github.copilot.chat.scopeSelection": true,
     "git.confirmSync": false,
     "github.copilot.chat.temporalContext.enabled": true,
+    "chat.editing.alwaysSaveWithGeneratedChanges": true,
 }
