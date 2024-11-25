@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>customSites</key>
+	<dict>
+		<key>06560728-5B57-49CE-8881-DF06F99B5AF7</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>siesia</string>
+			<key>text</key>
+			<string>Open SIESIA-{query}</string>
+			<key>url</key>
+			<string>https://signinsolutions.atlassian.net/browse/SIESIA-{query}</string>
+		</dict>
+		<key>0B406D05-579B-4471-A1FA-96739FF59840</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>ai</string>
+			<key>text</key>
+			<string>Open AI-{query}</string>
+			<key>url</key>
+			<string>https://signinsolutions.atlassian.net/browse/AI-{query}</string>
+		</dict>
+		<key>1CC59FBA-350A-458E-A633-0909EC065F70</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>until</string>
+			<key>text</key>
+			<string>How Long Until {query}</string>
+			<key>url</key>
+			<string>https://www.google.com/search?client=firefox-b-1-d&amp;q=how+long+until+{query}</string>
+		</dict>
+		<key>32B2EAF1-381F-42F3-A357-93F3426DBF0D</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>tcd</string>
+			<key>text</key>
+			<string>Open JIRA Issue TCD-{query}</string>
+			<key>url</key>
+			<string>https://signinsolutions.atlassian.net/browse/TCD-{query}</string>
+		</dict>
+		<key>44C718F6-CF2E-407F-8245-7A6646E9CD77</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>sfdc</string>
+			<key>text</key>
+			<string>Show SFDC Item with ID: {query}</string>
+			<key>url</key>
+			<string>https://tgsparks-dev-ed.lightning.force.com/lightning/r/Event/{query}/view</string>
+		</dict>
+		<key>549A91F9-463D-4A5C-9439-B959B2AA4EA2</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>port</string>
+			<key>text</key>
+			<string>IANA Port {query}</string>
+			<key>url</key>
+			<string>https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?search={query}</string>
+		</dict>
+		<key>62D31DD9-3478-4AFC-828D-2B755BF724D3</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>sst</string>
+			<key>text</key>
+			<string>Guest - Strike Team Issue SST-{query}</string>
+			<key>url</key>
+			<string>https://signinsolutions.atlassian.net/browse/SST-{query}</string>
+		</dict>
+		<key>7642EE91-926A-4F56-B2B9-157A3E95AABE</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>mbr</string>
+			<key>text</key>
+			<string>Search MusicBrainz for '{query}' Release</string>
+			<key>url</key>
+			<string>https://musicbrainz.org/search?query={query}&amp;type=release_group&amp;limit=25&amp;method=indexed</string>
+		</dict>
+		<key>9974B9F7-B226-4C09-A59E-C90CD9788CE9</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>gsgh</string>
+			<key>text</key>
+			<string>tractionguest/guest-server#{query}</string>
+			<key>url</key>
+			<string>https://github.com/tractionguest/guest-server/pull/{query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>9CB9240F-6028-4D61-86FE-1A89BDB74293</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>eint</string>
+			<key>text</key>
+			<string>Open SIS JIRA Issue EINT-{query}</string>
+			<key>url</key>
+			<string>https://signinsolutions.atlassian.net/browse/EINT-{query}</string>
+		</dict>
+		<key>B0AA585B-8009-4379-82E0-09E03E475A7A</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>core</string>
+			<key>text</key>
+			<string>Open SIS JIRA Issue CORE-{query}</string>
+			<key>url</key>
+			<string>https://signinsolutions.atlassian.net/browse/CORE-{query}</string>
+		</dict>
+		<key>D25894D4-74DE-4458-A706-7432AA81FAE8</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>it</string>
+			<key>text</key>
+			<string>Guest - IT Issue IT-{query}</string>
+			<key>url</key>
+			<string>https://tractionguest.atlassian.net/servicedesk/customer/portal/2/IT-{query}</string>
+			<key>utf8</key>
+			<true/>
+		</dict>
+		<key>F96E126C-F4BB-4452-AFDB-300C18D767AB</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>mba</string>
+			<key>text</key>
+			<string>Search MusicBrainz '{query}' Artist</string>
+			<key>url</key>
+			<string>https://musicbrainz.org/search?query={query}&amp;type=artist&amp;limit=25&amp;method=indexed</string>
+		</dict>
+	</dict>
+</dict>
+</plist>

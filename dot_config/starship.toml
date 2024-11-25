@@ -56,6 +56,7 @@ contexts = [
   # Non-Production Envs
   { context_alias = "staging (usw2)", context_pattern = "arn:aws:eks:us-west-2:065720365788:cluster/staging", style = "green", symbol = ""},
   { context_alias = "dev (usw2)", context_pattern = "arn:aws:eks:us-west-2:204538655979:cluster/dev", style = "green", symbol = ""},
+  { context_alias = "load (usw2)", context_pattern = "arn:aws:eks:us-west-2:199830096326:cluster/load", style = "green", symbol = ""},
 
   # Production
   { context_alias = "abb (usw2)", context_pattern = "arn:aws:eks:us-west-2:271195599959:cluster/abb", style = "red", symbol = "‼️"},

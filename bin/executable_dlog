@@ -146,10 +146,12 @@ ENTRY=${ENTRY:gs/VANESSA/[[Vanessa Henderson|Vanessa]]}
 ENTRY=${ENTRY:gs/VLAD/[[Vlad Dzhabarov|Vlad]]}
 ENTRY=${ENTRY:gs/WILL/[[Will Freeman|Will]]}
 #- SIE - Projects / Pages
-ENTRY=${ENTRY:gs/STATSD/[[statsd]]}
 ENTRY=${ENTRY:gs/AIL/[[Bedrock Logging]]}
 ENTRY=${ENTRY:gs/AIP/[[AI Project]]}
 ENTRY=${ENTRY:gs/AITF/[[Bedrock Terraform]]}
+ENTRY=${ENTRY:gs/BRTF/[[Bedrock Terraform]]}
+ENTRY=${ENTRY:gs/SISTER/[[SIS Tool|SISTER]]}
+ENTRY=${ENTRY:gs/STATSD/[[statsd]]}
 
 # Spotify
 if [[ $ENTRY == *SONG* ]]; then

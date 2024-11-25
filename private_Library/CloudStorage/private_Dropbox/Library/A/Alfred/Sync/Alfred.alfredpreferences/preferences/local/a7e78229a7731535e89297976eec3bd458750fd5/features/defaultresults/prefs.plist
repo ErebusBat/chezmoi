@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>scope</key>
+	<array>
+		<string>/Applications</string>
+		<string>/Applications/Xcode.app/Contents/Applications</string>
+		<string>/Developer/Applications</string>
+		<string>/System/Library/CoreServices/Applications</string>
+		<string>~/Applications</string>
+		<string>~/bin</string>
+		<string>~/Library/Mobile Documents</string>
+	</array>
+</dict>
+</plist>

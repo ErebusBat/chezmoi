@@ -1,0 +1,64 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 4,
+      "subtext" : {
+        "size" : 11,
+        "colorSelected" : "#6FD5EBFF",
+        "font" : "Geneva",
+        "color" : "#6FD5EBFF"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#7F7F7FFF",
+        "font" : "Geneva",
+        "color" : "#4C4C4CFF"
+      },
+      "backgroundSelected" : "#FF4145FF",
+      "text" : {
+        "size" : 20,
+        "colorSelected" : "#FFCD4CFF",
+        "font" : "Geneva",
+        "color" : "#F8FAF1FF"
+      },
+      "iconPaddingHorizontal" : 5,
+      "roundness" : 0,
+      "paddingVertical" : 0,
+      "iconSize" : 40
+    },
+    "search" : {
+      "backgroundSelected" : "#916EE1FF",
+      "paddingHorizontal" : 0,
+      "spacing" : 10,
+      "text" : {
+        "size" : 36,
+        "colorSelected" : "#000000FF",
+        "font" : "Geneva",
+        "color" : "#FF4145FF"
+      },
+      "background" : "#00000000",
+      "roundness" : 0,
+      "paddingVertical" : 2
+    },
+    "window" : {
+      "color" : "#132435FF",
+      "paddingHorizontal" : 10,
+      "width" : 680,
+      "borderPadding" : 10,
+      "borderColor" : "#132435FF",
+      "blur" : 0,
+      "roundness" : 0,
+      "paddingVertical" : 10
+    },
+    "credit" : "Thibault Maekelberg",
+    "separator" : {
+      "color" : "#00000000",
+      "thickness" : 1
+    },
+    "scrollbar" : {
+      "color" : "#262626FF",
+      "thickness" : 2
+    },
+    "name" : "Panic Theme (v2)"
+  }
+}

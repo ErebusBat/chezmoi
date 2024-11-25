@@ -15,9 +15,9 @@
 	<key>RunAtLoad</key>
 	<false/>
 	<key>StandardErrorPath</key>
-	<string>/tmp/local.sie.gitlab-push.stderr</string>
+	<string>/tmp/local.sie.gitlab-push.log</string>
 	<key>StandardOutPath</key>
-	<string>/tmp/local.sie.gitlab-push.stdout</string>
+	<string>/tmp/local.sie.gitlab-push.log</string>
 	<key>StartCalendarInterval</key>
 	<array>
 		<dict>

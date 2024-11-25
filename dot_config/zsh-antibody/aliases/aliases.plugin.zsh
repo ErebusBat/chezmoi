@@ -47,6 +47,10 @@ fi
 if [[ -x ~/.restic/restic-multi.rb ]]; then
   alias restic-multi="$HOME/.restic/restic-multi.rb"
 fi
+if [[ -x $(which sister) ]]; then
+  alias sis='/opt/homebrew/bin/sister'
+  alias sie='/opt/homebrew/bin/sister sie'
+fi
 
 ################################################################################
 # Editing / Navigation / File Management

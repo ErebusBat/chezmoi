@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Disabled</key>
+	<false/>
+	<key>EnvironmentVariables</key>
+	<dict>
+		<key>EXTRA_FILESYSTEMS</key>
+		<string>/Volumes/SeaBack</string>
+		<key>KEY</key>
+		<string>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDfzLy4QZEJ/iKacnHEW6HYHMnUMVBcvJQ64WLTfaK/G</string>
+		<key>PORT</key>
+		<string>45876</string>
+	</dict>
+	<key>ExitTimeOut</key>
+	<integer>5</integer>
+	<key>Label</key>
+	<string>local.bezsel-agent</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/local/bin/fdautil</string>
+		<string>exec</string>
+		<string>/Users/andrew.burns/src/erebusbat/myserver/beszel-agent/macOS/beszel-agent</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/tmp/local.bezsel-agent.log</string>
+	<key>StandardOutPath</key>
+	<string>/tmp/local.bezsel-agent.log</string>
+	<key>StartInterval</key>
+	<integer>3600</integer>
+</dict>
+</plist>

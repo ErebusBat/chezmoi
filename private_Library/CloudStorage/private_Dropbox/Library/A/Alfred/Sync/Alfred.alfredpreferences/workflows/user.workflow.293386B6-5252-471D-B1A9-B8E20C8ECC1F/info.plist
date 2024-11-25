@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.erebusbat.alfred.daily-log</string>
+	<key>connections</key>
+	<dict>
+		<key>3242C5CE-0969-41A9-B706-3FAAD573EEE9</key>
+		<array/>
+		<key>342E891F-18F8-47D5-9114-675C79C30290</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>3242C5CE-0969-41A9-B706-3FAAD573EEE9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string></string>
+	<key>description</key>
+	<string>Append to Daily Log</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>Daily Log</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>query=$1
+
+#export XDG_CONFIG_HOME="$HOME/Library/Application Support"
+$HOME/bin/dlog "$query"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>3242C5CE-0969-41A9-B706-3FAAD573EEE9</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>dlog</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>Append to daily log</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>342E891F-18F8-47D5-9114-675C79C30290</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string></string>
+	<key>uidata</key>
+	<dict>
+		<key>3242C5CE-0969-41A9-B706-3FAAD573EEE9</key>
+		<dict>
+			<key>xpos</key>
+			<real>295</real>
+			<key>ypos</key>
+			<real>375</real>
+		</dict>
+		<key>342E891F-18F8-47D5-9114-675C79C30290</key>
+		<dict>
+			<key>xpos</key>
+			<real>100</real>
+			<key>ypos</key>
+			<real>375</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array/>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>

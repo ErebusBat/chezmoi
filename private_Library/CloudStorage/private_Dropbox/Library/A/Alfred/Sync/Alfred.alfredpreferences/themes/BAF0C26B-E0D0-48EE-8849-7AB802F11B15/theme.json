@@ -1,0 +1,63 @@
+{
+  "alfredtheme" : {
+    "result" : {
+      "textSpacing" : 8,
+      "subtext" : {
+        "size" : 11,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Helvetica",
+        "color" : "#AAAAAAFF"
+      },
+      "shortcut" : {
+        "size" : 16,
+        "colorSelected" : "#1AA3CEFF",
+        "font" : "Helvetica",
+        "color" : "#D6D6D6FF"
+      },
+      "backgroundSelected" : "#F8774EFF",
+      "text" : {
+        "size" : 24,
+        "colorSelected" : "#FFFFFFFF",
+        "font" : "Helvetica",
+        "color" : "#C1C1C1FF"
+      },
+      "iconPaddingHorizontal" : 5,
+      "roundness" : 0,
+      "paddingVertical" : 8,
+      "iconSize" : 40
+    },
+    "separator" : {
+      "color" : "#676767FF",
+      "thickness" : 1
+    },
+    "search" : {
+      "backgroundSelected" : "#424242FF",
+      "paddingHorizontal" : 0,
+      "spacing" : 10,
+      "text" : {
+        "size" : 36,
+        "colorSelected" : "#1AA3CEFF",
+        "font" : "Helvetica",
+        "color" : "#C1C1C1FF"
+      },
+      "background" : "#676767FF",
+      "roundness" : 0,
+      "paddingVertical" : 2
+    },
+    "scrollbar" : {
+      "color" : "#F3613EFF",
+      "thickness" : 2
+    },
+    "name" : "Zim zim (v2)",
+    "window" : {
+      "color" : "#666666FF",
+      "paddingHorizontal" : 10,
+      "width" : 680,
+      "borderPadding" : 10,
+      "borderColor" : "#424242FF",
+      "blur" : 0,
+      "roundness" : 0,
+      "paddingVertical" : 10
+    }
+  }
+}
