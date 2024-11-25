@@ -6,8 +6,6 @@
 	<false/>
 	<key>EnvironmentVariables</key>
 	<dict>
-		<key>EXTRA_FILESYSTEMS</key>
-		<string>/Volumes/SeaBack</string>
 		<key>KEY</key>
 		<string>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDfzLy4QZEJ/iKacnHEW6HYHMnUMVBcvJQ64WLTfaK/G</string>
 		<key>PORT</key>
