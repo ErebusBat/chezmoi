@@ -139,9 +139,13 @@ function unmount() {
       $FS_MOUNT_POINT/links/links.sh u
     fi
 
+    echo "Emptying Clipboard"
+    echo "" | pbcopy
+
     echo "Triggering fs sync"
     # btrfs filesystem sync $FS_MOUNT_POINT
     sync
+
     echo "Unmounting fs"
     sudo umount $FS_MOUNT_POINT
   fi
