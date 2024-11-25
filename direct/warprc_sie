@@ -5,9 +5,11 @@ antibody:~/.config/zsh-antibody
 aoc:~/src/erebusbat/aoc/2023
 backrest:~/.config/backrest
 bedrock-gem:~/src/sie/ruby-amazon-bedrock
+beszel:~/src/erebusbat/myserver/beszel-agent/macOS
 chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy
 divorce:~/Dropbox/Library/D/Divorce
+dnscontrol:~/src/erebusbat/myserver/dnscontrol
 docker_dev:~/src/sie/my_docker_env
 docs:~/Documents
 downloads:~/downloads

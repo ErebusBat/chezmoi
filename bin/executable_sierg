@@ -1,0 +1,10 @@
+#!/bin/zsh
+if [[ ! -x $(which rg) ]]; then
+  echo "***FATAL: This command requires RipGrep be installed in your path!"
+  exit 1
+fi
+
+rg \
+  --glob '!{spec,qa-automation,db,guest-api,theme_templates,benchmark}/*' \
+  --glob '!*.{svg}' \
+  $*
