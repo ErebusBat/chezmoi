@@ -102,14 +102,15 @@ ENTRY=${ENTRY:gs/:shh:/🤫}
 ENTRY=${ENTRY:gs/:shower:/🚿}
 ENTRY=${ENTRY:gs/:taco:/🌮}
 #- Personal Metrics Tracking
+ENTRY=${ENTRY:gs/MEDITATE/🧠 Meditation}
 ENTRY=${ENTRY:s/CALL /☎ }
 ENTRY=${ENTRY:s/FEEL /🧠 }
+ENTRY=${ENTRY:s/FOOD /🍱 }
 ENTRY=${ENTRY:s/MED /💊 }    # :pill:
 ENTRY=${ENTRY:s/MEM /📝 }    # :memo:
 ENTRY=${ENTRY:s/REM /📝 }    # :memo:
 ENTRY=${ENTRY:s/T /✅ }
 ENTRY=${ENTRY:s/W /⚒️ }
-ENTRY=${ENTRY:gs/MEDITATE/🧠 Meditation}
 #- Personal
 ENTRY=${ENTRY:gs/DARTER/[[dartp6]]}
 ENTRY=${ENTRY:gs/FreeNAS/[[FreeNAS]]}
