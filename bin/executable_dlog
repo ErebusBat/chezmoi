@@ -110,8 +110,6 @@ ENTRY=${ENTRY:s/REM /📝 }    # :memo:
 ENTRY=${ENTRY:s/T /✅ }
 ENTRY=${ENTRY:s/W /⚒️ }
 ENTRY=${ENTRY:gs/MEDITATE/🧠 Meditation}
-echo "Entry >>$ENTRY<<"
-exit 7
 #- Personal
 ENTRY=${ENTRY:gs/DARTER/[[dartp6]]}
 ENTRY=${ENTRY:gs/FreeNAS/[[FreeNAS]]}
