@@ -128,6 +128,7 @@ ENTRY=${ENTRY:gs/SF/[[SalesForce|SF\/Slack]]}
 ENTRY=${ENTRY:gs/TESLA/[[Tesla]]}
 ENTRY=${ENTRY:gs/THERMO/[[ThermoFisher]]}
 #- SIE - People
+ENTRY=${ENTRY:gs/ALFIE/[[Alfie Williams|Alfie]]}
 ENTRY=${ENTRY:gs/ALINA/[[Alina Roshchupkina|Alina]]}
 ENTRY=${ENTRY:gs/ANTHONY/[[Anthony Leo|Anthony]]}
 ENTRY=${ENTRY:gs/BRUNO/[[Bruno Fontanella|Bruno]]}
