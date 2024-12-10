@@ -92,6 +92,17 @@
 			<key>url</key>
 			<string>https://musicbrainz.org/search?query={query}&amp;type=release_group&amp;limit=25&amp;method=indexed</string>
 		</dict>
+		<key>7937FE44-2B55-4A5E-B624-7ECCBBF76745</key>
+		<dict>
+			<key>enabled</key>
+			<true/>
+			<key>keyword</key>
+			<string>p</string>
+			<key>text</key>
+			<string>perplexity.ai</string>
+			<key>url</key>
+			<string>https://www.perplexity.ai/search?q={query}</string>
+		</dict>
 		<key>9974B9F7-B226-4C09-A59E-C90CD9788CE9</key>
 		<dict>
 			<key>enabled</key>
