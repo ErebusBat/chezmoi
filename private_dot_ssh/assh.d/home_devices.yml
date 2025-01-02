@@ -2,6 +2,14 @@ hosts:
 ############################################################
 # Devices
 ############################################################
+  rsyncnet:
+    Hostname: de4062.rsync.net
+    User: de4062
+    IdentityFile: ~/.ssh/id_rsync_ed25519
+  de4062.rsync.net:
+    Hostname: de4062.rsync.net
+    User: de4062
+    IdentityFile: ~/.ssh/id_rsync_ed25519
   # hass-droid:
   #   Hostname: 10.0.0.236
   #   User: aburns
