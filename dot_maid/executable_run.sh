@@ -16,6 +16,6 @@ fi
 cd $MAID_DIR
 
 log "Starting maid"
-maid clean --noop
+maid clean --force
 
 log "Complete"

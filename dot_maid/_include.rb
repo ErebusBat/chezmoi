@@ -1,13 +1,22 @@
+#
+# File Heleprs
+#
+def touch(path, time: nil)
+  log "Touching #{path}"
+  return if @file_options[:noop]
 
-# def green?(pathOrTags)
-#   pTags =
-#     if pathOrTags.is_a?(Array)
-#       pathOrTags
-#     else
-#       tags(pathOrTags)
-#     end
-#   pTags.any? { |t| t.downcase == "green" }
-# end
+  FileUtils.touch(path, mtime: time)
+end
+
+def truncate(path, size: 0)
+  return unless File.file?(path)
+  return unless File.size(path) > size
+
+  log "Truncating #{path} to #{size}b"
+  return if @file_options[:noop]
+
+  File.truncate(path, size)
+end
 
 #
 # Color helpers

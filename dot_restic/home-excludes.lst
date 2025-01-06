@@ -37,6 +37,7 @@ $HOME/.local/share/lutris/**
 $HOME/.local/share/Trash/**
 $HOME/.local/share/trash/**
 $HOME/.local/state/**
+$HOME/.maid/maid.log
 $HOME/.mozilla/firefox/*.default-release-backup-crashrecovery-*/**
 $HOME/.mozilla/firefox/*.default-release/storage/**
 $HOME/.node-gyp/**
