@@ -17,6 +17,8 @@ ohmyzsh/ohmyzsh path:plugins/wd
 # Rust package is REQUIRED if you are using starship_prompt below
 ~/.config/zsh-antibody/rust type:zsh
 
+~/.config/zsh-antibody/python type:zsh
+
 ~/.config/zsh-antibody/setec-astronomy type:zsh
 ~/.config/zsh-antibody/scm-breeze type:zsh
 
