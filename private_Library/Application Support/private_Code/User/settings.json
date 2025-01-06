@@ -248,4 +248,5 @@
     "git.confirmSync": false,
     "github.copilot.chat.temporalContext.enabled": true,
     "chat.editing.alwaysSaveWithGeneratedChanges": true,
+    "githubPullRequests.pullBranch": "never",
 }

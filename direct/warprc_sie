@@ -35,6 +35,7 @@ kiosk:~/src/sie/kiosk
 launch_agents:~/Library/LaunchAgents
 library:~/Dropbox/Library
 linuxserver.io:~/src/pers/linuxserver.io
+maid:~/.maid
 mm:~/src/erebusbat/mm
 mmm:~/src/erebusbat/myserver/mmm
 myserver:~/src/erebusbat/myserver
