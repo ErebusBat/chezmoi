@@ -2,6 +2,7 @@
 ohmyzsh/ohmyzsh path:plugins/wd
 ~/.config/zsh-antibody/aliases type:zsh
 ~/.config/zsh-antibody/eza type:zsh
+~/.config/zsh-antibody/ghostty type:zsh
 
 # Dev Stuff
 ~/.config/zsh-antibody/docker type:zsh

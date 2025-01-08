@@ -33,7 +33,7 @@ for app in $APPS; do
 done
 
 # Terminal apps - With Options
-open /Applications/Alacritty.app --args -e dlog-tail 1
+# open /Applications/Alacritty.app --args -e dlog-tail 1
 
 # Startup Tmux
 if [[ -x ~/bin/tgtmux.zsh ]]; then
