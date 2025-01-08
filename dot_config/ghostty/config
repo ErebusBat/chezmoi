@@ -2,4 +2,8 @@ font-family = "Comic Code Ligatures"
 theme = dark:catppuccin-frappe,light:catppuccin-latte
 copy-on-select = true
 
+# Quake Term
+keybind = global:cmd+opt+grave_accent=toggle_quick_terminal
+quick-terminal-animation-duration = 0.1
+
 
