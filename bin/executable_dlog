@@ -161,6 +161,7 @@ ENTRY=${ENTRY:gs/AIL/[[Bedrock Logging]]}
 ENTRY=${ENTRY:gs/AIP/[[AI Project]]}
 ENTRY=${ENTRY:gs/AITF/[[Bedrock Terraform]]}
 ENTRY=${ENTRY:gs/BRTF/[[Bedrock Terraform]]}
+ENTRY=${ENTRY:gs/RPII/[[Rest Password Email Intermittent Issue]]}
 ENTRY=${ENTRY:gs/SISTER/[[SIS Tool|SISTER]]}
 ENTRY=${ENTRY:gs/STATSD/[[statsd]]}
 
