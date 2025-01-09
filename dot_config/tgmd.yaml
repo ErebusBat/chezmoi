@@ -5,7 +5,7 @@ GH_DEFAULT_REPO: guest-server
 
 JIRA_PROJECT_SERVER_MAP:
   tractionguest:
-    - SST
+    - SSTz
   signinsolutions:
     - "*"
 
