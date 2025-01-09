@@ -9,6 +9,7 @@ clipboard-read = allow
 clipboard-write = allow
 copy-on-select = true
 focus-follows-mouse = true
+link-url = true
 macos-option-as-alt = true
 mouse-hide-while-typing = true
 working-directory = home
