@@ -43,6 +43,9 @@ if [[ -f ~/.config/wezterm/wezterm.lua ]]; then
 fi
 if [[ -f ~/.config/chezmoi/chezmoi.toml ]]; then
   alias vicz='vim ~/.config/chezmoi/chezmoi.toml'
+  if [[ -x $(which chezmoi) ]]; then
+    alias cz=chezmoi
+  fi
 fi
 if [[ -x ~/.restic/restic-multi.rb ]]; then
   alias restic-multi="$HOME/.restic/restic-multi.rb"
@@ -91,10 +94,6 @@ if [[ $(uname) == "Linux" ]]; then
   alias o=xdg-open
   alias syscu='systemctl --user'
   alias syscudr='systemctl --user daemon-reload'
-fi
-
-if [[ -x $(which chezmoi) ]]; then
-  alias cz=chezmoi
 fi
 
 ################################################################################
