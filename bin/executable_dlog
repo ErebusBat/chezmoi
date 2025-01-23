@@ -115,25 +115,15 @@ ENTRY=${ENTRY:s/W /⚒️ }
 ENTRY=${ENTRY:gs/DARTER/[[dartp6]]}
 ENTRY=${ENTRY:gs/FreeNAS/[[FreeNAS]]}
 ENTRY=${ENTRY:gs/LUNCH/🍱 Lunch}
+ENTRY=${ENTRY:gs/M4MBP/[[MacBook Pro M4|m4mbp]]}
+ENTRY=${ENTRY:gs/MAZE/[[IntelNUC 2 - Maze|Maze]]}
 ENTRY=${ENTRY:gs/NAS/[[FreeNAS]]}
 ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}   # Needs to be BEFORE MAZE or we will have conflicts
 ENTRY=${ENTRY:gs/SHOWER/🚿 Shower}
 ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
-ENTRY=${ENTRY:gs/MAZE/[[IntelNUC 2 - Maze|Maze]]}
 #- SIE - Entities
-ENTRY=${ENTRY:gs/LEIDOS/[[Leidos]]}
-ENTRY=${ENTRY:gs/MOOG/[[Moog]]}
-ENTRY=${ENTRY:gs/RIVIAN/[[Rivian]]}
-ENTRY=${ENTRY:gs/SF/[[SalesForce|SF\/Slack]]}
-ENTRY=${ENTRY:gs/TESLA/[[Tesla]]}
-ENTRY=${ENTRY:gs/THERMO/[[ThermoFisher]]}
 #- SIE - People
-ENTRY=${ENTRY:gs/ALFIE/[[Alfie Williams|Alfie]]}
-ENTRY=${ENTRY:gs/ALINA/[[Alina Roshchupkina|Alina]]}
-ENTRY=${ENTRY:gs/ANTHONY/[[Anthony Leo|Anthony]]}
-ENTRY=${ENTRY:gs/BRUNO/[[Bruno Fontanella|Bruno]]}
 ENTRY=${ENTRY:gs/CAM/[[Cameron Wiebe|Cam]]}
-ENTRY=${ENTRY:gs/DAN/[[Daniel McOrmond|Daniel]]}
 ENTRY=${ENTRY:gs/DIEGO/[[Diego De Oliveira Toral|Diego]]}
 ENTRY=${ENTRY:gs/FABMAN/[[Fabricio Ribeiro|Fabricio]]}
 ENTRY=${ENTRY:gs/GREG/[[Greg Underwood|Greg]]}
@@ -142,28 +132,12 @@ ENTRY=${ENTRY:gs/JAQ/[[Jaquan Williams|Jaquan]]}
 ENTRY=${ENTRY:gs/JIM/[[Jim Snodgrass|Jim]]}
 ENTRY=${ENTRY:gs/JOLIE/[[Jolie Summers|Jolie]]}
 ENTRY=${ENTRY:gs/JON/[[Jon Sangster|Jon]]}
-ENTRY=${ENTRY:gs/JOSH/[[Josh Lewis|Josh]]}
-ENTRY=${ENTRY:gs/KEVIN/[[Kevin Murphy|Kevin]]}
 ENTRY=${ENTRY:gs/KIRAN/[[Kirandeep Virdi|Kiran]]}
-ENTRY=${ENTRY:gs/MATHEUS/[[Matheus Bastos|Matheus]]}
 ENTRY=${ENTRY:gs/NICK/[[Nicholas Robertson|Nick]]}
-ENTRY=${ENTRY:gs/PETE/[[Pete Akeley|Pete]]}
-ENTRY=${ENTRY:gs/RICHARD/[[Richard Hills|Richard]]}
-ENTRY=${ENTRY:gs/RON/[[Ron Hook|Ron]]}
 ENTRY=${ENTRY:gs/RYAN/[[Ryan Canby|Ryan]]}
-ENTRY=${ENTRY:gs/SHAMA/[[Kshama Manjrekar|Shama]]}
-ENTRY=${ENTRY:gs/TOM/[[Tom Price|Tom]]}
-ENTRY=${ENTRY:gs/VANESSA/[[Vanessa Henderson|Vanessa]]}
 ENTRY=${ENTRY:gs/VLAD/[[Vlad Dzhabarov|Vlad]]}
 ENTRY=${ENTRY:gs/WILL/[[Will Freeman|Will]]}
 #- SIE - Projects / Pages
-ENTRY=${ENTRY:gs/AIL/[[Bedrock Logging]]}
-ENTRY=${ENTRY:gs/AIP/[[AI Project]]}
-ENTRY=${ENTRY:gs/AITF/[[Bedrock Terraform]]}
-ENTRY=${ENTRY:gs/BRTF/[[Bedrock Terraform]]}
-ENTRY=${ENTRY:gs/RPII/[[Rest Password Email Intermittent Issue]]}
-ENTRY=${ENTRY:gs/SISTER/[[SIS Tool|SISTER]]}
-ENTRY=${ENTRY:gs/STATSD/[[statsd]]}
 
 # Spotify
 if [[ $ENTRY == *SONG* ]]; then
