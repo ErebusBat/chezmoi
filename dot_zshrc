@@ -1,11 +1,6 @@
+# # vim: set ft=zsh:ts=2:sw=2:sts=2:et:ai:si:sta
 # https://htr3n.github.io/2018/07/faster-zsh/
 # zmodload zsh/zprof
-################################################################################
-# Antidote ZSHRC
-################################################################################
-
-export PATH=$HOME/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/opt/homebrew/bin/usr/local/bin:$PATH
-export SHELL=/bin/zsh
 
 ################################################################################
 # Antidote.sh
@@ -19,21 +14,22 @@ zsh_plugins=$HOME/.config/zsh-antibody/plugins
 [[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
 
 # Lazy-load antidote from its functions directory.
-# fpath=(/path/to/antidote/functions $fpath)
-# autoload -Uz antidote
-
+fpath=($HOME/.config/antidote/functions $fpath)
+autoload -Uz antidote
 
 # Generate a new static file whenever .zsh_plugins.txt is updated.
-local zsh_plugins_dynamic=1
-if [[ ! ${zsh_plugins}.zsh -nt ${zsh_plugins}.txt ]]; then
+# We can't do file-time comparisons here because the file date is
+# is managed by Chezmoi
+# if [[ ${zsh_plugins}.txt -nt ${zsh_plugins}.zsh ]]; then
+if [[ ! -f ${zsh_plugins}.zsh ]]; then
   echo "Antidote Bundling"
-  zsh_plugins_dynamic=0
-  source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+  source $HOME/.config/antidote/antidote.zsh
   antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
 fi
 
 # Source your static plugins file.
 source ${zsh_plugins}.zsh
+
 
 ################################################################################
 # Completion
