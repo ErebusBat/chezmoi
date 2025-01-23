@@ -45,10 +45,17 @@ windows:
     - shell_command:
         - ssh nuc
     - shell_command:
-        - ssh-add ~/.ssh/id_ecdsa
+        - ssh-add ~/.ssh/id_ed25519
         - ssh -A maze
     # - shell_command:
     #     - ssh thelio
+
+- window_name: restore
+  panes:
+    - shell_command:
+      - wd restore
+    - shell_command:
+      - wd restore
 
 - window_name: misc
   panes:
