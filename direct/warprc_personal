@@ -1,10 +1,9 @@
 antibody:~/.config/zsh-antibody
-aoc:~/src/erebusbat/aoc/2023
 backrest:~/src/erebusbat/myserver/backrest
 chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy
-docker_dev:~/src/sie/my_docker_env
 docker:~/src/sie/my_docker_env
+docker_dev:~/src/sie/my_docker_env
 gopass:~/.local/share/gopass/stores/root
 image-marker:~/src/erebusbat/image-marker
 myserver:~/src/erebusbat/myserver
@@ -18,5 +17,6 @@ tgf:~/src/sie/frontend
 tmux:~/.config/tmux
 tmuxp:~/.tmuxp
 vim:~/.config/nvim
+vimwiki:~/Documents/Obsidian/vimwiki/
 wezterm:~/.config/wezterm
-wiki:~/Documents/vimwiki
+wiki:~/Documents/Obsidian/vimwiki/
