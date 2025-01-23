@@ -1,36 +1,36 @@
 # Misc
 ohmyzsh/ohmyzsh path:plugins/wd
-~/.config/zsh-antibody/aliases type:zsh
-~/.config/zsh-antibody/eza type:zsh
-~/.config/zsh-antibody/ghostty type:zsh
+~/.config/zsh-antibody/aliases
+~/.config/zsh-antibody/eza
+~/.config/zsh-antibody/ghostty
 
 # Dev Stuff
-~/.config/zsh-antibody/docker type:zsh
-~/.config/zsh-antibody/k8s type:zsh
-#~/.config/zsh-antibody/podman type:zsh
-~/.config/zsh-antibody/git type:zsh
-~/.config/zsh-antibody/golang type:zsh
-~/.config/zsh-antibody/rbenv type:zsh
-~/.config/zsh-antibody/sign_in_solutions type:zsh
-# ~/.config/zsh-antibody/powershell type:zsh
-~/.config/zsh-antibody/flutter type:zsh
+~/.config/zsh-antibody/docker
+~/.config/zsh-antibody/k8s
+#~/.config/zsh-antibody/podman
+~/.config/zsh-antibody/git
+~/.config/zsh-antibody/golang
+~/.config/zsh-antibody/rbenv
+~/.config/zsh-antibody/sign_in_solutions
+# ~/.config/zsh-antibody/powershell
+~/.config/zsh-antibody/flutter
 
 # Rust package is REQUIRED if you are using starship_prompt below
-~/.config/zsh-antibody/rust type:zsh
+~/.config/zsh-antibody/rust
 
-~/.config/zsh-antibody/python type:zsh
+~/.config/zsh-antibody/python
 
-~/.config/zsh-antibody/setec-astronomy type:zsh
-~/.config/zsh-antibody/scm-breeze type:zsh
+~/.config/zsh-antibody/setec-astronomy
+~/.config/zsh-antibody/scm-breeze
 
 # Hooks from other stow packages
-~/.config/zsh-antibody/stow-hooks type:zsh
+~/.config/zsh-antibody/stow-hooks
 
 # Prompt & Visuals
-~/.config/zsh-antibody/starship_prompt type:zsh
+~/.config/zsh-antibody/starship_prompt
 zsh-users/zsh-syntax-highlighting
 
 # Order of these is important
-~/.config/zsh-antibody/zshvimode type:zsh
-~/.config/zsh-antibody/fzf type:zsh
-~/.config/zsh-antibody/zsh-options type:zsh
+~/.config/zsh-antibody/zshvimode
+~/.config/zsh-antibody/fzf
+~/.config/zsh-antibody/zsh-options

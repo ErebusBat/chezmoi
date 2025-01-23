@@ -1,6 +1,6 @@
 COMPDUMP=~/.zcompdump
-STATIC=~/.zsh_antibody_static.zsh
 PLUGINS=~/.config/zsh-antibody/plugins.txt
+STATIC=~/.config/zsh-antibody/plugins.zsh
 
 help:
 	cat Makefile
@@ -14,10 +14,7 @@ clean:
 static: clean compile gen_sums
 
 compile:
-	@echo "# Cache file Invalidated, REBUILDING IN PROGRESS, started at $(shell date)"> .shasum
-	@echo "\n*** [static] Compling antibody into static startup script..."
-	antibody bundle < $(PLUGINS) > $(STATIC)
-	zsh -c 'autoload -Uz compinit; compinit; compdump; zcompile $(STATIC); zcompile $(COMPDUMP)'
+	@echo "\n*** The next time a new shell opens it will be compiled"
 
 watch_compdump:
 	# macOS needs `stat -x` to have the same output as linux

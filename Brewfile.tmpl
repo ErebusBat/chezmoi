@@ -7,8 +7,6 @@
 # Taps
 ################################################################################
 tap "homebrew/bundle"
-tap "homebrew/cask"
-tap "homebrew/core"
 tap "homebrew/services"
 tap "wez/wezterm"
 cask "ghostty"
@@ -35,10 +33,11 @@ cask "visual-studio-code"
 ################################################################################
 # System Utilities / Essentials
 ################################################################################
-cask "obsidian"
+#cask "obsidian" # Need to install this prior to homebrew for notes so having it here messes things up
 cask "wezterm"
 
-brew "antibody"
+#brew "antibody"   # Use antidote.sh instead
+brew "antidote"
 brew "assh"
 brew "bat"
 brew "btop"
@@ -112,7 +111,6 @@ cask "postman"
 # Fonts / UI Tweaks / Etc
 ################################################################################
 # https://www.nerdfonts.com/font-downloads
-tap "homebrew/cask-fonts"
 cask "font-fira-code"
 cask "font-go-mono-nerd-font"
 cask "font-maple"

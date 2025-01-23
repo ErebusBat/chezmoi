@@ -18,3 +18,8 @@
   type = "git-repo"
   url = "https://github.com/scmbreeze/scm_breeze.git"
   refreshPeriod = "168h"
+[".config/antidote"]
+  type = "git-repo"
+  url = "https://github.com/mattmc3/antidote.git"
+  refreshPeriod = "168h"
+
