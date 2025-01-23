@@ -1,4 +1,5 @@
 # vim: set noai ts=4 sw=4 ft=ruby:
+
 #===============================================================================
 # THIS FILE IS TEMPLATED, DO NOT EDIT DIRECTLY!
 #===============================================================================
@@ -8,8 +9,6 @@
 ################################################################################
 tap "homebrew/bundle"
 tap "homebrew/services"
-tap "wez/wezterm"
-cask "ghostty"
 
 ################################################################################
 # Development
@@ -34,13 +33,24 @@ cask "visual-studio-code"
 # System Utilities / Essentials
 ################################################################################
 #cask "obsidian" # Need to install this prior to homebrew for notes so having it here messes things up
+
+# Terminals
+tap "wez/wezterm"
 cask "wezterm"
+cask "ghostty"
+# Web Browsers
 cask "google-chrome"
 cask "firefox"
+# System Utilities
 cask "rectangle-pro"
 cask "alfred"
 cask "tailscale"
 cask "dropbox"
+cask "caffeine"
+cask "launchcontrol"
+cask "todoist"
+cask "chatgpt"
+cask "usb-overdrive"
 
 brew "antidote"
 brew "assh"
@@ -86,12 +96,16 @@ brew "tag"
 ################################################################################
 # Personal Utilities
 ################################################################################
+brew "gh"
 brew "rclone"
 brew "s3cmd"
 brew "yt-dlp"
 cask "balenaetcher"
+cask "discord"
 cask "plexamp"
 cask "sonos"
+cask "spotify"
+cask "telegram"
 {{ end -}}
 
 {{ if eq .area.tractionguest true }}
@@ -99,7 +113,6 @@ cask "sonos"
 # Sign In Enterprise
 ################################################################################
 brew "awscli"
-brew "gh"
 brew "ghostscript"
 brew "imagemagick"
 brew "kubectl"
@@ -118,7 +131,7 @@ cask "postman"
 # https://www.nerdfonts.com/font-downloads
 cask "font-fira-code"
 cask "font-go-mono-nerd-font"
-cask "font-maple"
+#cask "font-maple"
 cask "font-monaspace"
 cask "font-open-dyslexic-nerd-font"
 
