@@ -1,0 +1,9 @@
+#!/bin/zsh
+{{ $filePath := ".config/zsh-antibody/.shasum" }}
+{{ $fullPath := joinPath .chezmoi.homeDir $filePath }}
+
+# Config HASH: {{ include $fullPath | sha256sum }} {{ $fullPath }}
+zsh_plugins=$HOME/.config/zsh-antibody/plugins
+echo "Antidote Bundling"
+source $HOME/.config/antidote/antidote.zsh
+antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh

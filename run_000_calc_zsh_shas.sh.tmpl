@@ -1,0 +1,10 @@
+#!/bin/zsh
+zsh_plugins=$HOME/.config/zsh-antibody
+sha_file="${zsh_plugins}/.shasum"
+
+if [[ -d $zsh_plugins ]]; then
+  shasum $zsh_plugins/**/* 2>/dev/null > $sha_file
+  shasum $HOME/.zshrc >> $sha_file
+else
+  echo "WARN: ZSH Plugin path doesn't exist yet..."
+fi
