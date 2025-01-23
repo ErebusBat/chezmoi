@@ -7,6 +7,7 @@ bin/grc_passwords.rb
 .tmux/**
 .tmux/op_auth.sh
 Library/LaunchAgents/local.chezmoi-pull.plist
+bin/stmux.sh
 
 # Retired Vim plugins
 .config/nvim/*.vim
@@ -19,3 +20,12 @@ Library/LaunchAgents/local.chezmoi-pull.plist
 {{- if ne .chezmoi.os "darwin" }}
 {{- end }}
 
+{{- if not .area.tractionguest }}
+.config/nvim/spell/tractionguest.*
+.config/systemd/user/restic-tguest.*
+.restic/.traction_guest.key
+.ssh/assh.d/tractionguest.yml
+.tmuxp/guest-server.yaml
+bin/tgtmux.zsh
+bin/tgstartup.sh
+{{- end }}

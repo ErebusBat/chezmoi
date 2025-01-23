@@ -32,6 +32,7 @@ src/sie/**
 .ssh/assh.d/tractionguest.yml
 .tmuxp/guest-server.yaml
 bin/tgtmux.zsh
+bin/tgstartup.sh
 bin/sierg
 {{- end }}
 
