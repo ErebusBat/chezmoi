@@ -7,16 +7,22 @@
 	<key>ProgramArguments</key>
 	<array>
 		<string>/usr/bin/open</string>
-		<string>/Users/andrew.burns/Applications/Restart OrbStack.app</string>
+		<string>/Users/andrew.burns/bin/Restart OrbStack.app</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
 	<key>StartCalendarInterval</key>
-	<dict>
-		<key>Hour</key>
-		<integer>5</integer>
-		<key>Minute</key>
-		<integer>13</integer>
-	</dict>
+	<array>
+		<dict>
+			<key>Hour</key>
+			<integer>5</integer>
+			<key>Minute</key>
+			<integer>13</integer>
+		</dict>
+		<dict>
+			<key>Minute</key>
+			<integer>11</integer>
+		</dict>
+	</array>
 </dict>
 </plist>
