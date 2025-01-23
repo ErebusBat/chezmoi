@@ -58,9 +58,9 @@ local config = {
 
 
   font = wezterm.font({
-    family="Comic Code Ligatures",
+    -- family="Comic Code Ligatures",
     -- family='Monaspace Neon',
-    -- family='Monaspace Argon',  -- This one
+    family='Monaspace Argon',  -- This one
     -- family='Monaspace Xenon',
     -- family='Monaspace Radon',
     -- family='Monaspace Krypton',
@@ -133,7 +133,7 @@ function calc_set_font_size(window)
   overrides.font_size = 10
   print(hostname .. " monitor_count: " .. monitor_count)
 
-  if (hostname == 'MBP-ABURNS') then
+  if (hostname == 'm4mbp.local') then
     -- This can fail on linux, and we don't need it there so only call here
     -- Depends if we are docked or not
     if (monitor_count == 2)
