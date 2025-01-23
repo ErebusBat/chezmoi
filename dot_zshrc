@@ -8,7 +8,6 @@ if [[ $TERM == "xterm-ghostty" ]] && [[ $(uname) == "Linux" ]]; then
 fi
 
 if [[ ! ":$PATH:" == *":$HOME/bin:"* ]]; then
-  echo "Adding ~/bin to PATH"
   export PATH=$HOME/bin:$PATH
 fi
 
