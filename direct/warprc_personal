@@ -9,6 +9,7 @@ image-marker:~/src/erebusbat/image-marker
 myserver:~/src/erebusbat/myserver
 pchef:~/src/erebusbat/pchef76
 restic:~/.restic
+restore:/Volumes/SeaBack/backrest
 src:~/src
 ssh:~/.ssh
 stow:~/src/erebusbat/dotfiles-stow
