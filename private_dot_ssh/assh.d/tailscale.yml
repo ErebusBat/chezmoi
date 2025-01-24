@@ -7,15 +7,19 @@ hosts:
     ForwardAgent: true
   nuc01:
     User: aburns
+    ForwardAgent: true
   nuc:
     HostName: nuc01.erebusbat.net
     User: aburns
+    ForwardAgent: true
   nuc02:
     User: aburns
     HostName: maze.erebusbat.net
+    ForwardAgent: true
   maze:
     User: aburns
     HostName: maze.erebusbat.net
+    ForwardAgent: true
   thelio:
     HostName: 100.76.155.42
     User: aburns
