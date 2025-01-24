@@ -11,10 +11,6 @@ fi
 ################################################################################
 # PATH Setup
 ################################################################################
-# if [[ ! ":$PATH:" == *":$HOME/bin:"* ]]; then
-#   export PATH=$HOME/bin:$PATH
-# fi
-# export PATH=/opt/homebrew/bin:$PATH
 critical_paths=(
   $HOME/bin
   /opt/homebrew/bin
@@ -22,7 +18,10 @@ critical_paths=(
   /opt/homebrew/bin/usr/local/bin
 )
 for critp in $critical_paths; do
-  echo $critp
+  if [[ -d $critp ]]; then
+    echo "Adding critial path: $critp"
+    export PATH=$critp:$PATH
+  fi
 done
 
 ################################################################################
@@ -76,5 +75,11 @@ else
   # echo "Loading Compinit"
   compinit
 fi
+
+
+################################################################################
+# PATH Cleanup
+################################################################################
+for pitem in $(echo $PATH | tr : "\n" | sort u)
 
 # zprof
