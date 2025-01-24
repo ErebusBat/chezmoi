@@ -10,6 +10,7 @@ fi
 if [[ ! ":$PATH:" == *":$HOME/bin:"* ]]; then
   export PATH=$HOME/bin:$PATH
 fi
+export PATH=/opt/homebrew/bin:$PATH
 
 ################################################################################
 # Antidote.sh
