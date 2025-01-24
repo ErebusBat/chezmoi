@@ -1,5 +1,10 @@
 #!/bin/zsh
-MAID_DIR=~/.maid
+
+#
+# This is intended to be called from cron:
+# */5 * * * * zsh -c '~/.maid/run.sh' 2>1 >/tmp/maid.log
+
+MAID_DIR=$HOME/.maid
 
 function log() {
   echo "[$(date)] $*"

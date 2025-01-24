@@ -7,10 +7,23 @@ if [[ $TERM == "xterm-ghostty" ]] && [[ $(uname) == "Linux" ]]; then
   export TERM=xterm-256color
 fi
 
-if [[ ! ":$PATH:" == *":$HOME/bin:"* ]]; then
-  export PATH=$HOME/bin:$PATH
-fi
-export PATH=/opt/homebrew/bin:$PATH
+
+################################################################################
+# PATH Setup
+################################################################################
+# if [[ ! ":$PATH:" == *":$HOME/bin:"* ]]; then
+#   export PATH=$HOME/bin:$PATH
+# fi
+# export PATH=/opt/homebrew/bin:$PATH
+critical_paths=(
+  $HOME/bin
+  /opt/homebrew/bin
+  /opt/homebrew/sbin
+  /opt/homebrew/bin/usr/local/bin
+)
+for critp in $critical_paths; do
+  echo $critp
+done
 
 ################################################################################
 # Antidote.sh

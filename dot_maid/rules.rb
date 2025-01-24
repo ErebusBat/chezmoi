@@ -94,35 +94,35 @@ Maid.rules do
   end
 
   rule '=== Rails Projects =============================================================' do
-    [
-      "~/src/sie/server"
-    ].each do |proj_dir|
-      log "Rails: #{proj_dir}"
-      # Cleanup temp
-      dir(proj_dir + "/tmp/**/*").each do |path|
-        next unless File.file?(path)
-
-        if 2.weeks.since?(accessed_at(path))
-          trash(path)
-        end
-      end
-
-      # Cleanup logs
-      dir(proj_dir + "/log/*.log").each do |path|
-        next unless File.file?(path)
-
-        # Cleanup old logs
-        if 2.weeks.since?(accessed_at(path))
-          trash(path)
-          next
-        end
-
-        # Downsize big ones
-        if File.size(path) >= 50 * MEGABYTE
-          truncate(path)
-        end
-      end
-    end
+    # [
+    #   "~/src/sie/server"
+    # ].each do |proj_dir|
+    #   log "Rails: #{proj_dir}"
+    #   # Cleanup temp
+    #   dir(proj_dir + "/tmp/**/*").each do |path|
+    #     next unless File.file?(path)
+    #
+    #     if 2.weeks.since?(accessed_at(path))
+    #       trash(path)
+    #     end
+    #   end
+    #
+    #   # Cleanup logs
+    #   dir(proj_dir + "/log/*.log").each do |path|
+    #     next unless File.file?(path)
+    #
+    #     # Cleanup old logs
+    #     if 2.weeks.since?(accessed_at(path))
+    #       trash(path)
+    #       next
+    #     end
+    #
+    #     # Downsize big ones
+    #     if File.size(path) >= 50 * MEGABYTE
+    #       truncate(path)
+    #     end
+    #   end
+    # end
   end
 
   rule '=== Vendor Projects ============================================================' do

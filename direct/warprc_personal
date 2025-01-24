@@ -4,8 +4,10 @@ chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy
 docker:~/src/sie/my_docker_env
 docker_dev:~/src/sie/my_docker_env
+downloads:~/Downloads
 gopass:~/.local/share/gopass/stores/root
 image-marker:~/src/erebusbat/image-marker
+maid:~/.maid
 myserver:~/src/erebusbat/myserver
 pchef:~/src/erebusbat/pchef76
 restic:~/.restic
