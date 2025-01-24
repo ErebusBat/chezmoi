@@ -3,13 +3,14 @@
 # zmodload zsh/zprof
 
 if [[ $TERM == "xterm-ghostty" ]] && [[ $(uname) == "Linux" ]]; then
-  echo "Overriding TERM from $TERM..."
+  echo -n "Overriding TERM from $TERM "
   export TERM=xterm-256color
+  echo "to $TERM..."
 fi
 
 
 ################################################################################
-# PATH Setup
+# PATH Setup; These paths are REQUIRED early on so make sure they are added
 ################################################################################
 critical_paths=(
   $HOME/bin
@@ -18,8 +19,7 @@ critical_paths=(
   /opt/homebrew/bin/usr/local/bin
 )
 for critp in $critical_paths; do
-  if [[ -d $critp ]]; then
-    echo "Adding critial path: $critp"
+  if [[ -d $critp ]]; then  # Only add paths that exist on this system
     export PATH=$critp:$PATH
   fi
 done
@@ -76,10 +76,7 @@ else
   compinit
 fi
 
-
-################################################################################
-# PATH Cleanup
-################################################################################
-for pitem in $(echo $PATH | tr : "\n" | sort u)
+# PATH Cleanup, make sure it is duplicate (-U = unique)
+typeset -U path
 
 # zprof
