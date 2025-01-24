@@ -45,8 +45,8 @@ windows:
     - shell_command:
         - ssh nuc
     - shell_command:
-        - ssh-add ~/.ssh/id_ed25519
-        - ssh -A maze
+        # - ssh-add ~/.ssh/id_ed25519
+        - ssh maze
     # - shell_command:
     #     - ssh thelio
 
