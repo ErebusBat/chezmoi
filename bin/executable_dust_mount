@@ -13,6 +13,11 @@ VC_SLOT=13
 VC_FILE=$CIFS_MOUNT_POINT/AABackup-Drive/disks/img/randimg
 VC_MOUNT_POINT=/media/veracrypt${VC_SLOT}
 
+DARWIN_IMG=$HOME/dust.dmg.sparseimage
+DARWIN_MOUNT_POINT=/Volumes/dustbind
+
+UNAME=$(uname)
+
 # veracrypt -t -k "" --pim=$(read -e a\?PIM=) --protect-hidden=no --slot=13 /tmp/cifs_dustbin/AABackup-Drive/disks/img/randpoolT ''
 
 # Volume Setup Notes:
@@ -69,6 +74,17 @@ VC_MOUNT_POINT=/media/veracrypt${VC_SLOT}
 # sudo btrfs device remove /dev/mapper/dust_bak ~/dust
 
 function mount() {
+  # macOS
+  if [[ $UNAME == "Darwin" ]]; then
+    if [[ -f $DARWIN_IMG ]]; then
+      # -W will wait while we enter the password in the GUI
+      open -W $DARWIN_IMG
+    else
+      echo "*** ERROR: Could not find $DARWIN_IMG"
+    fi
+    return
+  fi
+
   if [[ ! -f $IMG_FILE ]]; then
     if [[ ! -d $CIFS_MOUNT_POINT ]]; then
       mkdir $CIFS_MOUNT_POINT
@@ -127,7 +143,30 @@ function mount() {
   fi
 }
 
+function cleanupDarwin() {
+  killall Lenscape
+
+  local pathsToClear=(
+    $HOME/Library/Containers/com.morgensztern.photofolder/Data
+  )
+  for p in $pathsToClear; do
+    echo "Cleaning $p"
+    rm -rf $p
+  done
+}
+
 function unmount() {
+  # macOS
+  if [[ $UNAME == "Darwin" ]]; then
+    if [[ -d $DARWIN_MOUNT_POINT ]]; then
+      cleanupDarwin
+
+      echo "Unmounting $DARWIN_MOUNT_POINT"
+      diskutil eject $DARWIN_MOUNT_POINT
+    fi
+    return
+  fi
+
   # Unmount fs
   if [[ -f $FS_MOUNT_POINT/.dartp6 ]]; then
     echo "Making sure apps are closed"
@@ -195,7 +234,15 @@ else
   mount
 fi
 
-sudo cryptsetup status $LUKS_NAME
-sudo cryptsetup status "${LUKS_NAME}_HDD"
-echo "Veracrypt Volume Status:"
-veracrypt -t -l
+if [[ $(uname) == "Darwin" ]]; then
+  if [[ -d $DARWIN_MOUNT_POINT ]]; then
+    echo "Mounted: $DARWIN_MOUNT_POINT"
+  else
+    echo "Not Mounted"
+  fi
+else
+  sudo cryptsetup status $LUKS_NAME
+  sudo cryptsetup status "${LUKS_NAME}_HDD"
+  echo "Veracrypt Volume Status:"
+  veracrypt -t -l
+fi
