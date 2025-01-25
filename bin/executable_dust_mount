@@ -15,6 +15,9 @@ VC_MOUNT_POINT=/media/veracrypt${VC_SLOT}
 
 DARWIN_IMG=$HOME/dust.dmg.sparseimage
 DARWIN_MOUNT_POINT=/Volumes/dustbind
+XNVIEW_VOL_CFG=$DARWIN_MOUNT_POINT/XnViewMP/config
+XNVIEW_LOC_CFG=$HOME/.config/xnviewmp
+XNVIEW_LOC_CFG_BAK="${XNVIEW_LOC_CFG}_back"
 
 UNAME=$(uname)
 
@@ -79,6 +82,13 @@ function mount() {
     if [[ -f $DARWIN_IMG ]]; then
       # -W will wait while we enter the password in the GUI
       open -W $DARWIN_IMG
+
+      if [[ -d $XNVIEW_LOC_CFG ]] && [[ -d $XNVIEW_VOL_CFG ]]; then
+        echo "Setting up XnViewMP config..."
+        mv -v $XNVIEW_LOC_CFG $XNVIEW_LOC_CFG_BAK
+        ln -s  $XNVIEW_VOL_CFG $XNVIEW_LOC_CFG
+        ls -ld $XNVIEW_LOC_CFG
+      fi
     else
       echo "*** ERROR: Could not find $DARWIN_IMG"
     fi
@@ -143,24 +153,30 @@ function mount() {
   fi
 }
 
-function cleanupDarwin() {
-  killall Lenscape
+function cleanupXnViewMP() {
+  killall XnViewMP 2> /dev/null
 
-  local pathsToClear=(
-    $HOME/Library/Containers/com.morgensztern.photofolder/Data
-  )
-  for p in $pathsToClear; do
-    echo "Cleaning $p"
-    rm -rf $p
-  done
+  # Only dink with the cfgs if everything looks okay
+  if [[ -s $XNVIEW_LOC_CFG ]] && [[ -d $XNVIEW_LOC_CFG_BAK ]]; then
+    echo "Cleaning up XnViewMP Config"
+    rm -v $XNVIEW_LOC_CFG
+    mv -v $XNVIEW_LOC_CFG_BAK $XNVIEW_LOC_CFG
+  fi
+
+  # Sanity Check
+  echo ""
+  echo  "Double Checking XnViewMP config for volume refs vvvvvv"
+  rg dustbin $XNVIEW_LOC_CFG/*
+  echo  "THERE SHOULD BE NOTHING LISTED ABOVE            ^^^^^^"
+  echo ""
 }
 
 function unmount() {
   # macOS
   if [[ $UNAME == "Darwin" ]]; then
-    if [[ -d $DARWIN_MOUNT_POINT ]]; then
-      cleanupDarwin
+    cleanupXnViewMP
 
+    if [[ -d $DARWIN_MOUNT_POINT ]]; then
       echo "Unmounting $DARWIN_MOUNT_POINT"
       diskutil eject $DARWIN_MOUNT_POINT
     fi
