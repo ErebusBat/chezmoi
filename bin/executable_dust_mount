@@ -76,10 +76,19 @@ UNAME=$(uname)
 # sudo btrfs balance start -dconvert=single  ~/dust
 # sudo btrfs device remove /dev/mapper/dust_bak ~/dust
 
+function checkNotTmux() {
+  if [[ ! -z $TMUX ]]; then
+    echo "*** ERROR: Do not run in tmux or it will keep file handles open!"
+    exit 1
+  fi
+}
+
 function mount() {
   # macOS
   if [[ $UNAME == "Darwin" ]]; then
     if [[ -f $DARWIN_IMG ]]; then
+      checkNotTmux
+
       # -W will wait while we enter the password in the GUI
       open -W $DARWIN_IMG
 
