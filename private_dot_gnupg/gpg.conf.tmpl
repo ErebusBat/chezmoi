@@ -1,1 +1,4 @@
+{{ if eq .chezmoi.os "darwin" }}
 use-agent
+{{ else if eq .chezmoi.os "linux" }}
+{{ end }}
