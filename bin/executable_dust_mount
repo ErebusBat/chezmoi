@@ -166,10 +166,14 @@ function cleanupXnViewMP() {
   killall XnViewMP 2> /dev/null
 
   # Only dink with the cfgs if everything looks okay
-  if [[ -s $XNVIEW_LOC_CFG ]] && [[ -d $XNVIEW_LOC_CFG_BAK ]]; then
+  if [[ -L $XNVIEW_LOC_CFG ]] && [[ -d $XNVIEW_LOC_CFG_BAK ]]; then
     echo "Cleaning up XnViewMP Config"
     rm -v $XNVIEW_LOC_CFG
     mv -v $XNVIEW_LOC_CFG_BAK $XNVIEW_LOC_CFG
+  elif [[ -L $XNVIEW_LOC_CFG ]] && [[ ! -d $DARWIN_MOUNT_POINT ]]; then
+    echo "ERROR: XnViewMP config is a symlink, but image appears to be unmounted!"
+    echo "       Did you unmount manually?  If so re-mount then re-run unmount to fix"
+    exit 1
   fi
 
   # Sanity Check
