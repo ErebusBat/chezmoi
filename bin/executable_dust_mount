@@ -163,7 +163,13 @@ function mount() {
 }
 
 function cleanupXnViewMP() {
-  killall XnViewMP 2> /dev/null
+  local apps_to_kill=(
+    XnViewMP
+    VLC
+  )
+  for app in $apps_to_kill; do
+    killall XnViewMP 2> /dev/null
+  done
 
   # Only dink with the cfgs if everything looks okay
   if [[ -L $XNVIEW_LOC_CFG ]] && [[ -d $XNVIEW_LOC_CFG_BAK ]]; then
