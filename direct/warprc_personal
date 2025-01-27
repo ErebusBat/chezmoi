@@ -5,6 +5,7 @@ dashy:~/src/erebusbat/myserver/dashy
 docker:~/src/sie/my_docker_env
 docker_dev:~/src/sie/my_docker_env
 downloads:~/Downloads
+gdrive:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/My Drive
 gopass:~/.local/share/gopass/stores/root
 image-marker:~/src/erebusbat/image-marker
 maid:~/.maid
