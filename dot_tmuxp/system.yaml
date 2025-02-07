@@ -64,11 +64,11 @@ windows:
     - pane:
       focus: true
 
-- window_name: utils
+- window_name: backup
   panes:
     - shell_command:
-      # - /opt/homebrew/opt/backrest/bin/backrest --bind-address :9898
-      - /usr/local/bin/backrest --bind-address :9898
+      - /opt/homebrew/opt/backrest/bin/backrest --bind-address :9898
+      # - /usr/local/bin/backrest --bind-address :9898
     - pane:
       focus: true
 
