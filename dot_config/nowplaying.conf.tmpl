@@ -1,0 +1,9 @@
+# This file is managed by Chezmoi
+# https://github.com/arcadellama/plex-nowplaying
+
+NP_PLEX_HOST=plex.erebusbat.net
+NP_PLEX_PORT=32400
+NP_PLEX_TOKEN={{ (gopassRaw "erebusbat/plex" | mustFromJson).token }}
+NP_TIMEOUT=1
+NP_MAX_WIDTH=50
+NP_COLOR_MODE=auto

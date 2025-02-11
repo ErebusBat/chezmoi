@@ -22,4 +22,7 @@
   type = "git-repo"
   url = "https://github.com/mattmc3/antidote.git"
   refreshPeriod = "72h"
-
+[".local/share/plex-nowplaying"]
+  type = "git-repo"
+  url = "https://github.com/arcadellama/plex-nowplaying.git"
+  refreshPeriod = "720h"
