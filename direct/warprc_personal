@@ -2,6 +2,7 @@ antibody:~/.config/zsh-antibody
 backrest:~/src/erebusbat/myserver/backrest
 chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy
+dns:~/src/erebusbat/myserver/dnscontrol
 docker:~/src/sie/my_docker_env
 docker_dev:~/src/sie/my_docker_env
 downloads:~/Downloads
