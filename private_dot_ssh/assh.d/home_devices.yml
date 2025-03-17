@@ -140,7 +140,8 @@ templates:
     User: aburns
     ForwardAgent: yes
     IdentitiesOnly: yes
-  personal-allowpass:
+    IdentityFile:  ~/.ssh/id_ed25519
+  personal-allowpass
     User: aburns
     ForwardAgent: yes
   raspi:
