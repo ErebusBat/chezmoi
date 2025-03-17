@@ -10,6 +10,7 @@ gitea:/myserver/gitea
 gitlab:/myserver/gitlab
 gopass:~/.local/share/gopass/stores/root
 grafana:/myserver/grafana
+homepage:/myserver/homepage
 influx:/myserver/influx
 internal:/myserver/internal
 mmm:/myserver/mmm
