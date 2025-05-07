@@ -116,6 +116,7 @@ ENTRY=${ENTRY:gs/DARTER/[[dartp6]]}
 ENTRY=${ENTRY:gs/FreeNAS/[[FreeNAS]]}
 ENTRY=${ENTRY:gs/LUNCH/🍱 Lunch}
 ENTRY=${ENTRY:gs/M4MBP/[[MacBook Pro M4|m4mbp]]}
+ENTRY=${ENTRY:gs/MBP/[[MacBook Pro M4|MBP]]}
 ENTRY=${ENTRY:gs/NAS/[[FreeNAS]]}
 ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}   # Needs to be BEFORE MAZE or we will have conflicts
 ENTRY=${ENTRY:gs/MAZE/[[IntelNUC 2 - Maze|Maze]]}
