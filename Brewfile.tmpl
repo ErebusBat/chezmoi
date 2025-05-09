@@ -25,9 +25,17 @@ cask "insomnia"
 cask "kreya"  # gRPC/Rest Client
 # cask "modern-csv"
 cask "ngrok"
-cask "orbstack"
 cask "tad"
 cask "visual-studio-code"
+
+### Container Env (pick 1)
+#+++ OrbStack
+# cask "orbstack"
+#
+#+++ Docker
+cask "docker"   #-- Brew forumulas are barebones
+# brew "docker"   #-- Casks are Docker Desktop
+brew "docker-compose"
 
 ################################################################################
 # System Utilities / Essentials
@@ -62,9 +70,6 @@ brew "chezmoi"
 brew "dua-cli"
 brew "duf"
 brew "fd"
-# Using OrbStack
-# brew "docker"
-# brew "docker-compose"
 brew "git", link: true
 brew "gnu-sed"
 brew "fzf"
