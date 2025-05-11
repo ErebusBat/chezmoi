@@ -67,8 +67,9 @@ windows:
 - window_name: backup
   panes:
     - shell_command:
-      - /opt/homebrew/opt/backrest/bin/backrest --bind-address :9898
+      # - /opt/homebrew/opt/backrest/bin/backrest --bind-address :9898
       # - /usr/local/bin/backrest --bind-address :9898
+      - tail -f /opt/homebrew/var/log/backrest.log
     - pane:
       focus: true
 

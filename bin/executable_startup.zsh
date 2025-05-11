@@ -21,19 +21,49 @@ echo -n "\n"
 APPS=(
   # ~/Applications/Restart\ OrbStack.app
 
-  /Applications/Fantastical.app
-  /Applications/Todoist.app
-  /Applications/Due.app
-  # /Applications/Firefox.app
+  ####################
+  ### Top Screen
+  ####################
+  #-- Pos 1
   /Applications/Safari.app
-  /Applications/Google\ Chrome.app
-  /Applications/Obsidian.app
-  # /Applications/Slack.app
-
+  #-- Pos 2
   /System/Applications/Messages.app
   /Applications/Messenger.app
+  # /Applications/Discord.app
+  #-- Pos 3
+  /Applications/Telegram.app
+  #-- Pos 4
+  /Applications/Obsidian.app
+  #-- Pos 5
   /Applications/Spotify.app
-  /Applications/Discord.app
+  #-- Pos 6
+  # /Applications/Slack.app
+
+  ####################
+  ### Bottom Screen
+  ####################
+  #-- Pos 1
+  #-- Pos 2
+  /Applications/Google\ Chrome.app
+  # /Applications/Firefox.app
+  #-- Pos 3
+  #-- Pos 4
+  #-- Pos 5
+  #-- Pos 6
+
+  ####################
+  ### Laptop Screen
+  ####################
+  #-- Pos 1
+  /Applications/Todoist.app
+  #-- Pos 2
+  /Applications/Fantastical.app
+  #-- Pos 3
+  /Applications/Due.app
+  #-- Pos 4
+  #-- Pos 5
+  #-- Pos 6
+
 )
 
 # APPS=()
