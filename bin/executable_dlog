@@ -116,27 +116,16 @@ ENTRY=${ENTRY:gs/DARTER/[[dartp6]]}
 ENTRY=${ENTRY:gs/FreeNAS/[[FreeNAS]]}
 ENTRY=${ENTRY:gs/LUNCH/🍱 Lunch}
 ENTRY=${ENTRY:gs/M4MBP/[[MacBook Pro M4|m4mbp]]}
+ENTRY=${ENTRY:gs/MBP/[[MacBook Pro M4|MBP]]}
 ENTRY=${ENTRY:gs/NAS/[[FreeNAS]]}
 ENTRY=${ENTRY:gs/NUC/[[IntelNUC|nuc01]]}   # Needs to be BEFORE MAZE or we will have conflicts
 ENTRY=${ENTRY:gs/MAZE/[[IntelNUC 2 - Maze|Maze]]}
 ENTRY=${ENTRY:gs/SHOWER/🚿 Shower}
 ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
+#- Personal - People
+ENTRY=${ENTRY:gs/REBS/[[Rebecca Seedar|Rebecca]]}
 #- SIE - Entities
 #- SIE - People
-ENTRY=${ENTRY:gs/CAM/[[Cameron Wiebe|Cam]]}
-ENTRY=${ENTRY:gs/DIEGO/[[Diego De Oliveira Toral|Diego]]}
-ENTRY=${ENTRY:gs/FABMAN/[[Fabricio Ribeiro|Fabricio]]}
-ENTRY=${ENTRY:gs/GREG/[[Greg Underwood|Greg]]}
-ENTRY=${ENTRY:gs/GUSTAVO/[[Gustavo Alves|Gustavo]]}
-ENTRY=${ENTRY:gs/JAQ/[[Jaquan Williams|Jaquan]]}
-ENTRY=${ENTRY:gs/JIM/[[Jim Snodgrass|Jim]]}
-ENTRY=${ENTRY:gs/JOLIE/[[Jolie Summers|Jolie]]}
-ENTRY=${ENTRY:gs/JON/[[Jon Sangster|Jon]]}
-ENTRY=${ENTRY:gs/KIRAN/[[Kirandeep Virdi|Kiran]]}
-ENTRY=${ENTRY:gs/NICK/[[Nicholas Robertson|Nick]]}
-ENTRY=${ENTRY:gs/RYAN/[[Ryan Canby|Ryan]]}
-ENTRY=${ENTRY:gs/VLAD/[[Vlad Dzhabarov|Vlad]]}
-ENTRY=${ENTRY:gs/WILL/[[Will Freeman|Will]]}
 #- SIE - Projects / Pages
 
 # Spotify

@@ -1,3 +1,6 @@
+# Reload with  CMD+SHIFT+,  (Mac)
+# Reload with CTRL+SHIFT+,  (Linux)
+
 # Appearance
 cursor-invert-fg-bg = true
 cursor-style = block_hollow
@@ -7,7 +10,7 @@ window-theme = system
 # System
 clipboard-read = allow
 clipboard-write = allow
-copy-on-select = true
+copy-on-select = clipboard
 focus-follows-mouse = true
 link-url = true
 macos-option-as-alt = true
@@ -28,9 +31,9 @@ font-size = 14
 
 # Monaspace
 # => -> -->  == === != !===
-font-family = "Monaspace Neon"
-font-family-bold = "Monaspace Krypton Var Regular Bold Italic"
-font-family-italic = "Monaspace Krypton Var Regular Italic"
+font-family = "Monaspace Krypton"
+font-family-bold = "Monaspace Neon Var Regular Bold Italic"
+font-family-italic = "Monaspace Radon Var Regular Italic"
 font-feature = calt
 font-feature = liga
 font-feature = dlig

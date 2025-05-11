@@ -3,8 +3,8 @@ backrest:~/src/erebusbat/myserver/backrest
 chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy
 dns:~/src/erebusbat/myserver/dnscontrol
-docker:~/src/sie/my_docker_env
 docker_dev:~/src/sie/my_docker_env
+docker:~/src/sie/my_docker_env
 downloads:~/Downloads
 gdrive:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/My Drive
 gopass:~/.local/share/gopass/stores/root
@@ -12,6 +12,7 @@ image-marker:~/src/erebusbat/image-marker
 kate_wip:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/.tmp/437/(Client's) Supplemental Discovery & Exhibits/Work in Progress 
 maid:~/.maid
 myserver:~/src/erebusbat/myserver
+paperless:~/src/erebusbat/myserver/paperless-ngx
 pchef:~/src/erebusbat/pchef76
 raw:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/.tmp/437/(Client's) Supplemental Discovery & Exhibits/Work in Progress /evidence/_raw
 restic:~/.restic
