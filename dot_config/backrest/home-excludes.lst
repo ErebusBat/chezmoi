@@ -8,7 +8,6 @@
 
 # Very Specific File excludes
 $HOME/.dust
-$HOME/dust.dmg.sparseimage
 $HOME/bee_mem_card-2020-1217.tar.gz
 
 #
