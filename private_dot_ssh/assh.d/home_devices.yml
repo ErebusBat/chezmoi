@@ -140,7 +140,6 @@ templates:
     User: aburns
     ForwardAgent: yes
     IdentitiesOnly: yes
-    IdentityFile:  ~/.ssh/id_ed25519
   personal-allowpass:
     User: aburns
     ForwardAgent: yes
