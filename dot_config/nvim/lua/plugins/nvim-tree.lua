@@ -3,7 +3,7 @@ return {
   dependencies = {
     'nvim-tree/nvim-web-devicons', -- optional, for file icons
   },
-  tag = 'nightly', -- optional, updated every week. (see issue #1193)
+  -- tag = 'nightly', -- optional, updated every week. (see issue #1193)
   init = function ()
     -- disable netrw at the very start of your init.lua (strongly advised)
     vim.g.loaded_netrw = 1
