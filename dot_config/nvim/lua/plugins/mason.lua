@@ -109,20 +109,20 @@ local servers = {
 
   solargraph = {
     useBundler = true,
-    bundlerPath = "/Users/andrew.burns/.rbenv/shims/bundler",
-    solargraph = "/Users/andrew.burns/.rbenv/shims/solargraph",
-    commandPath = "/Users/andrew.burns/.rbenv/versions/2.7.4/bin/solargraph",
+    bundlerPath = "/Users/aburns/.rbenv/shims/bundler",
+    solargraph = "/Users/aburns/.rbenv/shims/solargraph",
+    commandPath = "/Users/aburns/.rbenv/versions/3.4.3/bin/solargraph",
     diagnostics = true,
   },
 }
 
 return {
-  'williamboman/mason.nvim',
+  'mason-org/mason.nvim',
   -- enabled = false,
 
   dependencies = {
+    'mason-org/mason-lspconfig.nvim',
     'neovim/nvim-lspconfig',
-    'williamboman/mason-lspconfig.nvim',
   },
   init = function()
     -- vim.keymap.del('n', '<leader>ds')
@@ -137,13 +137,13 @@ return {
       ensure_installed = vim.tbl_keys(servers),
     }
 
-    mason_lspconfig.setup_handlers {
-      function(server_name)
-        require('lspconfig')[server_name].setup {
-          settings = servers[server_name],
-        }
-      end,
-    }
+    -- mason_lspconfig.setup_handlers {
+    --   function(server_name)
+    --     require('lspconfig')[server_name].setup {
+    --       settings = servers[server_name],
+    --     }
+    --   end,
+    -- }
   end,
   -- keys = {
   -- },
