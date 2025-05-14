@@ -2,7 +2,12 @@ antibody:~/.config/zsh-antibody
 backrest:~/src/erebusbat/myserver/backrest
 chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy
+<<<<<<< Updated upstream
 dns:~/src/erebusbat/myserver/dnscontrol
+||||||| constructed merge base
+docker:~/src/sie/my_docker_env
+=======
+>>>>>>> Stashed changes
 docker_dev:~/src/sie/my_docker_env
 docker:~/src/sie/my_docker_env
 downloads:~/Downloads
@@ -27,5 +32,6 @@ tmuxp:~/.tmuxp
 txt:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/My Drive/WIP/evidence/raw
 vim:~/.config/nvim
 vimwiki:~/Documents/Obsidian/vimwiki/
+watchtower:~/src/erebusbat/myserver/watchtower
 wezterm:~/.config/wezterm
 wiki:~/Documents/Obsidian/vimwiki/
