@@ -19,7 +19,7 @@ echo -n "\n"
 # Starts apps / sessions after a cold boot
 # Will not launch a terminal as it assumes you will be launching a terminal to execute this script.  This also allows for easily switching terminal emulators.
 APPS=(
-  # ~/Applications/Restart\ OrbStack.app
+  ~/Applications/Restart\ OrbStack.app
 
   ####################
   ### Top Screen
