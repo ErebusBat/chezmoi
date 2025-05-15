@@ -26,3 +26,16 @@
   type = "git-repo"
   url = "https://github.com/arcadellama/plex-nowplaying.git"
   refreshPeriod = "720h"
+
+### ncdu
+{{ if eq "linux" .chezmoi.os }}
+  {{ $ncduArch := .chezmoi.arch }}
+  {{ if eq "amd64" .chezmoi.arch }}
+  {{  $ncduArch = "x86_64" }}
+  {{ end }}
+  {{ $ncduVersion := "2.8.1" }}
+  ["bin/ncdu"]
+    type = "archive-file"
+    url = "https://dev.yorhel.nl/download/ncdu-{{ $ncduVersion }}-linux-{{ $ncduArch }}.tar.gz"
+    path = "ncdu"
+{{ end }}
