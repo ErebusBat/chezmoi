@@ -1,43 +1,41 @@
 #!/bin/zsh
 set -e
 #########################################################################
-# Console Helpers / Logging
-#########################################################################
-function cont() {
-  echo "[$(date -Iseconds)]         : $*"
-}
-
-function info() {
-  echo "\n"
-  echo "[$(date -Iseconds)] *** INFO: $*"
-}
-
-function warn() {
-  echo "[$(date -Iseconds)] *** WARN: $*"
-}
-
-function err() {
-  echo "[$(date -Iseconds)] ***  ERR: $*"
-}
-
-function fatal() {
-  err $*
-  exit 1
-}
-
-#########################################################################
 # Setup / Variables
 #########################################################################
 
-# REPO=${REPO:-${1}}
-# if [[ -n $REPO ]]; then shift; fi
-# REPO=${REPO:-erebusbat_rsyncnet}
 REPO=${REPO:-erebusbat_yellowsea}
 
 typeset -A REPO_URLS
 REPO_URLS[erebusbat_yellowsea]="rest:http://m4mbp.tail04886.ts.net:8000/erebusbat"
 REPO_URLS[erebusbat_rsyncnet]="sftp://rsyncnet/restic/erebusbat"
 REPO_URLS[erebusbat_freenas]="s3:http://nas.erebusbat.net:9000/restic/backrest/erebusbat"
+REPO_URLS[scratch]="/scratch/backrest"
+
+#########################################################################
+# Console Helpers / Logging
+#########################################################################
+function cont() {
+  echo "[$(date -Iseconds)]          : $*"
+}
+
+function info() {
+  # echo "\n"
+  echo "[$(date -Iseconds)] ***  INFO: $*"
+}
+
+function warn() {
+  echo "[$(date -Iseconds)] ***  WARN: $*"
+}
+
+function err() {
+  echo "[$(date -Iseconds)] ***   ERR: $*"
+}
+
+function fatal() {
+  echo "[$(date -Iseconds)] *** FATAL: $*"
+  exit 1
+}
 
 #########################################################################
 # Setup env based on what was chosen
@@ -45,16 +43,20 @@ REPO_URLS[erebusbat_freenas]="s3:http://nas.erebusbat.net:9000/restic/backrest/e
 
 # Check to make sure that the given repo actually exists
 # or more acuratley that we know about it
+info "rrestic - restic wrapper tool"
 export RESTIC_REPOSITORY=${REPO_URLS[$REPO]}
 if [[ -z $RESTIC_REPOSITORY ]]; then
   fatal "Could not find repository: $REPO"
 fi
-info "REPO=$REPO"
-info "RESIC_REPOSITORY=$RESTIC_REPOSITORY"
+cont "             REPO=$REPO"
+cont "RESIIC_REPOSITORY=$RESTIC_REPOSITORY"
 
 ### REPO: erebusbat
+info "Setting Repo Password File"
 if [[ $REPO == erebusbat_* ]]; then
-  info "Setting Repo Password File"
+  export RESTIC_PASSWORD_FILE=~/.restic/.erebusbat.key
+fi
+if [[ $REPO == "scratch" ]]; then
   export RESTIC_PASSWORD_FILE=~/.restic/.erebusbat.key
 fi
 
@@ -64,6 +66,8 @@ if [[ $REPO == *_freenas ]]; then
   # FreeNAS Access Info, Not Host specific
   export AWS_ACCESS_KEY_ID={{- (gopassRaw "restic/FreeNAS_Minio_S3" | mustFromJson).key_id }}
   export AWS_SECRET_ACCESS_KEY={{- (gopassRaw "restic/FreeNAS_Minio_S3" | mustFromJson).secret }}
+  info "    AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID"
+  info "AWS_SECRET_ACCESS_KEY=********"
 fi
 
 ### LOC: rsyncnet
@@ -74,10 +78,23 @@ fi
 ### LOC: yellowsea
 if [[ $REPO == *_yellowsea ]]; then
   info "Detected a restic-rest repo..."
-  {{ if eq "m4mbp" .chezmoi.hostname }}
-  cont "Setting Access Keys for $HOSTNAME"
-  export RESTIC_REST_PASSWORD={{- (gopassRaw "restic/rest_server" | mustFromJson)[.chezmoi.hostname] }}
-  {{ end }}
+  export RESTIC_REST_USERNAME={{ .chezmoi.hostname }}
+  export RESTIC_REST_PASSWORD="{{- ( index (gopassRaw "restic/rest_server" | mustFromJson) .chezmoi.hostname ) }}"
+  cont "RESTIC_REST_USERNAME=$RESTIC_REST_USERNAME"
+
+  # Password Sanity Check; blank OR no value returned from mustFromJson
+  if [[ -z $RESTIC_REST_PASSWORD || $RESTIC_REST_PASSWORD == "<no value>" ]]; then
+    fatal "No password set for $RESTIC_REST_USERNAME!  Did we not have an entry?"
+  else
+    cont "RESTIC_REST_PASSWORD=********"
+  fi
+fi
+
+### LOC: scratch
+if [[ $REPO == scratch ]]; then
+  if [[ "{{ .chezmoi.hostname }}" != "nuc01" ]]; then
+    fatal "scratch repository only works on nuc01 / plex!"
+  fi
 fi
 
 ### Sanity Check
