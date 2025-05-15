@@ -15,23 +15,23 @@ REPO_URLS[scratch]="/scratch/backrest"
 # Console Helpers / Logging
 #########################################################################
 function cont() {
-  echo "[$(date -Iseconds)]          : $*" >2
+  echo "[$(date -Iseconds)]          : $*" >&2
 }
 
 function info() {
-  echo "[$(date -Iseconds)] ***  INFO: $*" >2
+  echo "[$(date -Iseconds)] ***  INFO: $*" >&2
 }
 
 function warn() {
-  echo "[$(date -Iseconds)] ***  WARN: $*" >2
+  echo "[$(date -Iseconds)] ***  WARN: $*" >&2
 }
 
 function err() {
-  echo "[$(date -Iseconds)] ***   ERR: $*" >2
+  echo "[$(date -Iseconds)] ***   ERR: $*" >&2
 }
 
 function fatal() {
-  echo "[$(date -Iseconds)] *** FATAL: $*" >2
+  echo "[$(date -Iseconds)] *** FATAL: $*" >&2
   exit 1
 }
 
