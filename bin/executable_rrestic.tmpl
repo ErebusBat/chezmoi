@@ -108,4 +108,12 @@ fi
 #########################################################################
 # Run Command
 #########################################################################
+if ! command -v restic >/dev/null; then
+  warn "restic command not found on path?"
+  cont "attempting to find it..."
+
+  if [[ -x /home/aburns/bin/restic ]]; then
+    export PATH=/home/aburns/bin
+  fi
+fi
 restic --no-lock $*
