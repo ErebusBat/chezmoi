@@ -3,7 +3,6 @@ set -e
 #########################################################################
 # Setup / Variables
 #########################################################################
-
 REPO=${REPO:-erebusbat_yellowsea}
 
 typeset -A REPO_URLS
@@ -40,6 +39,12 @@ function fatal() {
 #########################################################################
 # Setup env based on what was chosen
 #########################################################################
+
+if [[ $1 == "sudo" ]]; then
+  info "To run under sudo:"
+  cont "REPO=scratch sudo -E \$HOME/bin/rrestic snapshots"
+  exit 0
+fi
 
 # Check to make sure that the given repo actually exists
 # or more acuratley that we know about it
