@@ -1,14 +1,14 @@
+<<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
+||||||| constructed merge base
 antibody:~/.config/zsh-antibody
 backrest:~/src/erebusbat/myserver/backrest
 chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy
-<<<<<<< Updated upstream
 dns:~/src/erebusbat/myserver/dnscontrol
-||||||| constructed merge base
-docker:~/src/sie/my_docker_env
-=======
->>>>>>> Stashed changes
 docker_dev:~/src/sie/my_docker_env
+docker:~/src/sie/my_docker_env
 docker:~/src/sie/my_docker_env
 downloads:~/Downloads
 gdrive:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/My Drive
@@ -20,6 +20,7 @@ myserver:~/src/erebusbat/myserver
 paperless:~/src/erebusbat/myserver/paperless-ngx
 pchef:~/src/erebusbat/pchef76
 raw:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/.tmp/437/(Client's) Supplemental Discovery & Exhibits/Work in Progress /evidence/_raw
+restic_server:~/src/erebusbat/myserver/restic-rest
 restic:~/.restic
 restore:/Volumes/SeaBack/backrest
 src:~/src
