@@ -1,11 +1,94 @@
 #!/bin/zsh
-REPO=${REPO:-${1}}
-REPO=${REPO:-erebusbat_yellowsea}
-# {{ .chezmoi.hostname }}
+set -e
+#########################################################################
+# Console Helpers / Logging
+#########################################################################
+function cont() {
+  echo "[$(date -Iseconds)]         : $*"
+}
 
-# FreeNAS Access Info, Not Host specific
-export AWS_ACCESS_KEY_ID={{- (gopassRaw "restic/FreeNAS_Minio_S3" | mustFromJson).key_id }}
-export AWS_SECRET_ACCESS_KEY={{- (gopassRaw "restic/FreeNAS_Minio_S3" | mustFromJson).secret }}
-# export AWS_ACCESS_KEY_ID=Gqat1pibfccPGWET4eL6
-# export AWS_SECRET_ACCESS_KEY=yqvPHhlRITgU82lXpS4A
-# restic --repo=s3:http://nas.erebusbat.net:9000/restic/backrest/erebusbat --no-lock --password-file ~/.restic/.erebusbat.key $*
+function info() {
+  echo "\n"
+  echo "[$(date -Iseconds)] *** INFO: $*"
+}
+
+function warn() {
+  echo "[$(date -Iseconds)] *** WARN: $*"
+}
+
+function err() {
+  echo "[$(date -Iseconds)] ***  ERR: $*"
+}
+
+function fatal() {
+  err $*
+  exit 1
+}
+
+#########################################################################
+# Setup / Variables
+#########################################################################
+
+# REPO=${REPO:-${1}}
+# if [[ -n $REPO ]]; then shift; fi
+# REPO=${REPO:-erebusbat_rsyncnet}
+REPO=${REPO:-erebusbat_yellowsea}
+
+typeset -A REPO_URLS
+REPO_URLS[erebusbat_yellowsea]="rest:http://m4mbp.tail04886.ts.net:8000/erebusbat"
+REPO_URLS[erebusbat_rsyncnet]="sftp://rsyncnet/restic/erebusbat"
+REPO_URLS[erebusbat_freenas]="s3:http://nas.erebusbat.net:9000/restic/backrest/erebusbat"
+
+#########################################################################
+# Setup env based on what was chosen
+#########################################################################
+
+# Check to make sure that the given repo actually exists
+# or more acuratley that we know about it
+export RESTIC_REPOSITORY=${REPO_URLS[$REPO]}
+if [[ -z $RESTIC_REPOSITORY ]]; then
+  fatal "Could not find repository: $REPO"
+fi
+info "REPO=$REPO"
+info "RESIC_REPOSITORY=$RESTIC_REPOSITORY"
+
+### REPO: erebusbat
+if [[ $REPO == erebusbat_* ]]; then
+  info "Setting Repo Password File"
+  export RESTIC_PASSWORD_FILE=~/.restic/.erebusbat.key
+fi
+
+### LOC: FreeNAS
+if [[ $REPO == *_freenas ]]; then
+  info "Detected a MinIO repo... setting access keys"
+  # FreeNAS Access Info, Not Host specific
+  export AWS_ACCESS_KEY_ID={{- (gopassRaw "restic/FreeNAS_Minio_S3" | mustFromJson).key_id }}
+  export AWS_SECRET_ACCESS_KEY={{- (gopassRaw "restic/FreeNAS_Minio_S3" | mustFromJson).secret }}
+fi
+
+### LOC: rsyncnet
+if [[ $REPO == *_rsyncnet ]]; then
+  warn "Detected an RSync.net repository; commands will fail if ssh config is wrong!"
+fi
+
+### LOC: yellowsea
+if [[ $REPO == *_yellowsea ]]; then
+  info "Detected a restic-rest repo..."
+  {{ if eq "m4mbp" .chezmoi.hostname }}
+  cont "Setting Access Keys for $HOSTNAME"
+  export RESTIC_REST_PASSWORD={{- (gopassRaw "restic/rest_server" | mustFromJson)[.chezmoi.hostname] }}
+  {{ end }}
+fi
+
+### Sanity Check
+if [[ -z $RESTIC_PASSWORD_FILE ]]; then
+  fatal "Password file not set, unknown repo?"
+fi
+if [[ ! -s $RESTIC_PASSWORD_FILE ]]; then
+  fatal "Could not find password file: $RESTIC_PASSWORD_FILE"
+fi
+
+#########################################################################
+# Run Command
+#########################################################################
+restic --no-lock $*
