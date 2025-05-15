@@ -1,5 +1,0 @@
-#!/bin/zsh
-{{ .chezmoi.hostname }}
-export AWS_ACCESS_KEY_ID=Gqat1pibfccPGWET4eL6
-export AWS_SECRET_ACCESS_KEY=yqvPHhlRITgU82lXpS4A
-restic --repo=s3:http://nas.erebusbat.net:9000/restic/backrest/erebusbat --no-lock --password-file ~/.restic/.erebusbat.key $*
