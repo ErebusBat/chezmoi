@@ -60,6 +60,9 @@ info "Setting Repo Password File"
 if [[ $REPO == erebusbat_* ]]; then
   export RESTIC_PASSWORD_FILE=~/.restic/.erebusbat.key
 fi
+if [[ $REPO == sis_* ]]; then
+  export RESTIC_PASSWORD_FILE=~/.restic/.traction_guest.key
+fi
 if [[ $REPO == "scratch" ]]; then
   export RESTIC_PASSWORD_FILE=~/.restic/.erebusbat.key
 fi
