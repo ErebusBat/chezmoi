@@ -12,6 +12,7 @@ REPO_URLS[erebusbat_freenas]="s3:http://nas.erebusbat.net:9000/restic/backrest/e
 REPO_URLS[scratch]="/scratch/backrest"
 REPO_URLS[sis_rsyncnet]="sftp://rsyncnet/restic/sis"
 REPO_URLS[sis_freenas]="s3:http://nas.erebusbat.net:9000/restic/backrest/sis"
+REPO_URLS[sis_last_snapshot]="/Volumes/SeaBack/sis_last_snapshot/sie_mbp/"
 
 #########################################################################
 # Console Helpers / Logging
@@ -59,14 +60,21 @@ cont "RESIIC_REPOSITORY=$RESTIC_REPOSITORY"
 
 ### REPO: erebusbat
 info "Setting Repo Password File"
-if [[ $REPO == erebusbat_* ]]; then
-  export RESTIC_PASSWORD_FILE=~/.restic/.erebusbat.key
-fi
 if [[ $REPO == sis_* ]]; then
   export RESTIC_PASSWORD_FILE=~/.restic/.traction_guest.key
 fi
+if [[ $REPO == sis_last_snapshot ]]; then
+  warn "REPO is $REPO but it actually uses the erebusbat key file!"
+  export RESTIC_PASSWORD_FILE=~/.restic/.erebusbat.key
+fi
+if [[ $REPO == erebusbat_* ]]; then
+  export RESTIC_PASSWORD_FILE=~/.restic/.erebusbat.key
+fi
 if [[ $REPO == "scratch" ]]; then
   export RESTIC_PASSWORD_FILE=~/.restic/.erebusbat.key
+fi
+if [[ -z $RESTIC_PASSWORD_FILE ]] || [[ ! -s $RESTIC_PASSWORD_FILE ]]; then
+  fatal "Could not find password file: $RESTIC_PASSWORD_FILE"
 fi
 
 ### LOC: FreeNAS
