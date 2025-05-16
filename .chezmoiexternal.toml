@@ -39,3 +39,17 @@
     url = "https://dev.yorhel.nl/download/ncdu-{{ $ncduVersion }}-linux-{{ $ncduArch }}.tar.gz"
     path = "ncdu"
 {{ end }}
+
+### NeoVim AppImage
+{{ if eq "linux" .chezmoi.os }}
+  {{ $nvimArch := .chezmoi.arch }}
+  {{ if eq "amd64" .chezmoi.arch }}
+  {{  $nvimArch = "x86_64" }}
+  {{ end }}
+  {{ $nvimVersion := "stable" }}
+  ["bin/nvim"]
+    type = "file"
+    url = "https://github.com/neovim/neovim/releases/download/{{ $nvimVersion }}/nvim-{{ .chezmoi.os }}-{{ $nvimArch }}.appimage"
+    executable = true
+    refreshPeriod = "168h"
+{{ end }}
