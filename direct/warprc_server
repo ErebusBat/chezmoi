@@ -4,6 +4,7 @@ cfddns:/myserver/cloudflare-ddns
 chezmoi:~/.local/share/chezmoi
 dashy:/myserver/dashy
 deco:/myserver/deco-tools
+dns:/myserver/dnscontrol
 downloader:/myserver/downloader
 gatus:/myserver/gatus
 gitea:/myserver/gitea
@@ -18,6 +19,7 @@ myserver:/myserver
 npm_nuc:/myserver/nuc01-npm
 npm_thelio:/myserver/thelio-npm
 orbital-sync:/myserver/pihole-orbital-sync
+paperless:/myserver/paperless-home
 pchef:~/src/erebusbat/pchef76
 photoprism:/myserver/photoprism
 pihole2:/myserver/pihole2
