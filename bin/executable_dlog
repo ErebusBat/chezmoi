@@ -122,6 +122,7 @@ ENTRY=${ENTRY:gs/MAZE/[[IntelNUC 2 - Maze|Maze]]}
 ENTRY=${ENTRY:gs/SHOWER/🚿 Shower}
 ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
 #- SIE - Entities
+ENTRY=${ENTRY:gs/CCAM/[[CompanyCam]]}
 #- SIE - People
 ENTRY=${ENTRY:gs/CAM/[[Cameron Wiebe|Cam]]}
 ENTRY=${ENTRY:gs/DIEGO/[[Diego De Oliveira Toral|Diego]]}
