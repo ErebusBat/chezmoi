@@ -24,20 +24,15 @@ APPS=(
   ####################
   ### Top Screen
   ####################
-  #-- Pos 1
   /Applications/Safari.app
-  #-- Pos 2
   /System/Applications/Messages.app
   /Applications/Messenger.app
   # /Applications/Discord.app
-  #-- Pos 3
   /Applications/Telegram.app
-  #-- Pos 4
   /Applications/Obsidian.app
-  #-- Pos 5
   /Applications/Spotify.app
-  #-- Pos 6
-  # /Applications/Slack.app
+  /Applications/Slack.app
+  /Applications/1Password.app
 
   ####################
   ### Bottom Screen

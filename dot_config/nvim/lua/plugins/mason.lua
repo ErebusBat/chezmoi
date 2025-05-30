@@ -107,13 +107,13 @@ local servers = {
     },
   },
 
-  solargraph = {
-    useBundler = true,
-    bundlerPath = "/Users/aburns/.rbenv/shims/bundler",
-    solargraph = "/Users/aburns/.rbenv/shims/solargraph",
-    commandPath = "/Users/aburns/.rbenv/versions/3.4.3/bin/solargraph",
-    diagnostics = true,
-  },
+  -- solargraph = {
+  --   useBundler = true,
+  --   bundlerPath = "/Users/aburns/.rbenv/shims/bundler",
+  --   solargraph = "/Users/aburns/.rbenv/shims/solargraph",
+  --   commandPath = "/Users/aburns/.rbenv/versions/3.4.3/bin/solargraph",
+  --   diagnostics = true,
+  -- },
 }
 
 return {
