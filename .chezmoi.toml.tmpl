@@ -20,15 +20,17 @@
 
   [data.area]
     {{- if (index . "area" ) }}
-    fetlife = {{ .area.fetlife }}
     personal = {{ .area.personal }}
     server = {{ .area.server }}
+    fetlife = {{ .area.fetlife }}
     tractionguest = {{ .area.tractionguest }}
+    companycam = {{ .area.companycam }}
     {{- else }}
-    fetlife = false
     personal = {{ default false (eq $focus "personal") }}
     server = {{ default false (eq $focus "server") }}
+    fetlife = false
     tractionguest = {{ default false (eq $focus "sie") }}
+    companycam = {{ default false (eq $focus "companycam") }}
     {{ end }}
 
   [data.synergy]

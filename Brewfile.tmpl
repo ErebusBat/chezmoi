@@ -22,15 +22,6 @@ cask "ngrok"
 cask "tad"
 cask "visual-studio-code"
 
-### Container Env (pick 1)
-#+++ OrbStack
-cask "orbstack"
-#
-#+++ Docker
-# cask "docker"   #-- Brew forumulas are barebones
-# brew "docker"   #-- Casks are Docker Desktop
-# brew "docker-compose"
-
 ################################################################################
 # System Utilities / Essentials
 ################################################################################
@@ -123,6 +114,19 @@ cask "telegram"
 cask "tor-browser"
 cask "vlc"
 cask "xnviewmp"
+{{ if eq .focus "personal" }}
+cask "orbstack"
+{{ end -}}
+{{ end -}}
+
+{{ if eq .area.companycam true }}
+################################################################################
+# CompanyCam
+################################################################################
+#+++ Docker
+cask "docker"   #-- Brew forumulas are barebones
+brew "docker"   #-- Casks are Docker Desktop
+brew "docker-compose"
 {{ end -}}
 
 {{ if eq .area.tractionguest true }}
