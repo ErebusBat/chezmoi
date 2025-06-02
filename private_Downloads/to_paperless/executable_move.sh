@@ -33,13 +33,17 @@ fi
 
 FILE_TYPES_TO_MOVE=(pdf png jpg)
 for ext in $FILE_TYPES_TO_MOVE; do
+  echo "--------------------------------------------------------------------------------"
+  echo "-- $ext files"
+  echo "--------------------------------------------------------------------------------"
   files=($SOURCE_FOLDER/*.$ext(N))
   if (( ${#files} )); then
     echo "*** MOVING *.$ext Files to Paperless Consume"
     mv -v $SOURCE_FOLDER/*.$ext $CONSUME_FOLDER/
   else
-    echo "--- No $ext files found to move."
+    echo "   No files found."
   fi
+  echo "\n"
 done
 exit 0
 
