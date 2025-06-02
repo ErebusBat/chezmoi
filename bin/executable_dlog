@@ -124,8 +124,14 @@ ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
 #- CCAM - Entities
 ENTRY=${ENTRY:gs/CCAM/[[CompanyCam]]}
 ENTRY=${ENTRY:gs/16MBP/[[CompanyCam 16\" MacBook Pro|CCAM-16MBP]]}
+ENTRY=${ENTRY:gs/PTEAM/[[CompanyCam Platform Team|Platform Team]]}
 #- CCAM - People
-ENTRY=${ENTRY:gs/CAMW/[[Cameron Wiebe|Cam]]}
+ENTRY=${ENTRY:gs/DUSTIN/[[Dustin Fisher|Dustin]]}
+ENTRY=${ENTRY:gs/GREG/[[Greg Brinker|Greg]]}
+ENTRY=${ENTRY:gs/JASON/[[Jason Gaare|Jason]]}
+ENTRY=${ENTRY:gs/JOSE/[[Jose Cartagena|Jose]]}
+ENTRY=${ENTRY:gs/MUNYO/[[Munyo Frey|Munyo]]}
+ENTRY=${ENTRY:gs/SHAUN/[[Shaun Garwood|Shaun]]}
 #- CCAM - Projects / Pages
 
 # Spotify
