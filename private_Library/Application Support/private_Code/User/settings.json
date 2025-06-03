@@ -1,5 +1,5 @@
 {
-    "workbench.colorTheme": "Catppuccin Frappé",
+    "workbench.colorTheme": "Catppuccin Mocha",
     "editor.accessibilitySupport": "off",
     "editor.fontFamily": "Comic Code, Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
     "editor.fontLigatures": "'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07'",
@@ -245,7 +245,6 @@
     "chat.editor.fontFamily": "Comic Code, Monaspace Neon,  Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
     "github.copilot.chat.scopeSelection": true,
     "git.confirmSync": false,
-    "github.copilot.chat.temporalContext.enabled": true,
     "chat.editing.alwaysSaveWithGeneratedChanges": true,
     "githubPullRequests.pullBranch": "never",
     "editor.inlineSuggest.fontFamily": "Comic Code, Monaspace Neon,  Menlo, Monaco, 'Courier New', monospace",
@@ -255,4 +254,7 @@
     "gitlens.blame.fontFamily": "Comic Code, Monaspace Neon,  Menlo, Monaco, 'Courier New', monospace",
     "terminal.integrated.fontLigatures.enabled": true,
     "git.enableCommitSigning": true,
+    "github.copilot.chat.editor.temporalContext.enabled": true,
+    "gitlens.ai.model": "vscode",
+    "gitlens.ai.vscode.model": "copilot:gpt-4o",
 }
