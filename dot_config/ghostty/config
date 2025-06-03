@@ -28,7 +28,8 @@ font-size = 14
 
 # Monaspace
 # => -> -->  == === != !===
-font-family = "Monaspace Neon"
+font-family = "Comic Code"
+# font-family = "Monaspace Radon"
 font-family-bold = "Monaspace Krypton Var Regular Bold Italic"
 font-family-italic = "Monaspace Krypton Var Regular Italic"
 font-feature = calt
