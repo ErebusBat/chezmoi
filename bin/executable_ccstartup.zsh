@@ -32,17 +32,8 @@ APPS=(
   /Applications/Slack.app
   /Applications/1Password.app
 
-  ####################
-  ### Bottom Screen
-  ####################
-  #-- Pos 1
-  #-- Pos 2
-  /Applications/Google\ Chrome.app
-  # /Applications/Firefox.app
-  #-- Pos 3
-  #-- Pos 4
-  #-- Pos 5
-  #-- Pos 6
+  # /Applications/Google\ Chrome.app
+  # See Below for opening Chrome with the correct profiles
 
   ####################
   ### Laptop Screen
@@ -64,6 +55,31 @@ for app in $APPS; do
   echo "[$(date)] Launching ${app:r:t}"
   open -g $app
 done
+
+####################
+### Chrome
+####################
+# Here is a small script you can run if you need to know which profile is which:
+# for dir in ~/Library/Application\ Support/Google/Chrome/Profile*; do
+#   name=$(jq -r '.profile.name' "$dir/Preferences" 2>/dev/null)
+#   email=$(jq -r '.account_info[0].email // empty' "$dir/Preferences" 2>/dev/null)
+#   icon=$(jq -r '.profile.avatar_icon' "$dir/Preferences" 2>/dev/null)
+#   echo "$(basename "$dir") => name: \"$name\" email: \"$email\" icon: \"$icon\""
+# done
+function open_chrome_profile() {
+  profile_name=$1
+  profile_dir=$2
+  if [[ -d "$HOME/Library/Application Support/Google/Chrome/$profile_dir" ]]; then
+    echo "[$(date)] Launching Chrome - $profile_name"
+    open -na "Google Chrome" --args --profile-directory="$profile_dir"
+  else
+    echo "[$(date)] ***ERROR Launching Chrome - Profile $profile_name not found (dir=$profile_dir)"
+  fi
+}
+# open -na "Google Chrome" --args --profile-directory="Default"
+# open -na "Google Chrome" --args --profile-directory="Profile 1"
+open_chrome_profile "ErebusBat@gmail.com" "Default"
+open_chrome_profile "CompanyCam" "Profile 1"
 
 # Terminal apps - With Options
 # open /Applications/Alacritty.app --args -e dlog-tail 1

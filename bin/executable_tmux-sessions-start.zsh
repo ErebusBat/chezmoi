@@ -7,6 +7,7 @@ if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
 fi
 
 sessions=(
+  ccam
   system
 )
 START_SESS=$1
