@@ -79,4 +79,7 @@ fi
 # PATH Cleanup, make sure it is duplicate (-U = unique)
 typeset -U path
 
+# Need this here to trick `cocam go` into not messing with my config
+# eval "$(rbenv init -)"
+
 # zprof
