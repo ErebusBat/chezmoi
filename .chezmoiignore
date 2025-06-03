@@ -26,6 +26,7 @@ direct/
 {{- if not .area.companycam }}
 .restic/.companycam.key
 .tmuxp/ccam.yaml
+bin/cocam
 {{ if ne .focus "companycam" }}
 Library/Application Support/ngrok/ngrok.yml
 {{- end }}
