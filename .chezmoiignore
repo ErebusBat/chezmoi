@@ -23,6 +23,11 @@ direct/
 .tmuxp/redis-command-center.yaml
 {{- end }}
 
+{{- if not .area.companycam }}
+.restic/.companycam.key
+.tmuxp/ccam.yaml
+{{- end }}
+
 {{- if not .area.tractionguest }}
 src/sie/**
 .bundle/config
@@ -32,6 +37,7 @@ src/sie/**
 .restic/.traction_guest.key
 .ssh/assh.d/tractionguest.yml
 .tmuxp/guest-server.yaml
+.tmuxp/sis-jwt.yaml
 bin/tgtmux.zsh
 bin/tgstartup.sh
 bin/sierg

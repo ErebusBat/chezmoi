@@ -254,4 +254,5 @@
     "gitlens.currentLine.fontFamily": "Comic Code, Monaspace Neon,  Menlo, Monaco, 'Courier New', monospace",
     "gitlens.blame.fontFamily": "Comic Code, Monaspace Neon,  Menlo, Monaco, 'Courier New', monospace",
     "terminal.integrated.fontLigatures.enabled": true,
+    "git.enableCommitSigning": true,
 }

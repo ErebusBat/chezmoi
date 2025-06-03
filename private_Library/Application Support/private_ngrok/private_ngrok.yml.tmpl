@@ -1,0 +1,6 @@
+version: "3"
+agent:
+  authtoken: {{ (gopassRaw "ccam/ngrok" | mustFromJson).authtoken }}
+  console_ui_color: transparent
+tunnels:
+{{ (gopassRaw "ccam/ngrok" | mustFromJson).tunnels | toYaml | indent 2 }}

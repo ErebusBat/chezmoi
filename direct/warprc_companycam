@@ -2,6 +2,7 @@ antibody:~/.config/zsh-antibody
 aoc:~/src/erebusbat/aoc/2023
 backrest:~/.config/backrest
 beszel:~/src/erebusbat/myserver/beszel-agent/macOS
+ccapi:~/src/ccam/api
 chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy
 dnscontrol:~/src/erebusbat/myserver/dnscontrol
