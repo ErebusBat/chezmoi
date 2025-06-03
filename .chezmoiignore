@@ -26,7 +26,7 @@ direct/
 {{- if not .area.companycam }}
 .restic/.companycam.key
 .tmuxp/ccam.yaml
-{{ if not eq .focus "companycam" }}
+{{ if ne .focus "companycam" }}
 Library/Application Support/ngrok/ngrok.yml
 {{- end }}
 {{- end }}
