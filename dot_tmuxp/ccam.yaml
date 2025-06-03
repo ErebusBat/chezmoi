@@ -11,7 +11,7 @@ windows:
   panes:
     - shell_command:
         # - fetlife_web_background_tasks up
-        - ngrok http --url=immensely-noted-hound.ngrok-free.app 80
+        - ngrok start rails
     - shell_command:
         # - script/update
         - echo rails s

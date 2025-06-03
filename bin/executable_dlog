@@ -133,6 +133,7 @@ ENTRY=${ENTRY:gs/JOSE/[[Jose Cartagena|Jose]]}
 ENTRY=${ENTRY:gs/MUNYO/[[Munyo Frey|Munyo]]}
 ENTRY=${ENTRY:gs/SHAUN/[[Shaun Garwood|Shaun]]}
 ENTRY=${ENTRY:gs/JAREDS/[[Jared Stauffer|Jared S.]]}
+ENTRY=${ENTRY:gs/AUSTIN/[[Austin Kostelansky|Austin]]}
 #- CCAM - Projects / Pages
 
 # Spotify
