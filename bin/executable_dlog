@@ -135,6 +135,7 @@ ENTRY=${ENTRY:gs/SHAUN/[[Shaun Garwood|Shaun]]}
 ENTRY=${ENTRY:gs/JAREDS/[[Jared Stauffer|Jared S.]]}
 ENTRY=${ENTRY:gs/AUSTIN/[[Austin Kostelansky|Austin]]}
 #- CCAM - Projects / Pages
+ENTRY=${ENTRY:gs/CAMJAM/[[CamJam 2025|CamJam]]}
 
 # Spotify
 if [[ $ENTRY == *SONG* ]]; then

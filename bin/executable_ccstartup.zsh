@@ -24,13 +24,15 @@ APPS=(
   ####################
   /Applications/Safari.app
   /System/Applications/Messages.app
-  /Applications/Messenger.app
+  # /Applications/Messenger.app
   # /Applications/Discord.app
   /Applications/Telegram.app
   /Applications/Obsidian.app
   /Applications/Spotify.app
   /Applications/Slack.app
   /Applications/1Password.app
+  /Applications/Granola.app
+  /Applications/Visual Studio Code.app
 
   # /Applications/Google\ Chrome.app
   # See Below for opening Chrome with the correct profiles
