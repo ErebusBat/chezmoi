@@ -4,6 +4,11 @@ if [[ ! -x ~/bin/bin ]]; then
         exit 1
 fi
 {{ $filePath := joinPath .chezmoi.homeDir "/.config/bin/config.json" }}
+{{ if stat $filePath }}
 # Config HASH: {{ include $filePath | sha256sum }} ~/.config/bin/config.json
+{{ else }}
+# Config file {{ $filePath }} not found!
+# Script Generated On: {{ (now).Format "2006-01-02 15:04:05" }}
+{{ end }}
 cd ~
 ~/bin/bin ensure

@@ -14,11 +14,12 @@ windows:
         - ngrok start rails
     - shell_command:
         # - script/update
-        - echo rails s
+        - cocam up
     - shell_command:
-        - ":>log/development.log; script/log"
+        # - ":>log/development.log; tail -f log/development.log"
+        - dip compose logs -f rails
     - shell_command:
-        - echo rails c
+        - dip rails c
       focus: true
 - window_name: vim
   layout: d396,164x77,0,0[164x4,0,0,4,164x72,0,5,5]
