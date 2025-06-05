@@ -1,6 +1,6 @@
 ---
-GH_DEFAULT_ORG: tractionguest
-GH_DEFAULT_REPO: guest-server
+GH_DEFAULT_ORG: CompanyCam
+GH_DEFAULT_REPO: Company-Cam-API
 
 
 JIRA_PROJECT_SERVER_MAP:

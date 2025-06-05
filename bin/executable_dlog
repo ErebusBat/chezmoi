@@ -104,6 +104,7 @@ ENTRY=${ENTRY:gs/:taco:/🌮}
 #- Personal Metrics Tracking
 ENTRY=${ENTRY:gs/MEDITATE/🧠 Meditation}
 ENTRY=${ENTRY:s/CALL /☎ }
+ENTRY=${ENTRY:s/CAR /🚕 }
 ENTRY=${ENTRY:s/FEEL /🧠 }
 ENTRY=${ENTRY:s/FOOD /🍱 }
 ENTRY=${ENTRY:s/MED /💊 }    # :pill:
@@ -126,16 +127,18 @@ ENTRY=${ENTRY:gs/CCAM/[[CompanyCam]]}
 ENTRY=${ENTRY:gs/16MBP/[[CompanyCam 16\" MacBook Pro|CCAM-16MBP]]}
 ENTRY=${ENTRY:gs/PTEAM/[[CompanyCam Platform Team|Platform Team]]}
 #- CCAM - People
+ENTRY=${ENTRY:gs/AUSTIN/[[Austin Kostelansky|Austin]]}
 ENTRY=${ENTRY:gs/DUSTIN/[[Dustin Fisher|Dustin]]}
 ENTRY=${ENTRY:gs/GREG/[[Greg Brinker|Greg]]}
+ENTRY=${ENTRY:gs/JAREDS/[[Jared Stauffer|Jared S.]]}
 ENTRY=${ENTRY:gs/JASON/[[Jason Gaare|Jason]]}
 ENTRY=${ENTRY:gs/JOSE/[[Jose Cartagena|Jose]]}
 ENTRY=${ENTRY:gs/MUNYO/[[Munyo Frey|Munyo]]}
+ENTRY=${ENTRY:gs/REID/[[Reid Alt|Reid]]}
 ENTRY=${ENTRY:gs/SHAUN/[[Shaun Garwood|Shaun]]}
-ENTRY=${ENTRY:gs/JAREDS/[[Jared Stauffer|Jared S.]]}
-ENTRY=${ENTRY:gs/AUSTIN/[[Austin Kostelansky|Austin]]}
 #- CCAM - Projects / Pages
 ENTRY=${ENTRY:gs/CAMJAM/[[CamJam 2025|CamJam]]}
+ENTRY=${ENTRY:gs/TGMD/[[Jira Mark Down Link Tool|tgmd]]}
 
 # Spotify
 if [[ $ENTRY == *SONG* ]]; then
