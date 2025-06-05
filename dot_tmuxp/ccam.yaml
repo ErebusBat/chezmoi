@@ -13,11 +13,10 @@ windows:
         # - fetlife_web_background_tasks up
         - ngrok start rails
     - shell_command:
-        # - script/update
         - cocam up
     - shell_command:
         # - ":>log/development.log; tail -f log/development.log"
-        - dip compose logs -f rails
+        - dip compose logs -f rails --tail=100
     - shell_command:
         - dip rails c
       focus: true
