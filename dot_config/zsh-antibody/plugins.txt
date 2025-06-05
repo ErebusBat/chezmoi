@@ -14,7 +14,8 @@ ohmyzsh/ohmyzsh path:plugins/wd
 ~/.config/zsh-antibody/rbenv
 ~/.config/zsh-antibody/sign_in_solutions
 # ~/.config/zsh-antibody/powershell
-~/.config/zsh-antibody/flutter
+#~/.config/zsh-antibody/flutter
+~/.config/zsh-antibody/ccam
 
 # Rust package is REQUIRED if you are using starship_prompt below
 ~/.config/zsh-antibody/rust

@@ -48,7 +48,7 @@ cask "rectangle-pro"
 cask "tailscale"
 cask "todoist"
 cask "usb-overdrive"
-cask "xmind"
+# cask "xmind"
 
 brew "antidote"
 brew "assh"
@@ -128,6 +128,7 @@ cask "orbstack"
 cask "docker"   #-- Brew forumulas are barebones
 brew "docker"   #-- Casks are Docker Desktop
 brew "docker-compose"
+brew "libpq"    #-- Needed for RubyLSP in VSCode
 {{ end -}}
 
 {{ if eq .area.tractionguest true }}
