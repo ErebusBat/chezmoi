@@ -7,7 +7,10 @@ BUNDLE_RUBYGEMS__PKG__GITHUB__COM: "ErebusBat:{{- (gopassRaw "tguest/tokens" | m
 BUNDLE_GEMS__CONTRIBSYS__COM: "{{- (gopassRaw "tguest/tokens" | mustFromJson).CONTRIBSYS }}"
 {{ end }}
 {{- if eq .area.companycam true }}
+### - CompanyCam Start
 BUNDLE_GEMS__CONTRIBSYS__COM: "{{- (gopassRaw "ccam/tokens" | mustFromJson).CONTRIBSYS }}"
+BUNDLE_GEMS__GRAPHSQL__PRO: "{{- (gopassRaw "ccam/tokens" | mustFromJson).graphql }}"
+### - CompanyCam End
 {{ end }}
 
 BUNDLE_GEM__TEST: "rspec"
@@ -16,3 +19,5 @@ BUNDLE_GEM__MIT: "false"
 BUNDLE_GEM__COC: "false"
 BUNDLE_GEM__CHANGELOG: "true"
 BUNDLE_GEM__LINTER: "rubocop"
+
+# vim: set noai ts=4 sw=4 ft=gotextmpl:

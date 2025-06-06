@@ -224,7 +224,24 @@
             ]
         }
     ],
-    "rubyLsp.formatter": "syntax_tree",
+    "rubyLsp.rubyVersionManager": {
+        "identifier": "rbenv"
+    },
+    "rubyLsp.enabledFeatures": {
+        "codeActions": false,
+        "diagnostics": false,
+        "documentHighlights": true,
+        "documentLink": true,
+        "documentSymbols": true,
+        "foldingRanges": true,
+        "formatting": false,
+        "hover": true,
+        "inlayHint": true,
+        "onTypeFormatting": false,
+        "selectionRanges": true,
+        "semanticHighlighting": true,
+        "completion": true
+    },
     "git.enableSmartCommit": true,
     "restoreGitBranchTabs.delayUpdate": 5,
     "restoreGitBranchTabs.skipCommitsWithoutBranch": true,
@@ -233,7 +250,8 @@
     "ruby.specFocusTerminal": false,
     "editor.multiCursorModifier": "ctrlCmd",
     "[ruby]": {
-        "editor.defaultFormatter": "Shopify.ruby-lsp"
+        "editor.defaultFormatter": "testdouble.vscode-standard-ruby",
+        "editor.formatOnSave": true
     },
     "github.copilot.editor.enableAutoCompletions": true,
     "vscode-run-rspec-file.custom-command": "clear; bundle exec rspec --color -f d",
