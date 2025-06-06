@@ -251,14 +251,14 @@
     "editor.multiCursorModifier": "ctrlCmd",
     "[ruby]": {
         "editor.defaultFormatter": "testdouble.vscode-standard-ruby",
-        "editor.formatOnSave": true
+        "editor.formatOnSave": false
     },
     "github.copilot.editor.enableAutoCompletions": true,
     "vscode-run-rspec-file.custom-command": "clear; bundle exec rspec --color -f d",
     "zig.path": "zig",
     "zig.zls.path": "zls",
     "zig.initialSetupDone": true,
-    "editor.formatOnSave": true,
+    "editor.formatOnSave": false,
     "editor.formatOnPaste": true,
     "chat.editor.fontFamily": "Comic Code, Monaspace Neon,  Monaspace Neon, Menlo, Monaco, 'Courier New', monospace",
     "github.copilot.chat.scopeSelection": true,

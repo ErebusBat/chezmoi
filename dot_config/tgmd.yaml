@@ -5,8 +5,8 @@ GH_DEFAULT_REPO: Company-Cam-API
 
 JIRA_PROJECT_SERVER_MAP:
   tractionguest:
-    - SSTz
-  signinsolutions:
+    - SST
+  companycam:
     - "*"
 
 # Log Levels:
