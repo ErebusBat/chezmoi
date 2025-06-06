@@ -1,9 +1,14 @@
 ---
+{{- if eq .area.tractionguest true }}
 BUNDLE_RUBYGEMS__PKG__GITHUB__COM: "ErebusBat:{{- (gopassRaw "tguest/tokens" | mustFromJson).github }}"
 
 # To add this (for others) run:
 #  bundle config set --global gems.contribsys.com {{- (gopassRaw "tguest/tokens" | mustFromJson).CONTRIBSYS }}
 BUNDLE_GEMS__CONTRIBSYS__COM: "{{- (gopassRaw "tguest/tokens" | mustFromJson).CONTRIBSYS }}"
+{{ end }}
+{{- if eq .area.companycam true }}
+BUNDLE_GEMS__CONTRIBSYS__COM: "{{- (gopassRaw "ccam/tokens" | mustFromJson).CONTRIBSYS }}"
+{{ end }}
 
 BUNDLE_GEM__TEST: "rspec"
 BUNDLE_GEM__CI: "circle"

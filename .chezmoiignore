@@ -35,7 +35,6 @@ Library/Application Support/ngrok/ngrok.yml
 
 {{- if not .area.tractionguest }}
 src/sie/**
-.bundle/config
 .config/nvim/spell/tractionguest.*
 .config/systemd/user/restic-tguest.*
 .npmrc

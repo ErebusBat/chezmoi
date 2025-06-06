@@ -7,4 +7,3 @@ if [[ ! -x $LIBPQ_BIN/psql ]]; then
 fi
 
 export PATH=$PATH:$LIBPQ_BIN
-echo "--- Added $LIBPQ_BIN to PATH"
