@@ -32,6 +32,7 @@ APPS=(
   /Applications/Slack.app
   /Applications/1Password.app
   /Applications/Granola.app
+  /Applications/Docker.app
   /Applications/Visual\ Studio\ Code.app
 
   # /Applications/Google\ Chrome.app
