@@ -62,6 +62,7 @@ $HOME/.npm/**
 $HOME/.orbstack/**
 $HOME/.pub-cache/**
 $HOME/.pwall
+$HOME/.rbenv/
 $HOME/.rustup/**
 $HOME/.steam/debian-installation/**
 $HOME/.var
@@ -86,6 +87,7 @@ $HOME/Pictures/Photo Booth Library
 $HOME/Pictures/Photos Library.photoslibrary
 $HOME/Slack/logs/**
 $HOME/snap/wickrme
+$HOME/src/ccam/
 $HOME/src/**/tmp/**
 $HOME/src/erebusbat/bat-time
 $HOME/src/erebusbat/dotfiles-stow/
@@ -96,6 +98,7 @@ $HOME/src/erebusbat/image-marker/**/*.png
 $HOME/src/erebusbat/image-marker/**/*.zip
 $HOME/src/erebusbat/image-marker/dist
 $HOME/src/erebusbat/image-marker/imgs/**
+$HOME/src/erebusbat/myserver/backrest/backrest/
 $HOME/src/erebusbat/myserver/syncthing/config
 $HOME/src/erebusbat/nebula/ca-batcavern/
 $HOME/src/erebusbat/pchef76/local-mode-cache/**
@@ -142,6 +145,8 @@ $HOME/Documents/DownloadsToKeep/Apps/**
 $HOME/Documents/DownloadsToKeep/MIA Prom
 $HOME/Documents/DownloadsToKeep/amiga/**
 $HOME/Documents/DownloadsToKeep/roms
+$HOME/Documents/Library/0-9/3d Models/**
+$HOME/Documents/Library/E/Elections/**
 # $HOME/Documents/Obsidian/Journal/**
 # $HOME/Documents/Obsidian/vimwiki/**
 
@@ -159,11 +164,20 @@ $HOME/Library/Application Support/CloudDocs
 $HOME/Library/Application Support/Code/Cache*
 $HOME/Library/Application Support/Code/Crashpad
 $HOME/Library/Application Support/Code/History
-$HOME/Library/Application Support/Code/User/globalStorage
 $HOME/Library/Application Support/Code/logs
+$HOME/Library/Application Support/Code/User/globalStorage
+$HOME/Library/Application Support/com.apple.ap.promotedcontentd/**
+$HOME/Library/Application Support/com.apple.ap.sbd/**
+$HOME/Library/Application Support/com.apple.avfoundation/**
+$HOME/Library/Application Support/com.apple.sharedfilelist/**
+$HOME/Library/Application Support/com.apple.spotlight/**
+$HOME/Library/Application Support/com.apple.TCC/**
+$HOME/Library/Application Support/com.bugsnag.Bugsnag/**
+$HOME/Library/Application Support/com.facebook.archon.developerID/RCTAsyncLocalStorage_V1
 $HOME/Library/Application Support/CrashReporter/**
 $HOME/Library/Application Support/Dash
 $HOME/Library/Application Support/DifferentialPrivacy
+$HOME/Library/Application Support/discord/**
 $HOME/Library/Application Support/Docker Desktop/**
 $HOME/Library/Application Support/Drop Keyboard Configurator/Singleton*
 $HOME/Library/Application Support/Dropbox/**
@@ -182,12 +196,25 @@ $HOME/Library/Application Support/GIMP/**
 $HOME/Library/Application Support/Google/Chrome/**
 $HOME/Library/Application Support/Google/DriveFS
 $HOME/Library/Application Support/Hazel/*.hazellock
+$HOME/Library/Application Support/iCloud/**
+$HOME/Library/Application Support/iMazing/Backups/**
+$HOME/Library/Application Support/iMazing/Emojis
 $HOME/Library/Application Support/Knowledge/**
 $HOME/Library/Application Support/Messenger/**
 $HOME/Library/Application Support/Microsoft/Teams/**
 $HOME/Library/Application Support/MobileSync/**
 $HOME/Library/Application Support/OBSBOT_WebCam/profiler/**
 $HOME/Library/Application Support/OBSBOT_WebCam/webcamLogs/**
+$HOME/Library/Application Support/obsidian/*Cache/**
+$HOME/Library/Application Support/obsidian/blob_storage/**
+$HOME/Library/Application Support/obsidian/IndexedDB/**
+$HOME/Library/Application Support/obsidian/Local Storage/**
+$HOME/Library/Application Support/obsidian/obsidian.log
+$HOME/Library/Application Support/obsidian/Service Worker/**
+$HOME/Library/Application Support/obsidian/Session Storage/**
+$HOME/Library/Application Support/obsidian/Singleton*/**
+$HOME/Library/Application Support/obsidian/Web Storage/**
+$HOME/Library/Application Support/obsidian/WebStorage/**
 $HOME/Library/Application Support/Plexamp/**
 $HOME/Library/Application Support/Postman/Crashpad/**
 $HOME/Library/Application Support/Postman/logs/**
@@ -198,28 +225,6 @@ $HOME/Library/Application Support/SyncServices/**
 $HOME/Library/Application Support/Syncthing/*.db
 $HOME/Library/Application Support/Telegram Desktop
 $HOME/Library/Application Support/Todoist/**
-$HOME/Library/Application Support/com.apple.TCC/**
-$HOME/Library/Application Support/com.apple.ap.promotedcontentd/**
-$HOME/Library/Application Support/com.apple.ap.sbd/**
-$HOME/Library/Application Support/com.apple.avfoundation/**
-$HOME/Library/Application Support/com.apple.sharedfilelist/**
-$HOME/Library/Application Support/com.apple.spotlight/**
-$HOME/Library/Application Support/com.bugsnag.Bugsnag/**
-$HOME/Library/Application Support/com.facebook.archon.developerID/RCTAsyncLocalStorage_V1
-$HOME/Library/Application Support/discord/**
-$HOME/Library/Application Support/iCloud/**
-$HOME/Library/Application Support/iMazing/Backups/**
-$HOME/Library/Application Support/iMazing/Emojis
-$HOME/Library/Application Support/obsidian/*Cache/**
-$HOME/Library/Application Support/obsidian/IndexedDB/**
-$HOME/Library/Application Support/obsidian/Local Storage/**
-$HOME/Library/Application Support/obsidian/Service Worker/**
-$HOME/Library/Application Support/obsidian/Session Storage/**
-$HOME/Library/Application Support/obsidian/Singleton*/**
-$HOME/Library/Application Support/obsidian/Web Storage/**
-$HOME/Library/Application Support/obsidian/WebStorage/**
-$HOME/Library/Application Support/obsidian/blob_storage/**
-$HOME/Library/Application Support/obsidian/obsidian.log
 $HOME/Library/Application Support/zoom.us/**
 $HOME/Library/Assistant/**
 $HOME/Library/Autosave Information/**
@@ -227,6 +232,8 @@ $HOME/Library/Biome/**
 $HOME/Library/Calendars/**
 $HOME/Library/CloudStorage/Dropbox/**
 $HOME/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/My Drive/Casamia Lease Agreement*
+$HOME/Library/com.apple.aiml.instrumentation/**
+$HOME/Library/com.apple.icloud.searchpartyd/**
 $HOME/Library/ContainerManager/**
 $HOME/Library/Containers/**
 $HOME/Library/Cookies/**
@@ -239,8 +246,8 @@ $HOME/Library/Google/GoogleSoftwareUpdate/**
 $HOME/Library/Google/GoogleSoftwareUpdate/Stats/**
 $HOME/Library/Group Containers/**
 $HOME/Library/Group Containers/group.com.apple.secure-control-center-preferences/**
-$HOME/Library/HTTPStorages/**
 $HOME/Library/HomeKit/**
+$HOME/Library/HTTPStorages/**
 $HOME/Library/IdentityService/**
 $HOME/Library/IdentityServices/**
 $HOME/Library/IntelligencePlatform/**
@@ -251,15 +258,16 @@ $HOME/Library/Mail/**
 $HOME/Library/Messages/**
 $HOME/Library/Messages/*Cache/**
 $HOME/Library/Metadata/**
+$HOME/Library/Mobile Documents/**
 $HOME/Library/News/**
 $HOME/Library/PersonalizationPortrait/**
 $HOME/Library/Photos/Libraries/Syndication.photoslibrary/**
 $HOME/Library/Preferences/com.apple.AddressBook.plist
-$HOME/Library/Preferences/com.apple.MobileSMS*.*
 $HOME/Library/Preferences/com.apple.homed.notbackedup.plist
 $HOME/Library/Preferences/com.apple.homed.plist
 $HOME/Library/Preferences/com.apple.mail-shared.plist
 $HOME/Library/Preferences/com.apple.messages.pinning.plist
+$HOME/Library/Preferences/com.apple.MobileSMS*.*
 $HOME/Library/QuickLook/**
 $HOME/Library/Reminders/**
 $HOME/Library/ResponseKit/**
@@ -273,9 +281,6 @@ $HOME/Library/Translation/**
 $HOME/Library/Trial/**
 $HOME/Library/Weather/**
 $HOME/Library/WebKit/**
-$HOME/Library/Webkit/**
-$HOME/Library/com.apple.aiml.instrumentation/**
-$HOME/Library/com.apple.icloud.searchpartyd/**
 $HOME/Movies/**
 $HOME/Music/Music/**
 $HOME/Pictures/Photos Library.photoslibrary/private/com.apple.mediaanalysisd/**

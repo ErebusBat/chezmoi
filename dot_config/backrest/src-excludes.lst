@@ -17,8 +17,14 @@ $HOME/src/vendor/zig/**
 
 # Large / Protected directories to exclude
 $HOME/src/erebusbat/dotfiles-stow/fetlife/src/fetlife/docker_dev/snapshot-*.tar.gz
+$HOME/src/erebusbat/image-marker/**/*.jpeg
+$HOME/src/erebusbat/image-marker/**/*.jpg
+$HOME/src/erebusbat/image-marker/**/*.png
+$HOME/src/erebusbat/image-marker/**/*.zip
+$HOME/src/erebusbat/image-marker/dist
 $HOME/src/erebusbat/image-marker/imgs/**
 $HOME/src/erebusbat/marker/**/*.jpg
+$HOME/src/erebusbat/myserver/backrest/backrest/
 $HOME/src/erebusbat/myserver/syncthing/config/
 $HOME/src/erebusbat/nebula/ca-batcavern/
 $HOME/src/erebusbat/pchef76/.chef/
