@@ -19,6 +19,7 @@ REPO_URLS[sis_rsyncnet]="sftp://rsyncnet/restic/sis"
 REPO_URLS[sis_freenas]="s3:http://nas.erebusbat.net:9000/restic/backrest/sis"
 REPO_URLS[erebusbat_sis_latop_last]="/Volumes/SeaBack/erebusbat_sis_latop_last/sie_mbp/"
 REPO_URLS[erebusbat_sis_latop_last_rsyncnet]="sftp://rsyncnet/restic/erebusbat_sis_latop_last"
+REPO_URLS[ccam_te]="/tmp/restic_test"
 
 #########################################################################
 # Console Helpers / Logging
@@ -68,6 +69,9 @@ cont "RESIIC_REPOSITORY=$RESTIC_REPOSITORY"
 info "Setting Repo Password File"
 if [[ $REPO == sis_* ]]; then
   export RESTIC_PASSWORD_FILE=~/.restic/.traction_guest.key
+fi
+if [[ $REPO == ccam_* ]]; then
+  export RESTIC_PASSWORD_FILE=~/.restic/.companycam.key
 fi
 # if [[ $REPO == sis_last_snapshot ]]; then
 #   warn "REPO is $REPO but it actually uses the erebusbat key file!"
