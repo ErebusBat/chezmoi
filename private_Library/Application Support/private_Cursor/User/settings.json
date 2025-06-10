@@ -267,5 +267,8 @@
     "github.copilot.chat.editor.temporalContext.enabled": true,
     "gitlens.ai.model": "vscode",
     "gitlens.ai.vscode.model": "copilot:gpt-4o",
-    "solargraph.commandPath": "/Users/aburns/.rbenv/shims/bundle"
+    "solargraph.commandPath": "/Users/aburns/.rbenv/shims/bundle",
+    "editor.minimap.sectionHeaderFontSize": 14,
+    "debug.console.fontSize": 14,
+    "chat.editor.fontSize": 14
 }
