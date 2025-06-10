@@ -136,6 +136,7 @@ ENTRY=${ENTRY:gs/JOSE/[[Jose Cartagena|Jose]]}
 ENTRY=${ENTRY:gs/MUNYO/[[Munyo Frey|Munyo]]}
 ENTRY=${ENTRY:gs/REID/[[Reid Alt|Reid]]}
 ENTRY=${ENTRY:gs/SHAUN/[[Shaun Garwood|Shaun]]}
+ENTRY=${ENTRY:gs/SILVIA/[[Silvia Marmol|Silvia]]}
 #- CCAM - Projects / Pages
 ENTRY=${ENTRY:gs/CAMJAM/[[CamJam 2025|CamJam]]}
 ENTRY=${ENTRY:gs/TGMD/[[Jira Mark Down Link Tool|tgmd]]}
