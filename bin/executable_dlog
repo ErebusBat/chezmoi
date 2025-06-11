@@ -134,6 +134,7 @@ ENTRY=${ENTRY:gs/JAREDS/[[Jared Stauffer|Jared S.]]}
 ENTRY=${ENTRY:gs/JASON/[[Jason Gaare|Jason]]}
 ENTRY=${ENTRY:gs/JOSE/[[Jose Cartagena|Jose]]}
 ENTRY=${ENTRY:gs/MUNYO/[[Munyo Frey|Munyo]]}
+ENTRY=${ENTRY:gs/RACHEL/[[Rachel Bryant|Rachel]]}
 ENTRY=${ENTRY:gs/REID/[[Reid Alt|Reid]]}
 ENTRY=${ENTRY:gs/SHAUN/[[Shaun Garwood|Shaun]]}
 ENTRY=${ENTRY:gs/SILVIA/[[Silvia Marmol|Silvia]]}
