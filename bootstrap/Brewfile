@@ -1,0 +1,20 @@
+################################################################################
+# Mandatory Items
+################################################################################
+brew "chezmoi"
+brew "git"
+brew "gopass"
+brew "starship"
+cask "1password"
+cask "1password-cli"
+
+################################################################################
+# Optional / Helpers
+################################################################################
+cask "alfred"
+cask "contexts"
+cask "ghostty"      # Technically speaking this isn't mandatory,
+                    # but the sooner we can get into our terminal
+                    # of choice the better
+cask "rectangle-pro"
+brew "syncthing", restart_service: :changed
