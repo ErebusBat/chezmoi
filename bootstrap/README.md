@@ -61,9 +61,9 @@ Prompt config.  It is MUCH easier if this is installed prior to chezmoi setting 
 Secret and license management.  Holds the secret key for gopass.
 
 Also holds software licences for:
-	- [Alfred](https://start.1password.com/open/i?a=O7M3LWL5XZGTZMFHHHVFNNVDL4&v=xdfwrvbi25frrfxyxeyfl66wpe&i=7b2qj7h4vernkp4vxgwdq5jtki&h=erebusbat.1password.com)
-	- [Contexts 3](https://start.1password.com/open/i?a=O7M3LWL5XZGTZMFHHHVFNNVDL4&v=xdfwrvbi25frrfxyxeyfl66wpe&i=ettkpqbvtngvbjxuwuaxsda7nu&h=erebusbat.1password.com)
-	- [Rectangle Pro](https://start.1password.com/open/i?a=O7M3LWL5XZGTZMFHHHVFNNVDL4&v=xdfwrvbi25frrfxyxeyfl66wpe&i=isl2d3qxvyfbhizgok23nl6sge&h=erebusbat.1password.com)
+- [Alfred](https://start.1password.com/open/i?a=O7M3LWL5XZGTZMFHHHVFNNVDL4&v=xdfwrvbi25frrfxyxeyfl66wpe&i=7b2qj7h4vernkp4vxgwdq5jtki&h=erebusbat.1password.com)
+- [Contexts 3](https://start.1password.com/open/i?a=O7M3LWL5XZGTZMFHHHVFNNVDL4&v=xdfwrvbi25frrfxyxeyfl66wpe&i=ettkpqbvtngvbjxuwuaxsda7nu&h=erebusbat.1password.com)
+- [Rectangle Pro](https://start.1password.com/open/i?a=O7M3LWL5XZGTZMFHHHVFNNVDL4&v=xdfwrvbi25frrfxyxeyfl66wpe&i=isl2d3qxvyfbhizgok23nl6sge&h=erebusbat.1password.com)
 
 # Optional Items
 These items are not strictly speaking needed to bootstrap a machine; however they do help greatly when standing up a new machine.
