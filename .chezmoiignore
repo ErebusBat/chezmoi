@@ -39,6 +39,7 @@ src/sie/**
 .config/systemd/user/restic-tguest.*
 .npmrc
 .restic/.traction_guest.key
+.ssh/assh.d/sie.yml
 .ssh/assh.d/tractionguest.yml
 .tmuxp/guest-server.yaml
 .tmuxp/sis-jwt.yaml
