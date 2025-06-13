@@ -45,5 +45,9 @@ for ext in $FILE_TYPES_TO_MOVE; do
   fi
   echo "\n"
 done
-exit 0
+
+echo "--------------------------------------------------------------------------------"
+echo "-- Files in paperless_consume folder:"
+echo "--------------------------------------------------------------------------------"
+ls -l ${CONSUME_FOLDER}
 
