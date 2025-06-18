@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# Get the diff between current branch and master
+diff_output=$(git diff --no-ext-diff --no-color origin/master..HEAD)
+
+# Format the output with clear file separators
+formatted_output=""
+
+# Process the diff output to extract file names and changes
+current_file=""
+file_changes=""
+
+while IFS= read -r line; do
+    if [[ $line == "diff --git"* ]]; then
+        # If we have accumulated changes for a file, add them to output
+        if [[ -n $current_file && -n $file_changes ]]; then
+            formatted_output+="File: $current_file"$'\n'
+            formatted_output+="$file_changes"$'\n\n'
+            formatted_output+="=====================================\n\n"
+        fi
+
+        # Extract the file name from the diff header
+        current_file=$(echo "$line" | sed -E 's/diff --git a\/(.*) b\/.*/\1/')
+        file_changes=""
+    elif [[ $line == "@@"* ]]; then
+        # Add the hunk header
+        file_changes+="$line"$'\n'
+    elif [[ $line == "+"* ]] || [[ $line == "-"* ]]; then
+        # Add only the actual changes (additions and deletions)
+        file_changes+="$line"$'\n'
+    fi
+done <<< "$diff_output"
+
+# Don't forget the last file
+if [[ -n $current_file && -n $file_changes ]]; then
+    formatted_output+="File: $current_file"$'\n'
+    formatted_output+="$file_changes"$'\n\n'
+    formatted_output+="=====================================\n\n"
+fi
+
+# Copy to clipboard (macOS only)
+echo -n "$formatted_output" | pbcopy
+pbpaste
+echo "Git diff copied to clipboard!"
