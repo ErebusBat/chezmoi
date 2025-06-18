@@ -40,5 +40,4 @@ fi
 
 # Copy to clipboard (macOS only)
 echo -n "$formatted_output" | pbcopy
-pbpaste
-echo "Git diff copied to clipboard!"
+echo "Git diff (${#formatted_output} bytes) copied to clipboard!"
