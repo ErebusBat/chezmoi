@@ -2,6 +2,7 @@ antibody:~/.config/zsh-antibody
 aoc:~/src/erebusbat/aoc/2023
 backrest:~/.config/backrest
 beszel:~/src/erebusbat/myserver/beszel-agent/macOS
+blinc:~/src/ccam/blinc
 ccapi:~/src/ccam/api
 chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy
@@ -17,6 +18,7 @@ hassio:~/src/erebusbat/hassio
 image-marker:~/src/erebusbat/image-marker
 itunes_lib:~/Music/Music/Media.localized/Music
 journal:~/Documents/Journal
+k2he:~/src/erebusbat/qmk_firmware/keyboards/keychron/k2_he/ansi_rgb
 launch_agents:~/Library/LaunchAgents
 library:~/Documents/Library
 linuxserver.io:~/src/pers/linuxserver.io
@@ -26,6 +28,7 @@ mmm:~/src/erebusbat/myserver/mmm
 myserver:~/src/erebusbat/myserver
 nebula:~/src/erebusbat/nebula/ca-batcavern
 pchef:~/src/erebusbat/pchef76
+qmk:~/src/erebusbat/qmk_firmware
 restic:~/.restic
 sessions-vim:~/.local/share/tickets-vim
 snippets:~/.config/ulauncher/snippets
