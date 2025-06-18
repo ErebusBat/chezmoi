@@ -123,9 +123,9 @@ ENTRY=${ENTRY:gs/MAZE/[[IntelNUC 2 - Maze|Maze]]}
 ENTRY=${ENTRY:gs/SHOWER/🚿 Shower}
 ENTRY=${ENTRY:gs/THELIO/[[System76 Thelio Deskop|Thelio]]}
 #- CCAM - Entities
+ENTRY=${ENTRY:gs/CCAM/[[CompanyCam]]}
 ENTRY=${ENTRY:gs/16MBP/[[CompanyCam 16\" MacBook Pro|CCAM-16MBP]]}
 ENTRY=${ENTRY:gs/BLINC/[[Blinc Improvements Jun 2025|Blinc Improvements]]}
-ENTRY=${ENTRY:gs/CCAM/[[CompanyCam]]}
 ENTRY=${ENTRY:gs/PTEAM/[[CompanyCam Platform Team|Platform Team]]}
 #- CCAM - People
 ENTRY=${ENTRY:gs/AUSTIN/[[Austin Kostelansky|Austin]]}
