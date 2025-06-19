@@ -1,6 +1,6 @@
 #!/bin/zsh
 setopt +o nomatch
-SOURCE_FOLDER=$HOME/Downloads/to_paperless
+SOURCE_FOLDER=$HOME/Downloads/to_paperless/home
 CONSUME_FOLDER=/Volumes/paperless_consume
 CONSUME_REMOTE_PATH=smb://nas.erebusbat.net/paperless_consume
 
