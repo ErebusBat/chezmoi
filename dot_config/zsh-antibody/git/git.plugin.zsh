@@ -12,6 +12,8 @@ alias gpp='git pull --prune'
 alias gfo='git fetch origin'
 alias gcv='git commit -v'
 alias gcva='git commit -v --amend'
+alias gcvt='git commit -vt .git/COMMIT_EDITMSG.claude'
+alias gcvta='git commit -vt --amend .git/COMMIT_EDITMSG.claude'
 
 # Git Quick Save
 alias gqs='git add -Av $(git rev-parse --show-toplevel || echo ".") && git commit'
