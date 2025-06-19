@@ -7,7 +7,7 @@ if [[ $1 -gt 0 ]]; then
 fi
 
 # Setup paths, support known locations for vault root
-LOGS_PATH="tguest/logs/$(date +%Y/%m-%b)"
+LOGS_PATH="logs/$(date +%Y/%m-%b)"
 FILE_NAME="$(date +%F-%a).md"
 WIKI_ROOT_PATHS=(
   ~/Documents/Obsidian/vimwiki   # Mac
@@ -36,9 +36,9 @@ if [[ $WATCH -gt 0 ]]; then clear; fi
 
 echo "${FULL_FILE_PATH}"
 if [[ -x $(which glow) ]]; then
-  grep '^## Log' -A50 $FULL_FILE_PATH | glow --style ~/.config/dlog/glow.json
+  grep '^# Log' -A50 $FULL_FILE_PATH | glow --style ~/.config/dlog/glow.json
 else
-  grep '^## Log' -A50 $FULL_FILE_PATH
+  grep '^# Log' -A50 $FULL_FILE_PATH
 fi
 
 if [[ $WATCH -le 0 ]]; then
