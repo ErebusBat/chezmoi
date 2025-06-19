@@ -270,5 +270,6 @@
     "solargraph.commandPath": "/Users/aburns/.rbenv/shims/bundle",
     "editor.minimap.sectionHeaderFontSize": 14,
     "debug.console.fontSize": 14,
-    "chat.editor.fontSize": 14
+    "chat.editor.fontSize": 14,
+    "cursor.composer.textSizeScale": 1.3
 }
