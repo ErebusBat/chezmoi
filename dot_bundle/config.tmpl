@@ -15,7 +15,7 @@ BUNDLE_GEMS__CONTRIBSYS__COM: "{{- (gopassRaw "ccam/tokens" | mustFromJson).CONT
 
 # GraphQL Pro
 #   bundle config set --global gems.graphql.pro {{ (gopassRaw "ccam/tokens" | mustFromJson).graphql }}
-BUNDLE_GEMS__GRAPHSQL__PRO: "{{- (gopassRaw "ccam/tokens" | mustFromJson).graphql }}"
+BUNDLE_GEMS__GRAPHQL__PRO: "{{- (gopassRaw "ccam/tokens" | mustFromJson).graphql }}"
 ### - CompanyCam End
 {{ end }}
 
