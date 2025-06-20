@@ -112,7 +112,11 @@ if [[ -x $(which assh) ]]; then
 fi
 
 if [[ -d ~/.local/bin ]]; then
-  export PATH=$PATH:$HOME/.local/bin
+  if [[ -f ~/.local/bin/env ]] then
+    . ~/.local/bin/env
+  else
+    export PATH=$PATH:$HOME/.local/bin
+  fi
 fi
 
 ################################################################################
