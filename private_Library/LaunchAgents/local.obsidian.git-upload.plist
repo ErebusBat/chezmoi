@@ -8,7 +8,7 @@
 	<array>
 		<string>/usr/local/bin/fdautil</string>
 		<string>exec</string>
-		<string>/Users/andrew.burns/Documents/Obsidian/vimwiki/.git_upload</string>
+		<string>/Users/aburns/Documents/Obsidian/vimwiki/.git_upload</string>
 	</array>
 	<key>RunAtLoad</key>
 	<false/>
