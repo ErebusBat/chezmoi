@@ -4,146 +4,162 @@
         "/home/aburns/bin/assh": {
             "path": "/home/aburns/bin/assh",
             "remote_name": "assh",
-            "version": "v2.15.0",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/moul/assh",
+            "version": "v2.16.0",
+            "hash": "9834f4e2aa5ffef53f0d4c32e890205b39301d60d96ea810239acf39a7da08b5",
+            "url": "https://github.com/moul/assh/releases/tag/v2.16.0",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/bin": {
             "path": "/home/aburns/bin/bin",
-            "remote_name": "bin",
-            "version": "v0.16.2",
-            "hash": "",
-            "url": "https://github.com/marcosnils/bin/releases/tag/v0.16.2",
+            "remote_name": "bin_0.21.2_linux_amd64",
+            "version": "v0.21.2",
+            "hash": "33cb0c85c0d9366460dd31967a6720a5416a4785efcd1b8232ef8b96b8f7a6f2",
+            "url": "https://github.com/marcosnils/bin/releases/tag/v0.21.2",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/btop": {
             "path": "/home/aburns/bin/btop",
             "remote_name": "btop",
-            "version": "v1.2.13",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/aristocratos/btop",
+            "version": "v1.4.3",
+            "hash": "c5223297d64bc73a917e87fe51138066d9d074f0acf2bd2aa87f172107d3560c",
+            "url": "https://github.com/aristocratos/btop/releases/tag/v1.4.3",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/chezmoi": {
             "path": "/home/aburns/bin/chezmoi",
-            "remote_name": "chezmoi",
-            "version": "v2.33.6",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.33.6",
+            "remote_name": "chezmoi-linux-amd64",
+            "version": "v2.62.7",
+            "hash": "2992e8458f89511cbc3bd6fe47d712d133222de1d0163122b6670f9b17f0bff2",
+            "url": "https://github.com/twpayne/chezmoi/releases/tag/v2.62.7",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/delta": {
             "path": "/home/aburns/bin/delta",
             "remote_name": "delta",
-            "version": "0.15.1",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/dandavison/delta",
+            "version": "0.18.2",
+            "hash": "fad23fba816fec22fc808717a2b4e149d2651e76491f8dd020b4b82d7829a9da",
+            "url": "https://github.com/dandavison/delta/releases/tag/0.18.2",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/duf": {
             "path": "/home/aburns/bin/duf",
             "remote_name": "duf",
             "version": "v0.8.1",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hash": "b76da75e64f6dcc1dc7c510b39aa3ada80f843df2e718033b9c4478a5a2abe8b",
             "url": "github.com/muesli/duf",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/dust": {
             "path": "/home/aburns/bin/dust",
             "remote_name": "dust",
             "version": "v0.8.6",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hash": "74574a154f9148d98a2c9be37e3c6e38a45672508d5798ae443db86b3d745026",
             "url": "https://github.com/bootandy/dust/releases/tag/v0.8.6",
             "provider": "",
-            "package_path": "dust-v0.8.6-x86_64-unknown-linux-gnu/dust"
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/exa": {
             "path": "/home/aburns/bin/exa",
             "remote_name": "exa",
             "version": "v0.10.1",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hash": "5c54864598586e0b9a633f5b657420b47fe764a43e43aceb9afdfa71caf531b9",
             "url": "github.com/ogham/exa",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/fd": {
             "path": "/home/aburns/bin/fd",
             "remote_name": "fd",
             "version": "v8.7.0",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hash": "e0184c2c349c65613cd05a18515015c3c6cfd8dc2d65cc31c3c256944d66afe2",
             "url": "https://github.com/sharkdp/fd/releases/tag/v8.7.0",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/fzf": {
             "path": "/home/aburns/bin/fzf",
             "remote_name": "fzf",
-            "version": "0.40.0",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/junegunn/fzf/releases/tag/0.40.0",
+            "version": "v0.62.0",
+            "hash": "dd2ffc3e2f58d107cb0eb975bbf849731dc51fa240d720bcf84200a3d16306ea",
+            "url": "https://github.com/junegunn/fzf/releases/tag/v0.62.0",
             "provider": "",
-            "package_path": "fzf"
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/jq": {
             "path": "/home/aburns/bin/jq",
-            "remote_name": "jq",
+            "remote_name": "jq-linux64",
             "version": "jq-1.6",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hash": "af986793a515d500ab2d35f8d2aecd656e764504b789b66d7e1a0b727a124c44",
             "url": "github.com/stedolan/jq",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/lazydocker": {
             "path": "/home/aburns/bin/lazydocker",
             "remote_name": "lazydocker",
-            "version": "v0.20.0",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/jesseduffield/lazydocker",
+            "version": "v0.24.1",
+            "hash": "20486dd92005e47f8709b8e5d7ab288e7e597303208189799f52351a554f4daa",
+            "url": "https://github.com/jesseduffield/lazydocker/releases/tag/v0.24.1",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/lazygit": {
             "path": "/home/aburns/bin/lazygit",
             "remote_name": "lazygit",
             "version": "v0.38.2",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hash": "f2cb242194994758f5185955ea0bef8364844536bcf2ea55e5caceb6adb7c337",
             "url": "https://github.com/jesseduffield/lazygit/releases/tag/v0.38.2",
             "provider": "",
-            "package_path": "lazygit"
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/restic": {
             "path": "/home/aburns/bin/restic",
             "remote_name": "",
-            "version": "v0.15.2",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/restic/restic/releases/tag/v0.15.2",
+            "version": "v0.18.0",
+            "hash": "a77b8f59af4da23256edf1f768bc363c224b259082da8f6cc7fc7913535626d3",
+            "url": "https://github.com/restic/restic/releases/tag/v0.18.0",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/rg": {
             "path": "/home/aburns/bin/rg",
             "remote_name": "rg",
-            "version": "13.0.0",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "github.com/burntsushi/ripgrep",
+            "version": "14.1.1",
+            "hash": "f401154e2393f9002ac77e419f9ee5521c18f4f8cd3e32293972f493ba06fce7",
+            "url": "https://github.com/BurntSushi/ripgrep/releases/tag/14.1.1",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         },
         "/home/aburns/bin/spt": {
             "path": "/home/aburns/bin/spt",
             "remote_name": "spt",
             "version": "v0.25.0",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "hash": "b1df994b2edb12f5ae43af065345c43a356ebc14840c5f6b67c6490ee53ebcee",
             "url": "github.com/Rigellute/spotify-tui",
             "provider": "",
-            "package_path": ""
+            "package_path": "",
+            "pinned": false
         }
     }
 }
