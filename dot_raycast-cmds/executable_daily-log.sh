@@ -3,11 +3,11 @@
 # Required parameters:
 # @raycast.schemaVersion 1
 # @raycast.title Daily Log
-# @raycast.mode compact
+# @raycast.mode silent
 
 # Optional parameters:
 # @raycast.icon 🤖
-# @raycast.argument1 { "type": "text", "placeholder": "Placeholder" }
+# @raycast.argument1 { "type": "text", "placeholder": "Entry Text" }
 # @raycast.packageName ErebusBat
 
 # Documentation:

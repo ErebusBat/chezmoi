@@ -89,6 +89,7 @@ bin/pbpaste
 Brewfile
 Library/LaunchAgents/
 Library/Application Support/
+.raycast-cmds
 {{- end }}
 
 {{- if ne .chezmoi.os "linux" }}
