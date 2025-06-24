@@ -47,6 +47,7 @@ src/sie/**
 bin/tgtmux.zsh
 bin/tgstartup.sh
 bin/sierg
+Library/LaunchAgents/local.restart-orbstack.plist
 {{- end }}
 
 {{- if not .area.personal }}
@@ -58,7 +59,14 @@ bin/sierg
 .tmuxp/hassio.yaml
 .tmuxp/system.yaml
 bin/ptmux.zsh
+Library/LaunchAgents/local.restart-orbstack.plist
 {{- end }}
+
+# ignore these LaunchAgents, for now
+Library/LaunchAgents/local.bezsel-agent.plist
+Library/LaunchAgents/local.chezmoi-sync.plist
+Library/LaunchAgents/local.erebusbat.vimwiki-gitupload.plist
+Library/LaunchAgents/local.sie.gitlab-push.plist
 
 {{- if not .area.server }}
 .tmuxp/left.yaml
