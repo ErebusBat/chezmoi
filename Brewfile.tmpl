@@ -24,6 +24,20 @@ cask "tad"
 cask "visual-studio-code"
 
 ################################################################################
+# Essentials
+################################################################################
+# cask "obsidian" # Need to install this prior to homebrew for notes so having it here messes things up
+#--- Launcher + dependencies
+# cask "alfred"
+cask "raycast"
+brew "blueutil" # Needed by toothpick Raycast Extension
+#--- Other Utils
+cask "contexts"
+cask "rectangle-pro"
+cask "tailscale"
+cask "usb-overdrive"
+
+################################################################################
 # System Utilities / Essentials
 ################################################################################
 #cask "obsidian" # Need to install this prior to homebrew for notes so having it here messes things up
@@ -36,20 +50,14 @@ cask "ghostty"
 cask "google-chrome"
 cask "firefox"
 # System Utilities
-# cask "alfred"
-cask "raycast"
 cask "balenaetcher"
 cask "caffeine"
-cask "chatgpt"
+# cask "chatgpt"
 cask "chronycontrol"
-cask "contexts"
 #cask "dropbox"
 cask "fantastical"
 cask "launchcontrol"
-cask "rectangle-pro"
-cask "tailscale"
 cask "todoist"
-cask "usb-overdrive"
 # cask "xmind"
 
 brew "antidote"
@@ -130,8 +138,8 @@ cask "orbstack"
 #+++ Docker
 cask "claude"
 cask "cursor"
-cask "docker"   #-- Brew forumulas are barebones
-# brew "docker"   #-- Casks are Docker Desktop
+cask "docker-desktop"     #-- Casks are Docker Desktop
+# brew "docker"           #-- Brew forumulas are barebones
 brew "docker-compose"
 brew "libpq"    #-- Needed for RubyLSP in VSCode
 {{ end -}}
