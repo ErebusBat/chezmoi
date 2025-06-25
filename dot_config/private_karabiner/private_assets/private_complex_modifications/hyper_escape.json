@@ -1,0 +1,33 @@
+{
+  "title": "Escape to Hyper Key",
+  "rules": [
+    {
+      "description": "Change Escape to Hyper when held down, Escape when tapped",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "escape",
+            "modifiers": []
+          },
+          "to": [
+            {
+              "key_code": "vk_none"
+            }
+          ],
+          "to_if_alone": [
+            {
+              "key_code": "escape"
+            }
+          ],
+          "to_if_held_down": [
+            {
+              "key_code": "left_control",
+              "modifiers": ["left_option", "left_command"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
