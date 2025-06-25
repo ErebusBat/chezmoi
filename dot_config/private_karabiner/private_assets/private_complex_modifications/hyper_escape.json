@@ -1,23 +1,22 @@
 {
-  "title": "AAB: Esc/Hyper",
+  "title": "AAB: Esc key as Hyper modifier when held, Esc when tapped",
   "rules": [{
-    "description": "Change Escape to Hyper when held down, Escape when tapped",
+    "description": "Change escape to hyper modifier (cmd+ctrl+opt+shift) if pressed with other keys, change escape to escape if pressed alone.",
     "manipulators": [{
-      "type": "basic",
       "from": {
         "key_code": "escape",
-        "modifiers": []
+        "modifiers": {
+          "optional": ["any"]
+        }
       },
       "to": [{
-        "key_code": "vk_none"
+        "key_code": "left_command",
+        "modifiers": ["left_control", "left_option", "left_shift"]
       }],
       "to_if_alone": [{
         "key_code": "escape"
       }],
-      "to_if_held_down": [{
-        "key_code": "left_control",
-        "modifiers": ["left_option", "left_command"]
-      }]
+      "type": "basic"
     }]
   }]
 }
