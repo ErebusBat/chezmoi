@@ -42,6 +42,7 @@ $HOME/.mozilla/firefox/*.default-release-backup-crashrecovery-*/**
 $HOME/.mozilla/firefox/*.default-release/storage/**
 $HOME/.node-gyp/**
 $HOME/.npm/**
+$HOME/.ollama/**
 $HOME/.orbstack/**
 $HOME/.pub-cache/**
 $HOME/.rustup/**
