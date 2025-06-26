@@ -86,6 +86,7 @@ ENTRY=${ENTRY:gs/:hot:/🥵}
 ENTRY=${ENTRY:gs/:kiss:/😘}
 ENTRY=${ENTRY:gs/:memo:/📝}
 ENTRY=${ENTRY:gs/:money:/💵}
+ENTRY=${ENTRY:gs/:movie:/🎬}
 ENTRY=${ENTRY:gs/:music:/🎵}
 ENTRY=${ENTRY:gs/:meet:/🧑‍🤝‍🧑}
 ENTRY=${ENTRY:gs/:pen:/✒️}
