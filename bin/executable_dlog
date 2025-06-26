@@ -111,6 +111,7 @@ ENTRY=${ENTRY:s/FOOD /🍱 }
 ENTRY=${ENTRY:s/MED /💊 }    # :pill:
 ENTRY=${ENTRY:s/MEM /📝 }    # :memo:
 ENTRY=${ENTRY:s/REM /📝 }    # :memo:
+ENTRY=${ENTRY/#+1 /👍 }
 ENTRY=${ENTRY/#T /✅ }
 ENTRY=${ENTRY/#W /⚒️ }
 #- Personal
