@@ -59,6 +59,7 @@ $HOME/.mozilla/firefox/*.default-release/storage/**
 $HOME/.nix-*
 $HOME/.node-gyp/**
 $HOME/.npm/**
+$HOME/.ollama/**
 $HOME/.orbstack/**
 $HOME/.pub-cache/**
 $HOME/.pwall

@@ -1,6 +1,10 @@
 {
   "globalShortcut": "",
   "mcpServers": {
+    "mcp-notion": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://mcp.notion.com/sse"]
+    },
     "mcp-obsidian": {
       "command": "uv",
       "args": [
