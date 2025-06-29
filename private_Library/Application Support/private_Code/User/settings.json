@@ -276,4 +276,7 @@
     "gitlens.ai.model": "vscode",
     "gitlens.ai.vscode.model": "copilot:gpt-4o",
     "solargraph.commandPath": "/Users/aburns/.rbenv/shims/bundle",
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "markdown.preview.fontFamily": "Comic Code, Monaspace Neon, -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
+    "markdown.preview.fontSize": 16,
 }
