@@ -132,6 +132,7 @@ ENTRY=${ENTRY:gs/BLINC/[[Blinc Improvements Jun 2025|Blinc Improvements]]}
 ENTRY=${ENTRY:gs/PTEAM/[[CompanyCam Platform Team|Platform Team]]}
 #- CCAM - People
 ENTRY=${ENTRY:gs/AUSTIN/[[Austin Kostelansky|Austin]]}
+ENTRY=${ENTRY:gs/COURTNEY/[[Courtney White|Courtney]]}
 ENTRY=${ENTRY:gs/DUSTIN/[[Dustin Fisher|Dustin]]}
 ENTRY=${ENTRY:gs/GREG/[[Greg Brinker|Greg]]}
 ENTRY=${ENTRY:gs/JAREDS/[[Jared Stauffer|Jared S.]]}
