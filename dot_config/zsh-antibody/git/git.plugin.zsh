@@ -7,7 +7,6 @@ alias glp='git log --pretty=oneline'
 alias gld='git log --decorate --oneline --graph'
 alias gpp='git pull --prune'
 # alias gpbgh='git_push_update_origin && git browse'
-# alias gnbm='git co master && git pull --prune && git co master -b'
 # alias gcip='git ci && git push'
 alias gfo='git fetch origin'
 alias gcv='git commit -v'
@@ -27,7 +26,6 @@ alias gbda='git branch --merged | command grep -vE "^(\*|\s*master\s*$|\s*main\s
 alias gca!='git commit -v -a --amend'
 alias gdw='git diff --word-diff'
 alias glo='git log --oneline --decorate --color'
-alias gnbm='git co master && git pull --prune && git co master -b'
 alias gp='git push'
 # alias gpbgh='git_push_update_origin && git browse'
 alias gpbgh='git_push_update_origin && gh pr create --web'
@@ -43,6 +41,14 @@ function git_push_update_origin() {
   fi
   echo "git push -u origin $branch"
   git push -u origin $branch
+}
+
+alias gnbm=git_new_branch_mastermain
+function git_new_branch_mastermain() {
+  # Old version:
+  # alias gnbm='git co master && git pull --prune && git co master -b'
+  local branch=$(git show-ref --verify --quiet refs/heads/main && echo "main" || echo "master")
+  git co $branch && git pull --prune && git co $branch -b $1
 }
 
 ### End SCM
