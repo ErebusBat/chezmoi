@@ -11,7 +11,7 @@
 		<string>/Users/aburns/Documents/Obsidian/vimwiki/.git_upload</string>
 	</array>
 	<key>RunAtLoad</key>
-	<false/>
+	<true/>
 	<key>StandardErrorPath</key>
 	<string>/tmp/local.obsidian.git-upload.log</string>
 	<key>StandardOutPath</key>
