@@ -113,9 +113,10 @@ ENTRY=${ENTRY:s/MED /💊 }    # :pill:
 ENTRY=${ENTRY:s/MEM /📝 }    # :memo:
 ENTRY=${ENTRY:s/REM /📝 }    # :memo:
 ENTRY=${ENTRY/#+1 /👍 }
+ENTRY=${ENTRY/#CODE /💻 }
+ENTRY=${ENTRY/#LEARN /🧑‍🎓 }
 ENTRY=${ENTRY/#T /✅ }
 ENTRY=${ENTRY/#W /⚒️ }
-ENTRY=${ENTRY/#CODE /💻 }
 #- Personal
 ENTRY=${ENTRY:gs/DARTER/[[dartp6]]}
 ENTRY=${ENTRY:gs/FreeNAS/[[FreeNAS]]}
