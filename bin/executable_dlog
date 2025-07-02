@@ -113,6 +113,7 @@ ENTRY=${ENTRY:s/MED /💊 }    # :pill:
 ENTRY=${ENTRY:s/MEM /📝 }    # :memo:
 ENTRY=${ENTRY:s/REM /📝 }    # :memo:
 ENTRY=${ENTRY/#+1 /👍 }
+ENTRY=${ENTRY/#CLEAN /🧹 }
 ENTRY=${ENTRY/#CODE /💻 }
 ENTRY=${ENTRY/#LEARN /🧑‍🎓 }
 ENTRY=${ENTRY/#REVIEW /🧐 }
