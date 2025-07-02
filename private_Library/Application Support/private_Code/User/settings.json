@@ -279,4 +279,7 @@
     "github.copilot.nextEditSuggestions.enabled": true,
     "markdown.preview.fontFamily": "Comic Code, Monaspace Neon, -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif",
     "markdown.preview.fontSize": 16,
+    "debug.console.fontSize": 16,
+    "chat.editor.fontSize": 16,
+    "terminal.integrated.fontSize": 14,
 }
