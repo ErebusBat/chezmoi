@@ -36,3 +36,7 @@ windows:
   panes:
     - echo fz web console -e production
     - pane
+- window_name: claude
+  panes:
+    - wd aabclaude
+    - wd aabclaude
