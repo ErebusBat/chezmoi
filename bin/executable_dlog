@@ -115,6 +115,7 @@ ENTRY=${ENTRY:s/REM /📝 }    # :memo:
 ENTRY=${ENTRY/#+1 /👍 }
 ENTRY=${ENTRY/#CODE /💻 }
 ENTRY=${ENTRY/#LEARN /🧑‍🎓 }
+ENTRY=${ENTRY/#REVIEW /🧐 }
 ENTRY=${ENTRY/#T /✅ }
 ENTRY=${ENTRY/#W /⚒️ }
 #- Personal
