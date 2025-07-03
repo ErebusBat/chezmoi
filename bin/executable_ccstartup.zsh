@@ -88,7 +88,15 @@ open_chrome_profile "CompanyCam" "Profile 1"
 # open /Applications/Alacritty.app --args -e dlog-tail 1
 
 ################################################################################
-# TMUX Sessions
+### Docker
+################################################################################
+if [[ -x ~/bin/.docker-startup.sh ]]; then
+  echo "[$(date)] Launching Docker:  ~/bin/.docker-startup.sh"
+  ~/bin/.docker-startup.sh > /dev/null 2>&1 &
+fi
+
+################################################################################
+### TMUX Sessions
 ################################################################################
 if [[ -x ~/bin/tmux-sessions-start.zsh ]]; then
   ~/bin/tmux-sessions-start.zsh
