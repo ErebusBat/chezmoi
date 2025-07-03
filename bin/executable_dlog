@@ -43,7 +43,15 @@ PASTEBOARD=$(echo $ENTRY | grep '%%')
 PB_SEACH_EC=$?
 if [[ $PB_SEACH_EC -eq 0 ]]; then
   # echo "[$(date)] pbpaste>>>$(pbpaste)<<<" >> /tmp/dlog.log
-  PASTEBOARD=$(~/bin/tg-markdown -)
+
+  # Check to see if raycast markdown-tool script command is installed
+  # if it is then use that as it has smarts for tool routing
+  if [[ -x ~/.raycast-cmds/markdown-tool.sh ]]; then
+    ~/.raycast-cmds/markdown-tool.sh
+    PASTEBOARD$(pbpaste)
+  else
+    PASTEBOARD=$(~/bin/tg-markdown -)
+  fi
   # echo "[$(date)] PASTEBOARD>>>$PASTEBOARD<<<" >> /tmp/dlog.log
   PASTEBOARD=${(MS)PASTEBOARD##[[:graph:]]*[[:graph:]]}
   # echo "[$(date)] PASTEBOARD>>>$PASTEBOARD<<<" >> /tmp/dlog.log
