@@ -21,7 +21,6 @@ USE_NEWTOOL=
 
 # Use the new version, if availble
 if [[ $USE_NEWTOOL ]]; then
-  echo "Using New Tool" >&2
   $NEW_TOOLPATH | pbcopy
 else
   ~/bin/tg-markdown | pbcopy
