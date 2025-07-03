@@ -10,8 +10,8 @@ require 'webrick'
 
 class SpotifyCurrentTrack
   def initialize
-    @config_file = File.expand_path('~/Library/Application Support/gospt/client.yml')
-    @token_file = File.expand_path('~/Library/Application Support/gospt/token.yml')
+    @config_file = File.expand_path('~/.config/erebusbat/spotify_client.yml')
+    @token_file = File.expand_path('~/.config/erebusbat/spotify_token.yml')
     load_config
     @access_token = load_or_refresh_token
 
