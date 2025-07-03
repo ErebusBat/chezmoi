@@ -11,7 +11,7 @@ WIKI_ROOT_PATHS=(
 )
 
 function dbug() {
-  echo "$@" >&2
+  # echo "$@" >&2
 }
 
 # Find root path, error if not found
