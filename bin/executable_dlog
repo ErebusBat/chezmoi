@@ -170,7 +170,13 @@ ENTRY=${ENTRY:gs/TGMD/[[Jira Mark Down Link Tool|tgmd]]}
 
 # Spotify
 if [[ $ENTRY == *SONG* ]]; then
-  if command -v gospt >/dev/null 2>&1; then
+  if command -v ~/bin/.spotify-song.rb >/dev/null 2>&1; then
+    dbug "Using ~/bin/.spotify-song.rb script"
+    SONG=$(~/bin/.spotify-song.rb)
+    if [[ $? -ne 0 ]]; then
+      SONG="❌ Error with ~/bin/.spotify-song.rb"
+    fi
+  elif command -v gospt >/dev/null 2>&1; then
     dbug "Using gospt for spotify current song"
     SONG=$(gospt now | sed -E 's/^[⏸▶ ]+//g' )
   elif [[ "$OSTYPE" == "darwin"* ]]; then
@@ -179,7 +185,7 @@ if [[ $ENTRY == *SONG* ]]; then
   fi
   if [[ -z $SONG ]]; then
     SONG="🎵 *ERR*: could not get song from spotify"
-  else
+  elif [[ $SONG != \[🎵* ]]; then
     SONG="🎵 ${SONG}"
   fi
   ENTRY=${ENTRY:gs/SONG/$SONG}
