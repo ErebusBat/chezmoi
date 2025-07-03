@@ -10,6 +10,10 @@ WIKI_ROOT_PATHS=(
   ~/vimwiki                      # Thelio (Obsidian)
 )
 
+function dbug() {
+  echo "$@" >&2
+}
+
 # Find root path, error if not found
 for p in $WIKI_ROOT_PATHS; do
   if [[ -d $p ]]; then
@@ -18,6 +22,7 @@ for p in $WIKI_ROOT_PATHS; do
   fi
 done
 if [[ ! -d $WIKI_ROOT_PATH ]]; then
+  dbug "*** FATAL: Could not find wiki root path!"
   echo "*** FATAL: Could not find wiki root path!"
   exit 1
 fi
@@ -163,7 +168,13 @@ ENTRY=${ENTRY:gs/TGMD/[[Jira Mark Down Link Tool|tgmd]]}
 
 # Spotify
 if [[ $ENTRY == *SONG* ]]; then
-  SONG=$(gospt now | sed -E 's/^[⏸▶ ]+//g' )
+  if command -v gospt >/dev/null 2>&1; then
+    dbug "Using gospt for spotify current song"
+    SONG=$(gospt now | sed -E 's/^[⏸▶ ]+//g' )
+  elif [[ "$OSTYPE" == "darwin"* ]]; then
+    dbug "Using applescript for spotify current song"
+    SONG=$(osascript -e 'tell application "Spotify" to name of current track & " - " & artist of current track')
+  fi
   if [[ -z $SONG ]]; then
     SONG="🎵 *ERR*: could not get song from spotify"
   else
