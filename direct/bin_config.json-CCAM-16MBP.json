@@ -20,16 +20,6 @@
             "provider": "",
             "package_path": "",
             "pinned": false
-        },
-        "/Users/aburns/bin/spt": {
-            "path": "/Users/aburns/bin/spt",
-            "remote_name": "spt",
-            "version": "v0.25.0",
-            "hash": "e8d4a6ea70b468c5dd2ea3ef41d350146d22ca1ecf32672433720fbb6d5b53e3",
-            "url": "github.com/Rigellute/spotify-tui",
-            "provider": "",
-            "package_path": "",
-            "pinned": false
         }
     }
 }
