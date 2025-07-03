@@ -27,6 +27,7 @@ direct/
 .restic/.companycam.key
 .tmuxp/ccam.yaml
 bin/ccstartup.zsh
+bin/.docker-startup.sh
 bin/cocam
 bin/grip
 {{ if ne .focus "companycam" }}
