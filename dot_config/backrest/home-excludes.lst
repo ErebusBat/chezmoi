@@ -71,6 +71,7 @@ $HOME/.vim/plugged/**
 $HOME/.zsh_sessions/**
 # $HOME/Games/Sony PlayStation/**
 # $HOME/GPUCache/**
+$HOME/Desktop/*.mov
 $HOME/Dropbox/
 $HOME/dust/**
 $HOME/dust_l/
