@@ -104,6 +104,7 @@ vim.opt.sessionoptions:remove('terminal')
 
 -- Terminal
 vim.keymap.set({ 't' }, '<leader><esc>', '<C-\\><C-n>', { desc = 'Exit Terminal Mode', noremap = true })
+vim.keymap.set({ 't' }, '<M-CR>', '\\\n', { desc = 'Insert backslash and newline', noremap = true })
 
 -- Tabs
 vim.opt.sessionoptions:append('tabpages')
