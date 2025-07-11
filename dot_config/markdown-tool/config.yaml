@@ -1,0 +1,11 @@
+github:
+  default_org: "CompanyCam"
+  default_repo: "Company-Cam-API"
+  mappings:
+    "CompanyCam/Company-Cam-API": "api"
+
+jira:
+  domain: "https://companycam.atlassian.net"
+  projects:
+    - "PLAT"
+    - "SPEED"
