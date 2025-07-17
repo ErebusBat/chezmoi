@@ -168,6 +168,7 @@ ENTRY=${ENTRY:gs/SHAUN/[[Shaun Garwood|Shaun]]}
 ENTRY=${ENTRY:gs/SILVIA/[[Silvia Marmol|Silvia]]}
 #- CCAM - Projects / Pages
 ENTRY=${ENTRY:gs/CAMJAM/[[CamJam 2025|CamJam]]}
+ENTRY=${ENTRY:gs/MDT/[[Markdown Tool]]}
 ENTRY=${ENTRY:gs/TGMD/[[Jira Mark Down Link Tool|tgmd]]}
 
 # Spotify
