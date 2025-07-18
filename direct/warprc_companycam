@@ -6,6 +6,7 @@ backrest:~/.config/backrest
 beszel:~/src/erebusbat/myserver/beszel-agent/macOS
 blinc:~/src/ccam/blinc
 ccapi:~/src/ccam/api
+ccmobile:~/src/ccam/mobile
 ccp:~/src/ccam/paperless
 chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy
