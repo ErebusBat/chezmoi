@@ -142,6 +142,10 @@ cask "docker-desktop"     #-- Casks are Docker Desktop
 # brew "docker"           #-- Brew forumulas are barebones
 brew "docker-compose"
 brew "libpq"    #-- Needed for RubyLSP in VSCode
+
+## Mobile App dependencies
+brew "node"
+brew "watchman"
 {{ end -}}
 
 {{ if eq .area.tractionguest true }}
