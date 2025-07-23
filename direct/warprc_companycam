@@ -27,6 +27,7 @@ launch_agents:~/Library/LaunchAgents
 library:~/Documents/Library
 linuxserver.io:~/src/pers/linuxserver.io
 maid:~/.maid
+mdt:~/src/erebusbat/markdown-tool
 mm:~/src/erebusbat/mm
 mmm:~/src/erebusbat/myserver/mmm
 myserver:~/src/erebusbat/myserver
