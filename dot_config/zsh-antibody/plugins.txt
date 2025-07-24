@@ -11,7 +11,8 @@ ohmyzsh/ohmyzsh path:plugins/wd
 #~/.config/zsh-antibody/podman
 ~/.config/zsh-antibody/git
 ~/.config/zsh-antibody/golang
-~/.config/zsh-antibody/rbenv
+#~/.config/zsh-antibody/rbenv
+~/.config/zsh-antibody/mise
 ~/.config/zsh-antibody/sign_in_solutions
 # ~/.config/zsh-antibody/powershell
 #~/.config/zsh-antibody/flutter
