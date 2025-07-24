@@ -1,3 +1,3 @@
-if [[ -x ~/.local/bin/mise ]]; then
-  eval "$(~/.local/bin/mise activate)"
+if [[ -x /opt/homebrew/bin/mise ]]; then
+  eval "$(/opt/homebrew/bin/mise activate)"
 fi
