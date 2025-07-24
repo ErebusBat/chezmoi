@@ -43,8 +43,8 @@ $HOME/.gnupg/random_seed
 $HOME/.kube/cache/**
 $HOME/.kube/http-cache/**
 $HOME/.local/lib
-$HOME/.local/share/Zeal/*
 $HOME/.local/share/Trash/*
+$HOME/.local/share/Zeal/*
 $HOME/.local/share/backrest/
 $HOME/.local/share/chezmoi/.git
 $HOME/.local/share/containers
@@ -52,6 +52,7 @@ $HOME/.local/share/flatpak/**
 $HOME/.local/share/gthumb
 $HOME/.local/share/gthumb.old
 $HOME/.local/share/lutris/**
+$HOME/.local/share/mise/*
 $HOME/.local/share/trash/**
 $HOME/.local/state/**
 $HOME/.mozilla/firefox/*.default-release-backup-crashrecovery-*/**

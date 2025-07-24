@@ -122,12 +122,6 @@ fi
 ################################################################################
 # Development Aliases
 ################################################################################
-alias be="bundle exec"
-alias guard="bundle exec guard"
-alias rails="bundle exec rails"
-alias rake="bundle exec rake"
-alias rspec="rbenv exec rspec"
-alias rspecd="rbenv exec rspec -f d"
 
 # System Commands
 alias mounts="mount | grep -vE '^(cgroup2? on|sysfs on|proc on|udev on|devpts on|securityfs on|pstore on|efivars on|\/var\/lib\/|\/dev\/nvme0n1)'"
