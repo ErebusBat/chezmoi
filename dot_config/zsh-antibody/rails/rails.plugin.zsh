@@ -3,11 +3,11 @@ if ! command -v ruby >/dev/null 2>&1; then
 fi
 
 alias be="bundle exec"
-alias guard="bundle exec guard"
+# alias guard="bundle exec guard"
 # alias rails="bin/rails"
-alias rake="bundle exec rake"
-alias rspec="rbenv exec rspec"
-alias rspecd="rbenv exec rspec -f d"
+# alias rake="bundle exec rake"
+# alias rspec="rbenv exec rspec"
+# alias rspecd="rbenv exec rspec -f d"
 
 ################################################################################
 ## Command Aliases
