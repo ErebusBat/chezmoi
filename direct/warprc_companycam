@@ -11,6 +11,7 @@ ccp:~/src/ccam/paperless
 chezmoi:~/.local/share/chezmoi
 dashy:~/src/erebusbat/myserver/dashy
 dlog:~/src/erebusbat/dlog-ruby
+dlogcfg:~/.config/dlog
 dnscontrol:~/src/erebusbat/myserver/dnscontrol
 docs:~/Documents
 downloads:~/downloads
