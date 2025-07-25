@@ -50,6 +50,17 @@ windows:
     # - shell_command:
     #     - ssh thelio
 
+- window_name: dlog
+  # layout: d396,164x77,0,0[164x4,0,0,4,164x72,0,5,5]
+  focus: false
+  panes:
+    - shell_command:
+        - wd dlog
+        - vimls
+    - shell_command:
+        - wd dlog
+        - tmux resize-pane -y 14 -t "$TMUX_PANE"
+
 - window_name: restore
   panes:
     - shell_command:
