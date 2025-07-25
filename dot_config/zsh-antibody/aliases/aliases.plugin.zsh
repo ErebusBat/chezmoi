@@ -32,6 +32,8 @@ function todo() {
 function vidlog() {
   cd ~/.config/dlog
   vimls
+  echo "Don't forget to update your changes in chezmoi"
+  echo "  cz add ~/.config/dlog/*.rb"
 }
 
 # todo today
