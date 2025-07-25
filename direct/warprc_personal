@@ -1,11 +1,10 @@
-<<<<<<< Updated upstream
 =======
->>>>>>> Stashed changes
-||||||| constructed merge base
 antibody:~/.config/zsh-antibody
 backrest:~/src/erebusbat/myserver/backrest
 chezmoi:~/.local/share/chezmoi
+||||||| constructed merge base
 dashy:~/src/erebusbat/myserver/dashy
+dlog:~/src/erebusbat/dlog-ruby
 dns:~/src/erebusbat/myserver/dnscontrol
 docker_dev:~/src/sie/my_docker_env
 docker:~/src/sie/my_docker_env
@@ -18,21 +17,24 @@ kate_wip:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/.tmp/437/(Cli
 libappsup:~/Library/Application Support
 library:~/Documents/Library
 maid:~/.maid
+markdown-tool:~/src/erebusbat/markdown-tool
 myserver:~/src/erebusbat/myserver
 paperless:~/src/erebusbat/myserver/paperless-ngx
 pchef:~/src/erebusbat/pchef76
 raw:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/.tmp/437/(Client's) Supplemental Discovery & Exhibits/Work in Progress /evidence/_raw
-restic_server:~/src/erebusbat/myserver/restic-rest
 restic:~/.restic
+restic_server:~/src/erebusbat/myserver/restic-rest
 restore:/Volumes/SeaBack/backrest
 src:~/src
 ssh:~/.ssh
+>>>>>>> Stashed changes
 stow:~/src/erebusbat/dotfiles-stow
 syncthing:~/src/erebusbat/myserver/syncthing
 tgf:~/src/sie/frontend
 tmux:~/.config/tmux
 tmuxp:~/.tmuxp
 txt:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/My Drive/WIP/evidence/raw
+<<<<<<< Updated upstream
 vim:~/.config/nvim
 vimwiki:~/Documents/Obsidian/vimwiki/
 watchtower:~/src/erebusbat/myserver/watchtower
