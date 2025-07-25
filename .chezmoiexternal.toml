@@ -26,6 +26,10 @@
   type = "git-repo"
   url = "https://github.com/arcadellama/plex-nowplaying.git"
   refreshPeriod = "720h"
+["src/erebusbat/dlog-ruby"]
+  type = "git-repo"
+  url = "git@github.com:ErebusBat/dlog-ruby.git"
+  refreshPeriod = "24h"
 
 ### ncdu
 {{ if eq "linux" .chezmoi.os }}
