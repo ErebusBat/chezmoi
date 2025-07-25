@@ -9,6 +9,14 @@ return {
   config = function()
     telescope = require('telescope')
     telescope.setup {
+      pickers = {
+        find_files = {
+          file_ignore_patterns = { 'node_modules', '.git', '.venv' },
+          follow = true,
+          hidden = true,
+          find_command = { "rg", "--files", "--follow", "--no-ignore", "--color", "never" },
+        }
+      },
       defaults = {
         mappings = {
           i = {
