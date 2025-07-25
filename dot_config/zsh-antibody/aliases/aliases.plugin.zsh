@@ -29,6 +29,11 @@ function todo() {
   todoist add -P $projID $dateOpt "$task"
 }
 
+function vidlog() {
+  cd ~/.config/dlog
+  vimls
+}
+
 # todo today
 # function todot() {
 #   todo "$1" t
