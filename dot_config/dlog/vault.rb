@@ -17,6 +17,7 @@ include_glob '*_*.rb'
 #  010_ccam.rb
 #  200_tool_markdown.rb
 #  200_tool_spotify.rb
+#  200_tool_weather.rb
 
 
 ################################################################################
