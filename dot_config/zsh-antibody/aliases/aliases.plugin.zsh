@@ -30,10 +30,14 @@ function todo() {
 }
 
 function vidlog() {
-  cd ~/.config/dlog
+  echo -n "Switching into config directory: "
+  pushd ~/.config/dlog
+  echo ""
   vimls
   echo "Don't forget to update your changes in chezmoi"
   echo "  cz add ~/.config/dlog/*.rb"
+  echo -n "\nSwitching back to your previous directory: "
+  popd
 }
 
 # todo today
