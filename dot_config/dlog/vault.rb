@@ -90,6 +90,7 @@ add_link_gsub 'BLINC', alias: 'Blinc Improvments', page: 'Blinc Improvements Jun
 add_link_gsub 'CAMJAM', alias: 'CamJam', page: 'CamJam 2025'
 
 ### Personal Projects / Pages
+add_link_gsub 'DLOG', alias: 'dlog', page: 'Daily Log'
 add_link_gsub 'MDT', alias: '', page: 'Markdown Tool'
 add_link_gsub 'TGMD', alias: 'tgmd', page: 'Jira Mark Down Link Tool'
 
@@ -98,6 +99,8 @@ add_link_gsub 'TGMD', alias: 'tgmd', page: 'Jira Mark Down Link Tool'
 ################################################################################
 ### Spotify Song
 add_gsub /^SONG$/ do |entry|
+  # set_debug_output $stderr
+  dbug "SONG TOOL"
   set_tool_path '.spotify-song.rb'
   next unless has_tool?
 
