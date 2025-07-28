@@ -5,6 +5,7 @@ appsupport:~/Library/Application Support
 backrest:~/.config/backrest
 beszel:~/src/erebusbat/myserver/beszel-agent/macOS
 blinc:~/src/ccam/blinc
+c3pro:~/src/erebusbat/qmk_firmware/keyboards/keychron/c3_pro/ansi/red/keymaps/erebusbat
 ccapi:~/src/ccam/api
 ccmobile:~/src/ccam/mobile
 ccp:~/src/ccam/paperless
