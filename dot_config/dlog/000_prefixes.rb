@@ -15,4 +15,5 @@ add_prefix 'REVIEW', '🧐'
 add_prefix 'SHOWER', '🚿 Shower'
 add_prefix 'T', '✅'
 add_prefix 'W', '⚒️'
+add_prefix 'WALK', '🏃‍♂️'
 

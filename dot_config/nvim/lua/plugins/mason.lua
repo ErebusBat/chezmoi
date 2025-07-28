@@ -35,6 +35,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.api.nvim_buf_create_user_command(ev.buf, 'Format', function(_)
       vim.lsp.buf.format()
     end, { desc = 'Format current buffer with LSP' })
+
+    -- Toggle Diagnostics
+    -- local lspconfig = require('lspconfig')
+    local function toggle_diagnostics()
+      local current_state = vim.diagnostic.config().virtual_text
+      vim.diagnostic.config({virtual_text = not current_state })
+    end
+
+    -- nmap('<leader>td', '<cmd>lua toggle_diagnostics()<CR>', '[T]oggle [D]iagnostics')
+    nmap('<leader>td', toggle_diagnostics, '[T]oggle [D]iagnostics')
   end,
 })
 
