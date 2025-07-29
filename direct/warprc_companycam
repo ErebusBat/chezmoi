@@ -25,7 +25,7 @@ hassio:~/src/erebusbat/hassio
 image-marker:~/src/erebusbat/image-marker
 itunes_lib:~/Music/Music/Media.localized/Music
 journal:~/Documents/Journal
-k2he:~/src/erebusbat/qmk_firmware/keyboards/keychron/k2_he/ansi_rgb
+k2he:~/src/erebusbat/qmk_firmware/keyboards/keychron/k2_he/ansi_rgb/keymaps/erebusbat
 launch_agents:~/Library/LaunchAgents
 library:~/Documents/Library
 linuxserver.io:~/src/pers/linuxserver.io
