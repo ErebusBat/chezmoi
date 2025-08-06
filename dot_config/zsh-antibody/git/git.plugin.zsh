@@ -1,7 +1,6 @@
 
 # if [ -f /data/Dropbox/Library/G/git-master-branch-setup.txt ]; then alias git_master_setup="cat /data/Dropbox/Library/G/git-master-branch-setup.txt"; fi
 alias gs='git status'
-alias gpm='git co master && git pull --prune && git_rm_merged_branches'
 alias gsu='git submodule init && git submodule update'
 alias glp='git log --pretty=oneline'
 alias gld='git log --decorate --oneline --graph'
@@ -33,9 +32,32 @@ alias gpm='git co master && git pull --prune'
 alias grbi='git rebase -i'
 alias grhh='git reset --hard HEAD'
 
-alias gpou=git_push_update_origin
-function git_push_update_origin() {
+# Is it master or main?  This will find out
+# Usage:
+#   local branch=$(git_master_branch_name)
+function git_master_branch_name() {
+  local default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  echo "$default_branch"
+}
+
+# What is the current branches name?
+function git_current_branch_name() {
   local branch=$(git name-rev --name-only HEAD)
+  echo "$branch"
+}
+
+alias gpm=git_checkout_update_master
+function git_checkout_update_master() {
+  # Old version:
+  # alias gpm='git co master && git pull --prune && git_rm_merged_branches'
+  local branch=$(git_master_branch_name)
+  git checkout "$branch" && git pull --prune && git_rm_merged_branches
+}
+
+
+alias gpuo=git_push_update_origin
+function git_push_update_origin() {
+  local branch=$(git_current_branch_name)
   if [[ -n $1 ]]; then
     branch=$1
   fi
@@ -58,7 +80,7 @@ alias gcu='gfo && gsu'
 alias gcuc='gcu && gbda'
 
 # Git Start Fresh
-alias gcum='gpm && gsu && gbda'
+alias gcum='git_checkout_update_master && gsu && gbda'
 
 # Show all aliases for git
 function git-aliases() {
