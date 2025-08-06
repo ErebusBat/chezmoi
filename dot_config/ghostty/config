@@ -28,8 +28,8 @@ font-size = 14
 
 # Monaspace
 # => -> -->  == === != !===
-font-family = "Comic Code"
-# font-family = "Monaspace Radon"
+# font-family = "Comic Code"
+font-family = "Monaspace Argon"
 font-family-bold = "Monaspace Krypton Var Regular Bold Italic"
 font-family-italic = "Monaspace Krypton Var Regular Italic"
 font-feature = calt
@@ -45,6 +45,7 @@ font-feature = ss07
 font-feature = ss08
 
 # Keybindings
+# ctrl+shift+, = reload config
 keybind = global:ctrl+shift+grave_accent=toggle_quick_terminal
 keybind = shift+ctrl+left_bracket=previous_tab
 keybind = shift+ctrl+right_bracket=next_tab
