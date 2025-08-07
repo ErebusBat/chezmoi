@@ -1,5 +1,5 @@
 ### Spotify Song
-add_gsub /^SONG$/ do |entry|
+add_gsub /^SONG$/ do |entry, _match|
   # set_debug_output $stderr
   dbug "SONG TOOL"
   set_tool_path '.spotify-song.rb'

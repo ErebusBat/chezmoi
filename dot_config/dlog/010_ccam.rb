@@ -24,4 +24,3 @@ add_link_gsub 'SILVIA', page: 'Silvia Marmol', alias: 'Silvia'
 add_link_gsub 'AMPFF', page: 'Amplitude Feature Flags'
 add_link_gsub 'BLINC', alias: 'Blinc Improvments', page: 'Blinc Improvements Jun 2025'
 add_link_gsub 'CAMJAM', alias: 'CamJam', page: 'CamJam 2025'
-
