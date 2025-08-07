@@ -4,8 +4,5 @@
     <keyboard-shortcut first-keystroke="meta s" />
     <keyboard-shortcut first-keystroke="ctrl s" />
   </action>
-  <action id="SearchEverywhere">
-    <keyboard-shortcut first-keystroke="meta k" />
-  </action>
   <action id="UsageGrouping.FileStructure" />
 </keymap>
