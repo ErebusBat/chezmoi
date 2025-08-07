@@ -30,6 +30,7 @@ bin/ccstartup.zsh
 bin/.docker-startup.sh
 bin/cocam
 bin/grip
+bin/rubymine
 {{ if ne .focus "companycam" }}
 Library/Application Support/ngrok/ngrok.yml
 {{- end }}

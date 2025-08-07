@@ -10,4 +10,3 @@ add_gsub /%%/ do |entry|
 
   tool_output
 end
-
