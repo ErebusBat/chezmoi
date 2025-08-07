@@ -1,0 +1,18 @@
+<application>
+  <component name="FindSettings">
+    <option name="customScope" value="Project Files" />
+    <option name="defaultScopeName" value="Project Files" />
+    <option name="SEARCH_SCOPE" value="Project Files" />
+    <mask>*.css</mask>
+    <mask>*.html</mask>
+    <mask>*.xml</mask>
+    <mask>*.rake</mask>
+    <mask>*.jbuilder</mask>
+    <mask>*.gemspec</mask>
+    <mask>*.thor</mask>
+    <mask>*.rbw</mask>
+    <mask>*.ru</mask>
+    <mask>*.rbi</mask>
+    <mask>*.rb</mask>
+  </component>
+</application>

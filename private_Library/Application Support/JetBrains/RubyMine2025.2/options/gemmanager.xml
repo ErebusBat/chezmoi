@@ -1,0 +1,42 @@
+<application>
+  <component name="RubySdkGemsetsSettings">
+    <moduleSdks>
+      <map>
+        <entry key="api">
+          <value>
+            <list>
+              <option value="docker-compose://[/Users/aburns/src/ccam/api/docker-compose.yml]:rails//usr/local/bin/ruby" />
+              <option value="$USER_HOME$/.rbenv/versions/3.3.1/bin/ruby" />
+              <option value="$USER_HOME$/.rbenv/versions/3.4.5/bin/ruby" />
+              <option value="$USER_HOME$/.local/share/mise/installs/ruby/3.4.5/bin/ruby" />
+            </list>
+          </value>
+        </entry>
+      </map>
+    </moduleSdks>
+    <sdkGemsets>
+      <map>
+        <entry key="$USER_HOME$/.local/share/mise/installs/ruby/3.4.5/bin/ruby">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/.rbenv/versions/3.3.1/bin/ruby">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/.rbenv/versions/3.4.5/bin/ruby">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="docker-compose://[/Users/aburns/src/ccam/api/docker-compose.yml]:rails//usr/local/bin/ruby">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </sdkGemsets>
+  </component>
+</application>
