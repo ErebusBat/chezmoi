@@ -19,11 +19,16 @@ USE_NEWTOOL=
 [[ -x $NEW_TOOLPATH ]] && USE_NEWTOOL=yes
 # USE_NEWTOOL= # Override
 
+MDT_ARGS="$@"
+if [[ -z $MDT_ARGS ]]; then
+  MDT_ARGS=$(pbpaste)
+fi
+
 # Use the new version, if availble
 if [[ $USE_NEWTOOL ]]; then
-  $NEW_TOOLPATH | pbcopy
+  echo "$MDT_ARGS" | $NEW_TOOLPATH | pbcopy
 else
-  ~/bin/tg-markdown | pbcopy
+  echo "$MDT_ARGS" | ~/bin/tg-markdown | pbcopy
 fi
 
 # To show text in Raycast
