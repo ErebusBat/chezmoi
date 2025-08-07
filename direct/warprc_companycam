@@ -38,6 +38,7 @@ nebula:~/src/erebusbat/nebula/ca-batcavern
 pchef:~/src/erebusbat/pchef76
 qmk:~/src/erebusbat/qmk_firmware
 restic:~/.restic
+rubymine:~/Library/Application Support/JetBrains/RubyMine2025.2
 sessions-vim:~/.local/share/tickets-vim
 snippets:~/.config/ulauncher/snippets
 src:~/src

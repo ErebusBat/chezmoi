@@ -1,0 +1,107 @@
+<application>
+  <component name="RecentProjectsManager">
+    <option name="additionalInfo">
+      <map>
+        <entry key="$USER_HOME$/src/erebusbat/myserver/dashy/conf/item-icons">
+          <value>
+            <RecentProjectMetaInfo displayName="item-icons">
+              <option name="buildTimestamp" value="1701910133593" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="4" />
+              </option>
+              <option name="projectOpenTimestamp" value="1701910133593" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/src/ccam/blinc">
+          <value>
+            <RecentProjectMetaInfo displayName="blinc">
+              <option name="buildTimestamp" value="1750796060559" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="3" />
+              </option>
+              <option name="projectOpenTimestamp" value="1750796060559" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/src/erebusbat/traction-guest-link">
+          <value>
+            <RecentProjectMetaInfo displayName="traction-guest-link">
+              <option name="buildTimestamp" value="1751219058620" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="2" />
+              </option>
+              <option name="projectOpenTimestamp" value="1751219058620" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/src/erebusbat/myserver/dashy">
+          <value>
+            <RecentProjectMetaInfo displayName="dashy">
+              <option name="buildTimestamp" value="1752256397805" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="1" />
+              </option>
+              <option name="projectOpenTimestamp" value="1752256397805" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/src/erebusbat/myserver/paperless-home">
+          <value>
+            <RecentProjectMetaInfo displayName="paperless-home">
+              <option name="buildTimestamp" value="1752256421190" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="0" />
+              </option>
+              <option name="projectOpenTimestamp" value="1752256421190" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/src/erebusbat/markdown-tool">
+          <value>
+            <RecentProjectMetaInfo displayName="markdown-tool">
+              <option name="buildTimestamp" value="1753283100686" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="8" />
+              </option>
+              <option name="projectOpenTimestamp" value="1753283100686" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/src/erebusbat/dlog-ruby">
+          <value>
+            <RecentProjectMetaInfo frameTitle="dlog-ruby – substitution.rb" projectWorkspaceId="30xjMJU7zEWh8qFF1rx7J1akfME">
+              <option name="activationTimestamp" value="1754599402798" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="RM-252.23892.415" />
+              <option name="buildTimestamp" value="1754043780000" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="5" />
+              </option>
+              <frame x="1148" y="25" width="2292" height="1415" />
+              <option name="productionCode" value="RM" />
+              <option name="projectOpenTimestamp" value="1754576069125" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/src/ccam/api">
+          <value>
+            <RecentProjectMetaInfo frameTitle="api – ~/Library/Caches/JetBrains/RubyMine2025.2/ruby_stubs/-1975220955/bundle/ruby/3.3.0/gems/launchdarkly-server-sdk-8.10.0/lib/ldclient-rb/ldclient.rb" opened="true" projectWorkspaceId="30v8s6k3z1jpS5GQSPF0ZSy6sMH">
+              <option name="activationTimestamp" value="1754599511179" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="RM-252.23892.415" />
+              <option name="buildTimestamp" value="1754043780000" />
+              <option name="colorInfo">
+                <RecentProjectColorInfo associatedIndex="7" />
+              </option>
+              <frame x="1148" y="25" width="2292" height="1415" />
+              <option name="productionCode" value="RM" />
+              <option name="projectOpenTimestamp" value="1754599430701" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="lastOpenedProject" value="$USER_HOME$/src/ccam/api" />
+  </component>
+</application>
