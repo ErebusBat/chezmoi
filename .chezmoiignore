@@ -24,10 +24,11 @@ direct/
 {{- end }}
 
 {{- if not .area.companycam }}
+.config/dlog/010_ccam.rb
 .restic/.companycam.key
 .tmuxp/ccam.yaml
-bin/ccstartup.zsh
 bin/.docker-startup.sh
+bin/ccstartup.zsh
 bin/cocam
 bin/grip
 bin/rubymine
