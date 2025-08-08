@@ -30,3 +30,6 @@ if [[ $USE_NEWTOOL ]]; then
 else
   echo "$MDT_ARGS" | ~/bin/tg-markdown | pbcopy
 fi
+
+# Output result as other tools (dialy-log) use us as a wrapper
+pbpaste
