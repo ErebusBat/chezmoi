@@ -3,7 +3,7 @@
 # Required parameters:
 # @raycast.schemaVersion 1
 # @raycast.title Markdown Tool
-# @raycast.mode compact
+# @raycast.mode silent
 
 # Optional parameters:
 # @raycast.icon 📝
@@ -30,6 +30,3 @@ if [[ $USE_NEWTOOL ]]; then
 else
   echo "$MDT_ARGS" | ~/bin/tg-markdown | pbcopy
 fi
-
-# To show text in Raycast
-pbpaste
