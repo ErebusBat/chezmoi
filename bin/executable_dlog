@@ -5,4 +5,11 @@ if command -v mise &> /dev/null; then
 fi
 
 cd $HOME/src/erebusbat/dlog-ruby/
+
+# Shortcut to run bundler
+if [[ $1 == "bundle" ]] && [[ $# -eq 1 ]]; then
+  bundle
+  exit 0
+fi
+
 bin/dlog $*
