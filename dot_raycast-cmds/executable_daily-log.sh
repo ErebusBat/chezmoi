@@ -3,7 +3,7 @@
 # Required parameters:
 # @raycast.schemaVersion 1
 # @raycast.title Daily Log
-# @raycast.mode fullOutput
+# @raycast.mode silent
 
 # Optional parameters:
 # @raycast.icon ✏️

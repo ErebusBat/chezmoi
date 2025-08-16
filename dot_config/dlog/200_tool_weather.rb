@@ -83,8 +83,3 @@ add_gsub /^WCPR$/ do |entry, _match|
   weather = weather_for("casper,wy")
   "Casper, WY: #{weather}"
 end
-
-add_gsub /^WLNC$/ do |entry, _match|
-  weather = weather_for("lincoln,ne")
-  "Lincoln, NE: #{weather}"
-end
