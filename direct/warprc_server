@@ -18,6 +18,7 @@ mmm:/myserver/mmm
 myserver:/myserver
 npm_nuc:/myserver/nuc01-npm
 npm_thelio:/myserver/thelio-npm
+obsidian:/myserver/obsidian
 orbital-sync:/myserver/pihole-orbital-sync
 paperless:/myserver/paperless-home
 pchef:~/src/erebusbat/pchef76
