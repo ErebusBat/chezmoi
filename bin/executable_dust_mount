@@ -94,6 +94,9 @@ function mount() {
 
       if [[ -d $XNVIEW_LOC_CFG ]] && [[ -d $XNVIEW_VOL_CFG ]]; then
         echo "Setting up XnViewMP config..."
+        if [[ -d $XNVIEW_LOC_CFG_BAK ]]; then
+          rm -rf $XNVIEW_LOC_CFG_BAK
+        fi
         mv -v $XNVIEW_LOC_CFG $XNVIEW_LOC_CFG_BAK
         ln -s  $XNVIEW_VOL_CFG $XNVIEW_LOC_CFG
         ls -ld $XNVIEW_LOC_CFG
