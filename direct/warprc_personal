@@ -4,6 +4,7 @@ backrest:~/src/erebusbat/myserver/backrest
 chezmoi:~/.local/share/chezmoi
 ||||||| constructed merge base
 dashy:~/src/erebusbat/myserver/dashy
+dlogcfg:~/.config/dlog
 dlog:~/src/erebusbat/dlog-ruby
 dns:~/src/erebusbat/myserver/dnscontrol
 docker_dev:~/src/sie/my_docker_env
@@ -39,4 +40,4 @@ vim:~/.config/nvim
 vimwiki:~/Documents/Obsidian/vimwiki/
 watchtower:~/src/erebusbat/myserver/watchtower
 wezterm:~/.config/wezterm
-wiki:~/Documents/Obsidian/vimwiki/
+wiki:~/Documents/vimwiki
