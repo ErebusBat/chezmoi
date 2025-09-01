@@ -34,5 +34,3 @@ add_gsub ':school:',   '🎓'
 add_gsub ':shh:',      '🤫'
 add_gsub ':shower:',   '🚿'
 add_gsub ':taco:',     '🌮'
-
-add_gsub 'BUNLO',      '🐇 Rita'
