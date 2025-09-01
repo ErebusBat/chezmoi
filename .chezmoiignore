@@ -79,6 +79,7 @@ bin/stmux.zsh
 {{- if and (not .area.personal) (not .area.server) }}
 .restic/.erebusbat.key
 .restic/.freenas-minio-creds.env
+.restic/.freenas_cifs_shell.env
 {{- end }}
 
 {{- if eq .chezmoi.os "darwin" }}
