@@ -6,19 +6,10 @@ fi
 
 cd $HOME/src/erebusbat/dlog-ruby/
 
-ARGS=$*
-
 # Shortcut to run bundler
 if [[ $1 == "bundle" ]] && [[ $# -eq 1 ]]; then
   bundle
   exit 0
-elif [[ $# -eq 0 ]]; then
-  vared -p "Log Entry: " -c ARGS
-
-  if [[ -z $ARGS ]]; then
-    echo "***FATAL: Nothing entered"
-    exit 1
-  fi
 fi
 
-bin/dlog $ARGS
+bin/dlog $*
