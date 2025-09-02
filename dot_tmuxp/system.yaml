@@ -50,6 +50,18 @@ windows:
     # - shell_command:
     #     - ssh thelio
 
+- window_name: nav
+  options:
+    automatic-rename: 'off'
+  suppress_history: false
+  panes:
+    - shell_command:
+        - wd nav
+        - git pull
+        - vimls
+    - shell_command:
+        - wd nav
+
 - window_name: dlog
   # layout: d396,164x77,0,0[164x4,0,0,4,164x72,0,5,5]
   focus: false
@@ -61,12 +73,12 @@ windows:
         - wd dlog
         - tmux resize-pane -y 14 -t "$TMUX_PANE"
 
-- window_name: restore
-  panes:
-    - shell_command:
-      - wd restore
-    - shell_command:
-      - wd restore
+# - window_name: restore
+#   panes:
+#     - shell_command:
+#       - wd restore
+#     - shell_command:
+#       - wd restore
 
 - window_name: misc
   panes:
@@ -74,22 +86,3 @@ windows:
       - neofetch
     - pane:
       focus: true
-
-- window_name: backup
-  panes:
-    - shell_command:
-      # - /opt/homebrew/opt/backrest/bin/backrest --bind-address :9898
-      # - /usr/local/bin/backrest --bind-address :9898
-      - tail -f /opt/homebrew/var/log/backrest.log
-    - pane:
-      focus: true
-
-# - window_name: tmux
-#   panes:
-#     - wd tmux
-#     - wd tmux
-
-# - window_name: pchef
-#   panes:
-#     - wd pchef
-#     - wd pchef
