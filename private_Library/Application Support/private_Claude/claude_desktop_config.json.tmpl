@@ -1,31 +1,15 @@
 {
   "globalShortcut": "",
   "mcpServers": {
-    "mcp-notion": {
-      "command": "npx",
-      "args": ["-y", "mcp-remote", "https://mcp.notion.com/sse"]
-    },
     "mcp-obsidian": {
-      "command": "uv",
+      "command": "uvx",
       "args": [
-        "--directory",
-        "/Users/aburns/src/vendor/mcp-obsidian",
-        "run",
         "mcp-obsidian"
       ],
       "env": {
-        "PATH": "/Users/aburns/.npm/_npx/5a9d879542beca3a/node_modules/.bin:/Users/aburns/src/vendor/mcp-obsidian/node_modules/.bin:/Users/aburns/src/vendor/node_modules/.bin:/Users/aburns/src/node_modules/.bin:/Users/aburns/node_modules/.bin:/Users/node_modules/.bin:/node_modules/.bin:/opt/homebrew/lib/node_modules/npm/node_modules/@npmcli/run-script/lib/node-gyp-bin:/opt/homebrew/opt/python@3.13/libexec/bin:/Users/aburns/.rbenv/shims:/Users/aburns/go/bin:/opt/homebrew/sbin:/opt/homebrew/bin:/Users/aburns/bin:/Users/aburns/.local/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/Applications/Ghostty.app/Contents/MacOS:/Users/aburns/.orbstack/bin:/opt/homebrew/opt/libpq/bin:/usr/local/opt/fzf/bin",
         "OBSIDIAN_API_KEY": "{{- (gopassRaw "erebusbat/tokens" | mustFromJson).obsidian }}",
         "OBSIDIAN_HOST": "127.0.0.1",
         "OBSIDIAN_PORT": "27124"
-      }
-    },
-    "circleci-mcp-server": {
-      "command": "npx",
-      "args": ["-y", "@circleci/mcp-server-circleci"],
-      "env": {
-        "CIRCLECI_TOKEN": "{{- (gopassRaw "ccam/tokens" | mustFromJson).circleci }}",
-        "CIRCLECI_BASE_URL": "https://circleci.com"
       }
     }
   }
