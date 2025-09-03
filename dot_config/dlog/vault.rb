@@ -1,7 +1,7 @@
 ################################################################################
 ### Global Options
 ################################################################################
-set_debug_output $stderr
+# set_debug_output $stderr
 
 ################################################################################
 ### External Files
@@ -29,6 +29,7 @@ include_glob '*_*.rb'
 [
   "~/Documents/Obsidian/vimwiki",
   "~/Documents/vimwiki",
+  "/vault",
 ].each do |vault_path|
   if dir?(vault_path)
     set_vault_root vault_path
