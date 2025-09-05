@@ -16,8 +16,10 @@ influx:/myserver/influx
 internal:/myserver/internal
 mmm:/myserver/mmm
 myserver:/myserver
+nav:/myserver/nav-shortcuts
 npm_nuc:/myserver/nuc01-npm
 npm_thelio:/myserver/thelio-npm
+nut:/myserver/nut
 obsidian:/myserver/obsidian
 orbital-sync:/myserver/pihole-orbital-sync
 paperless:/myserver/paperless-home
@@ -29,6 +31,7 @@ plex_music:/nas_media/plex/music/albums
 plex:/myserver/plex
 qmk_sys76:~/src/vendor/qmk_firmware/keyboards/system76/launch_1/keymaps/erebusbat
 restic:~/.restic
+restic-server:/myserver/restic-rest
 speedtest:/myserver/speedtest-tracker
 stash:/myserver/stashappcc
 syncthing:/myserver/syncthing

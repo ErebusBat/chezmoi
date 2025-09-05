@@ -2,4 +2,4 @@
 # Show running docker containers, that require an update (or are untagged)
 # NOTE: That means that they have a hash code, or rather don't contain a : or / in the image name
 #       If you are building and not tagging images then they will ALSO show up here
-docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.RunningFor}}\t{{.Image}}\t{{.Status}}' | awk '{if ($6 ~ /[:\/]/) {next} else {print}}'
+docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}' | awk '{if ($3 ~ /[:\/]/) {next} else {print}}'
