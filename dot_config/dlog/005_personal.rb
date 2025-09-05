@@ -12,8 +12,10 @@ add_link_gsub 'NAS',                           page: 'FreeNAS'
 ################################################################################
 ### Projects / Pages
 ################################################################################
-add_link_gsub 'DLOG',  alias: 'dlog',  page: 'Daily Log'
-add_link_gsub 'FMJ',   alias: 'FMJ',   page: 'FMJ Discovery'
-add_link_gsub 'MDT',                   page: 'Markdown Tool'
-add_link_gsub 'NXIVM',                 page: 'NXIVM'
-add_link_gsub 'TGMD',  alias: 'tgmd',  page: 'Jira Mark Down Link Tool'
+add_link_gsub 'BACKREST', alias: 'backrest',  page: 'Backrest Restic UI'
+add_link_gsub 'DLOG',     alias: 'dlog',      page: 'Daily Log'
+add_link_gsub 'FMJ',      alias: 'FMJ',       page: 'FMJ Discovery'
+add_link_gsub 'MDT',                          page: 'Markdown Tool'
+add_link_gsub 'NXIVM',                        page: 'NXIVM'
+add_link_gsub 'RESTIC',                       page: 'Restic'
+add_link_gsub 'TGMD',     alias: 'tgmd',      page: 'Jira Mark Down Link Tool'
