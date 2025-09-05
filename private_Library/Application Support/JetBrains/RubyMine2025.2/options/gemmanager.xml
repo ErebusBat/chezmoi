@@ -12,6 +12,13 @@
             </list>
           </value>
         </entry>
+        <entry key="dlog-ruby">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.local/share/mise/installs/ruby/3.4.5/bin/ruby" />
+            </list>
+          </value>
+        </entry>
       </map>
     </moduleSdks>
     <sdkGemsets>

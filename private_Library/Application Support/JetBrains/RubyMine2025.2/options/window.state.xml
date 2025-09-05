@@ -1,6 +1,7 @@
 <application>
   <component name="DimensionService">
     <location key="find.popup.0.0.3440.1440" x="1988" y="160" />
+    <location key="find.popup.0.0.3024.1964@192dpi" x="1040" y="296" />
     <size key="find.popup.0.0.3440.1440" width="950" height="951" />
     <size key="GridCell.Tab.0.left.0.0.3440.1440" width="2210" height="446" />
     <size key="GridCell.Tab.0.center.0.0.3440.1440" width="2210" height="446" />
@@ -34,6 +35,7 @@
     <size key="GridCell.Tab.3.center.0.0.3440.1440" width="1646" height="330" />
     <size key="GridCell.Tab.3.right.0.0.3440.1440" width="1646" height="330" />
     <size key="GridCell.Tab.3.bottom.0.0.3440.1440" width="1646" height="330" />
+    <size key="find.popup.0.0.3024.1964@192dpi" width="1298" height="1668" />
   </component>
   <component name="WindowManager">
     <frame x="1148" y="25" width="2292" height="1415" />
@@ -44,9 +46,10 @@
     </state>
     <state width="687" height="111" key="ShowUsagesActions.dimensionServiceKey/-1728.361.1728.1079/0.-1415.3440.1415/0.25.3440.1415" timestamp="1754578679094" />
     <state width="919" height="111" key="ShowUsagesActions.dimensionServiceKey/-1728.361.1728.1079/0.25.3440.1415/0.-1415.3440.1415" timestamp="1754505067176" />
-    <state x="1720" y="605" width="800" height="650" key="WELCOME_SCREEN" timestamp="1754599424879">
-      <screen x="0" y="25" width="3440" height="1415" />
+    <state x="756" y="461" width="800" height="650" key="WELCOME_SCREEN" timestamp="1756908033344">
+      <screen x="0" y="38" width="1512" height="944" />
     </state>
     <state x="1720" y="605" width="800" height="650" key="WELCOME_SCREEN/-1728.361.1728.1079/0.-1415.3440.1415/0.25.3440.1415" timestamp="1754599424879" />
+    <state x="756" y="461" width="800" height="650" key="WELCOME_SCREEN/0.38.1512.944" timestamp="1756908033344" />
   </component>
 </application>
