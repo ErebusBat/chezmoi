@@ -29,6 +29,7 @@ raw:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/.tmp/437/(Client's
 restic_server:~/src/erebusbat/myserver/restic-rest
 restic:~/.restic
 restore:/Volumes/SeaBack/backrest
+rubymine:~/Library/Application Support/JetBrains/RubyMine2025.2/options
 src:~/src
 ssh:~/.ssh
 stow:~/src/erebusbat/dotfiles-stow
