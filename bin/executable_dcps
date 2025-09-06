@@ -1,2 +1,2 @@
 #!/bin/zsh
-docker compose ps --format 'table {{.ID}}\t{{.Names}}\t{{.RunningFor}}\t{{.Image}}\t{{.Status}}'
+docker compose ps --format 'table {{.ID}}\t{{.Names}}\t{{.Image}}\t{{.RunningFor}}\t{{.Status}}'
