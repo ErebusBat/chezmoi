@@ -8,9 +8,7 @@ hosts:
     User: de4062
     IdentityFile: ~/.ssh/id_rsync_ed25519
   de4062.rsync.net:
-    Hostname: de4062.rsync.net
-    User: de4062
-    IdentityFile: ~/.ssh/id_rsync_ed25519
+    Inherits: rsyncnet
 
   ### Routers ##############################################
   # openwrt:
@@ -39,7 +37,7 @@ hosts:
   ### NAS ##################################################
   truenas:
     Hostname: 192.168.68.80
-    Inherits: personal
+    Inherits: personal-allowpass
   freenas:
     Inherits: truenas
   nas:
@@ -50,6 +48,10 @@ hosts:
     Inherits: personal-allowpass
     Hostname: nuc01.erebusbat.net
     # Hostname: nuc01.erebusbat.net
+  nuc:
+    Inherits: nuc01
+  plex:
+    Inherits: nuc01
   nuc-deco:
     Inherits: personal-allowpass
     # Hostname: 192.168.69.69
@@ -63,6 +65,8 @@ hosts:
     Inherits: personal-allowpass
     Hostname: maze.erebusbat.net
     # Hostname: maze.tail04886.ts.net
+  nuc02:
+    Inherits: maze
   nuc02-deco:
     Inherits: personal-allowpass
     # Hostname: 192.168.70.70
@@ -87,6 +91,7 @@ hosts:
 #############################################################
 # Raspberry Pis
 #############################################################
+  # Toby's Arcade Machine
   arcade:
     Hostname: 192.168.68.70
     Hostname: 192.168.68.70
