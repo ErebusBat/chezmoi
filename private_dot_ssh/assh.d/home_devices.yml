@@ -1,7 +1,8 @@
 hosts:
 ############################################################
-# Devices
+# Devices / Services
 ############################################################
+  ### RSync.net ############################################
   rsyncnet:
     Hostname: de4062.rsync.net
     User: de4062
@@ -10,11 +11,8 @@ hosts:
     Hostname: de4062.rsync.net
     User: de4062
     IdentityFile: ~/.ssh/id_rsync_ed25519
-  # hass-droid:
-  #   Hostname: 10.0.0.236
-  #   User: aburns
-  #   Inherits: bat-devices
 
+  ### Routers ##############################################
   # openwrt:
   #   HostName: 10.0.1.1
   #   User: root
@@ -24,43 +22,21 @@ hosts:
   #     - direct
   #     - thelio-ts
 
-#############################################################
-# UniFi
-#############################################################
-  # unifi:
-  #   Hostname: 10.0.1.250
-  #   User: root
-  #   Inherits: bat-devices-admin
-
-  # us24:
-  #   Hostname: 10.0.1.2
-  #   Inherits: bat-devices-admin
-  # us16:
-  #   Hostname: 10.0.1.4
-  #   Inherits: bat-devices-admin
-  # us8poe:
-  #   Hostname: 10.0.1.3
-  #   Inherits: bat-devices-admin
-  # es8desk:
-  #   Hostname: 10.0.1.5
-  #   User: ubnt
-  #   Inherits: bat-devices
-
-  # ap-living-room:
-  #   Hostname: 10.0.1.20
-  #   Inherits: bat-devices-admin
-  # ap-garage:
-  #   Hostname: 10.0.1.21
-  #   Inherits: bat-devices-admin
-
-#############################################################
+############################################################
 # Servers
-#############################################################
+############################################################
+  ### Home Assistant #######################################
   # hassio:
   #   Hostname: 10.0.0.150
   #   Inherits: raspi
   # hass:
   #   Inherits: hassio
+  # hass-droid:
+  #   Hostname: 10.0.0.236
+  #   User: aburns
+  #   Inherits: bat-devices
+
+  ### NAS ##################################################
   truenas:
     Hostname: 192.168.68.80
     Inherits: personal
@@ -69,7 +45,7 @@ hosts:
   nas:
     Inherits: truenas
 
-  ### nuc01 #################################################
+  ### nuc01 ################################################
   nuc01:
     Inherits: personal-allowpass
     Hostname: nuc01.erebusbat.net
@@ -82,7 +58,7 @@ hosts:
     Inherits: personal-allowpass
     Hostname: nuc01-deco.erebusbat.net
 
-  ### maze ##################################################
+  ### maze #################################################
   maze:
     Inherits: personal-allowpass
     Hostname: maze.erebusbat.net
@@ -95,12 +71,15 @@ hosts:
     Inherits: personal-allowpass
     Hostname: nuc02-deco.erebusbat.net
 
-#############################################################
+############################################################
 # Linux PCs
-#############################################################
+############################################################
+  ### theilo ################################################
   # thelio-deco:
   #   Inherits: personal
   #   Hostname: 192.168.69.75
+
+  ### Sys76 Darter Laptop ##################################
   dartp6:
     Inherits: personal-allowpass
     HostName: dartp6.tail04886.ts.net
@@ -118,6 +97,7 @@ hosts:
     Hostname: retropie.tail16501.ts.net
     Inherits: raspi
 
+  ### Raspberry PIs ########################################
   # officepi:
   #   Hostname: 10.0.0.20
   #   Inherits: raspi
@@ -137,10 +117,9 @@ hosts:
   #   HostName: 100.103.156.41
   #   User: root
 
-
-#############################################################
+############################################################
 # Templates
-#############################################################
+############################################################
 templates:
   bat-devices:
     IdentityFile: ~/.ssh/id_bat_devices
