@@ -68,32 +68,42 @@ hosts:
     Inherits: truenas
   nas:
     Inherits: truenas
-  maze:
-    Inherits: personal-allowpass
 
+  ### nuc01 #################################################
+  nuc01:
+    Inherits: personal-allowpass
+    Hostname: nuc01.erebusbat.net
+    # Hostname: nuc01.erebusbat.net
   nuc-deco:
-    Inherits: personal
-    Hostname: 192.168.69.69
+    Inherits: personal-allowpass
+    # Hostname: 192.168.69.69
+    Hostname: nuc01-deco.erebusbat.net
   nuc01-deco:
     Inherits: personal-allowpass
-    Hostname: 192.168.69.69
+    Hostname: nuc01-deco.erebusbat.net
 
+  ### maze ##################################################
+  maze:
+    Inherits: personal-allowpass
+    Hostname: maze.erebusbat.net
+    # Hostname: maze.tail04886.ts.net
   nuc02-deco:
     Inherits: personal-allowpass
-    Hostname: 192.168.70.70
+    # Hostname: 192.168.70.70
+    Hostname: nuc02-deco.erebusbat.net
   maze-deco:
     Inherits: personal-allowpass
-    Hostname: 192.168.70.70
+    Hostname: nuc02-deco.erebusbat.net
 
 #############################################################
 # Linux PCs
 #############################################################
-  thelio-deco:
-    Inherits: personal
-    Hostname: 192.168.69.75
-  # dartp6-deco:
+  # thelio-deco:
   #   Inherits: personal
-  #   Hostname: 10.0.0.207
+  #   Hostname: 192.168.69.75
+  dartp6:
+    Inherits: personal-allowpass
+    HostName: dartp6.tail04886.ts.net
 
 #############################################################
 # Raspberry Pis
@@ -123,6 +133,9 @@ hosts:
   # batpi:
   #   Hostname: 10.0.1.164
   #   Inherits: raspi
+  # openwrt:
+  #   HostName: 100.103.156.41
+  #   User: root
 
 
 #############################################################
@@ -140,12 +153,13 @@ templates:
     User: aburns
     ForwardAgent: yes
     IdentitiesOnly: yes
+    IdentityFile: ~/.ssh/id_ed25519
   personal-allowpass:
     User: aburns
     ForwardAgent: yes
+    IdentityFile: ~/.ssh/id_ed25519
   raspi:
     User: pi
-    ForwardAgent: yes
-    IdentityFile: ~/.ssh/id_bat_devices
+    Inherits: bat-devices
 
 
