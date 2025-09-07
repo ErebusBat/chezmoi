@@ -7,7 +7,6 @@ windows:
     - shell_command:
       - wd vimwiki
       - vimlog -- 0
-      # - ~/bin/.chezmoi-status.sh loop
     - shell_command:
       - wd vimwiki
       - neofetch
@@ -45,10 +44,7 @@ windows:
     - shell_command:
         - ssh nuc
     - shell_command:
-        # - ssh-add ~/.ssh/id_ed25519
         - ssh maze
-    # - shell_command:
-    #     - ssh thelio
 
 - window_name: nav
   options:
@@ -72,26 +68,17 @@ windows:
         - wd dlog
         - tmux resize-pane -y 14 -t "$TMUX_PANE"
 
-- window_name: restore
-  panes:
-    - shell_command:
-      - wd restore
-    - shell_command:
-      - wd restore
+# - window_name: restore
+#   panes:
+#     - shell_command:
+#       - wd restore
+#     - shell_command:
+#       - wd restore
 
 - window_name: misc
   panes:
     - shell_command:
       - neofetch
-    - pane:
-      focus: true
-
-- window_name: backup
-  panes:
-    - shell_command:
-      # - /opt/homebrew/opt/backrest/bin/backrest --bind-address :9898
-      # - /usr/local/bin/backrest --bind-address :9898
-      - tail -f /opt/homebrew/var/log/backrest.log
     - pane:
       focus: true
 
