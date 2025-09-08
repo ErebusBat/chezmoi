@@ -94,6 +94,8 @@ Brewfile
 Library/LaunchAgents/
 Library/Application Support/
 .raycast-cmds
+bin/sync_terminal_theme_to_system.sh
+bin/toggle_light_dark.sh
 {{- end }}
 
 {{- if ne .chezmoi.os "linux" }}
