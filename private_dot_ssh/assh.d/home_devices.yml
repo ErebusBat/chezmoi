@@ -130,6 +130,7 @@ templates:
     IdentityFile: ~/.ssh/id_bat_devices
     ForwardAgent: yes
     IdentitiesOnly: yes
+    AddKeysToAgent: yes
   bat-devices-admin:
     User: admin
     Inherits: bat-devices
@@ -138,10 +139,12 @@ templates:
     ForwardAgent: yes
     IdentitiesOnly: yes
     IdentityFile: ~/.ssh/id_ed25519
+    AddKeysToAgent: yes
   personal-allowpass:
     User: aburns
     ForwardAgent: yes
     IdentityFile: ~/.ssh/id_ed25519
+    AddKeysToAgent: yes
   raspi:
     User: pi
     Inherits: bat-devices
