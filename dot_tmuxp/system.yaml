@@ -52,10 +52,11 @@ windows:
   suppress_history: false
   panes:
     - shell_command:
+        - wd nav
         - git pull
         - vimls
-    - pane:
-      focus: true
+    - shell_command:
+        - wd nav
 
 - window_name: dlog
   # layout: d396,164x77,0,0[164x4,0,0,4,164x72,0,5,5]
