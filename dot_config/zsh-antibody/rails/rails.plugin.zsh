@@ -12,87 +12,31 @@ alias be="bundle exec"
 ################################################################################
 ## Command Aliases
 ################################################################################
-brakeman() {
-  if [[ -x bin/brakeman ]]; then
-    bin/brakeman $*
-  else
-    bundle exec brakeman $*
-  fi
-}
+# bin_tasks taken from a new rails 8.0.2 project
+bin_tasks=(
+  brakeman
+  dev
+  docker-entrypoint
+  importmap
+  jobs
+  kamal
+  rails
+  rake
+  rubocop
+  setup
+  thrust
+)
 
-# bundle skiped as bundle exec bundle doesn't really make sense
+for bin in "${bin_tasks[@]}"; do
+  eval "$bin() {
+    if [[ -x bin/$bin ]]; then
+      echo '> bin/$bin \$*'
+      bin/$bin \$*
+    else
+      echo '> bundle exec $bin \$*'
+      bundle exec $bin \$*
+    fi
+  }"
+done
 
-dev() {
-  if [[ -x bin/dev ]]; then
-    bin/dev $*
-  else
-    bundle exec dev $*
-  fi
-}
-
-# docker-entrypoint skipped
-
-importmap() {
-  if [[ -x bin/importmap ]]; then
-    bin/importmap $*
-  else
-    bundle exec importmap $*
-  fi
-}
-
-jobs() {
-  if [[ -x bin/jobs ]]; then
-    bin/jobs $*
-  else
-    bundle exec jobs $*
-  fi
-}
-
-kamal() {
-  if [[ -x bin/kamal ]]; then
-    bin/kamal $*
-  else
-    bundle exec kamal $*
-  fi
-}
-
-rails() {
-  if [[ -x bin/rails ]]; then
-    bin/rails $*
-  else
-    bundle exec rails $*
-  fi
-}
-
-rake() {
-  if [[ -x bin/rake ]]; then
-    bin/rake $*
-  else
-    bundle exec rake $*
-  fi
-}
-
-rubocop() {
-  if [[ -x bin/rubocop ]]; then
-    bin/rubocop $*
-  else
-    bundle exec rubocop $*
-  fi
-}
-
-setup() {
-  if [[ -x bin/setup ]]; then
-    bin/setup $*
-  else
-    bundle exec setup $*
-  fi
-}
-
-thrust() {
-  if [[ -x bin/thrust ]]; then
-    bin/thrust $*
-  else
-    bundle exec thrust $*
-  fi
-}
-
+unset bin_tasks
