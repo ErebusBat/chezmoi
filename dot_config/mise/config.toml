@@ -1,2 +1,3 @@
 [tools]
+"github:Rigellute/spotify-tui" = "latest"
 "github:Wilfred/difftastic" = "latest"

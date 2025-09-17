@@ -1,0 +1,10 @@
+#!/bin/bash
+{{ $filePath := joinPath .chezmoi.homeDir "/.config/mise/config.toml" }}
+{{ if stat $filePath }}
+# Config HASH: {{ include $filePath | sha256sum }} ~/.config/mise/config.toml
+{{ else }}
+# Config file {{ $filePath }} not found!
+# Script Generated On: {{ (now).Format "2006-01-02 15:04:05" }}
+{{ end }}
+cd ~
+mise install
