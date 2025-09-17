@@ -1,6 +1,12 @@
 [tools]
 "github:Rigellute/spotify-tui" = "latest"
 "github:Wilfred/difftastic" = "latest"
+"github:aristocratos/btop" = "latest"
+"github:dandavison/delta" = "latest"
 "github:eza-community/eza" = "latest"
 "github:jesseduffield/lazydocker" = "latest"
 "github:moul/assh" = "latest"
+"github:muesli/duf" = "latest"
+"github:ogham/exa" = "latest"
+"github:sharkdp/bat" = "latest"
+"github:twpayne/chezmoi" = "latest"
