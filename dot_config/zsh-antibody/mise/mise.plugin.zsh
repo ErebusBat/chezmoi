@@ -3,3 +3,9 @@ if [[ -x /opt/homebrew/bin/mise ]]; then
 elif [[ -x ~/.local/bin/mise ]]; then
   eval "$(~/.local/bin/mise activate)"
 fi
+
+if [[ -n $MISE_SHELL ]]; then
+  # We have mise! Do Things!
+
+  alias mr='mise run'
+fi
