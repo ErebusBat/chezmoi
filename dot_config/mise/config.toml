@@ -1,3 +1,4 @@
 [tools]
 "github:Rigellute/spotify-tui" = "latest"
 "github:Wilfred/difftastic" = "latest"
+"github:moul/assh" = "latest"
