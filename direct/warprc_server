@@ -4,6 +4,7 @@ cfddns:/myserver/cloudflare-ddns
 chezmoi:~/.local/share/chezmoi
 dashy:/myserver/dashy
 deco:/myserver/deco-tools
+diun:/myserver/diun
 dns:/myserver/dnscontrol
 downloader:/myserver/downloader
 gatus:/myserver/gatus
