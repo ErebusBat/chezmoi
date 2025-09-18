@@ -60,7 +60,6 @@ Library/LaunchAgents/local.restart-orbstack.plist
 .s3cfg-truenas
 .ssh/id_bat_devices
 .tmuxp/hassio.yaml
-.tmuxp/system.yaml
 bin/ptmux.zsh
 Library/LaunchAgents/local.restart-orbstack.plist
 {{- end }}
