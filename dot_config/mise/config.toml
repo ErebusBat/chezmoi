@@ -1,8 +1,11 @@
+[settings]
+experimental = true
+
 [tools]
-"github:BurntSushi/ripgrep" = "latest"
+assh = "latest"
 "github:Rigellute/spotify-tui" = "latest"
 "github:Wilfred/difftastic" = "latest"
-"github:aristocratos/btop" = "latest"
+# "github:aristocratos/btop" = "latest"
 "github:dandavison/delta" = "latest"
 "github:eza-community/eza" = "latest"
 "github:jesseduffield/lazydocker" = "latest"
