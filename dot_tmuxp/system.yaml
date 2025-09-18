@@ -54,6 +54,13 @@ windows:
 #     - shell_command:
 #       - wd restore
 
+- window_name: dlog
+  panes:
+    - shell_command:
+      - wd dlog
+    - shell_command:
+      - wd dlog
+
 - window_name: misc
   panes:
     - shell_command:
