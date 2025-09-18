@@ -6,16 +6,17 @@ windows:
   panes:
     - shell_command:
       - wd vimwiki
-      - vimlog -- 0
+      - vimlog -- y 0
+      # - ~/bin/.chezmoi-status.sh loop
     - shell_command:
       - wd vimwiki
-      - neofetch
+      - fastfetch
 
 - window_name: chezmoi
   panes:
     - shell_command:
       - wd chezmoi
-      - neofetch
+      - fastfetch
     - shell_command:
       - wd chezmoi
 
@@ -30,7 +31,7 @@ windows:
   suppress_history: false
   panes:
     - shell_command:
-        - neofetch
+        - fastfetch
     - pane:
       focus: true
 
@@ -46,29 +47,6 @@ windows:
     - shell_command:
         - ssh maze
 
-- window_name: nav
-  options:
-    automatic-rename: 'off'
-  suppress_history: false
-  panes:
-    - shell_command:
-        - wd nav
-        - git pull
-        - vimls
-    - shell_command:
-        - wd nav
-
-- window_name: dlog
-  # layout: d396,164x77,0,0[164x4,0,0,4,164x72,0,5,5]
-  focus: false
-  panes:
-    - shell_command:
-        - wd dlog
-        - vimls
-    - shell_command:
-        - wd dlog
-        - tmux resize-pane -y 14 -t "$TMUX_PANE"
-
 # - window_name: restore
 #   panes:
 #     - shell_command:
@@ -79,16 +57,7 @@ windows:
 - window_name: misc
   panes:
     - shell_command:
-      - neofetch
+      - fastfetch
     - pane:
       focus: true
 
-# - window_name: tmux
-#   panes:
-#     - wd tmux
-#     - wd tmux
-
-# - window_name: pchef
-#   panes:
-#     - wd pchef
-#     - wd pchef
