@@ -1,32 +1,14 @@
 {
     "default_path": "/home/aburns/bin",
     "bins": {
-        "/home/aburns/bin/assh": {
-            "path": "/home/aburns/bin/assh",
-            "remote_name": "assh",
-            "version": "v2.16.0",
+        "/home/aburns/bin/btop": {
+            "path": "/home/aburns/bin/btop",
+            "remote_name": "btop",
+            "version": "v1.4.4",
             "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/moul/assh",
+            "url": "github.com/aristocratos/btop",
             "provider": "github",
-            "package_path": "assh"
-        },
-        "/home/aburns/bin/eza": {
-            "path": "/home/aburns/bin/eza",
-            "remote_name": "eza",
-            "version": "v0.18.15",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/eza-community/eza",
-            "provider": "github",
-            "package_path": "./eza"
-        },
-        "/home/aburns/bin/lazydocker": {
-            "path": "/home/aburns/bin/lazydocker",
-            "remote_name": "lazydocker",
-            "version": "v0.23.1",
-            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-            "url": "https://github.com/jesseduffield/lazydocker",
-            "provider": "github",
-            "package_path": "lazydocker"
+            "package_path": "./btop/bin/btop"
         }
     }
 }
