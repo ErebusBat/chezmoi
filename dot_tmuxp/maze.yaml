@@ -1,0 +1,26 @@
+session_name: maze
+start_directory: "~"
+shell_command_before:
+  - ssh maze
+windows:
+- window_name: logs
+  panes:
+    - shell_command:
+      - fastfetch
+    - shell_command:
+      - journalctl -f
+
+- window_name: dlog
+  focus: true
+  options:
+    automatic-rename: 'off'
+  panes:
+    - shell_command:
+      - wd obsidian
+      - make logs
+
+- window_name: zsh
+  options:
+    automatic-rename: 'off'
+  panes:
+    -
