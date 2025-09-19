@@ -1,0 +1,17 @@
+session_name: nuc01
+start_directory: "~"
+shell_command_before:
+  - ssh nuc
+windows:
+- window_name: logs
+  panes:
+    - shell_command:
+      - fastfetch
+    - shell_command:
+      - journalctl -f
+
+- window_name: zsh
+  options:
+    automatic-rename: 'off'
+  panes:
+    -

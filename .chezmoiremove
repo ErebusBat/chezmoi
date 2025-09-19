@@ -1,17 +1,7 @@
-bin/grc_passwords.rb
-.config/zsh-antibody/fetlife/
-.config/tmux/init_chezmoi_secrets.sh
-.ssh/assh.d/tractionguest.yml
-.tmux-status.conf
-.tmux.conf
-.tmux/**
-.tmux/op_auth.sh
-Library/LaunchAgents/local.chezmoi-pull.plist
-bin/stmux.sh
-
-# Retired Vim plugins
-.config/nvim/*.vim
-.config/nvim/lua/custom/reload.lua
+# This was never used and is clutter
+.tmux/tmuxp/system.yaml
+.tmux/tmuxp
+.tmuxp/hassio.yaml
 
 {{- if not .area.fetlife }}
 .s3cfg-fetlife
