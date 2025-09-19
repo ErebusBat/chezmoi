@@ -139,7 +139,7 @@ function calc_set_font_size(window)
     if (monitor_count == 2)
     then
       background_hsb["brightness"] = 0.02
-      overrides.font_size = 12
+      overrides.font_size = 10
     else
       overrides.font_size = 14
     end
