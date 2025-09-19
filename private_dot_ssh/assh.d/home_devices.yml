@@ -10,6 +10,7 @@ hosts:
   de4062.rsync.net:
     Inherits: rsyncnet
 
+
   ### Routers ##############################################
   # openwrt:
   #   HostName: 10.0.1.1
@@ -45,7 +46,7 @@ hosts:
 
   ### nuc01 ################################################
   nuc01:
-    Inherits: personal-allowpass
+    Inherits: personal-server
     Hostname: nuc01.erebusbat.net
     # Hostname: nuc01.erebusbat.net
   nuc:
@@ -53,26 +54,26 @@ hosts:
   plex:
     Inherits: nuc01
   nuc-deco:
-    Inherits: personal-allowpass
+    Inherits: personal-server
     # Hostname: 192.168.69.69
     Hostname: nuc01-deco.erebusbat.net
   nuc01-deco:
-    Inherits: personal-allowpass
+    Inherits: personal-server
     Hostname: nuc01-deco.erebusbat.net
 
   ### maze #################################################
   maze:
-    Inherits: personal-allowpass
+    Inherits: personal-server
     Hostname: maze.erebusbat.net
     # Hostname: maze.tail04886.ts.net
   nuc02:
     Inherits: maze
   nuc02-deco:
-    Inherits: personal-allowpass
+    Inherits: personal-server
     # Hostname: 192.168.70.70
     Hostname: nuc02-deco.erebusbat.net
   maze-deco:
-    Inherits: personal-allowpass
+    Inherits: personal-server
     Hostname: nuc02-deco.erebusbat.net
 
 ############################################################
@@ -145,6 +146,9 @@ templates:
     ForwardAgent: yes
     IdentityFile: ~/.ssh/id_ed25519
     AddKeysToAgent: yes
+  personal-server:
+    Inherits: personal-allowpass
+    RemoteForward: /run/user/1000/gnupg/S.gpg-agent /Users/aburns/.gnupg/S.gpg-agent.extra
   raspi:
     User: pi
     Inherits: bat-devices
