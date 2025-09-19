@@ -26,6 +26,8 @@ myserver:~/src/erebusbat/myserver
 nav:~/src/erebusbat/myserver/nav-shortcuts
 paperless:~/src/erebusbat/myserver/paperless-ngx
 pchef:~/src/erebusbat/pchef76
+qmk_c3:~/src/erebusbat/qmk_firmware/keyboards/keychron/c3_pro/ansi/red/keymaps/erebusbat
+qmk:~/src/erebusbat/qmk_firmware
 raw:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/.tmp/437/(Client's) Supplemental Discovery & Exhibits/Work in Progress /evidence/_raw
 restic_server:~/src/erebusbat/myserver/restic-rest
 restic:~/.restic
