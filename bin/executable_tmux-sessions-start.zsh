@@ -7,8 +7,9 @@ if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
 fi
 
 sessions=(
-  ccam
   system
+  maze
+  nuc01-plex
 )
 START_SESS=$1
 [[ -z $START_SESS ]] && START_SESS=$sessions[1]

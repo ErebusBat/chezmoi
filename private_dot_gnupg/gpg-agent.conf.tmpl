@@ -8,7 +8,7 @@
 {{ if eq .chezmoi.os "darwin" }}
 # Enable GPG Agent Forwarding
 #   See myserver/gpg-agent for server stuff
-extra-socket $HOME/.gnupg/S.gpg-agent.extra
+extra-socket {{ .chezmoi.destDir }}/.gnupg/S.gpg-agent.extra
 
 # Use macOS keychain
 pinentry-program /opt/homebrew/bin/pinentry-mac
