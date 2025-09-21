@@ -6,4 +6,6 @@ if [[ ! `which lazydocker` =~ 'not found' ]]; then
   alias ld=lazydocker
 fi
 
-alias dcpu='docker compose pull && docker compose up -d'
+alias dcp='docker compose pull'
+alias dcpud='docker compose pull && docker compose up -d'
+alias dcud='docker compose up -d'
