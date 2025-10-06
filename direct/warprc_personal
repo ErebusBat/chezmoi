@@ -14,6 +14,7 @@ docker_dev:~/src/sie/my_docker_env
 docker:~/src/sie/my_docker_env
 docker:~/src/sie/my_docker_env
 downloads:~/Downloads
+gd_fyrh:~/Library/CloudStorage/GoogleDrive-findyourroadhome@gmail.com/My Drive
 gdrive:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/My Drive
 gopass:~/.local/share/gopass/stores/root
 image-marker:~/src/erebusbat/image-marker
