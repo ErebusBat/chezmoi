@@ -195,7 +195,9 @@ function cleanupXnViewMP() {
   # Sanity Check
   echo ""
   echo  "Double Checking XnViewMP config for volume refs vvvvvv"
-  rg dustbin $XNVIEW_LOC_CFG/*
+  if [[ -d $XNVIEW_LOC_CFG ]]; then
+    rg dustbin $XNVIEW_LOC_CFG/*
+  fi
   echo  "THERE SHOULD BE NOTHING LISTED ABOVE            ^^^^^^"
   echo ""
 }
