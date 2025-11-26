@@ -5,6 +5,6 @@ if [[ -n "$SSH_CONNECTION" ]] || [[ -n "$SSH_CLIENT" ]]; then
   fi
 fi
 
-if [[ ! -d $GHOSTTY_RESOURCES_DIR ]]; then return 0; fi
-
-source ${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration
+# if [[ ! -d $GHOSTTY_RESOURCES_DIR ]]; then return 0; fi
+#
+# source ${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration
