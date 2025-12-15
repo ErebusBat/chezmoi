@@ -8,8 +8,8 @@ cd $HOME/src/erebusbat/dlog-ruby/
 
 # Shortcut to run bundler
 if [[ $1 == "bundle" ]] && [[ $# -eq 1 ]]; then
-  bundle
+  bundle install
   exit 0
 fi
 
-bin/dlog $*
+bundle exec bin/dlog $*
