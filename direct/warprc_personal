@@ -46,4 +46,4 @@ vim:~/.config/nvim
 vimwiki:~/Documents/Obsidian/vimwiki/
 watchtower:~/src/erebusbat/myserver/watchtower
 wezterm:~/.config/wezterm
-wiki:~/Documents/vimwiki
+wiki:~/Documents/Obsidian/vimwiki
