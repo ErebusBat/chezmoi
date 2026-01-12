@@ -148,8 +148,7 @@ templates:
     AddKeysToAgent: yes
   personal-server:
     Inherits: personal-allowpass
-    # RemoteForward: /run/user/1000/gnupg/S.gpg-agent /Users/aburns/.gnupg/S.gpg-agent.extra
-    RemoteForward: /run/user/1000/gnupg/S.gpg-agent /home/aburns/.gnupg/S.gpg-agent.extra
+    RemoteForward: /run/user/1000/gnupg/S.gpg-agent /Users/aburns/.gnupg/S.gpg-agent.extra
   raspi:
     User: pi
     Inherits: bat-devices
