@@ -43,7 +43,7 @@ tmux:~/.config/tmux
 tmuxp:~/.tmuxp
 txt:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/My Drive/WIP/evidence/raw
 vim:~/.config/nvim
-vimwiki:~/Documents/vimwiki
+vimwiki:~/Documents/Obsidian/vimwiki
 watchtower:~/src/erebusbat/myserver/watchtower
 wezterm:~/.config/wezterm
 wiki:~/Documents/Obsidian/vimwiki
