@@ -170,8 +170,7 @@ vim.keymap.set('i', ']', ']<C-g>u', { desc = 'Create a undo block', noremap = tr
 
 -- solargraph config
 
-require('lspconfig').solargraph.setup(
-  {
+vim.lsp.config("solargraph", {
     solargraph = {
       useBundler = true,
       diagnostics = true
