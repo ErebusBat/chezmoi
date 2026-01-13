@@ -35,6 +35,13 @@ hosts:
   #   User: aburns
   #   Inherits: bat-devices
 
+  ### MBP ##################################################
+  mbp:
+    Hostname: 192.168.68.75
+    Inherits: personal-allowpass
+  mbp-personal:
+    Inherits: mbp
+
   ### NAS ##################################################
   truenas:
     Hostname: 192.168.68.80
