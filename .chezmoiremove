@@ -1,7 +1,5 @@
-# This was never used and is clutter
-.tmux/tmuxp/system.yaml
-.tmux/tmuxp
-.tmuxp/hassio.yaml
+# 2026-JAN-13: Remove go snippets that is causing issues with TreeSitter update
+.config/nvim/snippets/go.lua
 
 {{- if not .area.fetlife }}
 .s3cfg-fetlife
