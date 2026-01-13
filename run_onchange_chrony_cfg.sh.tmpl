@@ -1,0 +1,43 @@
+#!/bin/bash
+{{- if ne .chezmoi.os "darwin" -}}
+# This is only intended to run on macOS
+exit 0
+{{- end -}}
+{{- $etcDir := "/etc/chrony.d" -}}
+{{- $etcFile := joinPath $etcDir "chrony.conf" -}}
+{{- $cfgDir := joinPath .chezmoi.homeDir ".config/chrony" -}}
+{{- $filePath := joinPath $cfgDir "chrony.conf" -}}
+# SHA Hash of config so Chezmoi can detect changes and run this script automatically:
+# {{ include $filePath | sha256sum }} {{ $filePath }}
+
+echo -e "\n"
+echo "vvv Chrony vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv"
+echo "Chrony Config File Has Changed... Linking. (Your password will be required)"
+sudo ls /etc > /dev/null
+cd {{ $cfgDir }}
+
+if [[ ! -d {{ $etcDir }} ]]; then
+  echo "*** WARNING: {{ $etcDir }} does not yet exist.  Launch ChronyControl to create it"
+  # Append ever changing text to local config so that Chezmoi will override it ever time
+  date >> {{ $filePath }}
+  exit 0
+fi
+
+if [[ -f {{ $etcFile }} ]]; then
+  printf "Removing "
+  sudo rm -v {{ $etcFile }}
+fi
+echo -e "\nCreating symlink for system config to {{ $filePath }}"
+sudo ln -s {{ $filePath }} {{ $etcFile }}
+
+echo -e "\nVerfification of {{ $etcDir }}:"
+ls -la {{ $etcDir }}
+
+# Appending a fingerprint to the end of the config file so that if it changes this script will be ran
+cd {{ $cfgDir }}
+etcFingerprint=$(./fingerprint_etc.sh)
+echo "Updating fingerprint: $etcFingerprint"
+sed -i '' -e '$s/.*/'"$etcFingerprint"'/' {{ $filePath }}
+
+echo -e "\nWARNING: You should restart ChronyControl or your computer!"
+echo "^^^ Chrony ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"
