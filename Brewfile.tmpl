@@ -4,9 +4,8 @@
 # THIS FILE IS TEMPLATED, DO NOT EDIT DIRECTLY!
 #===============================================================================
 
-# DISABLED 12-JAN-2026
-# tap "tinted-theming/tinted"
-# brew "tinty"
+tap "tinted-theming/tinted"
+brew "tinted-theming/tinted/tinty"
 
 ################################################################################
 # Development
@@ -41,7 +40,9 @@ brew "blueutil" # Needed by toothpick Raycast Extension
 #--- Other Utils
 cask "contexts"
 cask "rectangle-pro"
-cask "tailscale"
+{{ if eq .area.lshq false }}
+cask "tailscale-app"
+{{ end }}
 cask "usb-overdrive"
 
 ################################################################################
@@ -64,7 +65,7 @@ cask "chronycontrol"
 #cask "dropbox"
 cask "fantastical"
 cask "launchcontrol"
-cask "todoist"
+cask "todoist-app"
 # cask "xmind"
 
 brew "antidote"
@@ -193,7 +194,7 @@ cask "font-fira-code"
 cask "font-go-mono-nerd-font"
 #cask "font-maple"
 cask "font-monaspace"
-cask "font-open-dyslexic-nerd-font"
+cask "font-opendyslexic-nerd-font"
 
 #===============================================================================
 # THIS FILE IS TEMPLATED, DO NOT EDIT DIRECTLY!
