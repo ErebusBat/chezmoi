@@ -10,7 +10,8 @@ fi
 LOGS_PATH="logs/$(date +%Y/%m-%b)"
 FILE_NAME="$(date +%F-%a).md"
 WIKI_ROOT_PATHS=(
-  ~/Documents/Obsidian/vimwiki   # Mac
+  ~/Documents/Obsidian/vimwiki   # Personal Mac
+  ~/Documents/vimwiki            # LightspeedHQ Mac
   ~/Sync/Obsidian/vimwiki        # Thelio (SyncThing)
   ~/vimwiki                      # Thelio (Obsidian)
 )

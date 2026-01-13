@@ -143,6 +143,8 @@ function calc_set_font_size(window)
     else
       overrides.font_size = 14
     end
+  elseif (hostname == 'USMB-JVK937H909')  then
+    overrides.font_size = 12
   elseif (hostname == 'thelio')  then
     overrides.font_size = 8
   elseif (hostname == 'dartp6')  then
