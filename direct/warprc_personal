@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
-||||||| constructed merge base
 antibody:~/.config/zsh-antibody
 aoc:~/src/erebusbat/aoc/2024-ruby
 backrest:~/src/erebusbat/myserver/backrest
@@ -18,7 +14,7 @@ gd_fyrh:~/Library/CloudStorage/GoogleDrive-findyourroadhome@gmail.com/My Drive
 gdrive:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/My Drive
 gopass:~/.local/share/gopass/stores/root
 image-marker:~/src/erebusbat/image-marker
-kate_wip:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/.tmp/437/(Client's) Supplemental Discovery & Exhibits/Work in Progress 
+kate_wip:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/.tmp/437/(Client's) Supplemental Discovery & Exhibits/Work in Progress
 libappsup:~/Library/Application Support
 library:~/Documents/Library
 maid:~/.maid
@@ -29,7 +25,6 @@ paperless:~/src/erebusbat/myserver/paperless-ngx
 pchef:~/src/erebusbat/pchef76
 qmk_c3:~/src/erebusbat/qmk_firmware/keyboards/keychron/c3_pro/ansi/red/keymaps/erebusbat
 qmk:~/src/erebusbat/qmk_firmware
-raw:~/Library/CloudStorage/GoogleDrive-newjourneywy@gmail.com/.tmp/437/(Client's) Supplemental Discovery & Exhibits/Work in Progress /evidence/_raw
 restic_server:~/src/erebusbat/myserver/restic-rest
 restic:~/.restic
 restore:/Volumes/SeaBack/backrest

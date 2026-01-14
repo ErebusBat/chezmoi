@@ -52,24 +52,31 @@ cask "usb-overdrive"
 ################################################################################
 #cask "obsidian" # Need to install this prior to homebrew for notes so having it here messes things up
 
-# Terminals
+### Terminals
 tap "wez/wezterm"
 cask "wez/wezterm/wezterm"
 cask "ghostty"
-# Web Browsers
+
+### Web Browsers
 cask "google-chrome"
 cask "firefox"
-# System Utilities
+
+### System Utilities
 cask "balenaetcher"
 cask "caffeine"
-# cask "chatgpt"
 cask "chronycontrol"
-#cask "dropbox"
-cask "fantastical"
+# cask "dropbox"
 cask "launchcontrol"
+# cask "obsbot-center"  # 2026-JAN-14: Download failed v2.0.10.40
+
+### Productivity
+# cask "chatgpt"
+cask "fantastical"
+cask "granola"
 cask "todoist-app"
 # cask "xmind"
 
+### Regular Brew Formulas
 brew "antidote"
 brew "assh"
 brew "bat"
@@ -155,6 +162,13 @@ cask "rubymine"
 {{ end -}}
 {{ end -}}
 
+{{ if eq .area.lshq true }}
+################################################################################
+# LightspeedHQ Specific Things
+################################################################################
+brew "libffi"
+{{ end -}}
+
 {{ if eq .area.companycam true }}
 ################################################################################
 # CompanyCam
@@ -198,13 +212,6 @@ cask "font-go-mono-nerd-font"
 #cask "font-maple"
 cask "font-monaspace"
 cask "font-opendyslexic-nerd-font"
-
-{{ if eq .area.lshq true }}
-################################################################################
-# LightspeedHQ Specific Things
-################################################################################
-brew "libffi"
-{{ end -}}
 
 ################################################################################
 # Mac App Store Apps
