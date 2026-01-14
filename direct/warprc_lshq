@@ -1,0 +1,23 @@
+antibody:~/.config/zsh-antibody
+chezmoi:~/.local/share/chezmoi
+dlog:~/src/erebusbat/dlog-ruby
+dlogcfg:~/.config/dlog
+downloads:~/Downloads
+gopass:~/.local/share/gopass/stores/root
+image-marker:~/src/erebusbat/image-marker
+libappsup:~/Library/Application Support
+library:~/Documents/Library
+maid:~/.maid
+markdown-tool:~/src/erebusbat/markdown-tool
+myserver:~/src/erebusbat/myserver
+nav:~/src/erebusbat/myserver/nav-shortcuts
+qmk:~/src/erebusbat/qmk_firmware
+qmk_c3:~/src/erebusbat/qmk_firmware/keyboards/keychron/c3_pro/ansi/red/keymaps/erebusbat
+rubymine:~/Library/Application Support/JetBrains/RubyMine2025.2/options
+src:~/src
+ssh:~/.ssh
+tmux:~/.config/tmux
+tmuxp:~/.tmuxp
+vimwiki:~/Documents/vimwiki
+wezterm:~/.config/wezterm
+wiki:~/Documents/vimwiki
