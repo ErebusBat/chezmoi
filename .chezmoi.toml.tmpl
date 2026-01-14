@@ -22,10 +22,10 @@
     {{- if (index . "area" ) }}
     personal = {{ .area.personal }}
     server = {{ .area.server }}
-    fetlife = false
-    tractionguest = false
-    companycam = false
-    lshq = {{ .area.lshq }}
+    fetlife = {{ index .area "fetlife" | default false }}
+    tractionguest = {{ index .area "tractionguest" | default false }}
+    companycam = {{ index .area "companycam" | default false }}
+    lshq = {{ index .area "lshq" | default false }}
     {{- else }}
     personal = {{ default false (eq $focus "personal") }}
     server = {{ default false (eq $focus "server") }}
