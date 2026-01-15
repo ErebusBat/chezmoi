@@ -1,0 +1,21 @@
+session_name: lshq
+start_directory: ~/src/lshq
+windows:
+
+- window_name: src
+  panes:
+    - wd lshq
+    - wd lshq
+
+- window_name: pos
+  panes:
+    - wd possvc
+    - wd possvc
+
+- window_name: misc
+  panes:
+    - shell_command:
+      - fastfetch
+    - pane:
+      focus: true
+
