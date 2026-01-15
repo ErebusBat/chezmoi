@@ -17,6 +17,7 @@ Library/LaunchAgents/local.wake-monitor.plist
 .config/systemd/user/restic-tguest.*
 .restic/.traction_guest.key
 .ssh/assh.d/tractionguest.yml
+.ssh/assh.d/sie.yml
 .tmuxp/guest-server.yaml
 bin/tgtmux.zsh
 bin/tgstartup.sh
