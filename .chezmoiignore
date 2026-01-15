@@ -14,6 +14,9 @@ direct/
 .tmuxp/_*.yaml
 
 {{- if not .area.lshq }}
+bin/lsrg
+bin/lsstartup.sh
+bin/lstmux.sh
 lshq/ssh/id_lshq_personal
 lshq/ssh/id_lshq_personal.pub
 {{- end -}}
@@ -46,19 +49,6 @@ Library/Application Support/ngrok/ngrok.yml
 {{- end }}
 
 {{- if not .area.tractionguest }}
-src/sie/**
-.config/nvim/spell/tractionguest.*
-.config/systemd/user/restic-tguest.*
-.npmrc
-.restic/.traction_guest.key
-.ssh/assh.d/sie.yml
-.ssh/assh.d/tractionguest.yml
-.tmuxp/guest-server.yaml
-.tmuxp/sis-jwt.yaml
-bin/tgtmux.zsh
-bin/tgstartup.sh
-bin/sierg
-Library/LaunchAgents/local.restart-orbstack.plist
 {{- end }}
 
 {{- if not .area.personal }}
