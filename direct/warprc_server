@@ -36,6 +36,7 @@ restic-server:/myserver/restic-rest
 speedtest:/myserver/speedtest-tracker
 stash:/myserver/stashappcc
 syncthing:/myserver/syncthing
+technitium:/myserver/technitium
 telegraf:/myserver/telegraf
 tgf:~/src/sie/frontend
 tmux:~/.config/tmux
