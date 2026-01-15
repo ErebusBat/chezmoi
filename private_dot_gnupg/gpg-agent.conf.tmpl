@@ -5,10 +5,10 @@
 #	   Changes will be overwritten!
 #
 
-extra-socket {{ .chezmoi.destDir }}/.gnupg/S.gpg-agent.extra
 {{ if eq .chezmoi.os "darwin" }}
 # Enable GPG Agent Forwarding
 #   See myserver/gpg-agent for server stuff
+extra-socket {{ .chezmoi.destDir }}/.gnupg/S.gpg-agent.extra
 
 # Use macOS keychain
 pinentry-program /opt/homebrew/bin/pinentry-mac
