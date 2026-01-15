@@ -168,7 +168,20 @@ cask "rubymine"
 ################################################################################
 # LightspeedHQ Specific Things
 ################################################################################
+
+#-- pos-service
 brew "libffi"
+brew "mysql"
+brew "nvm"
+brew "pyenv"
+brew "redis"
+
+#-- config_service
+# tap "AdoptOpenJDK/openjdk"
+# cask "adoptopenjdk/openjdk/adoptopenjdk11"
+cask "temurin@11"
+
+brew "jenv"
 {{ end -}}
 
 {{ if eq .area.companycam true }}
