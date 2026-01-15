@@ -55,7 +55,11 @@ hosts:
   nuc01:
     Inherits: personal-server
     Hostname: nuc01.erebusbat.net
+    ForwardAgent: true
     # Hostname: nuc01.erebusbat.net
+    Gateways:
+    - direct
+    - mbpaab
   nuc:
     Inherits: nuc01
   plex:
@@ -72,7 +76,11 @@ hosts:
   maze:
     Inherits: personal-server
     Hostname: maze.erebusbat.net
+    ForwardAgent: true
     # Hostname: maze.tail04886.ts.net
+    Gateways:
+    - direct
+    - mbpaab
   nuc02:
     Inherits: maze
   nuc02-deco:
