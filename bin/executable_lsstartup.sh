@@ -9,21 +9,24 @@ fi
 # Starts apps / sessions after a cold boot
 # Will not launch a terminal as it assumes you will be launching a terminal to execute this script.  This also allows for easily switching terminal emulators.
 
+  # ~/Applications/Restart\ OrbStack.app
 APPS=(
-  ~/Applications/Restart\ OrbStack.app
-
+  #-- Productivity
+  /Applications/Obsidian.app
   /Applications/Fantastical.app
   /Applications/Todoist.app
   /Applications/Due.app
-  /Applications/Firefox.app
-  /Applications/Safari.app
-  /Applications/Google\ Chrome.app
-  /Applications/Obsidian.app
-  /Applications/Slack.app
+  /Applications/1Password.app
 
+  #-- Web
+  /Applications/Google\ Chrome.app
+
+  #-- Communications
+  /Applications/Granola.app
+  /Applications/Slack.app
   /System/Applications/Messages.app
-  /Applications/Messenger.app
   /Applications/Spotify.app
+  /Applications/Telegram.app
 )
 
 # APPS=()
@@ -36,7 +39,7 @@ done
 # open /Applications/Alacritty.app --args -e dlog-tail 1
 
 # Startup Tmux
-if [[ -x ~/bin/tgtmux.zsh ]]; then
+if [[ -x ~/bin/lstmux.zsh ]]; then
   echo "Starting tmux...."
-  ~/bin/tgtmux.zsh
+  ~/bin/lstmux.zsh
 fi

@@ -16,9 +16,13 @@ Library/LaunchAgents/local.wake-monitor.plist
 .config/nvim/spell/tractionguest.*
 .config/systemd/user/restic-tguest.*
 .restic/.traction_guest.key
-.ssh/assh.d/tractionguest.yml
 .ssh/assh.d/sie.yml
+.ssh/assh.d/tractionguest.yml
 .tmuxp/guest-server.yaml
-bin/tgtmux.zsh
+.tmuxp/sis-jwt.yaml
+Library/LaunchAgents/local.restart-orbstack.plist
+bin/sierg
 bin/tgstartup.sh
+bin/tgtmux.zsh
+# src/sie/**
 {{- end }}

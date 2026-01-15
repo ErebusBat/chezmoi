@@ -1,13 +1,7 @@
 #!/bin/zsh
-# $HOME/bin/tgtmux.zsh
 # This script is ran from tmux menu to setup sessions
 
-if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
-  source ~/.config/tmux/init_chezmoi_secrets.sh
-fi
-
 sessions=(
-  guest-server
   system
 )
 START_SESS=$1
