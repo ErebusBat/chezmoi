@@ -1,8 +1,10 @@
 #!/bin/bash
-{{- if ne .chezmoi.os "darwin" -}}
+# echo "DEBUG: $0 running... Press ENTER to continue"
+# read
+{{ if ne .chezmoi.os "darwin" -}}
 # This is only intended to run on macOS
 exit 0
-{{- end -}}
+{{ end }}
 {{- $etcDir := "/etc/chrony.d" -}}
 {{- $etcFile := joinPath $etcDir "chrony.conf" -}}
 {{- $cfgDir := joinPath .chezmoi.homeDir ".config/chrony" -}}
