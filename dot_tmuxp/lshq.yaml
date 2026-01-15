@@ -12,6 +12,14 @@ windows:
     - wd possvc
     - wd possvc
 
+- window_name: cfg_svc
+  panes:
+    - shell_command:
+      - wd lscfgsvc
+      - ./script/standalone
+    - shell_command:
+      - wd lscfgsvc
+
 - window_name: misc
   panes:
     - shell_command:

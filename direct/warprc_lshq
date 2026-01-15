@@ -7,6 +7,7 @@ gopass:~/.local/share/gopass/stores/root
 image-marker:~/src/erebusbat/image-marker
 libappsup:~/Library/Application Support
 library:~/Documents/Library
+lscfgsvc:~/src/lshq/config_service
 lshq:~/src/lshq
 maid:~/.maid
 markdown-tool:~/src/erebusbat/markdown-tool
