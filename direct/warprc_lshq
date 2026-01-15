@@ -7,12 +7,14 @@ gopass:~/.local/share/gopass/stores/root
 image-marker:~/src/erebusbat/image-marker
 libappsup:~/Library/Application Support
 library:~/Documents/Library
+lshq:~/src/lshq
 maid:~/.maid
 markdown-tool:~/src/erebusbat/markdown-tool
 myserver:~/src/erebusbat/myserver
 nav:~/src/erebusbat/myserver/nav-shortcuts
-qmk:~/src/erebusbat/qmk_firmware
+possvc:~/src/lshq/pos-service
 qmk_c3:~/src/erebusbat/qmk_firmware/keyboards/keychron/c3_pro/ansi/red/keymaps/erebusbat
+qmk:~/src/erebusbat/qmk_firmware
 rubymine:~/Library/Application Support/JetBrains/RubyMine2025.2/options
 src:~/src
 ssh:~/.ssh
