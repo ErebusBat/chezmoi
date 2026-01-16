@@ -1,17 +1,17 @@
 github:
-  default_org: "CompanyCam"
-  default_repo: "Company-Cam-API"
+  default_org: "upserve"
+  default_repo: "pos-service"
   mappings:
-    "CompanyCam/Company-Cam-API": "api"
+    "upserve/pos-service": "pos"
 
 jira:
-  domain: "https://companycam.atlassian.net"
+  domain: "https://upserve.atlassian.net"
   projects:
-    - "PLAT"
-    - "SPEED"
+    - AI
+    - UPOS
 
 url:
   domain_mappings:
-    companycam_slack_com: slack
+    lightspeedhq_slack_com: slack
     youtube_com: YouTube
     mail_google_com: GMail
