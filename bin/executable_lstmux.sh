@@ -2,6 +2,7 @@
 # This script is ran from tmux menu to setup sessions
 
 sessions=(
+  lshq
   system
 )
 START_SESS=$1
@@ -13,12 +14,7 @@ for s in $sessions; do
   sleep 5
 done
 
-# echo "Starting FetLife VPN Connection"
-# nmcli con up FetLife
-
-# echo "Updating Toggl status"
-# toggl
-
+#-- Attach to session
 if [[ -n $START_SESS ]]; then
   echo "Attaching to $START_SESS"
   # use tmpa script (opposed to `tmuxp load`) so we get fuzzy matching
