@@ -37,8 +37,8 @@ cask "visual-studio-code"
 #--- Launcher + dependencies
 # cask "alfred"
 cask "raycast"
-cask "pearcleaner"
-brew "blueutil" # Needed by toothpick Raycast Extension
+cask "pearcleaner"               # App Uninstaller
+brew "blueutil"                  # Needed by toothpick Raycast Extension
 #--- Other Utils
 cask "contexts"
 # cask "rectangle-pro"           # Handled by raycast now
@@ -52,23 +52,24 @@ cask "usb-overdrive"
 ################################################################################
 #cask "obsidian" # Need to install this prior to homebrew for notes so having it here messes things up
 
-### Terminals
+#-- Terminals
+cask "alacritty"
+cask "ghostty"
 tap "wez/wezterm"
 cask "wez/wezterm/wezterm"
-cask "ghostty"
 
-### Web Browsers
+#-- Web Browsers
 cask "google-chrome"
 cask "firefox"
 
-### System Utilities
+#-- System Utilities
 cask "balenaetcher"
 cask "caffeine"
 cask "chronycontrol"
 # cask "dropbox"
 cask "launchcontrol"
 
-### Productivity
+#-- Productivity
 # cask "chatgpt"
 cask "claude"
 cask "claude-code"
@@ -77,7 +78,7 @@ cask "granola"
 cask "todoist-app"
 # cask "xmind"
 
-### Regular Brew Formulas
+#-- Regular Brew Formulas
 brew "antidote"
 brew "assh"
 brew "bat"
@@ -175,6 +176,10 @@ brew "mysql"
 brew "pyenv"
 brew "redis"
 
+# tap "rbenv/tap/openssl"
+tap "rbenv/tap"
+brew "rbenv/tap/openssl@1.0"
+
 #-- config_service
 # tap "AdoptOpenJDK/openjdk"
 # cask "adoptopenjdk/openjdk/adoptopenjdk11"
@@ -231,7 +236,7 @@ cask "font-opendyslexic-nerd-font"
 # Mac App Store Apps
 ################################################################################
 mas "1Password - Safari",       id: 1569813296
-mas "Delete Apps: Uninstaller", id: 1033808943
+# mas "Delete Apps: Uninstaller", id: 1033808943   # Pearcleaner is better
 mas "Due",                      id: 524373870
 mas "Hidden Bar",               id: 1452453066
 mas "Slack",                    id: 803453959
