@@ -9,11 +9,12 @@ libappsup:~/Library/Application Support
 library:~/Documents/Library
 lscfgsvc:~/src/lshq/config_service
 lshq:~/src/lshq
+lsolo:~/src/lshq/online_ordering
+lspos:~/src/lshq/pos-service
 maid:~/.maid
 markdown-tool:~/src/erebusbat/markdown-tool
 myserver:~/src/erebusbat/myserver
 nav:~/src/erebusbat/myserver/nav-shortcuts
-possvc:~/src/lshq/pos-service
 qmk_c3:~/src/erebusbat/qmk_firmware/keyboards/keychron/c3_pro/ansi/red/keymaps/erebusbat
 qmk:~/src/erebusbat/qmk_firmware
 rubymine:~/Library/Application Support/JetBrains/RubyMine2025.2/options

@@ -9,8 +9,13 @@ windows:
 
 - window_name: pos
   panes:
-    - wd possvc
-    - wd possvc
+    - wd lspos
+    - wd lspos
+
+- window_name: olo
+  panes:
+    - wd lsolo
+    - wd lsolo
 
 - window_name: cfg_svc
   panes:
