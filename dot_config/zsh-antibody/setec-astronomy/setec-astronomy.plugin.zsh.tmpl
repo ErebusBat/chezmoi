@@ -9,3 +9,8 @@
 ### CompanyCam
 {{ (gopassRaw "ccam/setec_astronomy_env") -}}
 {{- end }}
+
+{{ if .area.lshq }}
+### LightspeedHQ
+{{ (gopassRaw "lshq/setec_astronomy_env") -}}
+{{- end }}
