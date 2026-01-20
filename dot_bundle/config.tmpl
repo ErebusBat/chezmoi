@@ -1,4 +1,9 @@
 ---
+{{- if eq .area.lshq true }}
+### - LightspeedHQ Start
+{{ gopassRaw "lshq/bundle_config" }}
+### - LightspeedHQ End
+{{ end }}
 {{- if eq .area.tractionguest true }}
 BUNDLE_RUBYGEMS__PKG__GITHUB__COM: "ErebusBat:{{- (gopassRaw "tguest/tokens" | mustFromJson).github }}"
 
