@@ -3,7 +3,6 @@ github:
   default_repo: "pos-service"
   mappings:
     "upserve/pos-service": "pos"
-    "erebusbat/chezmoi": "cz"
 
 jira:
   domain: "https://upserve.atlassian.net"
