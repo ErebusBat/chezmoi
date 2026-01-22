@@ -21,6 +21,7 @@ bin/lstmux.sh
 lshq/ssh/id_lshq_personal
 lshq/ssh/id_lshq_personal.pub
 src/lshq/lshq_logo.txt
+bin/ij
 {{- end -}}
 
 {{- if not .area.fetlife }}
