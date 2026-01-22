@@ -12,6 +12,11 @@ windows:
     - wd lspos
     - wd lspos
 
+- window_name: swipely
+  panes:
+    - wd lsswipely
+    - wd lsswipely
+
 - window_name: olo
   panes:
     - wd lsolo

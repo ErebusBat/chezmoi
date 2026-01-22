@@ -12,6 +12,7 @@ lshq:~/src/lshq
 lslettercarrier:~/src/lshq/lettercarrier
 lsolo:~/src/lshq/online_ordering
 lspos:~/src/lshq/pos-service
+lsswipely:~/src/lshq/swipely
 maid:~/.maid
 markdown-tool:~/src/erebusbat/markdown-tool
 myserver:~/src/erebusbat/myserver

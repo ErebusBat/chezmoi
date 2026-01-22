@@ -22,6 +22,7 @@ bin_tasks=(
   kamal
   rails
   rake
+  rspec
   rubocop
   setup
   thrust
