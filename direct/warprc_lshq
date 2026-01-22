@@ -9,6 +9,7 @@ libappsup:~/Library/Application Support
 library:~/Documents/Library
 lscfgsvc:~/src/lshq/config_service
 lshq:~/src/lshq
+lslettercarrier:~/src/lshq/lettercarrier
 lsolo:~/src/lshq/online_ordering
 lspos:~/src/lshq/pos-service
 maid:~/.maid
