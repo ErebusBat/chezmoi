@@ -8,7 +8,9 @@ jira:
   domain: "https://upserve.atlassian.net"
   projects:
     - AI
+    - HQ
     - UPOS
+    - SEC
 
 url:
   domain_mappings:
