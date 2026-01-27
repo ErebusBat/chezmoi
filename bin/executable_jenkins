@@ -1,0 +1,32 @@
+#!/bin/bash
+# Builds the current branch of the repo on Jenkins
+
+set -o errexit
+set -o nounset
+
+export JENKINS_HOST="jenkins.internal.upserve.com"
+
+if ! nc -w 3 -z $JENKINS_HOST 443 2>/dev/null; then
+    echo "Can't reach jenkins. Are you on the VPN?"
+    exit 1
+fi
+
+gitbranch=$(git symbolic-ref --short HEAD)
+if [[ $? -eq 0 ]] ; then
+    gitrepo=$(basename `git rev-parse --show-toplevel`)
+    if [[ $? -eq 0 ]] ; then
+        job_prefixes=( app gem jar package ios )
+        for job_prefix in "${job_prefixes[@]}"
+        do
+            curl \
+                -f \
+                -X POST \
+                --data-urlencode "BRANCH=$gitbranch" \
+                --data-urlencode "delay=0sec" \
+                "https://${JENKINS_HOST}/job/$job_prefix.$gitrepo/buildWithParameters" \
+                > /dev/null 2>&1 \
+            && echo "Enqueued build for"  "$job_prefix.$gitrepo" \
+            && exit
+        done
+    fi
+fi
