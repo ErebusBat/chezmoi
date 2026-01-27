@@ -15,6 +15,7 @@ direct/
 
 {{- if not .area.lshq }}
 .tmuxp/lshq.yaml
+bin/jenkins
 bin/lsrg
 bin/lsstartup.sh
 bin/lstmux.sh
