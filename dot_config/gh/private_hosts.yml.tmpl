@@ -1,7 +1,16 @@
 github.com:
+{{- if .area.lshq }}
+    user: ls-andrew-burns
+    git_protocol: ssh
+    users:
+        ErebusBat:
+            oauth_token: {{ (gopassRaw "erebusbat/github" | mustFromJson).oauth_token }}
+        ls-andrew-burns:
+{{- else }}
     user: ErebusBat
     oauth_token: {{ (gopassRaw "erebusbat/github" | mustFromJson).oauth_token }}
     git_protocol: ssh
     users:
         ErebusBat:
             oauth_token: {{ (gopassRaw "erebusbat/github" | mustFromJson).oauth_token }}
+{{- end }}
