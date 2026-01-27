@@ -54,7 +54,8 @@ hosts:
   ### nuc01 ################################################
   nuc01:
     Inherits: personal-server
-    Hostname: nuc01.erebusbat.net
+    # Hostname: nuc01.erebusbat.net
+    Hostname: "[2600:6c67:857f:486b:d5be:5a1:b99:3c14]"
     ForwardAgent: true
     # Hostname: nuc01.erebusbat.net
     Gateways:
