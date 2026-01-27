@@ -1,3 +1,7 @@
 Brewfile.lock.json
 routes.txt
 tags
+CLAUDE.md
+mise.toml
+.idea/
+.claude/
