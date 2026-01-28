@@ -18,15 +18,17 @@ if [[ $? -eq 0 ]] ; then
         job_prefixes=( app gem jar package ios )
         for job_prefix in "${job_prefixes[@]}"
         do
+            base_url="https://${JENKINS_HOST}/job/$job_prefix.$gitrepo"
             if curl \
                 -f \
                 -X POST \
                 --data-urlencode "BRANCH=$gitbranch" \
                 --data-urlencode "delay=0sec" \
-                "https://${JENKINS_HOST}/job/$job_prefix.$gitrepo/buildWithParameters" \
+                "$base_url/buildWithParameters" \
                 > /dev/null 2>&1; then
                 echo "Enqueued build for $job_prefix.$gitrepo"
-                open "https://${JENKINS_HOST}/job/$job_prefix.$gitrepo/lastBuild/"
+                echo "  Opening: $base_url/lastBuild"
+                open "$base_url/lastBuild/"
                 exit
             fi
         done
