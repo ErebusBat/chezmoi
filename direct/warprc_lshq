@@ -13,6 +13,8 @@ lslettercarrier:~/src/lshq/lettercarrier
 lsolo:~/src/lshq/online_ordering
 lspos:~/src/lshq/pos-service
 lsswipely:~/src/lshq/swipely
+lsswupely:~/src/lshq/swipely
+lsweekly_digest_email_pipeline:~/src/lshq/weekly_digest_email_pipeline
 maid:~/.maid
 markdown-tool:~/src/erebusbat/markdown-tool
 myserver:~/src/erebusbat/myserver
