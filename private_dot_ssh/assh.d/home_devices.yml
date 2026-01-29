@@ -84,7 +84,8 @@ hosts:
   ### maze #################################################
   maze:
     Inherits: personal-server
-    Hostname: maze.erebusbat.net
+    # Hostname: maze.erebusbat.net
+    Hostname: 100.92.65.146
     ForwardAgent: true
     # Hostname: maze.tail04886.ts.net
   nuc02:
