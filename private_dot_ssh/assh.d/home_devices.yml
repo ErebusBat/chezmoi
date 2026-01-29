@@ -1,5 +1,16 @@
 hosts:
 ############################################################
+# Gateway Devices
+############################################################
+  dartp6-nplh:
+    Inherits: personal-allowpass
+    HostName: 192.168.1.10
+
+  mbp-nplh:
+    Inherits: mbp
+    Hostname: 192.168.68.75
+
+############################################################
 # Devices / Services
 ############################################################
   ### RSync.net ############################################
@@ -55,12 +66,9 @@ hosts:
   nuc01:
     Inherits: personal-server
     # Hostname: nuc01.erebusbat.net
-    Hostname: "[2600:6c67:857f:486b:d5be:5a1:b99:3c14]"
+    # Hostname: "[2600:6c67:857f:486b:d5be:5a1:b99:3c14]"
     ForwardAgent: true
-    # Hostname: nuc01.erebusbat.net
-    Gateways:
-    - direct
-    - mbpaab
+    Hostname: 100.65.80.50
   nuc:
     Inherits: nuc01
   plex:
@@ -79,9 +87,6 @@ hosts:
     Hostname: maze.erebusbat.net
     ForwardAgent: true
     # Hostname: maze.tail04886.ts.net
-    Gateways:
-    - direct
-    - mbpaab
   nuc02:
     Inherits: maze
   nuc02-deco:
@@ -110,7 +115,6 @@ hosts:
 #############################################################
   # Toby's Arcade Machine
   arcade:
-    Hostname: 192.168.68.70
     Hostname: 192.168.68.70
     Inherits: raspi
 
@@ -143,7 +147,14 @@ hosts:
 # Templates
 ############################################################
 templates:
+  personal-gateways:
+    GatewayConnectTimeout: 2
+    Gateways:
+      - direct
+      - dartp6-nplh
+      - mbp-nplh
   bat-devices:
+    Inherits: personal-gateways
     IdentityFile: ~/.ssh/id_bat_devices
     ForwardAgent: yes
     IdentitiesOnly: yes
@@ -152,16 +163,20 @@ templates:
     User: admin
     Inherits: bat-devices
   personal:
+    Inherits: personal-gateways
     User: aburns
     ForwardAgent: yes
     IdentitiesOnly: yes
     IdentityFile: ~/.ssh/id_ed25519
     AddKeysToAgent: yes
+    GatewayConnectTimeout: 2
   personal-allowpass:
+    Inherits: personal-gateways
     User: aburns
     ForwardAgent: yes
     IdentityFile: ~/.ssh/id_ed25519
     AddKeysToAgent: yes
+    GatewayConnectTimeout: 2
   personal-server:
     Inherits: personal-allowpass
     RemoteForward: /run/user/1000/gnupg/S.gpg-agent /Users/aburns/.gnupg/S.gpg-agent.extra
