@@ -1,5 +1,7 @@
 antibody:~/.config/zsh-antibody
+batbot:~/src/erebusbat/myserver/batbot
 chezmoi:~/.local/share/chezmoi
+claw:~/.openclaw
 dlog:~/src/erebusbat/dlog-ruby
 dlogcfg:~/.config/dlog
 downloads:~/Downloads

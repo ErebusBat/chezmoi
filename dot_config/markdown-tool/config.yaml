@@ -12,6 +12,9 @@ jira:
     - UPOS
     - SEC
 
+jenkins:
+  domain: "https://jenkins.internal.upserve.com"
+
 url:
   domain_mappings:
     lightspeedhq_slack_com: slack

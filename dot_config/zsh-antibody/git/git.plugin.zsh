@@ -215,3 +215,7 @@ if [[ `type fzf` =~ 'fzf is' ]]; then
     git restore --staged $files
   }
 fi
+
+if [[ -n $CLAUDE_SESSION_ID ]]; then
+  unfunction git
+fi

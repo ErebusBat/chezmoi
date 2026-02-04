@@ -27,11 +27,11 @@ style = "bold green"
 # "Important  " = "  "
 
 [localip]
-disabled = false
+disabled = true
 ssh_only = false
 
 [os]
-disabled = false
+disabled = true
 
 [time]
 disabled = true
@@ -46,7 +46,7 @@ disabled = true
 disabled = true
 
 [nodejs]
-disabled = true
+disabled = false
 
 [mise]
 disabled = false
