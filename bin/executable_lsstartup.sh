@@ -17,6 +17,7 @@ APPS=(
   /Applications/Todoist.app
   /Applications/Due.app
   /Applications/1Password.app
+  /Applications/Docker.app
 
   #-- Web
   /Applications/Google\ Chrome.app

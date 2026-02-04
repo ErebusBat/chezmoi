@@ -1,3 +1,4 @@
 .DS_Store
 .syncthing.*
 *.sync-conflict-*
+node_modules/

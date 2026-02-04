@@ -13,7 +13,7 @@ end
 
 # Extract phone numbers and parse them via MDT
 [
-  /\d{7}/,
+  # /\d{7}/,
   /\d{3}-\d{4}/,
 ].each do |phone_rx|
   add_gsub phone_rx do |entry, match|

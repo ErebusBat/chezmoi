@@ -29,6 +29,7 @@ cask "kreya"     # gRPC/Rest Client
 cask "ngrok"
 cask "tad"
 cask "visual-studio-code"
+cask "github"
 
 ################################################################################
 # Essentials
@@ -195,6 +196,9 @@ brew "jenv"
 cask "intellij-idea"
 
 cask "cloudflare-warp"
+
+tap "common-fate/granted"
+brew "common-fate/granted/granted"
 {{ end -}}
 
 {{ if eq .area.companycam true }}
