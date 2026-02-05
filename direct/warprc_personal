@@ -1,10 +1,12 @@
 antibody:~/.config/zsh-antibody
 aoc:~/src/erebusbat/aoc/2024-ruby
 backrest:~/src/erebusbat/myserver/backrest
+batbot:~/src/erebusbat/myserver/batbot
 chezmoi:~/.local/share/chezmoi
+claw:~/.openclaw
 dashy:~/src/erebusbat/myserver/dashy
-dlog:~/src/erebusbat/dlog-ruby
 dlogcfg:~/.config/dlog
+dlog:~/src/erebusbat/dlog-ruby
 dns:~/src/erebusbat/myserver/dnscontrol
 docker_dev:~/src/sie/my_docker_env
 docker:~/src/sie/my_docker_env
@@ -25,8 +27,8 @@ paperless:~/src/erebusbat/myserver/paperless-ngx
 pchef:~/src/erebusbat/pchef76
 qmk_c3:~/src/erebusbat/qmk_firmware/keyboards/keychron/c3_pro/ansi/red/keymaps/erebusbat
 qmk:~/src/erebusbat/qmk_firmware
-restic_server:~/src/erebusbat/myserver/restic-rest
 restic:~/.restic
+restic_server:~/src/erebusbat/myserver/restic-rest
 restore:/Volumes/SeaBack/backrest
 rubymine:~/Library/Application Support/JetBrains/RubyMine2025.2/options
 src:~/src
