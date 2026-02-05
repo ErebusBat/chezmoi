@@ -6,7 +6,7 @@ windows:
   panes:
     - shell_command:
       - wd vimwiki
-      - vimlog -- y 0
+      - vimlog -- 0
       # - ~/bin/.chezmoi-status.sh loop
     - shell_command:
       - wd vimwiki
