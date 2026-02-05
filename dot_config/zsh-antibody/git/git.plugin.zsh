@@ -1,3 +1,7 @@
+#
+# git stuff
+#   - Also look at scm-breeze and scm-breeze-fixes, both of which run after this!
+#
 
 # if [ -f /data/Dropbox/Library/G/git-master-branch-setup.txt ]; then alias git_master_setup="cat /data/Dropbox/Library/G/git-master-branch-setup.txt"; fi
 alias gs='git status'
@@ -216,6 +220,3 @@ if [[ `type fzf` =~ 'fzf is' ]]; then
   }
 fi
 
-if [[ -n $CLAUDE_SESSION_ID ]]; then
-  unfunction git
-fi

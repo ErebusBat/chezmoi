@@ -34,7 +34,10 @@ ohmyzsh/ohmyzsh path:plugins/wd
 ~/.config/zsh-antibody/python
 
 ~/.config/zsh-antibody/setec-astronomy
+
+# scm-breeze & fixes (order is important)
 ~/.config/zsh-antibody/scm-breeze
+~/.config/zsh-antibody/scm-breeze-fixes
 
 # Hooks from other stow packages
 ~/.config/zsh-antibody/stow-hooks
