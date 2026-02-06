@@ -139,6 +139,13 @@ function git_rm_merged_branches() {
 # alias gco='git checkout'
 # alias ga='git add'
 
+#########
+# LazyGit
+#########
+if command -v lazygit >/dev/null 2>&1; then
+  alias lg=lazygit
+fi
+
 # fzf
 if [[ `type fzf` =~ 'fzf is' ]]; then
   # Git Check Out (local)
