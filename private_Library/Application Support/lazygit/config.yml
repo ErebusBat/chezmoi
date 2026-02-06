@@ -10,6 +10,8 @@ customCommands:
     context: worktrees
     command: cd {{.SelectedWorktree.Path}} && LAZYGIT_SHELL=1 $SHELL
     output: terminal
+gui:
+  mouseEvents: false
 git:
   parseEmoji: true
   pagers:
