@@ -6,6 +6,10 @@ customCommands:
     context: files
     command: git commit --verbose
     output: terminal
+  - key: '!'
+    context: worktrees
+    command: cd {{.SelectedWorktree.Path}} && $SHELL
+    output: terminal
 git:
   parseEmoji: true
   pagers:
