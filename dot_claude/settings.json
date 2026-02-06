@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash([ *)",
+      "Bash(awk *)",
+      "Bash(basename *)",
+      "Bash(cat *)",
+      "Bash(cd *)",
+      "Bash(cut *)",
+      "Bash(dirname *)",
+      "Bash(echo *)",
+      "Bash(expr *)",
+      "Bash(file *)",
+      "Bash(find *)",
+      "Bash(git *)",
+      "Bash(/opt/homebrew/bin/git *)",
+      "Bash(grep *)",
+      "Bash(head *)",
+      "Bash(ls *)",
+      "Bash(pwd)",
+      "Bash(rg *)",
+      "Bash(sed *)",
+      "Bash(sort *)",
+      "Bash(stat *)",
+      "Bash(tail *)",
+      "Bash(test *)",
+      "Bash(tr *)",
+      "Bash(uniq *)",
+      "Bash(wc *)",
+      "Bash(which *)",
+      "Bash(xargs *)"
+    ],
+    "deny": [
+      "Bash(git push *)"
+    ]
+  },
+  "model": "opus"
+}
