@@ -8,7 +8,7 @@ customCommands:
     output: terminal
   - key: '!'
     context: worktrees
-    command: cd {{.SelectedWorktree.Path}} && $SHELL
+    command: cd {{.SelectedWorktree.Path}} && LAZYGIT_SHELL=1 $SHELL
     output: terminal
 git:
   parseEmoji: true
