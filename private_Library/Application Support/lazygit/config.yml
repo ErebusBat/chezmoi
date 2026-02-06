@@ -1,3 +1,11 @@
+keybinding:
+  files:
+    commitChangesWithEditor: <disabled>
+customCommands:
+  - key: C
+    context: files
+    command: git commit --verbose
+    output: terminal
 git:
   parseEmoji: true
   pagers:
