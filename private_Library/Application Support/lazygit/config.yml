@@ -1,3 +1,4 @@
 git:
+  parseEmoji: true
   pagers:
     - pager: delta --dark --paging=never
