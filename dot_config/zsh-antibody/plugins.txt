@@ -26,6 +26,7 @@ ohmyzsh/ohmyzsh path:plugins/wd
 #~/.config/zsh-antibody/ccam
 ~/.config/zsh-antibody/jenv
 ~/.config/zsh-antibody/nvm
+~/.config/zsh-antibody/bun
 ~/.config/zsh-antibody/openclaw
 
 # Rust package is REQUIRED if you are using starship_prompt below
