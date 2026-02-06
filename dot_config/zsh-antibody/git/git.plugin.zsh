@@ -30,6 +30,26 @@ alias gwtp='git worktree prune'
 alias gwtls='git worktree list'
 alias gwtnb='git worktree prune'
 
+# Create a new worktree with a branch prefixed by the repo name
+# Usage: gwtnew my-feature
+#   In ~/src/lshq/granted-registry.git → git worktree add -b granted-registry/my-feature <master|main>
+function gwtnew() {
+  if [[ -z $1 ]]; then
+    echo "Usage: gwtnew <branch-name>"
+    return 1
+  fi
+  local base_branch=$(git_master_branch_name)
+  local repo_name=${${PWD:t}%.git}
+  local wt_path="../${repo_name}-$1"
+  if git show-ref --verify --quiet "refs/heads/$1"; then
+    git worktree add "$wt_path" "$1" || return $?
+  else
+    git worktree add -b "$1" "$wt_path" "$base_branch" || return $?
+  fi
+  echo "\nWorktree path: ${${wt_path:a}/#$HOME/~}"
+  cd "$wt_path"
+}
+
 # See working/scm-breeze/scm-breeze.plugin.zsh for more aliases
 
 # Additional useful aliases
