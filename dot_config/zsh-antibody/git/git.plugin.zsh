@@ -22,6 +22,14 @@ alias gqs='git add -Av $(git rev-parse --show-toplevel || echo ".") && git commi
 alias grbi='git rebase -i'
 alias gu='gpm && gbda && gsu'
 
+# Git WorkTree
+alias gwt='git worktree'
+alias gwta='git worktree add'
+alias gwtrm='git worktree remove'
+alias gwtp='git worktree prune'
+alias gwtls='git worktree list'
+alias gwtnb='git worktree prune'
+
 # See working/scm-breeze/scm-breeze.plugin.zsh for more aliases
 
 # Additional useful aliases
