@@ -1,4 +1,11 @@
+format = """$all$line_break${env_var.LAZYGIT_SHELL}$character"""
 right_format = """$battery$time$localip$os"""
+
+[env_var.LAZYGIT_SHELL]
+disabled = false
+symbol = "󰊢"
+style = "red"
+format = "[$symbol]($style) "
 
 [battery]
 disabled = false
