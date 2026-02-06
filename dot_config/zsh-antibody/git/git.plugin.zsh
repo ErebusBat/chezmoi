@@ -28,7 +28,7 @@ alias gwta='git worktree add'
 alias gwtrm='git worktree remove'
 alias gwtp='git worktree prune'
 alias gwtls='git worktree list'
-alias gwtnb='git worktree prune'
+alias gnwtm='gwtnew'
 
 # Create a new worktree with a branch prefixed by the repo name
 # Usage: gwtnew my-feature
@@ -39,8 +39,8 @@ function gwtnew() {
     return 1
   fi
   local base_branch=$(git_master_branch_name)
-  local repo_name=${${PWD:t}%.git}
-  local wt_path="../${repo_name}-$1"
+  local repo_name=${${PWD:t}%.---}
+  local wt_path="../${repo_name}--$1"
   if git show-ref --verify --quiet "refs/heads/$1"; then
     git worktree add "$wt_path" "$1" || return $?
   else
