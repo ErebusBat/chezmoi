@@ -6,7 +6,8 @@ hosts:
     Inherits: personal-allowpass
     HostName: 192.168.1.10
   dartp6-claw:
-    Inherits: dartp6-nplh
+    # Inherits: dartp6-nplh
+    Inherits: dartp6
     LocalForward: "18789 127.0.0.1:18789"
 
   mbp-nplh:
@@ -50,8 +51,11 @@ hosts:
   #   Inherits: bat-devices
 
   ### MBP ##################################################
-  mbp:
+  mbp-deco:
     Hostname: 192.168.68.75
+    Inherits: personal-allowpass
+  mbp:
+    Hostname: 100.73.19.104
     Inherits: personal-allowpass
   mbp-personal:
     Inherits: mbp
@@ -112,7 +116,7 @@ hosts:
   ### Sys76 Darter Laptop ##################################
   dartp6:
     Inherits: personal-allowpass
-    HostName: dartp6.tail04886.ts.net
+    HostName: 100.92.210.7
 
 #############################################################
 # Raspberry Pis
@@ -155,7 +159,7 @@ templates:
     GatewayConnectTimeout: 2
     Gateways:
       - direct
-      # - nuc02-deco
+      - nuc02-deco
       - dartp6-nplh
       - mbp-nplh
   bat-devices:
