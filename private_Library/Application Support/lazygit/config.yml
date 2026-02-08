@@ -10,6 +10,10 @@ customCommands:
     context: worktrees
     command: cd {{.SelectedWorktree.Path}} && LAZYGIT_SHELL=1 $SHELL
     output: terminal
+  - key: <f12>
+    context: global
+    command: gh pr create --web
+    output: terminal
 gui:
   mouseEvents: false
 git:
