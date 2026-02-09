@@ -13,6 +13,8 @@ This system prevents notification fatigue by only alerting you when Claude needs
 
 1. **Notification triggered** → Background timer starts (45 seconds by default)
 2. **You respond within 45s** → Notification is cancelled automatically ✅
+   - Cancels on text input (UserPromptSubmit hook)
+   - Cancels on tool approval (PreToolUse hook)
 3. **45 seconds pass without response** → Notification appears with Glass sound 🔔
 4. **Session ends** → All pending notifications are cleaned up
 
@@ -31,6 +33,10 @@ This system prevents notification fatigue by only alerting you when Claude needs
     "hooks": [{"type": "command", "command": "~/.claude/hooks/delayed-notification.sh"}]
   }],
   "UserPromptSubmit": [{
+    "hooks": [{"type": "command", "command": "~/.claude/hooks/cancel-notification.sh"}]
+  }],
+  "PreToolUse": [{
+    "matcher": "",
     "hooks": [{"type": "command", "command": "~/.claude/hooks/cancel-notification.sh"}]
   }],
   "SessionEnd": [{
