@@ -31,14 +31,30 @@ for agent in $agents; do
   # Extract schedule name from agent label (local.restic.SCHEDULE)
   schedule="${agent#local.restic.}"
 
+  # Try to get last run time from log file
+  log_file="/tmp/${agent}.log"
+  last_run=""
+  if [[ -f "$log_file" ]]; then
+    # Look for the most recent "Backup-all started:" or "Backup started:" timestamp
+    last_run=$(grep -E "Backup(-all)? started:" "$log_file" | tail -1 | sed -E 's/.*started: //' || echo "")
+  fi
+
   if [[ "$status" == "0" ]]; then
-    printf "%-20s ${GREEN}✓ Success${RESET} (exit code 0)\n" "$schedule"
+    if [[ -n "$last_run" ]]; then
+      printf "%-20s ${GREEN}✓ Success${RESET} (exit 0) - Last run: %s\n" "$schedule" "$last_run"
+    else
+      printf "%-20s ${GREEN}✓ Success${RESET} (exit code 0)\n" "$schedule"
+    fi
   elif [[ "$status" == "unknown" ]]; then
     printf "%-20s ${YELLOW}? Unknown${RESET} (not run yet or not loaded)\n" "$schedule"
   else
     # LastExitStatus in launchd is exitcode << 8, so divide by 256
     actual_exit=$((status / 256))
-    printf "%-20s ${RED}✗ Failed${RESET} (exit code %d)\n" "$schedule" "$actual_exit"
+    if [[ -n "$last_run" ]]; then
+      printf "%-20s ${RED}✗ Failed${RESET} (exit %d) - Last run: %s\n" "$schedule" "$actual_exit" "$last_run"
+    else
+      printf "%-20s ${RED}✗ Failed${RESET} (exit code %d)\n" "$schedule" "$actual_exit"
+    fi
     exit_status=1
   fi
 done

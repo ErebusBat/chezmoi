@@ -20,10 +20,13 @@ windows:
     - shell_command:
       - wd chezmoi
 
-- window_name: src
+- window_name: 🔀
   panes:
-    - wd src
-    - wd src
+    - shell_command:
+      - cd ~/src/erebusbat/myserver/routes
+      - start-tailscale-tunnel.sh
+    - shell_command:
+      - cd ~/src/erebusbat/myserver/routes
 
 - window_name: zsh
   options:
