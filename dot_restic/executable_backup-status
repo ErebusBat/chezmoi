@@ -3,6 +3,12 @@ set -euo pipefail
 
 # Check status of restic backup agents by exit code
 
+# Colors
+GREEN='\033[0;32m'
+RED='\033[0;31m'
+YELLOW='\033[0;33m'
+RESET='\033[0m'
+
 echo "Backup Agent Status"
 echo "==================="
 echo
@@ -26,22 +32,22 @@ for agent in $agents; do
   schedule="${agent#local.restic.}"
 
   if [[ "$status" == "0" ]]; then
-    printf "%-20s ✓ Success (exit code 0)\n" "$schedule"
+    printf "%-20s ${GREEN}✓ Success${RESET} (exit code 0)\n" "$schedule"
   elif [[ "$status" == "unknown" ]]; then
-    printf "%-20s ? Unknown (not run yet or not loaded)\n" "$schedule"
+    printf "%-20s ${YELLOW}? Unknown${RESET} (not run yet or not loaded)\n" "$schedule"
   else
     # LastExitStatus in launchd is exitcode << 8, so divide by 256
     actual_exit=$((status / 256))
-    printf "%-20s ✗ Failed (exit code %d)\n" "$schedule" "$actual_exit"
+    printf "%-20s ${RED}✗ Failed${RESET} (exit code %d)\n" "$schedule" "$actual_exit"
     exit_status=1
   fi
 done
 
 echo
 if [[ $exit_status -eq 0 ]]; then
-  echo "All backup agents successful"
+  echo -e "${GREEN}All backup agents successful${RESET}"
 else
-  echo "Some backup agents have failures"
+  echo -e "${RED}Some backup agents have failures${RESET}"
   echo "Check logs: tail /tmp/local.restic.*.log"
 fi
 
