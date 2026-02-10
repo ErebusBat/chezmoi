@@ -34,7 +34,6 @@
       "Bash(git push *)"
     ]
   },
-  "model": "opus",
   "hooks": {
     "Notification": [
       {
@@ -81,7 +80,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "~/.claude/statusline.sh"
+    "command": "~/.claude/statusline-usage.sh"
   },
   "enabledPlugins": {
     "claude-mem@thedotmack": true
