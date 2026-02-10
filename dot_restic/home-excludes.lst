@@ -152,6 +152,7 @@ $HOME/Library/Application Support/obsidian/WebStorage/**
 $HOME/Library/Application Support/Plexamp/**
 $HOME/Library/Application Support/Postman/Crashpad/**
 $HOME/Library/Application Support/Postman/logs/**
+$HOME/Library/Application Support/qmk/**
 $HOME/Library/Application Support/SonosV2/updates/**
 $HOME/Library/Application Support/Spotify/PersistentCache/**
 $HOME/Library/Application Support/SyncServices/**
