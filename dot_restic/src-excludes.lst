@@ -14,6 +14,9 @@
 **/cache/**
 **/.zig-cache/**
 
+# Well Known Files to Ignore
+**/.chunkhound.db
+
 $HOME/src/erebusbat/dotfiles-stow/fetlife/src/fetlife/docker_dev/snapshot-*.tar.gz
 $HOME/src/erebusbat/image-marker/imgs/**
 $HOME/src/erebusbat/myserver/syncthing/config/**
