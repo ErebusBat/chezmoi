@@ -11,6 +11,14 @@ MODEL=$(echo "$input" | jq -r '.model.display_name // "Unknown"')
 MODEL=$(echo "$MODEL" | sed 's/ context)/)/g')
 BRANCH=$(git branch --show-current 2>/dev/null || echo "")
 
+# Get current directory, replacing home with ~
+CURRENT_DIR=$(echo "$input" | jq -r '.workspace.current_dir // ""')
+if [ -n "$CURRENT_DIR" ]; then
+    CURRENT_DIR_DISPLAY="${CURRENT_DIR/#$HOME/~}"
+else
+    CURRENT_DIR_DISPLAY=""
+fi
+
 # ============================================
 # SESSION DATA (5-hour billing block from ccusage)
 # ============================================
@@ -123,6 +131,11 @@ YELLOW='\033[33m'
 RED='\033[31m'
 RESET='\033[0m'
 
+# Element colors for better visual organization
+CYAN='\033[36m'      # Model name
+BLUE='\033[34m'      # Folder/Branch name
+MAGENTA='\033[35m'   # Percentages and times
+
 # Session bar color: Based on PROJECTED percentage
 if [ $PROJECTED_SESSION_PCT -lt 70 ]; then
     SESSION_COLOR="$GREEN"
@@ -205,10 +218,12 @@ else
     WEEKLY_RESET_DISPLAY="resets in ${DAYS_UNTIL_WEEKLY}d"
 fi
 
-# Build branch display
+# Build branch/directory display
 BRANCH_DISPLAY=""
 if [ -n "$BRANCH" ]; then
-    BRANCH_DISPLAY=" 🌿 $BRANCH |"
+    BRANCH_DISPLAY=" 🌿 ${BLUE}${BRANCH}${RESET} |"
+elif [ -n "$CURRENT_DIR_DISPLAY" ]; then
+    BRANCH_DISPLAY=" 📁 ${BLUE}${CURRENT_DIR_DISPLAY}${RESET} |"
 fi
 
-echo -e "[${MODEL}]${BRANCH_DISPLAY} S: ${SESSION_BAR} ${SESSION_PCT}%${SESSION_ICON} ${SESSION_TIME} | W: ${WEEKLY_BAR} ${WEEKLY_PCT}%${WEEKLY_ICON} ${WEEKLY_TOKENS_M}M ${WEEKLY_RESET_DISPLAY}"
+echo -e "[${CYAN}${MODEL}${RESET}]${BRANCH_DISPLAY} S: ${SESSION_BAR} ${MAGENTA}${SESSION_PCT}%${RESET}${SESSION_ICON} ${MAGENTA}${SESSION_TIME}${RESET} | W: ${WEEKLY_BAR} ${MAGENTA}${WEEKLY_PCT}%${RESET}${WEEKLY_ICON} ${MAGENTA}${WEEKLY_TOKENS_M}M${RESET} ${MAGENTA}${WEEKLY_RESET_DISPLAY}${RESET}"
