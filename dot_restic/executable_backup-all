@@ -1,0 +1,228 @@
+#!/bin/bash
+set -euo pipefail
+
+RESTIC_DIR="$(cd "$(dirname "$0")" && pwd)"
+export RESTIC_DIR
+
+# Required commands for backup operations
+REQUIRED_COMMANDS=(
+  date
+  restic
+  make
+  ssh
+  rclone
+  rsync
+)
+
+# Check for required commands
+check_dependencies() {
+  local missing=()
+
+  for cmd in "${REQUIRED_COMMANDS[@]}"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      missing+=("$cmd")
+    fi
+  done
+
+  if [[ ${#missing[@]} -gt 0 ]]; then
+    echo "Error: Required commands not found: ${missing[*]}"
+    return 1
+  fi
+  return 0
+}
+
+# Help text
+show_help() {
+  cat << EOF
+Usage: backup-all SCHEDULE
+       backup-all --list
+       backup-all --help
+
+Run all backup profiles for the specified schedule.
+
+Arguments:
+  SCHEDULE  Name of the backup schedule (e.g., hourly, daily, manual)
+
+Options:
+  --list      Show all available schedules
+  --help      Show this help message
+  --dry-run   Show what would be run without executing
+
+Examples:
+  backup-all hourly       Run all profiles with hourly schedules
+  backup-all daily        Run all profiles with daily schedules
+  backup-all --dry-run hourly   Show what would run for hourly
+
+This script finds all PROFILE-SCHEDULE.sh scripts matching the schedule
+and runs them sequentially using the 'backup' wrapper.
+
+For more information, see: $RESTIC_DIR/PRD.md
+EOF
+}
+
+# List available schedules
+list_schedules() {
+  echo "Available schedules:"
+  echo
+
+  # Find all unique schedules and their profiles
+  local schedules_file=$(mktemp)
+
+  for script in "$RESTIC_DIR"/*-*.sh; do
+    if [[ -f "$script" ]] && [[ ! "$script" =~ profile- ]]; then
+      local basename=$(basename "$script" .sh)
+      local profile="${basename%%-*}"
+      local schedule="${basename#*-}"
+      echo "$schedule|$profile" >> "$schedules_file"
+    fi
+  done
+
+  if [[ ! -s "$schedules_file" ]]; then
+    echo "  No schedules found."
+  else
+    # Group by schedule and display
+    sort "$schedules_file" | while IFS='|' read -r schedule profile; do
+      echo "$schedule $profile"
+    done | awk '
+      {
+        if ($1 != prev) {
+          if (prev != "") print "  " prev ": " profiles
+          prev = $1
+          profiles = $2
+        } else {
+          profiles = profiles ", " $2
+        }
+      }
+      END { if (prev != "") print "  " prev ": " profiles }
+    '
+  fi
+
+  rm -f "$schedules_file"
+
+  echo
+  echo "Run 'backup-all SCHEDULE' to execute all profiles for that schedule."
+}
+
+# Check dependencies first
+if ! check_dependencies; then
+  exit 1
+fi
+
+# Parse arguments
+DRY_RUN=false
+
+if [[ $# -eq 0 ]]; then
+  show_help
+  exit 1
+fi
+
+if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
+  show_help
+  exit 0
+fi
+
+if [[ "$1" == "--list" ]] || [[ "$1" == "-l" ]]; then
+  list_schedules
+  exit 0
+fi
+
+if [[ "$1" == "--dry-run" ]]; then
+  DRY_RUN=true
+  shift
+  if [[ $# -eq 0 ]]; then
+    echo "Error: SCHEDULE argument required after --dry-run"
+    exit 1
+  fi
+fi
+
+SCHEDULE="$1"
+
+# Validate schedule name
+if [[ ! "$SCHEDULE" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+  echo "Error: Invalid schedule name '$SCHEDULE'"
+  echo "Schedule names must contain only letters, numbers, hyphens, and underscores"
+  exit 1
+fi
+
+# Find all profiles with this schedule
+profiles=()
+for script in "$RESTIC_DIR"/*-"$SCHEDULE".sh; do
+  if [[ -f "$script" ]]; then
+    basename=$(basename "$script" .sh)
+    profile="${basename%%-*}"
+
+    # Verify profile file exists
+    if [[ -f "$RESTIC_DIR/profile-$profile.sh" ]]; then
+      profiles+=("$profile")
+    else
+      echo "Warning: Found $script but missing profile-$profile.sh, skipping"
+    fi
+  fi
+done
+
+# Check if any profiles found
+if [[ ${#profiles[@]} -eq 0 ]]; then
+  echo "Error: No profiles found for schedule '$SCHEDULE'"
+  echo
+  echo "Available schedules:"
+  for script in "$RESTIC_DIR"/*-*.sh; do
+    if [[ -f "$script" ]] && [[ ! "$script" =~ profile- ]]; then
+      basename=$(basename "$script" .sh)
+      schedule="${basename#*-}"
+      echo "  - $schedule"
+    fi
+  done | sort -u
+  exit 1
+fi
+
+# Display what will be run
+echo "========================================"
+echo "Backup-all started: $(date '+%Y-%m-%d %H:%M:%S %Z')"
+echo "Schedule: $SCHEDULE"
+echo "Profiles: ${profiles[*]}"
+echo "Count: ${#profiles[@]}"
+echo "========================================"
+echo
+
+if [[ "$DRY_RUN" == "true" ]]; then
+  echo "DRY RUN - would execute:"
+  for profile in "${profiles[@]}"; do
+    echo "  $RESTIC_DIR/backup $profile $SCHEDULE"
+  done
+  exit 0
+fi
+
+# Execute backups for each profile
+failures=()
+for profile in "${profiles[@]}"; do
+  echo "----------------------------------------"
+  echo "Starting: $profile / $SCHEDULE"
+  echo "----------------------------------------"
+
+  if "$RESTIC_DIR/backup" "$profile" "$SCHEDULE"; then
+    echo
+    echo "✓ Completed: $profile / $SCHEDULE"
+  else
+    exit_code=$?
+    echo
+    echo "✗ Failed: $profile / $SCHEDULE (exit code: $exit_code)"
+    failures+=("$profile")
+  fi
+  echo
+done
+
+# Summary
+echo "========================================"
+echo "Backup-all completed: $(date '+%Y-%m-%d %H:%M:%S %Z')"
+echo "Schedule: $SCHEDULE"
+echo "Total profiles: ${#profiles[@]}"
+echo "Successful: $((${#profiles[@]} - ${#failures[@]}))"
+if [[ ${#failures[@]} -gt 0 ]]; then
+  echo "Failed: ${#failures[@]} (${failures[*]})"
+  echo "========================================"
+  exit 1
+else
+  echo "Failed: 0"
+  echo "========================================"
+  exit 0
+fi
