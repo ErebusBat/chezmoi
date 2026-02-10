@@ -157,11 +157,11 @@ hosts:
 templates:
   personal-gateways:
     GatewayConnectTimeout: 2
-    Gateways:
-      - direct
-      - nuc02-deco
-      - dartp6-nplh
-      - mbp-nplh
+    # Gateways:
+    #   - direct
+    #   - nuc02-deco
+    #   - dartp6-nplh
+    #   - mbp-nplh
   bat-devices:
     Inherits: personal-gateways
     IdentityFile: ~/.ssh/id_bat_devices
