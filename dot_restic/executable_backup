@@ -1,0 +1,170 @@
+#!/bin/bash
+set -euo pipefail
+
+# Set and export RESTIC_DIR for use by schedule scripts
+export RESTIC_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+# Help text
+show_help() {
+  cat << EOF
+Usage: backup PROFILE SCHEDULE
+       backup --list
+       backup --help
+
+Run a backup using the specified profile and schedule.
+
+Arguments:
+  PROFILE   Name of the backup profile (e.g., lshq, erebusbat)
+  SCHEDULE  Name of the backup schedule (e.g., hourly, daily, manual)
+
+Options:
+  --list    Show all available PROFILE-SCHEDULE combinations
+  --help    Show this help message
+
+Examples:
+  backup lshq hourly       Run hourly backup to lshq repository
+  backup erebusbat daily   Run daily backup to erebusbat repository
+  backup lshq manual       Run manual/full backup to lshq
+
+Files:
+  The system looks for these files in $RESTIC_DIR:
+    - profile-PROFILE.sh      Profile configuration (repository, credentials)
+    - PROFILE-SCHEDULE.sh     Schedule script (what to backup, executes restic)
+
+For more information, see: $RESTIC_DIR/PRD.md
+EOF
+}
+
+# List available combinations
+list_combinations() {
+  echo "Available backup combinations:"
+  echo
+
+  # Find all schedule scripts (PROFILE-SCHEDULE.sh pattern)
+  local found=false
+  for script in "$RESTIC_DIR"/*-*.sh; do
+    if [[ -f "$script" ]] && [[ ! "$script" =~ profile- ]]; then
+      local basename=$(basename "$script" .sh)
+      local profile="${basename%%-*}"
+      local schedule="${basename#*-}"
+
+      # Check if corresponding profile exists
+      if [[ -f "$RESTIC_DIR/profile-$profile.sh" ]]; then
+        echo "  backup $profile $schedule"
+        found=true
+      else
+        echo "  backup $profile $schedule  (WARNING: missing profile-$profile.sh)"
+        found=true
+      fi
+    fi
+  done
+
+  if [[ "$found" == "false" ]]; then
+    echo "  No schedule scripts found."
+    echo
+    echo "To create a backup schedule:"
+    echo "  1. Create a profile: $RESTIC_DIR/profile-PROFILE.sh"
+    echo "  2. Create a schedule: $RESTIC_DIR/PROFILE-SCHEDULE.sh"
+    echo "  3. Make it executable: chmod +x $RESTIC_DIR/PROFILE-SCHEDULE.sh"
+  fi
+
+  echo
+  echo "Profiles available:"
+  for profile in "$RESTIC_DIR"/profile-*.sh; do
+    if [[ -f "$profile" ]]; then
+      local profile_name=$(basename "$profile" | sed 's/^profile-//' | sed 's/\.sh$//')
+      echo "  - $profile_name"
+    fi
+  done
+}
+
+# Parse arguments
+if [[ $# -eq 0 ]]; then
+  show_help
+  exit 1
+fi
+
+if [[ "$1" == "--help" ]] || [[ "$1" == "-h" ]]; then
+  show_help
+  exit 0
+fi
+
+if [[ "$1" == "--list" ]] || [[ "$1" == "-l" ]]; then
+  list_combinations
+  exit 0
+fi
+
+if [[ $# -lt 2 ]]; then
+  echo "Error: Missing required arguments"
+  echo
+  show_help
+  exit 1
+fi
+
+PROFILE="$1"
+SCHEDULE="$2"
+
+# Validate inputs
+if [[ ! "$PROFILE" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+  echo "Error: Invalid profile name '$PROFILE'"
+  echo "Profile names must contain only letters, numbers, hyphens, and underscores"
+  exit 1
+fi
+
+if [[ ! "$SCHEDULE" =~ ^[a-zA-Z0-9_-]+$ ]]; then
+  echo "Error: Invalid schedule name '$SCHEDULE'"
+  echo "Schedule names must contain only letters, numbers, hyphens, and underscores"
+  exit 1
+fi
+
+# Check for required files
+PROFILE_SCRIPT="$RESTIC_DIR/profile-$PROFILE.sh"
+SCHEDULE_SCRIPT="$RESTIC_DIR/$PROFILE-$SCHEDULE.sh"
+
+if [[ ! -f "$PROFILE_SCRIPT" ]]; then
+  echo "Error: Profile script not found: $PROFILE_SCRIPT"
+  echo
+  echo "Create a profile script with repository configuration."
+  echo "Example:"
+  echo "  export RESTIC_REPOSITORY=\"sftp://server/path/to/repo\""
+  echo "  export RESTIC_PASSWORD_FILE=\"\$HOME/.restic/.${PROFILE}.key\""
+  exit 1
+fi
+
+if [[ ! -f "$SCHEDULE_SCRIPT" ]]; then
+  echo "Error: Schedule script not found: $SCHEDULE_SCRIPT"
+  echo
+  echo "Available schedules for profile '$PROFILE':"
+  found=false
+  for script in "$RESTIC_DIR/$PROFILE"-*.sh; do
+    if [[ -f "$script" ]]; then
+      schedule_name=$(basename "$script" | sed "s/^$PROFILE-//" | sed 's/\.sh$//')
+      echo "  - $schedule_name"
+      found=true
+    fi
+  done
+
+  if [[ "$found" == "false" ]]; then
+    echo "  (none found)"
+  fi
+
+  echo
+  echo "Use 'backup --list' to see all available combinations."
+  exit 1
+fi
+
+if [[ ! -x "$SCHEDULE_SCRIPT" ]]; then
+  echo "Error: Schedule script is not executable: $SCHEDULE_SCRIPT"
+  echo "Fix with: chmod +x $SCHEDULE_SCRIPT"
+  exit 1
+fi
+
+# Source the profile to set up repository environment
+source "$PROFILE_SCRIPT"
+
+# Execute the schedule script
+echo "Running backup: $PROFILE / $SCHEDULE"
+echo "Script: $SCHEDULE_SCRIPT"
+echo
+
+exec "$SCHEDULE_SCRIPT"

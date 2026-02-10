@@ -15,7 +15,8 @@ direct/
 
 {{- if not .area.lshq }}
 .restic/lsrestic.sh
-.restic/lshq-env.sh
+.restic/profile-lshq.sh
+.restic/lshq-*.sh
 .restic/.lshq.key
 .tmuxp/lshq.yaml
 bin/jenkins
