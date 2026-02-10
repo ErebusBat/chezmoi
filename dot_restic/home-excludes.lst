@@ -1,3 +1,5 @@
+# vim: ft=sh ts=2 sw=2 expandtab
+
 # Very Specific File excludes
 $HOME/bee_mem_card-2020-1217.tar.gz
 
@@ -100,6 +102,7 @@ $HOME/Library/Application Support/Animoji/**
 $HOME/Library/Application Support/CallHistoryDB/**
 $HOME/Library/Application Support/CallHistoryTransactions/**
 $HOME/Library/Application Support/Claude/**
+$HOME/Library/Application Support/CloudDocs/**
 $HOME/Library/Application Support/com.apple.ap.promotedcontentd/**
 $HOME/Library/Application Support/com.apple.ap.sbd/**
 $HOME/Library/Application Support/com.apple.avfoundation/**
@@ -110,6 +113,7 @@ $HOME/Library/Application Support/com.bugsnag.Bugsnag/**
 $HOME/Library/Application Support/com.facebook.archon.developerID/RCTAsyncLocalStorage_V1
 $HOME/Library/Application Support/com.raycast.macos/extensions/fa65ad62-dba1-45af-897f-ec6dbcdf4aca/models/**
 $HOME/Library/Application Support/CrashReporter/**
+$HOME/Library/Application Support/DifferentialPrivacy/**
 $HOME/Library/Application Support/discord/**
 $HOME/Library/Application Support/Docker Desktop/**
 $HOME/Library/Application Support/Dropbox/**
@@ -188,7 +192,11 @@ $HOME/Library/Metadata/**
 $HOME/Library/News/**
 $HOME/Library/PersonalizationPortrait/**
 $HOME/Library/Photos/Libraries/Syndication.photoslibrary/**
+$HOME/Library/Preferences/com.apple.AddressBook.plist
+$HOME/Library/Preferences/com.apple.homed.notbackedup.plist
 $HOME/Library/Preferences/com.apple.homed.plist
+$HOME/Library/Preferences/com.apple.mail-shared.plist
+$HOME/Library/Preferences/com.apple.messages.pinning.plist
 $HOME/Library/Preferences/com.apple.MobileSMS*.*
 $HOME/Library/QuickLook/**
 $HOME/Library/Reminders/**
