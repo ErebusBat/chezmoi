@@ -183,7 +183,22 @@ fi
 
 # Format weekly reset display
 if [ $DAYS_UNTIL_WEEKLY -eq 0 ]; then
-    WEEKLY_RESET_DISPLAY="resets 9pm"
+    # Resets today - check if less than 4 hours away
+    if [ $HOURS_UNTIL_WEEKLY -lt 4 ]; then
+        # Less than 4 hours - show countdown
+        CURRENT_MIN=$(TZ='America/Denver' date +%M)
+        WEEKLY_MINS_REMAINING=$(( (HOURS_UNTIL_WEEKLY * 60) + (60 - CURRENT_MIN) ))
+        WEEKLY_HOURS=$((WEEKLY_MINS_REMAINING / 60))
+        WEEKLY_MINS=$((WEEKLY_MINS_REMAINING % 60))
+        if [ $WEEKLY_HOURS -eq 0 ]; then
+            WEEKLY_RESET_DISPLAY="resets in ${WEEKLY_MINS}m"
+        else
+            WEEKLY_RESET_DISPLAY="resets in ${WEEKLY_HOURS}h${WEEKLY_MINS}m"
+        fi
+    else
+        # More than 4 hours - show absolute time
+        WEEKLY_RESET_DISPLAY="resets 9pm"
+    fi
 else
     WEEKLY_RESET_DISPLAY="resets in ${DAYS_UNTIL_WEEKLY}d"
 fi
