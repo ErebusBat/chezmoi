@@ -13,3 +13,6 @@ load15m:
 
 unload15m:
 	launchctl unload ~/Library/LaunchAgents/local.restic.15m.plist
+
+status:
+	~/.restic/backup-status

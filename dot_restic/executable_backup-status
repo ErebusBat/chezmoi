@@ -1,0 +1,48 @@
+#!/bin/bash
+set -euo pipefail
+
+# Check status of restic backup agents by exit code
+
+echo "Backup Agent Status"
+echo "==================="
+echo
+
+# Get all restic agents
+agents=$(launchctl list | grep "local.restic" | awk '{print $3}' || true)
+
+if [[ -z "$agents" ]]; then
+  echo "No restic backup agents found."
+  echo "Load agents with: launchctl load ~/Library/LaunchAgents/local.restic.*.plist"
+  exit 0
+fi
+
+exit_status=0
+
+for agent in $agents; do
+  # Get the exit code from launchctl list
+  status=$(launchctl list "$agent" 2>/dev/null | grep "LastExitStatus" | awk '{print $3}' | tr -d ';' || echo "unknown")
+
+  # Extract schedule name from agent label (local.restic.SCHEDULE)
+  schedule="${agent#local.restic.}"
+
+  if [[ "$status" == "0" ]]; then
+    printf "%-20s ✓ Success (exit code 0)\n" "$schedule"
+  elif [[ "$status" == "unknown" ]]; then
+    printf "%-20s ? Unknown (not run yet or not loaded)\n" "$schedule"
+  else
+    # LastExitStatus in launchd is exitcode << 8, so divide by 256
+    actual_exit=$((status / 256))
+    printf "%-20s ✗ Failed (exit code %d)\n" "$schedule" "$actual_exit"
+    exit_status=1
+  fi
+done
+
+echo
+if [[ $exit_status -eq 0 ]]; then
+  echo "All backup agents successful"
+else
+  echo "Some backup agents have failures"
+  echo "Check logs: tail /tmp/local.restic.*.log"
+fi
+
+exit $exit_status
