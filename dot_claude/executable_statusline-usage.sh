@@ -7,6 +7,8 @@ input=$(cat)
 # MODEL AND GIT INFO
 # ============================================
 MODEL=$(echo "$input" | jq -r '.model.display_name // "Unknown"')
+# Shorten context window display: "Sonnet 4.5 (1M context)" -> "Sonnet 4.5 (1M)"
+MODEL=$(echo "$MODEL" | sed 's/ context)/)/g')
 BRANCH=$(git branch --show-current 2>/dev/null || echo "")
 
 # ============================================
