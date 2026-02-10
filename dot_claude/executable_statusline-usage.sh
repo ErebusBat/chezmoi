@@ -15,6 +15,24 @@ BRANCH=$(git branch --show-current 2>/dev/null || echo "")
 CURRENT_DIR=$(echo "$input" | jq -r '.workspace.current_dir // ""')
 if [ -n "$CURRENT_DIR" ]; then
     CURRENT_DIR_DISPLAY="${CURRENT_DIR/#$HOME/~}"
+
+    # Path shortening rules - easy to add/remove/modify
+    # Format: "pattern|replacement" - one per line
+    # Paths starting with pattern will have pattern replaced with replacement
+    PATH_SHORTCUTS=(
+        "~/src/lshq/|"
+        "~/src/erebusbat/|"
+    )
+
+    # Apply path shortcuts in order
+    for shortcut in "${PATH_SHORTCUTS[@]}"; do
+        pattern="${shortcut%%|*}"
+        replacement="${shortcut##*|}"
+        if [[ "$CURRENT_DIR_DISPLAY" == "$pattern"* ]]; then
+            CURRENT_DIR_DISPLAY="${CURRENT_DIR_DISPLAY/$pattern/$replacement}"
+            break  # Only apply first matching rule
+        fi
+    done
 else
     CURRENT_DIR_DISPLAY=""
 fi
@@ -219,11 +237,16 @@ else
 fi
 
 # Build branch/directory display
-BRANCH_DISPLAY=""
+# Always show directory, add branch when in git repo
+LOCATION_DISPLAY=""
+if [ -n "$CURRENT_DIR_DISPLAY" ]; then
+    LOCATION_DISPLAY=" 📁 ${BLUE}${CURRENT_DIR_DISPLAY}${RESET}"
+fi
 if [ -n "$BRANCH" ]; then
-    BRANCH_DISPLAY=" 🌿 ${BLUE}${BRANCH}${RESET} |"
-elif [ -n "$CURRENT_DIR_DISPLAY" ]; then
-    BRANCH_DISPLAY=" 📁 ${BLUE}${CURRENT_DIR_DISPLAY}${RESET} |"
+    LOCATION_DISPLAY="${LOCATION_DISPLAY} 🌿 ${BLUE}${BRANCH}${RESET}"
+fi
+if [ -n "$LOCATION_DISPLAY" ]; then
+    LOCATION_DISPLAY="${LOCATION_DISPLAY} |"
 fi
 
-echo -e "[${CYAN}${MODEL}${RESET}]${BRANCH_DISPLAY} S: ${SESSION_BAR} ${MAGENTA}${SESSION_PCT}%${RESET}${SESSION_ICON} ${MAGENTA}${SESSION_TIME}${RESET} | W: ${WEEKLY_BAR} ${MAGENTA}${WEEKLY_PCT}%${RESET}${WEEKLY_ICON} ${MAGENTA}${WEEKLY_TOKENS_M}M${RESET} ${MAGENTA}${WEEKLY_RESET_DISPLAY}${RESET}"
+echo -e "[${CYAN}${MODEL}${RESET}]${LOCATION_DISPLAY} S: ${SESSION_BAR} ${MAGENTA}${SESSION_PCT}%${RESET}${SESSION_ICON} ${MAGENTA}${SESSION_TIME}${RESET} | W: ${WEEKLY_BAR} ${MAGENTA}${WEEKLY_PCT}%${RESET}${WEEKLY_ICON} ${MAGENTA}${WEEKLY_TOKENS_M}M${RESET} ${MAGENTA}${WEEKLY_RESET_DISPLAY}${RESET}"
