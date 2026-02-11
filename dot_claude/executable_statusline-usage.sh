@@ -11,6 +11,7 @@ MODEL=$(echo "$input" | jq -r '.model.display_name // "Unknown"')
 MODEL=$(echo "$MODEL" | sed 's/ context)/)/g')
 BRANCH=$(git branch --show-current 2>/dev/null || echo "")
 
+
 # Get current directory, replacing home with ~
 CURRENT_DIR=$(echo "$input" | jq -r '.workspace.current_dir // ""')
 if [ -n "$CURRENT_DIR" ]; then
@@ -40,7 +41,29 @@ fi
 # ============================================
 # SESSION DATA (5-hour billing block from ccusage)
 # ============================================
-BLOCK_DATA=$(ccusage blocks --json 2>/dev/null | jq '.blocks[-1]' 2>/dev/null)
+# Cache expensive ccusage calls for 30 seconds
+CACHE_FILE="/tmp/claude-statusline-cache.json"
+CACHE_AGE=30
+
+if [ -f "$CACHE_FILE" ]; then
+    CACHE_MTIME=$(stat -f %m "$CACHE_FILE" 2>/dev/null || stat -c %Y "$CACHE_FILE" 2>/dev/null)
+    CURRENT_TIME=$(date +%s)
+    CACHE_DIFF=$((CURRENT_TIME - CACHE_MTIME))
+else
+    CACHE_DIFF=999
+fi
+
+if [ $CACHE_DIFF -gt $CACHE_AGE ]; then
+    # Cache is stale, refresh it
+    BLOCK_DATA=$(ccusage blocks --json 2>/dev/null | jq '.blocks[-1]' 2>/dev/null)
+    WEEKLY_DATA=$(ccusage weekly --json 2>/dev/null | jq '.weekly[-1]' 2>/dev/null)
+    echo "{\"block\": $BLOCK_DATA, \"weekly\": $WEEKLY_DATA}" > "$CACHE_FILE"
+else
+    # Use cached data
+    BLOCK_DATA=$(cat "$CACHE_FILE" | jq '.block')
+    WEEKLY_DATA=$(cat "$CACHE_FILE" | jq '.weekly')
+fi
+
 BLOCK_TOKENS=$(echo "$BLOCK_DATA" | jq -r '.totalTokens // 0')
 BLOCK_END_TIME=$(echo "$BLOCK_DATA" | jq -r '.endTime // ""')
 REMAINING_MINS=$(echo "$BLOCK_DATA" | jq -r '.projection.remainingMinutes // 0')
@@ -75,9 +98,8 @@ else
 fi
 
 # ============================================
-# WEEKLY DATA (from ccusage)
+# WEEKLY DATA (from cache loaded above)
 # ============================================
-WEEKLY_DATA=$(ccusage weekly --json 2>/dev/null | jq '.weekly[-1]' 2>/dev/null)
 WEEKLY_TOKENS=$(echo "$WEEKLY_DATA" | jq -r '.totalTokens // 0')
 
 # Calculate time until Tuesday 9pm weekly reset (Denver time)
