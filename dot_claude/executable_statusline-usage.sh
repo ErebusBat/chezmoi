@@ -178,6 +178,23 @@ else
     WEEKLY_ICON=" 🚨"
 fi
 
+# Percentage text colors: Based on ACTUAL usage (not projected)
+if [ $SESSION_PCT -lt 70 ]; then
+    SESSION_PCT_COLOR="$GREEN"
+elif [ $SESSION_PCT -lt 90 ]; then
+    SESSION_PCT_COLOR="$YELLOW"
+else
+    SESSION_PCT_COLOR="$RED"
+fi
+
+if [ $WEEKLY_PCT -lt 70 ]; then
+    WEEKLY_PCT_COLOR="$GREEN"
+elif [ $WEEKLY_PCT -lt 90 ]; then
+    WEEKLY_PCT_COLOR="$YELLOW"
+else
+    WEEKLY_PCT_COLOR="$RED"
+fi
+
 # ============================================
 # BUILD COLORIZED PROGRESS BARS
 # ============================================
@@ -250,5 +267,5 @@ if [ -n "$LOCATION_DISPLAY" ]; then
 fi
 
 echo -e "[${CYAN}${MODEL}${RESET}]${LOCATION_DISPLAY}"
-echo -e "S: ${SESSION_BAR} ${MAGENTA}${SESSION_PCT}%${RESET}${SESSION_ICON} ${MAGENTA}${SESSION_TIME}${RESET}"
-echo -e "W: ${WEEKLY_BAR} ${MAGENTA}${WEEKLY_PCT}%${RESET}${WEEKLY_ICON} ${MAGENTA}${WEEKLY_TOKENS_M}M${RESET} ${MAGENTA}${WEEKLY_RESET_DISPLAY}${RESET}"
+echo -e "S: ${SESSION_BAR} ${SESSION_PCT_COLOR}${SESSION_PCT}%${RESET}${SESSION_ICON} ${MAGENTA}${SESSION_TIME}${RESET}"
+echo -e "W: ${WEEKLY_BAR} ${WEEKLY_PCT_COLOR}${WEEKLY_PCT}%${RESET}${WEEKLY_ICON} ${MAGENTA}${WEEKLY_TOKENS_M}M${RESET} ${MAGENTA}${WEEKLY_RESET_DISPLAY}${RESET}"
