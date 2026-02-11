@@ -127,7 +127,7 @@ for agent in $agents; do
   else
     # LastExitStatus in launchd is exitcode << 8, so divide by 256
     actual_exit=$((status / 256))
-    status_text="✗ Failed"
+    status_text="✗ Failed "
     status_color="$RED"
     exit_code="$actual_exit"
     if [[ -z "$last_run" ]]; then
