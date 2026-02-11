@@ -3,15 +3,78 @@ set -euo pipefail
 
 # Check status of restic backup agents by exit code
 
-# Colors
-GREEN='\033[0;32m'
-RED='\033[0;31m'
-YELLOW='\033[0;33m'
-RESET='\033[0m'
+# Colors (use $'...' syntax for proper escape sequence interpretation)
+GREEN=$'\033[0;32m'
+RED=$'\033[0;31m'
+YELLOW=$'\033[0;33m'
+RESET=$'\033[0m'
 
-echo "Backup Agent Status"
-echo "==================="
-echo
+# Capture current time
+CURRENT_TIME=$(date "+%Y-%m-%d %H:%M:%S")
+
+# Calculate relative time from a timestamp
+relative_time() {
+  local timestamp="$1"
+
+  # Handle empty/missing timestamps
+  if [[ -z "$timestamp" ]]; then
+    echo "never"
+    return
+  fi
+
+  local now=$(date +%s)
+  local then=$(date -j -f "%Y-%m-%d %H:%M:%S" "$timestamp" +%s 2>/dev/null || echo "0")
+
+  if [[ "$then" == "0" ]]; then
+    echo "never"
+    return
+  fi
+
+  local diff=$((now - then))
+
+  if [[ $diff -lt 0 ]]; then
+    echo "future"
+  elif [[ $diff -lt 60 ]]; then
+    echo "${diff}s ago"
+  elif [[ $diff -lt 3600 ]]; then
+    echo "$((diff / 60))m ago"
+  elif [[ $diff -lt 86400 ]]; then
+    echo "$((diff / 3600))h ago"
+  elif [[ $diff -lt 2592000 ]]; then
+    echo "$((diff / 86400))d ago"
+  else
+    echo "$((diff / 2592000))mo ago"
+  fi
+}
+
+# Print horizontal line for grid
+print_line() {
+  local left="$1"
+  local mid="$2"
+  local right="$3"
+  printf "%s" "$left"
+  printf '%.0s─' {1..14}
+  printf "%s" "$mid"
+  printf '%.0s─' {1..11}
+  printf "%s" "$mid"
+  printf '%.0s─' {1..12}
+  printf "%s" "$mid"
+  printf '%.0s─' {1..26}
+  printf "%s" "$mid"
+  printf '%.0s─' {1..16}
+  printf "%s\n" "$right"
+}
+
+# Print header box
+print_header() {
+  # Total width: 83 chars (81 inside + 2 borders)
+
+  echo "╔═══════════════════════════════════════════════════════════════════════════════════╗"
+  printf "║                            Backup Agent Status                                    ║\n"
+  printf "║                  Status check: %-19s                                ║\n" "$CURRENT_TIME"
+  echo "╚═══════════════════════════════════════════════════════════════════════════════════╝"
+  echo
+}
 
 # Get all restic agents
 agents=$(launchctl list | grep "local.restic" | awk '{print $3}' || true)
@@ -24,6 +87,15 @@ fi
 
 exit_status=0
 
+# Arrays to collect agent data
+declare -a schedules
+declare -a status_texts
+declare -a status_colors
+declare -a exit_codes
+declare -a last_runs
+declare -a relative_times
+
+# Collect data from all agents
 for agent in $agents; do
   # Get the exit code from launchctl list
   status=$(launchctl list "$agent" 2>/dev/null | grep "LastExitStatus" | awk '{print $3}' | tr -d ';' || echo "unknown")
@@ -39,31 +111,70 @@ for agent in $agents; do
     last_run=$(grep -E "Backup(-all)? started:" "$log_file" | tail -1 | sed -E 's/.*started: //' || echo "")
   fi
 
+  # Build status display and collect data
   if [[ "$status" == "0" ]]; then
-    if [[ -n "$last_run" ]]; then
-      printf "%-20s ${GREEN}✓ Success${RESET} (exit 0) - Last run: %s\n" "$schedule" "$last_run"
-    else
-      printf "%-20s ${GREEN}✓ Success${RESET} (exit code 0)\n" "$schedule"
+    status_text="✓ Success"
+    status_color="$GREEN"
+    exit_code="0"
+    if [[ -z "$last_run" ]]; then
+      last_run="(not run yet)"
     fi
   elif [[ "$status" == "unknown" ]]; then
-    printf "%-20s ${YELLOW}? Unknown${RESET} (not run yet or not loaded)\n" "$schedule"
+    status_text="? Unknown"
+    status_color="$YELLOW"
+    exit_code="-"
+    last_run="(not run yet)"
   else
     # LastExitStatus in launchd is exitcode << 8, so divide by 256
     actual_exit=$((status / 256))
-    if [[ -n "$last_run" ]]; then
-      printf "%-20s ${RED}✗ Failed${RESET} (exit %d) - Last run: %s\n" "$schedule" "$actual_exit" "$last_run"
-    else
-      printf "%-20s ${RED}✗ Failed${RESET} (exit code %d)\n" "$schedule" "$actual_exit"
+    status_text="✗ Failed"
+    status_color="$RED"
+    exit_code="$actual_exit"
+    if [[ -z "$last_run" ]]; then
+      last_run="(not run yet)"
     fi
     exit_status=1
   fi
+
+  # Calculate relative time
+  rel_time=$(relative_time "$last_run")
+
+  # Store in arrays
+  schedules+=("$schedule")
+  status_texts+=("$status_text")
+  status_colors+=("$status_color")
+  exit_codes+=("$exit_code")
+  last_runs+=("$last_run")
+  relative_times+=("$rel_time")
 done
+
+# Display header
+print_header
+
+# Display table
+print_line "┌" "┬" "┐"
+printf "│ %-12s │ %-9s │ %-10s │ %-24s │ %-14s │\n" \
+  "Schedule" "Status" "Exit Code" "Last Run" "Relative Time"
+print_line "├" "┼" "┤"
+
+# Display data rows
+for i in "${!schedules[@]}"; do
+  # Apply color at display time
+  printf "│ %-12s │ " "${schedules[$i]}"
+  printf "%b%-9s%b" "${status_colors[$i]}" "${status_texts[$i]}" "$RESET"
+  printf " │ %10s │ %-24s │ %-14s │\n" \
+    "${exit_codes[$i]}" \
+    "${last_runs[$i]}" \
+    "${relative_times[$i]}"
+done
+
+print_line "└" "┴" "┘"
 
 echo
 if [[ $exit_status -eq 0 ]]; then
-  echo -e "${GREEN}All backup agents successful${RESET}"
+  echo -e "Status: ${GREEN}✓ All backup agents successful${RESET}"
 else
-  echo -e "${RED}Some backup agents have failures${RESET}"
+  echo -e "Status: ${RED}✗ Some backup agents have failures${RESET}"
   echo "Check logs: tail /tmp/local.restic.*.log"
 fi
 
