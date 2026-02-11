@@ -1,4 +1,4 @@
-format = """$all$line_break${env_var.LAZYGIT_SHELL}$character"""
+format = """$all$line_break${env_var.LAZYGIT_SHELL}${env_var.CLAUDE_CODE_PANE}$character"""
 right_format = """$battery$time$localip$os"""
 
 [env_var.LAZYGIT_SHELL]
@@ -6,6 +6,12 @@ disabled = false
 symbol = "󰊢"
 style = "red"
 format = "[$symbol]($style) "
+
+[env_var.CLAUDE_CODE_PANE]
+variable = "CLAUDE_CODE_PANE"
+format = "🤖[$env_value]($style) "
+style = "bold purple"
+disabled = false
 
 [battery]
 disabled = false
