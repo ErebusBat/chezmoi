@@ -64,7 +64,13 @@ else
     WEEKLY_DATA=$(cat "$CACHE_FILE" | jq '.weekly')
 fi
 
-BLOCK_TOKENS=$(echo "$BLOCK_DATA" | jq -r '.totalTokens // 0')
+# Use weighted tokens for session too
+BLOCK_INPUT=$(echo "$BLOCK_DATA" | jq -r '.inputTokens // 0')
+BLOCK_OUTPUT=$(echo "$BLOCK_DATA" | jq -r '.outputTokens // 0')
+BLOCK_CACHE_CREATE=$(echo "$BLOCK_DATA" | jq -r '.cacheCreationTokens // 0')
+BLOCK_CACHE_READ=$(echo "$BLOCK_DATA" | jq -r '.cacheReadTokens // 0')
+BLOCK_TOKENS=$(echo "scale=0; $BLOCK_INPUT + $BLOCK_OUTPUT + $BLOCK_CACHE_CREATE + ($BLOCK_CACHE_READ * 0.1)" | bc)
+
 BLOCK_END_TIME=$(echo "$BLOCK_DATA" | jq -r '.endTime // ""')
 REMAINING_MINS=$(echo "$BLOCK_DATA" | jq -r '.projection.remainingMinutes // 0')
 
@@ -77,10 +83,10 @@ fi
 HOURS_UNTIL_SESSION=$((REMAINING_MINS / 60))
 MINS_UNTIL_SESSION=$((REMAINING_MINS % 60))
 
-# Estimate block limit (enterprise plans vary, but ~60-100M tokens per 5hr block is common)
-# Based on /usage showing 2% at ~1.9M tokens: 1.9M / 0.02 = 95M token limit
-# Round to 100M for safety margin
-BLOCK_LIMIT=100000000
+# Session limit based on Claude Desktop showing 7% at current usage
+# Using weighted tokens to match Claude Desktop calculation
+# Approximate: 40M weighted tokens per 5hr session
+BLOCK_LIMIT=40000000
 
 # Calculate session percentage
 if [ $BLOCK_LIMIT -gt 0 ]; then
@@ -90,8 +96,18 @@ else
 fi
 
 # Project session usage (use ccusage projection if available)
-PROJECTED_BLOCK_TOKENS=$(echo "$BLOCK_DATA" | jq -r '.projection.totalTokens // 0')
-if [ $PROJECTED_BLOCK_TOKENS -gt 0 ]; then
+# Note: projection.totalTokens is raw total, we need to estimate weighted projection
+PROJECTED_RAW=$(echo "$BLOCK_DATA" | jq -r '.projection.totalTokens // 0')
+if [ $PROJECTED_RAW -gt 0 ]; then
+    # Rough estimate: assume similar cache ratio as current usage
+    # This is imperfect but better than nothing
+    if [ $(echo "$BLOCK_DATA" | jq -r '.totalTokens // 0') -gt 0 ]; then
+        RAW_TOTAL=$(echo "$BLOCK_DATA" | jq -r '.totalTokens // 0')
+        WEIGHT_RATIO=$(echo "scale=4; $BLOCK_TOKENS / $RAW_TOTAL" | bc)
+        PROJECTED_BLOCK_TOKENS=$(echo "scale=0; $PROJECTED_RAW * $WEIGHT_RATIO" | bc)
+    else
+        PROJECTED_BLOCK_TOKENS=$BLOCK_TOKENS
+    fi
     PROJECTED_SESSION_PCT=$(echo "scale=0; ($PROJECTED_BLOCK_TOKENS * 100) / $BLOCK_LIMIT" | bc)
 else
     PROJECTED_SESSION_PCT=$SESSION_PCT
@@ -100,7 +116,12 @@ fi
 # ============================================
 # WEEKLY DATA (from cache loaded above)
 # ============================================
-WEEKLY_TOKENS=$(echo "$WEEKLY_DATA" | jq -r '.totalTokens // 0')
+# Use weighted tokens (cache reads count as 0.1x, matching Claude Desktop)
+WEEKLY_INPUT=$(echo "$WEEKLY_DATA" | jq -r '.inputTokens // 0')
+WEEKLY_OUTPUT=$(echo "$WEEKLY_DATA" | jq -r '.outputTokens // 0')
+WEEKLY_CACHE_CREATE=$(echo "$WEEKLY_DATA" | jq -r '.cacheCreationTokens // 0')
+WEEKLY_CACHE_READ=$(echo "$WEEKLY_DATA" | jq -r '.cacheReadTokens // 0')
+WEEKLY_TOKENS=$(echo "scale=0; $WEEKLY_INPUT + $WEEKLY_OUTPUT + $WEEKLY_CACHE_CREATE + ($WEEKLY_CACHE_READ * 0.1)" | bc)
 
 # Calculate time until Tuesday 9pm weekly reset (Denver time)
 DAY_OF_WEEK=$(TZ='America/Denver' date +%u)  # 1=Mon, 2=Tue, 7=Sun
@@ -157,9 +178,9 @@ fi
 # Project weekly usage at current burn rate
 PROJECTED_WEEKLY_TOKENS=$(echo "scale=0; $WEEKLY_TOKENS + ($WEEKLY_TOKENS_PER_HOUR * $TOTAL_HOURS_UNTIL_WEEKLY)" | bc)
 
-# Calculated weekly limit based on /usage showing 28% at ~130M tokens
-# 130M / 0.28 = ~464M tokens/week (rounded to 465M)
-WEEKLY_LIMIT=465000000
+# Weekly limit based on Claude Desktop showing 3% at ~24M weighted tokens
+# 24M / 0.03 = 800M weighted tokens/week
+WEEKLY_LIMIT=800000000
 WEEKLY_PCT=$(echo "scale=0; ($WEEKLY_TOKENS * 100) / $WEEKLY_LIMIT" | bc)
 PROJECTED_WEEKLY_PCT=$(echo "scale=0; ($PROJECTED_WEEKLY_TOKENS * 100) / $WEEKLY_LIMIT" | bc)
 
