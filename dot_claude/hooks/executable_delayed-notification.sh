@@ -36,7 +36,7 @@ sleep "$DELAY"
 
 # Check if marker still exists (removed if cancelled)
 if [ -f "$MARKER" ]; then
-  osascript -e "display notification \"${MESSAGE}\" with title \"${TITLE}\" sound name \"Glass\""
+  osascript -e "display notification \"${MESSAGE}\" with title \"${TITLE}\" sound name \"Sosumi\""
   rm -f "$MARKER"
 fi
 
