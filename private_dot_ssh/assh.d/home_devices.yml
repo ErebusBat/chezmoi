@@ -22,6 +22,14 @@ hosts:
     Hostname: de4062.rsync.net
     User: de4062
     IdentityFile: ~/.ssh/id_rsync_ed25519
+    # Detect dead connections after sleep/network changes so restic backups
+    # don't hang indefinitely. SSH sends a keepalive every 30s; after 3 missed
+    # replies (~90s) the connection is terminated. ConnectTimeout prevents
+    # hanging on initial connection if the network is down.
+    # All values are in seconds (except ServerAliveCountMax which is a count).
+    ServerAliveInterval: 30
+    ServerAliveCountMax: 3
+    ConnectTimeout: 30
   de4062.rsync.net:
     Inherits: rsyncnet
 
