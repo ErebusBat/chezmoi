@@ -163,12 +163,12 @@ fi
 source "$PROFILE_SCRIPT"
 
 # Execute the schedule script
-echo "========================================"
+echo "================================================================================"
 echo "Backup started: $(date '+%Y-%m-%d %H:%M:%S %Z')"
 echo "Profile: $PROFILE"
 echo "Schedule: $SCHEDULE"
 echo "Script: $SCHEDULE_SCRIPT"
-echo "========================================"
+echo "================================================================================"
 echo
 
 exec "$SCHEDULE_SCRIPT"
