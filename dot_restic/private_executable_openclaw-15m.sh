@@ -9,18 +9,15 @@ fi
 # ubnound variable failure on the check
 set -euo pipefail
 
-# restic is provided by mise on dart6p
-if ! command -v restic &> /dev/null; then
-    source ~/.config/zsh-antibody/mise/mise.plugin.zsh
-fi
-
 ## Should we exclude the cron tag?
 TAG_ARG="--tag=cron"
 if [[ "${1:-}" == "--no-cron" ]]; then
   TAG_ARG=""
 fi
 
+echo "Restic: $(which restic)"
+
 # Run the backup
 restic backup \
-  --exclude-caches $TAG_ARG \
+  --skip-if-unchanged --exclude-caches $TAG_ARG \
   ~/src/erebusbat/myserver/batbot ~/.openclaw
