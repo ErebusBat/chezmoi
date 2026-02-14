@@ -1,0 +1,21 @@
+#!/bin/bash
+# Make sure that we have restic available
+# restic is provided by mise on dart6p
+if ! command -v restic &> /dev/null; then
+  mise_path=~/.config/zsh-antibody/mise/mise.plugin.zsh
+  if [[ -f $mise_path ]]; then
+    source $mise_path
+  fi
+  unset mise_path
+fi
+if ! command -v restic &> /dev/null; then
+  if [[ -x $HOME/bin/restic ]]; then
+    export PATH="$HOME/bin:$PATH"
+  fi
+fi
+# Fail-safe check
+if ! command -v restic &> /dev/null; then
+  echo "Fatal: Could not find restic binary on system!"
+  exit 1
+fi
+
