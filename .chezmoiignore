@@ -89,6 +89,12 @@ bin/stmux.zsh
 .restic/.freenas_cifs_shell.env
 {{- end }}
 
+### OpenClaw Specific Stuffs
+{{- if ne .chezmoi.hostname "dartp6" }}
+.restic/openclaw-15m.sh
+.restic/profile-openclaw.sh
+{{- end }}
+
 {{- if eq .chezmoi.os "darwin" }}
 # OS IS MacOS, so DO NOT include these files
 bin/pbcopy
