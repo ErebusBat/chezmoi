@@ -90,7 +90,7 @@ bin/stmux.zsh
 {{- end }}
 
 ### OpenClaw Specific Stuffs
-{{- if ne .chezmoi.hostname "dartp6" }}
+{{- if not .area.openclaw_backup }}
 .restic/openclaw-15m.sh
 .restic/profile-openclaw.sh
 {{- end }}

@@ -26,6 +26,7 @@
     tractionguest = {{ index .area "tractionguest" | default false }}
     companycam = {{ index .area "companycam" | default false }}
     lshq = {{ index .area "lshq" | default false }}
+    openclaw_backup = {{ index .area "openclaw_backup" | default false }}
     {{- else }}
     personal = {{ default false (eq $focus "personal") }}
     server = {{ default false (eq $focus "server") }}
@@ -33,6 +34,7 @@
     tractionguest = false
     companycam = false
     lshq = false
+    openclaw_backup = false
     {{ end }}
 
   [data.synergy]
