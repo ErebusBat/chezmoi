@@ -5,14 +5,17 @@ hosts:
   dartp6-nplh:
     Inherits: personal-allowpass
     HostName: 192.168.1.10
-  dartp6-claw:
-    # Inherits: dartp6-nplh
-    Inherits: dartp6
-    LocalForward: "18789 127.0.0.1:18789"
 
   mbp-nplh:
     Inherits: mbp
     Hostname: 192.168.1.112
+
+  # The machine that OpenClaw is running, this forwards a port
+  # for the dashboard.
+  claw:
+    # Inherits: dartp6-nplh
+    Inherits: dartp6
+    LocalForward: "18789 127.0.0.1:18789"
 
 ############################################################
 # Devices / Services

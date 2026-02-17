@@ -21,10 +21,16 @@ windows:
       - wd chezmoi
 
 - window_name: 🔀
+  layout: "b3e4,167x52,0,0[167x25,0,0{83x25,0,0,18,83x25,84,0,27},167x26,0,26{83x26,0,26,19,83x26,84,26,29}]"
   panes:
     - shell_command:
       - cd ~/src/erebusbat/myserver/routes
-      - start-tailscale-tunnel.sh
+      - ./start-tailscale-tunnel.sh
+    - shell_command:
+      - cd ~/src/erebusbat/myserver/routes
+      - ssh claw
+    - shell_command:
+      - cd ~/src/erebusbat/myserver/routes
     - shell_command:
       - cd ~/src/erebusbat/myserver/routes
 
