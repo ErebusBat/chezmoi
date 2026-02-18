@@ -113,8 +113,9 @@ bin/toggle_light_dark.sh
 
 {{- if ne .chezmoi.os "linux" }}
 .config/Synergy/
-.config/systemd
 .config/gospt/client.yml
+.config/systemd
+.local/bin/pinentry-auto
 bin/lock
 {{- end }}
 

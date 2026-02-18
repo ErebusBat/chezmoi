@@ -1,0 +1,13 @@
+#!/bin/bash
+# Auto-select pinentry based on session type
+# Uses curses for SSH/non-graphical, gnome3 for local desktop
+
+if [[ -z "$GPG_TTY" ]]; then
+    echo "WARNING: GPG_TTY is not set. Add 'export GPG_TTY=$(tty)' to your .zshrc" >&2
+fi
+
+if [[ -n "$SSH_CONNECTION" ]] || [[ -z "$DISPLAY" ]]; then
+    exec /usr/bin/pinentry-curses "$@"
+else
+    exec /usr/bin/pinentry-gnome3 "$@"
+fi

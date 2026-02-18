@@ -13,6 +13,9 @@ extra-socket {{ .chezmoi.destDir }}/.gnupg/S.gpg-agent.extra
 # Use macOS keychain
 pinentry-program /opt/homebrew/bin/pinentry-mac
 {{ else if eq .chezmoi.os "linux" }}
+
+# Detect if in SSH or GNOME session
+pinentry-program {{ .chezmoi.destDir }}/.local/bin/pinentry-auto
 {{ end }}
 # default-cache-ttl 34560000
 # max-cache-ttl 34560000
