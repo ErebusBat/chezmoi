@@ -5,7 +5,7 @@ hosts:
   dartp6-nplh:
     Inherits: personal-allowpass
     HostName: 192.168.1.10
-  dartp6-claw:
+  claw:
     # Inherits: dartp6-nplh
     Inherits: dartp6
     LocalForward: "18789 127.0.0.1:18789"
