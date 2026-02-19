@@ -18,5 +18,6 @@ jenkins:
 url:
   domain_mappings:
     lightspeedhq_slack_com: slack
+    fuzzyempire_slack_com: slack
     youtube_com: YouTube
     mail_google_com: GMail
