@@ -23,11 +23,12 @@ ohmyzsh/ohmyzsh path:plugins/wd
 # ~/.config/zsh-antibody/powershell
 #~/.config/zsh-antibody/flutter
 #~/.config/zsh-antibody/nodejs
-#~/.config/zsh-antibody/ccam
 ~/.config/zsh-antibody/jenv
 ~/.config/zsh-antibody/nvm
 ~/.config/zsh-antibody/bun
 ~/.config/zsh-antibody/openclaw
+#~/.config/zsh-antibody/ccam
+~/.config/zsh-antibody/lshq
 
 # Rust package is REQUIRED if you are using starship_prompt below
 ~/.config/zsh-antibody/rust

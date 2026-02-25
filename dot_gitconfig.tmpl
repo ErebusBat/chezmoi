@@ -1,7 +1,12 @@
+# vim: set tabstop=2 shiftwidth=2 expandtab:
+
 # This is Git's per-user configuration file.
 [user]
   name = Andrew Burns
   email = {{ .email }}
+  {{- if eq .focus "lshq" }}
+  signingkey = {{ .chezmoi.homeDir }}/.ssh/gh_signing_ed25519_2026-02-25T00:04:06Z.pub
+  {{- end }}
 
 [color]
   branch = auto
@@ -108,3 +113,13 @@
 {{- end }}
 [init]
   defaultBranch = main
+{{- if eq .focus "lshq" }}
+[gpg]
+	format = ssh
+[commit]
+	gpgsign = true
+[tag]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = {{ .chezmoi.homeDir }}/.ssh/allowed_signers
+{{- end }}
