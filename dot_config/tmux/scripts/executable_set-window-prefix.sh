@@ -2,6 +2,7 @@
 
 prefix="🤖 "
 mode="set"
+invalid=0
 
 while [ "$#" -gt 0 ]; do
   case "$1" in
@@ -10,7 +11,11 @@ while [ "$#" -gt 0 ]; do
       ;;
     --prefix)
       shift
-      prefix="$1"
+      if [ -z "$1" ]; then
+        invalid=1
+      else
+        prefix="$1"
+      fi
       ;;
     --prefix=*)
       prefix="${1#--prefix=}"
@@ -19,9 +24,17 @@ while [ "$#" -gt 0 ]; do
       printf '%s\n' "usage: set-window-prefix.sh [set|clear|toggle] [--prefix '🤖 ']"
       exit 0
       ;;
+    *)
+      invalid=1
+      ;;
   esac
   shift
 done
+
+if [ "$invalid" -ne 0 ]; then
+  printf '%s\n' "usage: set-window-prefix.sh [set|clear|toggle] [--prefix '🤖 ']" >&2
+  exit 2
+fi
 
 name="$(tmux display-message -p '#W')"
 
