@@ -24,6 +24,7 @@ markdown-tool:~/src/erebusbat/markdown-tool
 myserver:~/src/erebusbat/myserver
 nav:~/src/erebusbat/myserver/nav-shortcuts
 obsidian:~/src/erebusbat/myserver/obsidian
+opencode:~/.config/opencode
 paperless:~/src/erebusbat/myserver/paperless-ngx
 pchef:~/src/erebusbat/pchef76
 qmk_c3:~/src/erebusbat/qmk_firmware/keyboards/keychron/c3_pro/ansi/red/keymaps/erebusbat

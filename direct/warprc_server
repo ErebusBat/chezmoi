@@ -23,6 +23,7 @@ npm_thelio:/myserver/thelio-npm
 nut:/myserver/nut
 obsidian:/myserver/obsidian
 orbital-sync:/myserver/pihole-orbital-sync
+opencode:~/.config/opencode
 paperless:/myserver/paperless-home
 pchef:~/src/erebusbat/pchef76
 photoprism:/myserver/photoprism

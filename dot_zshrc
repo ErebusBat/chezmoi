@@ -27,7 +27,7 @@ done
 ################################################################################
 # Antidote.sh
 ################################################################################
-autoload -U +X compinit
+autoload -Uz compinit
 
 # zsh_plugins=$HOME/.config/zsh-antibody
 zsh_plugins=$HOME/.config/zsh-antibody/plugins
@@ -66,14 +66,13 @@ source ${zsh_plugins}.zsh
 # regenerated adds a noticable delay to zsh startup.  This little hack restricts
 # it to once a day.  It should be pasted into your own completion file.
 #
-compinit -d ~/.zcompdump
 if [[ $(date -r ~/.zcompdump +'%Y%j') != $(date +'%Y%j') ]]; then
-  # echo "Dumping compinit"
-  compdump
+  # Stale dump: rebuild and recompile
+  compinit -d ~/.zcompdump
   zcompile ~/.zcompdump
 else
-  # echo "Loading Compinit"
-  compinit
+  # Fresh dump: skip security check for speed (-C)
+  compinit -C -d ~/.zcompdump
 fi
 
 # PATH Cleanup, make sure it is duplicate (-U = unique)
