@@ -29,6 +29,15 @@ done
 ################################################################################
 autoload -Uz compinit
 
+# Provide a compdef stub BEFORE plugins are sourced.
+# This prevents third-party plugin inits (e.g. SDKMAN) from calling compinit
+# themselves when they detect compdef is missing — they would trigger an early,
+# full compinit run which we then duplicate below. The stub is replaced by the
+# real compdef once compinit runs after plugins are loaded.
+if ! (( $+functions[compdef] )); then
+  function compdef() { _compdef_queue+=("$@") }
+fi
+
 # zsh_plugins=$HOME/.config/zsh-antibody
 zsh_plugins=$HOME/.config/zsh-antibody/plugins
 
@@ -66,13 +75,19 @@ source ${zsh_plugins}.zsh
 # regenerated adds a noticable delay to zsh startup.  This little hack restricts
 # it to once a day.  It should be pasted into your own completion file.
 #
-if [[ $(date -r ~/.zcompdump +'%Y%j') != $(date +'%Y%j') ]]; then
-  # Stale dump: rebuild and recompile
+if [[ ! -f ~/.zcompdump || $(date -r ~/.zcompdump +'%Y%j') != $(date +'%Y%j') ]]; then
+  # Missing or stale dump: rebuild and recompile
   compinit -d ~/.zcompdump
   zcompile ~/.zcompdump
 else
   # Fresh dump: skip security check for speed (-C)
   compinit -C -d ~/.zcompdump
+fi
+
+# Drain any compdef calls that were queued before compinit ran
+if (( ${#_compdef_queue[@]} )); then
+  compdef "${_compdef_queue[@]}"
+  unset _compdef_queue
 fi
 
 # PATH Cleanup, make sure it is duplicate (-U = unique)

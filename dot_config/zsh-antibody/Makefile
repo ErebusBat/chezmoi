@@ -1,6 +1,7 @@
 COMPDUMP=~/.zcompdump
 PLUGINS=~/.config/zsh-antibody/plugins.txt
 STATIC=~/.config/zsh-antibody/plugins.zsh
+BREW_SHELLENV_CACHE=$(or $(XDG_CACHE_HOME),$(HOME)/.cache)/zsh/brew-shellenv.zsh
 
 help:
 	cat Makefile
@@ -10,6 +11,8 @@ dynamic: clean
 clean:
 	@echo "\n*** [dynamic] Removing antibody static startup script..."
 	/bin/rm -fv $(STATIC) $(STATIC).zwc $(COMPDUMP) $(COMPDUMP).zwc
+	@echo "\n*** [dynamic] Removing zsh startup caches..."
+	/bin/rm -fv $(BREW_SHELLENV_CACHE)
 
 static: clean compile gen_sums
 
