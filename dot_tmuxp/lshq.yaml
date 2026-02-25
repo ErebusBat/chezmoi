@@ -7,33 +7,33 @@ windows:
     - wd lshq
     - wd lshq
 
-- window_name: pos
+- window_name: docs
   panes:
-    - wd lspos
-    - wd lspos
+    - cd docs
+    - cd docs
 
-- window_name: swipely
-  panes:
-    - wd lsswipely
-    - wd lsswipely
-
-- window_name: olo
-  panes:
-    - wd lsolo
-    - wd lsolo
-
-- window_name: cfg_svc
-  panes:
-    - shell_command:
-      - wd lscfgsvc
-      - ./script/standalone
-    - shell_command:
-      - wd lscfgsvc
-
-- window_name: misc
-  panes:
-    - shell_command:
-      - fastfetch
-    - pane:
-      focus: true
-
+# - window_name: swipely
+#   panes:
+#     - wd lsswipely
+#     - wd lsswipely
+#
+# - window_name: olo
+#   panes:
+#     - wd lsolo
+#     - wd lsolo
+#
+# - window_name: cfg_svc
+#   panes:
+#     - shell_command:
+#       - wd lscfgsvc
+#       - ./script/standalone
+#     - shell_command:
+#       - wd lscfgsvc
+#
+# - window_name: misc
+#   panes:
+#     - shell_command:
+#       - fastfetch
+#     - pane:
+#       focus: true
+#

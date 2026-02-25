@@ -4,6 +4,7 @@
 sessions=(
   lshq
   system
+  daemon
 )
 START_SESS=$1
 [[ -z $START_SESS ]] && START_SESS=$sessions[1]
