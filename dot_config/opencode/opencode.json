@@ -13,6 +13,9 @@
   "experimental": {
     "disable_paste_summary": true
   },
+  "plugin": [
+    "opencode-smart-voice-notify@latest"
+  ],
   "mcp": {
     "obsidian": {
       "type": "local",

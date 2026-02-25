@@ -187,33 +187,34 @@
     // INITIAL TTS MESSAGES (Used immediately or after sound)
     // These are randomly selected each time for variety
     // ============================================================
+    // Chezmoi commit prior to edits: b8921e3
 
     // Messages when agent finishes work (task completion)
     "idleTTSMessages": [
-        "All done! Your task has been completed successfully.",
-        "Hey there! I finished working on your request.",
-        "Task complete! Ready for your review whenever you are.",
-        "Good news! Everything is done and ready for you.",
-        "Finished! Let me know if you need anything else."
+        "All done! Your task has been completed successfully in {project} on {branch}.",
+        "Hey there! I finished working on your request in {project} on {branch}.",
+        "Task complete! Ready for your review in {project} on {branch}.",
+        "Good news! Everything is done in {project} on {branch}.",
+        "Finished! Let me know if you need anything else in {project} on {branch}."
     ],
 
     // Messages for permission requests
     "permissionTTSMessages": [
-        "Attention please! I need your permission to continue.",
-        "Hey! Quick approval needed to proceed with the task.",
-        "Heads up! There is a permission request waiting for you.",
-        "Excuse me! I need your authorization before I can continue.",
-        "Permission required! Please review and approve when ready."
+        "Attention please! I need your permission to continue in {project} on {branch}.",
+        "Hey! Quick approval needed to proceed with {project} on {branch}.",
+        "Heads up! There is a permission request waiting for you in {project} on {branch}.",
+        "Excuse me! I need your authorization before I can continue in {project} on {branch}.",
+        "Permission required! Please review and approve for {project} on {branch}."
     ],
 
     // Messages for MULTIPLE permission requests (use {count} placeholder)
     // Used when several permissions arrive simultaneously
     "permissionTTSMessagesMultiple": [
-        "Attention please! There are {count} permission requests waiting for your approval.",
-        "Hey! {count} permissions need your approval to continue.",
-        "Heads up! You have {count} pending permission requests.",
-        "Excuse me! I need your authorization for {count} different actions.",
-        "{count} permissions required! Please review and approve when ready."
+        "Attention please! There are {count} permission requests waiting for your approval in {project} on {branch}.",
+        "Hey! {count} permissions need your approval to continue in {project} on {branch}.",
+        "Heads up! You have {count} pending permission requests in {project} on {branch}.",
+        "Excuse me! I need your authorization for {count} actions in {project} on {branch}.",
+        "{count} permissions required! Please review and approve for {project} on {branch}."
     ],
 
     // ============================================================
@@ -223,29 +224,29 @@
 
     // Reminder messages when agent finished but user hasn't responded
     "idleReminderTTSMessages": [
-        "Hey, are you still there? Your task has been waiting for review.",
-        "Just a gentle reminder - I finished your request a while ago!",
-        "Hello? I completed your task. Please take a look when you can.",
-        "Still waiting for you! The work is done and ready for review.",
-        "Knock knock! Your completed task is patiently waiting for you."
+        "Hey, are you still there? Your task in {project} on {branch} is waiting for review.",
+        "Just a gentle reminder - I finished your request in {project} on {branch}.",
+        "Hello? I completed your task in {project} on {branch}. Please take a look.",
+        "Still waiting for you! The work in {project} on {branch} is ready for review.",
+        "Knock knock! Your completed task in {project} on {branch} is waiting."
     ],
 
     // Reminder messages when permission still needed
     "permissionReminderTTSMessages": [
-        "Hey! I still need your permission to continue. Please respond!",
-        "Reminder: There is a pending permission request. I cannot proceed without you.",
-        "Hello? I am waiting for your approval. This is getting urgent!",
-        "Please check your screen! I really need your permission to move forward.",
-        "Still waiting for authorization! The task is on hold until you respond."
+        "Hey! I still need your permission to continue in {project} on {branch}.",
+        "Reminder: There is a pending permission request in {project} on {branch}.",
+        "Hello? I am waiting for your approval in {project} on {branch}.",
+        "Please check your screen! I need your permission to move forward in {project} on {branch}.",
+        "Still waiting for authorization in {project} on {branch}. The task is on hold."
     ],
 
     // Reminder messages for MULTIPLE permissions (use {count} placeholder)
     "permissionReminderTTSMessagesMultiple": [
-        "Hey! I still need your approval for {count} permissions. Please respond!",
-        "Reminder: There are {count} pending permission requests. I cannot proceed without you.",
-        "Hello? I am waiting for your approval on {count} items. This is getting urgent!",
-        "Please check your screen! {count} permissions are waiting for your response.",
-        "Still waiting for authorization on {count} requests! The task is on hold."
+        "Hey! I still need your approval for {count} permissions in {project} on {branch}.",
+        "Reminder: There are {count} pending permission requests in {project} on {branch}.",
+        "Hello? I am waiting for your approval on {count} items in {project} on {branch}.",
+        "Please check your screen! {count} permissions are waiting for your response in {project} on {branch}.",
+        "Still waiting for authorization on {count} requests in {project} on {branch}."
     ],
 
     // ============================================================
@@ -266,38 +267,38 @@
 
     // Messages when agent asks user a question
     "questionTTSMessages": [
-        "Hey! I have a question for you. Please check your screen.",
-        "Attention! I need your input to continue.",
-        "Quick question! Please take a look when you have a moment.",
-        "I need some clarification. Could you please respond?",
-        "Question time! Your input is needed to proceed."
+        "Hey! I have a question for you about {project} on {branch}.",
+        "Attention! I need your input to continue in {project} on {branch}.",
+        "Quick question! Please take a look at {project} on {branch}.",
+        "I need some clarification for {project} on {branch}.",
+        "Question time! Your input is needed to proceed in {project} on {branch}."
     ],
 
     // Messages for MULTIPLE questions (use {count} placeholder)
     "questionTTSMessagesMultiple": [
-        "Hey! I have {count} questions for you. Please check your screen.",
-        "Attention! I need your input on {count} items to continue.",
-        "{count} questions need your attention. Please take a look!",
-        "I need some clarifications. There are {count} questions waiting for you.",
-        "Question time! {count} questions need your response to proceed."
+        "Hey! I have {count} questions about {project} on {branch}.",
+        "Attention! I need your input on {count} items in {project} on {branch}.",
+        "{count} questions need your attention in {project} on {branch}.",
+        "I need some clarifications. There are {count} questions waiting for you in {project} on {branch}.",
+        "Question time! {count} questions need your response to proceed in {project} on {branch}."
     ],
 
     // Reminder messages for questions (more urgent - used after delay)
     "questionReminderTTSMessages": [
-        "Hey! I am still waiting for your answer. Please check the questions!",
-        "Reminder: There is a question waiting for your response.",
-        "Hello? I need your input to continue. Please respond when you can.",
-        "Still waiting for your answer! The task is on hold.",
-        "Your input is needed! Please check the pending question."
+        "Hey! I am still waiting for your answer about {project} on {branch}.",
+        "Reminder: There is a question waiting for your response in {project} on {branch}.",
+        "Hello? I need your input to continue in {project} on {branch}.",
+        "Still waiting for your answer! The task in {project} on {branch} is on hold.",
+        "Your input is needed! Please check the pending question in {project} on {branch}."
     ],
 
     // Reminder messages for MULTIPLE questions (use {count} placeholder)
     "questionReminderTTSMessagesMultiple": [
-        "Hey! I am still waiting for answers to {count} questions. Please respond!",
-        "Reminder: There are {count} questions waiting for your response.",
-        "Hello? I need your input on {count} items. Please respond when you can.",
-        "Still waiting for your answers on {count} questions! The task is on hold.",
-        "Your input is needed! {count} questions are pending your response."
+        "Hey! I am still waiting for answers to {count} questions in {project} on {branch}.",
+        "Reminder: There are {count} questions waiting for your response in {project} on {branch}.",
+        "Hello? I need your input on {count} items in {project} on {branch}.",
+        "Still waiting for your answers on {count} questions in {project} on {branch}.",
+        "Your input is needed! {count} questions are pending in {project} on {branch}."
     ],
 
     // Delay (in seconds) before question reminder fires
@@ -314,38 +315,38 @@
 
     // Messages when agent encounters an error
     "errorTTSMessages": [
-        "Oops! Something went wrong. Please check for errors.",
-        "Alert! The agent encountered an error and needs your attention.",
-        "Error detected! Please review the issue when you can.",
-        "Houston, we have a problem! An error occurred during the task.",
-        "Heads up! There was an error that requires your attention."
+        "Oops! Something went wrong in {project} on {branch}. Please check for errors.",
+        "Alert! The agent encountered an error in {project} on {branch}.",
+        "Error detected in {project} on {branch}. Please review the issue.",
+        "Houston, we have a problem in {project} on {branch}!",
+        "Heads up! There was an error in {project} on {branch}."
     ],
 
     // Messages for MULTIPLE errors (use {count} placeholder)
     "errorTTSMessagesMultiple": [
-        "Oops! There are {count} errors that need your attention.",
-        "Alert! The agent encountered {count} errors. Please review.",
-        "{count} errors detected! Please check when you can.",
-        "Houston, we have {count} problems! Multiple errors occurred.",
-        "Heads up! {count} errors require your attention."
+        "Oops! There are {count} errors in {project} on {branch}.",
+        "Alert! The agent encountered {count} errors in {project} on {branch}.",
+        "{count} errors detected in {project} on {branch}. Please check when you can.",
+        "Houston, we have {count} problems in {project} on {branch}!",
+        "Heads up! {count} errors require your attention in {project} on {branch}."
     ],
 
     // Reminder messages for errors (more urgent - used after delay)
     "errorReminderTTSMessages": [
-        "Hey! There's still an error waiting for your attention.",
-        "Reminder: An error occurred and hasn't been addressed yet.",
-        "The agent is stuck! Please check the error when you can.",
-        "Still waiting! That error needs your attention.",
-        "Don't forget! There's an unresolved error in your session."
+        "Hey! There's still an error waiting for your attention in {project} on {branch}.",
+        "Reminder: An error occurred in {project} on {branch} and hasn't been addressed yet.",
+        "The agent is stuck! Please check the error in {project} on {branch}.",
+        "Still waiting! That error in {project} on {branch} needs your attention.",
+        "Don't forget! There's an unresolved error in {project} on {branch}."
     ],
 
     // Reminder messages for MULTIPLE errors (use {count} placeholder)
     "errorReminderTTSMessagesMultiple": [
-        "Hey! There are still {count} errors waiting for your attention.",
-        "Reminder: {count} errors occurred and haven't been addressed yet.",
-        "The agent is stuck! Please check the {count} errors when you can.",
-        "Still waiting! {count} errors need your attention.",
-        "Don't forget! There are {count} unresolved errors in your session."
+        "Hey! There are still {count} errors waiting for your attention in {project} on {branch}.",
+        "Reminder: {count} errors occurred in {project} on {branch} and haven't been addressed.",
+        "The agent is stuck! Please check the {count} errors in {project} on {branch}.",
+        "Still waiting! {count} errors in {project} on {branch} need your attention.",
+        "Don't forget! There are {count} unresolved errors in {project} on {branch}."
     ],
 
     // Delay (in seconds) before error reminder fires (shorter than idle for urgency)
