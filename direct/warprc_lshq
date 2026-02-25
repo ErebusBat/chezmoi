@@ -23,7 +23,9 @@ markdown-tool:~/src/erebusbat/markdown-tool
 myserver:~/src/erebusbat/myserver
 nav:~/src/erebusbat/myserver/nav-shortcuts
 opencode:~/.config/opencode
-qmk_c3:~/src/erebusbat/qmk_firmware/keyboards/keychron/c3_pro/ansi/red/keymaps/erebusbat
+qmk_c3:~/src/erebusbat/qmk_c3pro
+qmk_k2he:~/src/erebusbat/qmk_k2he
+qmk_sys76:~/src/erebusbat/qmk_sys76
 qmk:~/src/erebusbat/qmk_firmware
 restic:~/.restic
 rubymine:~/Library/Application Support/JetBrains/RubyMine2025.2/options
