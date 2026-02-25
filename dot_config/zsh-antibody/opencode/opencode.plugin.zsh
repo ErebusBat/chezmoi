@@ -2,7 +2,18 @@ if ! command -v opencode >/dev/null 2>&1; then
   return
 fi
 
-alias oc="opencode"
+# Function that will auto "tag" a tmux window with a robot for cycling purposes
+oc() {
+  local script="$HOME/.config/tmux/scripts/set-window-prefix.sh"
+
+  if [[ -x "$script" ]]; then
+    "$script" set
+    opencode "$@"
+    "$script" clear
+  else
+    opencode "$@"
+  fi
+}
 
 # Load opencode completions (only in interactive shells)
 # Defer until after compinit has run by using a precmd hook
