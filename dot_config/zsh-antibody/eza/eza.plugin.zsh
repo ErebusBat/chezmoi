@@ -9,19 +9,109 @@ if [[ `which eza` =~ 'not found' ]]; then
   alias lsd='ls -ld'
   alias lsdt='tree -d -L 2'
 else
+  setopt no_aliases
+  unalias ll llg lla ls lsa lsw lst lsta lsd lsda lsdt lsdta 2>/dev/null
   alias l='lsw'
-  alias ll='eza -lh --icons'
-  alias llg='eza -lh --git --icons'
-  alias lla='eza -lah --icons'
-  alias ls='eza -lh --icons'
-  alias lsa='eza -lha --icons'
-  alias lsw='eza -hG --icons'
-  alias lst='eza -Tlh -L 2 --icons'
-  alias lsta='eza -Tlha -L 2 --icons'
-  alias lsd='eza -lD'
-  alias lsda='eza -lDa'
-  alias lsdt='eza -lDT -L2'
-  alias lsdta='eza -lDTa -L2'
+  function ll {
+    command eza -lh --icons=auto "$@"
+  }
+  function llg {
+    command eza -lh --git --icons=auto "$@"
+  }
+  function lla {
+    command eza -lah --icons=auto "$@"
+  }
+  function ls {
+    command eza -lh --icons=auto "$@"
+  }
+  function lsa {
+    command eza -lha --icons=auto "$@"
+  }
+  function lsw {
+    command eza -hG --icons=auto "$@"
+  }
+  function lst {
+    command eza -Tlh -L 2 --icons=auto "$@"
+  }
+  function lsta {
+    command eza -Tlha -L 2 --icons=auto "$@"
+  }
+  function lsd {
+    command eza -lD "$@"
+  }
+  function lsda {
+    command eza -lDa "$@"
+  }
+  function lsdt {
+    command eza -lDT -L2 "$@"
+  }
+  function lsdta {
+    command eza -lDTa -L2 "$@"
+  }
 
   alias tree='eza --tree'
+  unsetopt no_aliases
+fi
+
+if [[ -o interactive ]]; then
+  typeset -g _eza_completion_has_arguments=0
+
+  _eza_completion_detect() {
+    local eza_file
+
+    for eza_file in ${^fpath}/_eza(N); do
+      if [[ -r $eza_file ]]; then
+        if [[ $(<"$eza_file") == *"_arguments"* ]]; then
+          _eza_completion_has_arguments=1
+        else
+          _eza_completion_has_arguments=0
+        fi
+        return
+      fi
+    done
+
+    _eza_completion_has_arguments=0
+  }
+
+  _eza_or_files() {
+    local current_word
+    current_word=${words[CURRENT]}
+
+    if [[ $current_word == -* ]]; then
+      if [[ $_eza_completion_has_arguments == 1 ]]; then
+        autoload -Uz _eza
+        _eza "$@"
+        return
+      fi
+    fi
+
+    _files "$@"
+  }
+
+  _eza_completion_init() {
+    if ! (( $+functions[compdef] )); then
+      return
+    fi
+
+    _eza_completion_detect
+
+    zstyle ':completion:*' use-cache on
+    zstyle ':completion:*' cache-path "$HOME/.cache/zsh"
+
+    local eza_cmd
+    for eza_cmd in ll llg lla ls lsa lsw lst lsta lsd lsda lsdt lsdta; do
+      compdef _eza_or_files "$eza_cmd"
+    done
+
+    add-zsh-hook -d precmd _eza_completion_init
+    unfunction _eza_completion_init
+    unfunction _eza_completion_detect
+  }
+
+  autoload -Uz add-zsh-hook
+  if (( $+functions[compdef] )); then
+    _eza_completion_init
+  else
+    add-zsh-hook precmd _eza_completion_init
+  fi
 fi

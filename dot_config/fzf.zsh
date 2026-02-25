@@ -17,6 +17,9 @@ if [[ -f $BINDING_FILE ]]; then
   # Key bindings
   # ------------
   source $BINDING_FILE
+
+  # Restore standard completion on Tab (fzf binds ^I by default)
+  bindkey '^I' expand-or-complete
 fi
 
 unset BINDING_FILE
