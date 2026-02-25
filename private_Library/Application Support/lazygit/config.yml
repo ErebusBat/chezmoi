@@ -14,6 +14,11 @@ customCommands:
     context: global
     command: gh pr create --web
     output: terminal
+  - key: Y
+    context: global
+    description: Sync (pull --rebase + push)
+    command: git pull --rebase --autostash && git push
+    output: popup
 gui:
   mouseEvents: false
 git:
