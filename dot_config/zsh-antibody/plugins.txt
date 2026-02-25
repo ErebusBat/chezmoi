@@ -27,6 +27,7 @@ ohmyzsh/ohmyzsh path:plugins/wd
 ~/.config/zsh-antibody/nvm
 ~/.config/zsh-antibody/bun
 ~/.config/zsh-antibody/openclaw
+~/.config/zsh-antibody/opencode
 #~/.config/zsh-antibody/ccam
 ~/.config/zsh-antibody/lshq
 
