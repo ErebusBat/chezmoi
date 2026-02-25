@@ -5,11 +5,11 @@ sessions_arg=""
 
 direction="$1"
 case "$direction" in
-  next|prev)
+  next|prev|list)
     shift
     ;;
   *)
-    printf '%s\n' "usage: cycle-window-prefix.sh next|prev [--prefix '🤖 '] [--sessions 'Work,Personal']" >&2
+    printf '%s\n' "usage: cycle-window-prefix.sh next|prev|list [--prefix '🤖 '] [--sessions 'Work,Personal']" >&2
     exit 2
     ;;
 esac
@@ -40,7 +40,7 @@ while [ "$#" -gt 0 ]; do
       sessions_arg="${1#--sessions=}"
       ;;
     -h|--help)
-      printf '%s\n' "usage: cycle-window-prefix.sh next|prev [--prefix '🤖 '] [--sessions 'Work,Personal']" >&2
+      printf '%s\n' "usage: cycle-window-prefix.sh next|prev|list [--prefix '🤖 '] [--sessions 'Work,Personal']" >&2
       exit 0
       ;;
     *)
@@ -51,7 +51,7 @@ while [ "$#" -gt 0 ]; do
 done
 
 if [ "$invalid" -ne 0 ]; then
-  printf '%s\n' "usage: cycle-window-prefix.sh next|prev [--prefix '🤖 '] [--sessions 'Work,Personal']" >&2
+  printf '%s\n' "usage: cycle-window-prefix.sh next|prev|list [--prefix '🤖 '] [--sessions 'Work,Personal']" >&2
   exit 2
 fi
 
@@ -83,7 +83,7 @@ $raw"
 fi
 
 if [ "$invalid" -ne 0 ]; then
-  printf '%s\n' "usage: cycle-window-prefix.sh next|prev [--prefix '🤖 '] [--sessions 'Work,Personal']" >&2
+  printf '%s\n' "usage: cycle-window-prefix.sh next|prev|list [--prefix '🤖 '] [--sessions 'Work,Personal']" >&2
   exit 2
 fi
 
@@ -112,7 +112,34 @@ $sessions_order
 EOF
 
 count="$(wc -l < "$candidates_file")"
-if [ "$count" -lt 2 ]; then
+if [ "$count" -lt 1 ]; then
+  exit 0
+fi
+
+if [ "$direction" = "list" ]; then
+  while IFS= read -r entry; do
+    order_part="${entry%%::*}"
+    rest="${entry#*::}"
+    session_part="${rest%%::*}"
+    index_part="${rest#*::}"
+    name="$(tmux display-message -t "$session_part:$index_part" -p '#W')"
+    if [ "$session_part" = "$current_session" ] && [ "$index_part" = "$current_index" ]; then
+      printf '👉 %s:%s %s\n' "$session_part" "$index_part" "$name"
+    else
+      printf '   %s:%s %s\n' "$session_part" "$index_part" "$name"
+    fi
+  done < "$candidates_file"
+  exit 0
+fi
+
+if [ "$count" -eq 1 ]; then
+  only="$(awk 'NR==1 {print; exit}' "$candidates_file")"
+  rest="${only#*::}"
+  session_part="${rest%%::*}"
+  index_part="${rest#*::}"
+  if [ "$session_part" != "$current_session" ] || [ "$index_part" != "$current_index" ]; then
+    tmux select-window -t "$session_part:$index_part"
+  fi
   exit 0
 fi
 
