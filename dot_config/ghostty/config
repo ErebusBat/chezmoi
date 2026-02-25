@@ -49,7 +49,10 @@ font-feature = ss08
 
 # Keybindings
 keybind = global:ctrl+shift+grave_accent=toggle_quick_terminal
-keybind = shift+ctrl+left_bracket=previous_tab
-keybind = shift+ctrl+right_bracket=next_tab
+keybind = cmd+shift+left_bracket=previous_tab
+keybind = cmd+shift+right_bracket=next_tab
+# tmux window nav: send prefix (C-a) + n/p since Ghostty doesn't pass C-S-[ ] reliably
+keybind = ctrl+shift+left_bracket=text:\x01p
+keybind = ctrl+shift+right_bracket=text:\x01n
 keybind = shift+ctrl+,=move_tab:-1
 keybind = shift+ctrl+.=move_tab:+1
