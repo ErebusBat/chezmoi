@@ -1,0 +1,6 @@
+hosts:
+  github-eb:
+    HostName: github.com
+    User: git
+    IdentityFile: ~/.ssh/id_lshq_personal
+    IdentitiesOnly: yes
