@@ -1,6 +1,6 @@
 export OPENCLAW_PATH=$HOME/src/erebusbat/myserver/batbot
 if [[ ! -f $OPENCLAW_PATH/docker-compose.yml ]]; then
-  exit 0
+  return 0
 fi
 
 openclaw() {
