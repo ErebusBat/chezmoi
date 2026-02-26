@@ -1,3 +1,6 @@
+if [[ -d $HOME/.opencode/bin ]]; then
+  export PATH=$HOME/.opencode/bin:$PATH
+fi
 if ! command -v opencode >/dev/null 2>&1; then
   return
 fi

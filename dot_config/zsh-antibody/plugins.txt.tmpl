@@ -1,3 +1,5 @@
+# vim: set tabstop=2 shiftwidth=2 expandtab:
+
 # This must appear before any alias/checks for tools are done
 # because if not then if the tool is managed by mise it won't
 # be found so the aliases won't be setup
@@ -19,17 +21,21 @@ ohmyzsh/ohmyzsh path:plugins/wd
 ~/.config/zsh-antibody/golang
 ~/.config/zsh-antibody/rails
 ~/.config/zsh-antibody/rbenv
-#~/.config/zsh-antibody/sign_in_solutions
 # ~/.config/zsh-antibody/powershell
 #~/.config/zsh-antibody/flutter
 #~/.config/zsh-antibody/nodejs
-~/.config/zsh-antibody/jenv
 ~/.config/zsh-antibody/nvm
 ~/.config/zsh-antibody/bun
 ~/.config/zsh-antibody/openclaw
 ~/.config/zsh-antibody/opencode
-#~/.config/zsh-antibody/ccam
+{{ if .area.companycam }}
+#~/.config/zsh-antibody/sign_in_solutions
+~/.config/zsh-antibody/ccam
+{{- end }}
+{{ if .area.lshq }}
+~/.config/zsh-antibody/jenv
 ~/.config/zsh-antibody/lshq
+{{- end }}
 
 # Rust package is REQUIRED if you are using starship_prompt below
 ~/.config/zsh-antibody/rust
