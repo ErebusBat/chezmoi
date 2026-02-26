@@ -66,3 +66,7 @@ case "$mode" in
     fi
     ;;
 esac
+
+if [[ -x ~/.config/tmux/scripts/window-attention.sh ]]; then
+  ~/.config/tmux/scripts/window-attention.sh clear
+fi
