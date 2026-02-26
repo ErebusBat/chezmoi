@@ -138,7 +138,7 @@ if [ "$count" -eq 1 ]; then
   session_part="${rest%%::*}"
   index_part="${rest#*::}"
   if [ "$session_part" != "$current_session" ] || [ "$index_part" != "$current_index" ]; then
-    tmux select-window -t "$session_part:$index_part"
+    tmux switch-client -t "$session_part:$index_part"
   fi
   exit 0
 fi
@@ -218,5 +218,5 @@ else
 fi
 
 if [ -n "$target_session" ] && [ -n "$target_index" ]; then
-  tmux select-window -t "$target_session:$target_index"
+  tmux switch-client -t "$target_session:$target_index"
 fi
