@@ -18,6 +18,96 @@ oc() {
   fi
 }
 
+# Select an OpenCode session via fzf and copy its ID
+oc_session_pick() {
+  if ! command -v fzf >/dev/null 2>&1; then
+    echo "fzf not found"
+    return 1
+  fi
+  if ! command -v python3 >/dev/null 2>&1; then
+    echo "python3 not found"
+    return 1
+  fi
+
+  local selection id title updated max_count tmpfile
+  max_count="$1"
+
+  local -a cmd
+  cmd=(opencode session list --format json)
+  if [[ -n "$max_count" ]]; then
+    cmd+=(--max-count "$max_count")
+  fi
+
+  tmpfile=$(mktemp -t opencode_sessions.XXXXXX)
+  echo "Fetching OpenCode sessions..."
+  if ! "${cmd[@]}" >"$tmpfile"; then
+    echo "Failed to fetch OpenCode sessions"
+    rm -f "$tmpfile"
+    return 1
+  fi
+
+  selection=$(python3 -c 'import json,sys,time
+data=json.load(sys.stdin)
+now_ms=int(time.time()*1000)
+def rel_time(updated_ms):
+    if not isinstance(updated_ms, (int, float)) or not updated_ms:
+        return ""
+    delta_min=max(0, int((now_ms-updated_ms)/60000))
+    if delta_min < 60:
+        return f"{delta_min}m"
+    delta_hr=delta_min//60
+    if delta_hr < 24:
+        return f"{delta_hr}h"
+    delta_day=delta_hr//24
+    if delta_day < 7:
+        return f"{delta_day}d"
+    if delta_day < 30:
+        return f"{delta_day//7}w"
+    return f"{delta_day//30}mo"
+
+rows=[]
+for item in sorted(data, key=lambda x: x.get("updated", 0), reverse=True):
+    sid=item.get("id", "")
+    title=item.get("title", "")
+    updated=rel_time(item.get("updated", 0))
+    rows.append((sid, updated, title))
+
+idw=max((len(r[0]) for r in rows), default=0)
+upw=max((len(r[1]) for r in rows), default=0)
+header="{}  {}  Title".format("Session ID".ljust(idw), "Age".rjust(upw))
+print(f"\t\t\t{header}")
+for sid, updated, title in rows:
+    display=f"{sid:<{idw}}  {updated:>{upw}}  {title}"
+    print(f"{sid}\t{updated}\t{title}\t{display}")
+' <"$tmpfile" | fzf --prompt='' --with-nth=4 --delimiter='\t' --header-lines=1)
+  rm -f "$tmpfile"
+  if [[ -z "$selection" ]]; then
+    return 1
+  fi
+
+  id=$(printf '%s\n' "$selection" | awk -F '\t' '{print $1}')
+  updated=$(printf '%s\n' "$selection" | awk -F '\t' '{print $2}')
+  title=$(printf '%s\n' "$selection" | awk -F '\t' '{print $3}')
+
+  if command -v pbcopy >/dev/null 2>&1; then
+    printf '%s' "$id" | pbcopy
+  elif command -v wl-copy >/dev/null 2>&1; then
+    printf '%s' "$id" | wl-copy
+  elif command -v xclip >/dev/null 2>&1; then
+    printf '%s' "$id" | xclip -selection clipboard
+  else
+    echo "No clipboard tool found (pbcopy, wl-copy, xclip)"
+    return 1
+  fi
+
+  if [[ -n "$updated" ]]; then
+    echo "Copied session $id — $title ($updated)"
+  else
+    echo "Copied session $id — $title"
+  fi
+}
+alias ocsls=oc_session_pick
+
 # Load opencode completions (only in interactive shells)
 # Defer until after compinit has run by using a precmd hook
 if [[ -o interactive ]]; then
