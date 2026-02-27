@@ -57,4 +57,4 @@ keybind = ctrl+shift+right_bracket=text:\x01n
 keybind = shift+ctrl+,=move_tab:-1
 keybind = shift+ctrl+.=move_tab:+1
 # Hyper+F12 -> tmux user-keys[1] for clear attention
-keybind = ctrl+alt+shift+cmd+f12=text:\x1b[24~
+keybind = ctrl+alt+shift+cmd+f12=text:\x1b[90~
