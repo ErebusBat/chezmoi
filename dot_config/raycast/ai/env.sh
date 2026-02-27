@@ -19,23 +19,6 @@ if [[ "${ZSH_EVAL_CONTEXT}" != *:file* ]]; then
 fi
 # ─── Functions ───────────────────────────────────────────────────────────────
 
-# ═══ Raycast AI ═══════════════════════════════════════════════════════════════════
-function raycast_ai_providers_ls() {
-  yq eval '.providers[] | .id' "$RAYCAST_AI_PROVIDERS"
-}
-alias raipls=raycast_ai_providers_ls
-
-function raycast_ai_models_ls() {
-  local provider="$1"
-  if [[ -n $provider ]]; then
-    provider="$provider" yq eval '.providers[] | select(.id == strenv(provider)) | .id as $pid | .models[] | $pid + "/" + .id' "$RAYCAST_AI_PROVIDERS"
-  else
-    yq eval '.providers[] | .id as $pid | .models[] | $pid + "/" + .id' "$RAYCAST_AI_PROVIDERS"
-  fi
-}
-alias raimls=raycast_ai_models_ls
-
-
 # ─── Main ────────────────────────────────────────────────────────────────────
 _print_raycast_env_usage() {
   _log_info "%F{green}Available commands:%f"
@@ -55,3 +38,21 @@ if [[ "$PWD" == "$RAYCAST_AI_SCRIPT_DIR" ]]; then
 fi
 
 unfunction _print_raycast_env_usage _log_debug _log_info _log_warn _log_error _log_fatal
+
+# NOTE: helper log functions are unfunctioned above; do not use below.
+
+# ═══ Raycast AI ═══════════════════════════════════════════════════════════════════
+function raycast_ai_providers_ls() {
+  yq eval '.providers[] | .id' "$RAYCAST_AI_PROVIDERS"
+}
+alias raipls=raycast_ai_providers_ls
+
+function raycast_ai_models_ls() {
+  local provider="$1"
+  if [[ -n $provider ]]; then
+    provider="$provider" yq eval '.providers[] | select(.id == strenv(provider)) | .id as $pid | .models[] | $pid + "/" + .id' "$RAYCAST_AI_PROVIDERS"
+  else
+    yq eval '.providers[] | .id as $pid | .models[] | $pid + "/" + .id' "$RAYCAST_AI_PROVIDERS"
+  fi
+}
+alias raimls=raycast_ai_models_ls
