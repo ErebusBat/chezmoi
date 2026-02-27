@@ -27,6 +27,7 @@ qmk_c3:~/src/erebusbat/qmk_c3pro
 qmk_k2he:~/src/erebusbat/qmk_k2he
 qmk_sys76:~/src/erebusbat/qmk_sys76
 qmk:~/src/erebusbat/qmk_firmware
+raycast_ai:~/.config/raycast/ai
 restic:~/.restic
 rubymine:~/Library/Application Support/JetBrains/RubyMine2025.2/options
 src:~/src
