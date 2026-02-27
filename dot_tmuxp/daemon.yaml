@@ -6,7 +6,7 @@ windows:
   panes:
     - shell_command:
       - cd ~/src/erebusbat/myserver/routes
-      - ./start-tailscale-tunnel.sh
+      - ./start-tailscale-tunnel.sh -w
     - shell_command:
       - cd ~/src/erebusbat/myserver/routes
       - ssh claw
