@@ -29,33 +29,59 @@ oc_session_select() {
     return 1
   fi
 
-  local selection max_count tmpfile fetching_shown
+  local selection max_count tmpfile errfile listfile fetching_shown
   max_count="$1"
 
   local -a cmd
-  cmd=(opencode session list --format json)
+  cmd=(command opencode session list --format json --print-logs --log-level ERROR)
   if [[ -n "$max_count" ]]; then
     cmd+=(--max-count "$max_count")
   fi
 
   tmpfile=$(mktemp -t opencode_sessions.XXXXXX)
+  errfile=$(mktemp -t opencode_sessions_err.XXXXXX)
+  listfile=$(mktemp -t opencode_sessions_list.XXXXXX)
   fetching_shown=0
   if [[ -t 2 ]]; then
     printf '%s' "Fetching OpenCode sessions..." >&2
     fetching_shown=1
   fi
-  if ! "${cmd[@]}" >"$tmpfile"; then
+  if ! "${cmd[@]}" >"$tmpfile" 2>"$errfile"; then
     echo "Failed to fetch OpenCode sessions"
-    rm -f "$tmpfile"
+    if [[ -s "$errfile" ]]; then
+      cat "$errfile"
+    fi
+    rm -f "$tmpfile" "$errfile"
     return 1
+  fi
+
+  if [[ ! -s "$tmpfile" ]] && command -v script >/dev/null 2>&1; then
+    if ! script -q /dev/null opencode session list --format json --print-logs --log-level ERROR >"$tmpfile" 2>"$errfile"; then
+      echo "Failed to fetch OpenCode sessions"
+      if [[ -s "$errfile" ]]; then
+        cat "$errfile"
+      fi
+      rm -f "$tmpfile" "$errfile"
+      return 1
+    fi
+    if [[ -s "$tmpfile" ]]; then
+      tr -d '\r' <"$tmpfile" >"${tmpfile}.clean" && mv "${tmpfile}.clean" "$tmpfile"
+    fi
   fi
 
   if [[ $fetching_shown -eq 1 ]]; then
     printf '\r\u001b[2K' >&2
   fi
 
-  selection=$(python3 -c 'import json,sys,time
-data=json.load(sys.stdin)
+  if ! python3 -c 'import json,sys,time
+raw=sys.stdin.read()
+start=raw.find("[")
+end=raw.rfind("]")
+if start == -1 or end == -1 or end < start:
+    print("Invalid JSON from opencode session list", file=sys.stderr)
+    sys.exit(1)
+raw=raw[start:end+1]
+data=json.loads(raw)
 now_ms=int(time.time()*1000)
 def rel_time(updated_ms):
     if not isinstance(updated_ms, (int, float)) or not updated_ms:
@@ -80,6 +106,10 @@ for item in sorted(data, key=lambda x: x.get("updated", 0), reverse=True):
     updated_ms=item.get("updated", 0)
     updated=rel_time(updated_ms)
     rows.append((sid, updated, title, updated_ms))
+
+if not rows:
+    print("No sessions found", file=sys.stderr)
+    sys.exit(1)
 
 idw=max((len(r[0]) for r in rows), default=0)
 upw=max((len(r[1]) for r in rows), default=0)
@@ -108,9 +138,28 @@ for sid, updated, title, updated_ms in rows:
 
     display=f"{blue}{sid:<{idw}}{reset}  {age_color}{updated:>{upw}}{reset}  {reset}{title}{reset}"
     print(f"{sid}\t{updated}\t{title}\t{display}")
-' <"$tmpfile" | FZF_DEFAULT_OPTS= FZF_DEFAULT_OPTS_FILE=/dev/null FZF_OPTS= \
-  fzf --ansi --prompt='' --with-nth=4 --delimiter='\t' --header-lines=1 --header-first --layout=reverse)
-  rm -f "$tmpfile"
+' <"$tmpfile" >"$listfile" 2>"$errfile"; then
+    if [[ -s "$errfile" ]]; then
+      cat "$errfile"
+    else
+      echo "Failed to build session list"
+    fi
+    rm -f "$tmpfile" "$errfile" "$listfile"
+    return 1
+  fi
+
+  if [[ $(wc -l <"$listfile") -lt 2 ]]; then
+    echo "No sessions to display"
+    if [[ -s "$errfile" ]]; then
+      cat "$errfile"
+    fi
+    rm -f "$tmpfile" "$errfile" "$listfile"
+    return 1
+  fi
+
+  selection=$(FZF_DEFAULT_OPTS= FZF_DEFAULT_OPTS_FILE=/dev/null FZF_OPTS= \
+    fzf --ansi --prompt='' --with-nth=4 --delimiter='\t' --header-lines=1 --header-first --layout=reverse <"$listfile" || true)
+  rm -f "$tmpfile" "$errfile" "$listfile"
 
   if [[ -z "$selection" ]]; then
     return 1
