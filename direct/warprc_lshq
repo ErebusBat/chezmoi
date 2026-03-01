@@ -22,6 +22,7 @@ maid:~/.maid
 markdown-tool:~/src/erebusbat/markdown-tool
 myserver:~/src/erebusbat/myserver
 nav:~/src/erebusbat/myserver/nav-shortcuts
+ocplugin:~/src/erebusbat/opencode-n8n-hooks
 opencode:~/.config/opencode
 qmk_c3:~/src/erebusbat/qmk_c3pro
 qmk_k2he:~/src/erebusbat/qmk_k2he

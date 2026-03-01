@@ -18,8 +18,8 @@ oc() {
   fi
 }
 
-# Select an OpenCode session via fzf and copy its ID
-oc_session_pick() {
+# Select an OpenCode session via fzf
+oc_session_select() {
   if ! command -v fzf >/dev/null 2>&1; then
     echo "fzf not found"
     return 1
@@ -29,7 +29,7 @@ oc_session_pick() {
     return 1
   fi
 
-  local selection id title updated max_count tmpfile
+  local selection max_count tmpfile
   max_count="$1"
 
   local -a cmd
@@ -103,9 +103,18 @@ for sid, updated, title, updated_ms in rows:
 ' <"$tmpfile" | FZF_DEFAULT_OPTS= FZF_DEFAULT_OPTS_FILE=/dev/null FZF_OPTS= \
   fzf --ansi --prompt='' --with-nth=4 --delimiter='\t' --header-lines=1 --header-first --layout=reverse)
   rm -f "$tmpfile"
+
   if [[ -z "$selection" ]]; then
     return 1
   fi
+
+  echo "$selection"
+}
+
+# Select an OpenCode session via fzf and copy its ID
+oc_session_pick() {
+  local selection id title updated
+  selection=$(oc_session_select "$1") || return 1
 
   id=$(printf '%s\n' "$selection" | awk -F '\t' '{print $1}')
   updated=$(printf '%s\n' "$selection" | awk -F '\t' '{print $2}')
@@ -128,7 +137,26 @@ for sid, updated, title, updated_ms in rows:
     echo "Copied session $id — $title"
   fi
 }
+
+# Select an OpenCode session via fzf and continue it
+oc_session_continue() {
+  local selection id title updated
+  selection=$(oc_session_select "$1") || return 1
+
+  id=$(printf '%s\n' "$selection" | awk -F '\t' '{print $1}')
+  updated=$(printf '%s\n' "$selection" | awk -F '\t' '{print $2}')
+  title=$(printf '%s\n' "$selection" | awk -F '\t' '{print $3}')
+
+  if [[ -n "$updated" ]]; then
+    echo "Continuing session $id — $title ($updated)"
+  else
+    echo "Continuing session $id — $title"
+  fi
+
+  oc -s "$id"
+}
 alias ocsls=oc_session_pick
+alias occ=oc_session_continue
 
 # Load opencode completions (only in interactive shells)
 # Defer until after compinit has run by using a precmd hook
