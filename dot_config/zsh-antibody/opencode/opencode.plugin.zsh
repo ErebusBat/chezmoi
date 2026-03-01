@@ -39,7 +39,7 @@ oc_session_select() {
   fi
 
   tmpfile=$(mktemp -t opencode_sessions.XXXXXX)
-  echo "Fetching OpenCode sessions..."
+  echo "Fetching OpenCode sessions..." >&2
   if ! "${cmd[@]}" >"$tmpfile"; then
     echo "Failed to fetch OpenCode sessions"
     rm -f "$tmpfile"
