@@ -1,20 +1,54 @@
+# vim: set ft=conf ts=2 sw=2 et:
+################################################################################
 ### File is managed by chezmoi
+################################################################################
+{{- $ios_keys := true -}}
+{{- $lshq_keys := true -}}
+{{- $secondary_keys := true -}}
+{{- $n8n_keys := false -}}
+{{- $n8n_gaurd_script_path := joinPath .chezmoi.homeDir "src/erebusbat/myserver/n8n/n8n-ssh-guard.sh" -}}
+{{- if .area.lshq }}
+{{- $secondary_keys = false -}}
+{{- $n8n_keys = true -}}
+{{- end }}
 
+{{- if $secondary_keys }}
+################################################################################
+# Secondary Keys
+################################################################################
 # dart6p
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC1W7m+4GyjPPs0zjsIJfZUHLm7BffWmvl1ZNHbyCfuiDtDZnxdWNU4XUOvVIRlTZKqHA28m09X9Fzt80bUK2dekMVBXs0Ss7kgQeBIga2DBIlfe02+FHZgAC8xCkERCPSl4cbBmlaFYIv+xj+rNAwz2z9yO1RSyzjHdujRbk0K+iDk2KLVnhk1BywfpHecO/Lg0FmHVeCFyCSN4+HTImDx1EGFfLe2/MwiEWq46LswoFQqIgo7ykQyHi6FAvOBlORELfqyEY0kWX6wfjMrEfD1T9MSKG1WoKbvh7nGq5WyhQM+y4XIVAwV4HI7JUIL+YHM/Dwvv0xlHIeEmpCNTAPe8aO9pg4vR7TCyoJCUmm6gLtb3d57ki04cFD6lTo0QQKzF4CGm07QkskVxHJNRvmAErhu6xW+jKrzApjerPLcs+Q1XfDzzYVZN9PwDrXdgsKkg3pEl1g5c1zIUXhpc2kSuE69ShE2WgYim9X3zjj2PNj2fyXDEy9sXV+FMsOnnD0= aburns@dartp6
 
 # Thelio
-#ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNqayYptwJyfmRzB2se5IEy7BchuWY76HbGkLz+sWwhULwxDD8QQJMtADouUY1aReuhH0J6tg9GE3Jv9DPnCPlOue+zfOcy6uSnbhqtcf+w7zf0wNhJvHjKfUZd+yiqUBfBgAQmHEv/5Lxnuu0MIx5IeU5EPQOGLQkMByxvgGmgajVkKJY442vXMUiLYmVk35MFH8RlBVqOJC77pZPnsTE0trypZRvFgHmSXaKDevkxvHO6q5DKvoTZD7KTmqCHM7aaRXGTiHkqui34eJy0r47YooODqAqH2hch1GTpkfMnZrPMqMYjA4L+p7QajBNhkkXwVkBExMlYH9dfr68lUeudZPqsZxaI0uykilu/sGVoSBWMRhC0XebROPpq7odxUmSMHRGrQdUjwGLPFmJeWVHEPc4HDh7+eOcK07h6jp6ZGGakYfT9J6r+AsbRIC74yJMVlQjk75ZuX6F2yTUYaT/EYHOAWUSoxLVcNkMNniAbvvS1JPV20je/+G6KR5AVus= aburns@thelio
+# ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDNqayYptwJyfmRzB2se5IEy7BchuWY76HbGkLz+sWwhULwxDD8QQJMtADouUY1aReuhH0J6tg9GE3Jv9DPnCPlOue+zfOcy6uSnbhqtcf+w7zf0wNhJvHjKfUZd+yiqUBfBgAQmHEv/5Lxnuu0MIx5IeU5EPQOGLQkMByxvgGmgajVkKJY442vXMUiLYmVk35MFH8RlBVqOJC77pZPnsTE0trypZRvFgHmSXaKDevkxvHO6q5DKvoTZD7KTmqCHM7aaRXGTiHkqui34eJy0r47YooODqAqH2hch1GTpkfMnZrPMqMYjA4L+p7QajBNhkkXwVkBExMlYH9dfr68lUeudZPqsZxaI0uykilu/sGVoSBWMRhC0XebROPpq7odxUmSMHRGrQdUjwGLPFmJeWVHEPc4HDh7+eOcK07h6jp6ZGGakYfT9J6r+AsbRIC74yJMVlQjk75ZuX6F2yTUYaT/EYHOAWUSoxLVcNkMNniAbvvS1JPV20je/+G6KR5AVus= aburns@thelio
 
 # m4mbp
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIXUJn9T0+ZkSc04KxeLXe8a+xSo5l7a8XiYuKKtBOI4 aburns@m4mbp
+### Secondary ##################################################################
+{{- end }}
 
+{{ if $ios_keys}}
+################################################################################
+# iOS Devices Keys
+################################################################################
 # Blink - iPhone16 Secure Enclave
 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFoCv9mxLGd4fKNZUakkJOHAClY7zJtP4PPa1L49JcUqF57ss1tfwV+wvp+20MQDoR3yYscGp6KEOKMMQanlOUA= aburns@iPhone16-SE
 
 # Blink - iPadPro Secure Enclave
 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLMvmdCFNTwE2qIq8rgiWHFl2BRGPaQUtAdhUE9fctLKpVnSPJYSbRKKQc2INGPLjGswjjsjHXaR1cqB2TZ3lWc= blink@iPad-SE
+### iOS ########################################################################
+{{- end }}
 
-# LSHQ MBP
+{{ if $lshq_keys}}
+################################################################################
+# Lightspeed Keys
+################################################################################
+# USMB-JVK937H909
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYgSc5F3kO+DM6/9xL/bgKaz26zAKjEjLTorDdAeg47 andrew.burns@USMB-JVK937H909
+### LSHQ #######################################################################
+{{- end }}
 
+{{ if and $n8n_keys (stat $n8n_gaurd_script_path) }}
+# n8n runner
+command="{{ $n8n_gaurd_script_path }}",no-pty,no-agent-forwarding,no-port-forwarding,no-X11-forwarding ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMvBRq5i8lj9De56FL+RkuCLGqLwhX5jlv9QcWdpAAOX n8n@USMB-JVK937H909
+{{- end }}
