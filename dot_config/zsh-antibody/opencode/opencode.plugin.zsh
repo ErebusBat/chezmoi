@@ -29,7 +29,7 @@ oc_session_select() {
     return 1
   fi
 
-  local selection max_count tmpfile
+  local selection max_count tmpfile fetching_shown
   max_count="$1"
 
   local -a cmd
@@ -39,11 +39,19 @@ oc_session_select() {
   fi
 
   tmpfile=$(mktemp -t opencode_sessions.XXXXXX)
-  echo "Fetching OpenCode sessions..." >&2
+  fetching_shown=0
+  if [[ -t 2 ]]; then
+    printf '%s' "Fetching OpenCode sessions..." >&2
+    fetching_shown=1
+  fi
   if ! "${cmd[@]}" >"$tmpfile"; then
     echo "Failed to fetch OpenCode sessions"
     rm -f "$tmpfile"
     return 1
+  fi
+
+  if [[ $fetching_shown -eq 1 ]]; then
+    printf '\r\u001b[2K' >&2
   fi
 
   selection=$(python3 -c 'import json,sys,time
@@ -131,10 +139,17 @@ oc_session_pick() {
     return 1
   fi
 
-  if [[ -n "$updated" ]]; then
-    echo "Copied session $id — $title ($updated)"
+  local id_display
+  if [[ -t 1 ]]; then
+    id_display=$'\u001b[34m'"$id"$'\u001b[0m'
   else
-    echo "Copied session $id — $title"
+    id_display="$id"
+  fi
+
+  if [[ -n "$updated" ]]; then
+    echo "Copied session $id_display — $title ($updated)"
+  else
+    echo "Copied session $id_display — $title"
   fi
 }
 
@@ -146,12 +161,6 @@ oc_session_continue() {
   id=$(printf '%s\n' "$selection" | awk -F '\t' '{print $1}')
   updated=$(printf '%s\n' "$selection" | awk -F '\t' '{print $2}')
   title=$(printf '%s\n' "$selection" | awk -F '\t' '{print $3}')
-
-  if [[ -n "$updated" ]]; then
-    echo "Continuing session $id — $title ($updated)"
-  else
-    echo "Continuing session $id — $title"
-  fi
 
   oc -s "$id"
 }
