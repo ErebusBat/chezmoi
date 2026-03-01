@@ -190,6 +190,7 @@ $HOME/Library/Mail/**
 $HOME/Library/Messages/**
 $HOME/Library/Messages/*Cache/**
 $HOME/Library/Metadata/**
+$HOME/Library/Mobile Documents/**
 $HOME/Library/News/**
 $HOME/Library/PersonalizationPortrait/**
 $HOME/Library/Photos/Libraries/Syndication.photoslibrary/**
