@@ -228,7 +228,17 @@ _tmux_oc_prepare() {
     return 1
   fi
 
-  tmux rename-window "${PWD:t}"
+  (
+    local window_name="${PWD:t}"
+    if [[ -f .AAB ]]; then
+      # shellcheck disable=SC1091
+      source .AAB
+      if [[ -n "$TMUX_WINDOW_NAME" ]]; then
+        window_name="$TMUX_WINDOW_NAME"
+      fi
+    fi
+    tmux rename-window "$window_name"
+  )
   tmux split-window -v
   tmux select-pane -t "$TMUX_PANE"
 }
