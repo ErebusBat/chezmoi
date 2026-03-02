@@ -5,6 +5,7 @@ claude:~/.claude
 claw:~/.openclaw
 dlog:~/src/erebusbat/dlog-ruby
 dlogcfg:~/.config/dlog
+dnscontrol:~/src/erebusbat/myserver/dnscontrol
 downloads:~/Downloads
 gopass:~/.local/share/gopass/stores/root
 image-marker:~/src/erebusbat/image-marker
