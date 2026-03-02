@@ -33,3 +33,51 @@ if (( $+commands[pyenv] )); then
   function pyenv() { _pyenv_load "$@" }
 fi
 
+lshq_link_common() {
+  if [[ -L ./.AAB && ! -e ./.AAB ]]; then
+    local broken_target
+    broken_target=$(readlink ./.AAB 2>/dev/null)
+    printf '\033[33m⚠️ Broken symlink found: ./.AAB -> %s. Recreating...\033[0m\n' "${broken_target:-unknown}" >&2
+    rm -f ./.AAB
+  fi
+
+  if [[ -e ./.AAB ]]; then
+    echo "❌ ./.AAB already exists. Listing and dumping current contents:"
+    ls -l ./.AAB 2>/dev/null
+    cat ./.AAB 2>/dev/null
+    return 1
+  fi
+
+  ln -s -n ~/src/lshq/AAB_COMMON ./.AAB
+  ls -l ./.AAB 2>/dev/null
+}
+
+lshq_link_sprint() {
+  if [[ -L ./.AAB && ! -e ./.AAB ]]; then
+    local broken_target
+    broken_target=$(readlink ./.AAB 2>/dev/null)
+    printf '\033[33m⚠️ Broken symlink found: ./.AAB -> %s. Recreating...\033[0m\n' "${broken_target:-unknown}" >&2
+    rm -f ./.AAB
+  fi
+
+  if [[ -e ./.AAB ]]; then
+    echo "❌ ./.AAB already exists. Listing and dumping current contents:"
+    ls -l ./.AAB 2>/dev/null
+    cat ./.AAB 2>/dev/null
+    return 1
+  fi
+
+  local -a matches
+  local year
+  year=$(date +%y)
+  matches=(~/src/lshq/AAB_SPRINT_${year}*(N))
+  if (( ${#matches[@]} == 0 )); then
+    echo "No sprint files found in ~/src/lshq for ${year}"
+    return 1
+  fi
+
+  local target
+  target=${matches[-1]}
+  ln -s -n "$target" ./.AAB
+  ls -l ./.AAB 2>/dev/null
+}
