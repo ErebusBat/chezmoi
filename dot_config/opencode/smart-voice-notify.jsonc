@@ -61,14 +61,14 @@
 
     // Delay (in seconds) before TTS reminder fires
     // Set globally or per-notification type
-    "ttsReminderDelaySeconds": 30,         // Global default
-    "idleReminderDelaySeconds": 30,        // For task completion notifications
-    "permissionReminderDelaySeconds": 20,  // For permission requests (more urgent)
+    "ttsReminderDelaySeconds": 60,         // Global default
+    "idleReminderDelaySeconds": 60,        // For task completion notifications
+    "permissionReminderDelaySeconds": 30,  // For permission requests (more urgent)
 
     // Follow-up reminders if user STILL doesn't respond after first TTS
     "enableFollowUpReminders": true,
     "maxFollowUpReminders": 3,              // Max number of follow-up TTS reminders
-    "reminderBackoffMultiplier": 1.5,       // Each follow-up waits longer (30s, 45s, 67s...)
+    "reminderBackoffMultiplier": 1.75,       // Each follow-up waits longer (30s, 45s, 67s...)
 
     // ============================================================
     // TTS ENGINE SELECTION
@@ -434,7 +434,7 @@
     "forceVolume": false,
 
     // Volume threshold (0-100): force volume if current level is below this
-    "volumeThreshold": 50,
+    "volumeThreshold": 0,
 
     // Show TUI toast notifications in OpenCode terminal
     "enableToast": true,
@@ -458,7 +458,7 @@
 
     // How long the notification stays on screen (in seconds)
     // Note: Some platforms may ignore this (especially Windows 10+)
-    "desktopNotificationTimeout": 5,
+    "desktopNotificationTimeout": 15,
 
     // Include the project name in notification titles for easier identification
     // Example: "OpenCode - MyProject" instead of just "OpenCode"
@@ -471,7 +471,7 @@
     // Cross-platform: Windows, macOS, and Linux (X11 via xdotool/xprop, Wayland via gdbus).
     // Default: false (notifications always play regardless of focus)
     // Set to true to avoid notification spam when actively working in terminal
-    "suppressWhenFocused": false,
+    "suppressWhenFocused": true,
 
     // Override focus detection: always send notifications even when terminal is focused
     // Set to true to disable focus-based suppression entirely
