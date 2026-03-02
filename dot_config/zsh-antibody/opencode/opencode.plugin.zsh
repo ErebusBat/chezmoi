@@ -5,6 +5,9 @@ if ! command -v opencode >/dev/null 2>&1; then
   return
 fi
 
+# Helper Function
+# ------------------------------------------------------------------------------
+
 # Function that will auto "tag" a tmux window with a robot for cycling purposes
 oc() {
   local script="$HOME/.config/tmux/scripts/set-window-prefix.sh"
@@ -216,14 +219,43 @@ oc_session_continue() {
 alias ocsls=oc_session_pick
 alias occ=oc_session_continue
 
-# Load opencode completions (only in interactive shells)
-# Defer until after compinit has run by using a precmd hook
+# Tmux Operations
+# ------------------------------------------------------------------------------
+
+_tmux_oc_prepare() {
+  if [[ -z "$TMUX_PANE" ]]; then
+    printf '\033[31m❌ Error: This command only works inside of TMUX.\033[0m\n' >&2
+    return 1
+  fi
+
+  tmux rename-window "${PWD:t}"
+  tmux split-window -v
+  tmux select-pane -t "$TMUX_PANE"
+}
+
+tmux_oc_new_session() {
+  _tmux_oc_prepare || return 1
+  oc "$@"
+}
+alias tocsn=tmux_oc_new_session
+alias tocn=tmux_oc_new_session
+
+tmux_oc_continue_session() {
+  _tmux_oc_prepare || return 1
+  oc_session_continue "$@"
+}
+alias tocc=tmux_oc_continue_session
+
+# Shell completions
+# ------------------------------------------------------------------------------
+# only in interactive shells
 if [[ -o interactive ]]; then
   _opencode_load_completions() {
     source <(opencode completion)
     add-zsh-hook -d precmd _opencode_load_completions
     unfunction _opencode_load_completions
   }
+  # Defer until after compinit has run by using a precmd hook
   autoload -Uz add-zsh-hook
   add-zsh-hook precmd _opencode_load_completions
 fi
