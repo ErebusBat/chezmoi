@@ -20,6 +20,7 @@ oc() {
     opencode "$@"
   fi
 }
+alias ocn=oc
 
 # Select an OpenCode session via fzf
 oc_session_select() {
