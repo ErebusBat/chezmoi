@@ -31,10 +31,14 @@ export MCP_BACKUP_ENABLED=true
 export MCP_BACKUP_INTERVAL=hourly
 export MCP_BACKUP_MAX_COUNT=48
 
-export MCP_ALLOW_ANONYMOUS_ACCESS=true
+# export MCP_ALLOW_ANONYMOUS_ACCESS=true
 
 MCP_MEMORY_HOME="${HOME}/.local/share/mcp-memory-service"
 MCP_MEMORY_BIN="${MCP_MEMORY_HOME}/.venv/bin/memory"
+
+if [[ -f ~/.config/erebusbat/mcp-memory-service.sh ]]; then
+  source ~/.config/erebusbat/mcp-memory-service.sh
+fi
 
 if [[ ! -x "${MCP_MEMORY_BIN}" ]]; then
   printf '%s\n' "mcp-memory-service not installed at: ${MCP_MEMORY_BIN}" >&2

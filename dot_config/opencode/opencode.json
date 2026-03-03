@@ -28,6 +28,12 @@
       "command": [
         "/Users/andrew.burns/bin/.mcp-tmux.sh"
       ]
+    },
+    "memory": {
+      "type": "local",
+      "command": [
+        "/Users/andrew.burns/bin/.mcp-memory.sh"
+      ]
     }
   }
 }
