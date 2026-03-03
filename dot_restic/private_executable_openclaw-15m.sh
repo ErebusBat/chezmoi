@@ -20,4 +20,4 @@ echo "Restic: $(which restic)"
 # Run the backup
 restic backup \
   --skip-if-unchanged --exclude-caches $TAG_ARG \
-  ~/src/erebusbat/myserver/batbot ~/.openclaw
+  ~/src/erebusbat/myserver/batbot ~/.openclaw*
