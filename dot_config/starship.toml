@@ -1,5 +1,5 @@
 format = """$all$line_break${env_var.LAZYGIT_SHELL}${env_var.CLAUDE_CODE_PANE}$character"""
-right_format = """$battery$time$localip$os"""
+right_format = """$battery$time$localip${env_var.TMUX_PANE}$os"""
 
 [env_var.LAZYGIT_SHELL]
 disabled = false
@@ -11,6 +11,12 @@ format = "[$symbol]($style) "
 variable = "CLAUDE_CODE_PANE"
 format = "🤖[$env_value]($style) "
 style = "bold purple"
+disabled = false
+
+[env_var.TMUX_PANE]
+variable = "TMUX_PANE"
+format = "[$env_value]($style) "
+style = "bold cyan"
 disabled = false
 
 [battery]
@@ -90,4 +96,3 @@ contexts = [
   { context_alias = "us2 (usw2)", context_pattern = "arn:aws:eks:us-west-2:012498362054:cluster/us2", style = "red", symbol = "‼️"},
   { context_alias = "viasat (usw2)", context_pattern = "arn:aws:eks:us-west-2:304543615135:cluster/viasat", style = "red", symbol = "‼️"},
 ]
-
