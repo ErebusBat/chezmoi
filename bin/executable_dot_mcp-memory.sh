@@ -25,8 +25,13 @@
 # - Editable install uses the repo at ~/.local/share/mcp-memory-service/src.
 # - This wrapper expects the venv at ~/.local/share/mcp-memory-service/.venv.
 
+#
+# Settings
+#
+export MCP_MEMORY_STORAGE_BACKEND=sqlite_vec
 export MCP_MEMORY_BASE_DIR="${HOME}/.local/share/mcp-memory-service/db"
-export MCP_MEMORY_BACKUPS_PATH="${HOME}/Documents/Library/M/mcp-memory-service/backups"
+export MCP_MEMORY_BACKUPS_PATH="${MCP_MEMORY_BASE_DIR}/backups"
+# export MCP_MEMORY_BACKUPS_PATH="${HOME}/Documents/Library/M/mcp-memory-service/backups"
 export MCP_BACKUP_ENABLED=true
 export MCP_BACKUP_INTERVAL=hourly
 export MCP_BACKUP_MAX_COUNT=48
@@ -36,6 +41,7 @@ export MCP_BACKUP_MAX_COUNT=48
 MCP_MEMORY_HOME="${HOME}/.local/share/mcp-memory-service"
 MCP_MEMORY_BIN="${MCP_MEMORY_HOME}/.venv/bin/memory"
 
+# Secrets / Machine Specifics
 if [[ -f ~/.config/erebusbat/mcp-memory-service.sh ]]; then
   source ~/.config/erebusbat/mcp-memory-service.sh
 fi
