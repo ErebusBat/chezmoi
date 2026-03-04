@@ -8,10 +8,13 @@ windows:
       - cd ~/src/erebusbat/myserver/routes
       - ./start-tailscale-tunnel.sh -w
     - shell_command:
-      - cd ~/src/erebusbat/myserver/routes
       - ssh claw
     - shell_command:
       - cd ~/src/erebusbat/myserver/routes
     - shell_command:
       - cd ~/src/erebusbat/myserver/routes
 
+- window_name: 🧠
+  panes:
+    - shell_command:
+      - ~/bin/.mcp-memory.sh server --http
