@@ -9,6 +9,8 @@ add_link_gsub 'THELIO',   alias: 'Thelio',     page: 'System76 Thelio Deskop'
 add_link_gsub 'DARTP6',                        page: 'dartp6'  # [[dartp6|Sys76 Laptop]]
 add_link_gsub 'DARTER',                        page: 'dartp6'
 add_link_gsub 'NAS',                           page: 'FreeNAS'
+add_link_gsub 'C3PRO',   alias: 'C3 Pro',   page: '0281.4 Keychron C3 Pro'
+add_link_gsub 'K2HE',    alias: 'K2 HE',    page: '0281.6 Keychron K2 HE'
 
 ################################################################################
 ### Projects / Pages
