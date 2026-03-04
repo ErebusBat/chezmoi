@@ -35,36 +35,39 @@ $HOME/.gnupg/.#lk0x*.*
 $HOME/.gnupg/random_seed
 $HOME/.kube/cache/**
 $HOME/.kube/http-cache/**
+$HOME/.lmstudio/**
 $HOME/.local/share/claude/versions/**
 $HOME/.local/share/flatpak/**
 $HOME/.local/share/lutris/**
+$HOME/.local/share/mcp-memory-service/.venv/**
 $HOME/.local/share/Trash/**
 $HOME/.local/share/uv/**
 $HOME/.local/state/**
-$HOME/.lmstudio/**
 $HOME/.maid/maid.log
 $HOME/.mozilla/firefox/*.default-release-backup-crashrecovery-*/**
 $HOME/.mozilla/firefox/*.default-release/storage/**
 $HOME/.node-gyp/**
 $HOME/.npm/**
+$HOME/.nvm/**
 $HOME/.ollama/**
 $HOME/.orbstack/**
 $HOME/.pub-cache/**
+$HOME/.pyenv/**
 $HOME/.rustup/**
 $HOME/.serena/logs/**
 $HOME/.steam/debian-installation/**
 $HOME/.vim/plugged/**
 $HOME/.zsh_sessions/**
 $HOME/Dropbox/**
-$HOME/GPUCache/**
-$HOME/Games/Sony PlayStation/**
-$HOME/OrbStack/**
-$HOME/Slack/logs/**
 $HOME/dust/**
 $HOME/dust_tmp/**
 $HOME/dustbin/**
 $HOME/file-cache/**
+$HOME/Games/Sony PlayStation/**
 $HOME/gcloud/logs/**
+$HOME/GPUCache/**
+$HOME/OrbStack/**
+$HOME/Slack/logs/**
 $HOME/src/**/tmp/**
 $HOME/src/erebusbat/**/.git/**
 $HOME/src/erebusbat/image-marker/imgs/**
@@ -109,6 +112,7 @@ $HOME/Library/Application Support/com.apple.avfoundation/**
 $HOME/Library/Application Support/com.apple.sharedfilelist/**
 $HOME/Library/Application Support/com.apple.spotlight/**
 $HOME/Library/Application Support/com.apple.TCC/**
+$HOME/Library/Application Support/com.apple.wallpaper/**
 $HOME/Library/Application Support/com.bugsnag.Bugsnag/**
 $HOME/Library/Application Support/com.facebook.archon.developerID/RCTAsyncLocalStorage_V1
 $HOME/Library/Application Support/com.raycast.macos/extensions/fa65ad62-dba1-45af-897f-ec6dbcdf4aca/models/**
@@ -133,7 +137,9 @@ $HOME/Library/Application Support/Hazel/*.hazellock
 $HOME/Library/Application Support/iCloud/**
 $HOME/Library/Application Support/iMazing/Backups/**
 $HOME/Library/Application Support/JetBrains/IntelliJIdea*/plugins/**
+$HOME/Library/Application Support/JetBrains/RubyMine20*/plugins/**
 $HOME/Library/Application Support/Knowledge/**
+$HOME/Library/Application Support/MacWhisper/models/**
 $HOME/Library/Application Support/Messenger/**
 $HOME/Library/Application Support/Microsoft/Teams/**
 $HOME/Library/Application Support/MobileSync/**
@@ -153,6 +159,16 @@ $HOME/Library/Application Support/Plexamp/**
 $HOME/Library/Application Support/Postman/Crashpad/**
 $HOME/Library/Application Support/Postman/logs/**
 $HOME/Library/Application Support/qmk/**
+$HOME/Library/Application Support/Slack/*Cache/**
+$HOME/Library/Application Support/Slack/blob_storage/**
+$HOME/Library/Application Support/Slack/IndexedDB/**
+$HOME/Library/Application Support/Slack/Local Storage/**
+$HOME/Library/Application Support/Slack/logs/**
+$HOME/Library/Application Support/Slack/Service Worker/**
+$HOME/Library/Application Support/Slack/Session Storage/**
+$HOME/Library/Application Support/Slack/Singleton*/**
+$HOME/Library/Application Support/Slack/Web Storage/**
+$HOME/Library/Application Support/Slack/WebStorage/**
 $HOME/Library/Application Support/SonosV2/updates/**
 $HOME/Library/Application Support/Spotify/PersistentCache/**
 $HOME/Library/Application Support/SyncServices/**

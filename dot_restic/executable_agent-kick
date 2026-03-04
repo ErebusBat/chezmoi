@@ -1,0 +1,92 @@
+#!/usr/bin/env zsh
+# .agent-kick - Diagnose and manage a user-level launch agent
+#
+# By default, reports PID and uptime of the running service.
+# With -k SECONDS, kills the process only if its uptime exceeds the threshold.
+# WatchPaths in the plist handles restarting after a kill.
+#
+# Usage:
+#   .agent-kick <label>            Report status (PID + uptime)
+#   .agent-kick -k 300 <label>     Kill if running longer than 5 minutes
+#   .agent-kick -v <label>         Verbose: include full launchctl print output
+#   .agent-kick -v -k 300 <label>  Verbose + threshold kill
+DOMAIN="gui/$(id -u)"
+PREFIX="[$(hostname)]-$(date +"%Y%m%d_%H%M%S")"
+VERBOSE=false
+KILL_THRESHOLD=""
+LABEL=""
+
+usage() {
+    echo "Usage: .agent-kick [-v] [-k SECONDS] <label>" >&2
+    exit 1
+}
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -v) VERBOSE=true; shift ;;
+        -k) KILL_THRESHOLD="$2"; shift 2 ;;
+        -*) echo "Unknown option: $1" >&2; usage ;;
+        *)  LABEL="$1"; shift ;;
+    esac
+done
+
+if [[ -z "$LABEL" ]]; then
+    usage
+fi
+
+# Validate service is loaded
+if ! launchctl print "$DOMAIN/$LABEL" >/dev/null 2>&1; then
+    echo "$PREFIX: $LABEL is not a loaded service." >&2
+    exit 1
+fi
+
+# Extract PID from launchctl print output
+PID=$(launchctl print "$DOMAIN/$LABEL" 2>/dev/null | awk '/pid = [0-9]/{print $NF}')
+
+echo "--- $(date) Start [agent-kick] ---------------------------------------------------"
+
+if [[ -z "$PID" ]] || ! kill -0 "$PID" 2>/dev/null; then
+    echo "$PREFIX: $LABEL not running."
+    echo "--- $(date) End [agent-kick] -----------------------------------------------------"
+    exit 0
+fi
+
+# Parse elapsed time from ps into total seconds
+etime=$(ps -o etime= -p "$PID" 2>/dev/null | tr -d ' ')
+elapsed=0
+if [[ "$etime" =~ '^([0-9]+)-([0-9]+):([0-9]+):([0-9]+)$' ]]; then
+    elapsed=$((match[1]*86400 + match[2]*3600 + match[3]*60 + match[4]))
+elif [[ "$etime" =~ '^([0-9]+):([0-9]+):([0-9]+)$' ]]; then
+    elapsed=$((match[1]*3600 + match[2]*60 + match[3]))
+elif [[ "$etime" =~ '^([0-9]+):([0-9]+)$' ]]; then
+    elapsed=$((match[1]*60 + match[2]))
+fi
+
+# Human-readable duration
+if (( elapsed >= 3600 )); then
+    human="$((elapsed/3600))h$((elapsed%3600/60))m"
+elif (( elapsed >= 60 )); then
+    human="$((elapsed/60))m$((elapsed%60))s"
+else
+    human="${elapsed}s"
+fi
+
+$VERBOSE && launchctl print "$DOMAIN/$LABEL"
+
+# If no kill threshold, just report
+if [[ -z "$KILL_THRESHOLD" ]]; then
+    echo "$PREFIX: Running PID $PID, uptime ${human} (${elapsed}s)"
+    echo "--- $(date) End [agent-kick] -----------------------------------------------------"
+    exit 0
+fi
+
+# Kill if over threshold
+if (( elapsed > KILL_THRESHOLD )); then
+    echo "$PREFIX: Killing $LABEL (PID $PID, uptime ${human} > ${KILL_THRESHOLD}s threshold)"
+    kill -9 "$PID"
+else
+    echo "$PREFIX: Running PID $PID, uptime ${human} (under ${KILL_THRESHOLD}s threshold)"
+fi
+
+echo "--- $(date) End [agent-kick] -----------------------------------------------------"
