@@ -51,12 +51,6 @@ bin/ccstartup.zsh
 bin/cocam
 bin/grip
 bin/rubymine
-{{ if ne .focus "companycam" }}
-Library/Application Support/ngrok/ngrok.yml
-{{- end }}
-{{- end }}
-
-{{- if not .area.tractionguest }}
 {{- end }}
 
 {{- if not .area.personal }}
