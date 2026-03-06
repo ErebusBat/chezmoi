@@ -22,6 +22,7 @@ lsweekly_digest_email_pipeline:~/src/lshq/weekly_digest_email_pipeline
 maid:~/.maid
 markdown-tool:~/src/erebusbat/markdown-tool
 myserver:~/src/erebusbat/myserver
+n8n:~/src/erebusbat/myserver/n8n
 nav:~/src/erebusbat/myserver/nav-shortcuts
 ocplugin:~/src/erebusbat/opencode-n8n-hooks
 opencode:~/.config/opencode
@@ -32,6 +33,8 @@ qmk:~/src/erebusbat/qmk_firmware
 raycast_ai:~/.config/raycast/ai
 restic:~/.restic
 rubymine:~/Library/Application Support/JetBrains/RubyMine2025.2/options
+sprintC:~/src/lshq/pos-service--payInOut
+sprintD:~/src/lshq/pos-service--hideSpecInst
 src:~/src
 ssh:~/.ssh
 tmux:~/.config/tmux
