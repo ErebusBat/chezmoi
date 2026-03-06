@@ -2,9 +2,12 @@ if ! command -v just >/dev/null 2>&1; then
   return
 fi
 
+# Aliases
 alias j='just'
 alias jc='just --choose'
+alias jl='just --list'
 
+# TAB Completions
 if [[ -o interactive ]]; then
   _just_load_completions() {
     source <(just --completions zsh)
