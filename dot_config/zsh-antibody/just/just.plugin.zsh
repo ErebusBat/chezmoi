@@ -4,9 +4,7 @@ fi
 
 alias j='just'
 alias jc='just --choose'
-alias jl='just --list'
 
-# TAB completions
 if [[ -o interactive ]]; then
   _just_load_completions() {
     source <(just --completions zsh)
