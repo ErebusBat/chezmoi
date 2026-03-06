@@ -8,8 +8,9 @@
     "disable_paste_summary": true
   },
   "plugin": [
+    "opencode-gemini-auth",
     "opencode-smart-voice-notify@latest",
-    "opencode-gemini-auth"
+    "@different-ai/opencode-browser"
   ],
   "mcp": {
     "obsidian": {

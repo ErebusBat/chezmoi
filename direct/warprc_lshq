@@ -39,6 +39,7 @@ src:~/src
 ssh:~/.ssh
 tmux:~/.config/tmux
 tmuxp:~/.tmuxp
+vim:~/.config/nvim
 vimwiki:~/Documents/Obsidian/vimwiki
 wezterm:~/.config/wezterm
 wiki:~/Documents/Obsidian/vimwiki
