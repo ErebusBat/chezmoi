@@ -5,7 +5,8 @@ fi
 # Aliases
 alias j='just'
 alias jc='just --choose'
-alias jl='just --list'
+alias jls='just --list'
+alias jl=jls
 
 # TAB Completions
 if [[ -o interactive ]]; then
