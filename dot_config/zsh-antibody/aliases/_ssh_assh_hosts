@@ -1,0 +1,32 @@
+#compdef ssh
+
+_ssh_assh_hosts() {
+  local -a hosts
+  local host
+
+  hosts=(
+    ${(f)"$(assh config list 2>/dev/null | sed -nE 's/^[[:space:]]+([^[:space:]]+)[[:space:]]+->.*/\1/p')"}
+  )
+
+  if (( ${#hosts} > 0 )); then
+    local -a literal_hosts
+    for host in "${hosts[@]}"; do
+      if [[ $host == *[\*\?\[\]\(\)\{\}\|]* ]]; then
+        continue
+      fi
+      literal_hosts+=("$host")
+    done
+
+    if (( ${#literal_hosts} > 0 )); then
+      compadd -Q -a literal_hosts
+      return 0
+    fi
+  fi
+
+  if (( $+functions[_ssh] )); then
+    _ssh "$@"
+    return
+  fi
+
+  _default "$@"
+}

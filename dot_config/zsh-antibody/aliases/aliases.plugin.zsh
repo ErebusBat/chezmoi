@@ -120,6 +120,26 @@ alias digs="dig +short"
 # assh https://github.com/moul/assh
 if [[ -x $(which assh) ]]; then
   alias ssh="assh wrapper ssh --"
+
+  if [[ -o interactive ]]; then
+    _assh_ssh_completion_init() {
+      if ! (( $+functions[compdef] )); then
+        return
+      fi
+
+      autoload -Uz _ssh_assh_hosts
+      compdef _ssh_assh_hosts ssh
+      add-zsh-hook -d precmd _assh_ssh_completion_init
+      unfunction _assh_ssh_completion_init
+    }
+
+    autoload -Uz add-zsh-hook
+    if (( $+functions[compdef] )); then
+      _assh_ssh_completion_init
+    else
+      add-zsh-hook precmd _assh_ssh_completion_init
+    fi
+  fi
 fi
 
 if [[ -d ~/.local/bin ]]; then
