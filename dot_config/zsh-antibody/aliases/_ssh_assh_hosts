@@ -1,5 +1,6 @@
 #compdef ssh
 
+# Completion logic layer: build ssh<TAB> candidates from `assh config list`.
 _ssh_assh_hosts() {
   local -a hosts
   local host

@@ -119,11 +119,14 @@ alias digs="dig +short"
 
 # assh https://github.com/moul/assh
 if [[ -x $(which assh) ]]; then
-  alias ssh="assh wrapper ssh --"
+  # Wiring layer: run ssh via assh and register which completion function ssh uses.
+  ssh() {
+    command assh wrapper ssh -- "$@"
+  }
 
   if [[ -o interactive ]]; then
     _assh_ssh_completion_init() {
-      if ! (( $+functions[compdef] )); then
+      if ! (( $+functions[compdef] && $+functions[_main_complete] && $+parameters[_comps] )); then
         return
       fi
 
@@ -134,11 +137,8 @@ if [[ -x $(which assh) ]]; then
     }
 
     autoload -Uz add-zsh-hook
-    if (( $+functions[compdef] )); then
-      _assh_ssh_completion_init
-    else
-      add-zsh-hook precmd _assh_ssh_completion_init
-    fi
+    add-zsh-hook -d precmd _assh_ssh_completion_init 2>/dev/null
+    add-zsh-hook precmd _assh_ssh_completion_init
   fi
 fi
 
