@@ -4,5 +4,5 @@ fi
 
 export _ZO_DATA_DIR=$HOME/.config/zoxide
 eval "$(zoxide init --cmd=cd zsh)"
-alias wd=z
+alias wd=cd
 
