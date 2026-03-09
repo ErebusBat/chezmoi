@@ -157,6 +157,12 @@ fi
 # System Commands
 alias mounts="mount | grep -vE '^(cgroup2? on|sysfs on|proc on|udev on|devpts on|securityfs on|pstore on|efivars on|\/var\/lib\/|\/dev\/nvme0n1)'"
 
+# Glow - Markdown Reader
+if command -v glow >/dev/null 2>&1; then
+  alias glowp='glow -p'
+  alias glowt='glow -t'
+fi
+
 
 ################################################################################
 # Commands that should/want to always run as sudo

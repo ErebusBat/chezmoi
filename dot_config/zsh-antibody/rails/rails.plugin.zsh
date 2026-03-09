@@ -18,7 +18,7 @@ bin_tasks=(
   dev
   docker-entrypoint
   importmap
-  jobs
+  # jobs
   kamal
   rails
   rake
