@@ -1,0 +1,39 @@
+COMPDUMP := "~/.zcompdump"
+PLUGINS := "~/.config/zsh-antibody/plugins.txt"
+STATIC := "~/.config/zsh-antibody/plugins.zsh"
+BREW_SHELLENV_CACHE := "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/brew-shellenv.zsh"
+
+# Show available recipes and their descriptions.
+[default]
+help:
+    just --list
+
+# Rebuild dynamic shell startup by clearing generated files.
+dynamic: clean
+
+# Remove generated startup scripts, compdump files, and cache files.
+clean:
+    @echo "\n*** [dynamic] Removing antibody static startup script..."
+    /bin/rm -fv {{STATIC}} {{STATIC}}.zwc {{COMPDUMP}} {{COMPDUMP}}.zwc
+    @echo "\n*** [dynamic] Removing zsh startup caches..."
+    /bin/rm -fv {{BREW_SHELLENV_CACHE}}
+
+# Remove caches, print compile hint, and regenerate checksums.
+static: clean compile gen_sums
+
+# Print compile notice for next interactive shell launch.
+compile:
+    @echo "\n*** The next time a new shell opens it will be compiled"
+
+# Continuously display the ~/.zcompdump modification timestamp.
+watch_compdump:
+    # macOS needs `stat -x` to have the same output as linux
+    while [ true ]; do stat -x ~/.zcompdump | grep Modify; sleep 1; done
+
+# Generate a sha1 manifest for all files except `.shasum`.
+gen_sums:
+    find . -type f \! -iname '.shasum' | sort | xargs shasum > .shasum
+
+# Remove the generated `.shasum` manifest if it exists.
+rm_sums:
+    test -f .shasum && rm .shasum || true
