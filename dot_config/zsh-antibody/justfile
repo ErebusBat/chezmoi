@@ -1,7 +1,8 @@
 COMPDUMP := "~/.zcompdump"
-PLUGINS := "~/.config/zsh-antibody/plugins.txt"
-STATIC := "~/.config/zsh-antibody/plugins.zsh"
 BREW_SHELLENV_CACHE := "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/brew-shellenv.zsh"
+ZSH_PLUGINS := env_var_or_default("_zsh_plugins", "~/.config/zsh-antibody/")
+PLUGINS := ZSH_PLUGINS + "plugins.txt"
+STATIC := ZSH_PLUGINS + ".plugins.zsh"
 
 # Show available recipes and their descriptions.
 [default]
@@ -14,7 +15,7 @@ dynamic: clean
 # Remove generated startup scripts, compdump files, and cache files.
 clean:
     @echo "\n*** [dynamic] Removing antibody static startup script..."
-    /bin/rm -fv {{STATIC}} {{STATIC}}.zwc {{COMPDUMP}} {{COMPDUMP}}.zwc
+    /bin/rm -fv {{STATIC}} {{STATIC}}.zwc {{COMPDUMP}} {{COMPDUMP}}.zwc .shasum
     @echo "\n*** [dynamic] Removing zsh startup caches..."
     /bin/rm -fv {{BREW_SHELLENV_CACHE}}
 
@@ -23,7 +24,14 @@ static: clean compile gen_sums
 
 # Print compile notice for next interactive shell launch.
 compile:
-    @echo "\n*** The next time a new shell opens it will be compiled"
+  #!/usr/bin/env zsh --login
+  if [[ ! -f {{PLUGINS}} ]]; then
+    echo "FATAL: Could not find {{PLUGINS}}"
+    exit 1
+  fi
+  echo "Antidote Bundling"
+  source $HOME/.config/antidote/antidote.zsh
+  antidote bundle <{{PLUGINS}} >|{{STATIC}}
 
 # Continuously display the ~/.zcompdump modification timestamp.
 watch_compdump:
@@ -32,7 +40,7 @@ watch_compdump:
 
 # Generate a sha1 manifest for all files except `.shasum`.
 gen_sums:
-    find . -type f \! -iname '.shasum' | sort | xargs shasum > .shasum
+    @find . -type f \! -iname '.shasum' | sort | xargs shasum > .shasum
 
 # Remove the generated `.shasum` manifest if it exists.
 rm_sums:

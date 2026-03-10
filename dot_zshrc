@@ -38,11 +38,12 @@ if ! (( $+functions[compdef] )); then
   function compdef() { _compdef_queue+=("$@") }
 fi
 
-# zsh_plugins=$HOME/.config/zsh-antibody
-zsh_plugins=$HOME/.config/zsh-antibody/plugins
+_zsh_plugins=$HOME/.config/zsh-antibody/
+_zsh_source_file="${_zsh_plugins}/plugins.txt"
+_zsh_static_file="${_zsh_plugins}/.plugins.zsh"
 
-# Ensure the .zsh_plugins.txt file exists so you can add plugins.
-[[ -f ${zsh_plugins}.txt ]] || touch ${zsh_plugins}.txt
+# Ensure the source file exists so you can add plugins.
+[[ -f ${_zsh_source_file} ]] || touch ${_zsh_source_file}
 
 # Lazy-load antidote from its functions directory.
 fpath=($HOME/.config/antidote/functions $fpath)
@@ -52,14 +53,12 @@ autoload -Uz antidote
 # We can't do file-time comparisons here because the file date is
 # is managed by Chezmoi
 # if [[ ${zsh_plugins}.txt -nt ${zsh_plugins}.zsh ]]; then
-if [[ ! -f ${zsh_plugins}.zsh ]]; then
-  echo "Antidote Bundling"
-  source $HOME/.config/antidote/antidote.zsh
-  antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
+if [[ ! -f ${_zsh_static_file} ]]; then
+  cd ${_zsh_plugins} && just compile gen_sums
 fi
 
 # Source your static plugins file.
-source ${zsh_plugins}.zsh
+source ${_zsh_static_file}
 
 
 ################################################################################
