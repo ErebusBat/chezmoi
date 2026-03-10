@@ -27,8 +27,8 @@ done
 # This must appear before any alias/checks for tools are done
 # because if not then if the tool is managed by mise it won't
 # be found so the aliases won't be setup
-if [[ -f $HOME/.config/zsh-antibody/mise ]]; then
-  source $HOME/.config/zsh-antibody/mise
+if [[ -f $HOME/.config/zsh-antibody/mise/mise.plugin.zsh ]]; then
+  source $HOME/.config/zsh-antibody/mise/mise.plugin.zsh
 fi
 
 ################################################################################
@@ -48,7 +48,7 @@ if ! (( $+functions[compdef] )); then
   function compdef() { _compdef_queue+=("${(q)@}") }
 fi
 
-_zsh_plugins=$HOME/.config/zsh-antibody/
+_zsh_plugins=$HOME/.config/zsh-antibody
 _zsh_source_file="${_zsh_plugins}/plugins.txt"
 _zsh_static_file="${_zsh_plugins}/.plugins.zsh"
 
