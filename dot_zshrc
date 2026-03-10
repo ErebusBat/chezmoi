@@ -34,8 +34,11 @@ autoload -Uz compinit
 # themselves when they detect compdef is missing — they would trigger an early,
 # full compinit run which we then duplicate below. The stub is replaced by the
 # real compdef once compinit runs after plugins are loaded.
+typeset -ga _compdef_queue
 if ! (( $+functions[compdef] )); then
-  function compdef() { _compdef_queue+=("$@") }
+  # Queue each compdef invocation as one safely quoted command tail.
+  # We replay these after compinit so plugin completion registrations are preserved.
+  function compdef() { _compdef_queue+=("${(q)@}") }
 fi
 
 _zsh_plugins=$HOME/.config/zsh-antibody/
@@ -85,7 +88,10 @@ fi
 
 # Drain any compdef calls that were queued before compinit ran
 if (( ${#_compdef_queue[@]} )); then
-  compdef "${_compdef_queue[@]}"
+  local _queued_compdef
+  for _queued_compdef in "${_compdef_queue[@]}"; do
+    eval "compdef ${_queued_compdef}"
+  done
   unset _compdef_queue
 fi
 
