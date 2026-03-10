@@ -4,6 +4,9 @@
 # 2026-JAN-14
 .ssh/assh.d/tailscale.yml
 Library/LaunchAgents/local.wake-monitor.plist
+# 2026-MAR-10
+~/.config/zsh-antibody/Makefile
+~/.config/zsh-antibody/plugins.zsh
 
 {{- if not .area.fetlife }}
 .s3cfg-fetlife
