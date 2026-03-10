@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-warprc_path="${1:-$HOME/.warprc}"
+warprc_path="${1:-~/.warprc}"
 
 if [[ ! -f "$warprc_path" ]]; then
   printf 'Error: file not found: %s\n' "$warprc_path" >&2
