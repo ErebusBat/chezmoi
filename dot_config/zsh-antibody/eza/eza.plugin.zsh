@@ -53,65 +53,65 @@ else
   unsetopt no_aliases
 fi
 
-if [[ -o interactive ]]; then
-  typeset -g _eza_completion_has_arguments=0
-
-  _eza_completion_detect() {
-    local eza_file
-
-    for eza_file in ${^fpath}/_eza(N); do
-      if [[ -r $eza_file ]]; then
-        if [[ $(<"$eza_file") == *"_arguments"* ]]; then
-          _eza_completion_has_arguments=1
-        else
-          _eza_completion_has_arguments=0
-        fi
-        return
-      fi
-    done
-
-    _eza_completion_has_arguments=0
-  }
-
-  _eza_or_files() {
-    local current_word
-    current_word=${words[CURRENT]}
-
-    if [[ $current_word == -* ]]; then
-      if [[ $_eza_completion_has_arguments == 1 ]]; then
-        autoload -Uz _eza
-        _eza "$@"
-        return
-      fi
-    fi
-
-    _files "$@"
-  }
-
-  _eza_completion_init() {
-    if ! (( $+functions[compdef] )); then
-      return
-    fi
-
-    _eza_completion_detect
-
-    zstyle ':completion:*' use-cache on
-    zstyle ':completion:*' cache-path "$HOME/.cache/zsh"
-
-    local eza_cmd
-    for eza_cmd in ll llg lla ls lsa lsw lst lsta lsd lsda lsdt lsdta; do
-      compdef _eza_or_files "$eza_cmd"
-    done
-
-    add-zsh-hook -d precmd _eza_completion_init
-    unfunction _eza_completion_init
-    unfunction _eza_completion_detect
-  }
-
-  autoload -Uz add-zsh-hook
-  if (( $+functions[compdef] )); then
-    _eza_completion_init
-  else
-    add-zsh-hook precmd _eza_completion_init
-  fi
-fi
+# if [[ -o interactive ]]; then
+#   typeset -g _eza_completion_has_arguments=0
+#
+#   _eza_completion_detect() {
+#     local eza_file
+#
+#     for eza_file in ${^fpath}/_eza(N); do
+#       if [[ -r $eza_file ]]; then
+#         if [[ $(<"$eza_file") == *"_arguments"* ]]; then
+#           _eza_completion_has_arguments=1
+#         else
+#           _eza_completion_has_arguments=0
+#         fi
+#         return
+#       fi
+#     done
+#
+#     _eza_completion_has_arguments=0
+#   }
+#
+#   _eza_or_files() {
+#     local current_word
+#     current_word=${words[CURRENT]}
+#
+#     if [[ $current_word == -* ]]; then
+#       if [[ $_eza_completion_has_arguments == 1 ]]; then
+#         autoload -Uz _eza
+#         _eza "$@"
+#         return
+#       fi
+#     fi
+#
+#     _files "$@"
+#   }
+#
+#   _eza_completion_init() {
+#     if ! (( $+functions[compdef] )); then
+#       return
+#     fi
+#
+#     _eza_completion_detect
+#
+#     zstyle ':completion:*' use-cache on
+#     zstyle ':completion:*' cache-path "$HOME/.cache/zsh"
+#
+#     local eza_cmd
+#     for eza_cmd in ll llg lla ls lsa lsw lst lsta lsd lsda lsdt lsdta; do
+#       compdef _eza_or_files "$eza_cmd"
+#     done
+#
+#     add-zsh-hook -d precmd _eza_completion_init
+#     unfunction _eza_completion_init
+#     unfunction _eza_completion_detect
+#   }
+#
+#   autoload -Uz add-zsh-hook
+#   if (( $+functions[compdef] )); then
+#     _eza_completion_init
+#   else
+#     add-zsh-hook precmd _eza_completion_init
+#   fi
+# fi
