@@ -58,9 +58,9 @@ local config = {
 
 
   font = wezterm.font({
-    -- family="Comic Code Ligatures",
+    family="Comic Code Ligatures",
     -- family='Monaspace Neon',
-    family='Monaspace Argon',  -- This one
+    -- family='Monaspace Argon',  -- This one
     -- family='Monaspace Xenon',
     -- family='Monaspace Radon',
     -- family='Monaspace Krypton',
@@ -148,7 +148,7 @@ function calc_set_font_size(window)
   elseif (hostname == 'thelio')  then
     overrides.font_size = 8
   elseif (hostname == 'dartp6')  then
-    overrides.font_size = 10
+    overrides.font_size = 12
   end
   print("Setting font_size to " .. overrides.font_size .. " for " .. hostname .. " monitors=" .. monitor_count)
 
