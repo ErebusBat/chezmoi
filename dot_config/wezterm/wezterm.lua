@@ -39,6 +39,22 @@ local config = {
       mods = 'SHIFT|CTRL',
       action = wezterm.action.ToggleFullScreen,
     },
+    {
+      key = 'LeftArrow',
+      mods = 'CTRL|SHIFT',
+      action = wezterm.action.SendKey({
+        key = 'LeftArrow',
+        mods = 'CTRL|SHIFT',
+      }),
+    },
+    {
+      key = 'RightArrow',
+      mods = 'CTRL|SHIFT',
+      action = wezterm.action.SendKey({
+        key = 'RightArrow',
+        mods = 'CTRL|SHIFT',
+      }),
+    },
   },
 
   -- See below for background
@@ -58,7 +74,7 @@ local config = {
 
 
   font = wezterm.font({
-    family="Comic Code Ligatures",
+    family="ComicCodeLigatures Nerd Font",
     -- family='Monaspace Neon',
     -- family='Monaspace Argon',  -- This one
     -- family='Monaspace Xenon',
@@ -68,7 +84,7 @@ local config = {
     harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
   }),
 
-  line_height = 1.0,
+  -- line_height = 1.2,
 
   -- https://wezfurlong.org/wezterm/config/lua/config/font_rules.html
   -- wezterm ls-fonts
