@@ -39,7 +39,7 @@ $status\
 $character"""
 right_format = """\
 $battery\
-$localip
+${custom.lan_ip}\
 ${env_var.TMUX_PANE}\
 """
 
@@ -68,9 +68,11 @@ disabled = false
 unhealthy_symbol = '❤️‍🩹'
 healthy_symbol = '❤️'
 
-[localip]
-disabled = false
-ssh_only = false
+[custom.lan_ip]
+command = '$HOME/bin/.starship-lan-ip.sh'
+when = 'test -x "$HOME/bin/.starship-lan-ip.sh"'
+format = '[$output ]($style)'
+style = "fg:text"
 
 [status]
 disabled = false
