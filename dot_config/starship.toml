@@ -141,7 +141,7 @@ format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 
 [custom.repo_name]
 when = 'git rev-parse --git-dir >/dev/null 2>&1'
-command = 'if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then git_dir="$(git rev-parse --git-dir 2>/dev/null)"; common_dir="$(git rev-parse --git-common-dir 2>/dev/null)"; if [ "$git_dir" != "$common_dir" ]; then printf "󰙅 %s" "$(basename "$(dirname "$common_dir")")"; else printf " %s" "$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)"; fi; elif git rev-parse --is-inside-git-dir >/dev/null 2>&1; then printf " %s" "$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)"; else exit 1; fi'
+command = '$HOME/bin/.starship-git-location.sh'
 style = "bg:yellow"
 format = '[[ $output ](fg:crust bg:yellow)]($style)'
 
