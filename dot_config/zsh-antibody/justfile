@@ -24,7 +24,7 @@ static: clean compile gen_sums
 
 # Print compile notice for next interactive shell launch.
 compile:
-  #!/usr/bin/env zsh
+  #!/usr/bin/env zsh --login
   if [[ ! -f {{PLUGINS}} ]]; then
     echo "FATAL: Could not find {{PLUGINS}}"
     exit 1

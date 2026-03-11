@@ -1,4 +1,4 @@
-if [[ -n $__MISE_ACTIVATED ]]; then
+if [[ -n $MISE_SHELL ]]; then
   # Mise has already been loaded, don't do it again
   return
 fi
@@ -12,7 +12,6 @@ fi
 
 if [[ -n $MISE_SHELL ]]; then
   # We have mise! Do Things!
-  alias mr='mise run'
 
-  __MISE_ACTIVATED=1
+  alias mr='mise run'
 fi
