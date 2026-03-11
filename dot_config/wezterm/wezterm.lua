@@ -30,8 +30,8 @@ local config = {
 
   keys = {
     {
-      key = 'F12',
-      mods = 'SUPER|CTRL|SHIFT|ALT',
+      key = ',',
+      mods = 'CMD|SHIFT',
       action = wezterm.action.ReloadConfiguration,
     },
     {
@@ -39,6 +39,8 @@ local config = {
       mods = 'SHIFT|CTRL',
       action = wezterm.action.ToggleFullScreen,
     },
+
+    -- TMUX Nav Keys
     {
       key = 'LeftArrow',
       mods = 'CTRL|SHIFT',
@@ -80,7 +82,7 @@ local config = {
     -- family='Monaspace Xenon',
     -- family='Monaspace Radon',
     -- family='Monaspace Krypton',
-    weight='Regular',
+    weight='Medium',
     harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
   }),
 
