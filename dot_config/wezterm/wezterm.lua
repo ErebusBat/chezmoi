@@ -57,6 +57,20 @@ local config = {
         mods = 'CTRL|SHIFT',
       }),
     },
+
+    -- Hyper keys (Ctrl+Alt+Shift+Cmd) for tmux user-keys
+    -- Sends tmux user-key escape sequences (defined in tmux.conf user-keys[1]/[2])
+    -- See chezmoi: dot_config/tmux/tmux.conf lines 50-54
+    {
+      key = 'F11',
+      mods = 'CTRL|ALT|SHIFT|SUPER',
+      action = wezterm.action.SendString('\x1b[91~'),
+    },
+    {
+      key = 'F12',
+      mods = 'CTRL|ALT|SHIFT|SUPER',
+      action = wezterm.action.SendString('\x1b[90~'),
+    },
   },
 
   -- See below for background
