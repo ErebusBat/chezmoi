@@ -58,15 +58,17 @@ local config = {
 
 
   font = wezterm.font({
-    -- family="Comic Code Ligatures",
+    family="Comic Code Ligatures",
     -- family='Monaspace Neon',
-    family='Monaspace Argon',  -- This one
+    -- family='Monaspace Argon',  -- This one
     -- family='Monaspace Xenon',
     -- family='Monaspace Radon',
     -- family='Monaspace Krypton',
     weight='Regular',
     harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
   }),
+
+  line_height = 1.0,
 
   -- https://wezfurlong.org/wezterm/config/lua/config/font_rules.html
   -- wezterm ls-fonts
@@ -75,32 +77,32 @@ local config = {
     --
     -- Italic (comments)
     --
-    {
-      intensity = 'Normal',
-      italic = true,
-      font = wezterm.font({
-        family="Monaspace Radon",
-        weight="ExtraLight",
-        stretch="Normal",
-        style="Normal",
-        harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
-      })
-    },
+    -- {
+    --   intensity = 'Normal',
+    --   italic = true,
+    --   font = wezterm.font({
+    --     family="Monaspace Radon",
+    --     weight="ExtraLight",
+    --     stretch="Normal",
+    --     style="Normal",
+    --     harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
+    --   })
+    -- },
 
     --
     -- Bold (highlighting)
     --
-    {
-      intensity = 'Bold',
-      italic = false,
-      font = wezterm.font({
-        family="Monaspace Krypton",
-        weight="Light",
-        stretch="Normal",
-        style="Normal",
-        harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
-      })
-    },
+    -- {
+    --   intensity = 'Bold',
+    --   italic = false,
+    --   font = wezterm.font({
+    --     family="Monaspace Krypton",
+    --     weight="Light",
+    --     stretch="Normal",
+    --     style="Normal",
+    --     harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
+    --   })
+    -- },
   },
 
   -- See below for font size overriding based on machine we are on
@@ -144,7 +146,7 @@ function calc_set_font_size(window)
       overrides.font_size = 14
     end
   elseif (hostname == 'USMB-JVK937H909')  then
-    overrides.font_size = 12
+    overrides.font_size = 14
   elseif (hostname == 'thelio')  then
     overrides.font_size = 8
   elseif (hostname == 'dartp6')  then
