@@ -33,7 +33,8 @@ function build_wallpapers() {
     fi
   fi
 
-  # cd into the wezterm config dir so mise picks up the local mise.toml (ruby = "2.7")
+  # cd into the wezterm config dir so mise picks up the local mise.toml
+  # if we are not in the directory then the mise.toml will not be used
   cd ~/.config/wezterm && \
     mise x ruby -- ~/.config/wezterm/build-wallpapers.rb
 }
