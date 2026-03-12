@@ -1,10 +1,16 @@
 #!/bin/zsh
 # vim: ft=zsh sw=2 ts=2 et
 
+################################################################################
+## Configuration
+################################################################################
 STATIC_FILE=/tmp/wezterm-wallpaper.static
 CONFIG_FILE=~/.config/Wezterm/wezterm.lua
 WALLPAPER_LUA_FILE=~/.config/wezterm/wallpapers.lua
 
+################################################################################
+## Helper Functions
+################################################################################
 function make_static() {
   if [[ -f $STATIC_FILE ]]; then
     echo "Already in static mode! $STATIC_FILE exists"
@@ -17,8 +23,19 @@ function make_static() {
 }
 
 function build_wallpapers() {
+  # Check to see if we have mise, if not try to load it at a well known location
+  if ! command -v mise >/dev/null 2>&1; then
+    mise_plugin_path=$HOME/.config/zsh-antibody/mise/mise.plugin.zsh
+    if [[ -f $mise_plugin_path ]]; then
+      source $mise_plugin_path
+    else
+      echo "⚠️WARNING: Could not find '${mise_plugin_path:t}'; things will be broken!"
+    fi
+  fi
+
   # cd into the wezterm config dir so mise picks up the local mise.toml (ruby = "2.7")
-  (cd ~/.config/wezterm && mise x ruby -- ~/.config/wezterm/build-wallpapers.rb)
+  cd ~/.config/wezterm && \
+    mise x ruby -- ~/.config/wezterm/build-wallpapers.rb
 }
 
 function touch_config() {
@@ -34,6 +51,9 @@ function touch_config() {
   fi
 }
 
+################################################################################
+## Entry Point
+################################################################################
 if [[ -z $1 ]]; then
   if [[ -f $STATIC_FILE ]]; then
     echo "Not rotating; $STATIC_FILE exists"
