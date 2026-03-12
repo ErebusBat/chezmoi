@@ -5,10 +5,10 @@ windows:
   focus: true
   panes:
     - shell_command:
-      - wd vimwiki
+      - z vimwiki
       - oc -s ses_369a74a7fffeNcT4GE4dvkca7r
     - shell_command:
-      - wd vimwiki
+      - z vimwiki
       - vimlog -- 0
 
 - window_name: zsh

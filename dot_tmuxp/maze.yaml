@@ -16,7 +16,7 @@ windows:
     automatic-rename: 'off'
   panes:
     - shell_command:
-      - wd obsidian
+      - z obsidian
       - make logs
 
 - window_name: zsh

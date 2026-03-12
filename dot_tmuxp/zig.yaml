@@ -9,7 +9,7 @@ windows:
 - window_name: ziglings
   focus: true
   shell_command_before:
-    - wd ziglings
+    - cd ziglings
     - alias zig=/Users/andrew.burns/downloads/zig-macos-aarch64-0.14.0-dev.1651+ffd071f55/zig
   panes:
     - focus: true

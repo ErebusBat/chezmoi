@@ -4,8 +4,8 @@ windows:
 
 - window_name: src
   panes:
-    - wd lshq
-    - wd lshq
+    - z lshq
+    - z lshq
 
 - window_name: docs
   panes:
@@ -14,21 +14,21 @@ windows:
 
 # - window_name: swipely
 #   panes:
-#     - wd lsswipely
-#     - wd lsswipely
+#     - z lsswipely
+#     - z lsswipely
 #
 # - window_name: olo
 #   panes:
-#     - wd lsolo
-#     - wd lsolo
+#     - z lsolo
+#     - z lsolo
 #
 # - window_name: cfg_svc
 #   panes:
 #     - shell_command:
-#       - wd lscfgsvc
+#       - z lscfgsvc
 #       - ./script/standalone
 #     - shell_command:
-#       - wd lscfgsvc
+#       - z lscfgsvc
 #
 # - window_name: misc
 #   panes:
