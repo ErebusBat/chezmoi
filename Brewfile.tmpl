@@ -1,7 +1,10 @@
+{{- $force_update_every_days := 3 -}}
+{{- $update_version := div (now | unixEpoch) (mul $force_update_every_days 86400) -}}
 # vim: set noai ts=4 sw=4 ft=ruby:
 
 #===============================================================================
 # THIS FILE IS TEMPLATED, DO NOT EDIT DIRECTLY!
+# update_version={{ $update_version }} <-- Will update every {{ $force_update_every_days }}d
 #===============================================================================
 
 tap "tinted-theming/tinted"
