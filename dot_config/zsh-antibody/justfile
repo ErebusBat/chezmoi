@@ -19,8 +19,11 @@ clean:
     @echo "\n*** [dynamic] Removing zsh startup caches..."
     /bin/rm -fv {{BREW_SHELLENV_CACHE}}
 
-# Remove caches, print compile hint, and regenerate checksums.
-static: clean compile gen_sums
+# Does a clean install
+static: clean install
+
+# Compile static file and update SUM file
+install: compile gen_sums
 
 # Print compile notice for next interactive shell launch.
 compile:
