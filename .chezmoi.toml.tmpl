@@ -1,3 +1,4 @@
+# vim: set noai ts=4 sw=4 ft=toml
 {{- $email := "" -}}
 {{- if hasKey . "email" -}}
 {{-   $email = .email -}}
@@ -12,42 +13,48 @@
 {{- end -}}
 {{- if eq $focus "" -}}
 {{-   $focus = promptString "focus" -}}
-{{- end -}}
+{{- end }}
+# Last Rendered at: {{ now | date "Mon Jan 2 2006 15:04" }}
 
 [data]
-  focus = {{ $focus | quote }}
-  email = {{ $email | quote }}
+    focus = {{ $focus | quote }}
+    email = {{ $email | quote }}
 
-  [data.area]
-    {{- if (index . "area" ) }}
-    personal = {{ .area.personal }}
-    server = {{ .area.server }}
-    fetlife = {{ index .area "fetlife" | default false }}
-    tractionguest = {{ index .area "tractionguest" | default false }}
-    companycam = {{ index .area "companycam" | default false }}
-    lshq = {{ index .area "lshq" | default false }}
-    openclaw_backup = {{ index .area "openclaw_backup" | default false }}
-    {{- else }}
-    personal = {{ default false (eq $focus "personal") }}
-    server = {{ default false (eq $focus "server") }}
-    fetlife = false
-    tractionguest = false
-    companycam = false
-    lshq = false
-    openclaw_backup = false
-    {{ end }}
 
-  [data.synergy]
-    enabled = false
-    mode = "client"
-    server = "sie-mbp.erebusbat.net"
+    [data.area]
+        {{- if (index . "area" ) }}
+        personal = {{ .area.personal }}
+        server = {{ .area.server }}
+        fetlife = {{ index .area "fetlife" | default false }}
+        tractionguest = {{ index .area "tractionguest" | default false }}
+        companycam = {{ index .area "companycam" | default false }}
+        lshq = {{ index .area "lshq" | default false }}
+        openclaw_backup = {{ index .area "openclaw_backup" | default false }}
+        {{- else }}
+        personal = {{ default false (eq $focus "personal") }}
+        server = {{ default false (eq $focus "server") }}
+        fetlife = false
+        tractionguest = false
+        companycam = false
+        lshq = false
+        openclaw_backup = false
+        {{ end }}
+
+      [data.synergy]
+        enabled = false
+        mode = "client"
+        server = "sie-mbp.erebusbat.net"
+
+[status]
+    exclude = ["scripts"]
 
 [diff]
-    command = "difft"
-    args = ["{{"{{"}} .Destination }}", "{{"{{"}} .Target }}"]
+    pager = "delta"
+    # command = "difft"
+    # args = ["{{"{{"}} .Destination }}", "{{"{{"}} .Target }}"]
     exclude = ["scripts"]
 
 [git]
-  autoAdd = true
-  autoCommit = true
-  autoPush = true
+    autoAdd = true
+    autoCommit = true
+    autoPush = true
