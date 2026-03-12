@@ -27,7 +27,7 @@ end
 -- Build Base Config
 --
 local config = {
-  hide_tab_bar_if_only_one_tab = false,
+  hide_tab_bar_if_only_one_tab = true,
   tab_bar_at_bottom = true,
   window_decorations = eb_window_decorations,
   window_padding = {
