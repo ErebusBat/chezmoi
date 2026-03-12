@@ -59,7 +59,7 @@ vim.keymap.set('n', '<leader>ym', 'mT[mV]M"+y`T', { desc = '[Y]ank [M]ethod (Sys
 --------------------------------------------------------------------------------
 -- Colors / Appearance / Themes
 --------------------------------------------------------------------------------
--- require("custom.theme-after-plugin")
+require("custom.theme-after-plugin")
 -- see lua/plugins/base16.lua
 
 --------------------------------------------------------------------------------
