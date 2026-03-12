@@ -27,9 +27,13 @@ done
 # This must appear before any alias/checks for tools are done
 # because if not then if the tool is managed by mise it won't
 # be found so the aliases won't be setup
-if [[ -f $HOME/.config/zsh-antibody/mise ]]; then
-  source $HOME/.config/zsh-antibody/mise
+mise_plugin_path=$HOME/.config/zsh-antibody/mise/mise.plugin.zsh
+if [[ -f $mise_plugin_path ]]; then
+  source $mise_plugin_path
+else
+  echo "⚠️WARNING: Could not find '${mise_plugin_path:t}'; things will be broken!"
 fi
+unset mise_plugin_path
 
 ################################################################################
 # Antidote.sh
@@ -48,9 +52,10 @@ if ! (( $+functions[compdef] )); then
   function compdef() { _compdef_queue+=("${(q)@}") }
 fi
 
-_zsh_plugins=$HOME/.config/zsh-antibody/
+_zsh_plugins=$HOME/.config/zsh-antibody
 _zsh_source_file="${_zsh_plugins}/plugins.txt"
 _zsh_static_file="${_zsh_plugins}/.plugins.zsh"
+_zsh_justfile="${_zsh_plugins}/justfile"
 
 # Ensure the source file exists so you can add plugins.
 [[ -f ${_zsh_source_file} ]] || touch ${_zsh_source_file}
@@ -64,11 +69,41 @@ autoload -Uz antidote
 # is managed by Chezmoi
 # if [[ ${zsh_plugins}.txt -nt ${zsh_plugins}.zsh ]]; then
 if [[ ! -f ${_zsh_static_file} ]]; then
-  cd ${_zsh_plugins} && just compile gen_sums
+  if [[ ! -f ${_zsh_justfile} ]]; then
+    echo "🚨 FATAL ERROR: Could not find ZSH justfile!?"
+    echo "                That is odd given that you have a proper .zshrc"
+    echo "                Run 'chezmoi update'"
+  else
+    # Re-use as we don't need the full path anymore
+    _zsh_justfile="--justfile=${_zsh_justfile}"
+
+    # Be smart about how / where to find `just` try path first, then
+    # fall back to using mise
+    just_path=$(command -v just)
+    if [[ -z $just_path ]]; then
+      mise_path=$(command -v mise)
+      if [[ -z $mise_path ]]; then
+        echo "🚨 FATAL ERROR: You do not have mise or just installed!"
+        echo "                Can not compile shell plugins, install mise:"
+        echo "                  curl https://mise.run | sh"
+      else
+        echo "⚠️WARNING: Could not find 'just' in your path, using mise instead."
+        ${mise_path} exec just -- just ${_zsh_justfile} install
+      fi
+    else
+      ${just_path} ${_zsh_justfile} install
+    fi
+    unset just_path
+    unset mise_path
+  fi
 fi
 
 # Source your static plugins file.
 source ${_zsh_static_file}
+unset _zsh_plugins
+unset _zsh_source_file
+unset _zsh_static_file
+unset _zsh_justfile
 
 
 ################################################################################
