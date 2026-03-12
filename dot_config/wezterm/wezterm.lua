@@ -10,10 +10,10 @@ local wallpaper_enabled = wallpaper_info.Enabled
 -- Defaults, can be overriden below in monitor setup
 local background_hsb = {
   -- brightness = 0.00625,
-  -- brightness = 0.0125,  -- Abstract
+  brightness = 0.0125,  -- Abstract
   -- brightness = 0.01, -- Photos
   -- brightness = 0.05, -- Travel
-  brightness = 0.0,
+  -- brightness = 0.0,  -- black / no-pic
 }
 
 local eb_window_decorations = 'RESIZE'

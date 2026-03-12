@@ -11,7 +11,5 @@ paths:
   weight: 3
 - path: ~/.config/wezterm/wallpaper/doom
   weight: 3
-- path: ~/.config/wezterm/wallpaper/lar
-  weight: 2
 - path: ~/.config/wezterm/wallpaper
   weight: 1

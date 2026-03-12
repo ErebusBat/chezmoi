@@ -146,7 +146,12 @@ def read_config(app)
   config = Pathname.new("~/.config/wezterm/wallpaper.yaml").expand_path
   return app unless config.file?
 
-  cfg = YAML.load(config.read)
+  cfg =
+    if RUBY_VERSION >= '3.1'
+      YAML.load(config.read, aliases: true)
+    else
+      YAML.load(config.read)
+    end
   cfg["paths"].each do |entry|
     path = entry["path"]
     enabled=  entry.fetch("enabled", true)

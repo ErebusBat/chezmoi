@@ -16,14 +16,19 @@ function make_static() {
   exit 0
 }
 
+function build_wallpapers() {
+  # cd into the wezterm config dir so mise picks up the local mise.toml (ruby = "2.7")
+  (cd ~/.config/wezterm && mise x ruby -- ~/.config/wezterm/build-wallpapers.rb)
+}
+
 function touch_config() {
   if [[ ! -s $WALLPAPER_LUA_FILE ]]; then
     echo "WALLPAPER_LUA_FILE ($WALLPAPER_LUA_FILE) does not exist, attempting to generate"
-    ~/.config/wezterm/build-wallpapers.rb
+    build_wallpapers
   fi
   if [[ -x ~/.config/wezterm/build-wallpapers.rb ]]; then
     echo "Attempting to re-generate wallpapers"
-    ~/.config/wezterm/build-wallpapers.rb
+    build_wallpapers
   else
     touch $CONFIG_FILE
   fi
