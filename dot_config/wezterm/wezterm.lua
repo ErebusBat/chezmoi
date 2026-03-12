@@ -20,7 +20,15 @@ local background_hsb = {
 -- Build Base Config
 --
 local config = {
-  hide_tab_bar_if_only_one_tab = true,
+  hide_tab_bar_if_only_one_tab = false,
+  tab_bar_at_bottom = true,
+  window_decorations = 'RESIZE',
+  window_padding = {
+    left = 0,
+    right = 0,
+    top = 5,
+    bottom = 0,
+  },
   default_prog = { "/bin/zsh" },
   set_environment_variables = {
     shell = "/bin/zsh",
@@ -141,8 +149,6 @@ local config = {
   -- font_size = 14,
 
   mouse_bindings = {
-    -- Change the default click behavior so that it populates
-    -- the Clipboard rather the PrimarySelection.
     {
       event = { Up = { streak = 1, button = 'Left' } },
       mods = 'NONE',
