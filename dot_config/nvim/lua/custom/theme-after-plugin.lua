@@ -21,5 +21,5 @@ vim.cmd('highlight SignColumn ctermbg=NONE guibg=NONE')
 vim.cmd('highlight EndOfBuffer ctermbg=NONE guibg=NONE')
 -- vim.cmd('highlight CursorLine ctermbg=NONE guibg=NONE')
 -- vim.cmd('highlight StatusLine ctermbg=NONE guibg=NONE')
-vim.cmd.colorscheme(vim.g.x_vim_colorscheme)
+-- vim.cmd.colorscheme(vim.g.x_vim_colorscheme)
 
