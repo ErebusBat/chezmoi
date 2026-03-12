@@ -16,13 +16,20 @@ local background_hsb = {
   brightness = 0.0,
 }
 
+local eb_window_decorations = 'RESIZE'
+if (hostname == 'USMB-JVK937H909') then
+  -- Default is fine for work
+else
+  eb_window_decorations = 'TITLE | ' .. eb_window_decorations
+end
+
 --
 -- Build Base Config
 --
 local config = {
   hide_tab_bar_if_only_one_tab = false,
   tab_bar_at_bottom = true,
-  window_decorations = 'RESIZE',
+  window_decorations = eb_window_decorations,
   window_padding = {
     left = 0,
     right = 0,
