@@ -1,15 +1,11 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-[](red)\
 $os\
 $username\
-[](bg:peach fg:red)\
 $directory\
-[](bg:yellow fg:peach)\
 ${custom.repo_name}\
 $git_status\
-[](fg:yellow bg:green)\
 $c\
 $rust\
 $golang\
@@ -20,15 +16,12 @@ $kotlin\
 $haskell\
 $python\
 $ruby\
-[](fg:green bg:sapphire)\
 $docker_context\
 $kubernetes\
 $aws\
 $pulumi\
 $conda\
-[](fg:sapphire bg:lavender)\
 $time\
-[ ](fg:lavender)\
 $line_break\
 $container\
 $hostname\
@@ -61,7 +54,7 @@ disabled = false
 [env_var.TMUX_PANE]
 variable = "TMUX_PANE"
 format = "[$env_value]($style) "
-style = "fg:grey bg:sapphire"
+style = "fg:grey"
 disabled = false
 
 [mise]
@@ -93,7 +86,7 @@ style = "bold green"
 
 [os]
 disabled = false
-style = "bg:red fg:crust"
+style = "fg:red"
 
 [os.symbols]
 Bluefin = "󰌽"
@@ -119,12 +112,12 @@ RedHatEnterprise = "󱄛"
 
 [username]
 show_always = true
-style_user = "bg:red fg:crust"
-style_root = "bg:red fg:crust"
+style_user = "fg:red"
+style_root = "fg:red"
 format = '[ $user]($style)'
 
 [directory]
-style = "bg:peach fg:crust"
+style = "fg:peach"
 format = "[ $path ]($style)"
 truncate_to_repo = true
 truncation_length = 3
@@ -139,85 +132,85 @@ truncation_symbol = "…/"
 
 [git_branch]
 symbol = ""
-style = "bg:yellow"
-format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
+style = "fg:text"
+format = '[[ $symbol $branch ](fg:yellow)]($style)'
 
 [custom.repo_name]
 when = 'git rev-parse --git-dir >/dev/null 2>&1'
 command = '$HOME/bin/.starship-git-location.sh'
-style = "bg:yellow"
-format = '[[ $output ](fg:crust bg:yellow)]($style)'
+style = "fg:text"
+format = '[[ $output ](fg:yellow)]($style)'
 
 [git_status]
-style = "bg:yellow"
-format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+style = "fg:text"
+format = '[[($all_status$ahead_behind )](fg:yellow)]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:text"
+format = '[[ $symbol( $version) ](fg:green)]($style)'
 
 [c]
 symbol = " "
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:text"
+format = '[[ $symbol( $version) ](fg:green)]($style)'
 
 [rust]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:text"
+format = '[[ $symbol( $version) ](fg:green)]($style)'
 
 [golang]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:text"
+format = '[[ $symbol( $version) ](fg:green)]($style)'
 
 [php]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:text"
+format = '[[ $symbol( $version) ](fg:green)]($style)'
 
 [java]
 symbol = " "
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:text"
+format = '[[ $symbol( $version) ](fg:green)]($style)'
 
 [kotlin]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:text"
+format = '[[ $symbol( $version) ](fg:green)]($style)'
 
 [haskell]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:text"
+format = '[[ $symbol( $version) ](fg:green)]($style)'
 
 [python]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:crust bg:green)]($style)'
+style = "fg:text"
+format = '[[ $symbol( $version )(\(#$virtualenv\))](fg:green)]($style)'
 
 [ruby]
 symbol = ""
-style = "bg:green"
-format = '[[ $symbol( $version) ](fg:crust bg:green)]($style)'
+style = "fg:text"
+format = '[[ $symbol( $version ) ](fg:green)]($style)'
 
 [docker_context]
 symbol = ""
-style = "bg:sapphire"
-format = '[[ $symbol( $context) ](fg:crust bg:sapphire)]($style)'
+style = "fg:text"
+format = '[[ $symbol( $context) ](fg:sapphire)]($style)'
 
 [conda]
 symbol = "  "
-style = "fg:crust bg:sapphire"
+style = "fg:crust"
 format = '[$symbol$environment ]($style)'
 ignore_base = false
 
 [time]
 disabled = false
 time_format = "%R"
-style = "bg:lavender"
-format = '[[  $time ](fg:crust bg:lavender)]($style)'
+style = "fg:text"
+format = '[[  $time ](fg:lavender)]($style)'
 
 [line_break]
 disabled = false
@@ -234,7 +227,7 @@ vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 [cmd_duration]
 show_milliseconds = false
 format = " in $duration "
-style = "bg:lavender"
+style = "fg:text"
 disabled = false
 show_notifications = true
 min_time = 9_500
@@ -354,25 +347,25 @@ crust = "#181926"
 
 # Custom config from here on
 [container]
-style = "bg:lavender fg:crust"
+style = "fg:crust"
 format = "[](lavender)[$symbol $name]($style)[ ](fg:lavender)"
 
 [hostname]
 ssh_symbol = "❮=❯ "
-style = "bg:lavender fg:crust"
+style = "fg:crust"
 format = "[](lavender)[$ssh_symbol$hostname]($style)[ ](fg:lavender)"
 
 [sudo]
 disabled = false
 symbol = "⚠️"
-style = "bg:lavender fg:crust"
+style = "fg:crust"
 format = "[](lavender)[$symbol]($style)[ ](fg:lavender)"
 
 [gcloud]
 disabled = true
 
 [aws]
-style = "bg:sapphire fg:crust"
+style = "fg:crust"
 format = '[ ($profile )(\($region\) )(\[$duration\] )]($style)'
 
 [aws.region_aliases]
@@ -382,8 +375,8 @@ us-east-1 = 'us-e1'
 
 [kubernetes]
 symbol = '☸'
-format = '[[ $symbol( $context \($namespace\)) ](fg:crust bg:sapphire)]($style)'
+format = '[[ $symbol( $context \($namespace\)) ](fg:sapphire)]($style)'
 disabled = false
 
 [pulumi]
-format = '[[ $symbol( $stack ) ](fg:crust bg:sapphire)]($style)'
+format = '[[ $symbol( $stack ) ](fg:sapphire)]($style)'
