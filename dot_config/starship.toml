@@ -115,6 +115,9 @@ show_always = true
 style_user = "fg:red"
 style_root = "fg:red"
 format = '[ $user]($style)'
+aliases = {
+  "andrew.burns" = "a.b"
+}
 
 [directory]
 style = "fg:peach"
@@ -139,7 +142,7 @@ format = '[[ $symbol $branch ](fg:yellow)]($style)'
 when = 'git rev-parse --git-dir >/dev/null 2>&1'
 command = '$HOME/bin/.starship-git-location.sh'
 style = "fg:text"
-format = '[[ $output ](fg:yellow)]($style)'
+# format = '[[ $output ](fg:yellow)]($style)'
 
 [git_status]
 style = "fg:text"
@@ -347,25 +350,29 @@ crust = "#181926"
 
 # Custom config from here on
 [container]
-style = "fg:crust"
-format = "[](lavender)[$symbol $name]($style)[ ](fg:lavender)"
+# style = "fg:crust"
+format = "[$symbol $name]($style)"
 
 [hostname]
+ssh_only = false
 ssh_symbol = "❮=❯ "
-style = "fg:crust"
-format = "[](lavender)[$ssh_symbol$hostname]($style)[ ](fg:lavender)"
+style = "fg:surface1"
+format = "[$ssh_symbol$hostname]($style)"
+aliases = {
+  "USMB-JVK937H909" = "LSMBP"
+}
 
 [sudo]
 disabled = false
-symbol = "⚠️"
-style = "fg:crust"
-format = "[](lavender)[$symbol]($style)[ ](fg:lavender)"
+symbol = "🚨"
+# style = "fg:crust"
+format = "[$symbol]($style)"
 
 [gcloud]
 disabled = true
 
 [aws]
-style = "fg:crust"
+style = "fg:surface1"
 format = '[ ($profile )(\($region\) )(\[$duration\] )]($style)'
 
 [aws.region_aliases]
