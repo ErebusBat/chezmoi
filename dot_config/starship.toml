@@ -112,9 +112,9 @@ RedHatEnterprise = "󱄛"
 
 [username]
 show_always = true
-style_user = "fg:red"
+style_user = "fg:surface1"
 style_root = "fg:red"
-format = '[ $user]($style)'
+format = '[$user]($style)'
 aliases = {
   "andrew.burns" = "a.b"
 }
@@ -360,14 +360,15 @@ ssh_symbol = "❮=❯ "
 style = "fg:surface1"
 format = "[$ssh_symbol$hostname]($style)"
 aliases = {
-  "USMB-JVK937H909" = "LSMBP"
+  "USMB-JVK937H909" = "LSMBP",
+  "dartp6" = "sys76",
 }
 
 [sudo]
 disabled = false
 symbol = "🚨"
 # style = "fg:crust"
-format = "[$symbol]($style)"
+format = " [$symbol]($style)"
 
 [gcloud]
 disabled = true
