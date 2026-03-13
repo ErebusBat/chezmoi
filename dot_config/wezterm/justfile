@@ -1,0 +1,18 @@
+WALLPAPER_DIR := './wallpaper'
+import? 'aab-wallpaper.just'
+
+ls-wallpapers wpath=WALLPAPER_DIR:
+  #!/usr/bin/env zsh
+  wallpaper_dir="{{ wpath }}"
+  eza -Tlh --icons=auto $wallpaper_dir/
+
+view-wallpapers wpath=WALLPAPER_DIR width='200px':
+  #!/usr/bin/env zsh
+  wallpaper_dir="{{ wpath }}"
+  for f in $wallpaper_dir/**/*.{jpg,jpeg}; do
+    printf "--------------------------------------------------------------------------------\n"
+    # B="${B/#$replace/.}"
+    wezterm imgcat --width {{ width }} $f
+    printf "⬆︎ ${f}\n"
+    # printf "⬆︎ ${f/#$wallpaper_dir/.}\n"
+  done

@@ -3,6 +3,7 @@
 .config/nvim/plugin/packer_compiled.lua
 .local/share/chezmoi/
 .syncthing.*
+.config/wezterm/wallpaper.jpg
 
 # Direct is where we store files that are symlinked (like stow)
 direct/
