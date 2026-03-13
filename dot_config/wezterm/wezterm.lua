@@ -73,6 +73,13 @@ local config = {
       }),
     },
 
+    -- Toggle window title bar
+    {
+      key = 't',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.EmitEvent('toggle-window-decorations'),
+    },
+
     -- Hyper keys (Ctrl+Alt+Shift+Cmd) for tmux user-keys
     -- Sends tmux user-key escape sequences (defined in tmux.conf user-keys[1]/[2])
     -- See chezmoi: dot_config/tmux/tmux.conf lines 50-54
@@ -206,6 +213,16 @@ wezterm.on('window-config-reloaded', function(window)
 end)
 wezterm.on('window-resized', function(window, _pane)
   calc_set_font_size(window)
+end)
+wezterm.on('toggle-window-decorations', function(window, _pane)
+  local overrides = window:get_config_overrides() or {}
+  local current = window:effective_config().window_decorations
+  if current:find('TITLE') then
+    overrides.window_decorations = 'RESIZE'
+  else
+    overrides.window_decorations = 'TITLE | RESIZE'
+  end
+  window:set_config_overrides(overrides)
 end)
 
 --
