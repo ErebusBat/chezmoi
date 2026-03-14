@@ -4,9 +4,11 @@
 $HOME/bee_mem_card-2020-1217.tar.gz
 
 # Exclude these directories in ANY sub path
+**/.build/**
+**/.tmp/**
 **/.yardoc/**
-**/cache/**
 **/.zig-cache/**
+**/cache/**
 
 #
 # Linux / Posix
