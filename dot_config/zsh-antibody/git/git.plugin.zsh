@@ -17,6 +17,8 @@ alias gcva='git commit -v --amend'
 alias gcvt='git commit -vt .git/COMMIT_EDITMSG.claude'
 alias gcvta='git commit -vt --amend .git/COMMIT_EDITMSG.claude'
 
+alias gbrc='git branch --show-current'
+
 # Git Quick Save
 alias gqs='git add -Av $(git rev-parse --show-toplevel || echo ".") && git commit'
 alias grbi='git rebase -i'
