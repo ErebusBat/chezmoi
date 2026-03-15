@@ -9,6 +9,7 @@ alias gsu='git submodule init && git submodule update'
 alias glp='git log --pretty=oneline'
 alias gld='git log --decorate --oneline --graph'
 alias gpp='git pull --prune'
+alias gprb='git pull --rebase --autostash'
 # alias gpbgh='git_push_update_origin && git browse'
 # alias gcip='git ci && git push'
 alias gfo='git fetch origin'
@@ -20,8 +21,8 @@ alias gcvta='git commit -vt --amend .git/COMMIT_EDITMSG.claude'
 alias gbrc='git branch --show-current'
 
 # Git Quick Save
-alias gqs='git add -Av $(git rev-parse --show-toplevel || echo ".") && git commit'
-alias grbi='git rebase -i'
+# alias gqs='git add -Av $(git rev-parse --show-toplevel || echo ".") && git commit'
+# alias grbi='git rebase -i'
 alias gu='gpm && gbda && gsu'
 
 # Git WorkTree
