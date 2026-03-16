@@ -31,6 +31,8 @@ random:
   override_file="{{ WALLPAPER_OVERRIDE }}"
   if [[ -L $override_file ]]; then
     rm $override_file || true
+  elif [[ -e $override_file ]]; then
+    echo "⚠️ WARNING: wallpaper is not a symlink, not removing!" >&2
   fi
 
 # STATIC: Abstract - Triangle
