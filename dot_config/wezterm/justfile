@@ -1,11 +1,15 @@
 WALLPAPER_DIR := './wallpaper'
 import? 'aab-wallpaper.just'
 
+# Tree View of Wallpaper Dir
+[group('Utilities')]
 ls-wallpapers wpath=WALLPAPER_DIR:
   #!/usr/bin/env zsh
   wallpaper_dir="{{ wpath }}"
   eza -Tlh --icons=auto $wallpaper_dir/
 
+# View wallpapers in terminal
+[group('Utilities')]
 view-wallpapers wpath=WALLPAPER_DIR width='200px':
   #!/usr/bin/env zsh
   wallpaper_dir="{{ wpath }}"
@@ -16,3 +20,8 @@ view-wallpapers wpath=WALLPAPER_DIR width='200px':
     printf "⬆︎ ${f}\n"
     # printf "⬆︎ ${f/#$wallpaper_dir/.}\n"
   done
+
+# Re-builds the wallpapers.lua file from yaml config
+[group('Maintenance')]
+build-wallpapers:
+  ./build-wallpapers.rb

@@ -7,6 +7,8 @@ paths:
   weight: 10
 - <<: *ah_common
   path: ~/.config/wezterm/wallpaper/photos/ah_*
+- path: ~/.config/wezterm/wallpaper/photos/linux_*
+  enabled: false
 - path: ~/.config/wezterm/wallpaper/abstract
   weight: 3
 - path: ~/.config/wezterm/wallpaper/doom

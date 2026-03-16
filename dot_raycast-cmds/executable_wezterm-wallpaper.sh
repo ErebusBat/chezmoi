@@ -17,13 +17,19 @@
 # Be sure that your environment is setup for any tools you may need/want to use
 export PATH=$HOME/bin:$PATH
 WEZTERM_DIR=$HOME/.config/wezterm
-SAFE_WALLPAPER_JUST_TARGET=set-abs-grid
+
+if [[ -x /opt/homebrew/bin/mise ]]; then
+  eval "$(/opt/homebrew/bin/mise activate bash)"
+elif [[ -x $HOME/.local/bin/mise ]]; then
+  eval "$($HOME/.local/bin/mise activate bash)"
+fi
 
 TASK_NAME=$1
 
 # if [[ -z $TASK_NAME || $TASK_NAME == "." ]]; then
-if [[ $TASK_NAME == "." ]]; then
-  cd @WEZTERM_DIR && just disable-ah-common $SAFE_WALLPAPER_JUST_TARGET
+if [[ -z $TASK_NAME ]]; then
+  cd $WEZTERM_DIR && just _safe
+  exit 0
 fi
 
 case "$TASK_NAME" in
@@ -35,8 +41,8 @@ case "$TASK_NAME" in
     ;;
 esac
 
-if [[ $TASK_NAME != random && $TASK_NAME != set-* ]]; then
+if [[ $TASK_NAME != random && $TASK_NAME != set-* && $TASK_NAME != enable-ah-common && $TASK_NAME != disable-ah-common ]]; then
   TASK_NAME="set-$TASK_NAME"
 fi
 
-cd @WEZTERM_DIR && just $TASK_NAME
+cd $WEZTERM_DIR && just $TASK_NAME

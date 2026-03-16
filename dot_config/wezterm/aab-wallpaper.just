@@ -2,26 +2,62 @@ WALLPAPER_OVERRIDE := 'wallpaper.jpg'
 WALLPAPER_SRC_DIR := env('HOME') + "/.config/wezterm/wallpaper"
 WALLPAPER_CONFIG := env('HOME') + "/.config/wezterm/wallpaper.yaml"
 
+alias build := rotate
+
+[default]
+_safe: disable-ah-common random
+
+_link_static src parent_dir=(WALLPAPER_SRC_DIR + "/"): random
+  ln -s "{{ parent_dir }}{{ src }}" "{{ WALLPAPER_OVERRIDE }}"
+
+# Rotate the wallpaper now
+[group('Set Wallpaper')]
+rotate: random
+  #!/usr/bin/env zsh
+  # Use the helper tool, if avilable as it will handle (re)building the
+  # wallpapers.lua file
+  if [[ -x $HOME/bin/rotate-wezterm-wallpaper ]]; then
+    $HOME/bin/rotate-wezterm-wallpaper
+  else
+    # If not... just use poor mans
+    touch wezterm.lua
+  fi
+
+
 # Use a random wallpaper
-@random:
+[group('Set Wallpaper')]
+random:
   #!/usr/bin/env zsh
   override_file="{{ WALLPAPER_OVERRIDE }}"
-  #[[ -f $override_file ]] && rm $override_file || true
-  rm $override_file || true
+  if [[ -L $override_file ]]; then
+    rm $override_file || true
+  fi
 
 # STATIC: Abstract - Triangle
-@set-abs-triangle: random
-  ln -s "{{ WALLPAPER_SRC_DIR }}/abstract/cool-futuristic-abstract-background-with-shining-neon-lights.jpg" "{{ WALLPAPER_OVERRIDE }}"
+[group('Set Wallpaper')]
+@set-abs-triangle:
+  just _link_static "abstract/cool-futuristic-abstract-background-with-shining-neon-lights.jpg"
+
 
 # STATIC: Abstract - Triangle
-@set-abs-grid: random
-  ln -s "{{ WALLPAPER_SRC_DIR }}/abstract/vecteezy_futuristic-technological-grid-background-digital-futurist_7207818.jpg" "{{ WALLPAPER_OVERRIDE }}"
+[group('Set Wallpaper')]
+@set-abs-grid:
+  just _link_static "abstract/vecteezy_futuristic-technological-grid-background-digital-futurist_7207818.jpg"
 
 # STATIC: SR71-space
-@set-sr71: random
-  ln -s "{{ WALLPAPER_SRC_DIR }}/photos/SR71-Blackbird-Front.jpg" "{{ WALLPAPER_OVERRIDE }}"
+[group('Set Wallpaper')]
+@set-sr71:
+  just _link_static "photos/SR71-Blackbird-Front.jpg"
 
-@enable-ah-common:
+# STATIC: DooM Slayer Mark
+[group('Set Wallpaper')]
+@set-slayer-mark:
+  just _link_static "doom/slayer_mark_neon.jpg"
+
+[group('Maintenance')]
+enable-ah-common: random _enable-ah-common rotate
+
+_enable-ah-common:
   #!/usr/bin/env python3
   from pathlib import Path
   import re
@@ -32,7 +68,10 @@ WALLPAPER_CONFIG := env('HOME') + "/.config/wezterm/wallpaper.yaml"
       raise SystemExit(f"Could not update ah_common.enabled in {path}")
   path.write_text(updated)
 
-@disable-ah-common:
+[group('Maintenance')]
+disable-ah-common: random _disable-ah-common rotate
+
+_disable-ah-common:
   #!/usr/bin/env python3
   from pathlib import Path
   import re
