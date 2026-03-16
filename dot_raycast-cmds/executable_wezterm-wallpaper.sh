@@ -17,11 +17,13 @@
 # Be sure that your environment is setup for any tools you may need/want to use
 export PATH=$HOME/bin:$PATH
 WEZTERM_DIR=$HOME/.config/wezterm
+SAFE_WALLPAPER_JUST_TARGET=set-abs-grid
 
 TASK_NAME=$1
 
-if [[ -z $TASK_NAME || $TASK_NAME == "." ]]; then
-  TASK_NAME=sr71
+# if [[ -z $TASK_NAME || $TASK_NAME == "." ]]; then
+if [[ $TASK_NAME == "." ]]; then
+  cd @WEZTERM_DIR && just disable-ah-common $SAFE_WALLPAPER_JUST_TARGET
 fi
 
 case "$TASK_NAME" in
