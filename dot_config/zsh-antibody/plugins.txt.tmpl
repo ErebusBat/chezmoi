@@ -15,7 +15,6 @@ mattmc3/ez-compinit
 ~/.config/zsh-antibody/eza
 ~/.config/zsh-antibody/fd
 ~/.config/zsh-antibody/ghostty
-~/.config/zsh-antibody/obsidian
 
 # Dev Stuff
 ~/.config/zsh-antibody/docker
@@ -35,10 +34,14 @@ mattmc3/ez-compinit
 ~/.config/zsh-antibody/openclaw
 ~/.config/zsh-antibody/opencode
 ~/.config/zsh-antibody/just
-
-
+{{ if .area.companycam }}
+#~/.config/zsh-antibody/sign_in_solutions
+~/.config/zsh-antibody/ccam
+{{- end }}
+{{ if .area.lshq }}
 ~/.config/zsh-antibody/jenv
 ~/.config/zsh-antibody/lshq
+{{- end }}
 
 # Rust package is REQUIRED if you are using starship_prompt below
 ~/.config/zsh-antibody/rust
