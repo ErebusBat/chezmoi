@@ -19,4 +19,6 @@ if [[ -o interactive ]]; then
   else
     add-zsh-hook precmd _wt_load_completions
   fi
+
+  alias wts='wt switch'
 fi
