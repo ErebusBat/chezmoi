@@ -10,6 +10,7 @@
   "plugin": [
     "opencode-gemini-auth",
     "opencode-smart-voice-notify@latest",
+    "opencode-snip@latest",
     "@different-ai/opencode-browser"
   ],
   "mcp": {
