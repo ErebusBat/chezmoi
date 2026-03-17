@@ -18,6 +18,7 @@ rotate: random
   # Use the helper tool, if avilable as it will handle (re)building the
   # wallpapers.lua file
   if [[ -x $HOME/bin/rotate-wezterm-wallpaper ]]; then
+    echo "Calling ~/bin/rotate-wezterm-wallpaper..."
     $HOME/bin/rotate-wezterm-wallpaper
   else
     # If not... just use poor mans
@@ -33,6 +34,7 @@ allow-rotate:
 [group('Random')]
 pause-rotate:
   touch "{{ NO_ROTATE_MARKER_FILE }}"
+  just rotate-status
 
 # Show if rotation script can rotate wallpapers or not
 [group('Random')]

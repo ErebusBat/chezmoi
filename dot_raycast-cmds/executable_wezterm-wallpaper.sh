@@ -53,6 +53,8 @@ esac
 #   ;;& - "Narrow" fall through - continues matching remaining patterns
 
 case "$TASK_NAME" in
+  pause-rotate)
+    ;&
   random)
     ;&
   set-*)
@@ -69,4 +71,4 @@ case "$TASK_NAME" in
     ;;
 esac
 
-cd $WEZTERM_DIR && just $TASK_NAME
+cd $WEZTERM_DIR && just $TASK_NAME | tail -n1
