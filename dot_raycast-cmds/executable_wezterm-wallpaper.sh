@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Required parameters:
 # @raycast.schemaVersion 1
@@ -19,9 +19,9 @@ export PATH=$HOME/bin:$PATH
 WEZTERM_DIR=$HOME/.config/wezterm
 
 if [[ -x /opt/homebrew/bin/mise ]]; then
-  eval "$(/opt/homebrew/bin/mise activate bash)"
+  eval "$(/opt/homebrew/bin/mise activate zsh)"
 elif [[ -x $HOME/.local/bin/mise ]]; then
-  eval "$($HOME/.local/bin/mise activate bash)"
+  eval "$($HOME/.local/bin/mise activate zsh)"
 fi
 
 TASK_NAME=$1
@@ -33,6 +33,9 @@ if [[ -z $TASK_NAME ]]; then
 fi
 
 case "$TASK_NAME" in
+  r|R|rotate|Rotate)
+    TASK_NAME="rotate"
+    ;;
   [Ss]afe)
     TASK_NAME="disable-ah-common"
     ;;
@@ -41,8 +44,26 @@ case "$TASK_NAME" in
     ;;
 esac
 
-if [[ $TASK_NAME != random && $TASK_NAME != set-* && $TASK_NAME != enable-ah-common && $TASK_NAME != disable-ah-common ]]; then
-  TASK_NAME="set-$TASK_NAME"
-fi
+# ZSH case statement fall-through types:
+#   ;;  - Normal break (default, exits the case block)
+#   ;&  - Fall through to the next case block unconditionally
+#   ;;& - "Narrow" fall through - continues matching remaining patterns
+
+case "$TASK_NAME" in
+  random)
+    ;&
+  set-*)
+    ;&
+  rotate)
+    ;&
+  enable-ah-common)
+    ;&
+  disable-ah-common)
+    # don't add set- prefix (fall through to done)
+    ;;
+  *)
+    TASK_NAME="set-$TASK_NAME"
+    ;;
+esac
 
 cd $WEZTERM_DIR && just $TASK_NAME
