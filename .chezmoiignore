@@ -1,3 +1,5 @@
+justfile
+
 **/.DS_Store
 **/Session.vim
 .config/nvim/plugin/packer_compiled.lua
