@@ -25,3 +25,4 @@ view-wallpapers wpath=WALLPAPER_DIR width='200px':
 [group('Maintenance')]
 build-wallpapers:
   ./build-wallpapers.rb
+

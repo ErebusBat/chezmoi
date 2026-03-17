@@ -33,6 +33,9 @@ if [[ -z $TASK_NAME ]]; then
 fi
 
 case "$TASK_NAME" in
+  [Ss]top|[Pp]ause)
+    TASK_NAME="pause-rotate"
+    ;;
   r|R|rotate|Rotate)
     TASK_NAME="rotate"
     ;;

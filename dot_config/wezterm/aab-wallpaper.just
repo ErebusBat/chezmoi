@@ -1,6 +1,7 @@
 WALLPAPER_OVERRIDE := 'wallpaper.jpg'
 WALLPAPER_SRC_DIR := env('HOME') + "/.config/wezterm/wallpaper"
 WALLPAPER_CONFIG := env('HOME') + "/.config/wezterm/wallpaper.yaml"
+NO_ROTATE_MARKER_FILE := '/tmp/wezterm-wallpaper.static'
 
 alias build := rotate
 
@@ -23,10 +24,29 @@ rotate: random
     touch wezterm.lua
   fi
 
+# Allow rotate script to change wallpaper.
+[group('Random')]
+allow-rotate:
+  [[ -f "{{ NO_ROTATE_MARKER_FILE }}" ]] && rm "{{ NO_ROTATE_MARKER_FILE }}" || true
+
+# Temporarily prevent rotate script from changing wallpaper.
+[group('Random')]
+pause-rotate:
+  touch "{{ NO_ROTATE_MARKER_FILE }}"
+
+# Show if rotation script can rotate wallpapers or not
+[group('Random')]
+rotate-status:
+  #!/bin/zsh
+  if [[ -f "{{ NO_ROTATE_MARKER_FILE }}" ]]; then
+    echo "Wallpaper Rotation is paused"
+  else
+    echo "Wallpaper Rotation is not paused"
+  fi
 
 # Use a random wallpaper
-[group('Set Wallpaper')]
-random:
+[group('Random')]
+random: allow-rotate
   #!/usr/bin/env zsh
   override_file="{{ WALLPAPER_OVERRIDE }}"
   if [[ -L $override_file ]]; then
