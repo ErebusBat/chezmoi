@@ -1,287 +1,80 @@
+-- WezTerm Configuration
 -- https://wezfurlong.org/wezterm/config/lua/wezterm/index.html
-local wezterm = require 'wezterm';
-local hostname = wezterm.hostname()
--- local wallpaper_enabled = true
 
-local wallpaper_info = require('wallpaper')
-local wallpaper_to_use = wallpaper_info.File
-local wallpaper_enabled = wallpaper_info.Enabled
+local wezterm = require 'wezterm'
 
--- Defaults, can be overriden below in monitor setup
-local background_hsb = {
-  -- brightness = 0.00625,
-  brightness = 0.0125,  -- Abstract
-  -- brightness = 0.01, -- Photos
-  -- brightness = 0.05, -- Travel
-  -- brightness = 0.0,  -- black / no-pic
-}
-
-local eb_window_decorations = 'RESIZE'
-if (hostname == 'USMB-JVK937H909') then
-  -- Default is fine for work
-else
-  eb_window_decorations = 'TITLE | ' .. eb_window_decorations
+-- Determine hostname and os
+local hostname = wezterm.hostname():lower()
+local os_name = 'unknown'
+if wezterm.target_triple:find("windows") then
+  os_name = 'windows'
+elseif wezterm.target_triple:find("linux") then
+  os_name = 'linux'
+elseif wezterm.target_triple:find("darwin") then
+  os_name = 'darwin'
 end
 
---
--- Build Base Config
---
-local config = {
-  hide_tab_bar_if_only_one_tab = true,
-  tab_bar_at_bottom = true,
-  window_decorations = eb_window_decorations,
-  window_padding = {
-    left = 0,
-    right = 0,
-    top = 0,
-    bottom = 0,
-  },
-  default_prog = { "/bin/zsh" },
-  set_environment_variables = {
-    shell = "/bin/zsh",
-  },
-
-  window_close_confirmation = 'NeverPrompt',
-
-  keys = {
-    -- KEYBINDINGS REFERENCE:
-    -- | Keys                 | Action                          |
-    -- |----------------------|---------------------------------|
-    -- | ⌘+Shift+,            | Reload Configuration            |
-    -- | Ctrl+Shift+n         | Toggle Fullscreen               |
-    -- | Ctrl+Shift+LeftArrow | 🤖 <== (tmux nav)               |
-    -- | Ctrl+Shift+RightArrow| 🤖 ==> (tmux nav)               |
-    -- | ⌘+Shift+t            | Toggle Window Decorations       |
-    -- | Ctrl+Shift+\         | Split Vertical                  |
-    -- | Ctrl+Shift+-         | Split Horizontal                |
-    -- | Ctrl+Shift+f         | Search                          |
-    -- | ◆+F11                | Close Tmux Window (tmux user-key)|
-    -- | ◆+F12                | Clear Tmux Notification (tmux user-key)|
-    -- (◆ = Ctrl+Alt+Shift+Super, 🤖 = tmux pane nav)
-
-    {
-      key = ',',
-      mods = 'CMD|SHIFT',
-      action = wezterm.action.ReloadConfiguration,
-    },
-    {
-      key = 'n',
-      mods = 'CTRL|SHIFT',
-      action = wezterm.action.ToggleFullScreen,
-    },
-
-    -- TMUX Nav Keys
-    {
-      key = 'LeftArrow',
-      mods = 'CTRL|SHIFT',
-      action = wezterm.action.SendKey({
-        key = 'LeftArrow',
-        mods = 'CTRL|SHIFT',
-      }),
-    },
-    {
-      key = 'RightArrow',
-      mods = 'CTRL|SHIFT',
-      action = wezterm.action.SendKey({
-        key = 'RightArrow',
-        mods = 'CTRL|SHIFT',
-      }),
-    },
-
-    -- Toggle window title bar
-    {
-      key = 't',
-      mods = 'CMD|SHIFT',
-      action = wezterm.action.EmitEvent('toggle-window-decorations'),
-    },
-
-    -- Hyper keys (Ctrl+Alt+Shift+Cmd) for tmux user-keys
-    -- Sends tmux user-key escape sequences (defined in tmux.conf user-keys[1]/[2])
-    -- See chezmoi: dot_config/tmux/tmux.conf lines 50-54
-    {
-      key = 'F11',
-      mods = 'CTRL|ALT|SHIFT|SUPER',
-      action = wezterm.action.SendString('\x1b[91~'),
-    },
-    {
-      key = 'F12',
-      mods = 'CTRL|ALT|SHIFT|SUPER',
-      action = wezterm.action.SendString('\x1b[90~'),
-    },
-
-    -- Splits & Search
-    {
-      key = '\\',
-      mods = 'CTRL|SHIFT',
-      action = wezterm.action.SplitVertical({ domain = 'CurrentPaneDomain' }),
-    },
-    {
-      key = '-',
-      mods = 'CTRL|SHIFT',
-      action = wezterm.action.SplitHorizontal({ domain = 'CurrentPaneDomain' }),
-    },
-    {
-      key = 'f',
-      mods = 'CTRL|SHIFT',
-      action = wezterm.action.Search('CurrentSelectionOrEmptyString'),
-    },
-  },
-
-  -- See below for background
-
-  -- Color schme should be overriden by base16 shell settings,
-  -- but this provides a good default until that
-  color_scheme = "catppuccin-mocha",
-
-  -- Font Info => == !=
-  -- font = wezterm.font({
-  --   family="Comic Code Ligatures",
-  --   -- family="Fira Code",
-  --   weight="Regular",
-  --   harfbuzz_features={"calt=1", "clig=1", "liga=1"},
-  -- }),
-  -- font = wezterm.font 'Comic Code Ligatures',
-
-
-  font = wezterm.font({
-    family="ComicCodeLigatures Nerd Font",
-    -- family='Monaspace Neon',
-    -- family='Monaspace Argon',  -- This one
-    -- family='Monaspace Xenon',
-    -- family='Monaspace Radon',
-    -- family='Monaspace Krypton',
-    weight='Medium',
-    harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
-  }),
-
-  -- line_height = 1.2,
-
-  -- https://wezfurlong.org/wezterm/config/lua/config/font_rules.html
-  -- wezterm ls-fonts
-  -- wezterm ls-fonts --list-system
-  font_rules = {
-    --
-    -- Italic (comments)
-    --
-    -- {
-    --   intensity = 'Normal',
-    --   italic = true,
-    --   font = wezterm.font({
-    --     family="Monaspace Radon",
-    --     weight="ExtraLight",
-    --     stretch="Normal",
-    --     style="Normal",
-    --     harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
-    --   })
-    -- },
-
-    --
-    -- Bold (highlighting)
-    --
-    -- {
-    --   intensity = 'Bold',
-    --   italic = false,
-    --   font = wezterm.font({
-    --     family="Monaspace Krypton",
-    --     weight="Light",
-    --     stretch="Normal",
-    --     style="Normal",
-    --     harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
-    --   })
-    -- },
-  },
-
-  -- See below for font size overriding based on machine we are on
-  -- font_size = 14,
-
-  mouse_bindings = {
-    {
-      event = { Up = { streak = 1, button = 'Left' } },
-      mods = 'NONE',
-      action = wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'ClipboardAndPrimarySelection',
-    },
+-- Function to load modules based on priority (First Match Wins)
+-- The loader checks these paths in order. The FIRST one found is used; others are ignored.
+-- See docs/MODULE_SYSTEM.md for details.
+-- 1. aab.<name>.local       (Local overrides, ignored by git)
+-- 2. aab.<name>-<hostname> (Machine-specific settings)
+-- 3. aab.<name>-<os>       (OS-specific settings)
+-- 4. aab.<name>            (Default / Base settings)
+local function load_module(name)
+  local modules_to_try = {
+    'aab.' .. name .. '.local',
+    'aab.' .. name .. '-' .. hostname,
+    'aab.' .. name .. '-' .. os_name,
+    'aab.' .. name,
   }
-}
 
---
--- Clipboard
---
-config.selection_word_boundary = "|│ \t\n{}[]()\"'`<>=:;"
-
-
---
--- Font Size / Host Specific Settings
---
-config["text_background_opacity"] = 0.9
-function calc_set_font_size(window)
-  local overrides = window:get_config_overrides() or {}
-  local monitor_count = tablelength(wezterm.gui.screens()["by_name"])
-  overrides.font_size = 10
-  print(hostname .. " monitor_count: " .. monitor_count)
-
-  if (hostname == 'm4mbp.local') then
-    -- This can fail on linux, and we don't need it there so only call here
-    -- Depends if we are docked or not
-    if (monitor_count == 2)
-    then
-      background_hsb["brightness"] = 0.02
-      overrides.font_size = 10
-    else
-      overrides.font_size = 14
+  for _, mod in ipairs(modules_to_try) do
+    local success, result = pcall(require, mod)
+    if success then
+      wezterm.log_info('Loaded module: ' .. mod)
+      return result
     end
-  elseif (hostname == 'USMB-JVK937H909')  then
-    overrides.font_size = 14
-  elseif (hostname == 'thelio')  then
-    overrides.font_size = 8
-  elseif (hostname == 'dartp6')  then
-    overrides.font_size = 10
   end
-  print("Setting font_size to " .. overrides.font_size .. " for " .. hostname .. " monitors=" .. monitor_count)
 
-  window:set_config_overrides(overrides)
-end
-wezterm.on('window-config-reloaded', function(window)
-  calc_set_font_size(window)
-end)
-wezterm.on('window-resized', function(window, _pane)
-  calc_set_font_size(window)
-end)
-wezterm.on('toggle-window-decorations', function(window, _pane)
-  local overrides = window:get_config_overrides() or {}
-  local current = window:effective_config().window_decorations
-  if current:find('TITLE') then
-    overrides.window_decorations = 'RESIZE'
-  else
-    overrides.window_decorations = 'TITLE | RESIZE'
-  end
-  window:set_config_overrides(overrides)
-end)
-
---
--- Add in Background, if configured
---
--- CTRL-SHIFT-L
--- wezterm.GLOBAL.wallpaper
-if wallpaper_enabled then
-  wezterm.GLOBAL.wallpaper = wallpaper_to_use
-  config["background"] = {
-    {
-      source = {
-        File = wallpaper_to_use,
-      },
-      horizontal_align = "Center",
-      vertical_align = "Middle",
-      hsb = background_hsb,
-    },
-  }
-else
-  wezterm.GLOBAL.wallpaper = ""
-  config["text_background_opacity"] = 1.0
+  wezterm.log_info('No module found for: ' .. name)
+  return {}
 end
 
-wezterm.log_info("background:")
-wezterm.log_info(config["background"])
-wezterm.log_info("text_background_opacity:")
-wezterm.log_info(config["text_background_opacity"])
+-- Initialize config
+local config = {}
+if wezterm.config_builder then
+  config = wezterm.config_builder()
+end
+
+-- Base configuration
+config.default_prog = { "/bin/zsh" }
+config.set_environment_variables = {
+  shell = "/bin/zsh",
+}
+
+-- Load and merge modules
+local function merge_config(source)
+  if type(source) == 'table' then
+    for k, v in pairs(source) do
+      config[k] = v
+    end
+  end
+end
+
+-- Configuration Modules
+-- These modules return a table of settings (e.g., font, keys) that are merged into the main config.
+-- To add a new module:
+-- 1. Create aab/<name>.lua
+-- 2. Add '<name>' to this list.
+local modules = {'appearance', 'keys', 'wallpaper'}
+for _, name in ipairs(modules) do
+  merge_config(load_module(name))
+end
+
+-- Event Modules
+-- These modules don't return configuration settings to merge.
+-- Instead, they register event listeners (wezterm.on) for side effects like dynamic resizing.
+load_module('events')
 
 return config

@@ -11,6 +11,10 @@ _safe: disable-ah-common random
 _link_static src parent_dir=(WALLPAPER_SRC_DIR + "/"): random
   ln -s "{{ parent_dir }}{{ src }}" "{{ WALLPAPER_OVERRIDE }}"
 
+_link_static_and_pause src parent_dir=(WALLPAPER_SRC_DIR + "/"): random
+  just _link_static "{{ src }}" "{{ parent_dir }}"
+  just pause-rotate
+
 # Rotate the wallpaper now
 [group('Set Wallpaper')]
 rotate: random
@@ -60,23 +64,23 @@ random: allow-rotate
 # STATIC: Abstract - Triangle
 [group('Set Wallpaper')]
 @set-abs-triangle:
-  just _link_static "abstract/cool-futuristic-abstract-background-with-shining-neon-lights.jpg"
+  just _link_static_and_pause "abstract/cool-futuristic-abstract-background-with-shining-neon-lights.jpg"
 
 
 # STATIC: Abstract - Triangle
 [group('Set Wallpaper')]
 @set-abs-grid:
-  just _link_static "abstract/vecteezy_futuristic-technological-grid-background-digital-futurist_7207818.jpg"
+  just _link_static_and_pause "abstract/vecteezy_futuristic-technological-grid-background-digital-futurist_7207818.jpg"
 
 # STATIC: SR71-space
 [group('Set Wallpaper')]
 @set-sr71:
-  just _link_static "photos/SR71-Blackbird-Front.jpg"
+  just _link_static_and_pause "photos/SR71-Blackbird-Front.jpg"
 
 # STATIC: DooM Slayer Mark
 [group('Set Wallpaper')]
 @set-slayer-mark:
-  just _link_static "doom/slayer_mark_neon.jpg"
+  just _link_static_and_pause "doom/slayer_mark_neon.jpg"
 
 [group('Maintenance')]
 enable-ah-common: random _enable-ah-common rotate

@@ -4,72 +4,20 @@
 ################################################################################
 ## Configuration
 ################################################################################
-STATIC_FILE=/tmp/wezterm-wallpaper.static
-CONFIG_FILE=~/.config/Wezterm/wezterm.lua
-WALLPAPER_LUA_FILE=~/.config/wezterm/wallpapers.lua
-
-################################################################################
-## Helper Functions
-################################################################################
-function make_static() {
-  if [[ -f $STATIC_FILE ]]; then
-    echo "Already in static mode! $STATIC_FILE exists"
-  else
-    touch $STATIC_FILE
-    echo "Wezterm wallpaper will not rotate"
-  fi
-
-  exit 0
-}
-
-function build_wallpapers() {
-  # Check to see if we have mise, if not try to load it at a well known location
-  if ! command -v mise >/dev/null 2>&1; then
-    mise_plugin_path=$HOME/.config/zsh-antibody/mise/mise.plugin.zsh
-    if [[ -f $mise_plugin_path ]]; then
-      source $mise_plugin_path
-    else
-      echo "⚠️WARNING: Could not find '${mise_plugin_path:t}'; things will be broken!"
-    fi
-  fi
-
-  # cd into the wezterm config dir so mise picks up the local mise.toml
-  # if we are not in the directory then the mise.toml will not be used
-  cd ~/.config/wezterm && \
-    mise x ruby -- ~/.config/wezterm/build-wallpapers.rb
-}
-
-function touch_config() {
-  if [[ ! -s $WALLPAPER_LUA_FILE ]]; then
-    echo "WALLPAPER_LUA_FILE ($WALLPAPER_LUA_FILE) does not exist, attempting to generate"
-    build_wallpapers
-  fi
-  if [[ -x ~/.config/wezterm/build-wallpapers.rb ]]; then
-    echo "Attempting to re-generate wallpapers"
-    build_wallpapers
-  else
-    touch $CONFIG_FILE
-  fi
-}
+CONFIG_DIR=~/.config/wezterm
+RUBY_SCRIPT=${CONFIG_DIR}/rotate-wallpaper
 
 ################################################################################
 ## Entry Point
 ################################################################################
-if [[ -z $1 ]]; then
-  if [[ -f $STATIC_FILE ]]; then
-    echo "Not rotating; $STATIC_FILE exists"
-    exit 1
-  fi
-  touch_config
-elif [[ $1 == "resume" || $1 == "force" ]]; then
-  if [[ -f $STATIC_FILE ]]; then
-    echo "Removing static file $STATIC_FILE"
-    rm $STATIC_FILE
-  fi
-  touch_config
-  exit 0
-else
-  make_static
+if [[ ! -x $RUBY_SCRIPT ]]; then
+  echo "ERROR: Could not find wallpaper rotation script: $RUBY_SCRIPT"
+  exit 1
 fi
 
+if ! command -v mise >/dev/null 2>&1; then
+  echo "ERROR: Could not find mise in PATH"
+  exit 1
+fi
 
+mise x ruby@3.4 -- "$RUBY_SCRIPT"
