@@ -45,16 +45,16 @@ local config = {
 
   keys = {
     -- KEYBINDINGS REFERENCE:
-    -- | Keys                  | Action                          |
-    -- |-----------------------|---------------------------------|
+    -- | Keys                 | Action                          |
+    -- |----------------------|---------------------------------|
     -- | ⌘+Shift+,            | Reload Configuration            |
     -- | Ctrl+Shift+n         | Toggle Fullscreen               |
     -- | Ctrl+Shift+LeftArrow | 🤖 <== (tmux nav)               |
     -- | Ctrl+Shift+RightArrow| 🤖 ==> (tmux nav)               |
     -- | ⌘+Shift+t            | Toggle Window Decorations       |
     -- | Ctrl+Shift+\         | Split Vertical                  |
-    -- | Ctrl+Shift+-        | Split Horizontal                |
-    -- | Ctrl+Shift+f        | Search                          |
+    -- | Ctrl+Shift+-         | Split Horizontal                |
+    -- | Ctrl+Shift+f         | Search                          |
     -- | ◆+F11                | Close Tmux Window (tmux user-key)|
     -- | ◆+F12                | Clear Tmux Notification (tmux user-key)|
     -- (◆ = Ctrl+Alt+Shift+Super, 🤖 = tmux pane nav)
