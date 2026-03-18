@@ -38,7 +38,7 @@ fi
 
 case "$action" in
   set)
-    tmux set -w -t "$target" window-status-style "fg=white,bg=red"
+    tmux set -w -t "$target" window-status-style "fg=default,bg=red"
     ;;
   clear)
     tmux set -w -t "$target" window-status-style default

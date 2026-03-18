@@ -7,10 +7,7 @@ windows:
   panes:
     - shell_command:
       - cd ~/src/erebusbat/myserver/routes
-      - just route-home
-    - shell_command:
-      - cd ~/src/erebusbat/myserver/routes
-      - just ls-vpn off
+      - just
 
 - window_name: 🧠
   panes:
