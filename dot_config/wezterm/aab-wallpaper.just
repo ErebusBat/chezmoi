@@ -1,8 +1,8 @@
 WEZTERM_CFG_DIR := env('HOME') + "/.config/wezterm"
 WALLPAPER_OVERRIDE := 'wallpaper.jpg'
-WALLPAPER_SRC_DIR := env('HOME') + WEZTERM_CFG_DIR + "/wallpaper"
+WALLPAPER_SRC_DIR := WEZTERM_CFG_DIR + "/wallpaper"
 WALLPAPER_OVERRIDE_FULL_PATH := WEZTERM_CFG_DIR + '/' + WALLPAPER_OVERRIDE
-WALLPAPER_CONFIG := env('HOME') + WEZTERM_CFG_DIR + "/wallpaper.yaml"
+WALLPAPER_CONFIG := WEZTERM_CFG_DIR + "/wallpaper.yaml"
 NO_ROTATE_MARKER_FILE := '/tmp/wezterm-wallpaper.static'
 LOG_FILE := '/tmp/wallpaper.log'
 
