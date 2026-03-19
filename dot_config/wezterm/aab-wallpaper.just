@@ -1,6 +1,8 @@
+WEZTERM_CFG_DIR := env('HOME') + "/.config/wezterm"
 WALLPAPER_OVERRIDE := 'wallpaper.jpg'
-WALLPAPER_SRC_DIR := env('HOME') + "/.config/wezterm/wallpaper"
-WALLPAPER_CONFIG := env('HOME') + "/.config/wezterm/wallpaper.yaml"
+WALLPAPER_SRC_DIR := env('HOME') + WEZTERM_CFG_DIR + "/wallpaper"
+WALLPAPER_OVERRIDE_FULL_PATH := WEZTERM_CFG_DIR + '/' + WALLPAPER_OVERRIDE
+WALLPAPER_CONFIG := env('HOME') + WEZTERM_CFG_DIR + "/wallpaper.yaml"
 NO_ROTATE_MARKER_FILE := '/tmp/wezterm-wallpaper.static'
 LOG_FILE := '/tmp/wallpaper.log'
 
@@ -23,6 +25,23 @@ _link_static src parent_dir=(WALLPAPER_SRC_DIR + "/"): random
 _link_static_and_pause src parent_dir=(WALLPAPER_SRC_DIR + "/"): random
   just _link_static "{{ src }}" "{{ parent_dir }}"
   just pause-rotate
+
+# Remove wallpaper
+[group('Set Wallpaper')]
+none:
+  #!/usr/bin/env zsh
+  # override_file="{{ WALLPAPER_OVERRIDE }}"
+  override_file="{{ WALLPAPER_OVERRIDE_FULL_PATH }}"
+  if [[ -L $override_file ]]; then
+    rm $override_file || true
+  elif [[ -e $override_file ]]; then
+    hash=$(shasum $override_file | awk '{ print $1 }')
+    backup_file="${override_file:r}.${hash}.bak.${override_file:e}"
+    echo "⚠️ WARNING: wallpaper is not a symlink!\n\tBacking up to $backup_file" >&2
+    mv -vf $override_file $backup_file
+  else
+    echo "No ${override_file:t} found, nothing to be done."
+  fi
 
 # Rotate the wallpaper now, optional group(s) to use (comma-separated)
 [group('Set Wallpaper')]
@@ -75,13 +94,7 @@ rotate-status:
 # Use a random wallpaper
 [group('Random')]
 random: allow-rotate
-  #!/usr/bin/env zsh
-  override_file="{{ WALLPAPER_OVERRIDE }}"
-  if [[ -L $override_file ]]; then
-    rm $override_file || true
-  elif [[ -e $override_file ]]; then
-    echo "⚠️ WARNING: wallpaper is not a symlink, not removing!" >&2
-  fi
+  just none
 
 # STATIC: Abstract - Triangle
 [group('Set Wallpaper')]
