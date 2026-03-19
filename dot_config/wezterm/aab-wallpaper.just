@@ -30,6 +30,12 @@ rotate: random
     touch wezterm.lua
   fi
 
+# Use a random wallpaper from one or more groups (comma-separated)
+[group('Set Wallpaper')]
+@set-group groups: allow-rotate
+  #!/usr/bin/env zsh
+  mise exec -- ruby rotate-wallpaper --group "{{ groups }}"
+
 # Allow rotate script to change wallpaper.
 [group('Random')]
 allow-rotate:

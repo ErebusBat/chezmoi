@@ -25,6 +25,7 @@ elif [[ -x $HOME/.local/bin/mise ]]; then
 fi
 
 TASK_NAME=$1
+typeset -a TASK_ARGS
 
 # if [[ -z $TASK_NAME || $TASK_NAME == "." ]]; then
 if [[ -z $TASK_NAME ]]; then
@@ -40,10 +41,12 @@ case "$TASK_NAME" in
     TASK_NAME="rotate"
     ;;
   [Ss]afe)
-    TASK_NAME="disable-ah-common"
+    TASK_NAME="group-disable"
+    TASK_ARGS=("ah")
     ;;
   [Uu]nsafe)
-    TASK_NAME="enable-ah-common"
+    TASK_NAME="group-enable"
+    TASK_ARGS=("ah")
     ;;
 esac
 
@@ -57,18 +60,20 @@ case "$TASK_NAME" in
     ;&
   random)
     ;&
+  set-group)
+    ;&
   set-*)
     ;&
   rotate)
     ;&
-  enable-ah-common)
+  group-enable)
     ;&
-  disable-ah-common)
-    # don't add set- prefix (fall through to done)
+  group-disable)
     ;;
   *)
-    TASK_NAME="set-$TASK_NAME"
+    TASK_ARGS=("$TASK_NAME")
+    TASK_NAME="set-group"
     ;;
 esac
 
-cd $WEZTERM_DIR && just $TASK_NAME | tail -n1
+cd $WEZTERM_DIR && just "$TASK_NAME" "${TASK_ARGS[@]}" | tail -n1
