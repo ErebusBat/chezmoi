@@ -27,10 +27,13 @@ fi
 TASK_NAME=$1
 typeset -a TASK_ARGS
 
-# if [[ -z $TASK_NAME || $TASK_NAME == "." ]]; then
-if [[ -z $TASK_NAME ]]; then
+if [[ $TASK_NAME == "." ]]; then
+  TASK_NAME=rotate
+elif [[ -z $TASK_NAME ]]; then
   cd $WEZTERM_DIR && just _safe
   exit 0
+elif [[ $TASK_NAME == "noah" ]]; then
+  cd $WEZTERM_DIR && just group-disable ah
 fi
 
 case "$TASK_NAME" in

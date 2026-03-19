@@ -15,6 +15,9 @@ groups:
   ah:
     enabled: false
     boost: 8
+  ddlg:
+    enabled: false
+    boost: 15
 paths:
 - <<: *ah_common
   path: ~/.config/wezterm/wallpaper/photos/ah_20230216.jpeg
@@ -27,6 +30,12 @@ paths:
   weight: 5
   groups:
     - family
+- path: ~/.config/wezterm/wallpaper/fam
+  groups:
+    - family
+- path: ~/.config/wezterm/wallpaper/ddlg_wall
+  groups:
+    - ddlg
 - path: ~/.config/wezterm/wallpaper/photos/albus*
   weight: 5
   groups:

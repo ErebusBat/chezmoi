@@ -8,6 +8,8 @@ alias build := rotate
 [default]
 _safe: random
   just group-disable ah
+  just group-disable ddlg
+  just rotate
 
 _link_static src parent_dir=(WALLPAPER_SRC_DIR + "/"): random
   ln -s "{{ parent_dir }}{{ src }}" "{{ WALLPAPER_OVERRIDE }}"
@@ -16,18 +18,25 @@ _link_static_and_pause src parent_dir=(WALLPAPER_SRC_DIR + "/"): random
   just _link_static "{{ src }}" "{{ parent_dir }}"
   just pause-rotate
 
-# Rotate the wallpaper now
+# Rotate the wallpaper now, optional group(s) to use (comma-separated)
 [group('Set Wallpaper')]
-rotate: random
+rotate group="": random
   #!/usr/bin/env zsh
   # Use the helper tool, if avilable as it will handle (re)building the
   # wallpapers.lua file
-  if [[ -x $HOME/bin/rotate-wezterm-wallpaper ]]; then
+  if command -v mise &>/dev/null; then
+    mise x ruby -- ./rotate-wallpaper {{ if group == "" { '' } else { '--group=' + group } }}
+  elif [[ -x $HOME/bin/rotate-wezterm-wallpaper ]]; then
     echo "Calling ~/bin/rotate-wezterm-wallpaper..."
-    $HOME/bin/rotate-wezterm-wallpaper
+    $HOME/bin/rotate-wezterm-wallpaper {{ group }}
   else
-    # If not... just use poor mans
-    touch wezterm.lua
+    if [[ -z "{{ group }}" ]]; then
+      # If not... just use poor mans
+      touch wezterm.lua
+    else
+      echo "ERROR: You can not specify a group if you do not have the helper scripts installed!"
+      exit 1
+    fi
   fi
 
 # Use a random wallpaper from one or more groups (comma-separated)
@@ -89,11 +98,19 @@ random: allow-rotate
 @set-slayer-mark:
   just _link_static_and_pause "doom/slayer_mark_neon.jpg"
 
+
+# Show/parse config can specify 0-n groups (comma-separated)
+[group('Maintenance')]
+show-config group="":
+  mise x ruby -- ./rotate-wallpaper -v --dry-run {{ if group == "" { '' } else { '--group=' + group } }}
+
+# Modify config to enable given group
 [group('Maintenance')]
 group-enable name: random
   just _set-group-enabled "{{ name }}" "true"
   just rotate
 
+# Modify config to disable given group
 [group('Maintenance')]
 group-disable name: random
   just _set-group-enabled "{{ name }}" "false"
