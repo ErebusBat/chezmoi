@@ -6,7 +6,8 @@ NO_ROTATE_MARKER_FILE := '/tmp/wezterm-wallpaper.static'
 alias build := rotate
 
 [default]
-_safe: disable-ah-common random
+_safe: random
+  just group-disable ah
 
 _link_static src parent_dir=(WALLPAPER_SRC_DIR + "/"): random
   ln -s "{{ parent_dir }}{{ src }}" "{{ WALLPAPER_OVERRIDE }}"
@@ -83,29 +84,79 @@ random: allow-rotate
   just _link_static_and_pause "doom/slayer_mark_neon.jpg"
 
 [group('Maintenance')]
-enable-ah-common: random _enable-ah-common rotate
-
-_enable-ah-common:
-  #!/usr/bin/env python3
-  from pathlib import Path
-  import re
-  path = Path("{{ WALLPAPER_CONFIG }}")
-  text = path.read_text()
-  updated, count = re.subn(r'(^ah_common: &ah_common\n\s+enabled:\s+)(true|false)\b', r'\1true', text, count=1, flags=re.MULTILINE)
-  if count != 1:
-      raise SystemExit(f"Could not update ah_common.enabled in {path}")
-  path.write_text(updated)
+group-enable name: random
+  just _set-group-enabled "{{ name }}" "true"
+  just rotate
 
 [group('Maintenance')]
-disable-ah-common: random _disable-ah-common rotate
+group-disable name: random
+  just _set-group-enabled "{{ name }}" "false"
+  just rotate
 
-_disable-ah-common:
+_set-group-enabled name value:
   #!/usr/bin/env python3
   from pathlib import Path
   import re
+
   path = Path("{{ WALLPAPER_CONFIG }}")
   text = path.read_text()
-  updated, count = re.subn(r'(^ah_common: &ah_common\n\s+enabled:\s+)(true|false)\b', r'\1false', text, count=1, flags=re.MULTILINE)
-  if count != 1:
-      raise SystemExit(f"Could not update ah_common.enabled in {path}")
-  path.write_text(updated)
+
+  group_name = "{{ name }}"
+  value = "{{ value }}"
+
+  lines = text.splitlines(keepends=True)
+
+  groups_start = None
+  for i, line in enumerate(lines):
+      if re.match(r"^groups:\s*$", line):
+          groups_start = i
+          break
+
+  if groups_start is None:
+      raise SystemExit(f"Could not find top-level 'groups:' block in {path}")
+
+  group_start = None
+  group_end = None
+
+  i = groups_start + 1
+  while i < len(lines):
+      line = lines[i]
+
+      if line and not line.startswith(" "):
+          break
+
+      if re.match(rf"^  {re.escape(group_name)}:\s*$", line):
+          group_start = i
+          j = i + 1
+          while j < len(lines):
+              next_line = lines[j]
+              if next_line and not next_line.startswith(" "):
+                  break
+              if re.match(r"^  [^\s].*:\s*$", next_line):
+                  break
+              j += 1
+          group_end = j
+          break
+
+      i += 1
+
+  if group_start is None:
+      raise SystemExit(f"Group '{group_name}' not found in {path}")
+
+  enabled_index = None
+  for k in range(group_start + 1, group_end):
+      if re.match(r"^    enabled:\s+(true|false)\b", lines[k]):
+          enabled_index = k
+          break
+
+  if enabled_index is not None:
+      lines[enabled_index] = re.sub(
+          r"(^    enabled:\s+)(true|false)\b",
+          rf"\1{value}",
+          lines[enabled_index],
+          count=1,
+      )
+  else:
+      lines.insert(group_end, f"    enabled: {value}\n")
+
+  path.write_text("".join(lines))

@@ -3,6 +3,7 @@
 require 'optparse'
 require 'pathname'
 require 'yaml'
+require_relative 'lib/wallpaper_config'
 
 STATIC_FILE = Pathname.new('/tmp/wezterm-wallpaper.static').freeze
 CONFIG_FILE = Pathname.new('~/.config/wezterm/wallpaper.yaml').expand_path.freeze
@@ -10,7 +11,7 @@ LINK_TARGET = Pathname.new('~/.config/wezterm/wallpaper.jpg').expand_path.freeze
 SUPPORTED_EXTENSIONS = %w[.jpg .jpeg .png .webp .gif .bmp .tif .tiff].freeze
 
 class WallpaperRotator
-  Entry = Struct.new(:path, :weight, :source, keyword_init: true)
+  Entry = Struct.new(:path, :weight, :source, :weight_detail, keyword_init: true)
 
   def initialize(config_file:, static_file:, link_target:, force:, dry_run:, verbose_level:)
     @config_file = config_file
@@ -24,7 +25,8 @@ class WallpaperRotator
   def run
     enforce_static_mode
 
-    entries = build_weighted_entries
+    config_entries = parse_config
+    entries = build_weighted_entries(config_entries)
     abort('No valid wallpaper candidates found from configuration.') if entries.empty?
 
     selection = choose_weighted(entries)
@@ -47,10 +49,10 @@ class WallpaperRotator
         marker = entry.equal?(chosen) ? color('->', :pick) : '  '
 
         puts format(
-          '%s %s=%-4d %s=%-4d %s=[%4d..%-4d] %s %s',
+          '%s %s=%-20s %s=%-4d %s=[%4d..%-4d] %s %s',
           marker,
           color('weight', :label),
-          entry.weight,
+          entry.weight_detail || entry.weight.to_s,
           color('sum', :label),
           running,
           color('range', :label),
@@ -92,37 +94,26 @@ class WallpaperRotator
   end
 
   def parse_config
-    abort("Config file not found: #{@config_file}") unless @config_file.file?
-
-    loaded = if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('3.1')
-      YAML.load(@config_file.read, aliases: true)
-    else
-      YAML.load(@config_file.read)
-    end
-
-    unless loaded.is_a?(Hash) && loaded['paths'].is_a?(Array)
-      abort("Invalid wallpaper config format in #{@config_file}; expected top-level 'paths' array")
-    end
-
-    loaded['paths']
+    WallpaperConfig.new.parse(@config_file)
+  rescue WallpaperConfig::ConfigError => e
+    abort(e.message)
   end
 
-  def build_weighted_entries
-    config_paths = parse_config
-    excluded = collect_excluded_paths(config_paths)
+  def build_weighted_entries(config_entries)
+    excluded = collect_excluded_paths(config_entries)
 
     seen = {}
     entries = []
 
-    config_paths.each do |entry|
-      source_path = entry['path']
+    config_entries.each do |entry|
+      source_path = entry.path
       next if source_path.nil? || source_path.to_s.strip.empty?
 
-      enabled = entry.fetch('enabled', true)
+      enabled = entry.effective_enabled?
       next unless enabled
 
-      weight = entry.fetch('weight', 1).to_i
-      recurse = entry.fetch('recurse', 255).to_i
+      weight = entry.effective_weight
+      recurse = entry.recurse.to_i
       next if weight <= 0
 
       expand_paths(source_path.to_s, recurse: recurse).each do |path|
@@ -132,7 +123,12 @@ class WallpaperRotator
         next if seen.key?(real.to_s)
 
         seen[real.to_s] = true
-        entries << Entry.new(path: real, weight: weight, source: source_path)
+        entries << Entry.new(
+          path: real,
+          weight: weight,
+          source: source_path,
+          weight_detail: entry.weight_breakdown
+        )
       rescue Errno::ENOENT
         next
       end
@@ -141,17 +137,17 @@ class WallpaperRotator
     entries
   end
 
-  def collect_excluded_paths(config_paths)
+  def collect_excluded_paths(config_entries)
     excluded = {}
 
-    config_paths.each do |entry|
-      source_path = entry['path']
+    config_entries.each do |entry|
+      source_path = entry.path
       next if source_path.nil? || source_path.to_s.strip.empty?
 
-      enabled = entry.fetch('enabled', true)
+      enabled = entry.effective_enabled?
       next if enabled
 
-      recurse = entry.fetch('recurse', 255).to_i
+      recurse = entry.recurse.to_i
       expand_paths(source_path.to_s, recurse: recurse).each do |path|
         next unless wallpaper_file?(path)
         real = path.realpath

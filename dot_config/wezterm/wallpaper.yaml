@@ -1,21 +1,44 @@
 ah_common: &ah_common
   enabled: false
   weight: 7
+groups:
+  default:
+  family:
+    boost: 7
+    enabled: true
+  pets:
+  abstract:
+  doom:
+  ah:
+    enabled: false
 paths:
 - <<: *ah_common
   path: ~/.config/wezterm/wallpaper/photos/ah_20230216.jpeg
   weight: 10
+  groups:
+    - ah
 - <<: *ah_common
   path: ~/.config/wezterm/wallpaper/photos/ah_*
+  groups:
+    - ah
 - path: ~/.config/wezterm/wallpaper/photos/linux_*
   enabled: false
 - path: ~/.config/wezterm/wallpaper/photos/bash*
   weight: 5
+  groups:
+    - family
 - path: ~/.config/wezterm/wallpaper/photos/albus*
   weight: 5
+  groups:
+    - family
+    - pets
 - path: ~/.config/wezterm/wallpaper/abstract
   weight: 3
+  groups:
+    - abstract
 - path: ~/.config/wezterm/wallpaper/doom
   weight: 3
+  groups:
+    - doom
 - path: ~/.config/wezterm/wallpaper
   weight: 1
