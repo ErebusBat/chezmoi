@@ -9,9 +9,12 @@ groups:
     enabled: true
   pets:
   abstract:
+    boost: 1
   doom:
+    boost: 3
   ah:
     enabled: false
+    boost: 8
 paths:
 - <<: *ah_common
   path: ~/.config/wezterm/wallpaper/photos/ah_20230216.jpeg
