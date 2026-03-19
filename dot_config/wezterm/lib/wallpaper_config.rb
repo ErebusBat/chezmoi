@@ -24,6 +24,12 @@ class WallpaperConfig
 
   Group = Struct.new(:name, :boost, :enabled, keyword_init: true)
 
+  def self.sort_entries_for_display(entries)
+    entries.sort_by do |entry|
+      [-entry.weight.to_i, entry.path.to_s]
+    end
+  end
+
   def parse(config_path, selected_groups: nil)
     config_path = Pathname.new(config_path).expand_path
     unless config_path.file?

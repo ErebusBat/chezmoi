@@ -45,7 +45,7 @@ class WallpaperRotator
       )
 
       running = 0
-      entries.each do |entry|
+      WallpaperConfig.sort_entries_for_display(entries).each do |entry|
         range_start = running
         running += entry.weight
         range_end = running - 1
