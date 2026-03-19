@@ -23,7 +23,7 @@ APPS=(
   /Applications/Google\ Chrome.app
 
   #-- Communications
-  /Applications/Granola.app
+  /Applications/OpenOats.app
   /Applications/Slack.app
   /System/Applications/Messages.app
   /Applications/Spotify.app
