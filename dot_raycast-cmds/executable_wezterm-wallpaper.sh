@@ -27,16 +27,18 @@ fi
 TASK_NAME=$1
 typeset -a TASK_ARGS
 
-if [[ $TASK_NAME == "." ]]; then
-  TASK_NAME=rotate
-elif [[ -z $TASK_NAME ]]; then
-  cd $WEZTERM_DIR && just _safe
-  exit 0
-elif [[ $TASK_NAME == "noah" ]]; then
-  cd $WEZTERM_DIR && just group-disable ah
-fi
-
 case "$TASK_NAME" in
+  .)
+    TASK_NAME="rotate"
+    ;;
+  "")
+    cd $WEZTERM_DIR && just _safe
+    exit 0
+    ;;
+  noah)
+    cd $WEZTERM_DIR && just group-disable ah
+    exit 0
+    ;;
   [Ss]top|[Pp]ause)
     TASK_NAME="pause-rotate"
     ;;
@@ -44,12 +46,12 @@ case "$TASK_NAME" in
     TASK_NAME="rotate"
     ;;
   [Ss]afe)
-    TASK_NAME="group-disable"
-    TASK_ARGS=("ah")
+    cd $WEZTERM_DIR && just _safe
+    exit 0
     ;;
   [Uu]nsafe)
-    TASK_NAME="group-enable"
-    TASK_ARGS=("ah")
+    cd $WEZTERM_DIR && just _unsafe
+    exit 0
     ;;
 esac
 

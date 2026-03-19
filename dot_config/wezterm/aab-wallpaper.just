@@ -12,6 +12,11 @@ _safe: random
   just group-disable ddlg
   just rotate
 
+_unsafe: random
+  just group-enable ah
+  just group-enable ddlg
+  just rotate
+
 _link_static src parent_dir=(WALLPAPER_SRC_DIR + "/"): random
   ln -s "{{ parent_dir }}{{ src }}" "{{ WALLPAPER_OVERRIDE }}"
 
@@ -48,7 +53,7 @@ rotate group="": random
 
 # Allow rotate script to change wallpaper.
 [group('Random')]
-allow-rotate:
+@allow-rotate:
   [[ -f "{{ NO_ROTATE_MARKER_FILE }}" ]] && rm "{{ NO_ROTATE_MARKER_FILE }}" || true
 
 # Temporarily prevent rotate script from changing wallpaper.
@@ -113,7 +118,6 @@ show-config group="":
 [group('Maintenance')]
 group-enable name: random
   just _set-group-enabled "{{ name }}" "true"
-  just rotate
 
 # Modify config to disable given group
 [group('Maintenance')]
