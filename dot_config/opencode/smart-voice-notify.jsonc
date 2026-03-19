@@ -57,7 +57,7 @@
     // ============================================================
 
     // Enable TTS reminder if user doesn't respond after sound notification
-    "enableTTSReminder": true,
+    "enableTTSReminder": false,
 
     // Delay (in seconds) before TTS reminder fires
     // Set globally or per-notification type
