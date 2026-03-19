@@ -8,6 +8,7 @@ require_relative 'lib/wallpaper_config'
 STATIC_FILE = Pathname.new('/tmp/wezterm-wallpaper.static').freeze
 CONFIG_FILE = Pathname.new('~/.config/wezterm/wallpaper.yaml').expand_path.freeze
 LINK_TARGET = Pathname.new('~/.config/wezterm/wallpaper.jpg').expand_path.freeze
+LOG_FILE = Pathname.new('/tmp/wallpaper.log').freeze
 SUPPORTED_EXTENSIONS = %w[.jpg .jpeg .png .webp .gif .bmp .tif .tiff].freeze
 
 class WallpaperRotator
@@ -80,6 +81,7 @@ class WallpaperRotator
     end
 
     update_symlink(chosen.path)
+    write_log(chosen.path)
     puts "-> #{chosen.path}"
     0
   end
@@ -288,6 +290,11 @@ class WallpaperRotator
     return '' unless extra_verbose?
 
     ' ' + color("(from #{entry.source})", :source)
+  end
+
+  def write_log(chosen_path, log_file: LOG_FILE, now: Time.now)
+    content = "[#{now.strftime('%a %b %d %H:%M:%S %Z %Y')}]\n-> #{chosen_path}\n"
+    File.write(log_file.to_s, content)
   end
 end
 

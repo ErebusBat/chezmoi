@@ -2,6 +2,7 @@ WALLPAPER_OVERRIDE := 'wallpaper.jpg'
 WALLPAPER_SRC_DIR := env('HOME') + "/.config/wezterm/wallpaper"
 WALLPAPER_CONFIG := env('HOME') + "/.config/wezterm/wallpaper.yaml"
 NO_ROTATE_MARKER_FILE := '/tmp/wezterm-wallpaper.static'
+LOG_FILE := '/tmp/wallpaper.log'
 
 alias build := rotate
 
@@ -98,6 +99,10 @@ random: allow-rotate
 @set-slayer-mark:
   just _link_static_and_pause "doom/slayer_mark_neon.jpg"
 
+# Show last log
+[group('Maintenance')]
+log:
+  cat {{ LOG_FILE }}
 
 # Show/parse config can specify 0-n groups (comma-separated)
 [group('Maintenance')]
