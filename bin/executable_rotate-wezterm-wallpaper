@@ -6,6 +6,12 @@
 ################################################################################
 CONFIG_DIR=~/.config/wezterm
 RUBY_SCRIPT=${CONFIG_DIR}/rotate-wallpaper
+MISE_CANDIDATES=(
+  /opt/homebrew/bin/mise
+  /usr/local/bin/mise
+  "$HOME/.local/bin/mise"
+  "$HOME/.cargo/bin/mise"
+)
 
 ################################################################################
 ## Entry Point
@@ -15,9 +21,20 @@ if [[ ! -x $RUBY_SCRIPT ]]; then
   exit 1
 fi
 
-if ! command -v mise >/dev/null 2>&1; then
-  echo "ERROR: Could not find mise in PATH"
+MISE_BIN="$(command -v mise 2>/dev/null || true)"
+if [[ -z $MISE_BIN ]]; then
+  for candidate in $MISE_CANDIDATES; do
+    if [[ -x $candidate ]]; then
+      MISE_BIN=$candidate
+      break
+    fi
+  done
+fi
+
+if [[ -z $MISE_BIN ]]; then
+  echo "ERROR: Could not find mise in PATH or common install locations"
   exit 1
 fi
 
-mise x ruby@3.4 -- "$RUBY_SCRIPT"
+echo "\n[$(date)]"
+"$MISE_BIN" x ruby@3.4 -- "$RUBY_SCRIPT"
