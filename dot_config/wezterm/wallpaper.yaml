@@ -13,10 +13,10 @@ groups:
   doom:
     boost: 3
   ah:
-    enabled: true
+    enabled: false
     boost: 8
   ddlg:
-    enabled: true
+    enabled: false
     boost: 15
 paths:
 - <<: *ah_common
