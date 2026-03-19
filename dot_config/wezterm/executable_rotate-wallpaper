@@ -299,7 +299,14 @@ options = {
 }
 
 parser = OptionParser.new do |opts|
-  opts.banner = 'Usage: rotate-wallpaper [--force] [--dry-run] [-v] [static|resume]'
+  opts.banner = <<~BANNER
+    Usage: rotate-wallpaper [--force] [--dry-run] [-v] [-g group[,group...]] [static|resume]
+
+    Examples:
+      rotate-wallpaper -g pets
+      rotate-wallpaper --group=family,pets --dry-run -v
+      rotate-wallpaper -g family -g pets
+  BANNER
 
   opts.on('--force', 'If static mode marker exists, remove it and rotate') do
     options[:force] = true
