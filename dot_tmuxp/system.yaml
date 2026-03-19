@@ -5,11 +5,15 @@ windows:
   focus: true
   panes:
     - shell_command:
-      - z vimwiki
-      - oc -s ses_369a74a7fffeNcT4GE4dvkca7r
+      - z day_planner
+      # Day Planner - Session      niVQPll3K
+      - oc -s ses_3040f5ed1ffeyGQvdniVQPll3K
+
+      # vimlog - root session        E4dvkca7r
+      # - oc -s ses_369a74a7fffeNcT4GE4dvkca7r
     - shell_command:
       - z vimwiki
-      - vimlog -- 0
+      # - vimlog -- 0
 
 - window_name: zsh
   panes:
