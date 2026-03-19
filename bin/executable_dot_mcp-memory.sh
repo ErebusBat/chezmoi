@@ -12,8 +12,15 @@
 #   pip install mcp-memory-service
 #   pip install onnxruntime
 #
+# AS OF 2026-MAR-19 GitHub has suspended the doobidoo org :(
+#   Luckily, because of this install procedure, I was able to take the code we had locally and mirror it.
+#   See Gitea Below
 # Latest from Git (editable):
 #   git clone https://github.com/doobidoo/mcp-memory-service.git ~/.local/share/mcp-memory-service/src
+#   ~/.local/share/mcp-memory-service/.venv/bin/pip install -e ~/.local/share/mcp-memory-service/src
+#
+# Gitea: Latest from Git (editable):
+#   git clone ssh://git@gitea.erebusbat.net:222/ErebusBat/doobidoo_mcp-memory-service.git ~/.local/share/mcp-memory-service/src
 #   ~/.local/share/mcp-memory-service/.venv/bin/pip install -e ~/.local/share/mcp-memory-service/src
 #
 # Test:
