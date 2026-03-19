@@ -49,10 +49,8 @@ class WallpaperRotator
         marker = entry.equal?(chosen) ? color('->', :pick) : '  '
 
         puts format(
-          '%s %s=%-20s %s=%-4d %s=[%4d..%-4d] %s %s',
+          '%s %s=%-4d %s=[%4d..%-4d] %s %s',
           marker,
-          color('weight', :label),
-          entry.weight_detail || entry.weight.to_s,
           color('sum', :label),
           running,
           color('range', :label),
@@ -61,6 +59,14 @@ class WallpaperRotator
           short_path(entry.path),
           source_suffix(entry)
         )
+
+        puts format(
+          '%11s%s=%s',
+          '',
+          color('weight', :label),
+          entry.weight_detail || entry.weight.to_s
+        )
+        puts
       end
       puts
     end
