@@ -20,7 +20,10 @@ class WallpaperRotator
     @force = force
     @dry_run = dry_run
     @verbose_level = verbose_level
+    @selected_groups = []
   end
+
+  attr_accessor :selected_groups
 
   def run
     enforce_static_mode
@@ -100,7 +103,7 @@ class WallpaperRotator
   end
 
   def parse_config
-    WallpaperConfig.new.parse(@config_file)
+    WallpaperConfig.new.parse(@config_file, selected_groups: @selected_groups)
   rescue WallpaperConfig::ConfigError => e
     abort(e.message)
   end
@@ -292,6 +295,7 @@ options = {
   force: false,
   dry_run: false,
   verbose_level: 0,
+  selected_groups: [],
 }
 
 parser = OptionParser.new do |opts|
@@ -307,6 +311,11 @@ parser = OptionParser.new do |opts|
 
   opts.on('-v', '--verbose', 'Show weighted candidates (use -vv for source paths)') do
     options[:verbose_level] += 1
+  end
+
+  opts.on('-gGROUPS', '--group=GROUPS', 'Only consider wallpapers in these groups (comma separated, repeatable)') do |value|
+    names = value.split(',').map(&:strip).reject(&:empty?)
+    options[:selected_groups].concat(names)
   end
 
   opts.on('-h', '--help', 'Show this help') do
@@ -350,4 +359,6 @@ exit WallpaperRotator.new(
   force: options[:force],
   dry_run: options[:dry_run],
   verbose_level: options[:verbose_level]
-).run
+).tap { |rotator|
+  rotator.selected_groups = options[:selected_groups].uniq
+}.run

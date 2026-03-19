@@ -24,7 +24,7 @@ class WallpaperConfig
 
   Group = Struct.new(:name, :boost, :enabled, keyword_init: true)
 
-  def parse(config_path)
+  def parse(config_path, selected_groups: nil)
     config_path = Pathname.new(config_path).expand_path
     unless config_path.file?
       raise ConfigError, "Config file not found: #{config_path}"
@@ -38,8 +38,9 @@ class WallpaperConfig
     end
 
     groups = parse_groups(data['groups'])
+    validate_selected_groups!(selected_groups, groups)
 
-    data['paths'].map do |entry_data|
+    data['paths'].filter_map do |entry_data|
       validate_entry(entry_data)
 
       path_groups = (entry_data['groups'] || []).map do |group_name|
@@ -53,6 +54,8 @@ class WallpaperConfig
       if path_groups.empty?
         path_groups << groups['default']
       end
+
+      next if filtered_out_by_selected_groups?(path_groups, selected_groups)
 
       Entry.new(
         path: entry_data['path'],
@@ -109,5 +112,22 @@ class WallpaperConfig
     return if groups.nil? || groups.is_a?(Array)
 
     raise ConfigError, "Invalid groups for path '#{path}'; expected an array"
+  end
+
+  def validate_selected_groups!(selected_groups, groups)
+    return if selected_groups.nil? || selected_groups.empty?
+
+    selected_groups.each do |group_name|
+      unless groups.key?(group_name)
+        raise ConfigError, "Unknown selected group '#{group_name}'"
+      end
+    end
+  end
+
+  def filtered_out_by_selected_groups?(path_groups, selected_groups)
+    return false if selected_groups.nil? || selected_groups.empty?
+
+    path_group_names = path_groups.map(&:name)
+    (path_group_names & selected_groups).empty?
   end
 end

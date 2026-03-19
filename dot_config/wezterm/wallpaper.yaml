@@ -1,6 +1,7 @@
 ah_common: &ah_common
-  enabled: false
   weight: 7
+  groups:
+    - ah
 groups:
   default:
   family:
@@ -15,12 +16,8 @@ paths:
 - <<: *ah_common
   path: ~/.config/wezterm/wallpaper/photos/ah_20230216.jpeg
   weight: 10
-  groups:
-    - ah
 - <<: *ah_common
   path: ~/.config/wezterm/wallpaper/photos/ah_*
-  groups:
-    - ah
 - path: ~/.config/wezterm/wallpaper/photos/linux_*
   enabled: false
 - path: ~/.config/wezterm/wallpaper/photos/bash*
