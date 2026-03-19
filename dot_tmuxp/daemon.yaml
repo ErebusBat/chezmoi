@@ -6,11 +6,8 @@ windows:
   # layout: "b3e4,167x52,0,0[167x25,0,0{83x25,0,0,18,83x25,84,0,27},167x26,0,26{83x26,0,26,19,83x26,84,26,29}]"
   panes:
     - shell_command:
-      - cd ~/src/erebusbat/myserver/routes
-      - just route-home
-    - shell_command:
-      - cd ~/src/erebusbat/myserver/routes
-      - just ls-vpn off
+      - cd ~/src/erebusbat/myserver/routes && clear
+      - just
 
 - window_name: 🧠
   panes:
