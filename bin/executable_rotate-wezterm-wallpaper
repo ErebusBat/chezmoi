@@ -37,4 +37,4 @@ if [[ -z $MISE_BIN ]]; then
 fi
 
 echo "\n[$(date)]"
-"$MISE_BIN" x ruby@3.4 -- "$RUBY_SCRIPT"
+"$MISE_BIN" x ruby -- "$RUBY_SCRIPT" "$@"
