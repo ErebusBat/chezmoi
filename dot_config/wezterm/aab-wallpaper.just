@@ -26,6 +26,25 @@ _link_static_and_pause src parent_dir=(WALLPAPER_SRC_DIR + "/"): random
   just _link_static "{{ src }}" "{{ parent_dir }}"
   just pause-rotate
 
+# Set a specific file as the wallpaper
+[group('Set Wallpaper')]
+set path:
+  #!/usr/bin/env zsh
+  pic="{{ path }}"
+  if [[ ! -e $pic ]]; then
+    echo "FATAL: $pic not found!"
+    exit 1
+  fi
+  override_file="{{ WALLPAPER_OVERRIDE_FULL_PATH }}"
+  if [[ -L $override_file ]]; then
+    rm $override_file || true
+  fi
+  ln -s $pic $override_file
+
+  log_file="{{ LOG_FILE }}"
+  echo "[$(date)]" > $log_file
+  echo "SET -> $pic"
+
 # Remove wallpaper
 [group('Set Wallpaper')]
 none:

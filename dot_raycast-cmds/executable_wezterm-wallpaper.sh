@@ -28,9 +28,6 @@ TASK_NAME=$1
 typeset -a TASK_ARGS
 
 case "$TASK_NAME" in
-  .)
-    TASK_NAME="rotate"
-    ;;
   "")
     cd $WEZTERM_DIR && just _safe
     exit 0
@@ -42,7 +39,7 @@ case "$TASK_NAME" in
   [Ss]top|[Pp]ause)
     TASK_NAME="pause-rotate"
     ;;
-  r|R|rotate|Rotate)
+  .|r|R|rotate|Rotate)
     TASK_NAME="rotate"
     ;;
   [Ss]afe)
@@ -77,8 +74,9 @@ case "$TASK_NAME" in
     ;;
   *)
     TASK_ARGS=("$TASK_NAME")
-    TASK_NAME="set-group"
+    TASK_NAME="rotate"
     ;;
 esac
 
+echo "$TASK_NAME ${TASK_ARGS[@]}"
 cd $WEZTERM_DIR && just "$TASK_NAME" "${TASK_ARGS[@]}" | tail -n1
