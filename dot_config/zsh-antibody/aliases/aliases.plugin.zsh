@@ -40,6 +40,17 @@ function vidlog() {
   popd
 }
 
+function mkcd() {
+  if [[ -z $1 ]]; then
+    echo "ERROR: Specify path"
+  elif [[ -d $1 ]]; then
+    echo "Folder $1 already exists"
+    cd $1
+  else
+    mkdir $1 && cd $1
+  fi
+}
+
 # todo today
 # function todot() {
 #   todo "$1" t
