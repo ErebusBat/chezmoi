@@ -34,6 +34,10 @@
   type = "git-repo"
   url = "ssh://git@gitea.erebusbat.net:222/ErebusBat/doobidoo_mcp-memory-service.git"
   refreshPeriod = "168h"
+[".config/opencode/skill/prompt-master"]
+  type = "git-repo"
+  url = "https://github.com/nidhinjs/prompt-master.git"
+  refreshPeriod = "24h"
 
 ### ncdu
 {{ if eq "linux" .chezmoi.os }}
