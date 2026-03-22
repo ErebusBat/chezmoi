@@ -32,7 +32,7 @@
   refreshPeriod = "24h"
 [".local/share/mcp-memory-service/src"]
   type = "git-repo"
-  url = "ssh://git@gitea.erebusbat.net:222/ErebusBat/doobidoo_mcp-memory-service.git"
+  url = "git@github.com:doobidoo/mcp-memory-service.git"
   refreshPeriod = "168h"
 [".config/opencode/skill/prompt-master"]
   type = "git-repo"
