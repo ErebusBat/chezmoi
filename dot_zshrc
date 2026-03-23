@@ -31,6 +31,7 @@ done
 # be found so the aliases won't be setup
 mise_plugin_path=$HOME/.config/zsh-antibody/mise/mise.plugin.zsh
 if [[ -f $mise_plugin_path ]]; then
+  unset MISE_SHELL
   source $mise_plugin_path
 else
   echo "⚠️WARNING: Could not find '${mise_plugin_path:t}'; things will be broken!"
