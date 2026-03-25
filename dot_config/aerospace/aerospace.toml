@@ -60,6 +60,7 @@ persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B",
     P = 'built-in'
     M = 'sidecar'
     W = 'main'
+    V = ['sidecar', 'secondary']            # Prefer iPad Sidecar, then any secondary
 
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
