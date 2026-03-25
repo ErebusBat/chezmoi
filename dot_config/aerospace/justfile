@@ -1,0 +1,55 @@
+# AeroSpace helper commands.
+# Usage examples:
+#   just --list
+#   just diag-apps
+#   just diag-workspaces
+#   just diag-workspaces focused
+#   just diag-workspaces monitor main
+#   just diag-windows M
+#   just panic-reset
+
+set positional-arguments
+
+# List running applications with bundle IDs.
+[group('diagnostics')]
+diag-apps:
+    aerospace list-apps --format '%{app-name} | %{app-bundle-id}'
+
+# List connected monitors with main-monitor flag.
+[group('diagnostics')]
+diag-monitors:
+    aerospace list-monitors --format '%{monitor-id} | %{monitor-name} | %{monitor-is-main}'
+
+# List workspaces with optional scope:
+#   just diag-workspaces
+#   just diag-workspaces focused
+#   just diag-workspaces monitor main
+#   just diag-workspaces monitor 2
+[group('diagnostics')]
+diag-workspaces scope='' target='':
+    @if [ -z "{{scope}}" ]; then \
+      aerospace list-workspaces --all --format '%{workspace}'; \
+    elif [ "{{scope}}" = "focused" ]; then \
+      aerospace list-workspaces --focused --format '%{workspace}'; \
+    elif [ "{{scope}}" = "monitor" ] && [ -n "{{target}}" ]; then \
+      if [ "{{target}}" = "main" ]; then \
+        monitor_id=$(aerospace list-monitors --format '%{monitor-id} %{monitor-is-main}' | while read -r id is_main; do if [ "$is_main" = "true" ]; then echo "$id"; break; fi; done); \
+        if [ -z "$monitor_id" ]; then echo "Unable to resolve main monitor id"; exit 1; fi; \
+        aerospace list-workspaces --monitor "$monitor_id" --format '%{workspace}'; \
+      else \
+        aerospace list-workspaces --monitor "{{target}}" --format '%{workspace}'; \
+      fi; \
+    else \
+      echo "Usage: just diag-workspaces [focused|monitor <main|id|focused|mouse|all>]"; \
+      exit 1; \
+    fi
+
+# List windows in a workspace (example: just diag-windows M).
+[group('diagnostics')]
+diag-windows workspace:
+    aerospace list-windows --workspace {{workspace}} --format '%{app-name} | %{window-title}'
+
+# Panic reset: flatten the focused workspace tree.
+[group('recovery')]
+panic-reset:
+    aerospace flatten-workspace-tree
