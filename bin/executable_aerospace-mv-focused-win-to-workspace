@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+if ! command -v aerospace >/dev/null 2>&1; then
+  echo "***ERROR: Could not find aerospace command!"
+  exit 1
+fi
+
+WID=$1
+if [[ -z $WID ]]; then
+  echo "USAGE: $0 <WORKSPACE_ID>"
+  exit 2
+fi
+
+focused_window_id=$(aerospace list-windows --focused --format '%{window-id}' 2>/dev/null)
+if [[ -n "$focused_window_id" ]]; then
+  aerospace move-node-to-workspace --focus-follows-window --window-id "$focused_window_id" $WID
+else
+  echo "***ERROR: Could not find focused window?!?"
+  exit 3
+fi

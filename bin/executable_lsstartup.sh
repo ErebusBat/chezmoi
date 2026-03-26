@@ -1,6 +1,11 @@
 #!/bin/zsh
 # vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
 
+# Move this active terminal window to workspace P before launching anything else
+if command -v aerospace-mv-focused-win-to-workspace >/dev/null 2>&1; then
+  aerospace-mv-focused-win-to-workspace P
+fi
+
 # TractionGuest startup script
 if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
   source ~/.config/tmux/init_chezmoi_secrets.sh
@@ -52,12 +57,11 @@ function open_chrome_profile() {
   if [[ -d "$HOME/Library/Application Support/Google/Chrome/$profile_dir" ]]; then
     echo "[$(date)] Launching Chrome - $profile_name"
     open -na "Google Chrome" --args --profile-directory="$profile_dir"
-    # open -na "Google Chrome" --args --profile-directory="Default"
-    # open -na "Google Chrome" --args --profile-directory="Profile 1"
   else
     echo "[$(date)] ***ERROR Launching Chrome - Profile $profile_name not found (dir=$profile_dir)"
   fi
 }
+# We use the justfile in aerospace to make sure they go to the correct workspace
 # open_chrome_profile "LightspeedHQ" "Default"
 # open_chrome_profile "ErebusBat@gmail.com" "Profile 1"
 cd ~/.config/aerospace && just startup-chrome
@@ -73,6 +77,8 @@ else
   echo "No tmux sessions available, use 'tmpa' to start one"
 fi
 
+# Let this window be used for dlog-tail
+# Remember that we moved it to the [P]roductivity workspace above
 echo "Press ENTER to start dlog-tail"
 read
 clear
