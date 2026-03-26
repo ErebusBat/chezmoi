@@ -1,0 +1,26 @@
+
+# Run in forground
+run: stop
+  LANG="en_US.UTF-8" sketchybar
+
+# Start background service
+[group('Service')]
+start:
+  brew services start felixkratz/formulae/sketchybar
+
+# Stop background service
+[group('Service')]
+stop:
+  brew services stop felixkratz/formulae/sketchybar
+
+# Hide macOS menu bar
+[group('System')]
+hide-bar:
+  defaults write NSGlobalDomain _HIHideMenuBar -bool true
+  killall Dock
+
+# Show macOS menu bar
+[group('System')]
+show-bar:
+  defaults write NSGlobalDomain _HIHideMenuBar -bool false
+  killall Dock
