@@ -73,6 +73,7 @@ else
   echo "No tmux sessions available, use 'tmpa' to start one"
 fi
 
-echo "Press ENTER to exit this terminal"
+echo "Press ENTER to start dlog-tail"
 read
-exit 0
+clear
+dlog-tail 2
