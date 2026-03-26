@@ -81,7 +81,7 @@ style = "bold red"
 threshold = 30
 style = "bold yellow"
 [[battery.display]]
-threshold = 95
+threshold = 78
 style = "bold green"
 
 [os]
