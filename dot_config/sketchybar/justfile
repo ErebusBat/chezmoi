@@ -13,6 +13,12 @@ start:
 stop:
   brew services stop felixkratz/formulae/sketchybar
 
+# Kill all sketchybar instances
+[group('Service')]
+kill:
+  pkill sketchybar || true
+  rm -f /tmp/sketchybar_*.lock
+
 # Hide macOS menu bar
 [group('System')]
 hide-bar:
