@@ -16,13 +16,35 @@ mod route
 # Chrome profile launch + workspace routing workflows.
 mod chrome
 
+# WezTerm launch + workspace routing workflows.
+mod wezterm
+
 # Launch work Chrome profile and route to workspace W.
+[group('Chrome')]
 chrome-work: chrome::chrome-work
 
 # Launch personal Chrome profile and route to workspace Q.
+[group('Chrome')]
 chrome-personal: chrome::chrome-personal
 
+# Launch work WezTerm profile and route to workspace W.
+[group('WezTerm')]
+wezterm-work: wezterm::wezterm-work
+
+# Launch personal WezTerm profile and route to workspace Q.
+[group('WezTerm')]
+wezterm-personal: wezterm::wezterm-personal
+
+# Launch all startuo items
+[group('Startup')]
+startup: startup-chrome startup-wezterm
+
+# Launch both WezTerm profiles and route each to its workspace.
+[group('Startup')]
+startup-wezterm: wezterm::wezterm-both
+
 # Launch both Chrome profiles and route each to its workspace.
+[group('Startup')]
 startup-chrome: chrome::chrome-both
 
 # List running applications with bundle IDs.

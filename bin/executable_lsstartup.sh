@@ -58,8 +58,9 @@ function open_chrome_profile() {
     echo "[$(date)] ***ERROR Launching Chrome - Profile $profile_name not found (dir=$profile_dir)"
   fi
 }
-open_chrome_profile "LightspeedHQ" "Default"
-open_chrome_profile "ErebusBat@gmail.com" "Profile 1"
+# open_chrome_profile "LightspeedHQ" "Default"
+# open_chrome_profile "ErebusBat@gmail.com" "Profile 1"
+cd ~/.config/aerospace && just startup-chrome
 
 # Terminal apps - With Options
 # open /Applications/Alacritty.app --args -e dlog-tail 1
@@ -71,3 +72,7 @@ if [[ -x ~/bin/lstmux.sh ]]; then
 else
   echo "No tmux sessions available, use 'tmpa' to start one"
 fi
+
+echo "Press ENTER to exit this terminal"
+read
+exit 0

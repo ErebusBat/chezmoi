@@ -2,8 +2,8 @@
 # This script is ran from tmux menu to setup sessions
 
 sessions=(
-  lshq
-  system
+  # lshq
+  # system
   daemon
 )
 START_SESS=$1
@@ -16,8 +16,9 @@ for s in $sessions; do
 done
 
 #-- Attach to session
-if [[ -n $START_SESS ]]; then
-  echo "Attaching to $START_SESS"
-  # use tmpa script (opposed to `tmuxp load`) so we get fuzzy matching
-  tmpa $START_SESS
-fi
+# if [[ -n $START_SESS ]]; then
+#   echo "Attaching to $START_SESS"
+#   # use tmpa script (opposed to `tmuxp load`) so we get fuzzy matching
+#   tmpa $START_SESS
+# fi
+cd ~/.config/aerospace && just startup-wezterm
