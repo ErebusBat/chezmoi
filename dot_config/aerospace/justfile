@@ -10,6 +10,21 @@
 
 set positional-arguments
 
+# Route helpers for app window capture/move workflows.
+mod route
+
+# Chrome profile launch + workspace routing workflows.
+mod chrome
+
+# Launch work Chrome profile and route to workspace W.
+chrome-work: chrome::chrome-work
+
+# Launch personal Chrome profile and route to workspace Q.
+chrome-personal: chrome::chrome-personal
+
+# Launch both Chrome profiles and route each to its workspace.
+startup-chrome: chrome::chrome-both
+
 # List running applications with bundle IDs.
 [group('diagnostics')]
 diag-apps:
