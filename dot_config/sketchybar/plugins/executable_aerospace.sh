@@ -11,6 +11,9 @@ REFRESH_LOCK_TOKEN=""
 REFRESH_TMP_FILES=""
 CMD_TIMEOUT_SECS="${AEROSPACE_CMD_TIMEOUT_SECS:-2}"
 FOCUSED_WS_FILE="/tmp/sketchybar-aerospace-focused-workspace"
+FAST_PATH_TS_FILE="/tmp/sketchybar-aerospace-fast-path.ts"
+FAST_PATH_SUPPRESS_MS=3000
+FOCUSED_MON_FILE="/tmp/sketchybar-aerospace-focused-monitor"
 
 LOCK_STALE_CHECK_SCRIPT_NAME="aerospace.sh"
 
@@ -28,7 +31,7 @@ now_s() {
 }
 
 log() {
-  [ "${AEROSPACE_WS_DEBUG:-0}" = "1" ] || return 0
+  [ "${AEROSPACE_WS_DEBUG:-1}" = "1" ] || return 0
   level="$1"
   shift
   msg="$*"
@@ -489,10 +492,15 @@ set_workspace_style() {
 
 quick_refresh_focus_only() {
   focused_workspace="$1"
+  focused_monitor="$2"
   prev_workspace=""
+  prev_monitor=""
 
   if [ -f "$FOCUSED_WS_FILE" ]; then
     prev_workspace="$(cat "$FOCUSED_WS_FILE" 2>/dev/null || printf '')"
+  fi
+  if [ -f "$FOCUSED_MON_FILE" ]; then
+    prev_monitor="$(cat "$FOCUSED_MON_FILE" 2>/dev/null || printf '')"
   fi
 
   if [ -n "$prev_workspace" ] && [ "$prev_workspace" != "$focused_workspace" ]; then
@@ -503,8 +511,17 @@ quick_refresh_focus_only() {
     set_workspace_style "$focused_workspace" 1
   fi
 
+  # Update monitor labels if monitor changed.
+  if [ -n "$focused_monitor" ] && [ "$focused_monitor" != "$prev_monitor" ]; then
+    if [ -n "$prev_monitor" ]; then
+      sketchybar --set "aerospace.mon.$prev_monitor" label="M$prev_monitor:"
+    fi
+    sketchybar --set "aerospace.mon.$focused_monitor" label="*M$focused_monitor:"
+  fi
+
   printf '%s' "$focused_workspace" > "$FOCUSED_WS_FILE"
-  # No debounce timestamp update needed on fast path; event rate is controlled by AeroSpace.
+  printf '%s' "$focused_monitor" > "$FOCUSED_MON_FILE"
+  now_ms > "$FAST_PATH_TS_FILE"
 }
 
 refresh() {
@@ -543,10 +560,13 @@ refresh() {
   esac
 
   if [ "$do_full_rebuild" = "0" ]; then
-    focused_workspace_fast="$(aerospace list-workspaces --focused --format '%{workspace}' 2>/dev/null || printf '')"
-    log INFO "fast focus-only sender=$SENDER focused=$focused_workspace_fast"
+    focused_info="$(aerospace list-workspaces --focused --format '%{workspace} %{monitor-id}' 2>/dev/null || printf '')"
+    focused_workspace_fast="${focused_info%% *}"
+    focused_monitor_fast="${focused_info##* }"
+    [ "$focused_monitor_fast" = "$focused_workspace_fast" ] && focused_monitor_fast=""
+    log INFO "fast focus-only sender=$SENDER focused=$focused_workspace_fast monitor=$focused_monitor_fast"
     if [ -n "$focused_workspace_fast" ]; then
-      quick_refresh_focus_only "$focused_workspace_fast"
+      quick_refresh_focus_only "$focused_workspace_fast" "$focused_monitor_fast"
     fi
     return 0
   fi
@@ -556,6 +576,19 @@ refresh() {
   fi
 
   log INFO "full rebuild sender=${SENDER:-}"
+
+  # Suppress full rebuild if a fast-path focus update ran recently.
+  # This prevents the slow aerospace query from overwriting a correct highlight.
+  fast_ts="0"
+  if [ -f "$FAST_PATH_TS_FILE" ]; then
+    fast_ts="$(cat "$FAST_PATH_TS_FILE" 2>/dev/null || printf '0')"
+    case "$fast_ts" in ''|*[!0-9]*) fast_ts="0" ;; esac
+  fi
+  now_ts="$(now_ms)"
+  if [ $((now_ts - fast_ts)) -lt "$FAST_PATH_SUPPRESS_MS" ]; then
+    log INFO "full rebuild suppressed: fast-path ran $((now_ts - fast_ts))ms ago"
+    return 0
+  fi
 
   monitors_json="$(run_cmd aerospace list-monitors --json)" || {
     apply_degraded
@@ -579,6 +612,18 @@ refresh() {
     log WARN "failed to parse focused workspace json; degraded fallback"
     apply_degraded
     return 0
+  fi
+  if [ -z "$focused_workspace" ]; then
+    # Fall back to querying aerospace only if no fast-path value exists yet.
+    focused_workspace_json="$(run_cmd aerospace list-workspaces --focused --json)" || {
+      apply_degraded
+      return 0
+    }
+    if ! focused_workspace="$(printf '%s' "$focused_workspace_json" | python3 -c 'import json,sys; d=json.load(sys.stdin); print(d[0].get("workspace", "") if d else "")')"; then
+      log WARN "failed to parse focused workspace json; degraded fallback"
+      apply_degraded
+      return 0
+    fi
   fi
 
   model_file="$(make_temp_file /tmp/sketchybar-aerospace-model.XXXXXX)"
@@ -731,11 +776,29 @@ if [ -f "$STATE_FILE" ]; then
     rm -f "$ws_file"
   done < "$monitor_order_file"
 
+  # Re-read FOCUSED_WS_FILE in case a fast-path update fired while we were
+  # computing the full rebuild. If it changed, patch the batch args so the
+  # highlight reflects the current workspace, not the one we queried earlier.
+  current_focused=""
+  if [ -f "$FOCUSED_WS_FILE" ]; then
+    current_focused="$(cat "$FOCUSED_WS_FILE" 2>/dev/null || printf '')"
+  fi
+  if [ -n "$current_focused" ] && [ "$current_focused" != "$focused_workspace_model" ]; then
+    log INFO "focused workspace changed during rebuild: was=$focused_workspace_model now=$current_focused; patching batch"
+    # Replace highlight on old focused item
+    old_enc="$(workspace_item_id "$focused_workspace_model")"
+    new_enc="$(workspace_item_id "$current_focused")"
+    set -- "$@" \
+      --set "aerospace.ws.$old_enc" label="$focused_workspace_model" label.color=0xffcdd6f4 background.drawing=off background.color=0x00000000 \
+      --set "aerospace.ws.$new_enc" label=">$current_focused<" label.color=0xff11111b background.drawing=on background.color=0xff89b4fa
+  fi
+
   log INFO "applying single sketchybar batch op_count=$op_count"
   sketchybar "$@"
 
   cp "$all_ws_file" "$STATE_FILE"
-  printf '%s' "$focused_workspace_model" > "$FOCUSED_WS_FILE"
+  printf '%s' "${current_focused:-$focused_workspace_model}" > "$FOCUSED_WS_FILE"
+  printf '%s' "$focused_monitor" > "$FOCUSED_MON_FILE"
 
   cleanup_temp_files
   trap - EXIT INT TERM HUP

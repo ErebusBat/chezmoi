@@ -36,7 +36,11 @@ default-root-container-orientation = 'auto'
 # See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
 # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
-on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change']
+
+# Trigger SketchyBar event immediately on any focus/workspace change.
+# SketchyBar calls the plugin with SENDER=aerospace_workspace_change → fast focus-only path.
+on-focus-changed = ['exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_workspace_change']
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -68,7 +72,10 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
 # A callback that runs every time binding mode changes
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-on-mode-changed = []
+n-mode-changed = []
+
+# exec-on-workspace-change is intentionally not used because on-focus-changed
+# reliably fires for both keyboard-driven and command-driven workspace changes.
 
 
 
