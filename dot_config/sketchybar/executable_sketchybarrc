@@ -37,6 +37,7 @@ sketchybar --default "${default[@]}"
 ##### Adding AeroSpace Workspace Root #####
 # Dynamic workspace items are managed by plugins/aerospace.sh.
 sketchybar --add event aerospace_workspace_change
+sketchybar --add event aerospace_mode_change
 
 sketchybar --add item aerospace.root left \
            --set aerospace.root script="$PLUGIN_DIR/aerospace.sh" \
@@ -44,6 +45,16 @@ sketchybar --add item aerospace.root left \
                                  label.drawing=off \
                                  icon.drawing=off \
            --subscribe aerospace.root aerospace_workspace_change
+
+sketchybar --add item aerospace.mode left \
+           --set aerospace.mode drawing=off \
+                                icon.drawing=off \
+                                label.color=0xffF38BA8 \
+                                background.drawing=on \
+                                background.color=0x44F38BA8 \
+                                background.corner_radius=4 \
+                                script="$PLUGIN_DIR/aerospace_mode.sh" \
+           --subscribe aerospace.mode aerospace_mode_change
 
 # Pre-create monitor and workspace items for stable, no-warning updates.
 sketchybar --add item aerospace.mon.1 left \

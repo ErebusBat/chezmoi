@@ -59,6 +59,7 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
                          "P",
                          "M", "S", "V"]
 
+
 [workspace-to-monitor-force-assignment]
     # Workspace names from Obsidian: logs/2026/03-Mar/AeroSpace.md
     # Current monitor names: Built-in Retina Display, S34J55x, Sidecar Display (AirPlay)
@@ -69,11 +70,6 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
     S = ['sidecar', 'secondary']        # S=Slack / Messanging
     V = ['sidecar', 'secondary']        # V=Video
     W = 'main'                          # W=Work
-
-# A callback that runs every time binding mode changes
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-# See: https://nikitabobko.github.io/AeroSpace/commands#mode
-n-mode-changed = []
 
 # exec-on-workspace-change is intentionally not used because on-focus-changed
 # reliably fires for both keyboard-driven and command-driven workspace changes.
@@ -298,21 +294,21 @@ n-mode-changed = []
     alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
-    alt-shift-semicolon = 'mode service'
+    alt-shift-semicolon = ['mode service', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=service']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 [mode.service.binding]
-    esc = ['reload-config', 'mode main']
-    r = ['flatten-workspace-tree', 'mode main'] # reset layout
-    f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
-    z = ['fullscreen', 'mode main'] # Toggle between fullscreen (zoom)
-    backspace = ['close-all-windows-but-current', 'mode main']
+    esc = ['reload-config', 'mode main', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=main']
+    r = ['flatten-workspace-tree', 'mode main', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=main'] # reset layout
+    f = ['layout floating tiling', 'mode main', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=main'] # Toggle between floating and tiling layout
+    z = ['fullscreen', 'mode main', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=main'] # Toggle between fullscreen (zoom)
+    backspace = ['close-all-windows-but-current', 'mode main', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=main']
 
     # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
     #s = ['layout sticky tiling', 'mode main']
 
-    alt-shift-h = ['join-with left', 'mode main']
-    alt-shift-j = ['join-with down', 'mode main']
-    alt-shift-k = ['join-with up', 'mode main']
-    alt-shift-l = ['join-with right', 'mode main']
+    alt-shift-h = ['join-with left', 'mode main', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=main']
+    alt-shift-j = ['join-with down', 'mode main', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=main']
+    alt-shift-k = ['join-with up', 'mode main', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=main']
+    alt-shift-l = ['join-with right', 'mode main', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=main']
