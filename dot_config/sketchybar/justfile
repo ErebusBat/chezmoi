@@ -19,6 +19,11 @@ kill:
   pkill sketchybar || true
   rm -f /tmp/sketchybar_*.lock
 
+# Update sketchybar workspace highlighting and icons
+[group('Service')]
+update:
+  /Users/andrew.burns/.config/sketchybar/plugins/update_all_workspaces.sh
+
 # Hide macOS menu bar
 [group('System')]
 hide-bar:
