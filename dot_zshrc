@@ -18,7 +18,8 @@ critical_paths=(
   $HOME/bin
   /opt/homebrew/bin
   /opt/homebrew/sbin
-  /opt/homebrew/bin/usr/local/bin
+  /opt/homebrew/bin
+  /usr/local/bin
 )
 for critp in $critical_paths; do
   if [[ -d $critp ]]; then  # Only add paths that exist on this system
