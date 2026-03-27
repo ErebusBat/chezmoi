@@ -132,6 +132,18 @@ on-mode-changed = []
     if.app-id = 'md.obsidian'
     run = 'move-node-to-workspace W'
 
+# --------------------
+# WORKSPACE Z
+# Zoom / Meetings
+# --------------------
+[[on-window-detected]]
+    if.app-id = 'com.openoats.app'
+    run = 'move-node-to-workspace Z'
+
+[[on-window-detected]]
+    if.app-id = 'us.zoom.xos'
+    run = 'move-node-to-workspace Z'
+
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
@@ -150,7 +162,7 @@ on-mode-changed = []
     inner.vertical =   5
     outer.left =       5
     outer.bottom =     0
-    outer.top =        15
+    outer.top =        45
     outer.right =      5
 
 # 'main' binding mode declaration

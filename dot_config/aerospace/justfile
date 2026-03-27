@@ -50,7 +50,7 @@ startup-chrome: chrome::chrome-both
 # List running applications with bundle IDs.
 [group('diagnostics')]
 diag-apps:
-    aerospace list-apps --format '%{app-name} | %{app-bundle-id}'
+    aerospace list-apps #--format '%{app-name} | %{app-bundle-id}'
 
 # List connected monitors with main-monitor flag.
 [group('diagnostics')]
