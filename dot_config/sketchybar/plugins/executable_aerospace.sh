@@ -5,11 +5,14 @@ LOG_FILE="${LOG_FILE:-/tmp/sketchybar-aerospace.log}"
 STATE_FILE="${STATE_FILE:-/tmp/sketchybar-aerospace-items.state}"
 LAST_TS_FILE="${LAST_TS_FILE:-/tmp/sketchybar-aerospace-last-refresh.ts}"
 REFRESH_LOCK_DIR="${LOCK_DIR:-/tmp/sketchybar-aerospace-refresh.lock}"
-DEBOUNCE_MS=200
+DEBOUNCE_MS=60
 WINDOWS_ROW_DELIM="$(printf '\037')"
 REFRESH_LOCK_TOKEN=""
 REFRESH_TMP_FILES=""
 CMD_TIMEOUT_SECS="${AEROSPACE_CMD_TIMEOUT_SECS:-2}"
+LAST_FULL_TS_FILE="/tmp/sketchybar-aerospace-last-full-refresh.ts"
+FOCUSED_WS_FILE="/tmp/sketchybar-aerospace-focused-workspace"
+FULL_REFRESH_INTERVAL_MS=3000
 
 LOCK_STALE_CHECK_SCRIPT_NAME="aerospace.sh"
 
@@ -423,6 +426,59 @@ apply_degraded() {
   sketchybar --set aerospace.root label.drawing=on label="WS: unavailable"
 }
 
+item_exists() {
+  sketchybar --query "$1" >/dev/null 2>&1
+}
+
+set_workspace_style() {
+  ws_name="$1"
+  focused_flag="$2"
+  ws_encoded="$(workspace_item_id "$ws_name")"
+  ws_item="aerospace.ws.$ws_encoded"
+
+  if ! item_exists "$ws_item"; then
+    return 0
+  fi
+
+  ws_label="$ws_name"
+  ws_bg_draw="off"
+  ws_label_color="0xffcdd6f4"
+  ws_bg_color="0x00000000"
+
+  if [ "$focused_flag" = "1" ]; then
+    ws_label=">$ws_name<"
+    ws_bg_draw="on"
+    ws_label_color="0xff11111b"
+    ws_bg_color="0xff89b4fa"
+  fi
+
+  sketchybar --set "$ws_item" \
+    label="$ws_label" \
+    label.color="$ws_label_color" \
+    background.drawing="$ws_bg_draw" \
+    background.color="$ws_bg_color"
+}
+
+quick_refresh_focus_only() {
+  focused_workspace="$1"
+  prev_workspace=""
+
+  if [ -f "$FOCUSED_WS_FILE" ]; then
+    prev_workspace="$(cat "$FOCUSED_WS_FILE" 2>/dev/null || printf '')"
+  fi
+
+  if [ -n "$prev_workspace" ] && [ "$prev_workspace" != "$focused_workspace" ]; then
+    set_workspace_style "$prev_workspace" 0
+  fi
+
+  if [ -n "$focused_workspace" ]; then
+    set_workspace_style "$focused_workspace" 1
+  fi
+
+  printf '%s' "$focused_workspace" > "$FOCUSED_WS_FILE"
+  printf '%s' "$(now_ms)" > "$LAST_TS_FILE"
+}
+
 refresh() {
   REFRESH_TMP_FILES=""
 
@@ -432,10 +488,7 @@ refresh() {
     return 0
   fi
 
-  if ! acquire_refresh_lock; then
-    return 0
-  fi
-  trap 'refresh_cleanup' EXIT INT TERM HUP
+  trap 'cleanup_temp_files; trap - EXIT INT TERM HUP' EXIT INT TERM HUP
 
   dep_status=0
   check_dependencies || dep_status="$?"
@@ -448,6 +501,21 @@ refresh() {
   fi
 
   if should_debounce; then
+    return 0
+  fi
+
+  focused_workspace_fast="$(run_cmd aerospace list-workspaces --focused --format '%{workspace}' 2>/dev/null || printf '')"
+  now_fast="$(now_ms)"
+  last_full="0"
+  if [ -f "$LAST_FULL_TS_FILE" ]; then
+    last_full="$(cat "$LAST_FULL_TS_FILE" 2>/dev/null || printf '0')"
+    case "$last_full" in
+      ''|*[!0-9]*) last_full="0" ;;
+    esac
+  fi
+
+  if [ -n "$focused_workspace_fast" ] && [ $((now_fast - last_full)) -lt "$FULL_REFRESH_INTERVAL_MS" ]; then
+    quick_refresh_focus_only "$focused_workspace_fast"
     return 0
   fi
 
@@ -691,6 +759,11 @@ if [ -f "$STATE_FILE" ]; then
   sketchybar "$@"
 
   cp "$new_items_file" "$STATE_FILE"
+  printf '%s' "$(now_ms)" > "$LAST_FULL_TS_FILE"
+  printf '%s' "$focused_workspace_model" > "$FOCUSED_WS_FILE"
+
+  cleanup_temp_files
+  trap - EXIT INT TERM HUP
 }
 
 if [ "${AEROSPACE_SOURCE_ONLY:-0}" = "1" ]; then

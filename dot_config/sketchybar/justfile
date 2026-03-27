@@ -1,6 +1,6 @@
 
 # Run in foreground
-run: stop
+run: stop cleanup-state
   LANG="en_US.UTF-8" sketchybar
 
 # Start background service
@@ -18,6 +18,14 @@ stop:
 kill:
   pkill sketchybar || true
   rm -f /tmp/sketchybar_*.lock
+
+# Cleanup stale Aerospace/SketchyBar refresh state
+[group('Service')]
+cleanup-state:
+  rm -rf /tmp/sketchybar-aerospace-refresh.lock
+  rm -f /tmp/sketchybar-aerospace-items.state
+  rm -f /tmp/sketchybar-aerospace-last-refresh.ts
+  rm -f /tmp/sketchybar-aerospace-*
 
 # Update sketchybar workspace highlighting and icons
 [group('Service')]
