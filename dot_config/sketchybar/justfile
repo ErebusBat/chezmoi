@@ -1,5 +1,5 @@
 
-# Run in forground
+# Run in foreground
 run: stop
   LANG="en_US.UTF-8" sketchybar
 
@@ -22,7 +22,12 @@ kill:
 # Update sketchybar workspace highlighting and icons
 [group('Service')]
 update:
-  /Users/andrew.burns/.config/sketchybar/plugins/update_all_workspaces.sh
+  plugins/aerospace.sh --refresh
+
+# Force a manual AeroSpace workspace refresh
+[group('Service')]
+refresh-aerospace:
+  plugins/aerospace.sh --refresh
 
 # Hide macOS menu bar
 [group('System')]
