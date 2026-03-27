@@ -86,6 +86,13 @@ diag-workspaces scope='' target='':
 diag-windows workspace:
     aerospace list-windows --workspace {{workspace}} --format '%{app-name} | %{window-title}'
 
+# Kill AeroSpace and supporting applications
+[group('Shutdown')]
+kill-all:
+  pkill borders
+  pkill sketchybar
+  pkill AeroSpace
+
 # Panic reset: flatten the focused workspace tree.
 [group('recovery')]
 panic-reset:
