@@ -10,14 +10,21 @@ WINDOWS_ROW_DELIM="$(printf '\037')"
 REFRESH_LOCK_TOKEN=""
 REFRESH_TMP_FILES=""
 CMD_TIMEOUT_SECS="${AEROSPACE_CMD_TIMEOUT_SECS:-2}"
-LAST_FULL_TS_FILE="/tmp/sketchybar-aerospace-last-full-refresh.ts"
 FOCUSED_WS_FILE="/tmp/sketchybar-aerospace-focused-workspace"
-FULL_REFRESH_INTERVAL_MS=3000
 
 LOCK_STALE_CHECK_SCRIPT_NAME="aerospace.sh"
 
 now_ms() {
-  python3 -c 'import time; print(int(time.time() * 1000))'
+  # Use date +%s%3N if available (GNU/macOS 14+), else fall back to python3.
+  ts="$(date '+%s%3N' 2>/dev/null || true)"
+  case "$ts" in
+    *N*|"") python3 -c 'import time; print(int(time.time() * 1000))' ;;
+    *)      printf '%s\n' "$ts" ;;
+  esac
+}
+
+now_s() {
+  date '+%s'
 }
 
 log() {
@@ -97,7 +104,35 @@ PY
 }
 
 workspace_item_id() {
-  printf '%s' "$1" | python3 -c 'import binascii,sys; d=sys.stdin.buffer.read(); print(binascii.hexlify(d).decode() or "00")'
+  # Fast pure-shell hex encoding for single-char ASCII workspace names.
+  # Falls back to python3 for multi-char or non-ASCII names.
+  name="$1"
+  case "$name" in
+    [0-9A-Za-z])
+      case "$name" in
+        0) printf '30' ;; 1) printf '31' ;; 2) printf '32' ;; 3) printf '33' ;;
+        4) printf '34' ;; 5) printf '35' ;; 6) printf '36' ;; 7) printf '37' ;;
+        8) printf '38' ;; 9) printf '39' ;;
+        A) printf '41' ;; B) printf '42' ;; C) printf '43' ;; D) printf '44' ;;
+        E) printf '45' ;; F) printf '46' ;; G) printf '47' ;; H) printf '48' ;;
+        I) printf '49' ;; J) printf '4a' ;; K) printf '4b' ;; L) printf '4c' ;;
+        M) printf '4d' ;; N) printf '4e' ;; O) printf '4f' ;; P) printf '50' ;;
+        Q) printf '51' ;; R) printf '52' ;; S) printf '53' ;; T) printf '54' ;;
+        U) printf '55' ;; V) printf '56' ;; W) printf '57' ;; X) printf '58' ;;
+        Y) printf '59' ;; Z) printf '5a' ;;
+        a) printf '61' ;; b) printf '62' ;; c) printf '63' ;; d) printf '64' ;;
+        e) printf '65' ;; f) printf '66' ;; g) printf '67' ;; h) printf '68' ;;
+        i) printf '69' ;; j) printf '6a' ;; k) printf '6b' ;; l) printf '6c' ;;
+        m) printf '6d' ;; n) printf '6e' ;; o) printf '6f' ;; p) printf '70' ;;
+        q) printf '71' ;; r) printf '72' ;; s) printf '73' ;; t) printf '74' ;;
+        u) printf '75' ;; v) printf '76' ;; w) printf '77' ;; x) printf '78' ;;
+        y) printf '79' ;; z) printf '7a' ;;
+      esac
+      ;;
+    *)
+      printf '%s' "$name" | python3 -c 'import binascii,sys; d=sys.stdin.buffer.read(); print(binascii.hexlify(d).decode() or "00")'
+      ;;
+  esac
 }
 
 escape_single_quotes() {
@@ -426,19 +461,11 @@ apply_degraded() {
   sketchybar --set aerospace.root label.drawing=on label="WS: unavailable"
 }
 
-item_exists() {
-  sketchybar --query "$1" >/dev/null 2>&1
-}
-
 set_workspace_style() {
   ws_name="$1"
   focused_flag="$2"
   ws_encoded="$(workspace_item_id "$ws_name")"
   ws_item="aerospace.ws.$ws_encoded"
-
-  if ! item_exists "$ws_item"; then
-    return 0
-  fi
 
   ws_label="$ws_name"
   ws_bg_draw="off"
@@ -453,6 +480,7 @@ set_workspace_style() {
   fi
 
   sketchybar --set "$ws_item" \
+    drawing=on \
     label="$ws_label" \
     label.color="$ws_label_color" \
     background.drawing="$ws_bg_draw" \
@@ -476,7 +504,7 @@ quick_refresh_focus_only() {
   fi
 
   printf '%s' "$focused_workspace" > "$FOCUSED_WS_FILE"
-  printf '%s' "$(now_ms)" > "$LAST_TS_FILE"
+  # No debounce timestamp update needed on fast path; event rate is controlled by AeroSpace.
 }
 
 refresh() {
@@ -500,24 +528,34 @@ refresh() {
     esac
   fi
 
+  # Determine whether this is a fast focus-only update or a full rebuild.
+  # $SENDER is set by SketchyBar: "routine" for timer ticks, "forced" for
+  # --update at startup, the event name for subscribed events.
+  # Full rebuild only on timer ("routine") or initial load ("forced" / empty).
+  # All event-triggered runs (aerospace_workspace_change etc.) take the fast path.
+  case "${SENDER:-}" in
+    routine|forced|"")
+      do_full_rebuild=1
+      ;;
+    *)
+      do_full_rebuild=0
+      ;;
+  esac
+
+  if [ "$do_full_rebuild" = "0" ]; then
+    focused_workspace_fast="$(aerospace list-workspaces --focused --format '%{workspace}' 2>/dev/null || printf '')"
+    log INFO "fast focus-only sender=$SENDER focused=$focused_workspace_fast"
+    if [ -n "$focused_workspace_fast" ]; then
+      quick_refresh_focus_only "$focused_workspace_fast"
+    fi
+    return 0
+  fi
+
   if should_debounce; then
     return 0
   fi
 
-  focused_workspace_fast="$(run_cmd aerospace list-workspaces --focused --format '%{workspace}' 2>/dev/null || printf '')"
-  now_fast="$(now_ms)"
-  last_full="0"
-  if [ -f "$LAST_FULL_TS_FILE" ]; then
-    last_full="$(cat "$LAST_FULL_TS_FILE" 2>/dev/null || printf '0')"
-    case "$last_full" in
-      ''|*[!0-9]*) last_full="0" ;;
-    esac
-  fi
-
-  if [ -n "$focused_workspace_fast" ] && [ $((now_fast - last_full)) -lt "$FULL_REFRESH_INTERVAL_MS" ]; then
-    quick_refresh_focus_only "$focused_workspace_fast"
-    return 0
-  fi
+  log INFO "full rebuild sender=${SENDER:-}"
 
   monitors_json="$(run_cmd aerospace list-monitors --json)" || {
     apply_degraded
@@ -584,6 +622,13 @@ if [ -f "$STATE_FILE" ]; then
     return 0
   fi
 
+  all_ws_file="$(make_temp_file /tmp/sketchybar-aerospace-all-ws.XXXXXX)"
+  if ! printf '%s' "$workspaces_json" | python3 -c 'import json,sys; d=json.load(sys.stdin); print("\n".join(x.get("workspace", "") for x in d if x.get("workspace")))' > "$all_ws_file"; then
+    log WARN "failed to parse all workspaces; degraded fallback"
+    apply_degraded
+    return 0
+  fi
+
   set --
   op_count=0
 
@@ -594,63 +639,27 @@ if [ -f "$STATE_FILE" ]; then
   fi
   op_count=$((op_count + 1))
 
-  divider_index=0
   monitor_count="$(python3 -c 'import sys; print(sum(1 for l in sys.stdin if l.strip()))' < "$monitor_order_file")"
   monitor_idx=0
 
-  while IFS= read -r mon || [ -n "$mon" ]; do
-    [ -z "$mon" ] && continue
-    monitor_idx=$((monitor_idx + 1))
+  # Ensure all workspace items exist and start hidden.
+  while IFS= read -r ws || [ -n "$ws" ]; do
+    [ -z "$ws" ] && continue
+    ws_encoded="$(workspace_item_id "$ws")"
+    ws_item="aerospace.ws.$ws_encoded"
 
-    mon_item="aerospace.mon.$mon"
-    printf '%s\n' "$mon_item" >> "$new_items_file"
+    escaped_ws="$(escape_single_quotes "$ws")"
+    click_script="aerospace workspace '$escaped_ws' && sketchybar --trigger aerospace_workspace_change"
 
-    ws_file="$(make_temp_file /tmp/sketchybar-aerospace-ws-list.XXXXXX)"
-    if ! python3 -c 'import json,sys; d=json.load(sys.stdin); m=sys.argv[1]; print("\n".join(d.get("groups", {}).get(m, [])))' "$mon" < "$model_file" > "$ws_file"; then
-      log WARN "failed to parse monitor workspace list monitor=$mon; degraded fallback"
-      apply_degraded
-      return 0
-    fi
-
-    while IFS= read -r ws || [ -n "$ws" ]; do
-      [ -z "$ws" ] && continue
-      ws_encoded="$(workspace_item_id "$ws")"
-      ws_item="aerospace.ws.$ws_encoded"
-      printf '%s\n' "$ws_item" >> "$new_items_file"
-    done < "$ws_file"
-    rm -f "$ws_file"
-
-    if [ "$monitor_idx" -lt "$monitor_count" ]; then
-      divider_index=$((divider_index + 1))
-      divider_item="aerospace.divider.$divider_index"
-      printf '%s\n' "$divider_item" >> "$new_items_file"
-    fi
-  done < "$monitor_order_file"
-
-  reorder_needed=0
-  if ! cmp -s "$old_items_file" "$new_items_file"; then
-    reorder_needed=1
-  fi
-
-  if [ "$reorder_needed" -eq 1 ]; then
-    while IFS= read -r old_item || [ -n "$old_item" ]; do
-      [ -z "$old_item" ] && continue
-      set -- "$@" --remove "$old_item"
-      op_count=$((op_count + 1))
-    done < "$old_items_file"
-  else
-    while IFS= read -r old_item || [ -n "$old_item" ]; do
-      [ -z "$old_item" ] && continue
-      if ! grep -Fx -- "$old_item" "$new_items_file" >/dev/null 2>&1; then
-        set -- "$@" --remove "$old_item"
-        op_count=$((op_count + 1))
-      fi
-    done < "$old_items_file"
-  fi
-
-  monitor_count="$(python3 -c 'import sys; print(sum(1 for l in sys.stdin if l.strip()))' < "$monitor_order_file")"
-  monitor_idx=0
-  divider_index=0
+    set -- "$@" --set "$ws_item" \
+      drawing=on \
+      icon.drawing=off \
+      label.drawing=off \
+      label="$ws" \
+      click_script="$click_script" \
+      background.drawing=off
+    op_count=$((op_count + 1))
+  done < "$all_ws_file"
 
   while IFS= read -r mon || [ -n "$mon" ]; do
     [ -z "$mon" ] && continue
@@ -662,16 +671,8 @@ if [ -f "$STATE_FILE" ]; then
       mon_label="*M$mon:"
     fi
 
-    add_monitor=1
-    if [ "$reorder_needed" -eq 0 ] && grep -Fx -- "$mon_item" "$old_items_file" >/dev/null 2>&1; then
-      add_monitor=0
-    fi
-    if [ "$add_monitor" -eq 1 ]; then
-      set -- "$@" --add item "$mon_item" left
-      op_count=$((op_count + 1))
-    fi
-
     set -- "$@" --set "$mon_item" \
+      drawing=on \
       icon.drawing=off \
       label.drawing=on \
       label="$mon_label" \
@@ -687,20 +688,12 @@ if [ -f "$STATE_FILE" ]; then
       return 0
     fi
 
+    anchor_item="$mon_item"
     while IFS= read -r ws || [ -n "$ws" ]; do
       [ -z "$ws" ] && continue
 
       ws_encoded="$(workspace_item_id "$ws")"
       ws_item="aerospace.ws.$ws_encoded"
-
-      add_ws=1
-      if [ "$reorder_needed" -eq 0 ] && grep -Fx -- "$ws_item" "$old_items_file" >/dev/null 2>&1; then
-        add_ws=0
-      fi
-      if [ "$add_ws" -eq 1 ]; then
-        set -- "$@" --add item "$ws_item" left
-        op_count=$((op_count + 1))
-      fi
 
       escaped_ws="$(escape_single_quotes "$ws")"
       click_script="aerospace workspace '$escaped_ws' && sketchybar --trigger aerospace_workspace_change"
@@ -725,41 +718,23 @@ if [ -f "$STATE_FILE" ]; then
         label="$ws_label" \
         click_script="$click_script" \
         label.color="$ws_label_color" \
+        label.drawing=on \
         background.drawing="$ws_bg_draw" \
         background.color="$ws_bg_color" \
         background.corner_radius=4
       op_count=$((op_count + 1))
+
+      set -- "$@" --move "$ws_item" after "$anchor_item"
+      op_count=$((op_count + 1))
+      anchor_item="$ws_item"
     done < "$ws_file"
     rm -f "$ws_file"
-
-    if [ "$monitor_idx" -lt "$monitor_count" ]; then
-      divider_index=$((divider_index + 1))
-      divider_item="aerospace.divider.$divider_index"
-
-      add_divider=1
-      if [ "$reorder_needed" -eq 0 ] && grep -Fx -- "$divider_item" "$old_items_file" >/dev/null 2>&1; then
-        add_divider=0
-      fi
-      if [ "$add_divider" -eq 1 ]; then
-        set -- "$@" --add item "$divider_item" left
-        op_count=$((op_count + 1))
-      fi
-
-      set -- "$@" --set "$divider_item" \
-        icon.drawing=off \
-        label.drawing=on \
-        label="|" \
-        label.color=0xff6c7086 \
-        background.drawing=off
-      op_count=$((op_count + 1))
-    fi
   done < "$monitor_order_file"
 
   log INFO "applying single sketchybar batch op_count=$op_count"
   sketchybar "$@"
 
-  cp "$new_items_file" "$STATE_FILE"
-  printf '%s' "$(now_ms)" > "$LAST_FULL_TS_FILE"
+  cp "$all_ws_file" "$STATE_FILE"
   printf '%s' "$focused_workspace_model" > "$FOCUSED_WS_FILE"
 
   cleanup_temp_files

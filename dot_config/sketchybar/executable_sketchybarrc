@@ -54,6 +54,87 @@ sketchybar --add item aerospace.root left \
                                  icon.drawing=off \
            --subscribe aerospace.root aerospace_workspace_change
 
+# Pre-create monitor and workspace items for stable, no-warning updates.
+sketchybar --add item aerospace.mon.1 left \
+           --set aerospace.mon.1 drawing=off \
+           --add item aerospace.mon.2 left \
+           --set aerospace.mon.2 drawing=off \
+           --add item aerospace.mon.3 left \
+           --set aerospace.mon.3 drawing=off \
+           --add item aerospace.mon.4 left \
+           --set aerospace.mon.4 drawing=off
+
+sketchybar --add item aerospace.ws.31 left \
+           --set aerospace.ws.31 drawing=off \
+           --add item aerospace.ws.32 left \
+           --set aerospace.ws.32 drawing=off \
+           --add item aerospace.ws.33 left \
+           --set aerospace.ws.33 drawing=off \
+           --add item aerospace.ws.34 left \
+           --set aerospace.ws.34 drawing=off \
+           --add item aerospace.ws.35 left \
+           --set aerospace.ws.35 drawing=off \
+           --add item aerospace.ws.36 left \
+           --set aerospace.ws.36 drawing=off \
+           --add item aerospace.ws.37 left \
+           --set aerospace.ws.37 drawing=off \
+           --add item aerospace.ws.38 left \
+           --set aerospace.ws.38 drawing=off \
+           --add item aerospace.ws.39 left \
+           --set aerospace.ws.39 drawing=off \
+           --add item aerospace.ws.41 left \
+           --set aerospace.ws.41 drawing=off \
+           --add item aerospace.ws.42 left \
+           --set aerospace.ws.42 drawing=off \
+           --add item aerospace.ws.43 left \
+           --set aerospace.ws.43 drawing=off \
+           --add item aerospace.ws.44 left \
+           --set aerospace.ws.44 drawing=off \
+           --add item aerospace.ws.45 left \
+           --set aerospace.ws.45 drawing=off \
+           --add item aerospace.ws.46 left \
+           --set aerospace.ws.46 drawing=off \
+           --add item aerospace.ws.47 left \
+           --set aerospace.ws.47 drawing=off \
+           --add item aerospace.ws.48 left \
+           --set aerospace.ws.48 drawing=off \
+           --add item aerospace.ws.49 left \
+           --set aerospace.ws.49 drawing=off \
+           --add item aerospace.ws.4a left \
+           --set aerospace.ws.4a drawing=off \
+           --add item aerospace.ws.4b left \
+           --set aerospace.ws.4b drawing=off \
+           --add item aerospace.ws.4c left \
+           --set aerospace.ws.4c drawing=off \
+           --add item aerospace.ws.51 left \
+           --set aerospace.ws.51 drawing=off \
+           --add item aerospace.ws.57 left \
+           --set aerospace.ws.57 drawing=off \
+           --add item aerospace.ws.4e left \
+           --set aerospace.ws.4e drawing=off \
+           --add item aerospace.ws.50 left \
+           --set aerospace.ws.50 drawing=off \
+           --add item aerospace.ws.4d left \
+           --set aerospace.ws.4d drawing=off \
+           --add item aerospace.ws.53 left \
+           --set aerospace.ws.53 drawing=off \
+           --add item aerospace.ws.52 left \
+           --set aerospace.ws.52 drawing=off \
+           --add item aerospace.ws.54 left \
+           --set aerospace.ws.54 drawing=off \
+           --add item aerospace.ws.55 left \
+           --set aerospace.ws.55 drawing=off \
+           --add item aerospace.ws.56 left \
+           --set aerospace.ws.56 drawing=off \
+           --add item aerospace.ws.58 left \
+           --set aerospace.ws.58 drawing=off \
+           --add item aerospace.ws.59 left \
+           --set aerospace.ws.59 drawing=off \
+           --add item aerospace.ws.5a left \
+           --set aerospace.ws.5a drawing=off \
+           --add item aerospace.ws.4f left \
+           --set aerospace.ws.4f drawing=off
+
 # Ensure stale dynamic-state is cleared before first render.
 rm -f /tmp/sketchybar-aerospace-items.state
 
