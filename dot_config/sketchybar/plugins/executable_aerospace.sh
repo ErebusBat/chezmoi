@@ -31,7 +31,7 @@ now_s() {
 }
 
 log() {
-  [ "${AEROSPACE_WS_DEBUG:-1}" = "1" ] || return 0
+  [ "${AEROSPACE_WS_DEBUG:-0}" = "1" ] || return 0
   level="$1"
   shift
   msg="$*"
