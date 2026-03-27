@@ -14,6 +14,7 @@ FOCUSED_WS_FILE="/tmp/sketchybar-aerospace-focused-workspace"
 FAST_PATH_TS_FILE="/tmp/sketchybar-aerospace-fast-path.ts"
 FAST_PATH_SUPPRESS_MS=3000
 FOCUSED_MON_FILE="/tmp/sketchybar-aerospace-focused-monitor"
+FOCUSED_MODE_FILE="/tmp/sketchybar-aerospace-mode"
 
 LOCK_STALE_CHECK_SCRIPT_NAME="aerospace.sh"
 
@@ -476,10 +477,18 @@ set_workspace_style() {
   ws_bg_color="0x00000000"
 
   if [ "$focused_flag" = "1" ]; then
-    ws_label=">$ws_name<"
+    current_mode="main"
+    if [ -f "$FOCUSED_MODE_FILE" ]; then
+      current_mode="$(cat "$FOCUSED_MODE_FILE" 2>/dev/null || printf 'main')"
+      [ -z "$current_mode" ] && current_mode="main"
+    fi
     ws_bg_draw="on"
     ws_label_color="0xff11111b"
-    ws_bg_color="0xff89b4fa"
+    if [ "$current_mode" = "main" ]; then
+      ws_bg_color="0xff89b4fa"
+    else
+      ws_bg_color="0xffF38BA8"
+    fi
   fi
 
   sketchybar --set "$ws_item" \
@@ -744,17 +753,23 @@ if [ -f "$STATE_FILE" ]; then
       click_script="aerospace workspace '$escaped_ws' && sketchybar --trigger aerospace_workspace_change"
 
       ws_label="$ws"
-      if [ "$ws" = "$focused_workspace_model" ]; then
-        ws_label=">$ws<"
-      fi
 
       ws_bg_draw="off"
       ws_label_color="0xffcdd6f4"
       ws_bg_color="0x00000000"
       if [ "$ws" = "$focused_workspace_model" ]; then
+        current_mode="main"
+        if [ -f "$FOCUSED_MODE_FILE" ]; then
+          current_mode="$(cat "$FOCUSED_MODE_FILE" 2>/dev/null || printf 'main')"
+          [ -z "$current_mode" ] && current_mode="main"
+        fi
         ws_bg_draw="on"
         ws_label_color="0xff11111b"
-        ws_bg_color="0xff89b4fa"
+        if [ "$current_mode" = "main" ]; then
+          ws_bg_color="0xff89b4fa"
+        else
+          ws_bg_color="0xffF38BA8"
+        fi
       fi
 
       set -- "$@" --set "$ws_item" \
@@ -785,12 +800,21 @@ if [ -f "$STATE_FILE" ]; then
   fi
   if [ -n "$current_focused" ] && [ "$current_focused" != "$focused_workspace_model" ]; then
     log INFO "focused workspace changed during rebuild: was=$focused_workspace_model now=$current_focused; patching batch"
-    # Replace highlight on old focused item
+    current_mode="main"
+    if [ -f "$FOCUSED_MODE_FILE" ]; then
+      current_mode="$(cat "$FOCUSED_MODE_FILE" 2>/dev/null || printf 'main')"
+      [ -z "$current_mode" ] && current_mode="main"
+    fi
+    if [ "$current_mode" = "main" ]; then
+      new_bg_color="0xff89b4fa"
+    else
+      new_bg_color="0xffF38BA8"
+    fi
     old_enc="$(workspace_item_id "$focused_workspace_model")"
     new_enc="$(workspace_item_id "$current_focused")"
     set -- "$@" \
       --set "aerospace.ws.$old_enc" label="$focused_workspace_model" label.color=0xffcdd6f4 background.drawing=off background.color=0x00000000 \
-      --set "aerospace.ws.$new_enc" label=">$current_focused<" label.color=0xff11111b background.drawing=on background.color=0xff89b4fa
+      --set "aerospace.ws.$new_enc" label="$current_focused" label.color=0xff11111b background.drawing=on background.color="$new_bg_color"
   fi
 
   log INFO "applying single sketchybar batch op_count=$op_count"

@@ -46,14 +46,13 @@ sketchybar --add item aerospace.root left \
                                  icon.drawing=off \
            --subscribe aerospace.root aerospace_workspace_change
 
+# aerospace_mode_change drives a hidden item whose only job is to write the
+# mode name to a state file and recolor the focused workspace immediately.
 sketchybar --add item aerospace.mode left \
            --set aerospace.mode drawing=off \
-                                icon.drawing=off \
-                                label.color=0xffF38BA8 \
-                                background.drawing=on \
-                                background.color=0x44F38BA8 \
-                                background.corner_radius=4 \
-                                script="$PLUGIN_DIR/aerospace_mode.sh" \
+                                 icon.drawing=off \
+                                 label.drawing=off \
+                                 script="$PLUGIN_DIR/aerospace_mode.sh" \
            --subscribe aerospace.mode aerospace_mode_change
 
 # Pre-create monitor and workspace items for stable, no-warning updates.
