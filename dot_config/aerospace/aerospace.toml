@@ -128,6 +128,10 @@ on-mode-changed = []
     if.app-id = 'com.jetbrains.intellij'
     run = 'move-node-to-workspace W'
 
+[[on-window-detected]]
+    if.app-id = 'md.obsidian'
+    run = 'move-node-to-workspace W'
+
 # Possible values: (qwerty|dvorak|colemak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
 [key-mapping]
