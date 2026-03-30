@@ -169,5 +169,36 @@ sketchybar --add item clock right \
            --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
            --subscribe battery system_woke power_source_change
 
+##### Adding System Info Items #####
+sketchybar --add item divider right \
+           --set divider icon.drawing=off \
+                         label="｜" \
+                         label.color=0x44ffffff \
+                         label.font="Hack Nerd Font:Bold:16.0" \
+                         padding_left=4 \
+                         padding_right=4
+
+sketchybar --add item cpu right \
+           --set cpu update_freq=5 \
+                     icon=󰻠 \
+                     script="$PLUGIN_DIR/cpu.sh" \
+           --add item mem right \
+           --set mem update_freq=5 \
+                     icon= \
+                     script="$PLUGIN_DIR/memory.sh" \
+           --add item net_up right \
+           --set net_up update_freq=5 \
+                        icon=󰕒 \
+                        script="$PLUGIN_DIR/network.sh" \
+           --add item net_down right \
+           --set net_down update_freq=5 \
+                          icon=󰇚 \
+                          script="$PLUGIN_DIR/network.sh" \
+           --add item wifi right \
+           --set wifi icon=󰤨 \
+                      script="$PLUGIN_DIR/wifi.sh" \
+                      click_script="open 'x-apple.systempreferences:com.apple.wifi-settings-extension'" \
+           --subscribe wifi wifi_change
+
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
