@@ -15,6 +15,7 @@ FAST_PATH_TS_FILE="/tmp/sketchybar-aerospace-fast-path.ts"
 FAST_PATH_SUPPRESS_MS=3000
 FOCUSED_MON_FILE="/tmp/sketchybar-aerospace-focused-monitor"
 FOCUSED_MODE_FILE="/tmp/sketchybar-aerospace-mode"
+WS_HIGHLIGHT_HEIGHT=24
 
 LOCK_STALE_CHECK_SCRIPT_NAME="aerospace.sh"
 
@@ -501,7 +502,8 @@ set_workspace_style() {
     label="$ws_label" \
     label.color="$ws_label_color" \
     background.drawing="$ws_bg_draw" \
-    background.color="$ws_bg_color"
+    background.color="$ws_bg_color" \
+    background.height="$WS_HIGHLIGHT_HEIGHT"
 }
 
 quick_refresh_focus_only() {
@@ -786,7 +788,8 @@ if [ -f "$STATE_FILE" ]; then
         label.drawing=on \
         background.drawing="$ws_bg_draw" \
         background.color="$ws_bg_color" \
-        background.corner_radius=4
+        background.corner_radius=4 \
+        background.height="$WS_HIGHLIGHT_HEIGHT"
       op_count=$((op_count + 1))
 
       set -- "$@" --move "$ws_item" after "$anchor_item"
