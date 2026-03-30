@@ -140,7 +140,12 @@ workspace_item_id() {
 }
 
 escape_single_quotes() {
-  printf '%s' "$1" | python3 -c "import sys; s=sys.stdin.read(); sys.stdout.write(s.replace(\"'\", \"'\\\\''\"))"
+  # Fast path: if the name contains no single quotes, nothing to escape.
+  # This covers the vast majority of workspace names (digits, letters, short words).
+  case "$1" in
+    *\'*) printf '%s' "$1" | python3 -c "import sys; s=sys.stdin.read(); sys.stdout.write(s.replace(\"'\", \"'\\\\''\"))" ;;
+    *)    printf '%s' "$1" ;;
+  esac
 }
 
 normalize_windows_rows_file() {
