@@ -9,7 +9,7 @@ config-version = 2
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
   'exec-and-forget borders',  # See ~/.config/borders/bordersrc
-  'exec-and-forget sketchybar',  # See ~/.config/sketchybar
+  # 'exec-and-forget sketchybar',  # See ~/.config/sketchybar
 ]
 
 # Start AeroSpace at login
