@@ -164,10 +164,10 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
 [gaps]
     inner.horizontal = 5
     inner.vertical =   5
-    outer.left =       5
-    outer.bottom =     0
-    outer.top =        45
-    outer.right =      5
+    outer.left =       6
+    outer.bottom =     5
+    outer.top =        0   # 45 = SketchyBar
+    outer.right =      6
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
