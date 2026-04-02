@@ -6,6 +6,7 @@ idiomatic_version_file_enable_tools = ["ruby"]
 # "github:ogham/exa" = "latest"
 assh = "latest"
 bat = "latest"
+btop = "latest"
 "cargo:ErebusBat/grcpass-rs" = "latest"
 chezmoi = "latest"
 delta = "latest"
