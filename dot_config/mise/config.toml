@@ -23,6 +23,7 @@ jqp = "latest"
 just = "latest"
 lazydocker = "latest"
 lazygit = "latest"
+opencode = { version = "latest", os = ["linux"] }
 restic = "latest"
 ripgrep = "latest"
 ripgrep-all = "latest"
