@@ -4,7 +4,11 @@
 # Config HASH: {{ include $filePath | sha256sum }} ~/.config/mise/config.toml
 echo "MISE: Syncing..."
 cd ~
-mise install
+if command -v mise &>/dev/null; then
+  mise install
+else
+  echo "WARN: mise not installed yet!"
+fi
 {{ else }}
 # Config file {{ $filePath }} not found!
 # Script Generated On: {{ (now).Format "2006-01-02 15:04:05" }}
