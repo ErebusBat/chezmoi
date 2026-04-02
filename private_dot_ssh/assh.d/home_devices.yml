@@ -34,9 +34,13 @@ hosts:
     Inherits: rsyncnet
 
   outpost:
-    #Hostname: outpost6.erebusbat.net
+    #Hostname: outpost4.erebusbat.net
     Hostname: outpost.erebusbat.net
     Inherits: personal-server
+
+  outpost4:
+    Inherits: outpost
+    Hostname: outpost4.erebusbat.net
 
   ### Routers ##############################################
   # openwrt:
