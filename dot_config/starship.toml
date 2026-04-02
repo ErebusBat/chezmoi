@@ -363,6 +363,7 @@ format = "[$ssh_symbol$hostname]($style)"
 aliases = {
   "USMB-JVK937H909" = "LSMBP",
   "dartp6" = "sys76",
+  "outpost" = "🏰",
 }
 
 [sudo]
