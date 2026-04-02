@@ -33,6 +33,9 @@ hosts:
   de4062.rsync.net:
     Inherits: rsyncnet
 
+  outpost:
+    Hostname: outpost.erebusbat.net
+    Inherits: personal-server
 
   ### Routers ##############################################
   # openwrt:
@@ -196,7 +199,7 @@ templates:
     GatewayConnectTimeout: 2
   personal-server:
     Inherits: personal-allowpass
-    RemoteForward: /run/user/1000/gnupg/S.gpg-agent /Users/aburns/.gnupg/S.gpg-agent.extra
+    #RemoteForward: /run/user/1000/gnupg/S.gpg-agent /Users/aburns/.gnupg/S.gpg-agent.extra
   raspi:
     User: pi
     Inherits: bat-devices
