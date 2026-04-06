@@ -25,3 +25,4 @@ When debugging completion issues (especially `wd`), follow this order:
 ## Team Rule
 
 - For completion bugs, always run `chezmoi diff ~/.zshrc` first.
+- Unless otherwise explicitly stated, never make changes in the Chezmoi directory.
