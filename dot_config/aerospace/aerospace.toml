@@ -68,6 +68,7 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
     P = 'built-in'                      # P=Productivity
     Q = 'main'                          # Q=Personal
     S = ['sidecar', 'secondary']        # S=Slack / Messanging
+    B = ['sidecar', 'secondary']        # B=Bot
     V = ['sidecar', 'secondary']        # V=Video
     W = 'main'                          # W=Work
 
@@ -122,7 +123,7 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
 
 [[on-window-detected]]
     if.app-id = 'ru.keepcoder.Telegram'
-    run = 'move-node-to-workspace S'
+    run = 'move-node-to-workspace B'
 
 # --------------------
 # WORKSPACE W
