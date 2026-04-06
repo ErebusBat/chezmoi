@@ -27,7 +27,7 @@ opencode = { version = "latest", os = ["linux"] }
 restic = "latest"
 ripgrep = "latest"
 ripgrep-all = "latest"
-ruby = "3.4.5"
+ruby = "4.0.2"
 rust = "latest"
 starship = "latest"
 yazi = "latest"

@@ -77,7 +77,7 @@ hosts:
 
   ### NAS ##################################################
   truenas:
-    Hostname: 192.168.68.80
+    Hostname: nas.erebusbat.net
     Inherits: personal-allowpass
   freenas:
     Inherits: truenas
