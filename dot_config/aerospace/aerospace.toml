@@ -82,6 +82,18 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
 # ============================================================
 
 # --------------------
+# WORKSPACE B
+# Bot
+# --------------------
+[[on-window-detected]]
+    if.app-id = 'one.ayugram.AyuGramDesktop'
+    run = 'move-node-to-workspace B'
+
+[[on-window-detected]]
+    if.app-id = 'ru.keepcoder.Telegram'
+    run = 'move-node-to-workspace B'
+
+# --------------------
 # WORKSPACE P
 # Productivity (laptop)
 # --------------------
@@ -120,10 +132,6 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
 [[on-window-detected]]
     if.app-id = 'com.tinyspeck.slackmacgap'
     run = 'move-node-to-workspace S'
-
-[[on-window-detected]]
-    if.app-id = 'ru.keepcoder.Telegram'
-    run = 'move-node-to-workspace B'
 
 # --------------------
 # WORKSPACE W
