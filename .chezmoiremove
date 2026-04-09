@@ -1,5 +1,5 @@
-# 2026-JAN-13: Remove go snippets that is causing issues with TreeSitter update
-.config/nvim/snippets/go.lua
+# 2026-APR-09: Remove broken plugin
+.config/nvim/lua/plugins/terminal.lua
 
 # 2026-JAN-14
 .ssh/assh.d/tailscale.yml
