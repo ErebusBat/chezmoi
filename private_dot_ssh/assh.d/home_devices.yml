@@ -35,11 +35,14 @@ hosts:
 
   outpost:
     Hostname: outpost.erebusbat.net
-    Inherits: personal-server
+    Inherits: outpost46.erebusbat.net
 
   outpost46:
-    Inherits: outpost
+    Inherits: outpost46.erebusbat.net
     Hostname: outpost46.erebusbat.net
+
+  outpost46.erebusbat.net:
+    Inherits: personal-server
 
   ### Routers ##############################################
   # openwrt:
