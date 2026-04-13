@@ -1,9 +1,8 @@
 return {
   "micarmst/vim-spellsync",
   init = function ()
-    -- vim: ts=2 sts=2 sw=2 et
-    -- vim.opt.spellfile = vim.fn.expand('$HOME/.config/nivm/spell.en.utf-8.add') .. '@' .. '~/.config/nvim/spell/tractionguest.utf-8.add'
-    -- vim.opt.spellfile = vim.fn.expand('$HOME/.config/nivm/spell.en.utf-8.add')
+    vim.g.spellsync_enable_git_union_merge = 0
+    vim.g.spellsync_enable_git_ignore = 0
     vim.cmd([[
       set spellfile+=~/.config/nvim/spell/en.utf-8.add
       set spellfile+=~/.config/nvim/spell/tractionguest.utf-8.add

@@ -12,7 +12,7 @@ return {
       'j-hui/fidget.nvim',
 
       -- Additional lua configuration, makes nvim stuff amazing
-      'folke/neodev.nvim',
+      'folke/lazydev.nvim',
     },
   },
 
