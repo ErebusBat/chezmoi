@@ -170,6 +170,10 @@ if command -v glow >/dev/null 2>&1; then
   alias glowt='glow -t'
 fi
 
+if [[ -d /Applications/MarkText.app ]]; then
+  alias mdview='open -a MarkText'
+fi
+
 
 ################################################################################
 # Commands that should/want to always run as sudo
