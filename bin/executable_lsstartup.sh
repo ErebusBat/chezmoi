@@ -32,7 +32,7 @@ APPS=(
   /Applications/Slack.app
   /System/Applications/Messages.app
   /Applications/Spotify.app
-  /Applications/Telegram.app
+  /Applications/AyuGram.app
 )
 
 # APPS=()

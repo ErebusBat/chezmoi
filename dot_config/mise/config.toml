@@ -6,7 +6,7 @@ idiomatic_version_file_enable_tools = ["ruby"]
 # "github:ogham/exa" = "latest"
 assh = "latest"
 bat = "latest"
-"ubi:aristocratos/btop" = { version = "latest", os = ["linux"] }
+"github:aristocratos/btop" = { version = "latest", os = ["linux"] }
 "cargo:ErebusBat/grcpass-rs" = "latest"
 chezmoi = "latest"
 delta = "latest"
@@ -34,4 +34,3 @@ starship = "latest"
 yazi = "latest"
 zoxide = "latest"
 "github:bahdotsh/mdterm" = "latest"
-dua = "latest"
