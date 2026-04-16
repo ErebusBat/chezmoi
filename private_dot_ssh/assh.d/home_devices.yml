@@ -33,18 +33,21 @@ hosts:
   de4062.rsync.net:
     Inherits: rsyncnet
 
+  outpost46.erebusbat.net:
+    Hostname: outpost46.erebusbat.net
+    Inherits: personal-server
+    # User: aburns
+
   outpost:
     Hostname: outpost.erebusbat.net
-    Inherits: personal-server
-
-  outpost46.erebusbat.net:
-    Inherits: personal-server
-    User: aburns
     Inherits: outpost46.erebusbat.net
 
   outpost46:
     Inherits: outpost46.erebusbat.net
-    Hostname: outpost46.erebusbat.net
+
+  # outpost4:
+  #   Hostname: outpost4.erebusbat.net
+  #   Inherits: outpost46.erebusbat.net
 
   ### Routers ##############################################
   # openwrt:
