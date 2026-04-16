@@ -1,0 +1,16 @@
+#!/usr/bin/env zsh
+export XDG_DATA_HOME="/opt/homebrew/var/lib"
+export HOME="/opt/homebrew/var/lib"
+CONF_FILE=$HOME/erebusbat/caddy-env.sh
+CADDYFILE=/opt/homebrew/etc/Caddyfile
+
+if [[ -f $CONF_FILE ]]; then
+  source $CONF_FILE
+fi
+
+if [[ $# -eq 0 ]] || [[ $# -eq 1 && "$1" == "run" ]]; then
+  echo "cd ${CADDYFILE:h}"
+  cd ${CADDYFILE:h}
+fi
+
+/opt/homebrew/opt/caddy/bin/caddy "${@}"
