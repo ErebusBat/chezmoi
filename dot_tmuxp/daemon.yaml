@@ -19,3 +19,9 @@ windows:
     - shell_command:
       - cd ~/src/lshq
       - just config_service
+
+- window_name: 🌐caddy
+  panes:
+    - shell_command:
+      - cd ~/.config/caddy
+      - ~/bin/.caddy run

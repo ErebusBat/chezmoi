@@ -1,11 +1,21 @@
 #!/usr/bin/env zsh
-export XDG_DATA_HOME="/opt/homebrew/var/lib"
-export HOME="/opt/homebrew/var/lib"
-CONF_FILE=$HOME/erebusbat/caddy-env.sh
-CADDYFILE=/opt/homebrew/etc/Caddyfile
+export XDG_DATA_HOME=~/.config/caddy
+# export HOME="/opt/homebrew/var/lib"
+CONF_FILE=$HOME/.config/erebusbat/caddy-env.sh
+CADDYFILE=$HOME/.config/caddy/Caddyfile
+
+# go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
+# xcaddy build --with github.com/caddy-dns/digitalocean
 
 if [[ -f $CONF_FILE ]]; then
   source $CONF_FILE
+else
+  echo "***WARN: Could not find config file $CONF_FILE; things will probably break!"
+fi
+
+if [[ -z $DIGITALOCEAN_API_TOKEN ]]; then
+  echo "***FATAL: \$DIGITALOCEAN_API_TOKEN is blank!"
+  exit 7
 fi
 
 if [[ $# -eq 0 ]] || [[ $# -eq 1 && "$1" == "run" ]]; then
@@ -13,4 +23,4 @@ if [[ $# -eq 0 ]] || [[ $# -eq 1 && "$1" == "run" ]]; then
   cd ${CADDYFILE:h}
 fi
 
-/opt/homebrew/opt/caddy/bin/caddy "${@}"
+caddy "${@}"

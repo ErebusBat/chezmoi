@@ -1,0 +1,27 @@
+INSTALL_DIR := '~/bin'
+CONF_DIR := '~/.config/caddy'
+
+# Installs caddy
+[group('Install')]
+install: install-caddy
+
+# Installs xcaddy build tool (requires go)
+[group('Install')]
+install-xcaddy:
+  #!/usr/bin/env zsh
+  if command -v xcaddy &>/dev/null; then
+    echo "xcaddy is available: $(which xcaddy)"
+  else
+    go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
+  fi
+
+# Installs Caddy Locally
+[group('Install')]
+install-caddy: install-xcaddy install-caddy-do
+
+[confirm('Install caddy with DigitalOcean DNS?')]
+[private]
+install-caddy-do: install-xcaddy
+  cd {{ INSTALL_DIR }} && \
+    xcaddy build --with github.com/caddy-dns/digitalocean
+
