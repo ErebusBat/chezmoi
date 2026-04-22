@@ -302,6 +302,9 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
     alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
+    # Hyper+f: toggle fullscreen (hyper = cmd+ctrl+opt+shift via Karabiner escape)
+    ctrl-shift-alt-cmd-f = 'fullscreen'
+
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     alt-shift-semicolon = ['mode service', 'exec-and-forget /opt/homebrew/bin/sketchybar --trigger aerospace_mode_change AEROSPACE_MODE=service']
 
