@@ -9,6 +9,10 @@ if [[ -f "$HOME/.config/base16-shell/base16-shell.plugin.zsh" ]]; then
   # export BASE16_THEME_DEFAULT=dracula
   export BASE16_THEME_DEFAULT=unikitty-dark
 
+  if [[ -n "$SSH_CONNECTION" ]] || [[ -n "$SSH_CLIENT" ]]; then
+    export BASE16_SHELL_SET_BACKGROUND=false
+  fi
+
   source "$HOME/.config/base16-shell/base16-shell.plugin.zsh"
 fi
 
