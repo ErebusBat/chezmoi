@@ -2,7 +2,6 @@
 ### Computers & Servers
 ################################################################################
 add_link_gsub 'M4MBP',    alias: 'm4mbp',      page: 'MacBook Pro M4'
-add_link_gsub 'MBP',      alias: 'm4mbp',      page: 'MacBook Pro M4'
 add_link_gsub 'NUC',      alias: 'nuc01',      page: 'IntelNUC'
 add_link_gsub 'MAZE',     alias: 'Maze',       page: 'IntelNUC 2 - Maze'
 add_link_gsub 'OUTPOST',  alias: 'Outpost',    page: 'Outpost'
