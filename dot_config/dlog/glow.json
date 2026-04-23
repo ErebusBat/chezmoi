@@ -67,7 +67,8 @@
     "unticked": "[ ] "
   },
   "link": {
-    "conceal": true
+    "conceal": true,
+    "show_url": false
   },
   "link_text": {
     "color": "35",
