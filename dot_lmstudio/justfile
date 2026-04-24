@@ -1,0 +1,16 @@
+ps:
+  ./bin/lms ps
+
+ls:
+  ./bin/lms ls --variants
+
+logs:
+  ./bin/lms log stream
+
+load-dictation:
+  ./bin/lms load --gpu max -c 2048 --identifier dictation --parallel 4 qwen2.5-3b-instruct --verbose
+
+unload-dictation:
+  ./bin/lms unload dictation
+
+reload-dictation: unload-dictation load-dictation
