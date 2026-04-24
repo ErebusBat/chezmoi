@@ -2,7 +2,7 @@ alias assume="source assume"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 # lskt-onboard: fzf
 source <(fzf --zsh)
@@ -81,3 +81,10 @@ lshq_link_sprint() {
   ln -s -n "$target" ./.AAB
   ls -l ./.AAB 2>/dev/null
 }
+
+### Jenkins
+if command -v jenkins &>/dev/null; then
+  alias jtw='jenkins trigger --watch'
+  alias jw='jenkins watch'
+  alias jo='jenkins open'
+fi
