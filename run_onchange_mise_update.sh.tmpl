@@ -1,18 +1,21 @@
 #!/bin/bash
 {{ $filePath := joinPath .chezmoi.homeDir "/.config/mise/config.toml" }}
+{{ $force_update_every_days := 3 }}
+{{ $update_version := div (now | unixEpoch) (mul $force_update_every_days 86400) }}
 {{ if stat $filePath }}
 # Config HASH: {{ include $filePath | sha256sum }} ~/.config/mise/config.toml
-echo "MISE: Syncing..."
+# update_version={{ $update_version }} <-- Will update every {{ $force_update_every_days }}d
+echo "MISE: Updating..."
 cd ~
 if command -v mise &>/dev/null; then
-  mise install
+  mise upgrade --bump
 else
   echo "WARN: mise not installed yet!"
 fi
 {{ else }}
 # Config file {{ $filePath }} not found!
 # Script Generated On: {{ (now).Format "2006-01-02 15:04:05" }}
-echo "MISE: Not running, no config"
+echo "MISE: Not updating, no config"
 {{ end }}
-#
+
 # vim: set noai ts=4 sw=4 ft=bash:
