@@ -47,7 +47,8 @@
     "crossed_out": true
   },
   "emph": {
-    "italic": true
+    "italic": true,
+    "color": "210"
   },
   "strong": {
     "bold": true

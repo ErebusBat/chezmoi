@@ -17,6 +17,7 @@ direct/
 .tmuxp/_*.yaml
 
 {{- if not .area.lshq }}
+.config/jenkins-tool/
 .restic/lsrestic.sh
 .restic/profile-lshq.sh
 .restic/lshq-*.sh

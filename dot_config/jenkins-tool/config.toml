@@ -1,0 +1,26 @@
+jenkins_base_url = "https://jenkins.internal.upserve.com/job/app.weekly_digest_email_pipeline/build?delay=0sec"
+notify_enabled = true
+notify_command = 'say "jenkins $JENKINS_NOTIFY_STATUS"'
+notify_time_horizon_secs = 10
+retry_attempts = 3
+build_time_history_size = 15
+
+[mappings."github.com:dotswipely/daily_email_kinesis"]
+job_url = "https://jenkins.internal.upserve.com/job/app.daily_email_kinesis"
+branch_param = "BRANCH"
+
+[mappings."github.com:dotswipely/lettercarrier"]
+job_url = "https://jenkins.internal.upserve.com/job/gem.lettercarrier/"
+branch_param = "BRANCH"
+
+[mappings."github.com:dotswipely/swipely"]
+job_url = "https://jenkins.internal.upserve.com/job/app.swipely/"
+branch_param = "BRANCH"
+
+[mappings."github.com:dotswipely/weekly_digest_email_pipeline"]
+job_url = "https://jenkins.internal.upserve.com/job/app.weekly_digest_email_pipeline"
+branch_param = "BRANCH"
+
+[mappings."github.com:upserve/pos-service"]
+job_url = "https://jenkins.internal.upserve.com/job/app.pos-service/"
+branch_param = "BRANCH"
