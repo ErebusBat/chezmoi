@@ -17,7 +17,16 @@ brew "difftastic"
 brew "fblog"  # Structured log viewer
 brew "fswatch"
 brew "git-delta"
-brew "glow"   # Markdown formatting for command line
+
+# `glow` Markdown formatting for command line
+if File.exist?(File.expand_path("~/bin/glow"))
+    # This is the customized fork with support for
+    # additional Obsidian styles, so don't install
+    # the official homebrew package over it
+else
+    brew "glow"
+end
+
 brew "go"
 brew "mise"
 brew "rbenv"
