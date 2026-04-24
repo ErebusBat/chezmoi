@@ -11,6 +11,15 @@ if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
   source ~/.config/tmux/init_chezmoi_secrets.sh
 fi
 
+if [[ -f ~/.lmstudio/justfile ]]; then
+  echo ""
+  echo "########################################"
+  echo "## Loading Local Dictation Cleanup Model"
+  echo "########################################"
+  just --justfile ~/.lmstudio/justfile load-dictation
+  echo ""
+fi
+
 # Starts apps / sessions after a cold boot
 # Will not launch a terminal as it assumes you will be launching a terminal to execute this script.  This also allows for easily switching terminal emulators.
 
