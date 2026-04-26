@@ -1,24 +1,49 @@
 # Pi coding agent management
 
 # Install pi globally
+[script]
 install:
-    npm install -g @mariozechner/pi-coding-agent
+  #!/usr/bin/env bash
+  export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm use --silent >/dev/null
+  npm install -g @mariozechner/pi-coding-agent
 
 # Upgrade pi to the latest version
+[script]
 upgrade:
-    npm install -g @mariozechner/pi-coding-agent@latest
+  #!/usr/bin/env bash
+  export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm use --silent >/dev/null
+  npm install -g @mariozechner/pi-coding-agent@latest
 
 # Show current pi version
+[script]
 version:
-    pi --version
+  #!/usr/bin/env bash
+  export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm use --silent >/dev/null
+  pi --version
 
 # Start pi with the zai provider
+[script]
 zai:
-    pi --provider zai
+  #!/usr/bin/env bash
+  export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm use --silent >/dev/null
+  pi --provider zai
 
 # Start pi with the OpenAI provider
+[script]
 openai:
-    pi --provider openai
+  #!/usr/bin/env bash
+  export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+  nvm use --silent >/dev/null
+  pi --provider openai
 
 # Alias for openai
 alias oai := openai
