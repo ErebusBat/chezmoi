@@ -2,11 +2,11 @@
 # https://htr3n.github.io/2018/07/faster-zsh/
 # zmodload zsh/zprof
 
-if [[ $TERM == "xterm-ghostty" ]] && [[ $(uname) == "Linux" ]]; then
-  echo -n "Overriding TERM from $TERM "
-  export TERM=xterm-256color
-  echo "to $TERM..."
-fi
+# if [[ $TERM == "xterm-ghostty" ]] && [[ $(uname) == "Linux" ]]; then
+#   echo -n "Overriding TERM from $TERM "
+#   export TERM=xterm-256color
+#   echo "to $TERM..."
+# fi
 # No one wants the macOS craziness of ~/Library/Application Support/
 export XDG_CONFIG_HOME=$HOME/.config
 

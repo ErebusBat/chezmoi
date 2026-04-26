@@ -47,6 +47,10 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
+-- Ensure modified keys like Shift+Enter are forwarded correctly,
+-- especially when running applications inside tmux.
+config.enable_kitty_keyboard = true
+
 -- Base configuration
 config.default_prog = { "/bin/zsh" }
 config.set_environment_variables = {
