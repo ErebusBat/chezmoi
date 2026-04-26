@@ -14,5 +14,6 @@ cd $CONF_DIR
 just show-config $UNSAFE_GROUP 2>1 >/dev/null
 jec=$?
 if [[ $jec -eq 0 ]]; then
+  printf "#[fg=brightblack, bg=default]|"
   echo $UNSAFE_INDICATOR
 fi
