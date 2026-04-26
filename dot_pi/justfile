@@ -1,0 +1,24 @@
+# Pi coding agent management
+
+# Install pi globally
+install:
+    npm install -g @mariozechner/pi-coding-agent
+
+# Upgrade pi to the latest version
+upgrade:
+    npm install -g @mariozechner/pi-coding-agent@latest
+
+# Show current pi version
+version:
+    pi --version
+
+# Start pi with the zai provider
+zai:
+    pi --provider zai
+
+# Start pi with the OpenAI provider
+openai:
+    pi --provider openai
+
+# Alias for openai
+alias oai := openai
