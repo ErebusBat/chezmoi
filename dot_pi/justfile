@@ -11,12 +11,7 @@ install:
 
 # Upgrade pi to the latest version
 [script]
-upgrade:
-  #!/usr/bin/env bash
-  export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
-  nvm use --silent >/dev/null
-  npm install -g @mariozechner/pi-coding-agent@latest
+upgrade: install
 
 # Show current pi version
 [script]
@@ -28,22 +23,25 @@ version:
   pi --version
 
 # Start pi with the zai provider
+# NOTE: --provider alone can be overridden by a pinned default model in pi settings,
+# so we force a zai model here.
 [script]
 zai:
   #!/usr/bin/env bash
   export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
   nvm use --silent >/dev/null
-  pi --provider zai
+  pi --model zai/glm-5
 
 # Start pi with the OpenAI provider
+# Force an OpenAI model so local default model settings can't override provider selection.
 [script]
 openai:
   #!/usr/bin/env bash
   export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
   nvm use --silent >/dev/null
-  pi --provider openai
+  pi --model openai/gpt-5.3-codex
 
 # Alias for openai
 alias oai := openai
