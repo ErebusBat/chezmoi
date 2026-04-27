@@ -1,0 +1,50 @@
+# vim: set ft=zsh:
+
+#
+# MacOSX
+#
+**/*GPUCache/**
+**/.DS_Store
+**/.localized
+**/.Trash/
+**/Cache/
+**/CachedData/
+**/CachedExtensionVSIXs/
+**/CachedProfilesData/
+**/Caches/
+**/CacheStorage/
+**/Code Cache/
+**/Crash Reports/
+**/Dawn*Cache/
+**/ScriptCache/
+**/WebStorage/
+
+# Exclude these directories in ANY sub path
+**/.cache/*
+**/.stfolder/*
+**/.tmp/**
+**/.vscode-server/**
+**/.yardoc/*
+**/.zig-cache/*
+**/.zigmod/*
+**/cache/*
+**/Google/GoogleUpdater/**
+**/log/*
+**/logs/*
+**/node_modules/*
+**/tmp/*
+*.db-shm
+*.log
+*.log.bz2
+*.log.gz
+*.pid
+*.tmp
+
+# MyServer Data/Stuff
+# $HOME/src/erebusbat/myserver/syncthing/config/*
+**/myserver/copyparty/cfg/copyparty
+**/myserver/copyparty/cfg/hists
+**/myserver/syncthing/config/*
+
+# Pi Agent
+$HOME/.pi/agent*/sessions
