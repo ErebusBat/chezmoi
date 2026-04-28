@@ -18,17 +18,19 @@ $HOME/.bundle/cache/**
 $HOME/.cache/**
 $HOME/.cargo/git/**
 $HOME/.chef/syntaxcache/**
+$HOME/.config/Slack/Cache/**
+$HOME/.config/Slack/Service Worker/**
 $HOME/.config/chezmoi/chezmoistate.boltdb
 $HOME/.config/google-chrome-backup-crashrecovery-*/**
 $HOME/.config/google-chrome/AutofillStates/**
 $HOME/.config/google-chrome/Default/**
-$HOME/.config/Slack/Cache/**
-$HOME/.config/Slack/Service Worker/**
+$HOME/.config/ocpersona/profiles/*/config/*_cache
+$HOME/.config/ocpersona/profiles/*/state/opencode/locks
 $HOME/.docker/*.sqlite3*
+$HOME/.docker/QuitReports/**
 $HOME/.docker/contexts/**
 $HOME/.docker/instance*/**
 $HOME/.docker/metrics/**
-$HOME/.docker/QuitReports/**
 $HOME/.docker/sbom/**
 $HOME/.docker/scout/**
 $HOME/.dropbox/**

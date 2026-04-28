@@ -27,6 +27,7 @@ $container\
 $hostname\
 $sudo\
 $cmd_duration\
+${env_var.OCP_PROFILE}\
 ${env_var.LAZYGIT_SHELL}\
 ${env_var.CLAUDE_CODE_PANE}\
 $status\
@@ -391,3 +392,14 @@ disabled = false
 
 [pulumi]
 format = '[[ $symbol( $stack ) ](fg:sapphire)]($style)'
+
+# >>> ocpersona starship >>>
+# Shows the active ocpersona profile when OCP_PROFILE is set.
+# If you use a custom top-level Starship format that omits $env_var,
+# add ${env_var.OCP_PROFILE} or $env_var to that format explicitly.
+[env_var.OCP_PROFILE]
+variable = "OCP_PROFILE"
+format = " [ocp:$env_value]($style)"
+style = "bold fg:39"
+description = "The active ocpersona profile"
+# <<< ocpersona starship <<<

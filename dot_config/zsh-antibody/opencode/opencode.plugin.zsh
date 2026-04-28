@@ -279,3 +279,12 @@ if [[ -o interactive ]]; then
   autoload -Uz add-zsh-hook
   add-zsh-hook precmd _opencode_load_completions
 fi
+
+
+
+
+
+# >>> ocpersona >>>
+source "$HOME/.config/ocpersona/config.sh"
+source "${OCP_PATH}/contrib/ocpersona.plugin.zsh"
+# <<< ocpersona <<<
