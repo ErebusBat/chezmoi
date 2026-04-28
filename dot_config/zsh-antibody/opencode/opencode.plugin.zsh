@@ -1,6 +1,15 @@
 if [[ -d $HOME/.opencode/bin ]]; then
   export PATH=$HOME/.opencode/bin:$PATH
 fi
+
+# Keep OCX PATH handling with the OpenCode shell integration rather than
+# spreading closely related tooling across separate plugins.
+# The official OCX installer prefers /usr/local/bin or ~/.local/bin, both of
+# which are already covered elsewhere. This only handles a direct ~/.ocx install.
+if [[ -x $HOME/.ocx/ocx ]]; then
+  export PATH=$HOME/.ocx:$PATH
+fi
+
 if ! command -v opencode >/dev/null 2>&1; then
   return
 fi

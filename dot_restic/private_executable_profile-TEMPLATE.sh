@@ -3,6 +3,7 @@
 #
 # Copy this file to profile-YOURNAME.sh and edit the values below
 
+export RESTIC_HOST=$(hostname -s)
 export RESTIC_REPOSITORY="protocol://server/path/to/repo"
 export RESTIC_PASSWORD_FILE="$HOME/.restic/.YOURNAME.key"
 

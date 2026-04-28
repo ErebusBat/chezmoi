@@ -12,21 +12,16 @@ add_gsub /%%/ do |entry, _match|
 end
 
 # Extract phone numbers and parse them via MDT
-[
-  # /\d{7}/,
-  /\d{3}-\d{4}/,
-].each do |phone_rx|
-  add_gsub phone_rx do |entry, match|
-    set_tool_path '~/.raycast-cmds/markdown-tool.sh'
-    next unless has_tool?
+add_gsub phone? do |entry, match|
+  set_tool_path '~/.raycast-cmds/markdown-tool.sh'
+  next unless has_tool?
 
-    run_tool :with_args, match
-    if tool_error?
-      next "❌ MDT-ERROR: #{entry}"
-    end
-
-    tool_output
+  run_tool :with_args, match
+  if tool_error?
+    next "❌ MDT-ERROR: #{entry}"
   end
+
+  tool_output
 end
 
 # Extract direct issue links and use MDT to render

@@ -20,3 +20,12 @@ windows:
     - shell_command:
       - fastfetch
 
+- window_name: pi
+  panes:
+    - shell_command:
+      - cd .pi
+      - nvm use
+      - pi -c
+    - shell_command:
+      - cd .pi
+
