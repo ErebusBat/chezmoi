@@ -1,3 +1,8 @@
+# Use 'say' tool to notify user
+[group('Helpers')]
+say text='LM Studio Data Task Done':
+  say "{{text}}"
+
 # List running LM Studio models
 [group('LM Studio')]
 ps:

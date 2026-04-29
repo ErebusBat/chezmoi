@@ -1,7 +1,10 @@
+DICTATION_MODEL := 'qwen2.5-3b-instruct'
+DICTATION_MODEL_CONTEXT_SIZE := '2048 '
+
 # Load the dictation model
 [group('Dictation')]
 load-dictation:
-  ./bin/lms load --gpu max -c 2048 --identifier dictation --parallel 4 qwen2.5-3b-instruct --verbose
+  ./bin/lms load --gpu max -c {{ DICTATION_MODEL_CONTEXT_SIZE }}  --identifier dictation --parallel 4 --verbose {{ DICTATION_MODEL }}
 
 # Unload the dictation model
 [group('Dictation')]
