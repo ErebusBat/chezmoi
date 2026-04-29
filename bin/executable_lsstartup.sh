@@ -73,7 +73,7 @@ function open_chrome_profile() {
 # We use the justfile in aerospace to make sure they go to the correct workspace
 # open_chrome_profile "LightspeedHQ" "Default"
 # open_chrome_profile "ErebusBat@gmail.com" "Profile 1"
-cd ~/.config/aerospace && just startup-chrome
+cd ~/.config/aerospace && just startup-chrome &
 
 # Terminal apps - With Options
 # open /Applications/Alacritty.app --args -e dlog-tail 1
