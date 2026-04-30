@@ -86,7 +86,7 @@ threshold = 78
 style = "bold green"
 
 [os]
-disabled = false
+disabled = true
 style = "fg:red"
 
 # [os.symbols]

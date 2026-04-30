@@ -10,10 +10,6 @@ hosts:
     Inherits: dartp6
     LocalForward: "18789 127.0.0.1:18789"
 
-  mbp-nplh:
-    Inherits: mbp
-    Hostname: 192.168.1.112
-
 ############################################################
 # Devices / Services
 ############################################################
@@ -74,14 +70,14 @@ hosts:
   #   Inherits: bat-devices
 
   ### MBP ##################################################
-  mbp-deco:
-    Hostname: 192.168.68.75
-    Inherits: personal-allowpass
-  mbp:
-    Hostname: 100.73.19.104
-    Inherits: personal-allowpass
-  mbp-personal:
-    Inherits: mbp
+  # mbp-lan:
+  #   Hostname: 192.168.68.75
+  #   Inherits: personal-allowpass
+  # mbp:
+  #   Hostname: 100.73.19.104
+  #   Inherits: personal-allowpass
+  # mbp-personal:
+  #   Inherits: mbp
 
   ### NAS ##################################################
   truenas:
@@ -103,13 +99,13 @@ hosts:
     Inherits: nuc01
   plex:
     Inherits: nuc01
-  nuc-deco:
+  nuc-lan:
     Inherits: personal-server
     # Hostname: 192.168.69.69
-    Hostname: nuc01-deco.erebusbat.net
-  nuc01-deco:
+    Hostname: nuc01-ovcn.erebusbat.net
+  nuc01-lan:
     Inherits: personal-server
-    Hostname: nuc01-deco.erebusbat.net
+    Hostname: nuc01-ovcn.erebusbat.net
 
   ### maze #################################################
   maze:
@@ -120,22 +116,17 @@ hosts:
     # Hostname: maze.tail04886.ts.net
   nuc02:
     Inherits: maze
-  nuc02-deco:
+  nuc02-lan:
     Inherits: personal-server
     # Hostname: 192.168.70.70
-    Hostname: nuc02-deco.erebusbat.net
-  maze-deco:
+    Hostname: nuc02-ovcn.erebusbat.net
+  maze-lan:
     Inherits: personal-server
-    Hostname: nuc02-deco.erebusbat.net
+    Hostname: nuc02-ovcn.erebusbat.net
 
 ############################################################
 # Linux PCs
 ############################################################
-  ### theilo ################################################
-  # thelio-deco:
-  #   Inherits: personal
-  #   Hostname: 192.168.69.75
-
   ### Sys76 Darter Laptop ##################################
   dartp6:
     Inherits: personal-allowpass
@@ -182,7 +173,6 @@ templates:
     GatewayConnectTimeout: 2
     # Gateways:
     #   - direct
-    #   - nuc02-deco
     #   - dartp6-nplh
     #   - mbp-nplh
   bat-devices:
