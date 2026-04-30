@@ -88,7 +88,5 @@ fi
 
 # Let this window be used for dlog-tail
 # Remember that we moved it to the [P]roductivity workspace above
-echo "Press ENTER to start dlog-tail"
-read
 clear
 dlog-tail 2
