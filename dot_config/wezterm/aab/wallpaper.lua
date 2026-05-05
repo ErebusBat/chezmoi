@@ -1,4 +1,4 @@
-local wallpaper_enabled = true
+local wallpaper_enabled = false
 local wezterm = require 'wezterm'
 local os = require 'os'
 
@@ -24,6 +24,13 @@ if wallpaper_enabled and file_exists(wallpaper_path) then
   }
 else
   return {
-    text_background_opacity = 1.0,
+    background = {
+      {
+        source = { Color = "#000000" },
+        -- width/height required: Color layers default to 0×0 without explicit dimensions
+        width = "100%",
+        height = "100%",
+      },
+    },
   }
 end
