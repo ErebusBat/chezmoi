@@ -1,0 +1,5 @@
+systemprompt name:
+	jq -r 'first(.templates[] | select(.name == "{{name}}") ).systemPrompt' templates.json
+
+list:
+	jq -r '.templates[] | "\(.id)\t\(.name)"' templates.json
