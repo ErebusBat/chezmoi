@@ -1,0 +1,14 @@
+# vim: set ft=zsh:
+
+$HOME/src/erebusbat/hassio/
+$HOME/src/erebusbat/image-marker/imgs/**
+$HOME/src/erebusbat/pchef76/
+$HOME/src/vendor/
+
+$HOME/src/lshq/docs.git/
+$HOME/src/lshq/weekly_digest_email_pipeline/lettercarrier6/vendor/
+
+$HOME/Library/Application Support/OpenOats/sessions/*/audio/*.caf
+
+**/_cacache/*
+**/.sshuttle-venv/*

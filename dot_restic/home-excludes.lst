@@ -159,6 +159,7 @@ $HOME/Library/Application Support/obsidian/Session Storage/**
 $HOME/Library/Application Support/obsidian/Singleton*/**
 $HOME/Library/Application Support/obsidian/Web Storage/**
 $HOME/Library/Application Support/obsidian/WebStorage/**
+$HOME/Library/Application Support/OpenOats/sessions/*/audio/*.caf
 $HOME/Library/Application Support/Plexamp/**
 $HOME/Library/Application Support/Postman/Crashpad/**
 $HOME/Library/Application Support/Postman/logs/**
