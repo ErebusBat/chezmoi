@@ -1,3 +1,4 @@
+local wallpaper_enabled = true
 local wezterm = require 'wezterm'
 local os = require 'os'
 
@@ -8,7 +9,7 @@ end
 
 local wallpaper_path = os.getenv("HOME") .. "/.config/wezterm/wallpaper.jpg"
 
-if file_exists(wallpaper_path) then
+if wallpaper_enabled and file_exists(wallpaper_path) then
   return {
     background = {
       {
