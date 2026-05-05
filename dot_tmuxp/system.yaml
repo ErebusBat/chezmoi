@@ -6,6 +6,7 @@ windows:
   panes:
     - shell_command:
       - z day_planner
+      - ocp-on lshq
       # Day Planner - Session      niVQPll3K
       - oc -s ses_3040f5ed1ffeyGQvdniVQPll3K
 
@@ -20,12 +21,12 @@ windows:
     - shell_command:
       - fastfetch
 
-- window_name: pi
-  panes:
-    - shell_command:
-      - cd .pi
-      - nvm use
-      - pi -c
-    - shell_command:
-      - cd .pi
+# - window_name: pi
+#   panes:
+#     - shell_command:
+#       - cd .pi
+#       - nvm use
+#       - pi -c
+#     - shell_command:
+#       - cd .pi
 

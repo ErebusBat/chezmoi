@@ -12,15 +12,15 @@ windows:
     - cd docs
     - cd docs
 
-- window_name: wde-pi
-  panes:
-    - shell_command:
-      - cd add-upenv
-      - nvm use
-      - pi -c
-    - shell_command:
-      - cd add-upenv
-      - nvm use
+# - window_name: wde-pi
+#   panes:
+#     - shell_command:
+#       - cd add-upenv
+#       - nvm use
+#       - pi -c
+#     - shell_command:
+#       - cd add-upenv
+#       - nvm use
 
 # - window_name: swipely
 #   panes:
