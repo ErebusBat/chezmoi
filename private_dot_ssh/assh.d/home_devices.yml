@@ -29,6 +29,7 @@ hosts:
   de4062.rsync.net:
     Inherits: rsyncnet
 
+  ### Outpost ############################################
   outpost46.erebusbat.net:
     Hostname: outpost46.erebusbat.net
     Inherits: personal-server
@@ -91,6 +92,18 @@ hosts:
     Inherits: truenas
   nas:
     Inherits: truenas
+  nas.lan:
+    Hostname: nas.lan.erebusbat.net
+    Inherits: truenas
+
+  ### dormouse #############################################
+  dormouse:
+    Inherits: personal-server
+    ForwardAgent: true
+    Hostname: dormouse.erebusbat.net
+  dormouse.lan:
+    Inherits: dormouse
+    Hostname: dormouse.lan.erebusbat.net
 
   ### nuc01 ################################################
   nuc01:
@@ -98,35 +111,26 @@ hosts:
     # Hostname: nuc01.erebusbat.net
     # Hostname: "[2600:6c67:857f:486b:d5be:5a1:b99:3c14]"
     ForwardAgent: true
-    Hostname: 100.65.80.50
+    Hostname: nuc.erebusbat.net
   nuc:
     Inherits: nuc01
+  nuc.lan:
+    Inherits: nuc01
+    Hostname: nuc.lan.erebusbat.net
   plex:
     Inherits: nuc01
-  nuc-lan:
-    Inherits: personal-server
-    # Hostname: 192.168.69.69
-    Hostname: nuc01-ovcn.erebusbat.net
-  nuc01-lan:
-    Inherits: personal-server
-    Hostname: nuc01-ovcn.erebusbat.net
 
   ### maze #################################################
   maze:
     Inherits: personal-server
-    # Hostname: maze.erebusbat.net
-    Hostname: 100.92.65.146
+    Hostname: maze.erebusbat.net
     ForwardAgent: true
-    # Hostname: maze.tail04886.ts.net
   nuc02:
     Inherits: maze
-  nuc02-lan:
+  maze.lan:
     Inherits: personal-server
-    # Hostname: 192.168.70.70
-    Hostname: nuc02-ovcn.erebusbat.net
-  maze-lan:
-    Inherits: personal-server
-    Hostname: nuc02-ovcn.erebusbat.net
+    Hostname: maze.lan.erebusbat.net
+    # Hostname: 192.168.14.6
 
 ############################################################
 # Linux PCs
