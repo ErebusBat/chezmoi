@@ -284,7 +284,8 @@ fi
 
 
 
+
 # >>> ocpersona >>>
-source "$HOME/.config/ocpersona/config.sh"
-source "${OCP_PATH}/contrib/ocpersona.plugin.zsh"
+export OCP_PATH="${OCP_PATH:-$HOME/src/erebusbat/ocpersona}"
+[ -f "${OCP_PATH}/contrib/ocpersona.plugin.zsh" ] && source "${OCP_PATH}/contrib/ocpersona.plugin.zsh"
 # <<< ocpersona <<<
