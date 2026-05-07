@@ -101,6 +101,7 @@ hosts:
     Inherits: personal-server
     ForwardAgent: true
     Hostname: dormouse.erebusbat.net
+    AllowPassword: true
   dormouse.lan:
     Inherits: dormouse
     Hostname: dormouse.lan.erebusbat.net
