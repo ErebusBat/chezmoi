@@ -64,13 +64,13 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
     # Workspace names from Obsidian: logs/2026/03-Mar/AeroSpace.md
     # Current monitor names: Built-in Retina Display, S34J55x, Sidecar Display (AirPlay)
     #
-    M = ['sidecar', 'secondary']        # M=Multimedia / Music
+    M = ['sidecar', 'retina']           # M=Multimedia / Music
     P = 'built-in'                      # P=Productivity
-    Q = 'main'                          # Q=Personal
-    S = ['sidecar', 'secondary']        # S=Slack / Messanging
-    B = ['sidecar', 'secondary']        # B=Bot
-    V = ['sidecar', 'secondary']        # V=Video
-    W = 'main'                          # W=Work
+    Q = 'S34J55x'                       # Q=Personal
+    S = ['sidecar', 'retina']           # S=Slack / Messanging
+    B = ['sidecar', 'retina']           # B=Bot
+    V = 'retina'                        # V=Video
+    W = 'S34J55x'                       # W=Work
 
 # exec-on-workspace-change is intentionally not used because on-focus-changed
 # reliably fires for both keyboard-driven and command-driven workspace changes.
