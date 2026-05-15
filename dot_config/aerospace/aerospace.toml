@@ -69,7 +69,7 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
     Q = 'S34J55x'                       # Q=Personal
     S = ['sidecar', 'retina']           # S=Slack / Messanging
     B = ['sidecar', 'retina']           # B=Bot
-    V = 'retina'                        # V=Video
+    V = ['sidecar', 'retina']           # V=Video
     W = 'S34J55x'                       # W=Work
 
 # exec-on-workspace-change is intentionally not used because on-focus-changed

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Output Mode is normally `silent` `fullOutput` can be used for debugging
+# https://github.com/raycast/script-commands/blob/master/documentation/OUTPUTMODES.md
+
 # Required parameters:
 # @raycast.schemaVersion 1
 # @raycast.title Daily Log

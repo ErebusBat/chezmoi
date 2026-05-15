@@ -107,7 +107,8 @@ Lists files that chezmoi should actively **remove** from the target. Used for cl
 
 ## Editing Guidelines
 
-- **Always edit source files here**, never edit `~/` targets directly (chezmoi will overwrite them)
+- **Do not edit the chezmoi source directly unless explicitly asked to change chezmoi.** For managed dotfiles/configs, prefer explaining the proposed change or, when explicitly requested, changing only the live/direct target file so the user can review, accept, or import it into chezmoi afterward.
+- When the user explicitly asks to change chezmoi, edit the source files here rather than `~/` targets directly (chezmoi will overwrite unmanaged target edits)
 - Template files (`.tmpl`) use Go template syntax — test with `chezmoi execute-template`
 - When adding area-conditional files, update both `.chezmoiignore` (to exclude from other areas) and `Brewfile.tmpl` (if packages are needed)
 - The `Brewfile.tmpl` has a warning comment: "THIS FILE IS TEMPLATED, DO NOT EDIT DIRECTLY!" — the source of truth is here in chezmoi
