@@ -389,6 +389,7 @@ us-east-1 = 'us-e1'
 symbol = '☸'
 format = '[[ $symbol( $context \($namespace\)) ](fg:sapphire)]($style)'
 disabled = false
+detect_env_vars = ['STARSHIP_K8S']
 
 [pulumi]
 format = '[[ $symbol( $stack ) ](fg:sapphire)]($style)'

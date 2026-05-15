@@ -1,6 +1,9 @@
 # 2026-APR-09: Remove broken plugin
 .config/nvim/lua/plugins/terminal.lua
 
+# 2026-MAY-15: Rename starship_prompt zsh plugin to starship
+.config/zsh-antibody/starship_prompt/starship_prompt.plugin.zsh
+
 # 2026-JAN-14
 .ssh/assh.d/tailscale.yml
 Library/LaunchAgents/local.wake-monitor.plist

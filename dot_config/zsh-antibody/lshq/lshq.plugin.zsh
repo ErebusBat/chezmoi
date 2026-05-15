@@ -10,6 +10,8 @@ source <(fzf --zsh)
 # lskt-onboard: kubectl-krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
+# Starship path-sensitive prompt context is managed in the starship plugin.
+
 # lskt-onboard: brew shellenv - cache output to avoid ~50ms fork on every startup
 _brew_shellenv_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/brew-shellenv.zsh"
 if [[ ! -f "$_brew_shellenv_cache" || /opt/homebrew/bin/brew -nt "$_brew_shellenv_cache" ]]; then

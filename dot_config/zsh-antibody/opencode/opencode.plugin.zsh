@@ -288,4 +288,26 @@ fi
 # >>> ocpersona >>>
 export OCP_PATH="${OCP_PATH:-$HOME/src/erebusbat/ocpersona}"
 [ -f "${OCP_PATH}/contrib/ocpersona.plugin.zsh" ] && source "${OCP_PATH}/contrib/ocpersona.plugin.zsh"
+
+_ocpersona_path_context() {
+  unset OCP_PROFILE
+  unset OCP_PROFILE_FILE
+
+  if [[ -f ./.ocpersona ]]; then
+    source ./.ocpersona
+    return
+  fi
+
+  case "${PWD:A}" in
+    "${HOME:A}/src/lshq"|"${HOME:A}/src/lshq"/*)
+      export OCP_PROFILE=lshq
+      ;;
+    "${HOME:A}/src/erebusbat"|"${HOME:A}/src/erebusbat"/*)
+      export OCP_PROFILE=personal
+      ;;
+  esac
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _ocpersona_path_context
+_ocpersona_path_context
 # <<< ocpersona <<<
