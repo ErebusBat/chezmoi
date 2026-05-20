@@ -16,5 +16,8 @@ _starship_path_context
 if [[ -x /opt/homebrew/bin/starship ]]; then
   eval "$( /opt/homebrew/bin/starship init zsh)"
 else
+  # starship_path=$(mise which starship)
+  # echo "Attempting to use $starship_path"
+  # eval "$( $starship_path init zsh)"
   eval "$( starship init zsh)"
 fi
