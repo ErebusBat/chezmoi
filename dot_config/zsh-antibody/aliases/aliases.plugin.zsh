@@ -51,6 +51,10 @@ function mkcd() {
   fi
 }
 
+function sudovim() {
+  sudo -E $(which nvim) "$@"
+}
+
 # todo today
 # function todot() {
 #   todo "$1" t
