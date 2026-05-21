@@ -1,0 +1,232 @@
+#!/bin/bash
+set -euo pipefail
+
+DOMAIN="${LAUNCHD_WATCH_DOMAIN:-gui/$(id -u)}"
+COOLDOWN_SECONDS="${LAUNCHD_WATCH_COOLDOWN_SECONDS:-21600}"
+LOG_LINES="${LAUNCHD_WATCH_LOG_LINES:-30}"
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/launchd-watch"
+LABELS_FILE="${LAUNCHD_WATCH_LABELS_FILE:-$HOME/.config/launchd-watch/labels}"
+NOTIFY_BIN="${LAUNCHD_WATCH_NOTIFY_BIN:-$HOME/bin/notify}"
+DRY_RUN=0
+STRICT_EXIT=0
+
+usage() {
+  cat <<EOF
+Usage: launchd-watch [--dry-run] [--strict-exit] [label ...]
+
+Checks local launchd agents for non-zero last exit codes and sends a
+deduplicated alert through ~/bin/notify plus a macOS notification.
+
+With no labels, labels are read from:
+  1. $LABELS_FILE, if it exists
+  2. ~/Library/LaunchAgents/local.*.plist
+
+Environment:
+  LAUNCHD_WATCH_COOLDOWN_SECONDS  Minimum seconds between repeat alerts per job
+  LAUNCHD_WATCH_LOG_LINES         Lines of recent log output to include
+  LAUNCHD_WATCH_LABELS_FILE       Optional newline-separated labels file
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --dry-run)
+      DRY_RUN=1
+      shift
+      ;;
+    --strict-exit)
+      STRICT_EXIT=1
+      shift
+      ;;
+    --help|-h)
+      usage
+      exit 0
+      ;;
+    --)
+      shift
+      break
+      ;;
+    -*)
+      echo "Unknown option: $1" >&2
+      usage >&2
+      exit 2
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+mkdir -p "$STATE_DIR"
+
+sanitize_label() {
+  printf '%s' "$1" | tr -c 'A-Za-z0-9_.-' '_'
+}
+
+plist_label() {
+  local plist="$1"
+  /usr/libexec/PlistBuddy -c 'Print :Label' "$plist" 2>/dev/null || basename "$plist" .plist
+}
+
+discover_labels() {
+  if [[ $# -gt 0 ]]; then
+    printf '%s\n' "$@"
+    return
+  fi
+
+  if [[ -f "$LABELS_FILE" ]]; then
+    sed -E 's/#.*$//; /^[[:space:]]*$/d; s/^[[:space:]]+//; s/[[:space:]]+$//' "$LABELS_FILE"
+    return
+  fi
+
+  for plist in "$HOME"/Library/LaunchAgents/local.*.plist; do
+    [[ -f "$plist" ]] || continue
+    plist_label "$plist"
+  done
+}
+
+field_from_print() {
+  local field="$1"
+  awk -v field="$field" '$0 ~ "^[[:space:]]*" field " = " {
+    sub("^[[:space:]]*" field " = ", "")
+    print
+    exit
+  }'
+}
+
+log_path_from_print() {
+  awk '$0 ~ /^[[:space:]]*(stdout|stderr) path = / {
+    sub("^[[:space:]]*(stdout|stderr) path = ", "")
+    if ($0 != "") {
+      print
+      exit
+    }
+  }'
+}
+
+notify() {
+  local title="$1"
+  local message="$2"
+  local full_message="$title"$'\n'"$message"
+
+  if [[ $DRY_RUN -eq 1 ]]; then
+    printf 'DRY RUN notification:\n%s\n\n' "$full_message"
+    return
+  fi
+
+  if [[ -x "$NOTIFY_BIN" ]]; then
+    "$NOTIFY_BIN" "$full_message" || true
+  fi
+
+  /usr/bin/osascript - "$title" "$message" >/dev/null 2>&1 <<'APPLESCRIPT' || true
+on run argv
+  display notification (item 2 of argv) with title (item 1 of argv)
+end run
+APPLESCRIPT
+}
+
+should_alert() {
+  local label="$1"
+  local signature="$2"
+  local state_file="$3"
+  local now last_signature last_sent
+
+  now="$(date +%s)"
+  last_signature=""
+  last_sent=0
+
+  if [[ -f "$state_file" ]]; then
+    last_signature="$(sed -n 's/^signature=//p' "$state_file" | tail -1)"
+    last_sent="$(sed -n 's/^sent_at=//p' "$state_file" | tail -1)"
+    [[ "$last_sent" =~ ^[0-9]+$ ]] || last_sent=0
+  fi
+
+  if [[ "$signature" != "$last_signature" ]]; then
+    return 0
+  fi
+
+  if (( now - last_sent >= COOLDOWN_SECONDS )); then
+    return 0
+  fi
+
+  return 1
+}
+
+record_state() {
+  local state_file="$1"
+  local status="$2"
+  local signature="$3"
+
+  [[ $DRY_RUN -eq 1 ]] && return 0
+
+  {
+    printf 'status=%s\n' "$status"
+    printf 'signature=%s\n' "$signature"
+    printf 'sent_at=%s\n' "$(date +%s)"
+    printf 'updated_at=%s\n' "$(date '+%Y-%m-%d %H:%M:%S %Z')"
+  } > "$state_file"
+}
+
+check_label() {
+  local label="$1"
+  local print_out exit_code runs state log_path signature state_file log_tail message
+
+  [[ "$label" == "local.launchd-watch" ]] && return 0
+
+  state_file="$STATE_DIR/$(sanitize_label "$label").state"
+
+  if ! print_out="$(launchctl print "$DOMAIN/$label" 2>&1)"; then
+    signature="missing"
+    if should_alert "$label" "$signature" "$state_file"; then
+      notify "LaunchAgent missing: $label" "$print_out"
+      record_state "$state_file" "missing" "$signature"
+    fi
+    printf 'MISSING %s\n' "$label"
+    return 1
+  fi
+
+  exit_code="$(printf '%s\n' "$print_out" | field_from_print "last exit code" || true)"
+  runs="$(printf '%s\n' "$print_out" | field_from_print "runs" || true)"
+  state="$(printf '%s\n' "$print_out" | field_from_print "state" || true)"
+  log_path="$(printf '%s\n' "$print_out" | log_path_from_print || true)"
+
+  if [[ -z "$exit_code" || "$exit_code" == "0" || ! "$exit_code" =~ ^[0-9]+$ ]]; then
+    record_state "$state_file" "ok" "ok:${runs:-unknown}:${exit_code:-none}"
+    printf 'OK      %s state=%s runs=%s exit=%s\n' "$label" "${state:-unknown}" "${runs:-unknown}" "${exit_code:-none}"
+    return 0
+  fi
+
+  signature="failed:${runs:-unknown}:$exit_code"
+  log_tail=""
+  if [[ -n "$log_path" && -f "$log_path" ]]; then
+    log_tail="$(tail -n "$LOG_LINES" "$log_path" 2>/dev/null || true)"
+  fi
+
+  message="exit=$exit_code state=${state:-unknown} runs=${runs:-unknown}"
+  if [[ -n "$log_path" ]]; then
+    message="$message log=$log_path"
+  fi
+  if [[ -n "$log_tail" ]]; then
+    message="$message"$'\n\n'"Recent log:"$'\n'"$log_tail"
+  fi
+
+  if should_alert "$label" "$signature" "$state_file"; then
+    notify "LaunchAgent failed: $label" "$message"
+    record_state "$state_file" "failed" "$signature"
+  fi
+
+  printf 'FAILED  %s state=%s runs=%s exit=%s\n' "$label" "${state:-unknown}" "${runs:-unknown}" "$exit_code"
+  return 1
+}
+
+exit_status=0
+while IFS= read -r label; do
+  [[ -n "$label" ]] || continue
+  check_label "$label" || exit_status=1
+done < <(discover_labels "$@" | sort -u)
+
+if [[ $STRICT_EXIT -eq 1 ]]; then
+  exit "$exit_status"
+fi
+
+exit 0
