@@ -16,7 +16,7 @@ if [[ -f ~/.lmstudio/justfile ]]; then
   echo "########################################"
   echo "## Loading Local Dictation Cleanup Model"
   echo "########################################"
-  just --justfile ~/.lmstudio/justfile load-dictation
+  just --justfile ~/.lmstudio/justfile up
   echo ""
 fi
 

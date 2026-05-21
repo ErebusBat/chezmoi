@@ -109,6 +109,10 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
     if.app-id = 'com.todoist.mac.Todoist'
     run = 'move-node-to-workspace P'
 
+[[on-window-detected]]
+    if.app-id = 'cc.ffitch.shottr'
+    run = 'layout floating'
+
 # --------------------
 # WORKSPACE M
 # Music (iPad)
@@ -151,6 +155,13 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
 # --------------------
 [[on-window-detected]]
     if.app-id = 'com.openoats.app'
+    run = [
+        'layout floating',
+        'move-node-to-workspace Z',
+    ]
+
+[[on-window-detected]]
+    if.app-id = 'com.goodsnooze.MacWhisper'
     run = 'move-node-to-workspace Z'
 
 [[on-window-detected]]

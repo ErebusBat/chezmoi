@@ -29,7 +29,7 @@ duf:
   fi
   duf "${vols[@]}"
 
-# Back up LM Studio model caches so they rebuild on next launch
+# Delete LM Studio model caches so they rebuild on next launch
 [group('Data')]
 clear-model-caches:
   #!/usr/bin/env zsh
