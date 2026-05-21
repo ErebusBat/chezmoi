@@ -3,7 +3,18 @@
 {{ $fullPath := joinPath .chezmoi.homeDir $filePath }}
 
 # Config HASH: {{ include $fullPath | sha256sum }} {{ $fullPath }}
-zsh_plugins=$HOME/.config/zsh-antibody/plugins
+zsh_plugins_dir=$HOME/.config/zsh-antibody/
+zsh_static=$zsh_plugins_dir/.plugins.zsh
+zsh_plugins_src=$zsh_plugins_dir/plugins.txt
+[[ -f $zsh_plugins ]] && rm -v $zsh_plugins
+if [[ ! -f $zsh_plugins_src ]]; then
+  echo "WARN: Antidote needs bundling but plugins source file missing"
+  echo "   $zsh_plugins_src"
+  exit 0
+fi
 echo "Antidote Bundling"
 source $HOME/.config/antidote/antidote.zsh
-antidote bundle <${zsh_plugins}.txt >|${zsh_plugins}.zsh
+antidote bundle <${zsh_plugins_src} >| ${zsh_static}
+
+# vim: set ts=2 et ft=zsh :
+
