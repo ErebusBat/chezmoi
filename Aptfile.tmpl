@@ -1,0 +1,36 @@
+{{- $force_update_every_days := 3 -}}
+{{- $update_version := div (now | unixEpoch) (mul $force_update_every_days 86400) -}}
+#===============================================================================
+# THIS FILE IS TEMPLATED, DO NOT EDIT DIRECTLY!
+# update_version={{ $update_version }} <-- Will update every {{ $force_update_every_days }}d
+#===============================================================================
+
+# Lines starting with # are comments
+# Lines starting with ppa: add a PPA repository
+
+#--- Base system
+build-essential
+dnsutils
+git
+git-lfs
+iputils-ping
+libssl-dev
+vim
+zsh
+
+{{ if eq .area.server true }}
+#--- Server monitoring / tools
+prometheus-node-exporter
+{{ end }}
+
+{{ if eq .area.personal true }}
+#--- Personal / Desktop
+{{ if eq .chezmoi.osRelease.id "ubuntu" }}
+ubuntu-restricted-extras
+{{ end }}
+{{ end }}
+
+#===============================================================================
+# THIS FILE IS TEMPLATED, DO NOT EDIT DIRECTLY!
+#===============================================================================
+# vim: set noai ts=4 sw=4 ft=conf:

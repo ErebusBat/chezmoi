@@ -1,0 +1,31 @@
+#!/bin/bash
+{{ if ne .chezmoi.os "linux" }}
+exit 0
+{{ end }}
+{{ $filePath := joinPath .chezmoi.homeDir "/Aptfile" }}
+{{ if stat $filePath }}
+# {{ include $filePath | sha256sum }} ~/Aptfile
+set -euo pipefail
+
+packages=$(grep -v '^\s*#' "$HOME/Aptfile" | grep -v '^\s*$' | grep -v '^ppa:' | tr '\n' ' ' || true)
+ppas=$(grep '^ppa:' "$HOME/Aptfile" | sed 's/^ppa://' | tr '\n' ' ' || true)
+
+sudo apt-get update
+
+if [ -n "$ppas" ]; then
+  for ppa in $ppas; do
+    echo "INFO: Adding ppa:$ppa"
+    sudo add-apt-repository --yes "$ppa"
+  done
+  sudo apt-get update
+fi
+
+if [ -n "$packages" ]; then
+  echo "INFO: Installing apt packages: $packages"
+  sudo apt-get install --no-install-recommends -y $packages
+fi
+{{ else }}
+# No ~/Aptfile found, skipping
+echo "Aptfile: ~/Aptfile not found, skipping"
+{{ end }}
+# vim: set noai ts=4 sw=4 ft=bash:

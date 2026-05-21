@@ -110,6 +110,7 @@ bin/toggle_light_dark.sh
 {{- end }}
 
 {{- if ne .chezmoi.os "linux" }}
+Aptfile
 .config/Synergy/
 .config/gospt/client.yml
 .config/systemd
