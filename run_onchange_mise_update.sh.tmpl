@@ -9,6 +9,9 @@ echo "MISE: Updating..."
 cd ~
 if command -v mise &>/dev/null; then
   mise upgrade
+
+  # Update ssh config in case we updated assh
+  mise x -- assh config build > ~/.ssh/config
 else
   echo "WARN: mise not installed yet!"
 fi
