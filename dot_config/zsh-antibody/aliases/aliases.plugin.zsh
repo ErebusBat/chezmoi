@@ -52,7 +52,7 @@ function mkcd() {
 }
 
 function sudovim() {
-  sudo -E $(which nvim) "$@"
+  sudo HOME=$HOME PATH=$PATH $(which nvim) "$@"
 }
 
 # todo today
