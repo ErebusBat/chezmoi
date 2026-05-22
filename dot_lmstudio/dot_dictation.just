@@ -12,8 +12,9 @@ SUMMARY_MODEL_CONTEXT_SIZE := '32780'
 # Bring LM Studio up with background models that are expected to be there
 [group('Dictation')]
 up:
+  ./bin/lms server start
   just load-dictation || true
-  just load-dictation-summary || true
+  # just load-dictation-summary || true
   @printf "\n\n\nThe following models are available:"
   @./bin/lms ps
 
@@ -21,7 +22,6 @@ up:
 [group('Dictation')]
 restart:
   ./bin/lms server stop || true
-  ./bin/lms server start
   just up
 
 # Unload models

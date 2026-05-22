@@ -196,10 +196,14 @@ check_label() {
     return 0
   fi
 
-  signature="failed:${runs:-unknown}:$exit_code"
   log_tail=""
   if [[ -n "$log_path" && -f "$log_path" ]]; then
     log_tail="$(tail -n "$LOG_LINES" "$log_path" 2>/dev/null || true)"
+  fi
+
+  signature="failed:${runs:-unknown}:$exit_code"
+  if [[ "$log_tail" == *" is not a loaded service."* ]]; then
+    signature="failed:missing-target:$exit_code"
   fi
 
   message="exit=$exit_code state=${state:-unknown} runs=${runs:-unknown}"
