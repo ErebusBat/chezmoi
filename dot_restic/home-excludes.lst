@@ -234,6 +234,7 @@ $HOME/Library/Preferences/com.apple.AddressBook.plist
 $HOME/Library/Preferences/com.apple.homed.notbackedup.plist
 $HOME/Library/Preferences/com.apple.homed.plist
 $HOME/Library/Preferences/com.apple.mail-shared.plist
+$HOME/Library/Preferences/com.apple.madrid.plist
 $HOME/Library/Preferences/com.apple.messages.pinning.plist
 $HOME/Library/Preferences/com.apple.MobileSMS*.*
 $HOME/Library/QuickLook/**
