@@ -1,8 +1,9 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
+$time\
 $os\
-$username\
+${custom.username}\
 $directory\
 ${custom.repo_name}\
 $git_status\
@@ -21,7 +22,6 @@ $kubernetes\
 $aws\
 $pulumi\
 $conda\
-$time\
 $line_break\
 $container\
 $hostname\
@@ -113,13 +113,20 @@ style = "fg:red"
 # RedHatEnterprise = "󱄛"
 
 [username]
-show_always = true
+disabled = true
+show_always = false
 style_user = "fg:surface1"
 style_root = "fg:red"
 format = '[$user]($style)'
 aliases = {
   "andrew.burns" = "a.b"
 }
+
+[custom.username]
+command = 'case "${USER:-$(id -un)}" in andrew.burns|aburns) exit 1 ;; *) printf "%s" "${USER:-$(id -un)}" ;; esac'
+when = 'case "${USER:-$(id -un)}" in andrew.burns|aburns) exit 1 ;; *) exit 0 ;; esac'
+style = "fg:surface1"
+format = '[$output]($style)'
 
 [directory]
 style = "fg:peach"
@@ -144,11 +151,11 @@ format = '[[ $symbol $branch ](fg:yellow)]($style)'
 when = 'git rev-parse --git-dir >/dev/null 2>&1'
 command = '$HOME/bin/.starship-git-location.sh'
 style = "fg:text"
-# format = '[[ $output ](fg:yellow)]($style)'
+format = '[$output]($style)'
 
 [git_status]
 style = "fg:text"
-format = '[[ $all_status$ahead_behind](fg:yellow)]($style)'
+format = '([ $all_status$ahead_behind](fg:yellow))'
 use_git_executable = true
 
 [nodejs]
@@ -216,7 +223,7 @@ ignore_base = false
 disabled = false
 time_format = "%R"
 style = "fg:text"
-format = '[[  $time ](fg:lavender)]($style)'
+format = '[[ $time](fg:lavender)]($style)'
 
 [line_break]
 disabled = false
