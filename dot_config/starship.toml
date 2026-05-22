@@ -386,10 +386,43 @@ disabled = true
 
 [aws]
 style = "fg:surface1"
-format = '[ ($profile )(\($region\) )(\[$duration\] )]($style)'
+symbol = ""
+format = '[[ $symbol ($profile )(\($region\) )(\[$duration\])](fg:surface1)]($style)'
 
 [aws.region_aliases]
-us-east-1 = 'us-e1'
+us-east-1 = 'VA'
+us-east-2 = 'OH'
+us-west-1 = 'CA'
+us-west-2 = 'OR'
+ca-central-1 = 'Canada Central'
+ca-west-1 = 'Calgary'
+mx-central-1 = 'Mexico Central'
+sa-east-1 = 'Sao Paulo'
+eu-west-1 = 'Ireland'
+eu-west-2 = 'London'
+eu-west-3 = 'Paris'
+eu-central-1 = 'Frankfurt'
+eu-central-2 = 'Zurich'
+eu-north-1 = 'Stockholm'
+eu-south-1 = 'Milan'
+eu-south-2 = 'Spain'
+ap-south-1 = 'Mumbai'
+ap-south-2 = 'Hyderabad'
+ap-southeast-1 = 'Singapore'
+ap-southeast-2 = 'Sydney'
+ap-southeast-3 = 'Jakarta'
+ap-southeast-4 = 'Melbourne'
+ap-southeast-5 = 'Malaysia'
+ap-southeast-7 = 'Thailand'
+ap-northeast-1 = 'Tokyo'
+ap-northeast-2 = 'Seoul'
+ap-northeast-3 = 'Osaka'
+ap-east-1 = 'Hong Kong'
+ap-east-2 = 'Taipei'
+me-south-1 = 'Bahrain'
+me-central-1 = 'UAE'
+il-central-1 = 'Tel Aviv'
+af-south-1 = 'Cape Town'
 [aws.profile_aliases]
 "lsu/ops/dev-secrets/us-east-1" = "🔒ops/DEV_SECRETS"
 "lsu/ops/poweruser/us-east-1" = "ops/poweruser"
