@@ -391,6 +391,11 @@ format = '[ ($profile )(\($region\) )(\[$duration\] )]($style)'
 [aws.region_aliases]
 us-east-1 = 'us-e1'
 [aws.profile_aliases]
+"lsu/ops/dev-secrets/us-east-1" = "🔒ops/DEV_SECRETS"
+"lsu/ops/poweruser/us-east-1" = "ops/poweruser"
+"lsu/pos/poweruser/us-east-1" = "pos/poweruser"
+"lsu/prod-pci/poweruser/us-east-1" = "🚨 PROD PCI"
+"lsu/swipely/eks-cluster-access/us-east-1" = "s/eks/staging"
 "lsu/swipely/poweruser/us-east-1" = "swipely/poweruser"
 
 [kubernetes]
@@ -398,6 +403,9 @@ symbol = '☸'
 format = '[[ $symbol( $context \($namespace\)) ](fg:sapphire)]($style)'
 disabled = false
 detect_env_vars = ['STARSHIP_K8S']
+contexts = [
+  { context_pattern = "arn:aws:eks:us-east-1:644891637164:cluster/lsu-staging", context_alias = "eks-staging" }
+]
 
 [pulumi]
 format = '[[ $symbol( $stack ) ](fg:sapphire)]($style)'
