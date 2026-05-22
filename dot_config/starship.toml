@@ -387,7 +387,7 @@ disabled = true
 [aws]
 style = "fg:surface1"
 symbol = ""
-format = '[[ $symbol ($profile )(\($region\) )(\[$duration\])](fg:surface1)]($style)'
+format = '[[ $symbol ($profile )(\($region\))(\[$duration\])](fg:surface1)]($style)'
 
 [aws.region_aliases]
 us-east-1 = 'VA'
@@ -433,7 +433,7 @@ af-south-1 = 'Cape Town'
 
 [kubernetes]
 symbol = '☸'
-format = '[[ $symbol( $context \($namespace\)) ](fg:sapphire)]($style)'
+format = '[[ $symbol( $context \($namespace\))](fg:sapphire)]($style)'
 disabled = false
 detect_env_vars = ['STARSHIP_K8S']
 contexts = [
