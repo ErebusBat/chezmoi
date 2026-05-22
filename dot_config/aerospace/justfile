@@ -46,6 +46,7 @@ startup-wezterm: wezterm::wezterm-both
 # Launch both Chrome profiles and route each to its workspace.
 [group('Startup')]
 startup-chrome: chrome::chrome-both
+  ~/bin/fe-slack
 
 # List running applications with bundle IDs.
 [group('diagnostics')]
