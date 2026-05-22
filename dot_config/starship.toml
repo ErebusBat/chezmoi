@@ -6,6 +6,7 @@ $username\
 $directory\
 ${custom.repo_name}\
 $git_status\
+$ruby\
 $c\
 $rust\
 $golang\
@@ -15,7 +16,6 @@ $java\
 $kotlin\
 $haskell\
 $python\
-$ruby\
 $docker_context\
 $kubernetes\
 $aws\
@@ -71,6 +71,7 @@ style = "fg:text"
 
 [status]
 disabled = false
+format = " [$symbol$status]($style)"
 
 [battery]
 disabled = false
@@ -147,58 +148,58 @@ style = "fg:text"
 
 [git_status]
 style = "fg:text"
-format = '[[($all_status$ahead_behind )](fg:yellow)]($style)'
+format = '[[ $all_status$ahead_behind](fg:yellow)]($style)'
 use_git_executable = true
 
 [nodejs]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version) ](fg:green)]($style)'
+format = '[[ $symbol( $version)](fg:green)]($style)'
 
 [c]
-symbol = " "
+symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version) ](fg:green)]($style)'
+format = '[[ $symbol( $version)](fg:green)]($style)'
 
 [rust]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version) ](fg:green)]($style)'
+format = '[[ $symbol( $version)](fg:green)]($style)'
 
 [golang]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version) ](fg:green)]($style)'
+format = '[[ $symbol( $version)](fg:blue)]($style)'
 
 [php]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version) ](fg:green)]($style)'
+format = '[[ $symbol( $version)](fg:green)]($style)'
 
 [java]
-symbol = " "
+symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version) ](fg:green)]($style)'
+format = '[[ $symbol( $version)](fg:green)]($style)'
 
 [kotlin]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version) ](fg:green)]($style)'
+format = '[[ $symbol( $version)](fg:green)]($style)'
 
 [haskell]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version) ](fg:green)]($style)'
+format = '[[ $symbol( $version)](fg:green)]($style)'
 
 [python]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version )(\(#$virtualenv\))](fg:green)]($style)'
+format = '[[ $symbol( $version)(\(#$virtualenv\))](fg:yellow)]($style)'
 
 [ruby]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version ) ](fg:green)]($style)'
+format = '[[ $symbol( $version)](fg:red)]($style)'
 
 [docker_context]
 symbol = ""
