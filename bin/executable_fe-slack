@@ -1,0 +1,37 @@
+#!/usr/bin/env zsh
+
+app_name="Google Chrome"
+workspace="B"
+state_file="${TMPDIR:-/tmp}/fe-slack-aerospace-before.$$"
+
+use_aerospace=0
+if command -v aerospace >/dev/null 2>&1 && pgrep -x AeroSpace >/dev/null 2>&1; then
+  use_aerospace=1
+  aerospace list-windows --all --format '%{window-id}|%{app-name}' \
+    | awk -F'|' -v app="$app_name" '$2==app{print $1}' \
+    | sort -n > "$state_file"
+fi
+
+open -na "$app_name" --args --profile-directory="Profile 1" --app="https://app.slack.com/client/T0BKSEBCL/C0AFFB9TQ6R"
+
+if [[ "$use_aerospace" -eq 1 ]]; then
+  {
+    new_id=""
+    for _ in {1..40}; do
+      sleep 0.25
+
+      after="$(aerospace list-windows --all --format '%{window-id}|%{app-name}' \
+        | awk -F'|' -v app="$app_name" '$2==app{print $1}' \
+        | sort -n)"
+
+      new_id="$(comm -13 "$state_file" <(printf '%s\n' "$after") | tail -n 1)"
+      [[ -n "$new_id" ]] && break
+    done
+
+    rm -f "$state_file"
+
+    if [[ -n "$new_id" ]]; then
+      aerospace move-node-to-workspace --window-id "$new_id" "$workspace"
+    fi
+  } &
+fi
