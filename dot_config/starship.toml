@@ -9,7 +9,7 @@ ${custom.repo_name}\
 $git_status\
 $battery\
 ${custom.lan_ip}\
-$line_break\
+${custom.context_line_break}\
 $ruby\
 $c\
 $rust\
@@ -68,6 +68,23 @@ command = '$HOME/bin/.starship-lan-ip.sh'
 when = 'test -x "$HOME/bin/.starship-lan-ip.sh" && test -n "$($HOME/bin/.starship-lan-ip.sh)"'
 format = '[ $output]($style)'
 style = "fg:surface1"
+
+[custom.context_line_break]
+when = '''
+case "${STARSHIP_K8S:-}${AWS_PROFILE:-}${AWS_REGION:-}${AWS_DEFAULT_REGION:-}${CONDA_DEFAULT_ENV:-}${PULUMI_STACK:-}" in
+  *[![:space:]]*) exit 0 ;;
+esac
+
+find . -maxdepth 2 \
+  \( -name .ruby-version -o -name Gemfile -o -name package.json -o -name .node-version \
+  -o -name go.mod -o -name Cargo.toml -o -name pyproject.toml -o -name requirements.txt \
+  -o -name .python-version -o -name composer.json -o -name pom.xml -o -name build.gradle \
+  -o -name Dockerfile -o -name docker-compose.yml -o -name docker-compose.yaml \
+  -o -name Pulumi.yaml \) \
+  -print -quit 2>/dev/null | grep -q .
+'''
+command = 'printf x'
+format = "\n"
 
 [status]
 disabled = false
@@ -161,62 +178,62 @@ use_git_executable = true
 [nodejs]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version)](fg:green)]($style)'
+format = '[[$symbol( $version) ](fg:green)]($style)'
 
 [c]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version)](fg:green)]($style)'
+format = '[[$symbol( $version) ](fg:green)]($style)'
 
 [rust]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version)](fg:green)]($style)'
+format = '[[$symbol( $version) ](fg:green)]($style)'
 
 [golang]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version)](fg:blue)]($style)'
+format = '[[$symbol( $version) ](fg:blue)]($style)'
 
 [php]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version)](fg:green)]($style)'
+format = '[[$symbol( $version) ](fg:green)]($style)'
 
 [java]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version)](fg:green)]($style)'
+format = '[[$symbol( $version) ](fg:green)]($style)'
 
 [kotlin]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version)](fg:green)]($style)'
+format = '[[$symbol( $version) ](fg:green)]($style)'
 
 [haskell]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version)](fg:green)]($style)'
+format = '[[$symbol( $version) ](fg:green)]($style)'
 
 [python]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version)(\(#$virtualenv\))](fg:yellow)]($style)'
+format = '[[$symbol( $version)(\(#$virtualenv\)) ](fg:yellow)]($style)'
 
 [ruby]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $version)](fg:red)]($style)'
+format = '[[$symbol( $version) ](fg:red)]($style)'
 
 [docker_context]
 symbol = ""
 style = "fg:text"
-format = '[[ $symbol( $context) ](fg:sapphire)]($style)'
+format = '[[$symbol( $context) ](fg:sapphire)]($style)'
 
 [conda]
-symbol = "  "
+symbol = ""
 style = "fg:crust"
-format = '[$symbol$environment ]($style)'
+format = '[($symbol $environment )]($style)'
 ignore_base = false
 
 [time]
@@ -387,7 +404,7 @@ disabled = true
 [aws]
 style = "fg:lavender"
 symbol = ""
-format = '[ $symbol ($profile@$region)(\[$duration\])]($style)'
+format = '[$symbol ($profile@$region)(\[$duration\]) ]($style)'
 
 [aws.region_aliases]
 us-east-1 = 'VA'
@@ -433,7 +450,7 @@ af-south-1 = 'Cape Town'
 
 [kubernetes]
 symbol = '☸'
-format = '[[ $symbol( $context \($namespace\))](fg:sapphire)]($style)'
+format = '[[$symbol( $context \($namespace\)) ](fg:sapphire)]($style)'
 disabled = false
 detect_env_vars = ['STARSHIP_K8S']
 contexts = [
