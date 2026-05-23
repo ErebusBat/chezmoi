@@ -7,6 +7,9 @@ ${custom.username}\
 $directory\
 ${custom.repo_name}\
 $git_status\
+$battery\
+${custom.lan_ip}\
+$line_break\
 $ruby\
 $c\
 $rust\
@@ -24,6 +27,7 @@ $pulumi\
 $conda\
 $line_break\
 $container\
+${env_var.TMUX_PANE}\
 $hostname\
 $sudo\
 $cmd_duration\
@@ -32,11 +36,7 @@ ${env_var.LAZYGIT_SHELL}\
 ${env_var.CLAUDE_CODE_PANE}\
 $status\
 $character"""
-right_format = """\
-$battery\
-${custom.lan_ip}\
-${env_var.TMUX_PANE}\
-"""
+right_format = ""
 
 palette = 'catppuccin_mocha'
 
@@ -54,8 +54,8 @@ disabled = false
 
 [env_var.TMUX_PANE]
 variable = "TMUX_PANE"
-format = "[$env_value]($style) "
-style = "fg:grey"
+format = "[$env_value]($style)"
+style = "fg:surface1"
 disabled = false
 
 [mise]
@@ -65,9 +65,9 @@ healthy_symbol = '❤️'
 
 [custom.lan_ip]
 command = '$HOME/bin/.starship-lan-ip.sh'
-when = 'test -x "$HOME/bin/.starship-lan-ip.sh"'
-format = '[$output ]($style)'
-style = "fg:text"
+when = 'test -x "$HOME/bin/.starship-lan-ip.sh" && test -n "$($HOME/bin/.starship-lan-ip.sh)"'
+format = '[ $output]($style)'
+style = "fg:surface1"
 
 [status]
 disabled = false
@@ -222,8 +222,8 @@ ignore_base = false
 [time]
 disabled = false
 time_format = "%R"
-style = "fg:text"
-format = '[[ $time](fg:lavender)]($style)'
+style = "fg:lavender"
+format = '[ $time]($style)'
 
 [line_break]
 disabled = false
@@ -365,7 +365,7 @@ crust = "#181926"
 format = "[$symbol $name]($style)"
 
 [hostname]
-ssh_only = false
+ssh_only = true
 ssh_symbol = "❮=❯ "
 style = "fg:surface1"
 format = "[$ssh_symbol$hostname]($style)"
@@ -385,9 +385,9 @@ format = " [$symbol]($style)"
 disabled = true
 
 [aws]
-style = "fg:surface1"
+style = "fg:lavender"
 symbol = ""
-format = '[[ $symbol ($profile )(\($region\))(\[$duration\])](fg:surface1)]($style)'
+format = '[ $symbol ($profile@$region)(\[$duration\])]($style)'
 
 [aws.region_aliases]
 us-east-1 = 'VA'
