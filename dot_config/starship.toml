@@ -406,11 +406,19 @@ style = "fg:lavender"
 symbol = ""
 format = '[$symbol ($profile@$region)(\[$duration\]) ]($style)'
 
+[aws.profile_aliases]
+"lsu/ops/dev-secrets/us-east-1" = "🔒ops/DEV_SECRETS"
+"lsu/ops/poweruser/us-east-1" = "ops/poweruser"
+"lsu/pos/poweruser/us-east-1" = "pos/poweruser"
+"lsu/prod-pci/poweruser/us-east-1" = "🚨 PROD PCI"
+"lsu/swipely/eks-cluster-access/us-east-1" = "s/eks/staging"
+"lsu/swipely/poweruser/us-east-1" = "swipely/poweruser"
+
 [aws.region_aliases]
-us-east-1 = 'VA'
-us-east-2 = 'OH'
-us-west-1 = 'CA'
-us-west-2 = 'OR'
+us-east-1 = 'va'
+us-east-2 = 'oh'
+us-west-1 = 'ca'
+us-west-2 = 'or'
 ca-central-1 = 'Canada Central'
 ca-west-1 = 'Calgary'
 mx-central-1 = 'Mexico Central'
@@ -440,13 +448,6 @@ me-south-1 = 'Bahrain'
 me-central-1 = 'UAE'
 il-central-1 = 'Tel Aviv'
 af-south-1 = 'Cape Town'
-[aws.profile_aliases]
-"lsu/ops/dev-secrets/us-east-1" = "🔒ops/DEV_SECRETS"
-"lsu/ops/poweruser/us-east-1" = "ops/poweruser"
-"lsu/pos/poweruser/us-east-1" = "pos/poweruser"
-"lsu/prod-pci/poweruser/us-east-1" = "🚨 PROD PCI"
-"lsu/swipely/eks-cluster-access/us-east-1" = "s/eks/staging"
-"lsu/swipely/poweruser/us-east-1" = "swipely/poweruser"
 
 [kubernetes]
 symbol = '☸'
