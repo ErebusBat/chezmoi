@@ -42,6 +42,7 @@ APPS=(
   /System/Applications/Messages.app
   /Applications/Spotify.app
   # /Applications/AyuGram.app
+  /Applications/BatBot.app
 )
 
 # APPS=()

@@ -93,6 +93,10 @@ persistent-workspaces = ["1", "2", "3", "Q", "W", "N" ,
     if.app-id = 'ru.keepcoder.Telegram'
     run = 'move-node-to-workspace B'
 
+[[on-window-detected]]
+    if.app-id = 'com.pake.a60b6d3'
+    run = 'move-node-to-workspace B'
+
 # --------------------
 # WORKSPACE P
 # Productivity (laptop)

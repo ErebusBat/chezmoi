@@ -1,3 +1,4 @@
+import? '.batbot.just'
 # AeroSpace helper commands.
 # Usage examples:
 #   just --list
