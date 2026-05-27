@@ -71,17 +71,12 @@ style = "fg:surface1"
 
 [custom.context_line_break]
 when = '''
-case "${STARSHIP_K8S:-}${AWS_PROFILE:-}${AWS_REGION:-}${AWS_DEFAULT_REGION:-}${CONDA_DEFAULT_ENV:-}${PULUMI_STACK:-}" in
-  *[![:space:]]*) exit 0 ;;
-esac
-
-find . -maxdepth 2 \
-  \( -name .ruby-version -o -name Gemfile -o -name package.json -o -name .node-version \
-  -o -name go.mod -o -name Cargo.toml -o -name pyproject.toml -o -name requirements.txt \
-  -o -name .python-version -o -name composer.json -o -name pom.xml -o -name build.gradle \
-  -o -name Dockerfile -o -name docker-compose.yml -o -name docker-compose.yaml \
-  -o -name Pulumi.yaml \) \
-  -print -quit 2>/dev/null | grep -q .
+for module in ruby c rust golang nodejs php java kotlin haskell python docker_context kubernetes aws pulumi conda; do
+  if [ -n "$(starship module "$module" 2>/dev/null)" ]; then
+    exit 0
+  fi
+done
+exit 1
 '''
 command = 'printf x'
 format = "\n"

@@ -16,6 +16,8 @@ npx()  { _nvm_load; npx "$@" }
 yarn() { _nvm_load; yarn "$@" }
 pnpm() { _nvm_load; pnpm "$@" }
 
+# nvm alias default $(< ~/.nvmrc)
+
 # Add nvm-managed node bins to PATH immediately (without loading nvm)
 # so that any installed node/npm versions are accessible without triggering load
 if [[ -d "$NVM_DIR/versions/node" ]]; then
@@ -25,5 +27,8 @@ if [[ -d "$NVM_DIR/versions/node" ]]; then
   if [[ -n "$nvm_default" && -d "$NVM_DIR/versions/node/$nvm_default/bin" ]]; then
     export PATH="$NVM_DIR/versions/node/$nvm_default/bin:$PATH"
   fi
+fi
+if [[ -d "$HOME/Library/pnpm/bin" ]]; then
+  export PATH="$HOME/Library/pnpm/bin:$PATH"
 fi
 
