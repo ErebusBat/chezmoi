@@ -43,10 +43,46 @@ oc_session_select() {
   fi
 
   local selection max_count tmpfile errfile listfile fetching_shown
-  max_count="$1"
+  local use_global=0 profile_override=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -h|--help)
+        echo "Usage: oc_session_select [options] [max_count]" >&2
+        echo "" >&2
+        echo "Options:" >&2
+        echo "  -h, --help        Show this help" >&2
+        echo "  -g, --global      Query the global opencode database" >&2
+        echo "  -a, --all         Same as --global" >&2
+        echo "  -p, --profile     Query a specific ocpersona profile's database" >&2
+        echo "" >&2
+        echo "Examples:" >&2
+        echo "  oc_session_select          Current project sessions (profile-aware)" >&2
+        echo "  oc_session_select 10       Limit to 10 sessions" >&2
+        echo "  oc_session_select --global All global sessions" >&2
+        echo "  oc_session_select -p lshq  All lshq profile sessions" >&2
+        return 1
+        ;;
+      -g|--global)  use_global=1; shift ;;
+      -a|--all)     use_global=1; shift ;;
+      -p|--profile) shift; profile_override="$1"; shift ;;
+      *)            max_count="$1"; shift ;;
+    esac
+  done
 
   local -a cmd
-  cmd=(command opencode session list --format json --print-logs --log-level ERROR)
+  if [[ -n "$profile_override" ]]; then
+    local pd="$HOME/.config/ocpersona/profiles/$profile_override/data"
+    if [[ ! -d "$pd" ]]; then
+      echo "Profile '$profile_override' not found" >&2
+      return 1
+    fi
+    cmd=(env XDG_DATA_HOME="$pd" opencode session list --format json --print-logs --log-level ERROR)
+  elif [[ $use_global -eq 1 ]]; then
+    cmd=(command opencode session list --format json --print-logs --log-level ERROR)
+  else
+    cmd=(opencode session list --format json --print-logs --log-level ERROR)
+  fi
   if [[ -n "$max_count" ]]; then
     cmd+=(--max-count "$max_count")
   fi
@@ -69,7 +105,7 @@ oc_session_select() {
   fi
 
   if [[ ! -s "$tmpfile" ]] && command -v script >/dev/null 2>&1; then
-    if ! script -q /dev/null opencode session list --format json --print-logs --log-level ERROR >"$tmpfile" 2>"$errfile"; then
+    if ! script -q /dev/null "${cmd[@]}" >"$tmpfile" 2>"$errfile"; then
       echo "Failed to fetch OpenCode sessions"
       if [[ -s "$errfile" ]]; then
         cat "$errfile"
@@ -184,7 +220,7 @@ for sid, updated, title, updated_ms in rows:
 # Select an OpenCode session via fzf and copy its ID
 oc_session_pick() {
   local selection id title updated
-  selection=$(oc_session_select "$1") || return 1
+  selection=$(oc_session_select "$@") || return 1
 
   id=$(printf '%s\n' "$selection" | awk -F '\t' '{print $1}')
   updated=$(printf '%s\n' "$selection" | awk -F '\t' '{print $2}')
@@ -218,7 +254,7 @@ oc_session_pick() {
 # Select an OpenCode session via fzf and continue it
 oc_session_continue() {
   local selection id title updated
-  selection=$(oc_session_select "$1") || return 1
+  selection=$(oc_session_select "$@") || return 1
 
   id=$(printf '%s\n' "$selection" | awk -F '\t' '{print $1}')
   updated=$(printf '%s\n' "$selection" | awk -F '\t' '{print $2}')
