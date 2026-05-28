@@ -105,6 +105,24 @@ Also note:
 ### `.chezmoiremove`
 Lists files that chezmoi should actively **remove** from the target. Used for cleanup of deprecated configs.
 
+### base16-shell / Tinted-Theming Integration
+
+Shell themes are managed via the base16-shell ecosystem (external dep in `.chezmoiexternal.toml`). The active theme is tracked in `~/.config/tinted-theming/`:
+
+- **`theme_name`** — contains the base16 theme name (e.g. `kanagawa`)
+- **`base16_shell_theme`** — symlink to `~/.config/base16-shell/scripts/base16-$theme_name.sh`
+
+If `theme_name` contains a trailing dash or other invalid suffix (e.g. `kanagawa-` instead of `kanagawa`), the symlink will point to a non-existent file and produce:
+
+```
+Attempted symbolic link failed. Ensure $BASE16_SHELL_PATH
+and $BASE16_SHELL_COLORSCHEME_PATH are valid paths
+```
+
+**Fix:** Write the correct theme name to `~/.config/tinted-theming/theme_name` and remove the broken symlink. It will be recreated on next shell start by `dot_config/zsh-hooks/executable_base16.zsh` → `base16-shell.plugin.zsh` → `profile_helper.sh`.
+
+**Caveat:** `~/.config/tinted-theming/` is chezmoi-managed (`private_dot_config/tinted-theming/`), but `theme_name` and `base16_shell_theme` are runtime state written by `profile_helper.sh:set_theme()` — they are not tracked in chezmoi source. If `chezmoi apply` ever overwrites the `tinted-theming/` directory tree, these files may be lost/reset.
+
 ## Editing Guidelines
 
 - **Do not edit the chezmoi source directly unless explicitly asked to change chezmoi.** For managed dotfiles/configs, prefer explaining the proposed change or, when explicitly requested, changing only the live/direct target file so the user can review, accept, or import it into chezmoi afterward.
