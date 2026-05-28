@@ -57,7 +57,7 @@ diag-apps:
 # List connected monitors with main-monitor flag.
 [group('diagnostics')]
 diag-monitors:
-    aerospace list-monitors --format '%{monitor-id} | %{monitor-name} | %{monitor-is-main}'
+    aerospace list-monitors --format '%{monitor-id}%{right-padding} | %{monitor-name}%{right-padding} | %{monitor-is-main}'
 
 # List workspaces with optional scope:
 #   just diag-workspaces
