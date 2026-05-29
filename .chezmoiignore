@@ -24,6 +24,7 @@ direct/
 .restic/lshq-*.sh
 .restic/.lshq.key
 .tmuxp/lshq.yaml
+bin/.mcp-opensearch.sh
 bin/jenkins
 bin/lsrg
 bin/lsstartup.sh
