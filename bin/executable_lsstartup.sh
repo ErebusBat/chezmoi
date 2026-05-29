@@ -26,6 +26,7 @@ fi
   # ~/Applications/Restart\ OrbStack.app
 APPS=(
   #-- Productivity
+  /Applications/cmux.app
   /Applications/Obsidian.app
   /Applications/Fantastical.app
   /Applications/Todoist.app
