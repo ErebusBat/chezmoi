@@ -1,0 +1,140 @@
+#!/usr/bin/env zsh
+
+set -o pipefail
+
+if ! command -v opencode >/dev/null 2>&1; then
+  echo "error: opencode not found in PATH" >&2
+  exit 1
+fi
+
+if ! command -v jq >/dev/null 2>&1; then
+  echo "error: jq not found in PATH" >&2
+  exit 1
+fi
+
+print_help() {
+  cat <<'USAGE'
+Usage: ocslink [--no-copy] [session-id]
+
+Generate and print a markdown link for the current session.
+
+Options:
+  --no-copy   Disable clipboard copy (still prints to stdout)
+  --help, -h  Show this help message
+USAGE
+}
+
+copy_enabled=true
+session_id=""
+
+for arg in "$@"; do
+  case "$arg" in
+    --help|-h)
+      print_help
+      exit 0
+      ;;
+    --no-copy)
+      copy_enabled=false
+      ;;
+    -*)
+      echo "error: unknown option: $arg" >&2
+      exit 1
+      ;;
+    *)
+      if [[ -n "$session_id" ]]; then
+        echo "error: too many positional arguments" >&2
+        exit 1
+      fi
+      session_id="$arg"
+      ;;
+  esac
+done
+
+copy_to_clipboard() {
+  local text="$1"
+
+  if command -v pbcopy >/dev/null 2>&1; then
+    printf '%s' "$text" | pbcopy
+    return 0
+  fi
+
+  if command -v wl-copy >/dev/null 2>&1; then
+    printf '%s' "$text" | wl-copy
+    return 0
+  fi
+
+  if command -v xclip >/dev/null 2>&1; then
+    printf '%s' "$text" | xclip -selection clipboard
+    return 0
+  fi
+
+  if command -v clip >/dev/null 2>&1; then
+    printf '%s' "$text" | clip
+    return 0
+  fi
+
+  echo "error: no supported clipboard command found (pbcopy, wl-copy, xclip, clip)" >&2
+  return 1
+}
+
+if repo_root="$(git rev-parse --show-toplevel 2>/dev/null)"; then
+  worktree_name="$(basename "$repo_root")"
+  repo_url="$(git -C "$repo_root" config --get remote.origin.url 2>/dev/null)"
+
+  if [[ -n "$repo_url" ]]; then
+    if [[ "$repo_url" == *"://"* ]]; then
+      repo_name="${repo_url##*/}"
+    else
+      repo_name="${repo_url##*:}"
+      repo_name="${repo_name##*/}"
+    fi
+    repo_name="${repo_name%.git}"
+  else
+    repo_name="$worktree_name"
+  fi
+else
+  repo_root="$PWD"
+  worktree_name="$(basename "$repo_root")"
+  repo_name="$worktree_name"
+fi
+
+if [[ -z "$repo_name" ]]; then
+  repo_name="$worktree_name"
+fi
+
+if [[ "$repo_name" == "$worktree_name" ]]; then
+  display_repo="$repo_name"
+else
+  display_repo="$repo_name/$worktree_name"
+fi
+
+if [[ -n "$session_id" ]]; then
+  :
+else
+  session_id="$(opencode session list --format json | jq -r --arg dir "$repo_root" '
+    [ .[] | select((.directory == $dir) or (.directory | startswith($dir + "/"))) ]
+    | sort_by(.updated)
+    | reverse
+    | .[0].id
+    // empty
+  ')"
+
+  if [[ -z "$session_id" ]]; then
+    echo "error: could not find a session for directory \"$repo_root\"" >&2
+    exit 1
+  fi
+fi
+
+if [[ "$session_id" == opencode://session/* ]]; then
+  session_id="${session_id#opencode://session/}"
+fi
+
+oc_link="[🤖 OC: \`${display_repo}\`](opencode://session/$session_id)"
+
+printf '%s\n' "$oc_link"
+
+if [[ "$copy_enabled" == true ]]; then
+  if ! copy_to_clipboard "$oc_link"; then
+    exit 1
+  fi
+fi
