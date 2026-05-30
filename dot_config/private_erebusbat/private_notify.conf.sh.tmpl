@@ -1,0 +1,16 @@
+#!/bin/bash
+# vim: set ft=bash ts=2 sw=2 sts=2 et ai si sta:
+#
+# This is a config file for ~/bin/notify
+#   Do not edit directly, this file is managed by Chezmoi
+PUSHOVER_TOKEN={{- (gopassRaw "erebusbat/pushover" | mustFromJson).token }}
+PUSHOVER_USER={{- (gopassRaw "erebusbat/pushover" | mustFromJson).user }}
+PUSHOVER_SOUND=bugle
+TELEGRAM_TOKEN={{- (gopassRaw "erebusbat/batsignal_bot" | mustFromJson).token }}
+TELEGRAM_CHAT=-1001748048923
+
+# Set these to `0` and they will auto turn on/off based on if the environment variables (above) are set correctly
+# Set them to `-1` to disable them
+SEND_PUSHOVER=-1
+SEND_TELEGRAM=0
+SEND_CMUX=0
