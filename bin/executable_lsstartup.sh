@@ -5,6 +5,9 @@
 if command -v aerospace-mv-focused-win-to-workspace >/dev/null 2>&1; then
   aerospace-mv-focused-win-to-workspace P
 fi
+if command -v borders &>/dev/null; then
+  borders &
+fi
 
 # TractionGuest startup script
 if [[ -f ~/.config/tmux/init_chezmoi_secrets.sh ]]; then
@@ -82,8 +85,8 @@ cd ~/.config/aerospace && just startup-chrome &
 
 # Startup Tmux
 if [[ -x ~/bin/lstmux.sh ]]; then
-  echo "Starting tmux...."
-  ~/bin/lstmux.sh
+  # echo "Starting tmux...."
+  # ~/bin/lstmux.sh
 else
   echo "No tmux sessions available, use 'tmpa' to start one"
 fi
