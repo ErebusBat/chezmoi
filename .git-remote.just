@@ -17,7 +17,8 @@ mirror-to local-rem-name full-git-rem-url:
         ssh_target="${url%%:*}"
         remote_path="${url#*:}"
         printf '==> Ensuring bare repo at %s:%s\n' "$ssh_target" "$remote_path"
-        ssh "$ssh_target" "mkdir -p '$(dirname -- "$remote_path")' && mkdir -p '$remote_path' && cd '$remote_path' && ([ -f HEAD ] || /usr/bin/env git init --bare)"
+        ssh "$ssh_target" "mkdir -vp '$remote_path'"
+        ssh "$ssh_target" "git init --bare '$remote_path'"
     else
         printf '==> No SSH target in URL; assuming remote already exists\n'
     fi
