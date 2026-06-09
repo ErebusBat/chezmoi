@@ -86,6 +86,46 @@ lshq_link_sprint() {
 
 ### Jenkins
 if command -v jenkins &>/dev/null; then
+  if [[ -z $CMUX_WORKSPACE_ID ]]; then
+    # No CMUX Identifiers, Nothing special to do here.
+  elif command -v cmux &>/dev/null; then
+    # overwrite the Jenkins command so we can easily inject our CMUX notification afterward.
+    function jenkins() {
+      command jenkins "$@"
+      local jec=$?
+      local send_notification=1
+
+      # Don't display notifications if they're asking for help.
+      for arg in "$@"; do
+        case $arg in
+          -h|--help|-help) send_notification=0 ;;
+        esac
+      done
+
+      # Don't display notifications if they're just opening.
+      case $1 in
+        o|open)
+          # Don't not send a CMUX notification for open.
+          send_notification=0
+          ;;
+      esac
+
+      # Check our exit. Circuit breaker.
+      if [[ $send_notification -lt 1 ]]; then
+        return 0
+      fi
+
+      # We got here, so send the notification.
+      cmux notify \
+        --title "Jenkins" \
+        --subtitle "Jenkins Operation Done" \
+        --body "Jenkins ec=$jec - ${PWD:t}" \
+        --surface $CMUX_SURFACE_ID
+    }
+  else
+    echo "*** WARN: Detected CMUX environment without command?!?"
+  fi
+
   alias jtw='jenkins trigger --watch'
   alias jw='jenkins watch'
   alias jo='jenkins open'
