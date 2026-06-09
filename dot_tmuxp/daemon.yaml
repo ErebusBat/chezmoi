@@ -9,6 +9,12 @@ windows:
       - "cd ~/src/erebusbat/myserver/routes && clear"
       - just
 
+- window_name: 📖 dlog
+  panes:
+    - shell_command:
+      - cd ~/Documents/Obsidian/vimwiki
+      - dlog-tail 1
+
 - window_name: 🧠
   panes:
     - shell_command:
@@ -20,8 +26,8 @@ windows:
       - cd ~/src/lshq
       - just config_service
 
-- window_name: 🌐caddy
-  panes:
-    - shell_command:
-      - cd ~/.config/caddy
-      - ~/bin/.caddy run
+# - window_name: 🌐caddy
+#   panes:
+#     - shell_command:
+#       - cd ~/.config/caddy
+#       - ~/bin/.caddy run

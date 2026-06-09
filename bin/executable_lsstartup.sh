@@ -94,4 +94,4 @@ fi
 # Let this window be used for dlog-tail
 # Remember that we moved it to the [P]roductivity workspace above
 clear
-dlog-tail 2
+tmpa daemon
