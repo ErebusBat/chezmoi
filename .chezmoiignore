@@ -19,13 +19,16 @@ direct/
 .tmuxp/_*.yaml
 
 {{- if not .area.lshq }}
+.config/erebusbat/lshq.just
+.config/erebusbat/upserve.just
 .config/jenkins-tool/
+.restic/.lshq.key
+.restic/lshq-*.sh
 .restic/lsrestic.sh
 .restic/profile-lshq.sh
-.restic/lshq-*.sh
-.restic/.lshq.key
 .tmuxp/lshq.yaml
 bin/.mcp-opensearch.sh
+bin/ij
 bin/jenkins
 bin/lsrg
 bin/lsstartup.sh
@@ -33,7 +36,6 @@ bin/lstmux.sh
 lshq/ssh/id_lshq_personal
 lshq/ssh/id_lshq_personal.pub
 src/lshq/lshq_logo.txt
-bin/ij
 {{- end -}}
 
 {{- if not .area.fetlife }}
