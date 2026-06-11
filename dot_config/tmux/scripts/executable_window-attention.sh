@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 usage() {
   echo "Usage: $0 set|clear [-t target]"
