@@ -4,6 +4,7 @@ git_shell := "/usr/bin/git-shell"
 git_remote_host := "maze.erebusbat.net"
 
 # List local human users with UID, primary group, home, and shell.
+[linux]
 [group('Users')]
 users-list:
   #!/usr/bin/env bash
@@ -18,6 +19,7 @@ users-list:
   done
 
 # Create the shared supplemental group for git repository users if needed.
+[linux]
 [group('Users')]
 git-users-ensure-group:
   #!/usr/bin/env bash
@@ -34,6 +36,7 @@ git-users-ensure-group:
   echo "Created group: $group"
 
 # List users who are supplemental members of the shared git-users group.
+[linux]
 [group('Users')]
 git-users-list:
   #!/usr/bin/env bash
@@ -65,6 +68,7 @@ git-users-list:
   done
 
 # Add an existing Unix account to the shared git-users supplemental group.
+[linux]
 [group('Users')]
 git-users-add user:
   #!/usr/bin/env bash
@@ -91,6 +95,7 @@ git-users-add user:
   echo "Added $user to $group"
 
 # Remove an existing Unix account from the shared git-users supplemental group.
+[linux]
 [group('Users')]
 git-users-remove user:
   #!/usr/bin/env bash
@@ -118,6 +123,7 @@ git-users-remove user:
   echo "Removed $user from $group"
 
 # Create a git-only Unix account with a restricted SSH public key.
+[linux]
 [group('Users')]
 git-user-create user pubkey_file:
   #!/usr/bin/env bash
@@ -189,6 +195,7 @@ git-user-create user pubkey_file:
   echo "Shell: $git_shell"
 
 # Add a restricted SSH public key file, or use '-' to paste one interactively.
+[linux]
 [group('Users')]
 git-user-key-add user pubkey_file:
   #!/usr/bin/env bash
@@ -263,6 +270,7 @@ git-user-key-add user pubkey_file:
   echo "Added SSH public key for $user"
 
 # Print public keys installed for an existing git-only Unix account.
+[linux]
 [group('Users')]
 git-user-keys user:
   #!/usr/bin/env bash
@@ -294,6 +302,7 @@ git-user-keys user:
   sudo /usr/bin/sed 's/^restrict //' "$home/.ssh/authorized_keys"
 
 # Create a bare git repository for a user and print its SSH remote.
+[linux]
 [group('Git Repositories')]
 git-create-repo user repo:
   #!/usr/bin/env bash
@@ -369,6 +378,7 @@ git-create-repo user repo:
   echo "Remote: $user@$remote_host:$remote_path"
 
 # Show repository disk usage for a user's git repository directory.
+[linux]
 [group('Git Repositories')]
 git-user-ls-repos user level='2':
   #!/usr/bin/env bash
@@ -418,6 +428,7 @@ git-user-ls-repos user level='2':
   sudo "$eza_bin" -Tlh -L "$level" --total-size --icons=auto "$target"
 
 # Delete a git-only Unix account and all data under its /var/git-users home.
+[linux]
 [confirm('Are you sure you want to destroy the user and ALL of their data?')]
 [group('Users')]
 git-user-delete user:
