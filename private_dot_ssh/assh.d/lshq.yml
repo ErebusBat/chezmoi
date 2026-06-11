@@ -1,13 +1,17 @@
 hosts:
   github-eb:
+    Inherits: lshq-git-personal
     HostName: github.com
+
+  codeberg-eb:
+    Inherits: lshq-git-personal
+    HostName: codeberg.org
+
+############################################################
+# Templates
+############################################################
+templates:
+  lshq-git-personal:
     User: git
     IdentityFile: ~/.ssh/id_lshq_personal
-    IdentitiesOnly: yes
-
-  tailnet-jump:
-    HostName: 127.0.0.1
-    Port: 2222
-    User: andrew.burns
-    IdentityFile: ~/.ssh/id_ed25519
     IdentitiesOnly: yes
