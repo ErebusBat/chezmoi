@@ -85,7 +85,7 @@
             "path": "/home/aburns/bin/fd",
             "remote_name": "fd",
             "version": "v8.7.0",
-            "hash": "e0184c2c349c65613cd05a18515015c3c6cfd8dc2d65cc31c3c256944d66afe2",
+            "hash": "3533a356ff5dac034b6b37ef72f61a0132ffcd54c1d321bf2676d78c3cb499d8",
             "url": "https://github.com/sharkdp/fd/releases/tag/v8.7.0",
             "provider": "",
             "package_path": "",

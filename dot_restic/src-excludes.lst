@@ -15,6 +15,7 @@
 **/.yardoc/**
 **/cache/**
 **/.zig-cache/**
+**/.build/**
 
 # Well Known Files to Ignore
 **/.chunkhound.db
@@ -25,8 +26,6 @@ $HOME/src/erebusbat/myserver/syncthing/config/**
 $HOME/src/erebusbat/pchef76/local-mode-cache/**
 $HOME/src/erebusbat/pchef76/nodes/**
 $HOME/src/erebusbat/pchef76/tmp/**
-
-$HOME/src/sie/**/logs/**
 
 #
 # Vendor Stuff we don't need to archive

@@ -1,14 +1,23 @@
+# Global mise defaults. mise also loads config.local.toml when present; keep
+# machine/OS-specific overrides there so this file remains plain TOML.
 [settings]
 experimental = true
 idiomatic_version_file_enable_tools = ["ruby"]
 
 [tools]
 # "github:ogham/exa" = "latest"
+"cargo:ErebusBat/grcpass-rs" = "latest"
+"github:Liam-Deacon/codex-usage" = "latest"
+"github:aristocratos/btop" = { version = "latest", os = ["linux"] }
+"github:bahdotsh/mdterm" = "latest"
+"github:grafana/grafana-kiosK" = { version = "latest", os = ["linux"] }
+"github:mrkatebzadeh/darya" = "latest"
+"github:sst/opencode" = { version = "latest", os = ["linux"] }
+# glow = "latest"
 assh = "latest"
 bat = "latest"
-"github:aristocratos/btop" = { version = "latest", os = ["linux"] }
-"cargo:ErebusBat/grcpass-rs" = "latest"
 chezmoi = "latest"
+codex = "latest"
 delta = "latest"
 difftastic = "latest"
 duf = "latest"
@@ -17,14 +26,13 @@ eza = "latest"
 fastfetch = "latest"
 fd = "latest"
 fzf = "latest"
-"github:mrkatebzadeh/darya" = "latest"
-# glow = "latest"
 jq = "latest"
 jqp = "latest"
 just = "latest"
 lazydocker = "latest"
 lazygit = "latest"
-"github:sst/opencode" = { version = "latest", os = ["linux"] }
+node = { version = "latest", os = ["linux"] }
+npm = { version = "latest", os = ["linux"] }
 restic = "latest"
 ripgrep = "latest"
 ripgrep-all = "latest"
@@ -33,5 +41,3 @@ rust = "latest"
 starship = "latest"
 yazi = "latest"
 zoxide = "latest"
-"github:bahdotsh/mdterm" = "latest"
-"cargo:Liam-Deacon/codex-usage" = "tag:v0.1.19"

@@ -17,11 +17,26 @@ fi
 # Helper Function
 # ------------------------------------------------------------------------------
 
+_tmux_oc_can_use_tmux() {
+  local tmux_socket
+
+  if [[ -z "$TMUX" || -z "$TMUX_PANE" ]]; then
+    return 1
+  fi
+
+  tmux_socket="${TMUX%%,*}"
+  if [[ -n "$tmux_socket" && ! -S "$tmux_socket" ]]; then
+    return 1
+  fi
+
+  tmux has-session >/dev/null 2>&1
+}
+
 # Function that will auto "tag" a tmux window with a robot for cycling purposes
 oc() {
   local script="$HOME/.config/tmux/scripts/set-window-prefix.sh"
 
-  if [[ -x "$script" ]]; then
+  if [[ -x "$script" ]] && _tmux_oc_can_use_tmux; then
     "$script" set
     opencode "$@"
     "$script" clear
@@ -269,8 +284,8 @@ alias occ=oc_session_continue
 # ------------------------------------------------------------------------------
 
 _tmux_oc_prepare() {
-  if [[ -z "$TMUX_PANE" ]]; then
-    printf '\033[31m❌ Error: This command only works inside of TMUX.\033[0m\n' >&2
+  if ! _tmux_oc_can_use_tmux; then
+    printf '\033[31m❌ Error: This command requires a local TMUX session.\033[0m\n' >&2
     return 1
   fi
 

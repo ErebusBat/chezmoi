@@ -1,0 +1,8 @@
+# macOS-only local override. mise loads this alongside config.toml, and
+# .chezmoiignore excludes it on non-macOS hosts.
+[settings]
+# npm is marked linux-only in config.toml, but mise 2026.6.1 still resolves
+# npm@latest during the zsh prompt hook on macOS, causing GitHub release API
+# calls and rate-limit warnings. Disable just npm here to keep prompts fast
+# without templating the main config.
+disable_tools = ["npm"]
