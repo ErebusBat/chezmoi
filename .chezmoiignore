@@ -8,6 +8,7 @@ docs/
 .local/share/chezmoi/
 .syncthing.*
 .config/wezterm/wallpaper.jpg
+chezmoi_scripts/
 
 # Direct is where we store files that are symlinked (like stow)
 direct/
