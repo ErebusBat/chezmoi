@@ -2,6 +2,7 @@
 {{- if eq .area.lshq true }}
 ### - LightspeedHQ Start
 {{ gopassRaw "lshq/bundle_config" }}
+BUNDLE_BUILD__NOKOGIRI: "--use-system-libraries"
 ### - LightspeedHQ End
 {{ end }}
 {{- if eq .area.tractionguest true }}
