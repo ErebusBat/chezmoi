@@ -48,7 +48,8 @@ FULL_DIR_PATH="$WIKI_ROOT_PATH/$LOGS_PATH"
 FULL_FILE_PATH="$FULL_DIR_PATH/$FILE_NAME"
 
 function show-dlog() {
-  echo "${FULL_FILE_PATH}"
+  # echo "${FULL_FILE_PATH}"
+  echo "${FULL_FILE_PATH/#$WIKI_ROOT_PATH/vault:}"
   if [[ -x $(which glow) ]]; then
     grep '^# Log' -A50 $FULL_FILE_PATH | glow -w $COLUMNS --style ~/.config/dlog/glow.json
   else
