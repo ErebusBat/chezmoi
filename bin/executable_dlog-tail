@@ -69,13 +69,19 @@ function wait-dumb() {
 }
 
 function wait-fswatch() {
+  local cmd=("${FSWATCH_CMD[@]}")
   if (( DLOG_FSWATCH_TIMEOUT > 0 )); then
-    FSWATCH_CMD=(timeout --foreground "$DLOG_FSWATCH_TIMEOUT" "${FSWATCH_CMD[@]}")
+    cmd=(timeout --foreground "$DLOG_FSWATCH_TIMEOUT" "${cmd[@]}")
   fi
 
-  "${FSWATCH_CMD[@]}" 2>&1 1>/dev/null
+  # Have to modify the output here, otherwise any non-zero exit code
+  # from timeout will kill the script and not return control.
+  set +e
+  "${cmd[@]}" 2>&1 1>/dev/null
   FSWATCH_STATUS=$?
+  set -e
 
+  # handle our non-zero exit code. 124 is timeout, so we ignore that.
   if (( FSWATCH_STATUS != 0 && FSWATCH_STATUS != 124 )); then
     echo "*** WARN: Caught fswatch ec=$FSWATCH_STATUS; exiting loop!"
     exit "$FSWATCH_STATUS"
