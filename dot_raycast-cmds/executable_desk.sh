@@ -29,7 +29,9 @@ case "$_arg" in
 esac
 
 if [[ $SHOULD_CONNECT -gt 0 ]]; then
-  sidecarctl connect --device-name LSHQ-ipad
+  sidecarctl connect \
+    --device-name "Dad iPad Pro" \
+    --device-name "LSHQ-ipad"
   aerospace enable on
   echo "Setup for Desk Work"
 else
