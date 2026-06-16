@@ -1,10 +1,25 @@
 #!/bin/zsh
 set -e
 
-if [[ $1 -gt 0 ]]; then
+WATCH=${1:-0}
+if [[ $WATCH -gt 0 ]]; then
   echo "***  INFO: Watch mode enabled"
-  WATCH=$1
 fi
+
+# Set timeout for fswatch. Blank value defaults to 1 hour. <=0 disables timeout.
+DLOG_FSWATCH_TIMEOUT="${DLOG_FSWATCH_TIMEOUT:-3600}"
+if [[ $WATCH -gt 0 && $DLOG_FSWATCH_TIMEOUT -gt 0 ]]; then
+  if ! command -v timeout >/dev/null 2>&1; then
+    echo "***  WARN: Watch mode NOT using fswatch timeout (no timeout cmd)!"
+    sleep 5
+    DLOG_FSWATCH_TIMEOUT=0
+  fi
+elif (( DLOG_FSWATCH_TIMEOUT <= 0 )); then
+  DLOG_FSWATCH_TIMEOUT=0
+fi
+
+# Keep for set -u compatibility in branches where the command may not run.
+FSWATCH_STATUS=0
 
 # Setup paths, support known locations for vault root
 LOGS_PATH="logs/$(date +%Y/%m-%b)"
@@ -32,23 +47,54 @@ fi
 FULL_DIR_PATH="$WIKI_ROOT_PATH/$LOGS_PATH"
 FULL_FILE_PATH="$FULL_DIR_PATH/$FILE_NAME"
 
-# Finally run the command
-if [[ $WATCH -gt 0 ]]; then clear; fi
+function show-dlog() {
+  echo "${FULL_FILE_PATH}"
+  if [[ -x $(which glow) ]]; then
+    grep '^# Log' -A50 $FULL_FILE_PATH | glow -w $COLUMNS --style ~/.config/dlog/glow.json
+  else
+    grep '^# Log' -A50 $FULL_FILE_PATH
+  fi
+}
 
-echo "${FULL_FILE_PATH}"
-if [[ -x $(which glow) ]]; then
-  grep '^# Log' -A50 $FULL_FILE_PATH | glow -w $COLUMNS --style ~/.config/dlog/glow.json
-else
-  grep '^# Log' -A50 $FULL_FILE_PATH
+# Finally run the command
+if [[ $WATCH -le 0 ]]; then
+  show-dlog
+  exit 0
 fi
 
-if [[ $WATCH -le 0 ]]; then
-  # nothing
-elif [[ -x $(which fswatch) ]]; then
-  fswatch -1 $FULL_FILE_PATH 2>&1 1>/dev/null
-  dlog-tail $WATCH
-else
+### Looping / Watching
+function wait-dumb() {
   echo "*** WARN: Consider installing fswatch for a better experience"
   sleep $WATCH
-  dlog-tail $WATCH
+}
+
+function wait-fswatch() {
+  if (( DLOG_FSWATCH_TIMEOUT > 0 )); then
+    FSWATCH_CMD=(timeout --foreground "$DLOG_FSWATCH_TIMEOUT" "${FSWATCH_CMD[@]}")
+  fi
+
+  "${FSWATCH_CMD[@]}" 2>&1 1>/dev/null
+  FSWATCH_STATUS=$?
+
+  if (( FSWATCH_STATUS != 0 && FSWATCH_STATUS != 124 )); then
+    echo "*** WARN: Caught fswatch ec=$FSWATCH_STATUS; exiting loop!"
+    exit "$FSWATCH_STATUS"
+  fi
+}
+
+### Main Loop
+
+FSWATCH_CMD=
+if command -v fswatch >/dev/null 2>&1; then
+  FSWATCH_CMD=(fswatch -1 "$FULL_FILE_PATH")
 fi
+while [ true ]; do
+  clear
+  show-dlog
+  if [[ -n $FSWATCH_CMD ]]; then
+    wait-fswatch
+  else
+    wait-dumb
+  fi
+done
+
