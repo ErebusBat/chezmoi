@@ -11,7 +11,8 @@ if command -v mise &>/dev/null; then
   # Remove NPM managed codex
   npm uninstall -g @openai/codex
 
-  # Run the actual mise upgrade
+  # upgrade the mise tool and then the packages it manages.
+  mise self-update -y
   mise upgrade
 
   # Update ssh config in case we updated assh
