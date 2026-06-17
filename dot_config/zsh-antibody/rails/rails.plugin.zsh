@@ -36,7 +36,7 @@ for bin in "${bin_tasks[@]}"; do
       bin/$bin \$*
       bin_ec=\$?
     else
-      echo '> bundle exec $bin \$*'
+      echo \"> bundle exec $bin \${*[@]}\"
       bundle exec $bin \$*
       bin_ec=\$?
     fi
