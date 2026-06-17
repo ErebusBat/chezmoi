@@ -10,5 +10,6 @@ brew trust felixkratz/formulae
 brew trust anomalyco/tap
 brew trust rbenv/tap
 brew trust --formula common-fate/granted/granted
+brew trust --formula tinted-theming/tinted/tinty
 brew trust wez/wezterm
 brew trust --cask nikitabobko/tap/aerospace

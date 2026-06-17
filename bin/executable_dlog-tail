@@ -2,9 +2,6 @@
 set -e
 
 WATCH=${1:-0}
-if [[ $WATCH -gt 0 ]]; then
-  echo "***  INFO: Watch mode enabled"
-fi
 
 # Set timeout for fswatch. Blank value defaults to 1 hour. <=0 disables timeout.
 DLOG_FSWATCH_TIMEOUT="${DLOG_FSWATCH_TIMEOUT:-3600}"
@@ -13,9 +10,17 @@ if [[ $WATCH -gt 0 && $DLOG_FSWATCH_TIMEOUT -gt 0 ]]; then
     echo "***  WARN: Watch mode NOT using fswatch timeout (no timeout cmd)!"
     sleep 5
     DLOG_FSWATCH_TIMEOUT=0
+  else
+    echo "***  INFO: fswatch timeout enabled: \$DLOG_FSWATCH_TIMEOUT=${DLOG_FSWATCH_TIMEOUT}s"
   fi
 elif (( DLOG_FSWATCH_TIMEOUT <= 0 )); then
   DLOG_FSWATCH_TIMEOUT=0
+fi
+
+# display message and pause if we're in watch mode.
+if [[ $WATCH -gt 0 ]]; then
+  echo "***  INFO: Watch mode enabled"
+  sleep 2
 fi
 
 # Keep for set -u compatibility in branches where the command may not run.
@@ -83,7 +88,9 @@ function wait-fswatch() {
   set -e
 
   # handle our non-zero exit code. 124 is timeout, so we ignore that.
-  if (( FSWATCH_STATUS != 0 && FSWATCH_STATUS != 124 )); then
+  if (( FSWATCH_STATUS == 124 )); then
+    echo "*** INFO: Timeout fired"
+  elif (( FSWATCH_STATUS != 0 && FSWATCH_STATUS != 124 )); then
     echo "*** WARN: Caught fswatch ec=$FSWATCH_STATUS; exiting loop!"
     exit "$FSWATCH_STATUS"
   fi
@@ -96,8 +103,11 @@ if command -v fswatch >/dev/null 2>&1; then
   FSWATCH_CMD=(fswatch -1 "$FULL_FILE_PATH")
 fi
 while [ true ]; do
+  # Clear the screen and then launch us but without a loop parameter this ensures that any day rollover gets picked up correctly and we show the correct log.
   clear
-  show-dlog
+  $0
+  printf "Last update: %s\n" "$(date)"
+
   if [[ -n $FSWATCH_CMD ]]; then
     wait-fswatch
   else
