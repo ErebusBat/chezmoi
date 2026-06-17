@@ -32,11 +32,11 @@ for bin in "${bin_tasks[@]}"; do
   eval "$bin() {
     local bin_ec=
     if [[ -x bin/$bin ]]; then
-      echo '> bin/$bin \$*'
+      echo \"> bin/$bin \${*[@]}\" >&2
       bin/$bin \$*
       bin_ec=\$?
     else
-      echo \"> bundle exec $bin \${*[@]}\"
+      echo \"> bundle exec $bin \${*[@]}\" >&2
       bundle exec $bin \$*
       bin_ec=\$?
     fi
