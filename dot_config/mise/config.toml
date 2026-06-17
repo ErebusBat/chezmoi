@@ -13,11 +13,10 @@ idiomatic_version_file_enable_tools = ["ruby"]
 "github:grafana/grafana-kiosK" = { version = "latest", os = ["linux"] }
 "github:mrkatebzadeh/darya" = "latest"
 "github:sst/opencode" = { version = "latest", os = ["linux"] }
-# glow = "latest"
 assh = "latest"
 bat = "latest"
 chezmoi = "latest"
-"npm:@openai/codex" = "latest"
+codex = "latest"
 delta = "latest"
 difftastic = "latest"
 duf = "latest"
@@ -26,6 +25,7 @@ eza = "latest"
 fastfetch = "latest"
 fd = "latest"
 fzf = "latest"
+glow = { version = "latest", os = ["linux"] } # only on Linux because we use our custom version on macOS
 jq = "latest"
 jqp = "latest"
 just = "latest"
