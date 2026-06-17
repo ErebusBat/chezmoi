@@ -8,6 +8,10 @@
 echo "MISE: Updating..."
 cd ~
 if command -v mise &>/dev/null; then
+  # Remove NPM managed codex
+  npm uninstall -g @openai/codex
+
+  # Run the actual mise upgrade
   mise upgrade
 
   # Update ssh config in case we updated assh
