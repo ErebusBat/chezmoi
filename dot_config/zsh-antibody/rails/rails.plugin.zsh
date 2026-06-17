@@ -41,7 +41,9 @@ for bin in "${bin_tasks[@]}"; do
       bin_ec=\$?
     fi
 
-    cmux-notify \"$bin exited (ec=\$bin_ec)\"
+    if command -v cmux-notify 2>&1 >/dev/null; then
+      cmux-notify \"$bin exited (ec=\$bin_ec)\"
+    fi
     return \$bin_ec
   }"
 done
