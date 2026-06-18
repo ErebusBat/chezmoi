@@ -1,0 +1,17 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+{{- $filePath := joinPath .chezmoi.homeDir "/Brewfile" -}}
+# {{ include $filePath | sha256sum }} ~/Brewfile
+
+cat << 'EOF'
+##################################################
+# Homebrew - Update / Install
+##################################################
+EOF
+
+cd ~
+brew bundle
+
+echo "### END - brew bundle ############################"
+{{- end -}}
+

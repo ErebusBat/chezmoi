@@ -1,0 +1,17 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+{{- $filePath := joinPath .chezmoi.workingTree "direct/homebrew-trust-update.zsh" -}}
+# {{ include $filePath | sha256sum }} direct/homebrew-trust-update.zsh
+
+cat << 'EOF'
+##################################################
+# Homebrew - Update Trust
+##################################################
+EOF
+
+cd ~
+{{ $filePath }}
+
+echo "### END - Update Trust ###########################"
+{{- end -}}
+
