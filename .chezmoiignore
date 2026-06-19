@@ -116,6 +116,7 @@ Library/Application Support/
 bin/launchd-watch
 bin/sync_terminal_theme_to_system.sh
 bin/toggle_light_dark.sh
+bin/what-has-secure-input
 {{- end }}
 
 {{- if ne .chezmoi.os "linux" }}
