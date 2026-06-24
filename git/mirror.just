@@ -58,29 +58,3 @@ mirror-fetch-repo repo-dir remote='origin':
 [group('Mirrors')]
 mirror-fetch-all:
   just mirror-fetch-repo vendor/mcp-memory-service.git
-
-# ################################################################################
-# ### mcp-memory-service
-# ################################################################################
-#
-# # Init mirror repository in vendor directory
-# [group('Mirrors')]
-# [group('mirror: mcp-memory-service')]
-# @mirror-init-mcp-memory-service:
-#   cd {{VENDOR_DIR}} && \
-#     git clone --mirror https://codeberg.org/doobidoo/mcp-memory-service.git && \
-#     echo "INFO: "
-#
-# # Fetch mirror updates from remote
-# [group('Mirrors')]
-# [group('mirror: mcp-memory-service')]
-# mirror-mcp-memory-service-fetch remote='origin':
-#   cd {{VENDOR_DIR}} && \
-#     git fetch --prune {{remote}}
-#
-# # # Push mirror to remote
-# # [group('Mirrors')]
-# # [group('mirror: mcp-memory-service')]
-# # mirror-mcp-memory-service-push remote='origin':
-# #   cd {{VENDOR_DIR}} && \
-# #     git push --mirror {{remote}}
