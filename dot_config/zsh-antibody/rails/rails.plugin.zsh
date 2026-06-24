@@ -30,13 +30,21 @@ bin_tasks=(
 
 for bin in "${bin_tasks[@]}"; do
   eval "$bin() {
+    local bin_ec=
     if [[ -x bin/$bin ]]; then
-      echo '> bin/$bin \$*'
+      echo \"> bin/$bin \${*[@]}\" >&2
       bin/$bin \$*
+      bin_ec=\$?
     else
-      echo '> bundle exec $bin \$*'
+      echo \"> bundle exec $bin \${*[@]}\" >&2
       bundle exec $bin \$*
+      bin_ec=\$?
     fi
+
+    if command -v cmux-notify 2>&1 >/dev/null; then
+      cmux-notify \"$bin exited (ec=\$bin_ec)\"
+    fi
+    return \$bin_ec
   }"
 done
 

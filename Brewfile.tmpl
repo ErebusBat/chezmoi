@@ -87,8 +87,12 @@ cask "voiceink"
 #-- Terminals
 cask "alacritty"
 cask "ghostty"
-tap "wez/wezterm"
-cask "wez/wezterm/wezterm-nightly"
+
+# wez is the legacy tap/formulae.  See https://chatgpt.com/c/6a32a872-bb04-83e8-9bd4-953f8ac7281e
+# tap "wez/wezterm"
+# cask "wez/wezterm/wezterm-nightly"
+cask "wezterm@nightly"
+
 tap "manaflow-ai/cmux"
 cask "manaflow-ai/cmux/cmux"
 
@@ -104,7 +108,7 @@ cask "chronycontrol"
 cask "launchcontrol"
 cask "nikitabobko/tap/aerospace"
 brew "FelixKratz/formulae/borders"
-brew "FelixKratz/formulae/sketchybar"
+# brew "FelixKratz/formulae/sketchybar"
 tap "teamookla/speedtest"
 brew "teamookla/speedtest/speedtest"
 
@@ -114,7 +118,7 @@ cask "claude"
 # cask "claude-code"
 brew "node"           #-- For npx command / MCP Servers
 cask "fantastical"
-cask "granola"
+# cask "granola"
 brew "gemini-cli"
 cask "todoist-app"
 brew "todoist-cli"

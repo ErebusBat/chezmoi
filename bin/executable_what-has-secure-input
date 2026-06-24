@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+# See codex://threads/019edd2e-fe7c-7a12-b309-fbfbc6f6459b
+
+pid=$(ioreg -l -w 0 | sed -n 's/.*"kCGSSessionSecureInputPID"=\([0-9]*\).*/\1/p' | head -1)
+if [[ -z $pid ]]; then
+  echo "SecureInput does not appear to be enabled"
+else
+  ps -p "$pid" -o pid,ppid,user,comm,args
+fi

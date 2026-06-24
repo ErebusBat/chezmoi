@@ -8,6 +8,8 @@ if command -v mise &>/dev/null; then
   mise install
 else
   echo "WARN: mise not installed yet!"
+  echo "      attempting to install with: curl https://mise.run | sh"
+  curl https://mise.run | sh
 fi
 {{ else }}
 # Config file {{ $filePath }} not found!
