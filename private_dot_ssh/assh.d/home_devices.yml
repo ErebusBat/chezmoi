@@ -30,7 +30,7 @@ hosts:
   outpost46.erebusbat.net:
     Hostname: outpost46.erebusbat.net
     Inherits: personal-server
-    # User: aburns
+    User: aburns
 
   outpost:
     Hostname: outpost.erebusbat.net
@@ -42,6 +42,13 @@ hosts:
   outpost4:
     Inherits: outpost46.erebusbat.net
     Hostname: outpost4.erebusbat.net
+
+  # We need this so that when we are utilizing proxy gateways it
+  # will not match and attempt to use the OS username so authentication
+  # fails.  This causes a match and then the correct auth will be
+  # applied to the connection.
+  outpost/*:
+    Inherits: outpost46.erebusbat.net
 
   # outpost4:
   #   Hostname: outpost4.erebusbat.net
