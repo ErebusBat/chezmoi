@@ -40,6 +40,21 @@ if [[ -z $MSG ]]; then
   MSG="Task Done"
 fi
 
+function notify_machine_name() {
+  if command -v scutil &>/dev/null; then
+    scutil --get ComputerName 2>/dev/null && return 0
+    scutil --get LocalHostName 2>/dev/null && return 0
+  fi
+
+  hostname -s 2>/dev/null || hostname 2>/dev/null
+}
+
+NOTIFY_HOST=${NOTIFY_HOST:-$(notify_machine_name)}
+NOTIFY_USER=${NOTIFY_USER:-$(id -un 2>/dev/null || whoami 2>/dev/null)}
+if [[ -n $NOTIFY_HOST ]]; then
+  MSG="${MSG}"$'\n'"[${NOTIFY_HOST}:${NOTIFY_USER:-unknown}]"
+fi
+
 # Load config file
 NOTIFY_CFG=~/.config/erebusbat/notify.conf.sh
 if [[ -s $NOTIFY_CFG ]]; then
