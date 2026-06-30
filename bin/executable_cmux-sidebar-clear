@@ -1,0 +1,25 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+cmux_cli=${CMUX_BUNDLED_CLI_PATH:-cmux}
+workspace=${CMUX_WORKSPACE_ID:-}
+
+if [[ -z $workspace ]]; then
+  print -u2 "cmux-sidebar-clear: CMUX_WORKSPACE_ID is not set; run this from a cmux terminal."
+  exit 1
+fi
+
+status_output=$("$cmux_cli" list-status --workspace "$workspace" 2>/dev/null || true)
+
+"$cmux_cli" clear-notifications --workspace "$workspace"
+"$cmux_cli" clear-log --workspace "$workspace"
+"$cmux_cli" clear-progress --workspace "$workspace"
+
+if [[ -n $status_output && $status_output != "No status entries" ]]; then
+  while IFS= read -r status_line; do
+    [[ -z $status_line || $status_line == "No status entries" ]] && continue
+    status_key=${status_line%%=*}
+    [[ -z $status_key || $status_key == "$status_line" ]] && continue
+    "$cmux_cli" clear-status "$status_key" --workspace "$workspace"
+  done <<< "$status_output"
+fi
