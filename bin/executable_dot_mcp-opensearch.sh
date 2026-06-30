@@ -17,7 +17,7 @@ if [[ $# -gt 0 ]]; then
   shift
 fi
 AWS_REGION=${AWS_REGION:=us-east-1}
-AWS_PROFILE=${AWS_PROFILE:=lsu/ops/readonly/us-east-1}
+AWS_PROFILE=${AWS_PROFILE:=lsu/ops/poweruser/us-east-1}
 OPENSEARCH_URL=
 if [[ $os_env == "production" ]]; then
   OPENSEARCH_URL="https://logs.internal.upserve.com"
