@@ -39,6 +39,7 @@ FORMULA_TO_TRUST=(
   crambl/tap/mdns-scanner
   xo/xo/usql
   yetidevworks/yscan/yscan        # Network scanner
+  psviderski/tap/docker-pussh
 
   # liam-deacon/tap/codex-usage
   # liam-deacon/tap/latest-version
