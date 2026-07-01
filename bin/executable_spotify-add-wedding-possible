@@ -1,0 +1,232 @@
+#!/usr/bin/env ruby
+
+require 'base64'
+require 'json'
+require 'net/http'
+require 'uri'
+require 'yaml'
+
+class SpotifyWeddingPossible
+  CONFIG_FILE = File.expand_path('~/.config/erebusbat/spotify_client.yml')
+  TOKEN_FILE = File.expand_path('~/.config/erebusbat/spotify_token.yml')
+  PLAYLIST_NAME = ENV.fetch('SPOTIFY_WEDDING_PLAYLIST_NAME', 'Wedding possible')
+
+  def initialize(dry_run: false)
+    @dry_run = dry_run
+    load_credentials
+    @access_token = valid_access_token || refresh_access_token
+    abort "Could not load or refresh Spotify token from #{TOKEN_FILE}" unless @access_token
+  end
+
+  def run
+    track = current_track
+    playlist = playlist_from_env || find_playlist(PLAYLIST_NAME)
+
+    unless playlist
+      abort "Could not find Spotify playlist named #{PLAYLIST_NAME.inspect}. Set SPOTIFY_WEDDING_PLAYLIST_ID to use a specific playlist."
+    end
+
+    if track_already_in_playlist?(playlist.fetch('id'), track.fetch('id'))
+      puts "Already in #{playlist.fetch('name')}: #{track_label(track)}"
+      return
+    end
+
+    if @dry_run
+      puts "Would add to #{playlist.fetch('name')}: #{track_label(track)}"
+      return
+    end
+
+    add_track_to_playlist(playlist.fetch('id'), track.fetch('uri'))
+    puts "Added to #{playlist.fetch('name')}: #{track_label(track)}"
+  end
+
+  private
+
+  def load_credentials
+    [CONFIG_FILE, TOKEN_FILE].each do |path|
+      abort "Required Spotify credential file missing: #{path}" unless File.file?(path)
+    end
+
+    @config = YAML.load_file(CONFIG_FILE) || {}
+    @token_data = YAML.load_file(TOKEN_FILE) || {}
+    @client_id = @config['client_id']
+    @client_secret = @config['client_secret']
+
+    abort "client_id missing from #{CONFIG_FILE}" if @client_id.to_s.empty?
+    abort "client_secret missing from #{CONFIG_FILE}" if @client_secret.to_s.empty?
+    abort "access_token missing from #{TOKEN_FILE}" if @token_data['access_token'].to_s.empty? && @token_data['refresh_token'].to_s.empty?
+  end
+
+  def valid_access_token
+    return nil if @token_data['access_token'].to_s.empty?
+    return @token_data['access_token'] unless @token_data['expires_at']
+
+    Time.now.to_i < @token_data['expires_at'].to_i - 300 ? @token_data['access_token'] : nil
+  end
+
+  def refresh_access_token
+    return nil if @token_data['refresh_token'].to_s.empty?
+
+    response = request_token({
+      'grant_type' => 'refresh_token',
+      'refresh_token' => @token_data['refresh_token']
+    })
+
+    return nil unless response.code == '200'
+
+    data = JSON.parse(response.body)
+    @token_data['access_token'] = data.fetch('access_token')
+    @token_data['expires_at'] = Time.now.to_i + data.fetch('expires_in').to_i
+    @token_data['refresh_token'] = data['refresh_token'] if data['refresh_token']
+    File.write(TOKEN_FILE, @token_data.to_yaml)
+    @token_data['access_token']
+  end
+
+  def request_token(form)
+    uri = URI('https://accounts.spotify.com/api/token')
+    request = Net::HTTP::Post.new(uri)
+    request['Authorization'] = "Basic #{Base64.strict_encode64("#{@client_id}:#{@client_secret}")}"
+    request['Content-Type'] = 'application/x-www-form-urlencoded'
+    request.body = URI.encode_www_form(form)
+    http_request(uri, request)
+  end
+
+  def current_track
+    response = api_request(:get, 'https://api.spotify.com/v1/me/player/currently-playing')
+
+    case response.code
+    when '200'
+      data = JSON.parse(response.body)
+      item = data['item']
+      abort 'No track is currently playing on Spotify' unless item && item['type'] == 'track'
+      item
+    when '204'
+      abort 'No track is currently playing on Spotify'
+    else
+      abort spotify_error('Could not read currently playing track', response)
+    end
+  end
+
+  def playlist_from_env
+    playlist_id = ENV['SPOTIFY_WEDDING_PLAYLIST_ID']
+    return nil if playlist_id.to_s.empty?
+
+    response = api_request(:get, "https://api.spotify.com/v1/playlists/#{playlist_id}")
+    abort spotify_error("Could not load playlist #{playlist_id}", response) unless response.code == '200'
+
+    JSON.parse(response.body)
+  end
+
+  def find_playlist(name)
+    exact = []
+    partial = []
+    normalized_name = normalize(name)
+    url = 'https://api.spotify.com/v1/me/playlists?limit=50'
+
+    while url
+      response = api_request(:get, url)
+      abort spotify_error('Could not list Spotify playlists', response) unless response.code == '200'
+
+      data = JSON.parse(response.body)
+      data.fetch('items', []).each do |playlist|
+        playlist_name = normalize(playlist['name'])
+        exact << playlist if playlist_name == normalized_name
+        partial << playlist if playlist_name.include?(normalized_name)
+      end
+      url = data['next']
+    end
+
+    exact.first || partial.first
+  end
+
+  def track_already_in_playlist?(playlist_id, track_id)
+    fields = 'items(track(id)),next'
+    url = "https://api.spotify.com/v1/playlists/#{playlist_id}/tracks?#{URI.encode_www_form(limit: 100, fields: fields)}"
+
+    while url
+      response = api_request(:get, url)
+      abort spotify_error('Could not check playlist membership', response) unless response.code == '200'
+
+      data = JSON.parse(response.body)
+      return true if data.fetch('items', []).any? { |item| item.dig('track', 'id') == track_id }
+
+      url = data['next']
+    end
+
+    false
+  end
+
+  def add_track_to_playlist(playlist_id, track_uri)
+    response = api_request(
+      :post,
+      "https://api.spotify.com/v1/playlists/#{playlist_id}/tracks",
+      { 'uris' => [track_uri] }
+    )
+    return if %w[200 201].include?(response.code)
+
+    abort spotify_error('Could not add track to playlist', response)
+  end
+
+  def api_request(method, url, body = nil, retried: false)
+    uri = URI(url)
+    request =
+      case method
+      when :get then Net::HTTP::Get.new(uri)
+      when :post then Net::HTTP::Post.new(uri)
+      else abort "Unsupported HTTP method: #{method}"
+      end
+
+    request['Authorization'] = "Bearer #{@access_token}"
+    if body
+      request['Content-Type'] = 'application/json'
+      request.body = JSON.generate(body)
+    end
+
+    response = http_request(uri, request)
+    if response.code == '401' && !retried && refresh_access_token
+      @access_token = @token_data['access_token']
+      return api_request(method, url, body, retried: true)
+    end
+
+    response
+  end
+
+  def http_request(uri, request)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = uri.scheme == 'https'
+    http.request(request)
+  rescue StandardError => e
+    abort "Spotify network request failed: #{e.class}: #{e.message}"
+  end
+
+  def track_label(track)
+    artists = track.fetch('artists', []).map { |artist| artist['name'] }.join(', ')
+    "#{track.fetch('name')} - #{artists}"
+  end
+
+  def normalize(value)
+    value.to_s.downcase.gsub(/\s+/, ' ').strip
+  end
+
+  def spotify_error(message, response)
+    details =
+      begin
+        parsed = JSON.parse(response.body)
+        parsed.dig('error', 'message') || response.body
+      rescue JSON::ParserError
+        response.body
+      end
+
+    "#{message}: HTTP #{response.code} #{response.message}#{details.to_s.empty? ? '' : " - #{details}"}"
+  end
+end
+
+dry_run = ARGV.delete('--dry-run')
+help = ARGV.delete('-h') || ARGV.delete('--help')
+if help || ARGV.any?
+  warn "Usage: #{File.basename($PROGRAM_NAME)} [--dry-run]"
+  warn 'Optional env: SPOTIFY_WEDDING_PLAYLIST_NAME, SPOTIFY_WEDDING_PLAYLIST_ID'
+  exit(help ? 0 : 2)
+end
+
+SpotifyWeddingPossible.new(dry_run: dry_run).run

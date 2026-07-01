@@ -105,6 +105,21 @@ Also note:
 ### `.chezmoiremove`
 Lists files that chezmoi should actively **remove** from the target. Used for cleanup of deprecated configs.
 
+## Personal Automation Notes
+
+### Paperless From This Mac
+- Prefer `python3 /Users/andrew.burns/Documents/AI/projects/paperless/paperless_ops.py ...` for Paperless operations.
+- Try `https://paperless.erebusbat.net` first because it sometimes works directly from this Mac.
+- If direct access fails, SSH into `maze` and still use the full DNS name from there: `https://paperless.erebusbat.net`. This keeps working if the service moves while `maze` remains on the tailnet.
+- If SSH into `maze` fails too, stop; no Paperless access path is expected to work from this computer.
+- The Paperless API token is loaded from `/Users/andrew.burns/Documents/AI/projects/paperless/.env`; do not print it.
+
+### Sending Files To Rita
+- Use the Codex skill `rita-paperless-files` for the complete workflow.
+- Try Messages AppleScript direct attachment sending first; use an explicit timeout because it may hang if macOS Automation permission is not approved.
+- If AppleScript fails or times out, use the existing macOS Shortcut backup: `shortcuts run "Send File To Rita" --input-path "/absolute/path/to/file.pdf"`.
+- Verify a send by checking recent Messages attachments in `~/Library/Messages/chat.db`.
+
 ## Editing Guidelines
 
 - **Do not edit the chezmoi source directly unless explicitly asked to change chezmoi.** For managed dotfiles/configs, prefer explaining the proposed change or, when explicitly requested, changing only the live/direct target file so the user can review, accept, or import it into chezmoi afterward.

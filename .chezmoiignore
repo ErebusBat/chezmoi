@@ -115,6 +115,8 @@ Brewfile
 Library/LaunchAgents/
 Library/Application Support/
 .raycast-cmds
+bin./spotify-add-wedding-possible
+{{ else }}
 # macOS-only mise overlay; config.toml documents the load-order convention.
 .config/mise/config.local.toml
 bin/launchd-watch
