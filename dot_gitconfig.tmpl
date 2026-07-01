@@ -31,8 +31,10 @@
   st = status
   who = shortlog -s --
   lol = log --decorate --oneline --graph
-  sync = !git pull --rebase --autostash && git push
-  syncsm = !git pull --rebase --autostash && git push && git submodule update --init --recursive
+  # sync = !git pull --rebase --autostash && git push
+  # syncsm = !git pull --rebase --autostash && git push && git submodule update --init --recursive
+  sync = !git pull --no-edit --autostash && git push
+  syncsm = !git pull --no-edit --autostash && git push && git submodule update --init --recursive
 
 [core]
   excludesfile = ~/.git-ignore
