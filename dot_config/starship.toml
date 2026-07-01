@@ -67,7 +67,7 @@ healthy_symbol = '❤️'
 command = '$HOME/bin/.starship-lan-ip.sh'
 when = 'test -x "$HOME/bin/.starship-lan-ip.sh" && test -n "$($HOME/bin/.starship-lan-ip.sh)"'
 format = '[$output ]($style)'
-style = "fg:199"
+style = "fg:246"
 
 [custom.context_line_break]
 when = '''
@@ -80,10 +80,6 @@ exit 1
 '''
 command = 'printf x'
 format = "\n"
-
-[status]
-disabled = false
-format = " [$symbol$status]($style)"
 
 [battery]
 disabled = false
@@ -124,6 +120,23 @@ style = "fg:red"
 # Redhat = "󱄛"
 # RedHatEnterprise = "󱄛"
 
+[hostname]
+ssh_only = true
+ssh_symbol = "❮=❯ "
+style = "fg:surface1"
+format = "[$ssh_symbol$hostname]($style)"
+aliases = {
+  "USMB-JVK937H909" = "LSMBP",
+  "dartp6" = "sys76",
+  "outpost" = "[|🏰|]",
+}
+
+[sudo]
+disabled = false
+symbol = "🚨"
+# style = "fg:crust"
+format = " [$symbol]($style)"
+
 [username]
 disabled = true
 show_always = false
@@ -140,8 +153,14 @@ when = 'case "${USER:-$(id -un)}" in andrew.burns|aburns) exit 1 ;; *) exit 0 ;;
 style = "fg:surface1"
 format = '[$output]($style)'
 
+[time]
+disabled = false
+time_format = "%R"
+style = "fg:177"
+format = '[ $time]($style)'
+
 [directory]
-style = "fg:peach"
+style = "fg:215"
 format = "[ $path ]($style)"
 truncate_to_repo = true
 truncation_length = 3
@@ -162,13 +181,17 @@ format = '[[ $symbol $branch ](fg:yellow)]($style)'
 [custom.repo_name]
 when = 'git rev-parse --git-dir >/dev/null 2>&1'
 command = '$HOME/bin/.starship-git-location.sh'
-style = "fg:red"
+style = "fg:208"
 format = '[$output ]($style)'
 
 [git_status]
 style = "fg:text"
 format = '([$all_status$ahead_behind ](fg:yellow))'
 use_git_executable = true
+
+[status]
+disabled = false
+format = "[$symbol $status]($style)"
 
 [nodejs]
 symbol = ""
@@ -231,20 +254,14 @@ style = "fg:crust"
 format = '[($symbol $environment )]($style)'
 ignore_base = false
 
-[time]
-disabled = false
-time_format = "%R"
-style = "fg:lavender"
-format = '[ $time]($style)'
-
 [line_break]
 disabled = false
 
 [character]
 disabled = false
-success_symbol = '[❯](bold fg:green)'
+success_symbol = '[❯](bold fg:22)'
 error_symbol = '[❯](bold fg:red)'
-vimcmd_symbol = '[❮](bold fg:peach)'
+vimcmd_symbol = '[❮](bold fg:88)'
 vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
 vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
@@ -252,7 +269,7 @@ format = " [$symbol]($style) "
 
 [cmd_duration]
 show_milliseconds = false
-format = " ⏱︎ $duration"
+format = "⏱︎$duration"
 style = "fg:text"
 disabled = false
 show_notifications = true
@@ -376,23 +393,6 @@ crust = "#181926"
 # style = "fg:crust"
 format = "[$symbol $name]($style)"
 
-[hostname]
-ssh_only = true
-ssh_symbol = "❮=❯ "
-style = "fg:surface1"
-format = "[$ssh_symbol$hostname]($style)"
-aliases = {
-  "USMB-JVK937H909" = "LSMBP",
-  "dartp6" = "sys76",
-  "outpost" = "[|🏰|]",
-}
-
-[sudo]
-disabled = false
-symbol = "🚨"
-# style = "fg:crust"
-format = " [$symbol]($style)"
-
 [gcloud]
 disabled = true
 
@@ -462,7 +462,7 @@ format = '[[ $symbol( $stack ) ](fg:sapphire)]($style)'
 # add ${env_var.OCP_PROFILE} or $env_var to that format explicitly.
 [env_var.OCP_PROFILE]
 variable = "OCP_PROFILE"
-format = " [ocp:$env_value]($style)"
+format = "[ocp:$env_value]($style) "
 style = "bold fg:39"
 description = "The active ocpersona profile"
 # <<< ocpersona starship <<<
