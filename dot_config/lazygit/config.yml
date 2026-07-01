@@ -16,8 +16,8 @@ customCommands:
     output: terminal
   - key: Y
     context: global
-    description: Sync (pull --rebase + push)
-    command: git pull --rebase --autostash && git push
+    description: Sync (pull + push)
+    command: git pull --no-edit --autostash && git push
     output: popup
 gui:
   mouseEvents: false
