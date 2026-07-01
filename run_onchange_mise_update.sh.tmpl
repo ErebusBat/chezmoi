@@ -15,12 +15,13 @@ if command -v mise &>/dev/null; then
   # upgrade the mise tool
   mise self-update -y
 
-  # print warning about OpenCode artificat attestation errors
-  printf "\n\n🚨 IMPORTANT: If you are getting 'GitHub artifact attestations verification error' when upgrading then you can work around that with:\n"
-  printf "\tMISE_GITHUB_ATTESTATIONS=false mise install github:anomalyco/opencode@latest\n\n"
-
   # Upgrade mise packages
   mise upgrade --minimum-release-age 0s
+  mise_ec=$?
+  if (( mise_ec != 0 )); then
+      printf "\n\n🚨 IMPORTANT: If you are getting 'GitHub artifact attestations verification error' when upgrading then you can work around that with:\n"
+      printf "\tMISE_GITHUB_ATTESTATIONS=false mise upgrade --minimum-release-age 0s\n\n"
+  fi
 
   # Update ssh config in case we updated assh
   mise x -- assh config build > ~/.ssh/config
