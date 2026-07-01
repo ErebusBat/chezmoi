@@ -67,7 +67,7 @@ healthy_symbol = '❤️'
 command = '$HOME/bin/.starship-lan-ip.sh'
 when = 'test -x "$HOME/bin/.starship-lan-ip.sh" && test -n "$($HOME/bin/.starship-lan-ip.sh)"'
 format = '[$output ]($style)'
-style = "fg:surface1"
+style = "fg:199"
 
 [custom.context_line_break]
 when = '''
@@ -162,7 +162,7 @@ format = '[[ $symbol $branch ](fg:yellow)]($style)'
 [custom.repo_name]
 when = 'git rev-parse --git-dir >/dev/null 2>&1'
 command = '$HOME/bin/.starship-git-location.sh'
-style = "fg:text"
+style = "fg:red"
 format = '[$output ]($style)'
 
 [git_status]
