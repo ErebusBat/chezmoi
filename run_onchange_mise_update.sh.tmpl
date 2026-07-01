@@ -9,8 +9,8 @@ echo "MISE: Updating..."
 cd ~
 if command -v mise &>/dev/null; then
   # Remove NPM managed codex
-  npm uninstall -g @openai/codex
-  rm /home/aburns/.local/bin/codex 2>&1 >/dev/null || true
+  # npm uninstall -g @openai/codex
+  # rm /home/aburns/.local/bin/codex 2>&1 >/dev/null || true
 
   # upgrade the mise tool
   mise self-update -y
