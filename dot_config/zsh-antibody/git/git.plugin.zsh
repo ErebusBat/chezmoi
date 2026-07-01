@@ -6,67 +6,83 @@
 # if [ -f /data/Dropbox/Library/G/git-master-branch-setup.txt ]; then alias git_master_setup="cat /data/Dropbox/Library/G/git-master-branch-setup.txt"; fi
 alias gs='git status'
 alias gsu='git submodule init && git submodule update'
+
 alias glp='git log --pretty=oneline'
 alias gld='git log --decorate --oneline --graph'
-alias gpp='git pull --prune'
-alias gprb='git pull --rebase --autostash'
+
+# alias gpp='git pull --prune'
+# alias gprb='git pull --rebase --autostash'
 # alias gpbgh='git_push_update_origin && git browse'
 # alias gcip='git ci && git push'
+
 alias gfo='git fetch origin'
+
 alias gcv='git commit -v'
 alias gcva='git commit -v --amend'
-alias gcvt='git commit -vt .git/COMMIT_EDITMSG.claude'
-alias gcvta='git commit -vt --amend .git/COMMIT_EDITMSG.claude'
+# alias gcvt='git commit -vt .git/COMMIT_EDITMSG.claude'
+# alias gcvta='git commit -vt --amend .git/COMMIT_EDITMSG.claude'
 
 alias gbrc='git branch --show-current'
 
 # Git Quick Save
 # alias gqs='git add -Av $(git rev-parse --show-toplevel || echo ".") && git commit'
-# alias grbi='git rebase -i'
-alias gu='gpm && gbda && gsu'
+# alias gu='gpm && gbda && gsu'
 
-# Git WorkTree
-alias gwt='git worktree'
-alias gwta='git worktree add'
-alias gwtrm='git worktree remove'
-alias gwtp='git worktree prune'
-alias gwtls='git worktree list'
-alias gnwtm='gwtnew'
+# Additional useful aliases
+alias gbda='git branch --merged | command grep -vE "^(\*|\s*master\s*$|\s*main\s*)" | command xargs -n 1 git branch -d'
+# alias gca!='git commit -v -a --amend'
+alias gdw='git diff --word-diff'
+alias glol='git log --oneline --decorate --color'
+alias glo='glol | head -n 20'
+
+alias gP='git push'
+alias gp='git pull --no-edit --autostash'
+alias gprb='git pull --rebase --autostash'
+alias gy='git sync'
+alias gysm='git syncsm'
+
+alias gpbgh='git_push_update_origin && gh pr create --web'
+alias gpm='git co master && git pull --prune'
+
+alias grbi='git rebase -i'
+alias grhh='git reset --hard HEAD'
+
+# Git Catch Up (Clean)
+alias gcu='gfo && gsu'
+alias gcuc='gcu && gbda'
+
+# Git Clean Up Master
+alias gcum='git_checkout_update_master && gsu && gbda'
+
+# Git WorkTree (now using https://github.com/max-sixty/worktrunk)
+# alias gwt='git worktree'
+# alias gwta='git worktree add'
+# alias gwtrm='git worktree remove'
+# alias gwtp='git worktree prune'
+# alias gwtls='git worktree list'
+# alias gnwtm='gwtnew'
 
 # Create a new worktree with a branch prefixed by the repo name
 # Usage: gwtnew my-feature
 #   In ~/src/lshq/granted-registry.git → git worktree add -b granted-registry/my-feature <master|main>
-function gwtnew() {
-  if [[ -z $1 ]]; then
-    echo "Usage: gwtnew <branch-name>"
-    return 1
-  fi
-  local base_branch=$(git_master_branch_name)
-  local repo_name=${${PWD:t}%.---}
-  local wt_path="../${repo_name}--$1"
-  if git show-ref --verify --quiet "refs/heads/$1"; then
-    git worktree add "$wt_path" "$1" || return $?
-  else
-    git worktree add -b "$1" "$wt_path" "$base_branch" || return $?
-  fi
-  echo "\nWorktree path: ${${wt_path:a}/#$HOME/~}"
-  cd "$wt_path"
-}
+# function gwtnew() {
+#   if [[ -z $1 ]]; then
+#     echo "Usage: gwtnew <branch-name>"
+#     return 1
+#   fi
+#   local base_branch=$(git_master_branch_name)
+#   local repo_name=${${PWD:t}%.---}
+#   local wt_path="../${repo_name}--$1"
+#   if git show-ref --verify --quiet "refs/heads/$1"; then
+#     git worktree add "$wt_path" "$1" || return $?
+#   else
+#     git worktree add -b "$1" "$wt_path" "$base_branch" || return $?
+#   fi
+#   echo "\nWorktree path: ${${wt_path:a}/#$HOME/~}"
+#   cd "$wt_path"
+# }
 
 # See working/scm-breeze/scm-breeze.plugin.zsh for more aliases
-
-# Additional useful aliases
-alias gbda='git branch --merged | command grep -vE "^(\*|\s*master\s*$|\s*main\s*)" | command xargs -n 1 git branch -d'
-alias gca!='git commit -v -a --amend'
-alias gdw='git diff --word-diff'
-alias glol='git log --oneline --decorate --color'
-alias glo='glol | head -n 20'
-alias gp='git push'
-# alias gpbgh='git_push_update_origin && git browse'
-alias gpbgh='git_push_update_origin && gh pr create --web'
-alias gpm='git co master && git pull --prune'
-alias grbi='git rebase -i'
-alias grhh='git reset --hard HEAD'
 
 # Is it master or main?  This will find out
 # Usage:
@@ -110,13 +126,6 @@ function git_new_branch_mastermain() {
 }
 
 ### End SCM
-
-# Git Catch Up (Clean)
-alias gcu='gfo && gsu'
-alias gcuc='gcu && gbda'
-
-# Git Start Fresh
-alias gcum='git_checkout_update_master && gsu && gbda'
 
 # Show all aliases for git
 function git-aliases() {
