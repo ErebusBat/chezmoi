@@ -12,8 +12,14 @@ if command -v mise &>/dev/null; then
   npm uninstall -g @openai/codex
   rm /home/aburns/.local/bin/codex 2>&1 >/dev/null || true
 
-  # upgrade the mise tool and then the packages it manages.
+  # upgrade the mise tool
   mise self-update -y
+
+  # print warning about OpenCode artificat attestation errors
+  printf "\n\n🚨 IMPORTANT: If you are getting 'GitHub artifact attestations verification error' when upgrading then you can work around that with:\n"
+  printf "\tMISE_GITHUB_ATTESTATIONS=false mise install github:anomalyco/opencode@latest\n\n"
+
+  # Upgrade mise packages
   mise upgrade --minimum-release-age 0s
 
   # Update ssh config in case we updated assh
