@@ -20,7 +20,7 @@ if command -v mise &>/dev/null; then
   mise_ec=$?
   if (( mise_ec != 0 )); then
       printf "\n\n🚨 IMPORTANT: If you are getting 'GitHub artifact attestations verification error' when upgrading then you can work around that with:\n"
-      printf "\tMISE_GITHUB_ATTESTATIONS=false mise upgrade --minimum-release-age 0s\n\n"
+      printf "\tMISE_GITHUB_ATTESTATIONS=false mise upgrade --minimum-release-age 0s && chezmoi update\n\n"
   fi
 
   # Update ssh config in case we updated assh
