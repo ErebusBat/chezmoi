@@ -1,3 +1,4 @@
+# https://ghostty.zerebos.com/
 # cmd+shift+, = reload config
 
 # Appearance
@@ -5,7 +6,7 @@ cursor-invert-fg-bg = true
 cursor-style = block_hollow
 # theme = dark:catppuccin-frappe,light:catppuccin-latte
 theme = "tinted-theming"
-window-theme = system
+#window-theme = system
 
 # System
 clipboard-read = allow
@@ -26,6 +27,10 @@ quick-terminal-animation-duration = 0.1
 #
 # Font
 #
+font-thicken=true
+font-thicken-strength=1
+# adjust-cell-height=1
+
 font-size = 16
 # font-family = "Comic Code Ligatures"
 
