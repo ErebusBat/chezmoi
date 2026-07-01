@@ -19,6 +19,10 @@ direct/
 # Ignore disabled files
 .tmuxp/_*.yaml
 
+{{- if and (hasKey . "zsh_hooks") (index .zsh_hooks "ignore_base16" | default false) }}
+.config/zsh-hooks/base16.zsh
+{{- end }}
+
 {{- if not .area.lshq }}
 .config/erebusbat/lshq.just
 .config/erebusbat/upserve.just

@@ -4,6 +4,10 @@
 # 2026-MAY-15: Rename starship_prompt zsh plugin to starship
 .config/zsh-antibody/starship_prompt/starship_prompt.plugin.zsh
 
+{{- if and (hasKey . "zsh_hooks") (index .zsh_hooks "ignore_base16" | default false) }}
+.config/zsh-hooks/base16.zsh
+{{- end }}
+
 # 2026-JAN-14
 .ssh/assh.d/tailscale.yml
 Library/LaunchAgents/local.wake-monitor.plist

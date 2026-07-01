@@ -23,7 +23,8 @@ return {
   color_scheme = "catppuccin-mocha",
 
   font = wezterm.font({
-    family="ComicCodeLigatures Nerd Font",
+    -- family="ComicCodeLigatures Nerd Font",
+    family="Atkinson Hyperlegible Mono",
     -- weight='Medium',
     -- family="Monaspace Neon",
     -- family="Hack Nerd Font Propo",
