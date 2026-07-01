@@ -4,7 +4,7 @@
 # https://github.com/raycast/script-commands/blob/master/documentation/OUTPUTMODES.md
 
 # Required parameters:
-# @raycast.schemaVersion 0
+# @raycast.schemaVersion 1
 # @raycast.title Add to Wedding Possible
 # @raycast.mode silent
 
@@ -26,4 +26,6 @@ fi
 
 cd $HOME/bin
 
-mise x -- ./spotify-add-wedding-possible
+output=$(mise x -- ./spotify-add-wedding-possible)
+dlog "💍🎵 $output"
+echo "$output"
