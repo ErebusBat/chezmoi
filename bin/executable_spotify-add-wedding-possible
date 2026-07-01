@@ -37,7 +37,14 @@ class SpotifyWeddingPossible
     end
 
     add_track_to_playlist(playlist.fetch('id'), track.fetch('uri'))
-    puts "Added to #{playlist.fetch('name')}: #{track_label(track)}"
+
+    # Output an abbreviated label if it's a wedding playlist
+    label = track_label(track)
+    if label =~ /wedding/i
+      puts label
+    else
+      puts "Added to #{playlist.fetch('name')}: #{label}"
+    end
   end
 
   private
