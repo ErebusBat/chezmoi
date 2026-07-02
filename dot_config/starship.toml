@@ -162,11 +162,13 @@ format = '[ $time]($style)'
 [directory]
 style = "fg:215"
 format = "[ $path ]($style)"
-truncate_to_repo = true
+truncate_to_repo = false
 truncation_length = 3
 truncation_symbol = "…/"
 
 [directory.substitutions]
+"Documents/Obsidian" = "🔮"
+"Documents/AI/wiki" = "🎓"
 "Documents" = "󰈙 "
 "Downloads" = " "
 "Music" = "󰝚 "
