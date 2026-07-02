@@ -169,11 +169,11 @@ truncation_symbol = "…/"
 [directory.substitutions]
 "Documents/Obsidian" = "🔮"
 "Documents/AI/wiki" = "🎓"
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = "󰝚 "
-"Pictures" = " "
-"Developer" = "󰲋 "
+"Documents" = "󰈙"
+"Downloads" = ""
+"Music" = "󰝚"
+"Pictures" = ""
+"Developer" = "󰲋"
 
 [git_branch]
 symbol = ""
