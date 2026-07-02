@@ -5,6 +5,9 @@ experimental = true
 idiomatic_version_file_enable_tools = ["ruby"]
 env_shell_expand = true
 
+[env]
+OCP_PROFILE = "personal"
+
 [tools]
 "cargo:ErebusBat/grcpass-rs" = "latest"
 "github:Liam-Deacon/codex-usage" = "latest"
