@@ -269,7 +269,7 @@ format = " [$symbol]($style) "
 
 [cmd_duration]
 show_milliseconds = false
-format = "⏱︎$duration"
+format = "⏱︎$duration "
 style = "fg:text"
 disabled = false
 show_notifications = true

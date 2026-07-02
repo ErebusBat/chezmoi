@@ -116,7 +116,7 @@ Lists files that chezmoi should actively **remove** from the target. Used for cl
 
 ### Sending Files To Rita
 - Use the Codex skill `rita-paperless-files` for the complete workflow.
-- Try Messages AppleScript direct attachment sending first; use an explicit timeout because it may hang if macOS Automation permission is not approved.
+- Try Messages AppleScript direct attachment sending first, using iMessage target `+13072595990`; use an explicit timeout because it may hang if macOS Automation permission is not approved.
 - If AppleScript fails or times out, use the existing macOS Shortcut backup: `shortcuts run "Send File To Rita" --input-path "/absolute/path/to/file.pdf"`.
 - Verify a send by checking recent Messages attachments in `~/Library/Messages/chat.db`.
 
