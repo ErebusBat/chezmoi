@@ -338,20 +338,40 @@ export OCP_PATH="${OCP_PATH:-$HOME/src/erebusbat/ocpersona}"
 [ -f "${OCP_PATH}/contrib/ocpersona.plugin.zsh" ] && source "${OCP_PATH}/contrib/ocpersona.plugin.zsh"
 
 _ocpersona_path_context() {
-  unset OCP_PROFILE
-  unset OCP_PROFILE_FILE
+  if [[ ${_OCP_PERSONA_CONTEXT:-0} == 1 ]]; then
+    if [[ ${_OCP_PERSONA_CONTEXT_PROFILE:-} == ${OCP_PROFILE:-} ]]; then
+      unset OCP_PROFILE
+    fi
+    if [[ ${_OCP_PERSONA_CONTEXT_PROFILE_FILE:-} == ${OCP_PROFILE_FILE:-} ]]; then
+      unset OCP_PROFILE_FILE
+    fi
+  fi
+  unset _OCP_PERSONA_CONTEXT
+  unset _OCP_PERSONA_CONTEXT_PROFILE
+  unset _OCP_PERSONA_CONTEXT_PROFILE_FILE
 
   if [[ -f ./.ocpersona ]]; then
     source ./.ocpersona
+    if [[ -n "${OCP_PROFILE:-}" || -n "${OCP_PROFILE_FILE:-}" ]]; then
+      export _OCP_PERSONA_CONTEXT=1
+      export _OCP_PERSONA_CONTEXT_PROFILE="${OCP_PROFILE:-}"
+      export _OCP_PERSONA_CONTEXT_PROFILE_FILE="${OCP_PROFILE_FILE:-}"
+    fi
     return
   fi
 
   case "${PWD:A}" in
     "${HOME:A}/src/lshq"|"${HOME:A}/src/lshq"/*)
       export OCP_PROFILE=lshq
+      export _OCP_PERSONA_CONTEXT=1
+      export _OCP_PERSONA_CONTEXT_PROFILE=lshq
+      export _OCP_PERSONA_CONTEXT_PROFILE_FILE=""
       ;;
     "${HOME:A}/src/erebusbat"|"${HOME:A}/src/erebusbat"/*)
       export OCP_PROFILE=personal
+      export _OCP_PERSONA_CONTEXT=1
+      export _OCP_PERSONA_CONTEXT_PROFILE=personal
+      export _OCP_PERSONA_CONTEXT_PROFILE_FILE=""
       ;;
   esac
 }
