@@ -12,6 +12,7 @@ env_shell_expand = true
 "github:Liam-Deacon/codex-usage" = "latest"
 "github:aristocratos/btop" = { version = "latest", os = ["linux"] }
 "github:bahdotsh/mdterm" = "latest"
+"github:can1357/oh-my-pi" = { version = "latest", os = ["linux"] }
 "github:grafana/grafana-kiosK" = { version = "latest", os = ["linux"] }
 "github:mrkatebzadeh/darya" = "latest"
 "github:sst/opencode" = { version = "latest", os = ["linux"] }
@@ -43,4 +44,3 @@ rust = "latest"
 starship = "latest"
 yazi = "latest"
 zoxide = "latest"
-"github:can1357/oh-my-pi" = "latest"
