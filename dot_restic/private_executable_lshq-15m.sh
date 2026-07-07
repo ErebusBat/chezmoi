@@ -11,4 +11,5 @@ restic backup \
   "$HOME/Documents/meetings" \
   "$HOME/.pi" \
   "$HOME/src" \
-  "$HOME/Library/Application Support/OpenOats"
+  "$HOME/Library/Application Support/OpenOats" \
+  "$HOME/.omp"

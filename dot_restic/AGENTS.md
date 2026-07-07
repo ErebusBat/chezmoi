@@ -66,7 +66,7 @@ backup-all daily
 ├── profile-erebusbat-s3.sh       # Erebusbat repository (S3/MinIO fallback)
 ├── profile-TEMPLATE.sh           # Template for new profiles
 │
-├── lshq-15m.sh                   # lshq: fast tier (15-min cadence)
+├── lshq-15m.sh                   # lshq: fast tier (15-min cadence) — .omp, .pi, meetings, source trees
 ├── lshq-hourly.sh                # lshq: source trees
 ├── lshq-daily.sh                 # lshq: full home directory
 ├── lshq-docs.sh                  # lshq: docs directory
