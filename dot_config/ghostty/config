@@ -7,7 +7,7 @@
 background = #fbf1c7
 clipboard-read = allow
 copy-on-select = clipboard
-cursor-color = black
+cursor-color = orange
 cursor-opacity = 0.25
 cursor-style-blink = true
 cursor-text = #fbf1c7
@@ -53,7 +53,7 @@ palette-harmonious = true
 quick-terminal-animation-duration = 0.1
 selection-background = #3c3836
 selection-foreground = #fbf1c7
-theme = Gruvbox Light
+theme = Gruvbox Dark
 title-report = true
 working-directory = home
 
