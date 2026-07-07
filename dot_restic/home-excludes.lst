@@ -256,6 +256,27 @@ $HOME/Pictures/Photos Library.photoslibrary/**
 
 
 #
+# Oh My Pi — rebuildable assets (natives, node_modules, logs, cache)
+#
+$HOME/.omp/natives/**
+$HOME/.omp/profiles/*/plugins/node_modules/**
+$HOME/.omp/profiles/*/plugins/**/node_modules/**
+$HOME/.omp/plugins/node_modules/**
+$HOME/.omp/plugins/**/node_modules/**
+$HOME/.omp/logs/**
+$HOME/.omp/gpu_cache.json
+$HOME/.omp/profiles/*/gpu_cache.json
+$HOME/.omp/profiles/*/logs/**
+$HOME/.omp/profiles/*/agent/gpu_cache.json
+$HOME/.omp/profiles/*/agent/logs/**
+$HOME/.omp/profiles/*/agent/natives/**
+$HOME/.omp/profiles/*/agent/sessions/**
+$HOME/.omp/profiles/*/agent/terminal-sessions/**
+$HOME/.omp/profiles/*/agent/agent/**
+$HOME/.omp/profiles/*/agent/settings.json.bak
+$HOME/.omp/profiles/*/agent/last-changelog-version
+
+#
 # Testing / temporary
 #
 # Just for testing other items
