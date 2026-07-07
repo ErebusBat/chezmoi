@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Managed by Chezmoi; renders from `erebusbat/agent-api-keys` in gopass.
+{{- $agent_api_keys := mustFromJson (gopassRaw "erebusbat/agent-api-keys") -}}
+{{- if gt (len $agent_api_keys) 0 }}
+{{- range $key, $value := $agent_api_keys }}
+export {{ $key }}={{ printf "%q" $value }}
+{{- end }}
+{{- else }}
+# No key entries found in erebusbat/agent-api-keys.
+{{- end }}
