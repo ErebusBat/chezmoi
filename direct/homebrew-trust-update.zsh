@@ -40,7 +40,7 @@ FORMULA_TO_TRUST=(
   crambl/tap/mdns-scanner
   xo/xo/usql
   yetidevworks/yscan/yscan        # Network scanner
-  psviderski/tap/docker-pussh
+  psviderski/tap/uncloud          # docker pussh
 
   # liam-deacon/tap/codex-usage
   # liam-deacon/tap/latest-version
@@ -54,7 +54,10 @@ FORMULA_TO_TRUST=(
 
 UNTRUSTED_TAPS=(
   # Not that it is untrusted, we just trust the formula above
-  felixkratz/formulae
+  # felixkratz/formulae
+
+  # Deprecated / renamed formulae
+  psviderski/tap/docker-pussh
 )
 
 function brew() {
@@ -80,10 +83,10 @@ brew untrust "${UNTRUSTED_TAPS[@]}" "UNTRUSTING TAPS"
 ##################################################
 brew trust "$TAPS_FULL_TRUST[@]" "Adding taps to homebrew trusted list"
 
-echo "*** INFO: Adding casks to homebrew trusted list:" >&2
-echo "> brew trust --cask $TRUSTED_CASKS[@]" >&2
-brew trust --cask  "$TRUSTED_CASKS[@]"
+# echo "*** INFO: Adding casks to homebrew trusted list:" >&2
+# echo "> brew trust --cask $TRUSTED_CASKS[@]" >&2
+brew trust --cask  "$TRUSTED_CASKS[@]" "Adding casks to homebrew trusted list"
 
 echo "*** INFO: Adding formulas to homebrew trusted list:" >&2
-echo "> brew trust --formula $FORMULA_TO_TRUST[@]" >&2
-brew trust --formula  "$FORMULA_TO_TRUST[@]"
+# echo "x> brew trust --formula $FORMULA_TO_TRUST[@]" >&2
+brew trust --formula  "$FORMULA_TO_TRUST[@]" "Adding formulas to homebrew trusted list"
