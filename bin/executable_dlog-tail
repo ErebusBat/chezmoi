@@ -4,7 +4,7 @@ set -e
 WATCH=${1:-0}
 
 # Set timeout for fswatch. Blank value defaults to 1 hour. <=0 disables timeout.
-DLOG_FSWATCH_TIMEOUT="${DLOG_FSWATCH_TIMEOUT:-3600}"
+DLOG_FSWATCH_TIMEOUT="${DLOG_FSWATCH_TIMEOUT:-900}"
 if [[ $WATCH -gt 0 && $DLOG_FSWATCH_TIMEOUT -gt 0 ]]; then
   if ! command -v timeout >/dev/null 2>&1; then
     echo "***  WARN: Watch mode NOT using fswatch timeout (no timeout cmd)!"

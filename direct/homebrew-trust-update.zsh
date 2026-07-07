@@ -10,6 +10,7 @@ TAPS_FULL_TRUST=(
   ### Official Taps
   # Opencode
   anomalyco/tap
+  can1357/tap
   atlassian/acli
   garethgeorge/backrest-tap
   lightspeed-hospitality/lsk-tools
