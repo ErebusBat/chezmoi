@@ -14,6 +14,9 @@ Library/LaunchAgents/local.wake-monitor.plist
 # 2026-MAR-10
 ~/.config/zsh-antibody/Makefile
 ~/.config/zsh-antibody/plugins.zsh
+
+# 2026-JUL-07: Legacy Ruby multi-target restic orchestrator — kept in git history for reference
+.restic/restic-multi.rb
 {{- if not .area.fetlife }}
 .s3cfg-fetlife
 {{- end }}
