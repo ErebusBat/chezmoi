@@ -10,6 +10,9 @@ docs/
 .config/wezterm/wallpaper.jpg
 chezmoi_scripts/
 
+# Legacy Ruby multi-target restic orchestrator — ignore everywhere
+.restic/restic-multi.rb
+
 # Direct is where we store files that are symlinked (like stow)
 direct/
 
