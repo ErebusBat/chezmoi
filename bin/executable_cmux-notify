@@ -1,0 +1,66 @@
+#!/bin/sh
+# cmux-notify — fire a cmux desktop notification.
+#
+# Standalone replacement for the old cmux-notify zsh function, extended to work
+# over `cmux ssh` remote sessions as well as locally.
+#
+#   cmux-notify [body] [subtitle]
+#
+# Default body is "Task Completed"; default subtitle is the current directory.
+# Silently no-ops when not inside a cmux surface.
+#
+# Local (desktop) cmux accepts --title/--subtitle/--body/--surface. The remote
+# `cmux ssh` relay daemon only accepts --title/--body (the surface is the
+# current one, chosen implicitly) and rejects the extra flags *before* any
+# notification is fired — so the full attempt below never double-notifies and a
+# minimal retry is always safe.
+
+set -u
+
+title="👀 Notification"
+body="${1:-Task Completed}"
+subtitle="${2:-}"
+
+# Nothing to notify against without a surface.
+[ -n "${CMUX_SURFACE_ID:-}" ] || exit 0
+
+# Need the CLI.
+if ! command -v cmux >/dev/null 2>&1; then
+  echo "cmux-notify: cmux command not found" >&2
+  exit 1
+fi
+
+# Mirror the old function: default the subtitle to the cwd basename + "/".
+if [ -z "$subtitle" ]; then
+  subtitle="$(basename "${PWD:-/}")/"
+fi
+
+# Try the full (local) flag set first.
+full_out=$(cmux notify \
+  --title "$title" \
+  --subtitle "$subtitle" \
+  --body "$body" \
+  --surface "$CMUX_SURFACE_ID" 2>&1)
+full_rc=$?
+
+if [ "$full_rc" -eq 0 ]; then
+  exit 0
+fi
+
+# Fall back only for an unsupported-flag error (remote relay daemon). Any other
+# failure is surfaced rather than silently double-firing.
+case "$full_out" in
+  *"unknown flag"*) : ;;
+  *)
+    printf '%s\n' "$full_out" >&2
+    exit "$full_rc"
+    ;;
+esac
+
+# Remote / cmux-ssh path: no subtitle field exists, so fold the context into the
+# body so the directory info isn't lost.
+if [ -n "$subtitle" ]; then
+  body="$body ($subtitle)"
+fi
+
+cmux notify --title "$title" --body "$body" >/dev/null 2>&1 || true
