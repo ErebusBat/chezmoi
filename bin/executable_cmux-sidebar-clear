@@ -3,10 +3,19 @@ set -euo pipefail
 
 cmux_cli=${CMUX_BUNDLED_CLI_PATH:-cmux}
 workspace=${CMUX_WORKSPACE_ID:-}
+remote=${CMUX_REMOTE_TRANSPORT:-}
 
 if [[ -z $workspace ]]; then
   print -u2 "cmux-sidebar-clear: CMUX_WORKSPACE_ID is not set; run this from a cmux terminal."
   exit 1
+fi
+# Remote `cmux ssh` sessions expose only a subset of the sidebar commands:
+# clear-log / clear-progress / list-status / clear-status don't exist on the
+# relay daemon, but notifications can still be cleared via notification.clear.
+if [[ -n $remote ]]; then
+  print -u2 "cmux-sidebar-clear: remote session — clearing notifications only (log/progress/status are unavailable over cmux ssh)."
+  "$cmux_cli" rpc notification.clear >/dev/null 2>&1 || true
+  exit 0
 fi
 
 status_output=$("$cmux_cli" list-status --workspace "$workspace" 2>/dev/null || true)
