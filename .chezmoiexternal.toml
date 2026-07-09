@@ -30,6 +30,10 @@
   type = "git-repo"
   url = "git@github.com:ErebusBat/dlog-ruby.git"
   refreshPeriod = "24h"
+["src/erebusbat/pi-cmux"]
+  type = "git-repo"
+  url = "git@github.com:ErebusBat/pi-cmux.git"
+  refreshPeriod = "15m"
 [".local/share/mcp-memory-service/src"]
   type = "git-repo"
   url = "https://codeberg.org/doobidoo/mcp-memory-service.git"
