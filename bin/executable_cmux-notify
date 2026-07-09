@@ -9,11 +9,10 @@
 # Default body is "Task Completed"; default subtitle is the current directory.
 # Silently no-ops when not inside a cmux surface.
 #
-# Local (desktop) cmux accepts --title/--subtitle/--body/--surface. The remote
-# `cmux ssh` relay daemon only accepts --title/--body (the surface is the
-# current one, chosen implicitly) and rejects the extra flags *before* any
-# notification is fired — so the full attempt below never double-notifies and a
-# minimal retry is always safe.
+# Detects a `cmux ssh` remote session via CMUX_REMOTE_TRANSPORT. The local
+# desktop cmux accepts --title/--subtitle/--body/--surface; a remote relay
+# session only accepts --title/--body (the current surface is implicit and
+# --subtitle/--surface are rejected).
 
 set -u
 
@@ -35,32 +34,18 @@ if [ -z "$subtitle" ]; then
   subtitle="$(basename "${PWD:-/}")/"
 fi
 
-# Try the full (local) flag set first.
-full_out=$(cmux notify \
-  --title "$title" \
-  --subtitle "$subtitle" \
-  --body "$body" \
-  --surface "$CMUX_SURFACE_ID" 2>&1)
-full_rc=$?
-
-if [ "$full_rc" -eq 0 ]; then
-  exit 0
+# Non-empty CMUX_REMOTE_TRANSPORT => we're inside a `cmux ssh` session, whose
+# relay daemon only supports --title/--body.
+if [ -n "${CMUX_REMOTE_TRANSPORT:-}" ]; then
+  # No subtitle field remotely — fold the context into the body.
+  if [ -n "$subtitle" ]; then
+    body="$body ($subtitle)"
+  fi
+  cmux notify --title "$title" --body "$body" >/dev/null
+else
+  cmux notify \
+    --title "$title" \
+    --subtitle "$subtitle" \
+    --body "$body" \
+    --surface "$CMUX_SURFACE_ID" >/dev/null
 fi
-
-# Fall back only for an unsupported-flag error (remote relay daemon). Any other
-# failure is surfaced rather than silently double-firing.
-case "$full_out" in
-  *"unknown flag"*) : ;;
-  *)
-    printf '%s\n' "$full_out" >&2
-    exit "$full_rc"
-    ;;
-esac
-
-# Remote / cmux-ssh path: no subtitle field exists, so fold the context into the
-# body so the directory info isn't lost.
-if [ -n "$subtitle" ]; then
-  body="$body ($subtitle)"
-fi
-
-cmux notify --title "$title" --body "$body" >/dev/null 2>&1 || true
