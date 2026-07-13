@@ -10,6 +10,10 @@ restic backup \
   --exclude "**/.git/**/*" \
   "$HOME/Documents/meetings" \
   "$HOME/.pi" \
-  "$HOME/src" \
+  "$HOME/.omp" \
   "$HOME/Library/Application Support/OpenOats" \
-  "$HOME/.omp"
+  "$HOME/src"
+
+if [[ -f ~/.restic/lshq-docs.sh ]]; then
+  ~/.restic/backup lshq docs
+fi
