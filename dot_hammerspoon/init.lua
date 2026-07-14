@@ -1,18 +1,24 @@
--- Keep the pointer with the active app when switching focus across displays.
-local function centerMouseOnFocusedWindow()
-  local window = hs.window.focusedWindow()
+-- Keep the pointer with the focused window without disrupting mouse-driven focus.
+local function mouseIsInsideWindow(window)
+  local mouse = hs.mouse.absolutePosition()
+  local frame = window:frame()
 
-  if window then
+  return mouse.x >= frame.x
+    and mouse.x < frame.x + frame.w
+    and mouse.y >= frame.y
+    and mouse.y < frame.y + frame.h
+end
+
+local function moveMouseToFocusedWindow(window)
+  if not mouseIsInsideWindow(window) then
     hs.mouse.absolutePosition(window:frame().center)
   end
 end
 
-appFocusWatcher = hs.application.watcher.new(function(_, event)
-  if event == hs.application.watcher.activated then
-    -- Let macOS finish assigning the app's focused window before moving the pointer.
-    hs.timer.doAfter(0.05, centerMouseOnFocusedWindow)
-  end
-end)
+windowFocusWatcher = hs.window.filter.new()
+windowFocusWatcher:subscribe(
+  hs.window.filter.windowFocused,
+  moveMouseToFocusedWindow
+)
 
-appFocusWatcher:start()
 hs.autoLaunch(true)
