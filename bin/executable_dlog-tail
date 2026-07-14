@@ -3,28 +3,14 @@ set -e
 
 WATCH=${1:-0}
 
-# Set timeout for fswatch. Blank value defaults to 1 hour. <=0 disables timeout.
+# Maximum wait in seconds for fswatch to report a change; <=0 waits indefinitely.
 DLOG_FSWATCH_TIMEOUT="${DLOG_FSWATCH_TIMEOUT:-900}"
-if [[ $WATCH -gt 0 && $DLOG_FSWATCH_TIMEOUT -gt 0 ]]; then
-  if ! command -v timeout >/dev/null 2>&1; then
-    echo "***  WARN: Watch mode NOT using fswatch timeout (no timeout cmd)!"
-    sleep 5
-    DLOG_FSWATCH_TIMEOUT=0
-  else
-    echo "***  INFO: fswatch timeout enabled: \$DLOG_FSWATCH_TIMEOUT=${DLOG_FSWATCH_TIMEOUT}s"
-  fi
-elif (( DLOG_FSWATCH_TIMEOUT <= 0 )); then
-  DLOG_FSWATCH_TIMEOUT=0
-fi
 
 # display message and pause if we're in watch mode.
 if [[ $WATCH -gt 0 ]]; then
   echo "***  INFO: Watch mode enabled"
   sleep 2
 fi
-
-# Keep for set -u compatibility in branches where the command may not run.
-FSWATCH_STATUS=0
 
 # Setup paths, support known locations for vault root
 LOGS_PATH="logs/$(date +%Y/%m-%b)"
@@ -75,24 +61,33 @@ function wait-dumb() {
 }
 
 function wait-fswatch() {
-  local cmd=("${FSWATCH_CMD[@]}")
-  if (( DLOG_FSWATCH_TIMEOUT > 0 )); then
-    cmd=(timeout --foreground "$DLOG_FSWATCH_TIMEOUT" "${cmd[@]}")
-  fi
+  local event fswatch_pid fswatch_status read_status
+  local timed_out=0
 
-  # Have to modify the output here, otherwise any non-zero exit code
-  # from timeout will kill the script and not return control.
+  coproc "${FSWATCH_CMD[@]}"
+  fswatch_pid=$!
+
   set +e
-  "${cmd[@]}" 2>&1 1>/dev/null
-  FSWATCH_STATUS=$?
+  if (( DLOG_FSWATCH_TIMEOUT > 0 )); then
+    read -r -t "$DLOG_FSWATCH_TIMEOUT" -p event
+  else
+    read -r -p event
+  fi
+  read_status=$?
+
+  if (( read_status != 0 )) && kill -0 "$fswatch_pid" 2>/dev/null; then
+    timed_out=1
+    kill -TERM "$fswatch_pid" 2>/dev/null
+  fi
+  wait "$fswatch_pid"
+  fswatch_status=$?
   set -e
 
-  # handle our non-zero exit code. 124 is timeout, so we ignore that.
-  if (( FSWATCH_STATUS == 124 )); then
+  if (( timed_out )); then
     echo "*** INFO: Timeout fired"
-  elif (( FSWATCH_STATUS != 0 && FSWATCH_STATUS != 124 )); then
-    echo "*** WARN: Caught fswatch ec=$FSWATCH_STATUS; exiting loop!"
-    exit "$FSWATCH_STATUS"
+  elif (( fswatch_status != 0 )); then
+    echo "*** WARN: Caught fswatch ec=$fswatch_status; exiting loop!"
+    exit "$fswatch_status"
   fi
 }
 
