@@ -3,8 +3,8 @@ set -e
 
 WATCH=${1:-0}
 
-# Maximum wait in seconds for fswatch to report a change; <=0 waits indefinitely.
-DLOG_FSWATCH_TIMEOUT="${DLOG_FSWATCH_TIMEOUT:-900}"
+# Maximum wait in seconds for fswatch to report a change. Defaults to 1h (3600s); <=0 waits indefinitely.
+DLOG_FSWATCH_TIMEOUT="${DLOG_FSWATCH_TIMEOUT:-3600}"
 
 # display message and pause if we're in watch mode.
 if [[ $WATCH -gt 0 ]]; then
