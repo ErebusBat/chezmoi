@@ -1,0 +1,11 @@
+import? '../justfile'
+
+# Update via mise
+[group('Oh-My-Pi')]
+update-via-mise min-age='0s':
+  mise self-update -y
+  MISE_GITHUB_ATTESTATIONS=false \
+    mise upgrade --minimum-release-age {{min-age}}
+
+  # Update ssh config in case we updated assh
+  mise x -- assh config build > ~/.ssh/config
