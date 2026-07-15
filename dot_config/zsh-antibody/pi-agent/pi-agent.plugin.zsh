@@ -117,6 +117,7 @@ if command -v omp 2>&1 >/dev/null; then
   omp-work() {
     # unset FIRECRAWL_API_KEY
     # unset BRAVE_API_KEY
+    unset OCP_PROFILE
     omp upserve "${@}"
   }
   alias ompw=omp-work
