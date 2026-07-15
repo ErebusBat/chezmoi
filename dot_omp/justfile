@@ -9,3 +9,15 @@ update-via-mise min-age='0s':
 
   # Update ssh config in case we updated assh
   mise x -- assh config build > ~/.ssh/config
+
+# Open an ssh tunnel on your local machine to a remote machine to do OAuth callback routing
+[group('Oh-My-Pi')]
+oauth-callback-tunnel machine port:
+  @printf "Opening tunnel to forward localhost:{{port}} on {{machine}} to your local machine\n"
+  @printf "You will not see any output, just Ctrl+C after you are done"
+  ssh -L {{port}}:localhost:{{port}} -N {{machine}}
+
+# Open a Codex OAuth callback tunnel on your local machine to a remote machine
+[group('Oh-My-Pi')]
+codex-oauth-callback-tunnel machine port='1455':
+  @just oauth-callback-tunnel {{machine}} {{port}}
