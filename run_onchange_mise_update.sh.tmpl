@@ -1,10 +1,11 @@
 #!/bin/bash
+{{ $manual_update_monotonic := 20260714.0 }}
 {{ $filePath := joinPath .chezmoi.homeDir "/.config/mise/config.toml" }}
 {{ $force_update_every_days := 3 }}
 {{ $update_version := div (now | unixEpoch) (mul $force_update_every_days 86400) }}
 {{ if stat $filePath }}
 # Config HASH: {{ include $filePath | sha256sum }} ~/.config/mise/config.toml
-# manual_monotonic=1 <== Increase to manually force the script to run outside of the normal window.
+# manual_monotonic={{ $manual_update_monotonic }} <== Manual value that can be updated above to force the script to run.
 # update_version={{ $update_version }} <-- Will update every {{ $force_update_every_days }}d
 echo "MISE: Updating..."
 cd ~
