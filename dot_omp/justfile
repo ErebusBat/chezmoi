@@ -32,6 +32,18 @@ codex-oauth-callback-tunnel machine port='1455':
 ############################################################
 ## Profiles
 ############################################################
+
+# Launch Oh-My-Pi in specified profile, creating it if needed
+[group('Profiles')]
+create-profile name:
+    command omp --profile "{{ name }}"
+
+# Recreate Personal Profile from Chezmoi
+[group('Profiles')]
+recreate-personal-profile:
+    mv ~/.omp/profiles/personal/agent/config.yml /tmp/omp-personal-profile-backup.yml
+    command chezmoi update
+
 PI_CMUX_PATH := home_dir() / 'src/erebusbat/pi-cmux'
 
 # Install pi-cmux extension in profile
@@ -39,10 +51,11 @@ PI_CMUX_PATH := home_dir() / 'src/erebusbat/pi-cmux'
 install-pi-cmux profile='personal':
     just --justfile {{ PI_CMUX_PATH / 'justfile' }} install {{ profile }}
 
-# Launch Oh-My-Pi in specified profile, creating it if needed
+# Pull latest changes for pi-cmux
 [group('Profiles')]
-create-profile name:
-    command omp --profile "{{ name }}"
+update-pi-cmux:
+    cd {{ PI_CMUX_PATH }} && \
+      git pull
 
 ############################################################
 ## Hidden helpers
