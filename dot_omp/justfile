@@ -5,12 +5,12 @@
 # Update via mise
 [group('Update')]
 update-via-mise min-age='0s':
-  mise self-update -y
-  MISE_GITHUB_ATTESTATIONS=false \
-    mise upgrade --minimum-release-age {{min-age}}
+    mise self-update -y || true
+    MISE_GITHUB_ATTESTATIONS=false \
+      mise upgrade --minimum-release-age {{ min-age }}
 
-  # Update ssh config in case we updated assh
-  mise x -- assh config build > ~/.ssh/config
+    # Update ssh config in case we updated assh
+    mise x -- assh config build > ~/.ssh/config
 
 ############################################################
 ## Authentication Helpers
@@ -19,26 +19,35 @@ update-via-mise min-age='0s':
 # Open an ssh tunnel on your local machine to a remote machine to do OAuth callback routing
 [group('OAuth')]
 oauth-callback-tunnel machine port:
-  @printf "Opening tunnel to forward localhost:{{port}} on {{machine}} to your local machine\n"
-  @printf "You will not see any output, just Ctrl+C after you are done"
-  ssh -L {{port}}:localhost:{{port}} -N {{machine}}
+    @printf "Opening tunnel to forward localhost:{{ port }} on {{ machine }} to your local machine\n"
+    @printf "You will not see any output, just Ctrl+C after you are done"
+    ssh -L {{ port }}:localhost:{{ port }} -N {{ machine }}
 
 # Open a Codex OAuth callback tunnel on your local machine to a remote machine
-[group('OAuth')]
 [group('Codex')]
+[group('OAuth')]
 codex-oauth-callback-tunnel machine port='1455':
-  @just oauth-callback-tunnel {{machine}} {{port}}
+    @just oauth-callback-tunnel {{ machine }} {{ port }}
+
+############################################################
+## Profiles
+############################################################
+
+# Launch Oh-My-Pi in specified profile, creating it if needed
+[group('Profiles')]
+create-profile name:
+    command omp --profile "{{ name }}"
 
 ############################################################
 ## Hidden helpers
-############################################################
+# ###########################################################
 [default]
 [private]
 ls:
-  just --list #--group 'Oh-My-Pi'
+    just --list #--group 'Oh-My-Pi'
 
 [private]
 choose:
-  just --choose #--group 'Oh-My-Pi'
+    just --choose #--group 'Oh-My-Pi'
 
 alias c := choose
