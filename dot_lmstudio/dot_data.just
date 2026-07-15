@@ -9,12 +9,12 @@ sync-to:
 # List models (dirs) in external HDD Path
 [group('Data')]
 ls-model-files-ext:
-  fd --type d . "{{ EXT_HDD_MODELS_DIR }}"
+  fd --type d . "{{ EXT_HDD_MODELS_DIR }}" | sort
 
 # List models (dirs) in local path
 [group('Data')]
 ls-model-files-local:
-  fd --type d . "{{ MODELS_DIR }}"
+  fd --type d . "{{ MODELS_DIR }}" | sort
 
 # Shows Disk Used/Free on Model Volumes
 [group('Data')]

@@ -30,6 +30,7 @@ statusLine:
   preset: custom
   leftSegments:
     - pi
+    - hostname
     - mode
     - model
     - path
