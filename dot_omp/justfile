@@ -32,6 +32,12 @@ codex-oauth-callback-tunnel machine port='1455':
 ############################################################
 ## Profiles
 ############################################################
+PI_CMUX_PATH := home_dir() / 'src/erebusbat/pi-cmux'
+
+# Install pi-cmux extension in profile
+[group('Profiles')]
+install-pi-cmux profile='personal':
+    just --justfile {{ PI_CMUX_PATH / 'justfile' }} install {{ profile }}
 
 # Launch Oh-My-Pi in specified profile, creating it if needed
 [group('Profiles')]
