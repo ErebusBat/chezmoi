@@ -1,7 +1,9 @@
-import? '../justfile'
+############################################################
+## Update
+############################################################
 
 # Update via mise
-[group('Oh-My-Pi')]
+[group('Update')]
 update-via-mise min-age='0s':
   mise self-update -y
   MISE_GITHUB_ATTESTATIONS=false \
@@ -10,14 +12,33 @@ update-via-mise min-age='0s':
   # Update ssh config in case we updated assh
   mise x -- assh config build > ~/.ssh/config
 
+############################################################
+## Authentication Helpers
+############################################################
+
 # Open an ssh tunnel on your local machine to a remote machine to do OAuth callback routing
-[group('Oh-My-Pi')]
+[group('OAuth')]
 oauth-callback-tunnel machine port:
   @printf "Opening tunnel to forward localhost:{{port}} on {{machine}} to your local machine\n"
   @printf "You will not see any output, just Ctrl+C after you are done"
   ssh -L {{port}}:localhost:{{port}} -N {{machine}}
 
 # Open a Codex OAuth callback tunnel on your local machine to a remote machine
-[group('Oh-My-Pi')]
+[group('OAuth')]
+[group('Codex')]
 codex-oauth-callback-tunnel machine port='1455':
   @just oauth-callback-tunnel {{machine}} {{port}}
+
+############################################################
+## Hidden helpers
+############################################################
+[default]
+[private]
+ls:
+  just --list #--group 'Oh-My-Pi'
+
+[private]
+choose:
+  just --choose #--group 'Oh-My-Pi'
+
+alias c := choose
