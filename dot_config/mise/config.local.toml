@@ -3,6 +3,6 @@
 [settings]
 # npm is marked linux-only in config.toml, but mise 2026.6.1 still resolves
 # npm@latest during the zsh prompt hook on macOS, causing GitHub release API
-# calls and rate-limit warnings. Disable just npm here to keep prompts fast
-# without templating the main config.
+# calls and rate-limit warnings. Codex explicitly uses aqua:openai/codex, so
+# disabling npm here keeps prompts fast without disabling codex.
 disable_tools = ["npm"]
