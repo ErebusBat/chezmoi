@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+{{ if or (ne .chezmoi.os "linux") (eq .focus "server") }}
+exit 0
+{{ else }}
+set -euo pipefail
+
+font_dir="$HOME/.local/share/fonts/AtkinsonHyperlegible"
+standard_commit="1cb311624b2ddf88e9e37873999d165a8cd28b46"
+mono_commit="154d50362016cc3e873eb21d242cd0772384c8f9"
+
+has_font() {
+    if command -v fc-list >/dev/null 2>&1; then
+        fc-list : family | grep -E "^$1(,|$)" >/dev/null
+    else
+        case $1 in
+            "Atkinson Hyperlegible") [[ -f "$font_dir/AtkinsonHyperlegible-Regular.ttf" ]] ;;
+            "Atkinson Hyperlegible Mono") [[ -f "$font_dir/AtkinsonHyperlegibleMono-Regular.ttf" ]] ;;
+        esac
+    fi
+}
+
+if has_font "Atkinson Hyperlegible" && has_font "Atkinson Hyperlegible Mono"; then
+    exit 0
+fi
+
+fetch() {
+    local url=$1
+    local destination=$2
+
+    if command -v curl >/dev/null 2>&1; then
+        curl --fail --location --retry 3 --silent --show-error --output "$destination" "$url"
+    elif command -v wget >/dev/null 2>&1; then
+        wget --quiet --output-document="$destination" "$url"
+    else
+        echo "ERROR: installing Atkinson Hyperlegible fonts requires curl or wget" >&2
+        exit 1
+    fi
+}
+
+if ! command -v unzip >/dev/null 2>&1; then
+    echo "ERROR: installing Atkinson Hyperlegible fonts requires unzip" >&2
+    exit 1
+fi
+
+work_dir=$(mktemp -d)
+trap 'rm -rf "$work_dir"' EXIT
+
+fetch "https://github.com/googlefonts/atkinson-hyperlegible/archive/$standard_commit.zip" "$work_dir/standard.zip"
+fetch "https://github.com/googlefonts/atkinson-hyperlegible-next-mono/archive/$mono_commit.zip" "$work_dir/mono.zip"
+unzip -q "$work_dir/standard.zip" -d "$work_dir"
+unzip -q "$work_dir/mono.zip" -d "$work_dir"
+
+mkdir -p "$font_dir"
+install -m 0644 "$work_dir/atkinson-hyperlegible-$standard_commit/fonts/ttf/"*.ttf "$font_dir"
+install -m 0644 "$work_dir/atkinson-hyperlegible-next-mono-$mono_commit/fonts/ttf/"*.ttf "$font_dir"
+
+if command -v fc-cache >/dev/null 2>&1; then
+    fc-cache --force "$font_dir"
+fi
+{{ end }}
