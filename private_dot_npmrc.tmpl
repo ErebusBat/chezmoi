@@ -1,9 +1,11 @@
-{{- if eq .focus "lshq" }}
+{{- if eq .focus "tractionguest" }}
 @tractionguest:registry=https://npm.pkg.github.com/
 //npm.pkg.github.com/:_authToken={{- (gopassRaw "tguest/tokens" | mustFromJson).github }}
 @xlts.dev:registry=https://registry.xlts.dev/
 always-auth=true
 //registry.xlts.dev/:always-auth=true
 //registry.xlts.dev/:_authToken={{- (gopassRaw "tguest/tokens" | mustFromJson).xlts }}
+{{- else if eq .focus "lshq" -}}
+//npm.pkg.github.com/:_authToken={{- (gopassRaw "lshq/tokens" | mustFromJson).github }}
 {{ end -}}
 
