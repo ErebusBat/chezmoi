@@ -1,0 +1,93 @@
+providers:
+  webSearch: firecrawl
+  memoryModel: online
+symbolPreset: nerd
+theme:
+  dark: dark-ember
+  light: light-gruvbox
+setupVersion: 1
+terminal:
+  showProgress: true
+display:
+  showTokenUsage: true
+  cacheMissMarker: true
+steeringMode: all
+interruptMode: immediate
+doubleEscapeAction: tree
+memory:
+  backend: mnemopi
+eval:
+  rb: true
+vault:
+  enabled: true
+github:
+  enabled: true
+plan:
+  defaultOnStartup: true
+exa:
+  enableWebsets: false
+statusLine:
+  preset: custom
+  leftSegments:
+    - pi
+    - mode
+    - model
+    - path
+    - git
+    - pr
+    - subagents
+    - time_spent
+  rightSegments:
+    - session_name
+    - context_pct
+    - cost
+    - usage
+    - session
+    - time
+dev:
+  autoqa:
+    consent: granted
+defaultThinkingLevel: medium
+modelRoles:
+  default: openai-codex/gpt-5.6-terra:medium
+  task: openai-codex/gpt-5.6-terra:auto
+  smol: openrouter/openai/gpt-5.6-terra:low
+  tiny: deepseek/deepseek-v4-flash
+  commit: openai-codex/gpt-5.6-luna:low
+  cheap: kimi-code/kimi-for-coding
+  slow: openai-codex/gpt-5.6-sol:high
+  plan: openai-codex/gpt-5.6-terra:high
+  designer: openai-codex/gpt-5.6-sol:medium
+  advisor: openai-codex/gpt-5.6-sol:medium
+  vision: openai-codex/gpt-5.6-terra
+task:
+  agentModelOverrides:
+    plan: gpt-5.6-sol
+    sonic: gpt-5.6-luna
+retry:
+  fallbackChains:
+    default:
+      - openai-codex/gpt-5.3-codex-spark
+      - kimi-code/kimi-for-coding
+    smol:
+      - deepseek/deepseek-v4-flash
+    commit:
+      - deepseek/deepseek-v4-flash
+    cheap:
+      - deepseek/deepseek-v4-pro
+hideThinkingBlock: true
+cycleOrder:
+  - cheap
+  - smol
+  - default
+  - plan
+  - advisor
+mcp:
+  discoveryMode: true
+autolearn:
+  enabled: true
+mnemopi:
+  scoping: per-project-tagged
+  embeddingVariant: en
+  noEmbeddings: false
+  llmMode: smol
