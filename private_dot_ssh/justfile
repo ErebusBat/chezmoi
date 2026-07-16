@@ -1,0 +1,21 @@
+
+
+kill-ssh-agent:
+  ssh-agent -k
+
+# Show the launchd-managed SSH agent socket and loaded identities.
+status:
+  @printf 'SSH_AUTH_SOCK=%s\n' "$SSH_AUTH_SOCK"
+  @/usr/bin/ssh-add -l
+
+# Store the configured SSH key passphrases in macOS Keychain.
+keychain-add:
+  /usr/bin/ssh-add --apple-use-keychain ~/.ssh/id_ed25519 ~/.ssh/id_bat_devices ~/.ssh/id_lshq_personal ~/.ssh/id_rsync_ed25519
+
+# Load Keychain-backed identities into the launchd-managed agent.
+keychain-load:
+  /usr/bin/ssh-add --apple-load-keychain
+
+# Print the command that repairs SSH_AUTH_SOCK in the current shell.
+reload-ssh-agent:
+  @printf '%s\n' 'This must be run manually in your current shell:' '  eval "$("$HOME/.ssh/reload-ssh-agent")"'

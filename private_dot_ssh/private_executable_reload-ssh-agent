@@ -1,0 +1,70 @@
+#!/bin/sh
+set -eu
+
+fail() {
+  printf 'reload-ssh-agent: %s\n' "$1" >&2
+  printf '%s\n' 'false'
+  exit 1
+}
+
+socket=''
+os=$(uname -s 2>/dev/null) || fail 'unable to determine the operating system'
+
+case "$os" in
+  Darwin)
+    socket=$(/bin/launchctl getenv SSH_AUTH_SOCK 2>/dev/null) || socket=''
+
+    if [ ! -S "${socket:-}" ] && [ -n "${SSH_AUTH_SOCK:-}" ] && [ -S "$SSH_AUTH_SOCK" ]; then
+      socket=$SSH_AUTH_SOCK
+    fi
+    ;;
+  Linux)
+    if [ -n "${SSH_AUTH_SOCK:-}" ] && [ -S "$SSH_AUTH_SOCK" ]; then
+      socket=$SSH_AUTH_SOCK
+    fi
+
+    if [ -z "$socket" ] && command -v systemctl >/dev/null 2>&1; then
+      socket=$(
+        systemctl --user show-environment 2>/dev/null |
+          while IFS='=' read -r name value; do
+            if [ "$name" = 'SSH_AUTH_SOCK' ]; then
+              printf '%s\n' "$value"
+              break
+            fi
+          done
+      ) || socket=''
+
+      [ -S "${socket:-}" ] || socket=''
+    fi
+
+    if [ -z "$socket" ] && [ -n "${XDG_RUNTIME_DIR:-}" ]; then
+      for candidate in \
+        "$XDG_RUNTIME_DIR/ssh-agent.socket" \
+        "$XDG_RUNTIME_DIR/ssh-agent" \
+        "$XDG_RUNTIME_DIR/keyring/ssh" \
+        "$XDG_RUNTIME_DIR/gcr/ssh" \
+        "$XDG_RUNTIME_DIR/gnupg/S.gpg-agent.ssh"
+      do
+        if [ -S "$candidate" ]; then
+          socket=$candidate
+          break
+        fi
+      done
+    fi
+    ;;
+  *)
+    fail "unsupported operating system: $os"
+    ;;
+esac
+
+if [ -z "$socket" ] || [ ! -S "$socket" ]; then
+  fail "no usable SSH agent socket found for $os"
+fi
+
+case "$socket" in
+  *[!A-Za-z0-9_./-]*)
+    fail "unsafe socket path: $socket"
+    ;;
+esac
+
+printf 'export SSH_AUTH_SOCK=%s\n' "$socket"
