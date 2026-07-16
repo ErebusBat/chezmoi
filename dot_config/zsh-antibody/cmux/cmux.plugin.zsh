@@ -5,5 +5,15 @@ if [[ -z $CMUX_WORKSPACE_ID ]]; then
   return 0
 fi
 
-alias cssh='cmux ssh'
+# alias cssh='cmux ssh -A'
 alias cmmd='cmux markdown open'
+
+function cssh() {
+    if [[ $# -eq 0 ]]; then
+      cmux ssh --help
+    elif [[ $# -eq 1 ]]; then
+      cmux ssh -A --name $1 $1
+    else
+      cmux ssh -A "${@}"
+    fi
+}
