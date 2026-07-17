@@ -1,5 +1,6 @@
 # vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
 
+CODEX_VERSION := 'latest'
 EXPECTED_OFFICIAL_CODEX_PATH := home_dir() / '.local/bin/codex'
 JUST := 'command just'
 
@@ -7,18 +8,24 @@ JUST := 'command just'
 ## Install / Uninstall / Setup
 ############################################################
 
+# Updates codex using official installer
+[group('Install')]
+update: install-official
+
 # Makes sure that codex is installed correctly and setup for remote control
 [group('Install')]
 setup:
     {{JUST}} _assert_official '{{JUST}} uninstall-non-official'
     {{JUST}} install-official
     {{JUST}} _assert_official
+    killall codex
     {{JUST}} setup-remote
 
 # Installs OpenAI Codex from official installer
 [group('Install')]
 install-official:
-    curl -fsSL https://chatgpt.com/codex/install.sh | sh
+    curl -fsSL https://chatgpt.com/codex/install.sh | \
+        CODEX_NON_INTERACTIVE=1 CODEX_RELEASE={{CODEX_VERSION}} sh
 
 # Uninstall all non-official methods
 [group('Uninstall')]
