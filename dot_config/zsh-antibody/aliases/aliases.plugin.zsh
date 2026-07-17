@@ -35,7 +35,7 @@ function dcpsu() {
   local -a script_paths=(
     "$HOME/src/erebusbat/myserver/docker-compose-out-of-date"
     "/myserver/docker-compose-out-of-date"
-    "$HOME/bin/docker-dompose-out-of-date"
+    "$HOME/bin/docker-compose-out-of-date"
   )
 
   for script in "${script_paths[@]}"; do
