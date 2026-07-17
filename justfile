@@ -26,3 +26,4 @@ chezmoi-full-update:
     cd {{ CHEZMOI_LOCAL_DIR }} && git pull
     gopass sync
     just --justfile {{ source_file() }} chezmoi-init-config chezmoi-update
+

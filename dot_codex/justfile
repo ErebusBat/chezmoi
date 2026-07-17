@@ -1,0 +1,77 @@
+# vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
+
+EXPECTED_OFFICIAL_CODEX_PATH := home_dir() / '.local/bin/codex'
+JUST := 'command just'
+
+############################################################
+## Install / Uninstall / Setup
+############################################################
+
+# Makes sure that codex is installed correctly and setup for remote control
+[group('Install')]
+setup:
+    {{JUST}} _assert_official '{{JUST}} uninstall-non-official'
+    {{JUST}} install-official
+    {{JUST}} _assert_official
+    {{JUST}} setup-remote
+
+# Installs OpenAI Codex from official installer
+[group('Install')]
+install-official:
+    curl -fsSL https://chatgpt.com/codex/install.sh | sh
+
+# Uninstall all non-official methods
+[group('Uninstall')]
+uninstall-non-official:
+    {{JUST}} uninstall-mise || true
+
+# Uninstall Codex (mise)
+[group('Uninstall')]
+uninstall-mise:
+    command mise remove -g --yes openai/codex
+
+############################################################
+## Remote Control
+############################################################
+
+# Start remote control + pair
+[group('Remote')]
+setup-remote: _assert_official remote-start remote-pair
+
+# Start a remote pairing request
+[group('Remote')]
+remote-pair:
+    codex remote-control pair
+
+# Start remote control server
+[group('Remote')]
+remote-start:
+    codex remote-control start
+
+############################################################
+## Helpers
+############################################################
+
+# Checks that when we run `codex` it is running the official installer
+# If run-if-not is blank then the error message will be displayed and ec=7
+# Otherwise the command will be executed
+_assert_official run-if-not='':
+    #!/usr/bin/env zsh
+    codex_on_path=$(command -v codex 2>&1)
+    official_codex_path="{{ EXPECTED_OFFICIAL_CODEX_PATH }}"
+
+    if [[ $codex_on_path == $official_codex_path ]]; then
+        exit 0
+    fi
+
+    if [[ -z "{{run-if-not}}" ]]; then
+        echo "*** FATAL: Codex does not appear to be installed correctly" >&2
+        echo "           run: 'just -f {{source_file()}} install-official' and try again" >&2
+        echo "           tip: You can also run the 'setup' task to just do everything" >&2
+        echo "" >&2
+        echo "               path: $codex_on_path" >&2
+        echo "           expected: $official_codex_path" >&2
+        exit 7
+    else
+        {{run-if-not}}
+    fi
