@@ -11,6 +11,44 @@ alias h='history 0 | tail -50'
 alias cp='cp -v'
 alias mv='mv -v'
 
+function dpsu() {
+  local script
+  local -a script_paths=(
+    "$HOME/src/erebusbat/myserver/docker-out-of-date"
+    "/myserver/docker-out-of-date"
+    "$HOME/bin/docker-out-of-date"
+  )
+
+  for script in "${script_paths[@]}"; do
+    if [[ -x "$script" ]]; then
+      "$script" "$@"
+      return $?
+    fi
+  done
+
+  print -u2 "dpsu: no executable found in: ${script_paths[*]}"
+  return 127
+}
+
+function dcpsu() {
+  local script
+  local -a script_paths=(
+    "$HOME/src/erebusbat/myserver/docker-compose-out-of-date"
+    "/myserver/docker-compose-out-of-date"
+    "$HOME/bin/docker-dompose-out-of-date"
+  )
+
+  for script in "${script_paths[@]}"; do
+    if [[ -x "$script" ]]; then
+      "$script" "$@"
+      return $?
+    fi
+  done
+
+  print -u2 "dcpsu: no executable found in: ${script_paths[*]}"
+  return 127
+}
+
 function todo() {
   local projID=377155580 # Inbox
   local task=$1

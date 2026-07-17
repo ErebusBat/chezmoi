@@ -17,6 +17,10 @@ Library/LaunchAgents/local.wake-monitor.plist
 
 # 2026-JUL-07: Legacy Ruby multi-target restic orchestrator — kept in git history for reference
 .restic/restic-multi.rb
+
+# 2026-JUL-17: Renamed Docker update inspection helpers
+bin/dpsu
+bin/dcpsu
 {{- if not .area.fetlife }}
 .s3cfg-fetlife
 {{- end }}
