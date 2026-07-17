@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 # cmux-ssh — open cmux SSH workspace inside a named sidebar group
 # Usage: cmux-ssh [--title <title>] <host>
+#        cmux-ssh <host> [title]
 
 set -euo pipefail
 
@@ -10,12 +11,17 @@ SERVER_GROUP_NAME='🌐Servers'
 # ── Args ──────────────────────────────────────────────────────────────
 local TITLE=""
 local HOST=""
+local POS=()
 
 while (( $# > 0 )); do
   case "$1" in
     --title)
       shift
       TITLE="${1:-}"
+      if [[ -z "$TITLE" ]]; then
+        print -u2 "Usage: ${0:t} [--title <title>] <host>"
+        exit 1
+      fi
       ;;
     -*)
       print -u2 "Unknown option: $1"
@@ -23,18 +29,25 @@ while (( $# > 0 )); do
       exit 1
       ;;
     *)
-      HOST="$1"
+      POS+=("$1")
       ;;
   esac
   shift
 done
 
-if [[ -z "$HOST" ]]; then
+if (( ${#POS} == 0 )); then
   print -u2 "Usage: ${0:t} [--title <title>] <host>"
   exit 1
 fi
 
-# Default title to host if not provided
+HOST="${POS[1]}"
+
+# If no --title given and a second positional arg exists, use it as title
+if [[ -z "$TITLE" ]] && (( ${#POS} >= 2 )); then
+  TITLE="${POS[2]}"
+fi
+
+# Default title to host if still not provided
 : "${TITLE:=${HOST}}"
 
 # ── Discover the group dynamically ────────────────────────────────────
@@ -69,12 +82,19 @@ fi
 # ── Create SSH workspace in that window, without focusing ──────────────
 cmux ssh -A --name "$TITLE" --no-focus --window "$WINDOW_REF" "$HOST"
 
-# ── Find the newly created workspace by remote.destination ────────────
+# ── Find the newly created workspace by title or remote.destination ─────
 sleep 0.4
 local NEW_WS
-NEW_WS=$(cmux workspace list --json --window "$WINDOW_REF" 2>/dev/null | jq -r --arg host "$HOST" '
-  .workspaces[] | select(.remote.destination == $host) | .ref
+NEW_WS=$(cmux workspace list --json --window "$WINDOW_REF" 2>/dev/null | jq -r --arg title "$TITLE" '
+  .workspaces[] | select(.title == $title) | .ref
 ' | tail -1)
+
+# Fallback: lookup by remote.destination (for when title matches host)
+if [[ -z "$NEW_WS" || "$NEW_WS" == "null" ]]; then
+  NEW_WS=$(cmux workspace list --json --window "$WINDOW_REF" 2>/dev/null | jq -r --arg host "$HOST" '
+    .workspaces[] | select(.remote.destination == $host) | .ref
+  ' | tail -1)
+fi
 
 if [[ -z "$NEW_WS" || "$NEW_WS" == "null" ]]; then
   print -u2 "Error: could not find new workspace for host $HOST"
