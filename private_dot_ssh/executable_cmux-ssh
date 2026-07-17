@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # cmux-ssh — open cmux SSH workspace inside a named sidebar group
-# Usage: cmux-ssh <host>
+# Usage: cmux-ssh [--title <title>] <host>
 
 set -euo pipefail
 
@@ -8,11 +8,34 @@ set -euo pipefail
 SERVER_GROUP_NAME='🌐Servers'
 
 # ── Args ──────────────────────────────────────────────────────────────
-local HOST="${1:-}"
+local TITLE=""
+local HOST=""
+
+while (( $# > 0 )); do
+  case "$1" in
+    --title)
+      shift
+      TITLE="${1:-}"
+      ;;
+    -*)
+      print -u2 "Unknown option: $1"
+      print -u2 "Usage: ${0:t} [--title <title>] <host>"
+      exit 1
+      ;;
+    *)
+      HOST="$1"
+      ;;
+  esac
+  shift
+done
+
 if [[ -z "$HOST" ]]; then
-  print -u2 "Usage: ${0:t} <host>"
+  print -u2 "Usage: ${0:t} [--title <title>] <host>"
   exit 1
 fi
+
+# Default title to host if not provided
+: "${TITLE:=${HOST}}"
 
 # ── Discover the group dynamically ────────────────────────────────────
 local GROUP_JSON
@@ -44,7 +67,7 @@ if [[ -z "$WINDOW_REF" || "$WINDOW_REF" == "null" ]]; then
 fi
 
 # ── Create SSH workspace in that window, without focusing ──────────────
-cmux ssh -A --name "$HOST" --no-focus --window "$WINDOW_REF" "$HOST"
+cmux ssh -A --name "$TITLE" --no-focus --window "$WINDOW_REF" "$HOST"
 
 # ── Find the newly created workspace by remote.destination ────────────
 sleep 0.4
