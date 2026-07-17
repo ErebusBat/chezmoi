@@ -117,6 +117,8 @@ fi
 
 if [[ -x $(which chezmoi) ]]; then
   alias cz=chezmoi
+  alias czu='chezmoi update'
+  alias czfu='command just -f ~/.local/share/chezmoi/justfile chezmoi-full-update'
 fi
 
 ################################################################################
