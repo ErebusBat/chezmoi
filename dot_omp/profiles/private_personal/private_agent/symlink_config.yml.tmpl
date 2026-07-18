@@ -1,0 +1,11 @@
+{{- $configVariant := "personal-with-hostname.yml" -}}
+{{- if hasKey . "omp" -}}
+{{-   if hasKey .omp "personal" -}}
+{{-     if hasKey .omp.personal "config_variant" -}}
+{{-       if ne .omp.personal.config_variant "" -}}
+{{-         $configVariant = .omp.personal.config_variant -}}
+{{-       end -}}
+{{-     end -}}
+{{-   end -}}
+{{- end -}}
+{{ joinPath .chezmoi.sourceDir "direct" "omp" $configVariant }}

@@ -18,6 +18,14 @@
 {{- if hasKey . "zsh_hooks" -}}
 {{-   $ignoreBase16ZshHook = (index .zsh_hooks "ignore_base16" | default false) -}}
 {{- end }}
+{{- $ompPersonalConfigVariant := "" -}}
+{{- if hasKey . "omp" -}}
+{{-   if hasKey .omp "personal" -}}
+{{-     if hasKey .omp.personal "config_variant" -}}
+{{-       $ompPersonalConfigVariant = .omp.personal.config_variant -}}
+{{-     end -}}
+{{-   end -}}
+{{- end }}
 # Last Rendered at: {{ now | date "Mon Jan 2 2006 15:04" }}
 
 [data]
@@ -50,6 +58,11 @@
 
 [data.zsh_hooks]
     ignore_base16 = {{ $ignoreBase16ZshHook }}
+{{- if ne $ompPersonalConfigVariant "" }}
+
+[data.omp.personal]
+    config_variant = {{ $ompPersonalConfigVariant | quote }}
+{{- end }}
 
 [status]
     exclude = ["scripts"]

@@ -1,10 +1,12 @@
 providers: 
-  webSearch: firecrawl
+  webSearch: brave
   memoryModel: online
+  maxInFlightRequests: 
+    lm-studio: 1
 symbolPreset: nerd
 theme: 
   dark: dark-ember
-  light: light
+  light: light-gruvbox
 setupVersion: 1
 terminal: 
   showProgress: true
@@ -30,37 +32,30 @@ statusLine:
   preset: custom
   leftSegments: 
     - pi
-    - hostname
     - mode
-    - model
-    - path
-    - git
-    - pr
-    - session
-    - subagents
-    - time_spent
   rightSegments: 
     - session_name
     - context_pct
     - cost
     - usage
+    - session
     - time
 dev: 
-  autoqa: 
-    consent: granted
+  autoqaConsent: granted
 defaultThinkingLevel: medium
 modelRoles: 
-  default: openai-codex/gpt-5.6-terra:medium
+  default: openai-codex/gpt-5.6-sol:high
   task: openai-codex/gpt-5.6-terra:auto
   smol: openrouter/openai/gpt-5.6-terra:low
   tiny: deepseek/deepseek-v4-flash
   commit: openai-codex/gpt-5.6-luna:low
-  cheap: kimi-code/kimi-k2.5
+  cheap: kimi-code/k3:high
   slow: openai-codex/gpt-5.6-sol:high
   plan: openai-codex/gpt-5.6-terra:high
   designer: openai-codex/gpt-5.6-sol:medium
-  advisor: openai-codex/gpt-5.6-sol:medium
+  advisor: kimi-code/k3:high
   vision: openai-codex/gpt-5.6-terra
+  flash: deepseek/deepseek-v4-flash:high
 task: 
   agentModelOverrides: 
     plan: gpt-5.6-sol
@@ -69,7 +64,7 @@ retry:
   fallbackChains: 
     default: 
       - openai-codex/gpt-5.3-codex-spark
-      - kimi-code/kimi-k2.5
+      - kimi-code/k3
     smol: 
       - deepseek/deepseek-v4-flash
     commit: 
@@ -84,7 +79,7 @@ cycleOrder:
   - plan
   - advisor
 mcp: 
-  discoveryMode: true
+  {}
 autolearn: 
   enabled: true
 mnemopi: 
@@ -92,3 +87,10 @@ mnemopi:
   embeddingVariant: en
   noEmbeddings: false
   llmMode: smol
+magicKeywords: 
+  ultrathink: false
+startup: 
+  showSplash: false
+collapseChangelog: true
+power: 
+  sleepPrevention: idle

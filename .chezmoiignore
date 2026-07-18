@@ -1,5 +1,6 @@
 justfile
 README.md
+CONTEXT.md
 docs/
 
 **/.DS_Store

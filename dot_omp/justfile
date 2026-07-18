@@ -38,11 +38,230 @@ codex-oauth-callback-tunnel machine port='1455':
 create-profile name:
     command omp --profile "{{ name }}"
 
-# Recreate Personal Profile from Chezmoi
+PERSONAL_PROFILE_CONFIG := home_dir() / '.omp/profiles/personal/agent/config.yml'
+
+# Reconcile the selected Personal configuration variant with its canonical configuration and sibling variant
 [group('Profiles')]
-recreate-personal-profile:
-    mv ~/.omp/profiles/personal/agent/config.yml /tmp/omp-personal-profile-backup.yml
-    command chezmoi update
+reconcile-personal-profile-config config=PERSONAL_PROFILE_CONFIG:
+    #!/usr/bin/env python3
+    import json
+    import os
+    import stat
+    import subprocess
+    import sys
+    import tempfile
+    from copy import deepcopy
+    from pathlib import Path
+
+    CANONICAL_NAME = "personal.yml"
+    WITH_HOSTNAME_NAME = "personal-with-hostname.yml"
+    WITHOUT_HOSTNAME_NAME = "personal-without-hostname.yml"
+    VARIANT_NAMES = (WITH_HOSTNAME_NAME, WITHOUT_HOSTNAME_NAME)
+
+
+    class ValidationError(Exception):
+        pass
+
+
+    class ConflictError(Exception):
+        pass
+
+
+    def execute_template(template, label):
+        try:
+            result = subprocess.run(
+                ["chezmoi", "execute-template", template],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+        except OSError as error:
+            raise ValidationError(f"{label}: cannot run chezmoi: {error}") from error
+        if result.returncode != 0:
+            detail = result.stderr.strip() or f"exit {result.returncode}"
+            raise ValidationError(f"{label}: chezmoi YAML codec failed: {detail}")
+        return result.stdout
+
+
+    def load_yaml(path):
+        template = ("{" * 2 + " %s | include | fromYaml | toJson " + "}" * 2) % json.dumps(str(path))
+        output = execute_template(template, path.name)
+        try:
+            document = json.loads(output)
+        except json.JSONDecodeError as error:
+            raise ValidationError(f"{path.name}: invalid JSON from chezmoi YAML codec") from error
+        validate_document(path.name, document)
+        return document
+
+
+    def validate_document(name, document):
+        if not isinstance(document, dict):
+            raise ValidationError(f"{name}: top-level YAML value must be a mapping")
+        status_line = document.get("statusLine")
+        if not isinstance(status_line, dict):
+            raise ValidationError(f"{name}: statusLine must be a mapping")
+        segments = status_line.get("leftSegments")
+        if not isinstance(segments, list) or not all(isinstance(item, str) for item in segments):
+            raise ValidationError(f"{name}: statusLine.leftSegments must be an array of strings")
+        if segments.count("pi") != 1:
+            raise ValidationError(f"{name}: statusLine.leftSegments must contain exactly one pi")
+
+
+    def canonicalize(document):
+        result = deepcopy(document)
+        segments = result["statusLine"]["leftSegments"]
+        segments[:] = [item for item in segments if item != "hostname"]
+        segments.insert(segments.index("pi") + 1, "hostname")
+        return result
+
+
+    def without_hostname(document):
+        result = deepcopy(document)
+        result["statusLine"]["leftSegments"].remove("hostname")
+        return result
+
+
+    def first_difference(left, right, path="$"):
+        if type(left) is not type(right):
+            return path
+        if isinstance(left, dict):
+            for key in left:
+                if key not in right:
+                    return f"{path}.{key}"
+                difference = first_difference(left[key], right[key], f"{path}.{key}")
+                if difference is not None:
+                    return difference
+            for key in right:
+                if key not in left:
+                    return f"{path}.{key}"
+            return None
+        if isinstance(left, list):
+            common_length = min(len(left), len(right))
+            for index in range(common_length):
+                difference = first_difference(left[index], right[index], f"{path}[{index}]")
+                if difference is not None:
+                    return difference
+            return None if len(left) == len(right) else f"{path}[{common_length}]"
+        return None if left == right else path
+
+
+    def serialize_yaml(document, destination):
+        descriptor, json_name = tempfile.mkstemp(
+            prefix=f".{destination.name}.",
+            suffix=".json",
+            dir=destination.parent,
+        )
+        json_path = Path(json_name)
+        try:
+            with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
+                json.dump(document, stream, ensure_ascii=False)
+                stream.flush()
+                os.fsync(stream.fileno())
+            template = ("{" * 2 + " %s | include | fromJson | toYaml " + "}" * 2) % json.dumps(str(json_path))
+            return execute_template(template, destination.name).encode()
+        finally:
+            json_path.unlink(missing_ok=True)
+
+
+    def stage_file(destination, content):
+        descriptor, temporary_name = tempfile.mkstemp(
+            prefix=f".{destination.name}.",
+            suffix=".tmp",
+            dir=destination.parent,
+        )
+        temporary_path = Path(temporary_name)
+        try:
+            with os.fdopen(descriptor, "wb") as stream:
+                stream.write(content)
+                stream.flush()
+                os.fsync(stream.fileno())
+            os.chmod(temporary_path, stat.S_IMODE(destination.stat().st_mode))
+        except Exception:
+            temporary_path.unlink(missing_ok=True)
+            raise
+        return temporary_path
+
+
+    def reconcile(config):
+        if not config.is_symlink():
+            raise ValidationError(f"{config}: config must be a symlink")
+        try:
+            selected_path = config.resolve(strict=True)
+        except OSError as error:
+            raise ValidationError(f"{config}: cannot resolve symlink: {error}") from error
+        selected_name = selected_path.name
+        if selected_name not in VARIANT_NAMES:
+            raise ValidationError(f"{config}: unsupported selected variant {selected_name}")
+
+        directory = selected_path.parent
+        paths = {
+            CANONICAL_NAME: directory / CANONICAL_NAME,
+            WITH_HOSTNAME_NAME: directory / WITH_HOSTNAME_NAME,
+            WITHOUT_HOSTNAME_NAME: directory / WITHOUT_HOSTNAME_NAME,
+        }
+        missing = [str(path) for path in paths.values() if not path.is_file()]
+        if missing:
+            raise ValidationError(f"required configuration missing: {', '.join(missing)}")
+
+        documents = {name: load_yaml(path) for name, path in paths.items()}
+        non_selected_name = (
+            WITHOUT_HOSTNAME_NAME
+            if selected_name == WITH_HOSTNAME_NAME
+            else WITH_HOSTNAME_NAME
+        )
+        normalized_non_selected = canonicalize(documents[non_selected_name])
+        if normalized_non_selected != documents[CANONICAL_NAME]:
+            conflict_path = first_difference(
+                normalized_non_selected,
+                documents[CANONICAL_NAME],
+            )
+            raise ConflictError(
+                f"{non_selected_name} diverges from {CANONICAL_NAME} at {conflict_path}"
+            )
+
+        canonical = canonicalize(documents[selected_name])
+        desired = {
+            CANONICAL_NAME: canonical,
+            WITH_HOSTNAME_NAME: deepcopy(canonical),
+            WITHOUT_HOSTNAME_NAME: without_hostname(canonical),
+        }
+        if all(desired[name] == documents[name] for name in paths):
+            return
+
+        serialized = {
+            name: serialize_yaml(document, paths[name])
+            for name, document in desired.items()
+        }
+        publication_order = (non_selected_name, CANONICAL_NAME, selected_name)
+        staged = {}
+        try:
+            staged = {
+                name: stage_file(paths[name], serialized[name])
+                for name in publication_order
+            }
+            for name in publication_order:
+                os.replace(staged.pop(name), paths[name])
+        finally:
+            for temporary_path in staged.values():
+                temporary_path.unlink(missing_ok=True)
+
+
+    def main():
+        try:
+            reconcile(Path("{{ config }}").expanduser())
+        except ConflictError as error:
+            print(f"reconcile-personal-profile-config: {error}", file=sys.stderr)
+            return 3
+        except ValidationError as error:
+            print(f"reconcile-personal-profile-config: {error}", file=sys.stderr)
+            return 2
+        except Exception as error:
+            print(f"reconcile-personal-profile-config: unexpected failure: {error}", file=sys.stderr)
+            return 1
+        return 0
+
+
+    raise SystemExit(main())
 
 PI_CMUX_PATH := home_dir() / 'src/erebusbat/pi-cmux'
 
