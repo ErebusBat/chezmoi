@@ -69,6 +69,11 @@ create-profile name:
 
 PERSONAL_PROFILE_CONFIG := home_dir() / '.omp/profiles/personal/agent/config.yml'
 
+# Show uncommitted Personal configuration changes in Chezmoi
+[group('Profiles')]
+diff-personal-profile-config:
+    cd {{ CHEZMOI_SOURCE }} && git diff HEAD -- direct/omp
+
 # Reconcile the selected Personal configuration variant with its canonical configuration and sibling variant
 [group('Profiles')]
 reconcile-personal-profile-config config=PERSONAL_PROFILE_CONFIG:
