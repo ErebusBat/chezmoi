@@ -25,7 +25,7 @@ vault:
 github:
   enabled: true
 plan:
-  defaultOnStartup: true
+  defaultOnStartup: false
 exa:
   enableWebsets: false
 statusLine:
