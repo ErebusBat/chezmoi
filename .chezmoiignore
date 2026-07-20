@@ -29,6 +29,7 @@ direct/
 .config/erebusbat/lshq.just
 .config/erebusbat/upserve.just
 .config/jenkins-tool/
+.omp/profiles/upserve
 .restic/.lshq.key
 .restic/lshq-*.sh
 .restic/lsrestic.sh

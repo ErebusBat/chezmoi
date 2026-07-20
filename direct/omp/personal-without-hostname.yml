@@ -1,36 +1,37 @@
-providers: 
+providers:
   webSearch: brave
   memoryModel: online
-  maxInFlightRequests: 
+  maxInFlightRequests:
     lm-studio: 1
+
 symbolPreset: nerd
-theme: 
+theme:
   dark: dark-ember
   light: light-gruvbox
 setupVersion: 1
-terminal: 
+terminal:
   showProgress: true
-display: 
+display:
   showTokenUsage: true
   cacheMissMarker: true
 steeringMode: all
 interruptMode: immediate
 doubleEscapeAction: tree
-memory: 
+memory:
   backend: mnemopi
-eval: 
+eval:
   rb: true
-vault: 
+vault:
   enabled: true
-github: 
+github:
   enabled: true
-plan: 
+plan:
   defaultOnStartup: false
-exa: 
+exa:
   enableWebsets: false
-statusLine: 
+statusLine:
   preset: custom
-  leftSegments: 
+  leftSegments:
     - pi
     - mode
     - model
@@ -39,7 +40,7 @@ statusLine:
     - pr
     - subagents
     - time_spent
-  rightSegments: 
+  rightSegments:
     - session_name
     - context_pct
     - cost
@@ -47,10 +48,10 @@ statusLine:
     - session
     - time
     - collab
-dev: 
+dev:
   autoqaConsent: granted
 defaultThinkingLevel: medium
-modelRoles: 
+modelRoles:
   default: openai-codex/gpt-5.6-sol:high
   task: openai-codex/gpt-5.6-terra:auto
   smol: openrouter/openai/gpt-5.6-terra:low
@@ -63,41 +64,41 @@ modelRoles:
   advisor: kimi-code/k3:high
   vision: openai-codex/gpt-5.6-terra
   flash: deepseek/deepseek-v4-flash:high
-task: 
-  agentModelOverrides: 
+task:
+  agentModelOverrides:
     plan: gpt-5.6-sol
     sonic: gpt-5.6-luna
-retry: 
-  fallbackChains: 
-    default: 
+retry:
+  fallbackChains:
+    default:
       - openai-codex/gpt-5.3-codex-spark
       - kimi-code/k3
-    smol: 
+    smol:
       - deepseek/deepseek-v4-flash
-    commit: 
+    commit:
       - deepseek/deepseek-v4-flash
-    cheap: 
+    cheap:
       - deepseek/deepseek-v4-pro
 hideThinkingBlock: true
-cycleOrder: 
+cycleOrder:
   - cheap
   - smol
   - default
   - plan
   - advisor
-mcp: 
+mcp:
   {}
-autolearn: 
+autolearn:
   enabled: true
-mnemopi: 
+mnemopi:
   scoping: per-project-tagged
   embeddingVariant: en
   noEmbeddings: false
   llmMode: smol
-magicKeywords: 
+magicKeywords:
   ultrathink: false
-startup: 
+startup:
   showSplash: false
 collapseChangelog: true
-power: 
+power:
   sleepPrevention: idle
