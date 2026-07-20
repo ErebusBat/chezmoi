@@ -33,6 +33,7 @@ statusLine:
   leftSegments:
     - pi
     - mode
+    - model
     - path
     - git
     - pr

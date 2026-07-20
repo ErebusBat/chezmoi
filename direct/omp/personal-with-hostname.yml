@@ -34,6 +34,7 @@ statusLine:
     - pi
     - hostname
     - mode
+    - model
     - path
     - git
     - pr
