@@ -1,0 +1,170 @@
+MYSQL_DC_DIR := source_dir() / 'aab-mysql'
+# ENV_FILE := '~/src/lshq/ls_env.sh'
+ENV_FILE := source_dir() / '../ls_env.sh'
+POS_SVC_ROOT_DIR := source_dir()
+TMUX_SESSION := 'lshq'
+TMUX_SRV_WINDOW := 'pos-srv'
+
+import? 'staging.just'
+import? '../justfile'
+import? 'usql.just'
+import? 'rspec.just'
+import? 'aidlc.just'
+
+# Start MySQL Docker Compose Project
+[group('MySQL')]
+[working-directory: MYSQL_DC_DIR]
+mysql-up:
+    docker compose up -d
+
+# Stop MySQL Docker Compose Project
+[group('MySQL')]
+[working-directory: MYSQL_DC_DIR]
+mysql-down:
+    docker compose stop
+
+# Status of MySQL Project
+[group('MySQL')]
+[working-directory: MYSQL_DC_DIR]
+mysql-status:
+    printf "CWD: $PWD\n"
+    docker compose ps
+
+# Migration Status
+[group('Data')]
+[no-cd]
+migrate-status:
+    source {{ ENV_FILE }} && \
+      bundle exec rake db:migrate:status
+
+# Apply specific migration
+[group('Data')]
+[no-cd]
+migrate-up version:
+    source {{ ENV_FILE }} && \
+      bundle exec rake db:migrate:up VERSION={{ version }}
+
+# Revert specific migration
+[group('Data')]
+[no-cd]
+migrate-down version:
+    source {{ ENV_FILE }} && \
+      bundle exec rake db:migrate:down VERSION={{ version }}
+
+# Redo last migration
+[group('Data')]
+[no-cd]
+migrate-redo:
+    source {{ ENV_FILE }} && \
+      bundle exec rake db:migrate:redo
+
+# Setup Database
+[group('Data')]
+[no-cd]
+setup-dbs:
+    #!/usr/bin/env zsh
+    source {{ ENV_FILE }}
+    DB=users bundle exec rake db:setup db:migrate
+    bundle exec rake db:setup db:migrate
+
+# Run migrations on all dbs
+[group('Data')]
+[no-cd]
+migrate-dbs:
+    #!/usr/bin/env zsh
+    source {{ ENV_FILE }}
+    DB=users bundle exec rake db:migrate
+    bundle exec rake db:migrate
+
+# Open DB Console
+[group('Data')]
+[no-cd]
+dbconsole:
+    #!/usr/bin/env zsh
+    set -euo pipefail
+
+    if [[ "{{ USQL_JUST }}" -gt 0 ]]; then
+      just usql-dbconsole
+    else
+      source {{ ENV_FILE }}
+      export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+      bundle exec rails dbconsole
+    fi
+
+# Start Rails Server with proper env
+[group('Rails')]
+[no-cd]
+rails-s:
+    source {{ ENV_FILE }} && \
+      bundle exec rails server
+
+# Start Rails Console with proper env
+[group('Rails')]
+[no-cd]
+rails-c:
+    source {{ ENV_FILE }} && \
+      bundle exec rails console
+
+# Starts pos-service rails server and console in new window
+[group('Rails')]
+[no-cd]
+start-server:
+    tmux has-session -t {{ TMUX_SESSION }} && \
+      if tmux select-window -t "{{ TMUX_SESSION }}:{{ TMUX_SRV_WINDOW }}" 2>/dev/null; then \
+        :; \
+      else \
+        tmux new-window -t {{ TMUX_SESSION }} -n {{ TMUX_SRV_WINDOW }} && \
+          tmux send-keys -t "{{ TMUX_SESSION }}:{{ TMUX_SRV_WINDOW }}.0" "just rails-s" C-m && \
+          tmux split-window -t "{{ TMUX_SESSION }}:{{ TMUX_SRV_WINDOW }}.0" && \
+          tmux send-keys -t "{{ TMUX_SESSION }}:{{ TMUX_SRV_WINDOW }}.1" "just rails-c" C-m; \
+      fi
+
+# Apply all local patches
+[group('Patches')]
+[no-cd]
+apply-all-local: apply-login-fix apply-db-password-fix
+
+# Apply local dev login fix to allow signing in with legacy credentials
+[group('Patches')]
+[no-cd]
+apply-login-fix:
+    just _apply_root_patch 'local-dev-login-fix.patch'
+
+# Apply local dev database password fix for development environment
+[group('Patches')]
+[no-cd]
+apply-db-password-fix:
+    just _apply_root_patch 'local-dev-db-password.patch'
+
+# Idempodicly apply a patch file in the pos-service root folder.
+[no-cd]
+_apply_root_patch patch_file:
+    #!/usr/bin/env zsh
+    set -u
+    patch_file="{{POS_SVC_ROOT_DIR / patch_file}}"
+    echo "***INFO: CWD=$PWD"
+    echo "***INFO: PTC=$patch_file"
+
+    if [[ ! -s $patch_file ]]; then
+      echo "***FATAL: Could not find $patch_file"
+      exit 1
+    fi
+
+    if git apply --check $patch_file; then
+      echo "***INFO: Applying ${patch_file:t}";
+      git apply $patch_file;
+      exit $?
+    elif git apply --reverse --check $patch_file; then
+      echo "***WARN: ${patch_file:t} already applied";
+      exit 2
+    else
+      echo "***ERROR: ${patch_file:t} could not be applied cleanly";
+      exit 1;
+    fi
+
+# Revert DEFINER drift and charset noise from db:schema:dump in schema files
+[group('Patches')]
+[no-cd]
+revert-schema-noise:
+    sed -i '' 's/DEFINER=`lshq`@`%` //g' db/schema.rb db/users/schema.rb
+    sed -i '' 's/RETURNS char(36) CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci/RETURNS char(36)/' db/schema.rb
