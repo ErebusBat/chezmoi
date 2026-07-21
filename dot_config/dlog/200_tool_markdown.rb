@@ -11,7 +11,11 @@ add_gsub /%%/ do |entry, _match|
   tool_output
 end
 
-# OMP Session
+### OMP Session
+# Supports the following formats:
+#  - Entry Update Text; <context>/<session-hash>
+#  - <anchor> <session-hash>
+#  - Entry Update Text; zsh-antibody/019f851e-8493-7000-9222-da344486193a
 OMP_REGEXP = /(?<statement_anchor>[!?;])\s+\b((?<context>[^ \/]+)\/)?(?<hash>[0-9a-f]{8})\b/
 add_gsub OMP_REGEXP do |entry, match|
   matches = OMP_REGEXP.match(match)
