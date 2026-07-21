@@ -2,10 +2,16 @@
 ### Oh-My-Pi
 ##################################################
 if command -v omp 2>&1 >/dev/null; then
+  export OMP_VICTORIAMETRICS_OTLP_METRICS_ENDPOINT=
+
   ### Profile Wrapper - Personal
   omp-personal() {
     if [[ -f ~/.config/erebusbat/agent-personal-api-keys.sh ]]; then
       source ~/.config/erebusbat/agent-personal-api-keys.sh
+    fi
+    if [[ "$OMP_VICTORIAMETRICS_OTLP_METRICS_ENDPOINT" != "disabled" && -f ~/.omp/victoriametrics-otel.env ]]; then
+      echo "*** INFO: Enabling OpenTelemetry Collection"
+      source ~/.omp/victoriametrics-otel.env
     fi
     # omp personal "${@}"
     command omp --profile=personal "${@}"
