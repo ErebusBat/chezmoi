@@ -168,6 +168,10 @@ alias digs="dig +short"
 # Cisco Console command, needs adapter attached
 # alias con="screen -c ~/.screenrcUSB"
 
+if [[ -x ~/.ssh/reload-ssh-agent ]]; then
+  alias reload-ssh-agent='echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"; eval $(~/.ssh/reload-ssh-agent); echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"'
+fi
+
 # assh https://github.com/moul/assh
 if [[ -x $(which assh) ]]; then
   # Wiring layer: run ssh via assh and register which completion function ssh uses.
