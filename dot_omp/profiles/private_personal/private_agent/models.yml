@@ -2,4 +2,4 @@ providers:
   lm-studio:
     modelOverrides:
       qwen/qwen3.6:
-        contextWindow: 65536
+        contextWindow: 131072
