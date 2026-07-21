@@ -1,52 +1,54 @@
 
+list-keys:
+    ssh-agent -l
 
 kill-ssh-agent:
-  ssh-agent -k
+    ssh-agent -k
 
 # Show the active SSH agent socket and loaded identities.
 status:
-  @printf 'SSH_AUTH_SOCK=%s\n' "$SSH_AUTH_SOCK"
-  @/usr/bin/ssh-add -l
+    @printf 'SSH_AUTH_SOCK=%s\n' "$SSH_AUTH_SOCK"
+    @/usr/bin/ssh-add -l
 
 # Load the configured identities into the active SSH agent.
-agent-load:
-  #!/bin/sh
-  set -eu
-  eval "$("$HOME/.ssh/reload-ssh-agent")"
-  exec ssh-add \
-    "$HOME/.ssh/id_ed25519" \
-    "$HOME/.ssh/id_bat_devices" \
-    "$HOME/.ssh/id_lshq_personal" \
-    "$HOME/.ssh/id_rsync_ed25519"
+load-all:
+    #!/usr/bin/env sh
+    set -euo pipefail
+    eval "$("$HOME/.ssh/reload-ssh-agent")"
+    exec ssh-add \
+      "$HOME/.ssh/id_ed25519" \
+      "$HOME/.ssh/id_bat_devices" \
+      "$HOME/.ssh/id_lshq_personal" \
+      "$HOME/.ssh/id_rsync_ed25519"
 
 # Store passphrases for configured SSH keys in macOS Keychain.
 keychain-add:
-  #!/bin/sh
-  set -eu
-  if [ "$(uname -s)" != 'Darwin' ]; then
-    printf '%s\n' 'keychain-add is only available on macOS.' >&2
-    exit 1
-  fi
-  printf '%s\n' 'Reminder: unencrypted keys have no passphrase to store and will not create a Keychain entry.'
-  eval "$("$HOME/.ssh/reload-ssh-agent")"
-  exec /usr/bin/ssh-add --apple-use-keychain \
-    "$HOME/.ssh/id_ed25519" \
-    "$HOME/.ssh/id_bat_devices" \
-    "$HOME/.ssh/id_lshq_personal" \
-    "$HOME/.ssh/id_rsync_ed25519"
+    #!/bin/sh
+    set -eu
+    if [ "$(uname -s)" != 'Darwin' ]; then
+      printf '%s\n' 'keychain-add is only available on macOS.' >&2
+      exit 1
+    fi
+    printf '%s\n' 'Reminder: unencrypted keys have no passphrase to store and will not create a Keychain entry.'
+    eval "$("$HOME/.ssh/reload-ssh-agent")"
+    exec /usr/bin/ssh-add --apple-use-keychain \
+      "$HOME/.ssh/id_ed25519" \
+      "$HOME/.ssh/id_bat_devices" \
+      "$HOME/.ssh/id_lshq_personal" \
+      "$HOME/.ssh/id_rsync_ed25519"
 
 # Load previously stored SSH identities from macOS Keychain.
 keychain-load:
-  #!/bin/sh
-  set -eu
-  if [ "$(uname -s)" != 'Darwin' ]; then
-    printf '%s\n' 'keychain-load is only available on macOS.' >&2
-    exit 1
-  fi
-  printf '%s\n' 'Reminder: unencrypted keys do not create Keychain entries; use agent-load for those keys.'
-  eval "$("$HOME/.ssh/reload-ssh-agent")"
-  exec /usr/bin/ssh-add --apple-load-keychain
+    #!/bin/sh
+    set -eu
+    if [ "$(uname -s)" != 'Darwin' ]; then
+      printf '%s\n' 'keychain-load is only available on macOS.' >&2
+      exit 1
+    fi
+    printf '%s\n' 'Reminder: unencrypted keys do not create Keychain entries; use agent-load for those keys.'
+    eval "$("$HOME/.ssh/reload-ssh-agent")"
+    exec /usr/bin/ssh-add --apple-load-keychain
 
 # Print the command that repairs SSH_AUTH_SOCK in the current shell.
 reload-ssh-agent:
-  @printf '%s\n' 'This must be run manually in your current shell:' '  eval "$("$HOME/.ssh/reload-ssh-agent")"'
+    @printf '%s\n' 'This must be run manually in your current shell:' '  eval "$("$HOME/.ssh/reload-ssh-agent")"'
