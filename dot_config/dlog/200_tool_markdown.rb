@@ -12,19 +12,20 @@ add_gsub /%%/ do |entry, _match|
 end
 
 # OMP Session
-OMP_REGEXP = /;\s+\b((?<context>[^ \/]+)\/)?(?<hash>[0-9a-f]{8})\b/
+OMP_REGEXP = /(?<statement_anchor>[!?;])\s+\b((?<context>[^ \/]+)\/)?(?<hash>[0-9a-f]{8})\b/
 add_gsub OMP_REGEXP do |entry, match|
   matches = OMP_REGEXP.match(match)
   data = {
     hash: matches["hash"],
-    context: matches["context"]
+    context: matches["context"],
+    anchor: matches["statement_anchor"] ,
   }
   fmt_str =
     if data[:context].blank?
-      '[🤖 `%<hash>s`]'
+      '%<anchor>s [🤖 `%<hash>s`]'
     else
-      '[🤖 `%<context>s`/`%<hash>s`]'
-      '[🤖 %<context>s/`%<hash>s`]'
+      '%<anchor>s [🤖 `%<context>s`/`%<hash>s`]'
+      '%<anchor>s [🤖 %<context>s/`%<hash>s`]'
     end
   fmt_str % data
 end
