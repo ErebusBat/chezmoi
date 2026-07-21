@@ -11,6 +11,24 @@ add_gsub /%%/ do |entry, _match|
   tool_output
 end
 
+# OMP Session
+OMP_REGEXP = /\b((?<context>[^ \/]+)\/)?(?<hash>[0-9a-f]{8})\b/
+add_gsub OMP_REGEXP do |entry, match|
+  matches = OMP_REGEXP.match(match)
+  data = {
+    hash: matches["hash"],
+    context: matches["context"]
+  }
+  fmt_str =
+    if data[:context].blank?
+      '[🤖 `%<hash>s`]'
+    else
+      '[🤖 `%<context>s`/`%<hash>s`]'
+      '[🤖 %<context>s/`%<hash>s`]'
+    end
+  fmt_str % data
+end
+
 # Extract phone numbers and parse them via MDT
 add_gsub phone? do |entry, match|
   set_tool_path '~/.raycast-cmds/markdown-tool.sh'
