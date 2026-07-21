@@ -3,7 +3,9 @@ providers:
   memoryModel: online
   maxInFlightRequests:
     lm-studio: 1
-
+      providers:
+  streamFirstEventTimeoutSeconds: 3600
+  streamIdleTimeoutSeconds: 3600
 symbolPreset: nerd
 theme:
   dark: dark-ember
