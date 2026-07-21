@@ -12,7 +12,7 @@ add_gsub /%%/ do |entry, _match|
 end
 
 # OMP Session
-OMP_REGEXP = /\b((?<context>[^ \/]+)\/)?(?<hash>[0-9a-f]{8})\b/
+OMP_REGEXP = /;\s+\b((?<context>[^ \/]+)\/)?(?<hash>[0-9a-f]{8})\b/
 add_gsub OMP_REGEXP do |entry, match|
   matches = OMP_REGEXP.match(match)
   data = {
