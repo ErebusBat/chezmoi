@@ -2,3 +2,4 @@
 .syncthing.*
 *.sync-conflict-*
 node_modules/
+__pycache__
