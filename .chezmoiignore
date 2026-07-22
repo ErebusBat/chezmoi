@@ -29,6 +29,8 @@ direct/
 .config/erebusbat/lshq.just
 .config/erebusbat/upserve.just
 .config/jenkins-tool/
+.omp/profiles/lshq/
+.omp/profiles/upserve/
 .restic/.lshq.key
 .restic/lshq-*.sh
 .restic/lsrestic.sh
@@ -42,7 +44,7 @@ bin/lsstartup.sh
 bin/lstmux.sh
 lshq/ssh/id_lshq_personal
 lshq/ssh/id_lshq_personal.pub
-src/lshq/lshq_logo.txt
+src/lshq/
 {{- end -}}
 
 {{- if not .area.fetlife }}

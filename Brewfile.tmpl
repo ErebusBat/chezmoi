@@ -75,8 +75,8 @@ cask "mark-text"                 # Markdown Viewer
 # Dictation
 # brew "whisper-cpp"
 # brew "sox"
-# voiceink is installed via MAS below
-cask "macwhisper"
+# mas "VoiceType",                id: 6736525125
+# cask "macwhisper"
 cask "voiceink"
 
 ################################################################################
@@ -124,38 +124,41 @@ brew "gemini-cli"
 cask "todoist-app"
 brew "todoist-cli"
 brew "sshuttle"
-cask "macwhisper"
 
 brew "anomalyco/tap/opencode"    # Official OpenCode Tap
 # I had weird Mac OS quarantine issues with this, so just installed it via Go.
 # cask "edouard-claude/tap/snip"   # https://github.com/edouard-claude/snip
-brew "can1357/tap/omp"
+# brew "can1357/tap/omp"
+
+#-- System Monitoring / Performance
+tap "lablup/tap"
+brew "all-smi" # Requires lablup/tap
+brew "btop"
+brew "dua-cli"
+brew "duf"
+brew "dust"
+brew "mactop"
+brew "ncdu"
+brew "neofetch"
 
 #-- Regular Brew Formulas
 brew "antidote"
 brew "assh"
 brew "bat"
-brew "btop"
 brew "chezmoi"
-brew "dua-cli"
-brew "duf"
 brew "fd"
 brew "git", link: true
 brew "gnu-sed"
 brew "fzf"
 brew "lazydocker"
 brew "lazygit"
-brew "mactop"
 brew "mas"
 brew "mc"
-brew "ncdu"
-brew "neofetch"
 brew "neovim" #, args: ["HEAD"]
 brew "pv"
 brew "tmux"
 brew "tmuxp"
 brew "wget"
-brew "dust"
 brew "eza"
 brew "jq"
 brew "restic"
@@ -316,7 +319,6 @@ mas "Hidden Bar",               id: 1452453066
 {{ if eq .area.lshq true }}# LSHQ Manages this install: {{ end -}}
 mas "Slack",                    id: 803453959
 mas "Velja",                    id: 1607635845      # Browser Router
-mas "VoiceType",                id: 6736525125
 
 #===============================================================================
 # THIS FILE IS TEMPLATED, DO NOT EDIT DIRECTLY!

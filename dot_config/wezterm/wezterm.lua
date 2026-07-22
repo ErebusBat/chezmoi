@@ -81,4 +81,7 @@ end
 -- Instead, they register event listeners (wezterm.on) for side effects like dynamic resizing.
 load_module('events')
 
+-- Stop the annoying font glyph message
+config.warn_about_missing_glyphs = false
+
 return config

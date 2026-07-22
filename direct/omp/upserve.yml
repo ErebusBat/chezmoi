@@ -1,0 +1,65 @@
+providers:
+  webSearch: anthropic
+symbolPreset: nerd
+theme:
+  dark: dark-retro
+  light: light
+setupVersion: 1
+defaultThinkingLevel: medium
+modelRoles:
+  default: github-copilot/gpt-5.6-sol:low
+  task: github-copilot/gpt-5.6-terra:auto
+  smol: github-copilot/gpt-5.6-terra:high
+  tiny: github-copilot/gpt-5.6-luna:minimal
+  commit: github-copilot/gpt-5.6-luna:off
+  slow: github-copilot/gpt-5.6-sol:xhigh
+  plan: github-copilot/gpt-5.6-sol:high
+  plan_med: github-copilot/gpt-5.6-terra:high
+  plan_low: github-copilot/gpt-5.6-terra:medium
+  designer: github-copilot/gpt-5.6-sol:high
+  advisor: github-copilot/claude-opus-4.8:high
+  vision: github-copilot/gemini-3.1-pro-preview
+cycleOrder:
+  - plan
+  - plan_med
+  - plan_low
+  - default
+  - smol
+  - slow
+plan:
+  defaultOnStartup: true
+display:
+  showTokenUsage: true
+  cacheMissMarker: true
+steeringMode: all
+interruptMode: immediate
+doubleEscapeAction: tree
+statusLine:
+  preset: custom
+  leftSegments:
+    - pi
+    - mode
+    - model
+    - path
+    - git
+    - pr
+    - subagents
+    - time_spent
+  rightSegments:
+    - session_name
+    - context_pct
+    - cost
+    - usage
+    - session
+    - time
+    - collab
+memory:
+  backend: mnemopi
+mnemopi:
+  scoping: per-project-tagged
+  embeddingVariant: en
+  noEmbeddings: false
+  llmMode: smol
+dev:
+  autoqaConsent: granted
+hideThinkingBlock: true

@@ -1,0 +1,39 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+# ANSWER_FILE=aidlc-docs/inception/requirements/input-preparation-question.md
+ANSWER_FILE=aidlc-docs/inception/plans/reverse-engineering-review.md
+BAK_ANSWER_FILE=/tmp/${ANSWER_FILE:t}.bak
+AIDLC_CMUX_SURFACEID='surface:49'
+ANSWER_FILE_BEFORE_HASH=$(md5sum $ANSWER_FILE)
+ANSWER_FILE_AFTER_HASH=ANSWER_FILE_BEFORE_HASH
+ANSWER=${1:-answered}
+SEND_RESPONSE=1
+
+cp -f $ANSWER_FILE $BAK_ANSWER_FILE
+
+command nvim $ANSWER_FILE && \
+  sleep 0.5
+ANSWER_FILE_AFTER_HASH=$(md5sum $ANSWER_FILE)
+if [[ $ANSWER_FILE_BEFORE_HASH == $ANSWER_FILE_AFTER_HASH ]]; then
+  echo "Answer File Unchanged"
+  SEND_RESPONSE=0
+elif [[ ! -s $ANSWER_FILE ]]; then
+  echo "Answer File Empty; Restoring"
+  SEND_RESPONSE=0
+
+  # Restore
+  cp -v $BAK_ANSWER_FILE $ANSWER_FILE
+  ANSWER_FILE_AFTER_HASH=$(md5sum $ANSWER_FILE)
+  if [[ $ANSWER_FILE_BEFORE_HASH != $ANSWER_FILE_AFTER_HASH ]]; then
+    echo "⚠️ WARNING: Restore appears to have failed"
+  fi
+fi
+
+if [[ $SEND_RESPONSE -gt 0 ]]; then
+  cmux send --surface $AIDLC_CMUX_SURFACEID -- "$ANSWER\n"
+else
+  echo "Press ENTER to switch back to agent"
+  read T
+fi
+cmux focus-panel --panel $AIDLC_CMUX_SURFACEID

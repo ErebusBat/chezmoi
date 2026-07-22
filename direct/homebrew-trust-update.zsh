@@ -41,6 +41,7 @@ FORMULA_TO_TRUST=(
   xo/xo/usql
   yetidevworks/yscan/yscan        # Network scanner
   psviderski/tap/uncloud          # docker pussh
+  lablup/tap/all-smi
 
   # liam-deacon/tap/codex-usage
   # liam-deacon/tap/latest-version

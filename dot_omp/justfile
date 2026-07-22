@@ -2,35 +2,6 @@
 ## Update
 ############################################################
 
-CHEZMOI_SOURCE := home_dir() / '.local/share/chezmoi'
-
-# Full update: reconcile Personal config, commit to Chezmoi, apply Chezmoi updates, then update Pi
-[group('Update')]
-full-update: reconcile-personal-profile-config
-    just --justfile {{ justfile() }} _commit-personal-profile-config
-    chezmoi update
-    cd {{ CHEZMOI_SOURCE }} && git push
-    just --justfile {{ justfile() }} update-via-mise
-
-# Update without Chezmoi: reconcile Personal config, commit to Chezmoi, then update Pi
-[group('Update')]
-update: reconcile-personal-profile-config
-    just --justfile {{ justfile() }} _commit-personal-profile-config
-    cd {{ CHEZMOI_SOURCE }} && git push
-    just --justfile {{ justfile() }} update-via-mise
-
-[private]
-_commit-personal-profile-config:
-    #!/usr/bin/env bash
-    set -euo pipefail
-    cd {{ CHEZMOI_SOURCE }}
-    git add -- direct/omp dot_omp
-    if git diff --cached --quiet; then
-      echo 'no Chezmoi OMP changes to commit'
-    else
-      git commit -m 'Reconcile OMP personal profile config'
-    fi
-
 # Update via mise
 [group('Update')]
 update-via-mise min-age='0s':

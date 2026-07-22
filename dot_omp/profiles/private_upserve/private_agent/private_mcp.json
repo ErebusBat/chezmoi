@@ -1,0 +1,27 @@
+{
+  "$schema": "https://raw.githubusercontent.com/can1357/oh-my-pi/main/packages/coding-agent/src/config/mcp-schema.json",
+  "mcpServers": {
+    "memory": {
+      "type": "stdio",
+      "command": "/Users/andrew.burns/bin/.mcp-memory.sh"
+    },
+    "obsidian": {
+      "type": "stdio",
+      "command": "/Users/andrew.burns/bin/.mcp-obsidian.sh"
+    },
+    "opensearch-prod": {
+      "type": "stdio",
+      "command": "/Users/andrew.burns/bin/.mcp-opensearch.sh",
+      "args": [
+        "production"
+      ]
+    },
+    "opensearch-stag": {
+      "type": "stdio",
+      "command": "/Users/andrew.burns/bin/.mcp-opensearch.sh",
+      "args": [
+        "staging"
+      ]
+    }
+  }
+}

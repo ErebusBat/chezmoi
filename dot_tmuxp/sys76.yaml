@@ -1,0 +1,26 @@
+session_name: sys76
+start_directory: ~/src
+windows:
+- window_name: main
+  focus: true
+  panes:
+    - shell_command:
+      - 'xss-disable $(( 3600 * 13 ))'
+
+    - shell_command:
+      - cd ~/src/erebusbat
+
+- window_name: zsh
+  panes:
+    - shell_command:
+      - fastfetch
+
+# - window_name: pi
+#   panes:
+#     - shell_command:
+#       - cd .pi
+#       - nvm use
+#       - pi -c
+#     - shell_command:
+#       - cd .pi
+

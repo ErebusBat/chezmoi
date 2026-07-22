@@ -67,17 +67,6 @@ function todo() {
   todoist add -P $projID $dateOpt "$task"
 }
 
-function vidlog() {
-  echo -n "Switching into config directory: "
-  pushd ~/.config/dlog
-  echo ""
-  vimls
-  echo "Don't forget to update your changes in chezmoi"
-  echo "  cz add ~/.config/dlog/*.rb"
-  echo -n "\nSwitching back to your previous directory: "
-  popd
-}
-
 function mkcd() {
   if [[ -z $1 ]]; then
     echo "ERROR: Specify path"
@@ -87,10 +76,6 @@ function mkcd() {
   else
     mkdir $1 && cd $1
   fi
-}
-
-function sudovim() {
-  sudo HOME=$HOME PATH=$PATH $(which nvim) "$@"
 }
 
 # todo today
@@ -135,9 +120,23 @@ alias vicolors="vim -S ~/.config/nvim/s_colors.vim"
 #   }
 # fi
 
-if [[ -x $(which rg) ]]; then
-  alias rgh="$(which rg) --hidden"
+################################################################################
+# Sudo Helpers
+################################################################################
+# if [[ -x $(which rg) ]]; then
+  # alias rgh="$(which rg) --hidden"
+# fi
+if command -v rg >/dev/null 2>&1; then
+  alias surg="sudo -E $(command -v rg)"
 fi
+if command -v nvim >/dev/null 2>&1; then
+  alias sunvim="sudo -E $(command -v nvim)"
+  alias suvim=sunvim
+fi
+
+# function sudovim() {
+#   sudo HOME=$HOME PATH=$PATH $(which nvim) "$@"
+# }
 
 ################################################################################
 # System Utilities
@@ -167,6 +166,10 @@ alias digs="dig +short"
 
 # Cisco Console command, needs adapter attached
 # alias con="screen -c ~/.screenrcUSB"
+
+if [[ -x ~/.ssh/reload-ssh-agent ]]; then
+  alias reload-ssh-agent='echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"; eval $(~/.ssh/reload-ssh-agent); echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"'
+fi
 
 # assh https://github.com/moul/assh
 if [[ -x $(which assh) ]]; then
@@ -232,7 +235,10 @@ SUDO_CMDS=(
   shutdown
 )
 for cmd in $SUDO_CMDS; do
-  alias $cmd="sudo $cmd"
+  # Don't register an alias if we don't have the command in scope
+  if command -v >/dev/null 2>&1; then
+    alias $cmd="sudo -E $cmd"
+  fi
 done
 unset SUDO_CMDS
 

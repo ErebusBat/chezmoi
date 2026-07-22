@@ -18,7 +18,7 @@ setup:
     {{JUST}} _assert_official '{{JUST}} uninstall-non-official'
     {{JUST}} install-official
     {{JUST}} _assert_official
-    killall codex
+    killall codex || true
     {{JUST}} setup-remote
 
 # Installs OpenAI Codex from official installer

@@ -4,7 +4,10 @@ EXT_HDD_MODELS_DIR := "/Volumes/SeaBack/llm/lm-studio/models"
 # Sync models to external HDD
 [group('Data')]
 sync-to:
-  rsync -av --progress {{ MODELS_DIR }}/ {{ EXT_HDD_MODELS_DIR }}/
+  rsync -av --progress \
+     --exclude 'downloading_*' \
+     --exclude '*.part' \
+     {{ MODELS_DIR }}/ {{ EXT_HDD_MODELS_DIR }}/
 
 # List models (dirs) in external HDD Path
 [group('Data')]

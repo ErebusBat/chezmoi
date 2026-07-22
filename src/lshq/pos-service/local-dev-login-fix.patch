@@ -1,0 +1,13 @@
+diff --git a/app/controllers/users/omniauth_callbacks_controller.rb b/app/controllers/users/omniauth_callbacks_controller.rb
+index 595c177db..b52f84b50 100644
+--- a/app/controllers/users/omniauth_callbacks_controller.rb
++++ b/app/controllers/users/omniauth_callbacks_controller.rb
+@@ -71,6 +71,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
+   def login_with_legacy_credentials
+     @user = user_by_legacy_credentials
+     return false unless @user
++    sign_in(@user, :event => :authentication)
++    redirect_to after_sign_in_path_for(@user)
+   end
+ 
+   def shared_successful_auth_actions(extra_attributes={})
