@@ -1,0 +1,18 @@
+PRIMARY_FILE := 'personal-without-hostname.yml'
+SECONDARY_FILE := 'personal-with-hostname.yml'
+
+_assert_files_exist:
+  #!/usr/bin/env zsh
+  assert_file() {
+    local fpath="$1"
+    if [[ ! -s "$fpath" ]]; then
+      echo "*** FATAL: Could not find ${fpath:t}" 2>&1
+      exit 1
+    fi
+  }
+  assert_file "{{PRIMARY_FILE}}"
+  assert_file "{{SECONDARY_FILE}}"
+
+edit: _assert_files_exist
+  $EDITOR "{{PRIMARY_FILE}}" "{{SECONDARY_FILE}}"
+
