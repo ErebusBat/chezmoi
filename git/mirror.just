@@ -1,5 +1,9 @@
 # https://chat.deepseek.com/a/chat/s/9598bd1e-80b2-4645-8e5b-09ea29ff621a
-VENDOR_DIR := env("HOME") / "git/vendor"
+VENDOR_DIR_NAME := "vendor"
+REPO_ROOT := env("HOME") / "git"
+VENDOR_DIR := REPO_ROOT / VENDOR_DIR_NAME
+
+import? 'mirror_repos.just'
 
 # List only git mirror tasks
 [group('List')]
@@ -30,13 +34,17 @@ mirror-init-repo remote-url:
 
   # Update User
   echo ""
-  echo "INFO: Cloned / Mirrored Repository:"
-  echo "      $REM_URL"
-  echo "   => $VENDOR_DIR/$REM_PRJ"
+  echo "        INFO: Cloned / Mirrored Repository:"
+  echo "              $REM_URL"
+  echo "           => $VENDOR_DIR/$REM_PRJ"
   echo ""
-  echo "WARN: Do NOT do standard 'git pull'!"
-  echo "      use 'git fetch --mirror origin' or:"
-  echo "      use 'just mirror-fetch-repo $VENDOR_DIR/$REM_PRJ"
+  echo "        WARN: Do NOT do standard 'git pull'!"
+  echo "              use 'git fetch --mirror origin' or:"
+  echo "              use 'just mirror-fetch-repo $VENDOR_DIR/$REM_PRJ"
+  echo ""
+  echo "🚨 IMPORTANT: this will NOT automaticlly sync, you must edit"
+  echo "              {{REPO_ROOT}}/mirror_repos.just and add an entry in 'mirror-fetch-all' for"
+  echo "              each repo / remote you wish to sync"
 
 # Fetch mirror update
 [group('Mirrors')]
@@ -53,8 +61,3 @@ mirror-fetch-repo repo-dir remote='origin':
   cd $REPO_DIR
   git fetch --prune {{remote}}
 
-
-# Fetch updates from all mirrors
-[group('Mirrors')]
-mirror-fetch-all:
-  just mirror-fetch-repo vendor/mcp-memory-service.git

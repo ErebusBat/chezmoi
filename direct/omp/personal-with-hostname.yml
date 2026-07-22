@@ -3,6 +3,8 @@ providers:
   memoryModel: online
   maxInFlightRequests:
     lm-studio: 1
+  streamFirstEventTimeoutSeconds: 3600
+  streamIdleTimeoutSeconds: 3600
 symbolPreset: nerd
 theme:
   dark: dark-ember
@@ -55,14 +57,13 @@ modelRoles:
   default: openai-codex/gpt-5.6-terra:medium
   task: openai-codex/gpt-5.6-terra:auto
   smol: openrouter/openai/gpt-5.6-terra:low
-  tiny: deepseek/deepseek-v4-flash
-  commit: openai-codex/gpt-5.6-luna:low
-  cheap: zai/glm-5.2:high
   slow: openai-codex/gpt-5.6-sol:high
-  plan: openai-codex/gpt-5.6-terra:high
+  plan: openai-codex/gpt-5.6-terra:medium
+  spark: openai-codex/gpt-5.3-codex-spark
+  budget: zai/glm-5.2:high
+  plan_budget: deepseek/deepseek-v4-pro:high
   designer: openai-codex/gpt-5.6-sol:medium
-  advisor: kimi-code/k3:high
-  vision: openai-codex/gpt-5.6-terra
+  kimi: kimi-code/k3:high
   flash: deepseek/deepseek-v4-flash:high
 task:
   agentModelOverrides:
