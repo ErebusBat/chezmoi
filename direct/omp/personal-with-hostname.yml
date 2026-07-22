@@ -1,36 +1,38 @@
-providers: 
+providers:
   webSearch: brave
   memoryModel: online
-  maxInFlightRequests: 
+  maxInFlightRequests:
     lm-studio: 1
+  streamFirstEventTimeoutSeconds: 3600
+  streamIdleTimeoutSeconds: 3600
 symbolPreset: nerd
-theme: 
+theme:
   dark: dark-ember
   light: light-gruvbox
 setupVersion: 1
-terminal: 
+terminal:
   showProgress: true
-display: 
+display:
   showTokenUsage: true
   cacheMissMarker: true
 steeringMode: all
 interruptMode: immediate
 doubleEscapeAction: tree
-memory: 
+memory:
   backend: mnemopi
-eval: 
+eval:
   rb: true
-vault: 
+vault:
   enabled: true
-github: 
+github:
   enabled: true
-plan: 
+plan:
   defaultOnStartup: false
-exa: 
+exa:
   enableWebsets: false
-statusLine: 
+statusLine:
   preset: custom
-  leftSegments: 
+  leftSegments:
     - pi
     - hostname
     - mode
@@ -40,7 +42,7 @@ statusLine:
     - pr
     - subagents
     - time_spent
-  rightSegments: 
+  rightSegments:
     - session_name
     - context_pct
     - cost
@@ -48,62 +50,76 @@ statusLine:
     - session
     - time
     - collab
-dev: 
+dev:
   autoqaConsent: granted
 defaultThinkingLevel: medium
-modelRoles: 
+cycleOrder:
+  - budget
+  - smol
+  - default
+  - spark
+  - plan
+  - plan_budget
+  - flash
+  - deepseek
+  - kimi
+modelRoles:
+  tiny: deepseek/deepseek-v4-flash
+  commit: deepseek/deepseek-v4-flash
+  vision: openai-codex/gpt-5.6-terra
+  advisor: kimi-code/k3:high
   default: openai-codex/gpt-5.6-terra:medium
   task: openai-codex/gpt-5.6-terra:auto
   smol: openrouter/openai/gpt-5.6-terra:low
-  tiny: deepseek/deepseek-v4-flash
-  commit: openai-codex/gpt-5.6-luna:low
-  cheap: zai/glm-5.2:high
   slow: openai-codex/gpt-5.6-sol:high
-  plan: openai-codex/gpt-5.6-terra:high
+  plan: openai-codex/gpt-5.6-terra:medium
+  spark: openai-codex/gpt-5.3-codex-spark
+  budget: zai/glm-5.2:high
+  plan_budget: deepseek/deepseek-v4-pro:high
   designer: openai-codex/gpt-5.6-sol:medium
-  advisor: kimi-code/k3:high
-  vision: openai-codex/gpt-5.6-terra
+  kimi: kimi-code/k3:high
   flash: deepseek/deepseek-v4-flash:high
-task: 
-  agentModelOverrides: 
+  deepseek: deepseek/deepseek-v4-pro:high
+task:
+  agentModelOverrides:
     plan: gpt-5.6-sol
     sonic: gpt-5.6-luna
-retry: 
-  fallbackChains: 
-    default: 
+retry:
+  fallbackChains:
+    default:
+      - zai/glm-5.2:high
       - openai-codex/gpt-5.3-codex-spark
       - kimi-code/k3
-    smol: 
+    smol:
       - deepseek/deepseek-v4-flash
-    commit: 
+    commit:
       - deepseek/deepseek-v4-flash
-    cheap: 
+    budget:
+      - kimi-code/k3
       - deepseek/deepseek-v4-pro
-      - kimi-code/k3
-    slow: 
+    slow:
       - openai-codex/gpt-5.3-codex-spark
-    advisor: 
+    advisor:
       - zai/glm-5.2
-hideThinkingBlock: true
-cycleOrder: 
-  - cheap
-  - smol
-  - default
-  - plan
-  - advisor
-mcp: 
+hideThinkingBlock: false
+mcp:
   {}
-autolearn: 
+autolearn:
   enabled: true
-mnemopi: 
+mnemopi:
   scoping: per-project-tagged
   embeddingVariant: en
   noEmbeddings: false
   llmMode: smol
-magicKeywords: 
+magicKeywords:
   ultrathink: false
-startup: 
+startup:
   showSplash: false
 collapseChangelog: true
-power: 
+power:
   sleepPrevention: idle
+compaction:
+  strategy: context-full
+  thresholdPercent: 70
+  handoffSaveToDisk: true
+  idleEnabled: true
