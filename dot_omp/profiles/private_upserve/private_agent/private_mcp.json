@@ -14,14 +14,16 @@
       "command": "/Users/andrew.burns/bin/.mcp-opensearch.sh",
       "args": [
         "production"
-      ]
+      ],
+      "enabled": false
     },
     "opensearch-stag": {
       "type": "stdio",
       "command": "/Users/andrew.burns/bin/.mcp-opensearch.sh",
       "args": [
         "staging"
-      ]
+      ],
+      "enabled": false
     }
   }
 }

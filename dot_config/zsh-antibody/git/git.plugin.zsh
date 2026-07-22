@@ -82,6 +82,55 @@ alias gcum='git_checkout_update_master && gsu && gbda'
 #   cd "$wt_path"
 # }
 
+function git-clone-worktree-repo() {
+  ### Make sure we have a valid repo URI
+  local repo=$1
+  if [[ -z $repo ]]; then
+    echo "*** FATAL: Specify repoUri" >&2
+    return 1
+  fi
+  ### What is the repo's base dir? (handle .git)
+  local repoAnchorDir="${2:-${repo:t}}"
+  if [[ ${repoAnchorDir:e} == "git" ]]; then
+    repoAnchorDir=${repoAnchorDir:r}
+  fi
+  local barePath="${repoAnchorDir}/.bare"
+
+  ### Clone Repo
+  printf "\n------------------------------------------------------------\n"
+  printf "--- Checking Out Repository\n"
+  if [[ -d $repoAnchorDir ]]; then
+    echo "*** FATAL: Directory already exists: $repoAnchorDir" >&2
+    return 1
+  fi
+  command git clone --bare $repo $barePath
+  printf "------------------------------------------------------------\n"
+
+  ### Checkout master/main as a worktree
+  local defaultBranch=$(command git -C $barePath symbolic-ref --short HEAD)
+  local defaultBranchWtPath="${repoAnchorDir}/${defaultBranch}" # Relative to cwd
+  local defaultBranchCheckoutPath="../${defaultBranch}"         # Relative to barePath
+  printf "\n------------------------------------------------------------\n"
+  printf "--- Creating a worktree for $defaultBranch\n"
+  echo "git -C ${barePath} worktree add ${defaultBranchCheckoutPath} ${defaultBranch}"
+  command git -C ${barePath} worktree add ${defaultBranchCheckoutPath} ${defaultBranch}
+  cd ${defaultBranchWtPath}
+  printf "------------------------------------------------------------\n"
+
+  ### Debugging
+  # printf "\n--- DEBUG --------------------------------------------------\n"
+  # printf "                     repo=$repo\n"
+  # printf "            defaultBranch=$defaultBranch\n"
+  # printf "            repoAnchorDir=$repoAnchorDir\n"
+  # printf "          repoAnchorDir:r=${repoAnchorDir:r}\n"
+  # printf "                 barePath=$barePath\n"
+  # printf "      defaultBranchWtPath=$defaultBranchWtPath\n"
+  # printf "defaultBranchCheckoutPath=$defaultBranchCheckoutPath\n"
+  # printf "------------------------------------------------------------\n"
+
+  printf "\nDone! You are now in the ${defaultBranch} of the ${repoAnchorDir} repository"
+}
+
 # See working/scm-breeze/scm-breeze.plugin.zsh for more aliases
 
 # Is it master or main?  This will find out

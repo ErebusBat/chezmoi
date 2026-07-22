@@ -15,3 +15,5 @@ fi
 
 # Create symlink to fdfind
 ln -s $(which fdfind) $HOME/bin/fd
+# Add a sudo wrapper
+alias sufd="sudo -E $(command -v fd)"
