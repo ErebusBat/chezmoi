@@ -119,6 +119,6 @@ power:
   sleepPrevention: idle
 compaction: 
   strategy: context-full
-  thresholdPercent: 30
+  thresholdPercent: 70
   handoffSaveToDisk: true
   idleEnabled: true
