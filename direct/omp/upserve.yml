@@ -14,12 +14,15 @@ modelRoles:
   commit: github-copilot/gpt-5.6-luna:off
   slow: github-copilot/gpt-5.6-sol:xhigh
   plan: github-copilot/gpt-5.6-sol:high
-  plan_low: github-copilot/gpt-5.6-terra:high
+  plan_med: github-copilot/gpt-5.6-terra:high
+  plan_low: github-copilot/gpt-5.6-terra:medium
   designer: github-copilot/gpt-5.6-sol:high
   advisor: github-copilot/claude-opus-4.8:high
   vision: github-copilot/gemini-3.1-pro-preview
 cycleOrder:
   - plan
+  - plan_med
+  - plan_low
   - default
   - smol
   - slow
