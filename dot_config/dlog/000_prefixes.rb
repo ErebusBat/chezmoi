@@ -1,4 +1,5 @@
 add_prefix '+1',      '👍'
+add_prefix 'AI',      '🤖'
 add_prefix 'CALL',    '☎'
 add_prefix 'CAR',     '🚕'
 add_prefix 'CLEAN',   '🧹'
@@ -27,3 +28,4 @@ add_prefix 'WORK',    '⚒️'
 add_prefix 'WALK',    '🏃‍♂️'
 add_prefix 'WATCH',   '📺'
 add_prefix 'WRITE',   ''
+
