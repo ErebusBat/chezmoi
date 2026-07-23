@@ -1,0 +1,20 @@
+{{- if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+{{- $envFile := joinPath .chezmoi.homeDir "/.config/buzz-codex/env" -}}
+# {{ include $envFile | sha256sum }} ~/.config/buzz-codex/env
+
+set -euo pipefail
+
+label="net.erebusbat.buzz-codex"
+domain="gui/$(id -u)"
+plist="$HOME/Library/LaunchAgents/${label}.plist"
+
+if [[ ! -f "$plist" ]]; then
+  echo "${label}: LaunchAgent plist not installed; skipping restart"
+  exit 0
+fi
+
+echo "${label}: environment changed; restarting LaunchAgent"
+launchctl bootout "$domain" "$plist" 2>/dev/null || true
+launchctl bootstrap "$domain" "$plist"
+{{- end -}}

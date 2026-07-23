@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+set -a
+source "$HOME/.config/buzz-codex/env"
+set +a
+unset OPENAI_API_KEY CODEX_API_KEY
+exec /Users/andrew.burns/.cargo/bin/buzz-acp

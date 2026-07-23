@@ -1,3 +1,6 @@
+LMS_MODEL_ROOT := env('HOME') / '.lmstudio/models'
+LMS_COMMUNITY_PATH := LMS_MODEL_ROOT / 'lmstudio-community'
+
 # Use 'say' tool to notify user
 [group('Helpers')]
 say text='LM Studio Data Task Done':
@@ -21,3 +24,4 @@ logs:
 import '.dictation.just'
 import '.data.just'
 import '.dev.just'
+import? '.coding.just'

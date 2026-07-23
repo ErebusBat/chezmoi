@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>net.erebusbat.buzz-codex</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/Users/andrew.burns/.local/bin/buzz-codex</string>
+	</array>
+	<key>WorkingDirectory</key>
+	<string>/Users/andrew.burns</string>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>KeepAlive</key>
+	<dict>
+		<key>OtherJobEnabled</key>
+		<dict>
+			<key>local.home-ssh-tunnel</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>StandardOutPath</key>
+	<string>/tmp/buzz-codex.log</string>
+	<key>StandardErrorPath</key>
+	<string>/tmp/buzz-codex.log</string>
+</dict>
+</plist>

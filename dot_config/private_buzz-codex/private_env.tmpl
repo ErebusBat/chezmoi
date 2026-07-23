@@ -1,0 +1,13 @@
+BUZZ_RELAY_URL=wss://buzz.erebusbat.net
+BUZZ_PRIVATE_KEY={{ (gopassRaw "erebusbat/buzz/codex" | mustFromJson).private_key }}
+BUZZ_ACP_AGENT_OWNER=b969b0c6e27a53fe0c83669476ac26591f6fec1496d33e5236537badb0f46e39
+BUZZ_ACP_AGENT_COMMAND=/opt/homebrew/bin/codex-acp
+BUZZ_ACP_SUBSCRIBE=all
+BUZZ_ACP_RESPOND_TO=allowlist
+BUZZ_ACP_RESPOND_TO_ALLOWLIST=b969b0c6e27a53fe0c83669476ac26591f6fec1496d33e5236537badb0f46e39
+BUZZ_ACP_ALLOWED_RESPOND_TO=owner-only,allowlist
+BUZZ_ACP_PERMISSION_MODE=bypass-permissions
+DEFAULT_AUTH_REQUEST='{"methodId":"chat-gpt"}'
+CODEX_PATH=/opt/homebrew/bin/codex
+INITIAL_AGENT_MODE=agent-full-access
+APP_SERVER_LOGS=/tmp
