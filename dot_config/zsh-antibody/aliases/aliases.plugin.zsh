@@ -90,9 +90,6 @@ fi
 if [[ -f ~/.config/wezterm/wezterm.lua ]]; then
   alias viwezterm='vim ~/.config/wezterm/wezterm.lua ~/.config/wezterm/wallpaper.yaml && ~/.config/wezterm/build-wallpapers.rb'
 fi
-if [[ -f ~/.config/chezmoi/chezmoi.toml ]]; then
-  alias vicz='vim ~/.config/chezmoi/chezmoi.toml'
-fi
 if [[ -x ~/.restic/restic-multi.rb ]]; then
   alias restic-multi="$HOME/.restic/restic-multi.rb"
 fi
@@ -153,9 +150,75 @@ if [[ $(uname) == "Linux" ]]; then
 fi
 
 if [[ -x $(which chezmoi) ]]; then
-  alias cz=chezmoi
+  alias vicz='vim ~/.config/chezmoi/chezmoi.toml'
+  alias cz='chezmoi'
   alias czu='chezmoi update'
+  alias czs='chezmoi status'
   alias czfu='command just -f ~/.local/share/chezmoi/justfile chezmoi-full-update'
+
+  function chezmoi-diff() {
+    if [[ $# -eq 0 ]]; then
+      command chezmoi diff
+      return $?
+    elif [[ $# -eq 1 ]]; then
+      local dpath=$1
+      if [[ $dpath == ${dpath:a} ]]; then
+        command chezmoi diff $dpath
+      else
+        command chezmoi diff ~/$dpath
+      fi
+      return $?
+    fi
+    command chezmoi diff "$@"
+  }
+  alias czd=chezmoi-diff
+
+  function chezmoi-add {
+    local processed_paths=()
+    local p
+
+    for p in "$@"; do
+        # Expand tilde if present
+        p="${~p}"
+
+        if [[ $p == ${p:a} ]]; then
+            processed_paths+=("$p")
+        else
+            processed_paths+=("$HOME/$p")
+        fi
+    done
+
+    if [[ ${#processed_paths[@]} -le 0 ]]; then
+      echo "*** ERROR: No paths specified" >&2
+      return 1
+    fi
+    command chezmoi add "${processed_paths[@]}"
+  }
+  alias czadd=chezmoi-add
+
+  function chezmoi-apply() {
+    local processed_paths=()
+    local p
+
+    for p in "$@"; do
+        # Expand tilde if present
+        p="${~p}"
+
+        if [[ $p == ${p:a} ]]; then
+            processed_paths+=("$p")
+        else
+            processed_paths+=("$HOME/$p")
+        fi
+    done
+
+    if [[ ${#processed_paths[@]} -le 0 ]]; then
+      echo "*** ERROR: No paths specified" >&2
+      echo "         : Use 'chezmoi apply' directly" >&2
+      return 1
+    fi
+    chezmoi apply "${processed_paths[@]}"
+  }
+  alias czapply=chezmoi-apply
 fi
 
 ################################################################################

@@ -2,7 +2,7 @@ providers:
   webSearch: brave
   memoryModel: online
   maxInFlightRequests: 
-    lm-studio: 1
+    lm-studio: 2
   streamFirstEventTimeoutSeconds: 3600
   streamIdleTimeoutSeconds: 3600
 symbolPreset: nerd
@@ -100,7 +100,7 @@ retry:
       - openai-codex/gpt-5.3-codex-spark
     advisor: 
       - zai/glm-5.2
-hideThinkingBlock: false
+hideThinkingBlock: true
 mcp: 
   {}
 autolearn: 
@@ -122,3 +122,4 @@ compaction:
   thresholdPercent: 70
   handoffSaveToDisk: true
   idleEnabled: true
+personality: pragmatic

@@ -22,7 +22,6 @@ customCommands:
 gui:
   mouseEvents: false
 git:
-  ignoreWhitespaceInDiffView: true
   parseEmoji: true
   pagers:
     - pager: delta --dark --paging=never
