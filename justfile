@@ -23,7 +23,7 @@ chezmoi-init-config:
 # Pull chezmoi changes, sync gopass database, re-init config, and run chezmoi update
 [group('update')]
 chezmoi-full-update:
-    cd {{ CHEZMOI_LOCAL_DIR }} && git pull
+    cd {{ CHEZMOI_LOCAL_DIR }} && git pull --autostash --no-edit
     gopass sync
     just --justfile {{ source_file() }} chezmoi-init-config chezmoi-update
-
+    cd {{ CHEZMOI_LOCAL_DIR }} && git push
