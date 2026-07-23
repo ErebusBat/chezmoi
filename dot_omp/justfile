@@ -2,6 +2,14 @@
 ## Update
 ############################################################
 
+# Install / Update via official installer
+[group('Update')]
+install:
+  curl -fsSL https://omp.sh/install | sh
+
+uninstall-mise:
+  mise remove -g github:can1357/oh-my-pi
+
 # Update via mise
 [group('Update')]
 update-via-mise min-age='0s':
