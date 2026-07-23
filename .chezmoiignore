@@ -15,6 +15,18 @@ chezmoi_scripts/
 # Direct is where we store files that are symlinked (like stow)
 direct/
 
+############################################################
+### Buzz Agents
+############################################################
+{{- if ne .chezmoi.hostname "maze" }}
+.config/buzz-agents/kimi.env
+{{- end }}
+{{- if ne .chezmoi.hostname "USMB-JVK937H909" }}
+.config/buzz-codex
+.config/buzz-codex
+.local/bin/buzz-codex
+{{- end }}
+
 # WIP
 .tmux/plugins
 
