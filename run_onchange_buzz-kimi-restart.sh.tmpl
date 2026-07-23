@@ -1,0 +1,17 @@
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.hostname "maze") -}}
+#!/bin/bash
+{{ $envFile := joinPath .chezmoi.homeDir "/.config/buzz-agents/kimi.env" }}
+# {{ include $envFile | sha256sum }} ~/.config/buzz-agents/kimi.env
+
+set -euo pipefail
+
+unit="buzz-agent@kimi.service"
+
+if ! systemctl --user cat "$unit" >/dev/null 2>&1; then
+  echo "${unit}: unit is not installed; skipping restart"
+  exit 0
+fi
+
+echo "${unit}: environment changed; restarting"
+systemctl --user restart "$unit"
+{{- end -}}
