@@ -11,3 +11,4 @@ DEFAULT_AUTH_REQUEST='{"methodId":"chat-gpt"}'
 CODEX_PATH=/opt/homebrew/bin/codex
 INITIAL_AGENT_MODE=agent-full-access
 APP_SERVER_LOGS=/tmp
+TODOIST_API_TOKEN={{ (gopassRaw "erebusbat/buzz/codex" | mustFromJson).TODOIST_API_TOKEN }}
