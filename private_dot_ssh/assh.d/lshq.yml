@@ -7,10 +7,13 @@ hosts:
     Inherits: lshq-git-personal
     HostName: codeberg.org
 
-  mbp-rev-maze:
+  ls-mbp:
     User: andrew.burns
-    IdentityFile: ~/.ssh/id_ed25519
-    IdentitiesOnly: yes
+    HostName: ls-mbp.lan.erebusbat.net
+    # From mac: ssh -N -o ExitOnForwardFailure=yes -R 0.0.0.0:2222:localhost:22 maze.lan
+    # HostName: maze.lan.erebusbat.net
+    # Port: 2222
+    # IdentityFile: ~/.ssh/id_ed25519
 
 ############################################################
 # Templates
