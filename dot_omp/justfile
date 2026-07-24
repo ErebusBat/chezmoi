@@ -1,3 +1,8 @@
+OMP_PROFILES_ROOT := home_dir() / '.omp/profiles'
+PERSONAL_AGENT_DIR := OMP_PROFILES_ROOT / 'personal/agent'
+TEMPLATE_AGENT_DIR := OMP_PROFILES_ROOT / '%s/agent'
+
+import? '.herdr.just'
 ############################################################
 ## Update
 ############################################################
@@ -46,7 +51,7 @@ codex-oauth-callback-tunnel machine port='1455':
 create-profile name:
     command omp --profile "{{ name }}"
 
-PERSONAL_PROFILE_CONFIG := home_dir() / '.omp/profiles/personal/agent/config.yml'
+PERSONAL_PROFILE_CONFIG := PERSONAL_AGENT_DIR / 'config.yml'
 
 # Reconcile the selected Personal configuration variant with its canonical configuration and sibling variant
 [group('Profiles')]
