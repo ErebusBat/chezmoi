@@ -7,6 +7,11 @@ hosts:
     Inherits: lshq-git-personal
     HostName: codeberg.org
 
+  mbp-rev-maze:
+    User: andrew.burns
+    IdentityFile: ~/.ssh/id_ed25519
+    IdentitiesOnly: yes
+
 ############################################################
 # Templates
 ############################################################

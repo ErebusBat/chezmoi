@@ -1,10 +1,33 @@
 providers: 
-  webSearch: brave
   memoryModel: online
   maxInFlightRequests: 
     lm-studio: 2
   streamFirstEventTimeoutSeconds: 3600
   streamIdleTimeoutSeconds: 3600
+  webSearchOrder: 
+    - brave
+    - perplexity
+    - gemini
+    - anthropic
+    - codex
+    - xai
+    - zai
+    - exa
+    - tinyfish
+    - jina
+    - kagi
+    - tavily
+    - firecrawl
+    - kimi
+    - parallel
+    - synthetic
+    - searxng
+    - startpage
+    - duckduckgo
+    - ecosia
+    - google
+    - mojeek
+    - public
 symbolPreset: nerd
 theme: 
   dark: dark-ember
@@ -79,6 +102,7 @@ modelRoles:
   kimi: kimi-code/k3:high
   flash: deepseek/deepseek-v4-flash:high
   deepseek: deepseek/deepseek-v4-pro:high
+  local: llama.cpp/qwen36-35b-a3b
 task: 
   agentModelOverrides: 
     plan: gpt-5.6-sol
