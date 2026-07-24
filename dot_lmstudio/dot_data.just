@@ -16,8 +16,9 @@ ls-model-files-ext:
 
 # List models (dirs) in local path
 [group('Data')]
-ls-model-files-local:
-  fd --type d . "{{ MODELS_DIR }}" | sort
+ls-model-files-local provider='':
+  # fd --type d . "{{ MODELS_DIR }}" | sort
+  command eza -Tlh -L 2 -s name --icons=auto "{{MODELS_DIR / provider}}"
 
 # Shows Disk Used/Free on Model Volumes
 [group('Data')]
