@@ -1,3 +1,4 @@
+# Root level file
 justfile
 README.md
 CONTEXT.md
@@ -18,8 +19,12 @@ direct/
 ############################################################
 ### Buzz Agents
 ############################################################
+# 🚨 IMPORTANT: update both the .chezmoiignore AND .chezmoiremove file
 {{- if ne .chezmoi.hostname "maze" }}
 .config/buzz-agents/kimi.env
+{{- end }}
+{{- if ne .chezmoi.hostname "outpost" }}
+.config/buzz-agents/hermes.env
 {{- end }}
 {{- if ne .chezmoi.hostname "USMB-JVK937H909" }}
 .config/buzz-codex
