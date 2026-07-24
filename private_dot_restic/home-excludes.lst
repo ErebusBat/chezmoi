@@ -15,6 +15,7 @@ $HOME/bee_mem_card-2020-1217.tar.gz
 #
 $HOME/.bundle/**
 $HOME/.bundle/cache/**
+$HOME/.buzz/models/**
 $HOME/.cache/**
 $HOME/.cargo/git/**
 $HOME/.chef/syntaxcache/**
