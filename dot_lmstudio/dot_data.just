@@ -6,6 +6,7 @@ EXT_HDD_MODELS_DIR := "/Volumes/SeaBack/llm/lm-studio/models"
 sync-to:
   rsync -av --progress \
      --exclude 'downloading_*' \
+     --exclude '.cache/' \
      --exclude '*.part' \
      {{ MODELS_DIR }}/ {{ EXT_HDD_MODELS_DIR }}/
 

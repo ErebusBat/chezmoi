@@ -3,3 +3,9 @@ providers:
     modelOverrides:
       qwen/qwen3.6:
         contextWindow: 131072
+  llama.cpp:
+    baseUrl: http://127.0.0.1:8888/v1
+    api: openai-completions
+    auth: none
+    discovery:
+      type: openai-models-list

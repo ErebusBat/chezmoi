@@ -4,22 +4,22 @@ LMS_COMMUNITY_PATH := LMS_MODEL_ROOT / 'lmstudio-community'
 # Use 'say' tool to notify user
 [group('Helpers')]
 say text='LM Studio Data Task Done':
-  say "{{text}}"
+    say "{{ text }}"
 
 # List running LM Studio models
 [group('LM Studio')]
 ps:
-  ./bin/lms ps
+    ./bin/lms ps
 
 # List available LM Studio models
 [group('LM Studio')]
 ls:
-  ./bin/lms ls --variants
+    ./bin/lms ls --variants
 
 # Stream LM Studio logs
 [group('LM Studio')]
 logs:
-  ./bin/lms log stream
+    ./bin/lms log stream
 
 import '.dictation.just'
 import '.data.just'

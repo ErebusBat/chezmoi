@@ -47,9 +47,11 @@ if wezterm.config_builder then
   config = wezterm.config_builder()
 end
 
--- Ensure modified keys like Shift+Enter are forwarded correctly,
--- especially when running applications inside tmux.
-config.enable_kitty_keyboard = true
+-- Kitty keyboard encoding is DISABLED: WezTerm's implementation mangles Esc.
+-- On a tap it sends "\x1b\x1b[27;129:3u" (press=\x1b, release=full CSI), which
+-- agents misparse as Ctrl+Alt+[ + literal text, so they never receive a clean Esc.
+-- https://github.com/earendil-works/pi/issues/4323
+config.enable_kitty_keyboard = false
 
 -- Base configuration
 config.default_prog = { "/bin/zsh" }
