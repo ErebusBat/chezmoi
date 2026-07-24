@@ -1,3 +1,8 @@
+# RE: IdentitiesOnly
+#
+# IdentitiesOnly no  == Configured IdentityFile[s] AND keys from ssh-agent
+# IdentitiesOnly yes == Only configured/default IdentityFile[s]; ignores extra
+
 hosts:
 ############################################################
 # Gateway Devices
@@ -196,7 +201,6 @@ templates:
     Inherits: personal-gateways
     IdentityFile: ~/.ssh/id_bat_devices
     ForwardAgent: yes
-    IdentitiesOnly: yes
     AddKeysToAgent: yes
   bat-devices-admin:
     User: admin
@@ -205,7 +209,6 @@ templates:
     Inherits: personal-gateways
     User: aburns
     ForwardAgent: yes
-    IdentitiesOnly: yes
     IdentityFile: ~/.ssh/id_ed25519
     AddKeysToAgent: yes
     GatewayConnectTimeout: 2
