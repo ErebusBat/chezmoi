@@ -23,6 +23,6 @@ herdr-install-omp-integration profile:
     set -euo pipefail
 
     # https://herdr.dev/docs/integrations/#omp
-    PI_CODING_AGENT_DIR=$(printf '{{TEMPLATE_AGENT_DIR }}' '{{profile}}')
+    export PI_CODING_AGENT_DIR=$(printf '{{TEMPLATE_AGENT_DIR }}' '{{profile}}')
     # echo "PI_CODING_AGENT_DIR=$PI_CODING_AGENT_DIR"
     herdr integration install omp
