@@ -1,15 +1,19 @@
-[ui.toast]
-delivery = "system"
+onboarding = false
 
 [ui]
 show_agent_labels_on_pane_borders = true
+[ui.toast]
+delivery = "system"
 
 [theme]
 name = "dracula"
 auto_switch = false
 
 [keys]
-focus_pane_left = ["prefix+h", "ctrl+alt+h"]
-focus_pane_down = ["prefix+j", "ctrl+alt+j"]
-focus_pane_up = ["prefix+k", "ctrl+alt+k"]
-focus_pane_right = ["prefix+l", "ctrl+alt+l"]
+focus_pane_left = ["prefix+h", "ctrl+h"]
+focus_pane_down = ["prefix+j", "ctrl+j"]
+focus_pane_up = ["prefix+k", "ctrl+k"]
+focus_pane_right = ["prefix+l", "ctrl+l"]
+previous_tab = "ctrl+alt+f10"
+next_tab = "ctrl+alt+f11"
+last_pane = "prefix+;"
