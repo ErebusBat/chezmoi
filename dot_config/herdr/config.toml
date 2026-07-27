@@ -17,9 +17,9 @@ focus_pane_down = ["prefix+j", "ctrl+j"]
 focus_pane_up = ["prefix+k", "ctrl+k"]
 focus_pane_right = ["prefix+l", "ctrl+l"]
 # WezTerm maps ⌘⇧[ => F10
-previous_tab = "f10"
+previous_tab = ["prefix+p", "f10"]
 # WezTerm maps ⌘⇧] => F11
-next_tab = "f11"
+next_tab = ["prefix+n", "f11"]
 last_pane = "prefix+;"
 
 ############################################################
