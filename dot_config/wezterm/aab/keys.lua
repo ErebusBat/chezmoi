@@ -28,13 +28,21 @@ return {
       action = wezterm.action.ToggleFullScreen,
     },
 
+    -- Use Kitty CSI-u so Herdr receives Alt+Shift+P as one complete key event
+    -- instead of mistaking the legacy ESC P sequence for a DCS control string.
+    {
+      key = 'P',
+      mods = 'ALT|SHIFT',
+      action = wezterm.action.SendString('\x1b[112;4u'),
+    },
+
     -- Route macOS tab shortcuts to Herdr instead of switching WezTerm tabs.
     {
       key = '[',
       mods = 'CMD|SHIFT',
       action = wezterm.action.SendKey({
         key = 'F10',
-        mods = 'CTRL|ALT',
+        mods = 'NONE',
       }),
     },
     {
@@ -42,7 +50,41 @@ return {
       mods = 'CMD|SHIFT',
       action = wezterm.action.SendKey({
         key = 'F11',
-        mods = 'CTRL|ALT',
+        mods = 'NONE',
+      }),
+    },
+    -- WezTerm may report shifted brackets as their `{`/`}` glyphs rather
+    -- than `[`/`]` plus SHIFT, so override both representations.
+    {
+      key = '{',
+      mods = 'CMD',
+      action = wezterm.action.SendKey({
+        key = 'F10',
+        mods = 'NONE',
+      }),
+    },
+    {
+      key = '{',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.SendKey({
+        key = 'F10',
+        mods = 'NONE',
+      }),
+    },
+    {
+      key = '}',
+      mods = 'CMD',
+      action = wezterm.action.SendKey({
+        key = 'F11',
+        mods = 'NONE',
+      }),
+    },
+    {
+      key = '}',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.SendKey({
+        key = 'F11',
+        mods = 'NONE',
       }),
     },
 

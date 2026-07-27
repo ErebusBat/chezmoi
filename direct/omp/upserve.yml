@@ -1,12 +1,35 @@
-providers:
-  webSearch: anthropic
+providers: 
+  webSearchOrder: 
+    - anthropic
+    - perplexity
+    - gemini
+    - codex
+    - xai
+    - zai
+    - exa
+    - tinyfish
+    - jina
+    - kagi
+    - tavily
+    - firecrawl
+    - brave
+    - kimi
+    - parallel
+    - synthetic
+    - searxng
+    - startpage
+    - duckduckgo
+    - ecosia
+    - google
+    - mojeek
+    - public
 symbolPreset: nerd
-theme:
+theme: 
   dark: dark-retro
   light: light
 setupVersion: 1
 defaultThinkingLevel: medium
-modelRoles:
+modelRoles: 
   default: github-copilot/gpt-5.6-sol:low
   task: github-copilot/gpt-5.6-terra:auto
   smol: github-copilot/gpt-5.6-terra:high
@@ -19,24 +42,24 @@ modelRoles:
   designer: github-copilot/gpt-5.6-sol:high
   advisor: github-copilot/claude-opus-4.8:high
   vision: github-copilot/gemini-3.1-pro-preview
-cycleOrder:
+cycleOrder: 
   - plan
   - plan_med
   - plan_low
   - default
   - smol
   - slow
-plan:
+plan: 
   defaultOnStartup: true
-display:
+display: 
   showTokenUsage: true
   cacheMissMarker: true
 steeringMode: all
 interruptMode: immediate
 doubleEscapeAction: tree
-statusLine:
+statusLine: 
   preset: custom
-  leftSegments:
+  leftSegments: 
     - pi
     - mode
     - model
@@ -45,7 +68,7 @@ statusLine:
     - pr
     - subagents
     - time_spent
-  rightSegments:
+  rightSegments: 
     - session_name
     - context_pct
     - cost
@@ -53,13 +76,13 @@ statusLine:
     - session
     - time
     - collab
-memory:
+memory: 
   backend: mnemopi
-mnemopi:
+mnemopi: 
   scoping: per-project-tagged
   embeddingVariant: en
   noEmbeddings: false
   llmMode: smol
-dev:
+dev: 
   autoqaConsent: granted
 hideThinkingBlock: true
