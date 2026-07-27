@@ -10,6 +10,7 @@ require 'webrick'
 
 class SpotifyCurrentTrack
   def initialize
+    # https://developer.spotify.com/dashboard/6397b4d13cda442c884bef309eb89eaf
     @config_file = File.expand_path('~/.config/erebusbat/spotify_client.yml')
     @token_file = File.expand_path('~/.config/erebusbat/spotify_token.yml')
     load_config
@@ -100,7 +101,9 @@ class SpotifyCurrentTrack
   end
 
   def start_oauth_flow
-    redirect_uri = "http://localhost:#{@port}/callback"
+    # Spotify requires an IP: https://developer.spotify.com/documentation/web-api/concepts/redirect_uri
+    # See about for developer.spotify.com links
+    redirect_uri = "http://127.0.0.1:#{@port}/callback"
 
     auth_url = 'https://accounts.spotify.com/authorize?' + URI.encode_www_form({
       'client_id' => @client_id,

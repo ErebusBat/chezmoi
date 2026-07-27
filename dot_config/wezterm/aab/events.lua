@@ -1,4 +1,5 @@
 local wezterm = require 'wezterm'
+local act = wezterm.action
 local hostname = wezterm.hostname()
 local background_hsb = {
   brightness = 0.0125,
@@ -56,6 +57,23 @@ wezterm.on('toggle-window-decorations', function(window, _pane)
     overrides.window_decorations = 'TITLE | RESIZE'
   end
   window:set_config_overrides(overrides)
+end)
+
+wezterm.on('augment-command-palette', function(_window, _pane)
+  return {
+    {
+      brief = 'Rename tab',
+      icon = 'md_rename_box',
+      action = act.PromptInputLine {
+        description = 'Enter new name for tab',
+        action = wezterm.action_callback(function(window, _current_pane, line)
+          if line then
+            window:active_tab():set_title(line)
+          end
+        end),
+      },
+    },
+  }
 end)
 
 return {}
