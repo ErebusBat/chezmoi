@@ -28,6 +28,24 @@ return {
       action = wezterm.action.ToggleFullScreen,
     },
 
+    -- Route macOS tab shortcuts to Herdr instead of switching WezTerm tabs.
+    {
+      key = '[',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.SendKey({
+        key = 'F10',
+        mods = 'CTRL|ALT',
+      }),
+    },
+    {
+      key = ']',
+      mods = 'CMD|SHIFT',
+      action = wezterm.action.SendKey({
+        key = 'F11',
+        mods = 'CTRL|ALT',
+      }),
+    },
+
     -- TMUX Nav Keys
     {
       key = 'LeftArrow',
@@ -42,6 +60,22 @@ return {
       mods = 'CTRL|SHIFT',
       action = wezterm.action.SendKey({
         key = 'RightArrow',
+        mods = 'CTRL|SHIFT',
+      }),
+    },
+    {
+      key = 'UpArrow',
+      mods = 'CTRL|SHIFT',
+      action = wezterm.action.SendKey({
+        key = 'UpArrow',
+        mods = 'CTRL|SHIFT',
+      }),
+    },
+    {
+      key = 'DownArrow',
+      mods = 'CTRL|SHIFT',
+      action = wezterm.action.SendKey({
+        key = 'DownArrow',
         mods = 'CTRL|SHIFT',
       }),
     },
