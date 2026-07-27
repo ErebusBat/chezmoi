@@ -1,0 +1,5 @@
+
+# Reload Config
+[group('Config')]
+reload-config:
+  herdr server reload-config
