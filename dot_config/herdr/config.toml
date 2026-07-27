@@ -18,3 +18,9 @@ focus_pane_right = ["prefix+l", "ctrl+l"]
 # previous_tab = "ctrl+alt+f10";  # prefix+P
 # next_tab = "ctrl+alt+f11";      # prefix+N
 last_pane = "prefix+;"
+
+[[keys.command]]
+key = "prefix+t"
+type = "plugin_action"
+command = "herdr-navigator.open"
+description = "jump to anything"

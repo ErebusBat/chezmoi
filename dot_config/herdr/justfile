@@ -1,5 +1,12 @@
+# vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
+HERDR_CMD := 'herdr'
+
+# Check Config
+[group('Config')]
+check-config:
+    {{ HERDR_CMD }} config check
 
 # Reload Config
 [group('Config')]
-reload-config:
-  herdr server reload-config
+reload-config: check-config
+    {{ HERDR_CMD }} server reload-config
