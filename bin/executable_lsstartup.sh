@@ -28,8 +28,14 @@ fi
 
   # ~/Applications/Restart\ OrbStack.app
 APPS=(
+  #-- Terminals
+  #   this script is intented to be launched with your seoncdary terminal (as it will switch to dlog mode)
+  #   So un-comment your primary terminal (Hyper+=) here
+  # /Applications/cmux.app
+  # /Applications/Ghostty.app
+  /Applications/WezTerm.app
+
   #-- Productivity
-  /Applications/cmux.app
   /Applications/Obsidian.app
   /Applications/Fantastical.app
   /Applications/Todoist.app
