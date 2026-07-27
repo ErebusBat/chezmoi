@@ -2,6 +2,7 @@ onboarding = false
 
 [ui]
 show_agent_labels_on_pane_borders = true
+agent_panel_sort = "priority"
 [ui.toast]
 delivery = "herdr"
 
@@ -15,8 +16,10 @@ focus_pane_left = ["prefix+h", "ctrl+h"]
 focus_pane_down = ["prefix+j", "ctrl+j"]
 focus_pane_up = ["prefix+k", "ctrl+k"]
 focus_pane_right = ["prefix+l", "ctrl+l"]
-# previous_tab = "ctrl+alt+f10";  # prefix+P
-# next_tab = "ctrl+alt+f11";      # prefix+N
+# WezTerm maps ⌘⇧[ => F10
+previous_tab = "f10"
+# WezTerm maps ⌘⇧] => F11
+next_tab = "f11"
 last_pane = "prefix+;"
 
 ############################################################
