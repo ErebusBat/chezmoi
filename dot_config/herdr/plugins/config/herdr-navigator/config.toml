@@ -146,3 +146,8 @@ local = true
 # notify_success = true
 # notify_error = true
 #
+
+[[sessions.entries]]
+name = "Outpost"
+remote = "outpost"
+tags = ["server"]

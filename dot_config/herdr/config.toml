@@ -6,6 +6,9 @@ agent_panel_sort = "priority"
 [ui.toast]
 delivery = "herdr"
 
+[experimental]
+# allow_nested = true
+
 [theme]
 name = "dracula"
 auto_switch = false
