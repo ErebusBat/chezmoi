@@ -1,5 +1,58 @@
-LMS_MODEL_ROOT := env('HOME') / '.lmstudio/models'
+# vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
+LMS_ROOT := env('HOME') / '.lmstudio'
+LMS_MODEL_ROOT := LMS_ROOT / 'models'
 LMS_COMMUNITY_PATH := LMS_MODEL_ROOT / 'lmstudio-community'
+NO_AUTO_UP_MARKER_PATH := LMS_ROOT / 'no-auto-up'
+
+# Bring LM Studio up with background models that are expected to be there
+[group('LM Studio')]
+up:
+    #!/usr/bin/env zsh
+    [[ -f {{ NO_AUTO_UP_MARKER_PATH }} ]] && exit 0
+    printf "Starting LM Studio Server"
+    # ./bin/lms server start
+
+    # just load-dictation || true
+
+    printf "\n\n\nThe following models are available:"
+    ./bin/lms ps
+
+# Un/Set Auto Up mode by creating / delting file
+set-auto-up mode='on':
+    #!/usr/bin/env zsh
+    nau_path="{{ NO_AUTO_UP_MARKER_PATH }}"
+    mode="{{ mode }}"
+    case "${(L)mode}" in
+      true|t|yes|y|on|1)
+        mode=1
+        ;;
+      false|f|no|n|off|0)
+        mode=0
+        ;;
+      *)
+        print -u2 -- "*** ERROR: Invalid mode: $mode (expected on or off)"
+        exit 2
+        ;;
+    esac
+
+    echo "       mode=$mode ({{mode}})"
+    echo "   nau_path=$nau_path"
+
+    if [[ $mode -eq 0 ]]; then
+      if [[ -f "$nau_path" ]]; then
+        echo "*** WARN: Auto Up DISABLED - Marker file present"
+      else
+        echo "*** INFO: Disabling Auto Up - Creating Marker File"
+        date > "$nau_path"
+      fi
+    else
+      if [[ -f "$nau_path" ]]; then
+        echo "*** INFO: Enabling Auto Up - Removing Marker File"
+        rm -- "$nau_path"
+      else
+        echo "*** WARN: Auto Up Enabled - Marker file absent"
+      fi
+    fi
 
 # Use 'say' tool to notify user
 [group('Helpers')]
