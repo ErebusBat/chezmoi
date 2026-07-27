@@ -1,0 +1,65 @@
+#!/usr/bin/env zsh
+# omp-profile-resume — profile-aware wrapper for `omp --resume`.
+# Install earlier in PATH than real omp (e.g. ~/bin/omp) so herdr's
+# `omp --resume <id>` restores land in the owning profile.
+# zsh port: recursive globs and assoc arrays are native here.
+setopt ERR_EXIT NO_UNSET PIPE_FAIL
+
+REAL_OMP="${OMP_REAL:-$HOME/.bun/bin/omp}"
+OMP_HOME="${OMP_HOME:-$HOME/.omp}"
+
+has_profile=0
+resume=""
+prev=""
+for a in "$@"; do
+  if [[ "$prev" == "--resume" || "$prev" == "-r" ]]; then resume="$a"; fi
+  case "$a" in
+    --profile|--profile=*) has_profile=1 ;;
+    --resume=*) resume="${a#--resume=}" ;;
+    -r=*) resume="${a#-r=}" ;;
+  esac
+  prev="$a"
+done
+
+run() {
+  if [[ "${OMP_WRAP_DEBUG:-}" == "1" ]]; then
+    printf '[omp-wrap] exec:' >&2; printf ' %q' "$REAL_OMP" "$@" >&2; printf '\n' >&2
+    return 0
+  fi
+  exec "$REAL_OMP" "$@"
+}
+
+# 1+2: explicit --profile or no resume value -> untouched
+if (( has_profile )) || [[ -z "$resume" ]]; then run "$@"; exit 0; fi
+
+# 3: resume value is a path inside a profile dir -> infer profile
+if [[ "$resume" == *"/profiles/"* ]]; then
+  prof="${resume#*/profiles/}"; prof="${prof%%/*}"
+  if [[ -n "$prof" && -d "$OMP_HOME/profiles/$prof" ]]; then
+    run --profile "$prof" "$@"; exit 0
+  fi
+fi
+
+# only search stores for id-like values; paths/picker pass through
+if [[ ! "$resume" =~ ^[0-9A-Za-z-]{6,}$ ]]; then run "$@"; exit 0; fi
+
+# 4: search default + every profile session store
+default_hits=( "$OMP_HOME"/agent/sessions/**/*"$resume"*.jsonl(N) )
+typeset -A profile_hits=()
+for d in "$OMP_HOME"/profiles/*(/N); do
+  prof="${d%/}"; prof="${prof##*/}"
+  hits=( "$d"/agent/sessions/**/*"$resume"*.jsonl(N) )
+  (( ${#hits[@]} > 0 )) && profile_hits[$prof]="${hits[1]}"
+done
+
+if (( ${#profile_hits[@]} == 1 && ${#default_hits[@]} == 0 )); then
+  run --profile "${(k)profile_hits[@]}" "$@"; exit 0
+fi
+
+# 5: ambiguous or unknown -> warn, pass through
+if (( ${#profile_hits[@]} > 1 )) || (( ${#profile_hits[@]} > 0 && ${#default_hits[@]} > 0 )); then
+  warn_default=""
+  (( ${#default_hits[@]} > 0 )) && warn_default=" +default"
+  echo "[omp-wrap] ambiguous resume id '$resume' matches: ${(k)profile_hits[@]}${warn_default}" >&2
+fi
+run "$@"
