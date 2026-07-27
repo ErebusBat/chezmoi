@@ -10,3 +10,13 @@ check-config:
 [group('Config')]
 reload-config: check-config
     {{ HERDR_CMD }} server reload-config
+
+# Add all config files to chezmoi
+[group('Config')]
+track-config: check-config track-config-no-check
+
+[private]
+track-config-no-check:
+    chezmoi add \
+        ./plugins/config/herdr-navigator/config.toml \
+        ./config.toml ./justfile ./plugins.json             # Normal 'root' files
