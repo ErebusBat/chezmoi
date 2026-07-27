@@ -19,4 +19,5 @@ track-config: check-config track-config-no-check
 track-config-no-check:
     chezmoi add \
         ./plugins/config/herdr-navigator/config.toml \
+        ~/.config/zsh-antibody/herdr/herdr.plugin.zsh \
         ./config.toml ./justfile ./plugins.json             # Normal 'root' files
