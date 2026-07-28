@@ -25,6 +25,9 @@ TAPS_FULL_TRUST=(
   wezterm/wezterm
   # SketchyBar + JankyBorders
   derailed/k9s
+
+  # moshi
+  rjyo/moshi
 )
 
 FORMULA_TO_TRUST=(

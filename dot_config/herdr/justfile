@@ -21,3 +21,8 @@ track-config-no-check:
         ./plugins/config/herdr-navigator/config.toml \
         ~/.config/zsh-antibody/herdr/herdr.plugin.zsh \
         ./config.toml ./justfile ./plugins.json             # Normal 'root' files
+
+# Install herdr
+[group('Install')]
+install:
+    curl -fsSL https://herdr.dev/install.sh | sh
