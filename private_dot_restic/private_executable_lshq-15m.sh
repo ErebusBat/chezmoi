@@ -8,9 +8,10 @@ restic backup \
   --exclude-file $HOME/.restic/common-excludes.lst \
   --exclude-file $HOME/.restic/15m-excludes.lst \
   --exclude "**/.git/**/*" \
-  "$HOME/Documents/meetings" \
-  "$HOME/.pi" \
+  "$HOME/.agents/skills" \
   "$HOME/.omp" \
+  "$HOME/.pi" \
+  "$HOME/Documents/meetings" \
   "$HOME/Library/Application Support/OpenOats" \
   "$HOME/src"
 
