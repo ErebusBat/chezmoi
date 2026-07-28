@@ -1,3 +1,4 @@
+# vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
 
 DEFAULT_CONTEXT := '0' # 0=default/max
 # DEFAULT_CONTEXT := '8192' # 8k
@@ -17,10 +18,26 @@ LLAMA_CPP_MODELS_PATH := LMS_MODEL_ROOT / 'llama.cpp'
 # FIT_OPTIONS := '--fit on'
 FIT_OPTIONS := '--fit-target 4096'
 
+### IMPORTANT: re context / parallel
+# -c 131072 = The server allocates a single KV cache pool that can hold 131,072 tokens.
+# --parallel 2 = The server creates 2 separate "slots" (workers) within that pool.
+#
+# With --parallel 2, the server splits that 131k context pool into 2 equal halves. So:
+#   - Slot 1 gets ~65,536 tokens
+#   - Slot 2 gets ~65,536 tokens
+# This means:
+# You can handle 2 concurrent requests, but each request is limited to ~65k tokens, not the full 131k.
+# See: https://chat.deepseek.com/a/chat/s/1e3af977-711d-4500-aab4-1e16d368e8bb
+
 # Helper to list llama.cpp tasks
 [group('llama.cpp')]
 ls-llama:
     just --list --group 'llama.cpp'
+
+# Run llama-server command
+[group('llama.cpp')]
+llama-server *args:
+    {{ LLAMA_CPP_CMD }} {{ args}}
 
 # Helper to download Hugging Face Models to propper path
 [group('llama.cpp')]
@@ -59,9 +76,11 @@ serve-qwen36 context=DEFAULT_CONTEXT:
 [group('llama.cpp')]
 serve-laguna-xs context=DEFAULT_CONTEXT:
     @# https://huggingface.co/poolside/Laguna-XS-2.1-GGUF
-    {{ LLAMA_SERVE_CMD }} {{ FIT_OPTIONS }} --load-mode none \
+    {{ LLAMA_SERVE_CMD }} --load-mode mmap \
       --alias laguna-xs-2.1 \
       --parallel 1 \
+      -fa on \
+      -ngl 999 \
       -c {{ context }} \
       -m {{ LMS_MODEL_ROOT }}/poolside/Laguna-XS-2.1-GGUF/Laguna-XS-2.1-Q4_K_M.gguf
 
