@@ -31,20 +31,17 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIXUJn9T0+ZkSc04KxeLXe8a+xSo5l7a8XiYuKKtBOI4
 ################################################################################
 # iOS Devices Keys - {{ .chezmoi.hostname }}
 ################################################################################
-# Blink - iPhone16 Secure Enclave
+### Blink iOS Terminal
 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBFoCv9mxLGd4fKNZUakkJOHAClY7zJtP4PPa1L49JcUqF57ss1tfwV+wvp+20MQDoR3yYscGp6KEOKMMQanlOUA= blink@iPhone16-SE
+ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLMvmdCFNTwE2qIq8rgiWHFl2BRGPaQUtAdhUE9fctLKpVnSPJYSbRKKQc2INGPLjGswjjsjHXaR1cqB2TZ3lWc= blink@iPadPro-SE
+ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDEm+v8ICZnrgGoEATDCVgLSIpYRdbEvaaqL/mQMJzbfs8oFMXJ1d1y/nJZLmaySf6Xzvmwqkpp9JG1SuYDCRC0= blink@iPadMini-LSHQ-SE
 
-# Blink - iPadPro Secure Enclave
-ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLMvmdCFNTwE2qIq8rgiWHFl2BRGPaQUtAdhUE9fctLKpVnSPJYSbRKKQc2INGPLjGswjjsjHXaR1cqB2TZ3lWc= blink@iPad-SE
-
-# Blink - LSHQ iPad Mini
-ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDEm+v8ICZnrgGoEATDCVgLSIpYRdbEvaaqL/mQMJzbfs8oFMXJ1d1y/nJZLmaySf6Xzvmwqkpp9JG1SuYDCRC0= aburns@lshq_ipad
-
-{{- with index (gopassRaw "erebusbat/ssh/moshi" | mustFromJson) .chezmoi.hostname }}
+{{ with index (gopassRaw "erebusbat/ssh/moshi" | mustFromJson) .chezmoi.hostname -}}
 ### Moshi - {{ $.chezmoi.hostname }}
 {{ . }}
+{{- else -}}
+### No Moshi Key For {{ $.chezmoi.hostname }}
 {{- end }}
-
 ### iOS ########################################################################
 {{- end }}
 
