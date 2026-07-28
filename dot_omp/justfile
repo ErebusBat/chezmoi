@@ -3,6 +3,7 @@ PERSONAL_AGENT_DIR := OMP_PROFILES_ROOT / 'personal/agent'
 TEMPLATE_AGENT_DIR := OMP_PROFILES_ROOT / '%s/agent'
 
 import? '.herdr.just'
+import? '.skills.just'
 ############################################################
 ## Update
 ############################################################
