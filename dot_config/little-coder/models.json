@@ -1,0 +1,12 @@
+{
+  "providers": {
+    "llamacpp": {
+      "api": "openai-completions",
+      "baseUrl": "http://127.0.0.1:8888/v1",
+      "apiKey": "LLAMACPP_API_KEY",
+      "models": [
+        { "id": "laguna-xs-2.1", "name": "Laguna XS 2.1", "reasoning": true, "input": ["text"] }
+      ]
+    }
+  }
+}
