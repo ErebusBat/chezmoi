@@ -26,13 +26,9 @@ $pulumi\
 $conda\
 $line_break\
 $container\
-${env_var.TMUX_PANE}\
 $hostname\
 $sudo\
 $cmd_duration\
-${env_var.OCP_PROFILE}\
-${env_var.LAZYGIT_SHELL}\
-${env_var.CLAUDE_CODE_PANE}\
 $status\
 $character"""
 right_format = ""
