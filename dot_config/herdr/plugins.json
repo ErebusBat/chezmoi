@@ -89,5 +89,75 @@
       "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-navigator-3a5a6fa5dfb5",
       "installed_unix_ms": 1785158802394
     }
+  },
+  {
+    "plugin_id": "ramarivera.pretty-which",
+    "name": "Pretty Which",
+    "version": "0.1.5",
+    "min_herdr_version": "0.7.0",
+    "description": "A tasteful which-key style training overlay for Herdr keybindings.",
+    "manifest_path": "/Users/andrew.burns/.config/herdr/plugins/github/ramarivera.pretty-which-9cf671d5751a/herdr-plugin.toml",
+    "plugin_root": "/Users/andrew.burns/.config/herdr/plugins/github/ramarivera.pretty-which-9cf671d5751a",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "build": [
+      {
+        "platforms": [
+          "linux",
+          "macos"
+        ],
+        "command": [
+          "cargo",
+          "build",
+          "--release"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "open",
+        "title": "Open pretty which",
+        "contexts": [
+          "workspace",
+          "tab",
+          "pane",
+          "global"
+        ],
+        "command": [
+          "herdr",
+          "plugin",
+          "pane",
+          "open",
+          "--plugin",
+          "ramarivera.pretty-which",
+          "--entrypoint",
+          "overlay",
+          "--placement",
+          "overlay",
+          "--focus"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "overlay",
+        "title": "Pretty Which",
+        "placement": "overlay",
+        "command": [
+          "target/release/herdr-pretty-which"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "ramarivera",
+      "repo": "herdr-pretty-which",
+      "resolved_commit": "c11c6e5af6f866b70f837bdd89157ba7441dc543",
+      "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/ramarivera.pretty-which-9cf671d5751a",
+      "installed_unix_ms": 1785188651934
+    }
   }
 ]
