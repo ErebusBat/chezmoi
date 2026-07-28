@@ -35,6 +35,14 @@ run() {
   exec "$REAL_OMP" "$@"
 }
 
+# `omp update` -> the updater replaces the first `omp` on PATH; strip
+# this wrapper's dir so it updates the real binary instead.
+if [[ "${1:-}" == "update" ]]; then
+  path=( ${path:#$HOME/bin} )
+  run "$@"
+  exit 0
+fi
+
 # 1+2: explicit --profile or no resume value -> untouched
 if (( has_profile )) || [[ -z "$resume" ]]; then run "$@"; exit 0; fi
 
