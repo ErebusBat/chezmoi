@@ -10,7 +10,7 @@ end
 
 return {
   hide_tab_bar_if_only_one_tab = true,
-  tab_bar_at_bottom = true,
+  tab_bar_at_bottom = false,
   window_decorations = eb_window_decorations,
   window_padding = {
     left = 0,
