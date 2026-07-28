@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "skills": {
+    "atlassian-cli-jira": {
+      "source": "lightspeedhq/common-skills",
+      "sourceType": "github",
+      "skillPath": "skills/atlassian-cli-jira/SKILL.md",
+      "computedHash": "57d3302fe860da4b0e67fb1f53a84960e49ec361cc3b44573e0c7c87774024b5"
+    },
+    "datadog-service-catalog": {
+      "source": "lightspeedhq/common-skills",
+      "sourceType": "github",
+      "skillPath": "skills/datadog-service-catalog/SKILL.md",
+      "computedHash": "4d185377d45ce59970dacba4344cee50ea7a629e91d0ee43b87187bc5f44d2c4"
+    },
+    "dev-mysql-access": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/lshq/dev-mysql-access/SKILL.md",
+      "computedHash": "c4aa128845ead80e92aacc1972faedff08a88c41ea6f8d0a192becb49591586c"
+    },
+    "firecrawl": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/vendor/firecrawl-search/SKILL.md",
+      "computedHash": "9ced5b5bb6d5a2ac7c0c14a19396f11d7f995fb1605131fdde1569fcf49e73ca"
+    },
+    "github-cli": {
+      "source": "lightspeedhq/common-skills",
+      "sourceType": "github",
+      "skillPath": "skills/github-cli/SKILL.md",
+      "computedHash": "330885846b36d85715bb2c41266f01c851115f0bda963a354701f14a27bc2dc9"
+    },
+    "lshq-browser-use": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/lshq/lshq-browser-use/SKILL.md",
+      "computedHash": "f47c287e32f0c962e53406075d092f3374ceef18ca727d1aff5d984b36d3edd6"
+    }
+  }
+}
