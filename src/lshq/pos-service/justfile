@@ -1,3 +1,4 @@
+# vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
 MYSQL_DC_DIR := source_dir() / 'aab-mysql'
 # ENV_FILE := '~/src/lshq/ls_env.sh'
 ENV_FILE := source_dir() / '../ls_env.sh'
@@ -29,6 +30,12 @@ mysql-down:
 mysql-status:
     printf "CWD: $PWD\n"
     docker compose ps
+
+# If the docker container is not answering connections then try this
+[group('MySQL')]
+[working-directory: MYSQL_DC_DIR]
+mysql-fix-docker-networking:
+    docker network connect lshq_default mysql
 
 # Migration Status
 [group('Data')]

@@ -7,8 +7,8 @@ DEFAULT_CONTEXT := '0' # 0=default/max
 LLAMA_PORT := '8888'
 # LLAMA_CPP_CMD := 'llama'
 # LLAMA_SERVE_CMD := LLAMA_CPP_CMD + ' serve' + ' --port '+LLAMA_PORT
-# LLAMA_CPP_CMD := env('HOME') / 'src/vendor/llama.cpp/official/build/bin/llama-server'
-LLAMA_CPP_CMD := env('HOME') / 'src/vendor/llama.cpp/prism-ml/build/bin/llama-server'
+LLAMA_CPP_CMD := env('HOME') / 'src/vendor/llama.cpp/official/build/bin/llama-server'
+# LLAMA_CPP_CMD := env('HOME') / 'src/vendor/llama.cpp/prism-ml/build/bin/llama-server'
 
 LLAMA_SERVE_CMD := LLAMA_CPP_CMD + ' --port ' + LLAMA_PORT
 LLAMA_CPP_MODELS_PATH := LMS_MODEL_ROOT / 'llama.cpp'
@@ -54,6 +54,16 @@ serve-qwen36 context=DEFAULT_CONTEXT:
       -c {{ context }} \
       -m {{ QWEN36_35B_PATH }}/Qwen3.6-35B-A3B-Q4_K_M.gguf \
       --mmproj {{ QWEN36_35B_PATH }}/mmproj-Qwen3.6-35B-A3B-BF16.gguf
+
+# Start Laguna-XS 2.1
+[group('llama.cpp')]
+serve-laguna-xs context=DEFAULT_CONTEXT:
+    @# https://huggingface.co/poolside/Laguna-XS-2.1-GGUF
+    {{ LLAMA_SERVE_CMD }} {{ FIT_OPTIONS }} --load-mode none \
+      --alias laguna-xs-2.1 \
+      --parallel 1 \
+      -c {{ context }} \
+      -m {{ LMS_MODEL_ROOT }}/poolside/Laguna-XS-2.1-GGUF/Laguna-XS-2.1-Q4_K_M.gguf
 
 # Start Laguna-S 2
 [group('llama.cpp')]
