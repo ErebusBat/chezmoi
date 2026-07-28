@@ -8,6 +8,12 @@ setopt ERR_EXIT NO_UNSET PIPE_FAIL
 REAL_OMP="${OMP_REAL:-$HOME/.bun/bin/omp}"
 OMP_HOME="${OMP_HOME:-$HOME/.omp}"
 
+# `omp where` -> print the real omp this wrapper would exec
+if [[ $# -eq 1 && "$1" == "where" ]]; then
+  print -r -- "$REAL_OMP"
+  exit 0
+fi
+
 has_profile=0
 resume=""
 prev=""
