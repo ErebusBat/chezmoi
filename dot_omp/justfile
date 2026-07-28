@@ -4,6 +4,7 @@ TEMPLATE_AGENT_DIR := OMP_PROFILES_ROOT / '%s/agent'
 
 import? '.herdr.just'
 import? '.skills.just'
+import? '.moshi.just'
 ############################################################
 ## Update
 ############################################################
