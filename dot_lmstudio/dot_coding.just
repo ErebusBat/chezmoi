@@ -1,9 +1,9 @@
 # vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
 
-DEFAULT_CONTEXT := '0' # 0=default/max
+# DEFAULT_CONTEXT := '0' # 0=default/max
 # DEFAULT_CONTEXT := '8192' # 8k
 # DEFAULT_CONTEXT := '16384' # 16k
-# DEFAULT_CONTEXT := '131072' # 128k
+DEFAULT_CONTEXT := '131072' # 128k
 
 LLAMA_PORT := '8888'
 # LLAMA_CPP_CMD := 'llama'
@@ -37,7 +37,7 @@ ls-llama:
 # Run llama-server command
 [group('llama.cpp')]
 llama-server *args:
-    {{ LLAMA_CPP_CMD }} {{ args}}
+    {{ LLAMA_CPP_CMD }} {{ args }}
 
 # Helper to download Hugging Face Models to propper path
 [group('llama.cpp')]
@@ -58,17 +58,23 @@ hf-download hf-uri *args:
 QWEN36_35B_PATH := LMS_COMMUNITY_PATH / 'Qwen3.6-35B-A3B-GGUF'
 # Start the 'big' Qwen 3.6 MoE Model
 [group('llama.cpp')]
-serve-qwen36 context=DEFAULT_CONTEXT:
+serve-qwen36 context=DEFAULT_CONTEXT slots='1':
     @# cd {{ QWEN36_35B_PATH }} && \
     @#   {{ LLAMA_SERVE_CMD }} --jinja \
     @#     --flash-attn on \
     @#     -c {{ context }} \
     @#     -m Qwen3.6-35B-A3B-Q4_K_M.gguf \
     @#     --mmproj mmproj-Qwen3.6-35B-A3B-BF16.gguf
-    {{ LLAMA_SERVE_CMD }} \
+    @# https://chat.deepseek.com/a/chat/s/6038e837-ea63-4b1d-be55-8d5e4872bbb3
+    {{ LLAMA_SERVE_CMD }} --load-mode mmap \
       --flash-attn on \
+      -ngl 999 \
       --alias qwen36-35b-a3b \
+      --parallel {{ slots }} \
       -c {{ context }} \
+      -b 512 -ub 128 \
+      --cache-type-k q8_0 --cache-type-v q8_0 \
+      -t 8 \
       -m {{ QWEN36_35B_PATH }}/Qwen3.6-35B-A3B-Q4_K_M.gguf \
       --mmproj {{ QWEN36_35B_PATH }}/mmproj-Qwen3.6-35B-A3B-BF16.gguf
 
