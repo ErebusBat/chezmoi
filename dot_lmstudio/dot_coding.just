@@ -39,21 +39,39 @@ ls-llama:
 llama-server *args:
     {{ LLAMA_CPP_CMD }} {{ args }}
 
-# Helper to download Hugging Face Models to propper path
+# Serve Gemma4 31B
 [group('llama.cpp')]
-hf-download hf-uri *args:
+serve-gemma4 context=DEFAULT_CONTEXT vision='1':
     #!/usr/bin/env zsh
-    hf_uri={{ hf-uri }}
-    model_name=${hf_uri:t:r}
-    local_dir="{{ LLAMA_CPP_MODELS_PATH }}/${model_name}"
+    context="{{context}}"
+    if [[ $context -eq 1 ]]; then
+        context="{{DEFAULT_CONTEXT}}"
+        echo "*** INFO: Context was 1; using $context"
+    elif [[ $context -eq 0 ]]; then
+        echo "*** WARN: Context is 0; llama will use max"
+    fi
+    # codex://threads/019fb013-a51a-71a2-a29c-eecdaddb908d
+    ARGS=(--load-mode mmap)
+    ARGS+=(--flash-attn on)
+    ARGS+=(--reasoning on)
+    ARGS+=(-ngl all)
+    ARGS+=(--alias gemma4-31b)
+    ARGS+=(--parallel 1)
+    ARGS+=(-c $context)
+    ARGS+=(-b 1024 -ub 256)
+    ARGS+=(--cache-type-k q8_0 --cache-type-v q8_0 --cache-ram 0)
+    ARGS+=(-t 8)
+    ARGS+=(-m {{ QWEN36_35B_PATH }}/Qwen3.6-35B-A3B-Q4_K_M.gguf)
 
-    if [[ $hf_uri != hf://* ]]; then
-      echo "WARNING: URI Should start with hf://"
-      exit 1
+    if [[ "{{vision}}" -gt 0 ]]; then
+        echo "*** INFO: Enabling Vision Mode"
+        echo "        : Disable with: just serve-gemma4 $context 0"
+        ARGS+=(--mmproj {{ QWEN36_35B_PATH }}/mmproj-Qwen3.6-35B-A3B-BF16.gguf)
     fi
 
-    echo "> hf download --local-dir $local_dir {{ args }} $hf_uri"
-    hf download --local-dir $local_dir {{ args }} $hf_uri
+    echo "*** INFO: Starting with c=$context"
+    echo "> llama-server $ARGS[@]"
+    {{ LLAMA_SERVE_CMD }} "$ARGS[@]"
 
 QWEN36_35B_PATH := LMS_COMMUNITY_PATH / 'Qwen3.6-35B-A3B-GGUF'
 # Start the 'big' Qwen 3.6 MoE Model
@@ -113,3 +131,19 @@ serve-bonsai context=DEFAULT_CONTEXT:
       -ngl 99 \
       -c {{ context }} \
       -m {{ LLAMA_CPP_MODELS_PATH }}/Ternary-Bonsai-27B-PQ2_0/Ternary-Bonsai-27B-Q2_0.gguf
+
+# Helper to download Hugging Face Models to propper path
+[group('llama.cpp')]
+hf-download hf-uri *args:
+    #!/usr/bin/env zsh
+    hf_uri={{ hf-uri }}
+    model_name=${hf_uri:t:r}
+    local_dir="{{ LLAMA_CPP_MODELS_PATH }}/${model_name}"
+
+    if [[ $hf_uri != hf://* ]]; then
+      echo "WARNING: URI Should start with hf://"
+      exit 1
+    fi
+
+    echo "> hf download --local-dir $local_dir {{ args }} $hf_uri"
+    hf download --local-dir $local_dir {{ args }} $hf_uri
