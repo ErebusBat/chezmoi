@@ -5,6 +5,3 @@ if [[ -n $CLAUDE_SESSION_ID ]]; then
     unfunction "$cmd" 2>/dev/null
   done
 fi
-
-# SCM Breeze's default gd alias is too noisy for editors that leave spaces at EOL.
-alias gd='git diff --ignore-space-at-eol'
