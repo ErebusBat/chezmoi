@@ -1,5 +1,118 @@
 [
   {
+    "plugin_id": "herdr-bar",
+    "name": "Bar",
+    "version": "0.1.0",
+    "min_herdr_version": "0.7.4",
+    "description": "Cmd+K command bar: fuzzy-jump to any tab or agent",
+    "manifest_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-bar-96eebe452a9c/herdr-plugin.toml",
+    "plugin_root": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-bar-96eebe452a9c",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "actions": [
+      {
+        "id": "open",
+        "title": "Open bar",
+        "description": "Fuzzy-jump to any tab or agent",
+        "contexts": [
+          "global"
+        ],
+        "command": [
+          "sh",
+          "-c",
+          "herdr_bin=\"${HERDR_BIN_PATH:-herdr}\"; [ -x \"$herdr_bin\" ] || herdr_bin=herdr; exec \"$herdr_bin\" plugin pane open --plugin herdr-bar --entrypoint bar --placement popup"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "bar",
+        "title": "Bar",
+        "description": "Fuzzy-jump to any tab or agent",
+        "placement": "popup",
+        "width": "74%",
+        "height": "62%",
+        "command": [
+          "python3",
+          "run.py"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "jeffarese",
+      "repo": "herdr-bar",
+      "resolved_commit": "58c23e5c8d7926044f67524f403257bacdf88f6b",
+      "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-bar-96eebe452a9c",
+      "installed_unix_ms": 1785340565476
+    }
+  },
+  {
+    "plugin_id": "herdr-lazygit",
+    "name": "herdr-lazygit",
+    "version": "0.3.0",
+    "min_herdr_version": "0.7.0",
+    "description": "lazygit in a herdr split pane, with AI-assisted commit messages via custom commands.",
+    "manifest_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-lazygit-b11d62e75f78/herdr-plugin.toml",
+    "plugin_root": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-lazygit-b11d62e75f78",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "build": [
+      {
+        "command": [
+          "/bin/sh",
+          "scripts/install-runtime.sh"
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "open",
+        "title": "Open lazygit",
+        "description": "Open lazygit in a split pane beside the current work (focus/toggle on repeat).",
+        "command": [
+          "bash",
+          "scripts/open-lazygit.sh"
+        ]
+      },
+      {
+        "id": "open-tab",
+        "title": "Open lazygit (tab)",
+        "description": "Open lazygit in its own tab (switch to it if already open, toggle off if focused).",
+        "command": [
+          "bash",
+          "scripts/open-lazygit-tab.sh"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "lazygit",
+        "title": "Git",
+        "placement": "split",
+        "command": [
+          "bash",
+          "-c",
+          "exec bash \"$HERDR_PLUGIN_ROOT/scripts/run-lazygit.sh\""
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "crokily",
+      "repo": "herdr-lazygit",
+      "resolved_commit": "a13e12c99e5e469edd73165cabba413c2a2fd698",
+      "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-lazygit-b11d62e75f78",
+      "installed_unix_ms": 1785339799426
+    }
+  },
+  {
     "plugin_id": "herdr-navigator",
     "name": "Herdr Navigator",
     "version": "0.3.3",
