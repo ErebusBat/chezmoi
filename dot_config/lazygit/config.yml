@@ -22,6 +22,8 @@ customCommands:
 gui:
   mouseEvents: false
 git:
+  # Lazygit supports ignoring all whitespace (not only end-of-line whitespace).
+  ignoreWhitespaceInDiffView: true
   parseEmoji: true
   pagers:
     - pager: delta --dark --paging=never
