@@ -9,3 +9,6 @@ providers:
     auth: none
     discovery:
       type: openai-models-list
+    modelOverrides:
+      gemma4-31b:
+        contextWindow: 131072
