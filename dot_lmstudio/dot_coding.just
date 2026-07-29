@@ -59,20 +59,15 @@ QWEN36_35B_PATH := LMS_COMMUNITY_PATH / 'Qwen3.6-35B-A3B-GGUF'
 # Start the 'big' Qwen 3.6 MoE Model
 [group('llama.cpp')]
 serve-qwen36 context=DEFAULT_CONTEXT slots='1':
-    @# cd {{ QWEN36_35B_PATH }} && \
-    @#   {{ LLAMA_SERVE_CMD }} --jinja \
-    @#     --flash-attn on \
-    @#     -c {{ context }} \
-    @#     -m Qwen3.6-35B-A3B-Q4_K_M.gguf \
-    @#     --mmproj mmproj-Qwen3.6-35B-A3B-BF16.gguf
     @# https://chat.deepseek.com/a/chat/s/6038e837-ea63-4b1d-be55-8d5e4872bbb3
     {{ LLAMA_SERVE_CMD }} --load-mode mmap \
       --flash-attn on \
-      -ngl 999 \
+      --reasoning-preserve \
+      -mg 999 \
       --alias qwen36-35b-a3b \
       --parallel {{ slots }} \
       -c {{ context }} \
-      -b 512 -ub 128 \
+      -b 1024 -ub 256 \
       --cache-type-k q8_0 --cache-type-v q8_0 \
       -t 8 \
       -m {{ QWEN36_35B_PATH }}/Qwen3.6-35B-A3B-Q4_K_M.gguf \

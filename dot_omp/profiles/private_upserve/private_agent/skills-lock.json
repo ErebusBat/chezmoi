@@ -7,6 +7,30 @@
       "skillPath": "skills/atlassian-cli-jira/SKILL.md",
       "computedHash": "57d3302fe860da4b0e67fb1f53a84960e49ec361cc3b44573e0c7c87774024b5"
     },
+    "circleci-builds": {
+      "source": "CircleCI-Public/skills",
+      "sourceType": "github",
+      "skillPath": "plugins/circleci/skills/builds/SKILL.md",
+      "computedHash": "6b79c1b8edbc3726ff74007bab4361f16309a3cf3e1b487614e86c6a0c7b3319"
+    },
+    "circleci-cli": {
+      "source": "CircleCI-Public/skills",
+      "sourceType": "github",
+      "skillPath": "plugins/circleci/skills/cli/SKILL.md",
+      "computedHash": "e9d50a99490da1c46f0918d42f019d703c3c641dc36d1298f873e14e826d3ff0"
+    },
+    "circleci-config": {
+      "source": "CircleCI-Public/skills",
+      "sourceType": "github",
+      "skillPath": "plugins/circleci/skills/config/SKILL.md",
+      "computedHash": "3662ac764db0f23e633dd45d6a2c2aad58c2bc4332ee19da13993ad6156c7ea2"
+    },
+    "circleci-smarter-testing": {
+      "source": "CircleCI-Public/skills",
+      "sourceType": "github",
+      "skillPath": "plugins/circleci/skills/smarter-testing/SKILL.md",
+      "computedHash": "d386ee71fc6737f718090f45ee67f91984c46696f29dd33ecbf399e592d55dff"
+    },
     "datadog-service-catalog": {
       "source": "lightspeedhq/common-skills",
       "sourceType": "github",
@@ -39,6 +63,12 @@
       "sourceType": "git",
       "skillPath": "skills/lshq/lshq-browser-use/SKILL.md",
       "computedHash": "f47c287e32f0c962e53406075d092f3374ceef18ca727d1aff5d984b36d3edd6"
+    },
+    "onboarding": {
+      "source": "CircleCI-Public/skills",
+      "sourceType": "github",
+      "skillPath": "plugins/circleci/skills/onboard/SKILL.md",
+      "computedHash": "1eeb333518362d5cd5d4fc9f85a3bb9ac1c3d62dc1495f0e6c1e511fa4cd38f3"
     }
   }
 }
