@@ -25,7 +25,7 @@ echo "############################################################"
 # echo "      lockFile = {{ $lockFile }}"
 # echo "   sumfilePath = {{ $sumfilePath }}"
 
-just -f '{{ joinPath $ompPath "justfile" }}' skills "{{ $ompProfile }}" experimental_install
+just -f '{{ joinPath $ompPath "justfile" }}' skills "{{ $ompProfile }}" experimental_install -y
 
 echo "### OhMyPi Skills {{ $ompProfile }} Complete ###############\n"
 # vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
