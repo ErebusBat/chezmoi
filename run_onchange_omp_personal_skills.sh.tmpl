@@ -1,0 +1,31 @@
+#!/bin/bash
+{{ $ompProfile := "personal" -}}                                  # ompProfile     = personal
+{{ $ompPath := joinPath .chezmoi.homeDir ".omp" -}}               # ompPath        = /Users/andrew.burns/.omp
+{{ $ompProfileDir := printf "profiles/%s/agent" $ompProfile -}}   # ompProfileDir  = profiles/personal/agent
+{{ $ompProfilePath := joinPath $ompPath $ompProfileDir -}}        # ompProfilePath = /Users/andrew.burns/.omp/profiles/personal/agent
+{{ $lockFile := joinPath $ompProfileDir "skills-lock.json" -}}    #       lockFile = profiles/personal/agent/skills-lock.json
+{{ $sumfilePath := joinPath $ompPath $lockFile -}}                #    sumfilePath = /Users/andrew.burns/.omp/profiles/personal/agent/skills-lock.json
+set -euo pipefail
+# {{ include $sumfilePath | sha256sum }} {{ $lockFile }}
+
+if ! command -v just 2>&1 >/dev/null; then
+  echo "*** WARN: just not installed yet; not checking skill status for OhMyPi profile: {{ $ompProfile -}}"
+  echo "        : Marking {{ $lockFile }} invalid"
+  # Blank out the skills lock so next chezmoi run will change this file
+  echo "" > {{ $sumfilePath }}
+fi
+
+echo "############################################################"
+echo "### Updating skills for OhMyPi profile: {{ $ompProfile }}   "
+echo "############################################################"
+# echo "ompProfile     = {{ $ompProfile }}"
+# echo "ompPath        = {{ $ompPath }}"
+# echo "ompProfileDir  = {{ $ompProfileDir }}"
+# echo "ompProfilePath = {{ $ompProfilePath }}"
+# echo "      lockFile = {{ $lockFile }}"
+# echo "   sumfilePath = {{ $sumfilePath }}"
+
+just -f '{{ joinPath $ompPath "justfile" }}' skills "{{ $ompProfile }}" experimental_install
+
+echo "### OhMyPi Skills {{ $ompProfile }} Complete ###############\n"
+# vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
