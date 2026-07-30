@@ -34,14 +34,20 @@ FIT_OPTIONS := '--fit-target 4096'
 ls-llama:
     just --list --group 'llama.cpp'
 
+# Refresh Model List in personal OMP profile
+[group('llama.cpp')]
+[group('OhMyPi')]
+omp-refresh-models profile='personal':
+    omp --profile=personal models refresh
+
 # Run llama-server command
 [group('llama.cpp')]
 llama-server *args:
     {{ LLAMA_CPP_CMD }} {{ args }}
 
-# Serve Gemma4 31B
+# Serve Gemma4 26B-A4B
 [group('llama.cpp')]
-serve-gemma4 context=DEFAULT_CONTEXT vision='1':
+serve-gemma4-26b context=DEFAULT_CONTEXT vision='0':
     #!/usr/bin/env zsh
     context="{{context}}"
     if [[ $context -eq 1 ]]; then
@@ -51,7 +57,44 @@ serve-gemma4 context=DEFAULT_CONTEXT vision='1':
         echo "*** WARN: Context is 0; llama will use max"
     fi
     # codex://threads/019fb013-a51a-71a2-a29c-eecdaddb908d
-    ARGS=(--load-mode mmap)
+    MODEL_BASE_PATH="{{ LMS_MODEL_ROOT }}/unsloth/gemma-4-26B-A4B-it-qat-GGUF"
+    ARGS=(--cors-origins localhost --load-mode mmap)
+    ARGS+=(--flash-attn on)
+    ARGS+=(--reasoning on)
+    ARGS+=(-ngl all)
+    ARGS+=(--alias gemma4-26b)
+    ARGS+=(--parallel 1)
+    ARGS+=(-c $context)
+    ARGS+=(-b 2048 -ub 512)
+    ARGS+=(--cache-type-k q8_0 --cache-type-v q8_0)
+    ARGS+=(--cache-ram 0 --no-cache-idle-slots)
+    ARGS+=(-t 8)
+    ARGS+=(-m "$MODEL_BASE_PATH/gemma-4-26B-A4B-it-qat-UD-Q4_K_XL.gguf")
+
+    if [[ "{{vision}}" -gt 0 ]]; then
+        echo "*** INFO: Enabling Vision Mode"
+        echo "        : Disable with: just serve-gemma4 $context 0"
+        ARGS+=(--mmproj "$MODEL_BASE_PATH/mmproj-F32.gguf")
+    fi
+
+    echo "*** INFO: Starting with c=$context"
+    echo "> llama-server $ARGS[@]"
+    {{ LLAMA_SERVE_CMD }} "$ARGS[@]"
+
+# Serve Gemma4 31B
+[group('llama.cpp')]
+serve-gemma4-31b context=DEFAULT_CONTEXT vision='1':
+    #!/usr/bin/env zsh
+    context="{{context}}"
+    if [[ $context -eq 1 ]]; then
+        context="{{DEFAULT_CONTEXT}}"
+        echo "*** INFO: Context was 1; using $context"
+    elif [[ $context -eq 0 ]]; then
+        echo "*** WARN: Context is 0; llama will use max"
+    fi
+    # codex://threads/019fb013-a51a-71a2-a29c-eecdaddb908d
+    MODEL_BASE_PATH="{{ LMS_MODEL_ROOT }}/unsloth/gemma-4-31B-it-GGUF"
+    ARGS=(--cors-origins localhost --load-mode mmap)
     ARGS+=(--flash-attn on)
     ARGS+=(--reasoning on)
     ARGS+=(-ngl all)
@@ -59,14 +102,15 @@ serve-gemma4 context=DEFAULT_CONTEXT vision='1':
     ARGS+=(--parallel 1)
     ARGS+=(-c $context)
     ARGS+=(-b 1024 -ub 256)
-    ARGS+=(--cache-type-k q8_0 --cache-type-v q8_0 --cache-ram 0)
+    ARGS+=(--cache-type-k q8_0 --cache-type-v q8_0)
+    ARGS+=(--cache-ram 0 --no-cache-idle-slots)
     ARGS+=(-t 8)
-    ARGS+=(-m {{ QWEN36_35B_PATH }}/Qwen3.6-35B-A3B-Q4_K_M.gguf)
+    ARGS+=(-m "$MODEL_BASE_PATH/gemma-4-31B-it-UD-Q4_K_XL.gguf")
 
     if [[ "{{vision}}" -gt 0 ]]; then
         echo "*** INFO: Enabling Vision Mode"
         echo "        : Disable with: just serve-gemma4 $context 0"
-        ARGS+=(--mmproj {{ QWEN36_35B_PATH }}/mmproj-Qwen3.6-35B-A3B-BF16.gguf)
+        ARGS+=(--mmproj "$MODEL_BASE_PATH/mmproj-F32.gguf")
     fi
 
     echo "*** INFO: Starting with c=$context"
