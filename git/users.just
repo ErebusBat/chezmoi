@@ -1,7 +1,13 @@
 git_users_group := "git-users"
 git_users_home_base := "/var/git-users"
 git_shell := "/usr/bin/git-shell"
-git_remote_host := "maze.erebusbat.net"
+git_remote_host := "maze.lan"
+
+# Create a bare git repository for the current user
+[linux]
+[group('Git Repositories')]
+git-create-repo repo:
+  just git-create-repo-for-user "$USER" {{ repo }}
 
 # List local human users with UID, primary group, home, and shell.
 [linux]
@@ -304,7 +310,7 @@ git-user-keys user:
 # Create a bare git repository for a user and print its SSH remote.
 [linux]
 [group('Git Repositories')]
-git-create-repo user repo:
+git-create-repo-for-user user repo:
   #!/usr/bin/env bash
   set -euo pipefail
 
