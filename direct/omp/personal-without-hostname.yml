@@ -7,6 +7,7 @@ providers:
   streamIdleTimeoutSeconds: 3600
   webSearchOrder: 
     - brave
+    - firecrawl
     - perplexity
     - gemini
     - anthropic
@@ -18,7 +19,6 @@ providers:
     - jina
     - kagi
     - tavily
-    - firecrawl
     - kimi
     - parallel
     - synthetic
@@ -87,6 +87,7 @@ cycleOrder:
   - deepseek
   - kimi
   - luna
+  - sol
 modelRoles: 
   tiny: deepseek/deepseek-v4-flash
   commit: deepseek/deepseek-v4-flash
@@ -106,6 +107,7 @@ modelRoles:
   deepseek: deepseek/deepseek-v4-pro:high
   local: llama.cpp/laguna-xs-2.1
   luna: openrouter/openai/gpt-5.6-luna
+  sol: openai-codex/gpt-5.6-sol
 task: 
   agentModelOverrides: 
     plan: gpt-5.6-sol
