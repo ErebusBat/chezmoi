@@ -1,25 +1,23 @@
 version = "1.0"
 
 [defaults]
-count = 5
-template = "${num} ${word} ${word} ${word} ${word} ${num}"
+count = 10
+template = "${hex | upcase(chance=0.5)} ${word | tcase(chance=0.5) | upcase(chance=0.25)} ${word | tcase(chance=0.5) | upcase(chance=0.25)} ${word | tcase(chance=0.5) | upcase(chance=0.25)} ${word | tcase(chance=0.5) | upcase(chance=0.25)} ${hex | upcase(chance=0.5)}"
 format = "ruler"
 wordlist = "/Users/andrew.burns/.local/share/xkp/words.db"
 
 [providers.word]
 min = 4
-max = 8
 
 [providers.fwword]
 min = 4
-max = 8
 
 [providers.num]
 min = 10
 max = 99999
 
 [providers.hex]
-bytes = 2
+bytes = 4
 
 [bootstrap]
 allow_stemmed_imports = false

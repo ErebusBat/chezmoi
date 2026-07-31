@@ -129,7 +129,7 @@ retry:
       - openai-codex/gpt-5.3-codex-spark
     advisor: 
       - zai/glm-5.2
-hideThinkingBlock: false
+hideThinkingBlock: true
 mcp: 
   {}
 autolearn: 

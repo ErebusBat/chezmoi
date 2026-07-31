@@ -56,9 +56,9 @@ display:
 steeringMode: all
 interruptMode: immediate
 doubleEscapeAction: tree
-statusLine: 
+statusLine:
   preset: custom
-  leftSegments: 
+  leftSegments:
     - mode
     - model
     - path
