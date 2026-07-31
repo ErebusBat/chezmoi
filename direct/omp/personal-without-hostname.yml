@@ -75,7 +75,7 @@ statusLine:
     - collab
 dev: 
   autoqaConsent: granted
-defaultThinkingLevel: medium
+defaultThinkingLevel: auto
 cycleOrder: 
   - budget
   - smol
@@ -86,6 +86,7 @@ cycleOrder:
   - flash
   - deepseek
   - kimi
+  - luna
 modelRoles: 
   tiny: deepseek/deepseek-v4-flash
   commit: deepseek/deepseek-v4-flash
@@ -93,7 +94,7 @@ modelRoles:
   advisor: kimi-code/k3:high
   default: openai-codex/gpt-5.6-terra:medium
   task: openai-codex/gpt-5.6-terra:auto
-  smol: openai-codex/gpt-5.6-luna:low
+  smol: openrouter/openai/gpt-5.6-luna:low
   slow: openai-codex/gpt-5.6-sol:high
   plan: openai-codex/gpt-5.6-terra:medium
   spark: openai-codex/gpt-5.3-codex-spark
@@ -104,6 +105,7 @@ modelRoles:
   flash: deepseek/deepseek-v4-flash:high
   deepseek: deepseek/deepseek-v4-pro:high
   local: llama.cpp/laguna-xs-2.1
+  luna: openrouter/openai/gpt-5.6-luna
 task: 
   agentModelOverrides: 
     plan: gpt-5.6-sol
@@ -139,7 +141,7 @@ magicKeywords:
   ultrathink: false
 startup: 
   showSplash: false
-collapseChangelog: true
+  changelogMode: summary
 power: 
   sleepPrevention: idle
 compaction: 

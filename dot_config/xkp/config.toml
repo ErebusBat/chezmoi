@@ -1,0 +1,42 @@
+version = "1.0"
+
+[defaults]
+count = 5
+template = "${num} ${word} ${word} ${word} ${word} ${num}"
+format = "ruler"
+wordlist = "/Users/andrew.burns/.local/share/xkp/words.db"
+
+[providers.word]
+min = 4
+max = 8
+
+[providers.fwword]
+min = 4
+max = 8
+
+[providers.num]
+min = 10
+max = 99999
+
+[providers.hex]
+bytes = 2
+
+[bootstrap]
+allow_stemmed_imports = false
+sources = [
+    "/Users/andrew.burns/.local/share/hyph/",
+    "/Users/andrew.burns/.local/share/wordlists/",
+    "/Users/andrew.burns/.local/share/words/",
+    "/Users/andrew.burns/.words/",
+    "/usr/share/dict/",
+    "/usr/share/dict/words",
+    "/usr/share/dict/words.cap",
+    "/usr/share/dict/upper",
+    "/usr/share/dict/propernames",
+    "/usr/share/dict/propers",
+    "/usr/share/dict/propers/",
+    "/usr/share/dict/wordlist/",
+    "/usr/share/wordlists/",
+    "/usr/share/seclists/Wordlists/",
+    "/usr/share/seclists/",
+]
