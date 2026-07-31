@@ -114,7 +114,10 @@ function git-clone-worktree-repo() {
   printf "--- Creating a worktree for $defaultBranch\n"
   echo "git -C ${barePath} worktree add ${defaultBranchCheckoutPath} ${defaultBranch}"
   command git -C ${barePath} worktree add ${defaultBranchCheckoutPath} ${defaultBranch}
+  printf "--- Ensuring that $defaultBranch tracks remote\n"
   cd ${defaultBranchWtPath}
+  command git config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'
+  command git fetch origin
   printf "------------------------------------------------------------\n"
 
   ### Debugging
