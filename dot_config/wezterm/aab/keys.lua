@@ -13,6 +13,7 @@ return {
     -- | Ctrl+Shift+\         | Split Vertical                  |
     -- | Ctrl+Shift+-         | Split Horizontal                |
     -- | Ctrl+Shift+f         | Search                          |
+    -- | ⌘+k                  | Command Palette                 |
     -- | ◆+F11                | Close Tmux Window (tmux user-key)|
     -- | ◆+F12                | Clear Tmux Notification (tmux user-key)|
     -- (◆ = Ctrl+Alt+Shift+Super, 🤖 = tmux pane nav)
@@ -34,6 +35,24 @@ return {
       key = 'P',
       mods = 'ALT|SHIFT',
       action = wezterm.action.SendString('\x1b[112;4u'),
+    },
+
+    -- Move the command palette from Ctrl+Shift+P to ⌘K so Ctrl+Shift+P
+    -- passes through to apps (OMP reverse role-cycle).
+    {
+      key = 'k',
+      mods = 'CMD',
+      action = wezterm.action.ActivateCommandPalette,
+    },
+    {
+      key = 'P',
+      mods = 'CTRL|SHIFT',
+      action = wezterm.action.DisableDefaultAssignment,
+    },
+    {
+      key = 'p',
+      mods = 'CTRL|SHIFT',
+      action = wezterm.action.DisableDefaultAssignment,
     },
 
     -- Route macOS tab shortcuts to Herdr instead of switching WezTerm tabs.
