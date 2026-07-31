@@ -129,7 +129,7 @@ start-server:
 # Apply all local patches
 [group('Patches')]
 [no-cd]
-apply-all-local: apply-login-fix apply-db-password-fix
+apply-all-local: apply-login-fix apply-db-password-fix apply-seed-fix
 
 # Apply local dev login fix to allow signing in with legacy credentials
 [group('Patches')]
@@ -142,6 +142,12 @@ apply-login-fix:
 [no-cd]
 apply-db-password-fix:
     just _apply_root_patch 'local-dev-db-password.patch'
+
+# Make db:seed and schema loads re-runnable (upsert seed user, drop functions before create)
+[group('Patches')]
+[no-cd]
+apply-seed-fix:
+    just _apply_root_patch '0001-aab-DB-Seed-changes.patch'
 
 # Idempodicly apply a patch file in the pos-service root folder.
 [no-cd]
