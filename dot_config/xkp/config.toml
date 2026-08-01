@@ -2,9 +2,13 @@ version = "1.0"
 
 [defaults]
 count = 10
-template = "${hex | upcase(chance=0.5)} ${word | tcase(chance=0.5) | upcase(chance=0.25)} ${word | tcase(chance=0.5) | upcase(chance=0.25)} ${word | tcase(chance=0.5) | upcase(chance=0.25)} ${word | tcase(chance=0.5) | upcase(chance=0.25)} ${hex | upcase(chance=0.5)}"
+template = "${hexrc} ${wordrc} ${wordrc} ${wordrc} ${wordrc} ${hexrc}"
 format = "ruler"
 wordlist = "/Users/andrew.burns/.local/share/xkp/words.db"
+
+[providers.def]
+hexrc = '${hex | upcase(chance=0.5)}'
+wordrc = '${word | tcase(chance=0.25) | upcase(chance=0.25)}'
 
 [providers.word]
 min = 4
