@@ -84,14 +84,12 @@ hosts:
   #   Inherits: bat-devices
 
   ### MBP ##################################################
-  # mbp-lan:
+  # mbp.lan:
   #   Hostname: 192.168.68.75
   #   Inherits: personal-allowpass
-  # mbp:
-  #   Hostname: 100.73.19.104
-  #   Inherits: personal-allowpass
-  # mbp-personal:
-  #   Inherits: mbp
+  m4mbp:
+    Hostname: m4mbp.erebusbat.net
+    Inherits: personal-allowpass
 
   ### NAS ##################################################
   truenas:
