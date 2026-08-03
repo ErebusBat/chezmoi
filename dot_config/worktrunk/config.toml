@@ -28,6 +28,9 @@ worktree-path = "{{ repo_path }}/../{{ branch | sanitize }}"
 skip-shell-integration-prompt = true
 
 [projects]
+
+[commit.generation]
+command = "MAX_THINKING_TOKENS=0 claude -p --no-session-persistence --model=haiku --tools='' --safe-mode --setting-sources='user' --system-prompt=''"
 #
 # # Inside the repository
 # # Creates: ~/code/myproject/.worktrees/feature-auth

@@ -2,19 +2,18 @@ version = "1.0"
 
 [defaults]
 count = 10
-template = "${hexrc} ${wordrc} ${wordrc} ${wordrc} ${wordrc} ${hexrc}"
+template = "${hexrc} ${wordrc} ${wordrc} ${wordrc} ${wordrc}${symbolrc}"
 format = "ruler"
+ruler_interval = 3
 wordlist = "/Users/andrew.burns/.local/share/xkp/words.db"
-
-[providers.def]
-hexrc = '${hex | upcase(chance=0.5)}'
-wordrc = '${word | tcase(chance=0.25) | upcase(chance=0.25)}'
 
 [providers.word]
 min = 4
+max = 50
 
 [providers.fwword]
 min = 4
+max = 50
 
 [providers.num]
 min = 10
@@ -23,22 +22,16 @@ max = 99999
 [providers.hex]
 bytes = 4
 
+[providers.char]
+alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_"
+len = 1
+
+[providers.def]
+hexrc = "${hex | upcase(chance=0.5)}"
+wordrc = "${word | tcase(chance=0.25) | upcase(chance=0.25)}"
+symbol = "${char(len=1,alphabet='~!@#$%^&*()')}"
+symbolrc = "${symbol | rand(p=0.5)}"
+
 [bootstrap]
 allow_stemmed_imports = false
-sources = [
-    "/Users/andrew.burns/.local/share/hyph/",
-    "/Users/andrew.burns/.local/share/wordlists/",
-    "/Users/andrew.burns/.local/share/words/",
-    "/Users/andrew.burns/.words/",
-    "/usr/share/dict/",
-    "/usr/share/dict/words",
-    "/usr/share/dict/words.cap",
-    "/usr/share/dict/upper",
-    "/usr/share/dict/propernames",
-    "/usr/share/dict/propers",
-    "/usr/share/dict/propers/",
-    "/usr/share/dict/wordlist/",
-    "/usr/share/wordlists/",
-    "/usr/share/seclists/Wordlists/",
-    "/usr/share/seclists/",
-]
+sources = ["/Users/andrew.burns/.local/share/hyph/", "/Users/andrew.burns/.local/share/wordlists/", "/Users/andrew.burns/.local/share/words/", "/Users/andrew.burns/.words/", "/usr/share/dict/", "/usr/share/dict/words", "/usr/share/dict/words.cap", "/usr/share/dict/upper", "/usr/share/dict/propernames", "/usr/share/dict/propers", "/usr/share/dict/propers/", "/usr/share/dict/wordlist/", "/usr/share/wordlists/", "/usr/share/seclists/Wordlists/", "/usr/share/seclists/"]
