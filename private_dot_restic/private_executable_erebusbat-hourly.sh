@@ -6,4 +6,5 @@ restic backup \
   --exclude-caches \
   --exclude-file="$RESTIC_DIR/src-excludes.lst" \
   "$HOME/src/erebusbat/" \
+  "$HOME/Documents/AI" \
   "$HOME/.local/share/mcp-memory-service/db/backups"
