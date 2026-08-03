@@ -46,6 +46,8 @@ fi
 CANDIDATES+=(/tmp/ssh-*/agent.*(N))
 # macOS / Herdr
 CANDIDATES+=(~/.local/share/wezterm/agent.*(N))
+# Doormouse / Ubuntu 26
+CANDIDATES+=(~/.ssh/agent/s.*(N))
 
 dbug "Found ${#CANDIDATES} candidates: $CANDIDATES"
 
