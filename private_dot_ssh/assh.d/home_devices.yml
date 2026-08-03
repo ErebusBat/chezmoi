@@ -90,6 +90,9 @@ hosts:
   m4mbp:
     Hostname: m4mbp.erebusbat.net
     Inherits: personal-allowpass
+  m4mbp.lan:
+    Hostname: 192.168.7.7
+    Inherits: m4mbp
 
   ### NAS ##################################################
   truenas:
