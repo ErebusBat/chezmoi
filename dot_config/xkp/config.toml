@@ -2,7 +2,8 @@ version = "1.0"
 
 [defaults]
 count = 10
-template = "${hexrc} ${wordrc} ${wordrc} ${wordrc} ${wordrc}${symbolrc}"
+# template = "${hexrc} ${wordrc} ${wordrc} ${wordrc} ${wordrc}${symbolrc}"
+template = "${hexrc} ${leet1rc} ${leet1rc} ${leet1rc} ${leet1rc}${symbolrc}"
 format = "ruler"
 ruler_interval = 3
 wordlist = "/Users/andrew.burns/.local/share/xkp/words.db"
@@ -31,6 +32,8 @@ hexrc = "${hex | upcase(chance=0.5)}"
 wordrc = "${word | tcase(chance=0.25) | upcase(chance=0.25)}"
 symbol = "${char(len=1,alphabet='~!@#$%^&*()')}"
 symbolrc = "${symbol | rand(p=0.5)}"
+leetrc = '${wordrc | leet(type=classic, chance=0.5, p=0.25)}'
+leet1rc = '${wordrc | leet(type=extended, mode=first, chance=0.25)}'
 
 [bootstrap]
 allow_stemmed_imports = false

@@ -1,5 +1,16 @@
 # vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
 
+# List raw extension files
+[group('Extensions')]
+ls-extensions profile='':
+    #!/usr/bin/env zsh
+    OMP_PROFILE="{{profile}}"
+    if [[ -z $OMP_PROFILE ]]; then
+        ls -lh profiles/*/agent/extensions
+    else
+        ls -lh profiles/$OMP_PROFILE/agent/extensions
+    fi
+
 # List raw skill files for given profile
 [group('Skills')]
 ls-skills profile:
