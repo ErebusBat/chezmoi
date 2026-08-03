@@ -49,7 +49,11 @@ CANDIDATES+=(~/.local/share/wezterm/agent.*(N))
 # Doormouse / Ubuntu 26
 CANDIDATES+=(~/.ssh/agent/s.*(N))
 
-dbug "Found ${#CANDIDATES} candidates: $CANDIDATES"
+# Debug logging
+if [[ $DEBUG -gt 0 ]]; then
+  dbug "Found ${#CANDIDATES} candidates:"
+  ls -l $CANDIDATES(N) >&2
+fi
 
 # Check them
 for sock in $CANDIDATES; do

@@ -93,7 +93,7 @@ modelRoles:
   commit: deepseek/deepseek-v4-flash
   vision: openai-codex/gpt-5.6-terra
   advisor: kimi-code/k3:high
-  default: openai-codex/gpt-5.6-terra:medium
+  default: openai-codex/gpt-5.6-luna:high
   task: openai-codex/gpt-5.6-terra:auto
   smol: openrouter/openai/gpt-5.6-luna:low
   slow: openai-codex/gpt-5.6-sol:high
