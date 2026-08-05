@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
 
 # Move this active terminal window to workspace P before launching anything else
@@ -37,6 +37,7 @@ APPS=(
 
   #-- Productivity
   /Applications/Obsidian.app
+  /Applications/ChatGPT.app
   /Applications/Fantastical.app
   /Applications/Todoist.app
   /Applications/Due.app

@@ -63,3 +63,12 @@ key = "prefix+s"
 type = "plugin_action"
 command = "herdr-bar.open"
 description = "command bar"
+
+############################################################
+### herdr-reviewr
+############################################################
+[[keys.command]]
+key = "prefix+alt+r"
+type = "plugin_action"
+command = "persiyanov.reviewr.toggle"
+description = "toggle reviewer"
