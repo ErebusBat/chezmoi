@@ -45,6 +45,36 @@ omp-refresh-models profile='personal':
 llama-server *args:
     {{ LLAMA_CPP_CMD }} {{ args }}
 
+# Serve Kwaipilot KAT-Coder v2.5
+[group('llama.cpp')]
+serve-kat-coder-25 context=DEFAULT_CONTEXT:
+    #!/usr/bin/env zsh
+    context="{{context}}"
+    if [[ $context -eq 1 ]]; then
+        context="{{DEFAULT_CONTEXT}}"
+        echo "*** INFO: Context was 1; using $context"
+    elif [[ $context -eq 0 ]]; then
+        echo "*** WARN: Context is 0; llama will use max"
+    fi
+    # codex://threads/019fb013-a51a-71a2-a29c-eecdaddb908d
+    MODEL_BASE_PATH="{{ LMS_MODEL_ROOT }}/bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF"
+    ARGS=(--cors-origins localhost --load-mode mmap)
+    ARGS+=(--flash-attn on)
+    ARGS+=(--reasoning on)
+    ARGS+=(-ngl all)
+    ARGS+=(--alias kat-coder-2.5)
+    ARGS+=(--parallel 1)
+    ARGS+=(-c $context)
+    ARGS+=(-b 512 -ub 128)
+    ARGS+=(--cache-type-k q8_0 --cache-type-v q8_0)
+    ARGS+=(--cache-ram 0 --no-cache-idle-slots)
+    ARGS+=(-t 8)
+    ARGS+=(-m "$MODEL_BASE_PATH/Kwaipilot_KAT-Coder-V2.5-Dev-Q4_K_M.gguf")
+
+    echo "*** INFO: Starting with c=$context"
+    echo "> llama-server $ARGS[@]"
+    {{ LLAMA_SERVE_CMD }} "$ARGS[@]"
+
 # Serve Gemma4 26B-A4B
 [group('llama.cpp')]
 serve-gemma4-26b context=DEFAULT_CONTEXT vision='0':
