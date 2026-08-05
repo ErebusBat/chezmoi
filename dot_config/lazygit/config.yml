@@ -25,6 +25,6 @@ git:
   # Lazygit supports ignoring all whitespace (not only end-of-line whitespace).
   ignoreWhitespaceInDiffView: true
   parseEmoji: true
-  pagers:
-    - pager: delta --dark --paging=never
+  diffRenderers:
+    - command: delta --dark --paging=never
   overrideGpg: true
