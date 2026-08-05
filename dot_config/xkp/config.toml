@@ -2,8 +2,8 @@ version = "1.0"
 
 [defaults]
 count = 10
-# template = "${hexrc} ${wordrc} ${wordrc} ${wordrc} ${wordrc}${symbolrc}"
-template = "${hexrc} ${leet1rc} ${leet1rc} ${leet1rc} ${leet1rc}${symbolrc}"
+# template = "${hexrc} ${leet1rc} ${leet1rc} ${leet1rc} ${leet1rc}${symbolrc}"
+preset = "hex_leet4_sym"
 format = "ruler"
 ruler_interval = 3
 wordlist = "/Users/andrew.burns/.local/share/xkp/words.db"
@@ -29,11 +29,18 @@ len = 1
 
 [providers.def]
 hexrc = "${hex | upcase(chance=0.5)}"
-wordrc = "${word | tcase(chance=0.25) | upcase(chance=0.25)}"
+leet1rc = "${wordrc | leet(type=extended, mode=first, chance=0.25)}"
+leetrc = "${wordrc | leet(type=classic, chance=0.5, p=0.25)}"
 symbol = "${char(len=1,alphabet='~!@#$%^&*()')}"
 symbolrc = "${symbol | rand(p=0.5)}"
-leetrc = '${wordrc | leet(type=classic, chance=0.5, p=0.25)}'
-leet1rc = '${wordrc | leet(type=extended, mode=first, chance=0.25)}'
+wordrc = "${word | tcase(chance=0.25) | upcase(chance=0.25)}"
+non-space = "${char(len=1,alphabet='-_')}"
+
+[presets]
+default = "${hexrc} ${wordrc} ${wordrc} ${wordrc} ${wordrc}${symbolrc}"
+apple = "${hexrc}${non-space}${wordrc}${non-space}${wordrc}${non-space}${wordrc}${non-space}${wordrc}${symbolrc}"
+hex_leet4_sym = "${hexrc} ${leet1rc} ${leet1rc} ${leet1rc} ${leet1rc}${symbolrc}"
+xkcd = "${wordrc} ${wordrc} ${wordrc} ${wordrc}"
 
 [bootstrap]
 allow_stemmed_imports = false
