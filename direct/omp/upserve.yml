@@ -1,5 +1,5 @@
-providers:
-  webSearchOrder:
+providers: 
+  webSearchOrder: 
     - brave
     - anthropic
     - firecrawl
@@ -23,13 +23,13 @@ providers:
     - mojeek
     - public
 symbolPreset: nerd
-theme:
+theme: 
   dark: dark-retro
   light: light
 setupVersion: 1
 defaultThinkingLevel: auto
-modelRoles:
-  default: github-copilot/gpt-5.6-sol:low
+modelRoles: 
+  default: anthropic/claude-opus-5:medium
   task: github-copilot/gpt-5.6-terra:auto
   smol: github-copilot/gpt-5.6-luna:high
   tiny: github-copilot/gpt-5.6-luna:minimal
@@ -41,24 +41,24 @@ modelRoles:
   designer: github-copilot/claude-opus-5
   advisor: github-copilot/claude-opus-4.8:high
   vision: github-copilot/gemini-3.1-pro-preview
-cycleOrder:
+cycleOrder: 
   - plan
   - plan_med
   - plan_low
   - default
   - smol
   - slow
-plan:
+plan: 
   defaultOnStartup: false
-display:
+display: 
   showTokenUsage: true
   cacheMissMarker: true
 steeringMode: all
 interruptMode: immediate
 doubleEscapeAction: tree
-statusLine:
+statusLine: 
   preset: custom
-  leftSegments:
+  leftSegments: 
     - mode
     - model
     - path
@@ -66,7 +66,7 @@ statusLine:
     - pr
     - subagents
     - time_spent
-  rightSegments:
+  rightSegments: 
     - session_name
     - context_pct
     - cost
@@ -74,13 +74,13 @@ statusLine:
     - session
     - time
     - collab
-memory:
+memory: 
   backend: mnemopi
-mnemopi:
+mnemopi: 
   scoping: per-project-tagged
   embeddingVariant: en
   noEmbeddings: false
   llmMode: smol
-dev:
+dev: 
   autoqaConsent: granted
 hideThinkingBlock: true

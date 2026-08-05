@@ -1,0 +1,35 @@
+#!/bin/bash
+# ruby-lsp launcher for the OMP LSP client.
+#
+# ruby-lsp runs on its own modern Ruby but, by default, loads the project's
+# Bundler to build a composed bundle. Against a legacy bundle that is fatal:
+# Bundler 1.x calls String#untaint, removed in Ruby 3.2+, so the server dies
+# during boot. Isolating the bundle also keeps ruby-lsp from writing a .ruby-lsp
+# directory into the working tree.
+#
+# Isolate only for legacy projects; modern ones keep full gem-aware indexing.
+set -u
+
+isolate=no
+
+lock="$PWD/Gemfile.lock"
+if [ -f "$lock" ]; then
+  bundled=$(awk '/^BUNDLED WITH/ { getline; gsub(/[[:space:]]/, ""); print; exit }' "$lock")
+  case "$bundled" in
+    1.*) isolate=yes ;;
+  esac
+fi
+
+rubyver="$PWD/.ruby-version"
+if [ -f "$rubyver" ]; then
+  major=$(tr -d '[:space:]' < "$rubyver" | cut -d. -f1)
+  case "$major" in
+    1|2) isolate=yes ;;
+  esac
+fi
+
+if [ "$isolate" = yes ]; then
+  export BUNDLE_GEMFILE=/dev/null
+fi
+
+exec ruby-lsp "$@"

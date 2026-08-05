@@ -1,0 +1,10 @@
+{
+  "servers": {
+    "solargraph": {
+      "command": "/Users/andrew.burns/.local/bin/omp-solargraph"
+    },
+    "ruby-lsp": {
+      "command": "/Users/andrew.burns/.local/bin/omp-ruby-lsp"
+    }
+  }
+}

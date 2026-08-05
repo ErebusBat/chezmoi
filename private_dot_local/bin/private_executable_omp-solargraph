@@ -1,0 +1,24 @@
+#!/bin/bash
+# Solargraph launcher for the OMP LSP client.
+#
+# Solargraph needs a Ruby it can actually run on (>= 2.6). Projects pinned to an
+# older Ruby resolve the rbenv shim to a version with no solargraph installed, so
+# the shim exits before speaking LSP. Prefer whatever the project resolves; fall
+# back to a Ruby that has solargraph installed.
+#
+# The fallback is a RubyGems binstub whose shebang pins its own interpreter, so
+# the project's .ruby-version cannot pull it back to an unusable Ruby.
+set -u
+
+FALLBACK="${RBENV_ROOT:-$HOME/.rbenv}/versions/3.3.7/bin/solargraph"
+
+if command -v solargraph >/dev/null 2>&1 && solargraph --version >/dev/null 2>&1; then
+  exec solargraph "$@"
+fi
+
+if [ -x "$FALLBACK" ]; then
+  exec "$FALLBACK" "$@"
+fi
+
+echo "omp-solargraph: no runnable solargraph found (project Ruby lacks it and $FALLBACK is missing)" >&2
+exit 127
