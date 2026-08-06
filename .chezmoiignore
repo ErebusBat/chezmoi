@@ -32,6 +32,15 @@ direct/
 .local/bin/buzz-codex
 {{- end }}
 
+############################################################
+### USMB-JVK937H909 Only Files
+###   - Minus Buzz Agents (see above)
+############################################################
+{{- if ne .chezmoi.hostname "USMB-JVK937H909" }}
+bin/blue-bubbles-loop.sh
+.config/erebusbat/blue-bubbles
+{{- end }}
+
 # WIP
 .tmux/plugins
 

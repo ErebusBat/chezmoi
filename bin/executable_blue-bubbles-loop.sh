@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-# set -euo pipefail
 set -u
 
 LOOP_SLEEP=15

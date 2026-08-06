@@ -1,0 +1,4 @@
+# vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
+export BLUEBUBBLES_HOME_CHANNEL='+13072595990'
+export BLUEBUBBLES_PASSWORD={{- (gopassRaw "erebusbat/batbot" | mustFromJson).bluebubbles.api_server_url }}
+export BLUEBUBBLES_SERVER_URL={{- (gopassRaw "erebusbat/batbot" | mustFromJson).bluebubbles.api_password }}

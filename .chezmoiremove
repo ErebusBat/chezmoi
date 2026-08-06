@@ -1,8 +1,12 @@
-# 2026-APR-09: Remove broken plugin
-.config/nvim/lua/plugins/terminal.lua
+############################################################
+### USMB-JVK937H909 Only Files
+###   - Minus Buzz Agents (see above)
+############################################################
+{{- if ne .chezmoi.hostname "USMB-JVK937H909" }}
+bin/blue-bubbles-loop.sh
+.config/erebusbat/blue-bubbles
+{{- end }}
 
-# 2026-MAY-15: Rename starship_prompt zsh plugin to starship
-.config/zsh-antibody/starship_prompt/starship_prompt.plugin.zsh
 
 {{- if and (hasKey . "zsh_hooks") (index .zsh_hooks "ignore_base16" | default false) }}
 .config/zsh-hooks/base16.zsh

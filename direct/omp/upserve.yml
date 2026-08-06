@@ -84,3 +84,8 @@ mnemopi:
 dev: 
   autoqaConsent: granted
 hideThinkingBlock: true
+task: 
+  agentModelOverrides: 
+    designer: anthropic/claude-opus-5
+    reviewer: anthropic/opus
+    task: anthropic/opus:high
