@@ -13,7 +13,14 @@ DEBUG=${1:-0}
 {{ $ompProfilePath := joinPath $ompPath $ompProfileDir -}}        # ompProfilePath = /Users/andrew.burns/.omp/profiles/personal/agent
 {{ $lockFile := joinPath $ompProfileDir "skills-lock.json" -}}    #       lockFile = profiles/personal/agent/skills-lock.json
 {{ $sumfilePath := joinPath $ompPath $lockFile -}}                #    sumfilePath = /Users/andrew.burns/.omp/profiles/personal/agent/skills-lock.json
-# CHEZMOI CHANGE TAG: {{ include $sumfilePath | sha256sum }} {{ $lockFile }}
+{{ $force_update_every_days := 3 -}}
+{{ $update_version := div (now | unixEpoch) (mul $force_update_every_days 86400) }}
+
+#===============================================================================
+# THIS FILE IS TEMPLATED, DO NOT EDIT DIRECTLY!
+# update_version={{ $update_version }}.1 <-- Will update every {{ $force_update_every_days }}d
+# Hash: {{ include $sumfilePath | sha256sum }} {{ $lockFile }}
+#===============================================================================
 JUSTFILE_PATH='{{ joinPath $ompPath "justfile" }}'
 
 ### Make sure that we have a good setup, or bail early
