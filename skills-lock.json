@@ -7,11 +7,39 @@
       "skillPath": "skills/adhd/SKILL.md",
       "computedHash": "c9dd844eb830e59e60398765600e5504d06c6092323cfe6509de73520018deaf"
     },
+    "ask-grill": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/ohmypi/ask-grill/SKILL.md",
+      "computedHash": "5f32bd19d4e9dbf27f2400c364a10cc774d0ef0245d3b0172228edfdd4162d33"
+    },
+    "ask-tool-preference": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/ohmypi/ask-tool-preference/SKILL.md",
+      "computedHash": "415a3638347c7c61139a621fb43c50d9c3980e4fc8312141de5945eca015fe04"
+    },
+    "bluebubbles-messaging": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/productivity/bluebubbles-messaging/SKILL.md",
+      "computedHash": "0d5ffdcf8b7450798c978efa9baff6c199d7fa2d54ff8a90d97f8159fe71b1a9"
+    },
     "code-review": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "skillPath": "skills/engineering/code-review/SKILL.md",
       "computedHash": "56a409d679605958439d1e9ca6c11c29835a4be95584825967ea4a491803ebd2"
+    },
+    "daily-logs": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/daily-logs/SKILL.md",
+      "computedHash": "f488407735ba60fe476fad5834c210cca13132a0355bbfd4368d768104a0ceaa"
     },
     "defuddle": {
       "source": "kepano/obsidian-skills",
@@ -24,6 +52,13 @@
       "sourceType": "github",
       "skillPath": "skills/engineering/diagnosing-bugs/SKILL.md",
       "computedHash": "fd6c99466b7ba43be624e6e66ed6d7af2796ded7218f24c83820823977819e22"
+    },
+    "firecrawl": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/vendor/firecrawl-search/SKILL.md",
+      "computedHash": "9ced5b5bb6d5a2ac7c0c14a19396f11d7f995fb1605131fdde1569fcf49e73ca"
     },
     "grill-me": {
       "source": "mattpocock/skills",
@@ -54,6 +89,13 @@
       "sourceType": "github",
       "skillPath": "skills/json-canvas/SKILL.md",
       "computedHash": "56cbac74a93e4fba97f4d44bccfdeaae89e545b223f47df392c7705e01e6c543"
+    },
+    "ln-11-plan-reviewer": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/vendor/ln-11-plan-reviewer/SKILL.md",
+      "computedHash": "f5372927c9cb5e5e8f776c852345a6cd529771fdc984aee99e05c359f1e95ba0"
     },
     "loop-me": {
       "source": "mattpocock/skills",
@@ -91,11 +133,25 @@
       "skillPath": "skills/engineering/resolving-merge-conflicts/SKILL.md",
       "computedHash": "28aad6f8b1b7025abc8892fa8890f68fe1533499b28a565f416b159131d22fad"
     },
+    "rita-todoist": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/nplh/rita-todoist/SKILL.md",
+      "computedHash": "56e904b7ecd5fcc2482e26b10233f7fa4b7beca7cd9ce950342066cf0cc04bdb"
+    },
     "teach": {
       "source": "mattpocock/skills",
       "sourceType": "github",
       "skillPath": "skills/productivity/teach/SKILL.md",
       "computedHash": "68999bb1a241384b2f921f3321d779b7d05eb6089077b70d88cee2aee3d75ccc"
+    },
+    "timebox-management": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/timebox-management/SKILL.md",
+      "computedHash": "5f21663f3ca746cb6efdda80f384a7667988a4b292f4f822b9cf65f726ffeb99"
     },
     "to-questionnaire": {
       "source": "mattpocock/skills",

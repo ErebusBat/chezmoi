@@ -1,31 +1,49 @@
 #!/bin/bash
+# vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
+set -euo pipefail
+
+# Debug info, pass 1 as first param to output live values below
+# cz execute-template < run_onchange_omp_personal_skills.sh.tmpl
+DEBUG=${1:-0}
+
+# Examples, see below for live values
 {{ $ompProfile := "personal" -}}                                  # ompProfile     = personal
 {{ $ompPath := joinPath .chezmoi.homeDir ".omp" -}}               # ompPath        = /Users/andrew.burns/.omp
 {{ $ompProfileDir := printf "profiles/%s/agent" $ompProfile -}}   # ompProfileDir  = profiles/personal/agent
 {{ $ompProfilePath := joinPath $ompPath $ompProfileDir -}}        # ompProfilePath = /Users/andrew.burns/.omp/profiles/personal/agent
 {{ $lockFile := joinPath $ompProfileDir "skills-lock.json" -}}    #       lockFile = profiles/personal/agent/skills-lock.json
 {{ $sumfilePath := joinPath $ompPath $lockFile -}}                #    sumfilePath = /Users/andrew.burns/.omp/profiles/personal/agent/skills-lock.json
-set -euo pipefail
-# {{ include $sumfilePath | sha256sum }} {{ $lockFile }}
+# CHEZMOI CHANGE TAG: {{ include $sumfilePath | sha256sum }} {{ $lockFile }}
+JUSTFILE_PATH='{{ joinPath $ompPath "justfile" }}'
 
+### Make sure that we have a good setup, or bail early
+if [[ ! -f $JUSTFILE_PATH ]]; then
+  echo "*** WARN: omp justfile not found, skipping automatic skill install/update"
+  exit 0
+fi
+
+### Make sure that we have just installed, if this is a first run then it might not be
 if ! command -v just 2>&1 >/dev/null; then
   echo "*** WARN: just not installed yet; not checking skill status for OhMyPi profile: {{ $ompProfile -}}"
   echo "        : Marking {{ $lockFile }} invalid"
   # Blank out the skills lock so next chezmoi run will change this file
   echo "" > {{ $sumfilePath }}
+  exit 0
 fi
 
-echo "############################################################"
-echo "### Updating skills for OhMyPi profile: {{ $ompProfile }}   "
-echo "############################################################"
-# echo "ompProfile     = {{ $ompProfile }}"
-# echo "ompPath        = {{ $ompPath }}"
-# echo "ompProfileDir  = {{ $ompProfileDir }}"
-# echo "ompProfilePath = {{ $ompProfilePath }}"
-# echo "      lockFile = {{ $lockFile }}"
-# echo "   sumfilePath = {{ $sumfilePath }}"
+### Output a header so it is clear
+printf "############################################################\n"
+printf "### Updating skills for OhMyPi profile: {{ $ompProfile }}   \n"
+printf "############################################################\n"
+if [[ $DEBUG -gt 0 ]]; then
+  printf "ompProfile     = {{ $ompProfile }}\n"
+  printf "ompPath        = {{ $ompPath }}\n"
+  printf "ompProfileDir  = {{ $ompProfileDir }}\n"
+  printf "ompProfilePath = {{ $ompProfilePath }}\n"
+  printf "      lockFile = {{ $lockFile }}\n"
+  printf "   sumfilePath = {{ $sumfilePath }}\n"
+fi
 
-just -f '{{ joinPath $ompPath "justfile" }}' skills "{{ $ompProfile }}" experimental_install -y
+just -f $JUSTFILE_PATH skills "{{ $ompProfile }}" experimental_install -y
 
-echo "### OhMyPi Skills {{ $ompProfile }} Complete ###############\n"
-# vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
+printf "### OhMyPi Skills {{ $ompProfile }} Complete ###############\n"
