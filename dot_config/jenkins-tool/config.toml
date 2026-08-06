@@ -25,6 +25,10 @@ branch_param = "BRANCH"
 job_url = "https://jenkins.internal.upserve.com/job/app.breadcrumb-reports"
 branch_param = "BRANCH"
 
+[mappings."github.com:upserve/online_ordering"]
+job_url = "https://jenkins.internal.upserve.com/job/app.online_ordering/"
+branch_param = "BRANCH"
+
 [mappings."github.com:upserve/pos-service"]
 job_url = "https://jenkins.internal.upserve.com/job/app.pos-service/"
 branch_param = "BRANCH"
