@@ -55,11 +55,11 @@ alias gcuc='gcu && gbda'
 alias gcum='git_checkout_update_master && gsu && gbda'
 
 # Git WorkTree (now using https://github.com/max-sixty/worktrunk)
-# alias gwt='git worktree'
+alias gwt='git worktree'
 # alias gwta='git worktree add'
 # alias gwtrm='git worktree remove'
 # alias gwtp='git worktree prune'
-# alias gwtls='git worktree list'
+alias gwtls='git worktree list'
 # alias gnwtm='gwtnew'
 
 # Create a new worktree with a branch prefixed by the repo name
@@ -94,7 +94,8 @@ function git-clone-worktree-repo() {
   if [[ ${repoAnchorDir:e} == "git" ]]; then
     repoAnchorDir=${repoAnchorDir:r}
   fi
-  local barePath="${repoAnchorDir}/.bare"
+  # local barePath="${repoAnchorDir}/.bare"
+  local barePath="${repoAnchorDir}/.${repoAnchorDir:t}"
 
   ### Clone Repo
   printf "\n------------------------------------------------------------\n"
