@@ -46,6 +46,7 @@ alias gpm='git co master && git pull --prune'
 
 alias grbi='git rebase -i'
 alias grhh='git reset --hard HEAD'
+alias gremv='git remote -v'
 
 # Git Catch Up (Clean)
 alias gcu='gfo && gsu'
