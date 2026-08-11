@@ -372,8 +372,8 @@
     "version": "0.1.0",
     "min_herdr_version": "0.7.0",
     "description": "Seamless Ctrl+h/j/k/l navigation across herdr panes and Vim/Neovim splits",
-    "manifest_path": "/Users/andrew.burns/src/personal/vim-herdr-navigation/herdr-plugin.toml",
-    "plugin_root": "/Users/andrew.burns/src/personal/vim-herdr-navigation",
+    "manifest_path": "/Users/andrew.burns/.local/share/vim-herdr-navigation/herdr-plugin.toml",
+    "plugin_root": "/Users/andrew.burns/.local/share/vim-herdr-navigation",
     "enabled": true,
     "platforms": [
       "linux",

@@ -26,6 +26,11 @@
   type = "git-repo"
   url = "https://github.com/arcadellama/plex-nowplaying.git"
   refreshPeriod = "720h"
+
+[".local/share/vim-herdr-navigation"]
+  type = "git-repo"
+  url = "https://github.com/paulbkim-dev/vim-herdr-navigation.git"
+  refreshPeriod = "168h"
 ["src/erebusbat/dlog-ruby"]
   type = "git-repo"
   url = "git@github.com:ErebusBat/dlog-ruby.git"
