@@ -14,6 +14,14 @@ if [[ $# -eq 1 && "$1" == "where" ]]; then
   exit 0
 fi
 
+# Check to see if bare 'omp' was started
+if [[ $# -eq 0 ]]; then
+  printf '[omp-wrap] Did you intend to start a no-profile Session?\n' >&2
+  printf '[omp-wrap] Sleeping for 5s....\n' >&2
+  sleep 5
+  # Continue
+fi
+
 has_profile=0
 resume=""
 prev=""
