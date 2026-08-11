@@ -45,6 +45,7 @@
   "vim-bufkill": { "branch": "master", "commit": "3113181d0c1bfb8719f3ddcd2e2f35a8d763d1e5" },
   "vim-caddyfile": { "branch": "master", "commit": "6d60d5af0d73f20b88ec388a9d70188d55ed8223" },
   "vim-fugitive": { "branch": "master", "commit": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0" },
+  "vim-herdr-navigation": { "branch": "main", "commit": "820d48f5d9c9a7dece6a4bebfa3982ec30bbfbb7" },
   "vim-javascript": { "branch": "master", "commit": "b26c9edb3563e02f5c0b20580f7cf9743e95b157" },
   "vim-just": { "branch": "main", "commit": "b3301b091c730061a6da1f9fab670eece6af187c" },
   "vim-ps1": { "branch": "master", "commit": "839cec1550e09fc902c74103053e9e765051083d" },

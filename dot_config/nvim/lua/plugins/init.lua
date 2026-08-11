@@ -23,7 +23,19 @@ return {
 
 
   -- System / Session Management
-  "christoomey/vim-tmux-navigator",
+  {
+    "christoomey/vim-tmux-navigator",
+    lazy = false,
+    init = function()
+      vim.g.tmux_navigator_no_mappings = 1
+    end,
+    dependencies = {
+      { "paulbkim-dev/vim-herdr-navigation", lazy = false },
+    },
+    config = function()
+      dofile(vim.fn.stdpath("data") .. "/lazy/vim-herdr-navigation/editor/nvim.lua")
+    end,
+  },
 
   -- Spelling / Auto Complete
   'f3fora/cmp-spell',
