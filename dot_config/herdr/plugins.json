@@ -51,6 +51,229 @@
     }
   },
   {
+    "plugin_id": "herdr-harpoon",
+    "name": "Herdr Harpoon",
+    "version": "0.5.0",
+    "min_herdr_version": "0.7.3",
+    "description": "Mark panes and jump to them by index. Harpoon for herdr.",
+    "manifest_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-harpoon-4ae18a13ec87/herdr-plugin.toml",
+    "plugin_root": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-harpoon-4ae18a13ec87",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "actions": [
+      {
+        "id": "add",
+        "title": "Harpoon: mark pane",
+        "contexts": [
+          "pane"
+        ],
+        "command": [
+          "bash",
+          "scripts/add.sh",
+          "pane"
+        ]
+      },
+      {
+        "id": "add-tab",
+        "title": "Harpoon: mark tab",
+        "contexts": [
+          "tab"
+        ],
+        "command": [
+          "bash",
+          "scripts/add.sh",
+          "tab"
+        ]
+      },
+      {
+        "id": "add-ws",
+        "title": "Harpoon: mark workspace",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/add.sh",
+          "ws"
+        ]
+      },
+      {
+        "id": "clear",
+        "title": "Harpoon: clear all marks",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/clear.sh"
+        ]
+      },
+      {
+        "id": "jump1",
+        "title": "Harpoon: jump to mark 1",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/jump.sh",
+          "1"
+        ]
+      },
+      {
+        "id": "jump2",
+        "title": "Harpoon: jump to mark 2",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/jump.sh",
+          "2"
+        ]
+      },
+      {
+        "id": "jump3",
+        "title": "Harpoon: jump to mark 3",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/jump.sh",
+          "3"
+        ]
+      },
+      {
+        "id": "jump4",
+        "title": "Harpoon: jump to mark 4",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/jump.sh",
+          "4"
+        ]
+      },
+      {
+        "id": "jump5",
+        "title": "Harpoon: jump to mark 5",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/jump.sh",
+          "5"
+        ]
+      },
+      {
+        "id": "jump6",
+        "title": "Harpoon: jump to mark 6",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/jump.sh",
+          "6"
+        ]
+      },
+      {
+        "id": "jump7",
+        "title": "Harpoon: jump to mark 7",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/jump.sh",
+          "7"
+        ]
+      },
+      {
+        "id": "jump8",
+        "title": "Harpoon: jump to mark 8",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/jump.sh",
+          "8"
+        ]
+      },
+      {
+        "id": "jump9",
+        "title": "Harpoon: jump to mark 9",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/jump.sh",
+          "9"
+        ]
+      },
+      {
+        "id": "menu",
+        "title": "Harpoon: edit marks",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/open-pane.sh",
+          "menu"
+        ]
+      },
+      {
+        "id": "pick",
+        "title": "Harpoon: pick mark",
+        "contexts": [
+          "workspace"
+        ],
+        "command": [
+          "bash",
+          "scripts/open-pane.sh",
+          "pick"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "menu",
+        "title": "Harpoon marks",
+        "placement": "overlay",
+        "command": [
+          "bash",
+          "scripts/menu.sh"
+        ]
+      },
+      {
+        "id": "pick",
+        "title": "Harpoon pick",
+        "placement": "overlay",
+        "command": [
+          "bash",
+          "scripts/pick.sh"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "KonstantinKai",
+      "repo": "herdr-harpoon",
+      "resolved_commit": "c4ba07e03b961128a9ffe47cacba96ceb63d8a5f",
+      "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-harpoon-4ae18a13ec87",
+      "installed_unix_ms": 1786539255859
+    }
+  },
+  {
     "plugin_id": "herdr-lazygit",
     "name": "herdr-lazygit",
     "version": "0.3.0",
