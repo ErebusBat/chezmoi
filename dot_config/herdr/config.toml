@@ -69,7 +69,7 @@ type = "plugin_action"
 command = "herdr-navigator.jump-back"
 description = "jump to prevous workspace"
 ### END ####################################################
- 
+
 ############################################################
 ### herdr-lazygit
 ############################################################
@@ -152,3 +152,78 @@ key = "prefix+alt+minus"
 type = "plugin_action"
 command = "mirror.remote-split-down"
 description = "split down on remote (or local)"
+
+############################################################
+### herdr-reviewr
+############################################################
+[[keys.command]]
+key = "alt+a"
+type = "plugin_action"
+command = "herdr-harpoon.add"
+description = "harpoon: mark pane"
+
+[[keys.command]]
+key = "alt+1"
+type = "plugin_action"
+command = "herdr-harpoon.jump1"
+description = "harpoon: jump to mark 1"
+
+[[keys.command]]
+key = "alt+2"
+type = "plugin_action"
+command = "herdr-harpoon.jump2"
+description = "harpoon: jump to mark 2"
+
+[[keys.command]]
+key = "alt+3"
+type = "plugin_action"
+command = "herdr-harpoon.jump3"
+description = "harpoon: jump to mark 3"
+
+[[keys.command]]
+key = "alt+4"
+type = "plugin_action"
+command = "herdr-harpoon.jump4"
+description = "harpoon: jump to mark 4"
+
+[[keys.command]]
+key = "alt+5"
+type = "plugin_action"
+command = "herdr-harpoon.jump5"
+description = "harpoon: jump to mark 5"
+
+[[keys.command]]
+key = "alt+6"
+type = "plugin_action"
+command = "herdr-harpoon.jump6"
+description = "harpoon: jump to mark 6"
+
+[[keys.command]]
+key = "alt+7"
+type = "plugin_action"
+command = "herdr-harpoon.jump7"
+description = "harpoon: jump to mark 7"
+
+[[keys.command]]
+key = "alt+8"
+type = "plugin_action"
+command = "herdr-harpoon.jump8"
+description = "harpoon: jump to mark 8"
+
+[[keys.command]]
+key = "alt+9"
+type = "plugin_action"
+command = "herdr-harpoon.jump9"
+description = "harpoon: jump to mark 9"
+
+[[keys.command]]
+key = "alt+e"
+type = "plugin_action"
+command = "herdr-harpoon.menu"
+description = "harpoon: edit marks"
+
+[[keys.command]]
+key = "alt+p"
+type = "plugin_action"
+command = "herdr-harpoon.pick"
+description = "harpoon: pick mark"
