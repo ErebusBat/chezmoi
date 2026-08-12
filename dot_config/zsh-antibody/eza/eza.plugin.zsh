@@ -11,107 +11,141 @@ if [[ `which eza` =~ 'not found' ]]; then
 else
   setopt no_aliases
   unalias ll llg lla ls lsa lsw lst lsta lsd lsda lsdt lsdta 2>/dev/null
-  alias l='lsw'
-  function ll {
-    command eza -lh --icons=auto "$@"
-  }
-  function llg {
-    command eza -lh --git --icons=auto "$@"
-  }
-  function lla {
-    command eza -lah --icons=auto "$@"
-  }
+
+  alias l='llg'
+  alias tree='eza --tree'
+
+  ################################################################################
+  ### Common Argument Defs
+  ################################################################################
+
+  # -l: long listing format (permissions, size, date, etc.)
+  # -h: show header row above the listing
+  # --icons=auto: show file-type icons, but only when output is a terminal
+  __EZA_LS_LONG=(-lh --icons=auto)
+
+  # -w <COLS>: Wide listing; 0 == Auto Width
+  # -G: grid display (multi-column, like plain ls)
+  # --icons=auto: show file-type icons, but only when output is a terminal
+  __EZA_LS_WIDE=(-G --icons=auto)
+
+  # -T: tree view (recursive directory tree)
+  # -l: long listing format for each entry
+  # -h: show header row
+  # -L 2: limit recursion depth to 2 levels
+  # --icons=auto: show file-type icons on terminals
+  # command eza -Tlh -L 2 --icons=auto "$@"
+  __EZA_LS_TREE=(--icons=auto -lh -T -L 2)
+
+  # What base do `ls` (as oppsed to `ll`) cmds use?
+  __EZA_LS_DEFAULT=("${__EZA_LS_WIDE[@]}")
+
+  ################################################################################
+  ### ls* - List
+  ################################################################################
+
+  # List (default `ls` overwrite)
   function ls {
-    command eza -lh --icons=auto "$@"
-  }
-  function lsa {
-    command eza -lha --icons=auto "$@"
-  }
-  function lsw {
-    command eza -hG --icons=auto "$@"
-  }
-  function lst {
-    command eza -Tlh -L 2 --icons=auto "$@"
-  }
-  function lsta {
-    command eza -Tlha -L 2 --icons=auto "$@"
-  }
-  function lsd {
-    command eza -lD "$@"
-  }
-  function lsda {
-    command eza -lDa "$@"
-  }
-  function lsdt {
-    command eza -lDT -L2 "$@"
-  }
-  function lsdta {
-    command eza -lDTa -L2 "$@"
+    __EZA_RUN __EZA_LS_DEFAULT "$@"
   }
 
-  alias tree='eza --tree'
+  # List All
+  function lsa {
+    # -a: include hidden (dot) files
+    __EZA_RUN __EZA_LS_DEFAULT -a "$@"
+  }
+
+  # List Dirs
+  function lsd {
+    # -D: list directories only (like ls -d)
+    __EZA_RUN __EZA_LS_DEFAULT -D "$@"
+  }
+
+  # List Dirs All
+  function lsda {
+    # -D: list directories only
+    # -a: include hidden (dot) directories
+    __EZA_RUN __EZA_LS_DEFAULT -Da "$@"
+  }
+
+  ################################################################################
+  ### ll* - List Long
+  ################################################################################
+
+  # List Long
+  function ll {
+    __EZA_RUN __EZA_LS_LONG "$@"
+  }
+
+  # List Long Git
+  function llg {
+    __EZA_RUN __EZA_LS_LONG --git "$@"
+  }
+
+  # List Long All
+  function lla {
+    __EZA_RUN __EZA_LS_LONG -a "$@"
+  }
+
+  ################################################################################
+  ### lst* - List Tree
+  ################################################################################
+
+  # List Tree
+  function lst {
+    __EZA_RUN __EZA_LS_TREE "$@"
+  }
+
+  # List Tree All
+  function lsta {
+    # -a: include hidden (dot) files
+    __EZA_RUN __EZA_LS_TREE -a "$@"
+  }
+
+  # List Tree Dirs
+  function lstd {
+    # -D: list directories only
+    __EZA_RUN __EZA_LS_TREE -D "$@"
+  }
+
+  # List Tree Dirs All
+  function lstda {
+    # -D: list directories only
+    # -a: include hidden (dot) files
+    __EZA_RUN __EZA_LS_TREE -Da "$@"
+  }
+
+  # List Tree Size
+  function lsts {
+    __EZA_RUN __EZA_LS_TREE --total-size "$@"
+  }
+
+  ################################################################################
+  ### Helper runner / launch function
+  ################################################################################
+
+  function __EZA_RUN() {
+    # Pass the base array by name, followed by the additional arguments.
+    local base_args_name=$1
+    shift
+    local -a additional_args=("$@")
+    local -a final_args=()
+
+    # ${(P)name} treats the value of `name` as another parameter's name.
+    # `@` preserves that referenced array's elements inside double quotes.
+    final_args+=("${(@P)base_args_name}")
+    final_args+=("${additional_args[@]}")
+
+    command eza "${final_args[@]}"
+
+    if [[ $__EZA_DEBUG -ne 0 ]]; then
+      {
+        printf "+ eza"
+        printf " %q" "${final_args[@]}"
+        printf "\n"
+      } >&2
+    fi
+  }
   unsetopt no_aliases
 fi
 
-# if [[ -o interactive ]]; then
-#   typeset -g _eza_completion_has_arguments=0
-#
-#   _eza_completion_detect() {
-#     local eza_file
-#
-#     for eza_file in ${^fpath}/_eza(N); do
-#       if [[ -r $eza_file ]]; then
-#         if [[ $(<"$eza_file") == *"_arguments"* ]]; then
-#           _eza_completion_has_arguments=1
-#         else
-#           _eza_completion_has_arguments=0
-#         fi
-#         return
-#       fi
-#     done
-#
-#     _eza_completion_has_arguments=0
-#   }
-#
-#   _eza_or_files() {
-#     local current_word
-#     current_word=${words[CURRENT]}
-#
-#     if [[ $current_word == -* ]]; then
-#       if [[ $_eza_completion_has_arguments == 1 ]]; then
-#         autoload -Uz _eza
-#         _eza "$@"
-#         return
-#       fi
-#     fi
-#
-#     _files "$@"
-#   }
-#
-#   _eza_completion_init() {
-#     if ! (( $+functions[compdef] )); then
-#       return
-#     fi
-#
-#     _eza_completion_detect
-#
-#     zstyle ':completion:*' use-cache on
-#     zstyle ':completion:*' cache-path "$HOME/.cache/zsh"
-#
-#     local eza_cmd
-#     for eza_cmd in ll llg lla ls lsa lsw lst lsta lsd lsda lsdt lsdta; do
-#       compdef _eza_or_files "$eza_cmd"
-#     done
-#
-#     add-zsh-hook -d precmd _eza_completion_init
-#     unfunction _eza_completion_init
-#     unfunction _eza_completion_detect
-#   }
-#
-#   autoload -Uz add-zsh-hook
-#   if (( $+functions[compdef] )); then
-#     _eza_completion_init
-#   else
-#     add-zsh-hook precmd _eza_completion_init
-#   fi
-# fi
