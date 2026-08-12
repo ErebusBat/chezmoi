@@ -5,7 +5,7 @@ $time\
 $os\
 ${custom.username}\
 $directory\
-${custom.repo_name}\
+${custom.git_worktree}\
 $git_status\
 $battery\
 ${custom.lan_ip}\
@@ -145,7 +145,7 @@ format = '[ $time]($style)'
 [directory]
 style = "fg:215"
 format = "[ $path ]($style)"
-truncate_to_repo = false
+truncate_to_repo = true
 truncation_length = 3
 truncation_symbol = "…/"
 
@@ -168,6 +168,14 @@ when = 'git rev-parse --git-dir >/dev/null 2>&1'
 command = '$HOME/bin/.starship-git-location.sh'
 style = "fg:208"
 format = '[$output ]($style)'
+
+[custom.git_worktree]
+description = "Displays the active Git worktree folder"
+# Checks if we are inside a linked worktree by locating the .git file pointer
+command = "basename $(git rev-parse --git-common-dir 2>/dev/null)"
+when = "test -f .git"
+style = "bold purple"
+format = "[$output]($style) "
 
 [git_status]
 style = "fg:text"
