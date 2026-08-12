@@ -100,3 +100,55 @@ key = "prefix+alt+r"
 type = "plugin_action"
 command = "persiyanov.reviewr.toggle"
 description = "toggle reviewer"
+
+############################################################
+### herdr-mirror
+############################################################
+[[keys.command]]
+key = "prefix+shift+m"
+type = "plugin_action"
+command = "mirror.start"
+description = "start / resume mirror daemon"
+
+[[keys.command]]
+key = "prefix+shift+p"
+type = "plugin_action"
+command = "mirror.pause"
+description = "pause syncing"
+
+[[keys.command]]
+key = "prefix+shift+b"
+type = "plugin_action"
+command = "mirror.restore"
+description = "restore closed mirror workspaces"
+
+[[keys.command]]
+key = "prefix+alt+d"
+type = "plugin_action"
+command = "mirror.teardown"
+description = "teardown all mirrors"
+
+# Remote creation — fall back to local when invoked outside a mirror
+[[keys.command]]
+key = "prefix+alt+n"
+type = "plugin_action"
+command = "mirror.remote-new-workspace"
+description = "new workspace on remote (or local)"
+
+[[keys.command]]
+key = "prefix+alt+c"
+type = "plugin_action"
+command = "mirror.remote-new-tab"
+description = "new tab on remote (or local)"
+
+[[keys.command]]
+key = "prefix+alt+v"
+type = "plugin_action"
+command = "mirror.remote-split-right"
+description = "split right on remote (or local)"
+
+[[keys.command]]
+key = "prefix+alt+minus"
+type = "plugin_action"
+command = "mirror.remote-split-down"
+description = "split down on remote (or local)"
