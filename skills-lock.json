@@ -38,7 +38,7 @@
       "source": "mattpocock/skills",
       "sourceType": "github",
       "skillPath": "skills/engineering/code-review/SKILL.md",
-      "computedHash": "56a409d679605958439d1e9ca6c11c29835a4be95584825967ea4a491803ebd2"
+      "computedHash": "1d5e7242a98674635be79ab310cdda0e555d36a9903d2526ebf4263d0b7997ca"
     },
     "daily-logs": {
       "source": "maze.lan:git/erebusbat/skills.git",
@@ -57,7 +57,7 @@
       "source": "mattpocock/skills",
       "sourceType": "github",
       "skillPath": "skills/engineering/diagnosing-bugs/SKILL.md",
-      "computedHash": "fd6c99466b7ba43be624e6e66ed6d7af2796ded7218f24c83820823977819e22"
+      "computedHash": "c86c725ad271ba57d7e9ffd86122b898438314ef9c20ec1dbe03f3e8f149c3b2"
     },
     "firecrawl": {
       "source": "maze.lan:git/erebusbat/skills.git",
@@ -127,6 +127,13 @@
       "skillPath": "skills/obsidian-markdown/SKILL.md",
       "computedHash": "0f47297035d7824e7bf0f1984e8145a59a123e2258b5d54c9ac9642f9f77e177"
     },
+    "plex-media-management": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/plex-media-management/SKILL.md",
+      "computedHash": "fb5a03e34eb3869da04b35f8f4a3cd42ee3133c436df619e4ad349d9e465fcb8"
+    },
     "research": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -193,7 +200,7 @@
       "source": "mattpocock/skills",
       "sourceType": "github",
       "skillPath": "skills/engineering/wizard/SKILL.md",
-      "computedHash": "3cfe7e22cba6a19a8b73e3bc231970202b26db82e1ac44aa16ad592e8a1897b3"
+      "computedHash": "2c0d1187398b1b7ebb9902a4c91b24181ee07892f285615b46c59f45e2c4229c"
     },
     "writing-for-agents": {
       "source": "mattpocock/skills",
