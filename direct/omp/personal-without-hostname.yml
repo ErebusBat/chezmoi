@@ -3,6 +3,7 @@ providers:
   maxInFlightRequests: 
     lm-studio: 1
     llama.cpp: 1
+    unsloth: 1
   streamFirstEventTimeoutSeconds: 3600
   streamIdleTimeoutSeconds: 3600
   webSearchOrder: 
@@ -97,6 +98,7 @@ cycleOrder:
   - kimi
   - luna
   - sol
+  - local
 modelRoles: 
   tiny: deepseek/deepseek-v4-flash
   commit: deepseek/deepseek-v4-flash
@@ -114,7 +116,7 @@ modelRoles:
   kimi: kimi-code/k3:high
   flash: deepseek/deepseek-v4-flash:high
   deepseek: deepseek/deepseek-v4-pro:high
-  local: llama.cpp/laguna-xs-2.1
+  local: unsloth/llmfan46/gemma-4-26B-A4B-it-ultra-uncensored-heretic-GGUF
   luna: openrouter/openai/gpt-5.6-luna
   sol: openai-codex/gpt-5.6-sol
 task: 

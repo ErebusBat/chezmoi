@@ -223,7 +223,7 @@ command = "herdr-harpoon.menu"
 description = "harpoon: edit marks"
 
 [[keys.command]]
-key = "alt+p"
+key = "alt+shift+p"
 type = "plugin_action"
 command = "herdr-harpoon.pick"
 description = "harpoon: pick mark"
