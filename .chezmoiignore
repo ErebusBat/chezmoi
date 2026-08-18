@@ -16,6 +16,12 @@ chezmoi_scripts/
 # Direct is where we store files that are symlinked (like stow)
 direct/
 
+# WIP
+.tmux/plugins
+
+# Ignore disabled files
+.tmuxp/_*.yaml
+
 ############################################################
 ### Buzz Agents
 ############################################################
@@ -41,16 +47,14 @@ bin/blue-bubbles-loop.sh
 .config/erebusbat/blue-bubbles
 {{- end }}
 
-# WIP
-.tmux/plugins
-
-# Ignore disabled files
-.tmuxp/_*.yaml
-
+### Base16
 {{- if and (hasKey . "zsh_hooks") (index .zsh_hooks "ignore_base16" | default false) }}
 .config/zsh-hooks/base16.zsh
 {{- end }}
 
+############################################################
+### LSHQ
+############################################################
 {{- if not .area.lshq }}
 .config/erebusbat/lshq.just
 .config/erebusbat/upserve.just
@@ -73,6 +77,9 @@ lshq/ssh/id_lshq_personal.pub
 src/lshq/
 {{- end -}}
 
+############################################################
+### FetLife
+############################################################
 {{- if not .area.fetlife }}
 .restic/.fetlife.key
 .tmuxp/fetlife-com.yaml
@@ -86,6 +93,9 @@ src/lshq/
 .tmuxp/redis-command-center.yaml
 {{- end }}
 
+############################################################
+### CompanyCam
+############################################################
 {{- if not .area.companycam }}
 .config/dlog/010_ccam.rb
 .restic/.companycam.key
@@ -97,6 +107,9 @@ bin/grip
 bin/rubymine
 {{- end }}
 
+############################################################
+### Personal
+############################################################
 {{- if not .area.personal }}
 .config/spotify-tui/*
 .config/systemd/user/restic-home.*
@@ -108,69 +121,87 @@ bin/rubymine
 .tmuxp/nuc01-plex.yaml
 bin/ptmux.zsh
 {{- end }}
-Library/LaunchAgents/local.restart-orbstack.plist
 
-# ignore these LaunchAgents, for now
-Library/LaunchAgents/local.bezsel-agent.plist
-Library/LaunchAgents/local.chezmoi-sync.plist
-Library/LaunchAgents/local.erebusbat.vimwiki-gitupload.plist
-Library/LaunchAgents/local.sie.gitlab-push.plist
-
+############################################################
+### Server
+############################################################
 {{- if not .area.server }}
 .tmuxp/left.yaml
 bin/stmux.zsh
 {{- end }}
 
+############################################################
+### Personal Server
+############################################################
 {{- if and (not .area.personal) (not .area.server) }}
 .restic/.erebusbat.key
 .restic/.freenas-minio-creds.env
 .restic/.freenas_cifs_shell.env
 {{- end }}
 
-### OpenClaw Specific Stuffs
+############################################################
+### OpenClaw
+############################################################
 {{- if not .area.openclaw_backup }}
 .restic/openclaw-15m.sh
 .restic/profile-openclaw.sh
 {{- end }}
 
+############################################################
+### MacOS
+############################################################
+#-- OS IS MacOS, so DO NOT include these files
 {{- if eq .chezmoi.os "darwin" }}
-# OS IS MacOS, so DO NOT include these files
 bin/pbcopy
 bin/pbpaste
-{{- end }}
 
-{{- if ne .chezmoi.os "darwin" }}
-# OS IS NOT MacOS, so DO NOT include these files
-Brewfile
-.hammerspoon/
-Library/LaunchAgents/
-Library/Application Support/
-.raycast-cmds
-bin./spotify-add-wedding-possible
-.ssh/cmux-ssh
-{{ else }}
 # macOS-only mise overlay; config.toml documents the load-order convention.
 .config/mise/config.local.toml
+{{- end }}
+
+# ignore these LaunchAgents, for now
+Library/LaunchAgents/local.restart-orbstack.plist
+Library/LaunchAgents/local.bezsel-agent.plist
+Library/LaunchAgents/local.chezmoi-sync.plist
+Library/LaunchAgents/local.erebusbat.vimwiki-gitupload.plist
+Library/LaunchAgents/local.sie.gitlab-push.plist
+
+#-- OS IS NOT MacOS, so DO NOT include these files
+{{- if ne .chezmoi.os "darwin" }}
+.hammerspoon/
+.raycast-cmds
+.ssh/cmux-ssh
+Brewfile
+Library/Application Support/
+Library/LaunchAgents/
+bin./spotify-add-wedding-possible
 bin/launchd-watch
 bin/sync_terminal_theme_to_system.sh
 bin/toggle_light_dark.sh
 bin/what-has-secure-input
 {{- end }}
 
+############################################################
+### Linux
+############################################################
+#-- OS IS NOT Linux, so don't include
 {{- if ne .chezmoi.os "linux" }}
-Aptfile
 .config/Synergy/
 .config/gospt/client.yml
 .config/systemd
 .local/bin/pinentry-auto
+Aptfile
 bin/lock
 {{- end }}
 
+############################################################
+### Synergy
+############################################################
 {{- if eq .chezmoi.os "linux" }}
-{{- if and (not .synergy.enabled) ( ne .synergy.mode "client" ) }}
+  {{- if and (not .synergy.enabled) ( ne .synergy.mode "client" ) }}
 .config/Synergy/Synergy.conf
-{{- end }}
-{{- if and (not .synergy.enabled) ( ne .synergy.mode "server" ) }}
+  {{- end }}
+  {{- if and (not .synergy.enabled) ( ne .synergy.mode "server" ) }}
 .config/Synergy/Synergy.conf.server
-{{- end }}
+  {{- end }}
 {{- end }}
