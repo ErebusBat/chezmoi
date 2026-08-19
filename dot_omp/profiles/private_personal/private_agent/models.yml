@@ -4,7 +4,7 @@ providers:
       qwen/qwen3.6:
         contextWindow: 131072
   llama.cpp:
-    baseUrl: http://127.0.0.1:8888/v1
+    baseUrl: http://127.0.0.1:8080/v1
     api: openai-completions
     auth: none
     discovery:
@@ -12,3 +12,26 @@ providers:
     modelOverrides:
       gemma4-31b:
         contextWindow: 131072
+  unsloth:
+    baseUrl: http://127.0.0.1:8888/v1
+    api: openai-completions
+    apiKey: UNSLOTH_API_KEY
+    authHeader: true
+    discovery:
+      type: openai-models-list
+    compat:
+      supportsDeveloperRole: false
+      supportsStore: false
+      maxTokensField: max_tokens
+    modelOverrides:
+      llmfan46/gemma-4-26B-A4B-it-ultra-uncensored-heretic-GGUF:
+        name: Gemma 4 26B A4B Heretic (Unsloth)
+        reasoning: true
+        contextWindow: 262144
+        maxTokens: 8192
+        input:
+          - text
+          - image
+      unsloth/Qwen3-4B-Instruct-2507-GGUF:
+        name: Qwen3 4B Instruct (Unsloth)
+        maxTokens: 8192

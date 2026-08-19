@@ -1,0 +1,15 @@
+# vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
+USS_ROOT := env('HOME') / '.local/share/unsloth'
+
+# /Users/andrew.burns/.cache/huggingface
+HF_HUB_CACHE_ROOT := env('HOME') / '.cache/huggingface/hub'
+
+import? '.dictation.just'
+import? '.data.just'
+import? '.dev.just'
+import? '.coding.just'
+
+# Start Unsloth Studio
+[group('Unsloth Studio')]
+up *args:
+    {{ USS_ROOT }}/launch-studio.sh {{ args }}

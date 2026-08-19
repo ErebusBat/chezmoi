@@ -3,16 +3,20 @@
 
 [hosts.outpost]
 target = "outpost"
+prefix = "🏰Outpost"
 remote_bin = "~/.local/bin/herdr"
 
 [hosts.maze]
 target = "maze"
+prefix = "🌽Maze"
 remote_bin = "~/.local/bin/herdr"
 
 [hosts.nuc]
 target = "nuc"
+prefix = "🍿nuc01"
 remote_bin = "~/.local/bin/herdr"
 
 [hosts.dormouse]
 target = "dormouse"
+prefix = "🐭dormouse"
 remote_bin = "~/.local/bin/herdr"

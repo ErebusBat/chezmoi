@@ -69,6 +69,7 @@ $HOME/.node-gyp/**
 $HOME/.npm/**
 $HOME/.nvm/**
 $HOME/.ollama/**
+$HOME/.omp/profiles/dust/**
 $HOME/.orbstack/**
 $HOME/.pub-cache/**
 $HOME/.pyenv/**

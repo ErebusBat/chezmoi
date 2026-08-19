@@ -55,7 +55,7 @@ disabled = false
 
 [mise]
 disabled = false
-unhealthy_symbol = '❤️‍🩹'
+unhealthy_symbol = '❤️‍🩹 '
 healthy_symbol = '❤️'
 
 [custom.lan_ip]
@@ -105,13 +105,16 @@ style = "fg:red"
 
 [hostname]
 ssh_only = true
-ssh_symbol = "❮=❯ "
+ssh_symbol = "🔐"
 style = "fg:surface1"
 format = "[$ssh_symbol$hostname]($style)"
 aliases = {
   "USMB-JVK937H909" = "LSMBP",
   "dartp6" = "sys76",
-  "outpost" = "[|🏰|]",
+  "outpost" = "🏰",
+  "maze" = "🌽",
+  "nuc" = "🍿",
+  "dormouse" = "🐭",
 }
 
 [sudo]

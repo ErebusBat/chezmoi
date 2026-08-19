@@ -13,6 +13,10 @@ elif [[ -x /usr/local/bin/mise ]]; then
 fi
 
 if [[ -n $MISE_SHELL ]]; then
+  # Refresh mise when changing directories, not before every prompt.
+  autoload -Uz add-zsh-hook
+  add-zsh-hook -d precmd _mise_hook_precmd 2>/dev/null
+
   # We have mise! Do Things!
 
   alias mr='mise run'
