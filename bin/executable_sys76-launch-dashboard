@@ -1,6 +1,26 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-exec /usr/bin/google-chrome \
-  --app='https://grafana.erebusbat.net/playlists/play/adzf5jf?kiosk=true&_dash.hideTimePicker=true&_dash.hideVariables=true&_dash.hideLinks=true&hideLogo=1&_dash.hidePlaylistNav=true' \
-  --start-fullscreen
+url='https://grafana.erebusbat.net/playlists/play/adzf5jf?kiosk=true&_dash.hideTimePicker=true&_dash.hideVariables=true&_dash.hideLinks=true&hideLogo=1&_dash.hidePlaylistNav=true'
+previous_window="$(xdotool getactivewindow 2>/dev/null || true)"
+
+/usr/bin/google-chrome --app="$url" --start-fullscreen &
+
+for _ in {1..50}; do
+  active_window="$(xdotool getactivewindow 2>/dev/null || true)"
+  if [[ -n "$active_window" && "$active_window" != "$previous_window" ]]; then
+    if [[ "$(xprop -id "$active_window" _NET_WM_STATE 2>/dev/null || true)" != *"_NET_WM_STATE_FULLSCREEN"* ]]; then
+      xdotool key --window "$active_window" F11
+      sleep 0.2
+    fi
+    if [[ "$(xprop -id "$active_window" _NET_WM_STATE 2>/dev/null || true)" == *"_NET_WM_STATE_FULLSCREEN"* ]]; then
+      exit 0
+    fi
+    printf 'Chrome dashboard window did not enter fullscreen mode.\n' >&2
+    exit 1
+  fi
+  sleep 0.1
+done
+
+printf 'Could not find the new Chrome dashboard window to fullscreen.\n' >&2
+exit 1
