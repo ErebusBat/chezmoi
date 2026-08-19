@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+exec /usr/bin/google-chrome \
+  --app='https://grafana.erebusbat.net/playlists/play/adzf5jf?kiosk=true&_dash.hideTimePicker=true&_dash.hideVariables=true&_dash.hideLinks=true&hideLogo=1&_dash.hidePlaylistNav=true' \
+  --start-fullscreen
