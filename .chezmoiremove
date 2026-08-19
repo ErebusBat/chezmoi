@@ -1,52 +1,26 @@
 ############################################################
+### Remove old NeoVim Plugins
+###   - Must remove the file or it will re-install
+###     to lock file
+############################################################
+.config/nvim/lua/plugins/firenvim.lua
+
+############################################################
 ### USMB-JVK937H909 Only Files
-###   - Minus Buzz Agents (see above)
+###   - Minus Buzz Agents (see below)
 ############################################################
 {{- if ne .chezmoi.hostname "USMB-JVK937H909" }}
 bin/blue-bubbles-loop.sh
 .config/erebusbat/blue-bubbles
 {{- end }}
 
-
+############################################################
+### ZSH Hooks / Plugins
+############################################################
 {{- if and (hasKey . "zsh_hooks") (index .zsh_hooks "ignore_base16" | default false) }}
 .config/zsh-hooks/base16.zsh
 {{- end }}
 
-# 2026-JAN-14
-.ssh/assh.d/tailscale.yml
-Library/LaunchAgents/local.wake-monitor.plist
-# 2026-MAR-10
-~/.config/zsh-antibody/Makefile
-~/.config/zsh-antibody/plugins.zsh
-
-# 2026-JUL-07: Legacy Ruby multi-target restic orchestrator — kept in git history for reference
-.restic/restic-multi.rb
-
-# 2026-JUL-17: Renamed Docker update inspection helpers
-bin/dpsu
-bin/dcpsu
-{{- if not .area.fetlife }}
-.s3cfg-fetlife
-{{- end }}
-
-{{- if ne .chezmoi.os "darwin" }}
-{{- end }}
-
-{{- if not .area.tractionguest }}
-.config/nvim/spell/tractionguest.*
-.config/systemd/user/restic-tguest.*
-.restic/.traction_guest.key
-.ssh/assh.d/sie.yml
-.ssh/assh.d/tractionguest.yml
-.tmuxp/guest-server.yaml
-.tmuxp/sis-jwt.yaml
-Library/LaunchAgents/local.restart-orbstack.plist
-bin/sierg
-bin/tgstartup.sh
-bin/tgtmux.zsh
-# src/sie/**
-{{- end }}
-#
 ############################################################
 ### Buzz Agents
 ############################################################
@@ -61,4 +35,29 @@ bin/tgtmux.zsh
 .config/buzz-codex
 .config/buzz-codex
 .local/bin/buzz-codex
+{{- end }}
+
+############################################################
+### FetLife
+############################################################
+{{- if not .area.fetlife }}
+.s3cfg-fetlife
+{{- end }}
+
+############################################################
+### TractionGuest / SIS
+############################################################
+{{- if not .area.tractionguest }}
+.config/nvim/spell/tractionguest.*
+.config/systemd/user/restic-tguest.*
+.restic/.traction_guest.key
+.ssh/assh.d/sie.yml
+.ssh/assh.d/tractionguest.yml
+.tmuxp/guest-server.yaml
+.tmuxp/sis-jwt.yaml
+Library/LaunchAgents/local.restart-orbstack.plist
+bin/sierg
+bin/tgstartup.sh
+bin/tgtmux.zsh
+# src/sie/**
 {{- end }}

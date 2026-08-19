@@ -31,7 +31,7 @@ for pc in $PATH_CANDIDATES; do
   #   printf " (exists)"
   # fi
   # printf "<<\n"
-  if [[ -d $pc ]]; then
+  if [[ -d "$pc/.git" ]]; then
     pull_myserver "$pc"
     echo "*** INFO: MyServer Auto update completed"
   fi
