@@ -1,6 +1,10 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 set -euo pipefail
 
+if [[ "$(uname -s)" != Linux ]]; then
+  print -u2 'sys76-launch-dashboard requires Linux.'
+  exit 1
+fi
 url='https://grafana.erebusbat.net/playlists/play/adzf5jf?kiosk=true&_dash.hideTimePicker=true&_dash.hideVariables=true&_dash.hideLinks=true&hideLogo=1&_dash.hidePlaylistNav=true'
 previous_window="$(xdotool getactivewindow 2>/dev/null || true)"
 
