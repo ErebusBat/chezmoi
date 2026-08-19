@@ -230,9 +230,25 @@ alias digs="dig +short"
 # Cisco Console command, needs adapter attached
 # alias con="screen -c ~/.screenrcUSB"
 
-if [[ -x ~/.ssh/reload-ssh-agent ]]; then
-  alias reload-ssh-agent='echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"; eval $(~/.ssh/reload-ssh-agent); echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"'
-fi
+# if [[ -x ~/.ssh/reload-ssh-agent ]]; then
+#   alias reload-ssh-agent='echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"; eval $(~/.ssh/reload-ssh-agent); echo "SSH_AUTH_SOCK=$SSH_AUTH_SOCK"'
+# fi
+function reload-ssh-agent() {
+  # Sanity Check
+  if [[ -z $SSH_CLIENT ]]; then
+    echo "*** FATAL: You do not appear to be inside of an SSH session" >&2
+    return 1
+  fi
+  if [[ ! -x ~/.ssh/find-socket.zsh ]]; then
+    echo "*** FATAL: You are inside of an SSH session, but the find-socket script is missing!" >&2
+    return 1
+  fi
+
+  # Info and invokation
+  printf "(old)      SSH_AUTH_SOCK=$SSH_AUTH_SOCK\n"
+  eval $(~/.ssh/find-socket.zsh)
+  printf "(new)      SSH_AUTH_SOCK=$SSH_AUTH_SOCK\n"
+}
 
 # assh https://github.com/moul/assh
 if [[ -x $(which assh) ]]; then

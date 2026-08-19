@@ -1,5 +1,10 @@
+# vim: set ft=justfile ts=4 sw=4 sts=4 et ai si sta:
 import? 'users.just'
 import? 'mirror.just'
+
+[default]
+_list:
+  just --list
 
 # Remove SyncThing conflict files
 [group('Maintenance')]
