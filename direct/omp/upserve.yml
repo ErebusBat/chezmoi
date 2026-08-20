@@ -26,7 +26,7 @@ symbolPreset: nerd
 theme: 
   dark: dark-retro
   light: light
-setupVersion: 1
+setupVersion: 2
 defaultThinkingLevel: auto
 modelRoles: 
   default: anthropic/claude-opus-5
@@ -85,3 +85,5 @@ task:
     designer: anthropic/claude-opus-5
     reviewer: anthropic/opus
     task: anthropic/opus:high
+composer: 
+  shape: box
