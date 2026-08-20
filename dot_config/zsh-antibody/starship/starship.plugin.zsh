@@ -13,11 +13,13 @@ autoload -Uz add-zsh-hook
 add-zsh-hook chpwd _starship_path_context
 _starship_path_context
 
-if [[ -x /opt/homebrew/bin/starship ]]; then
-  eval "$( /opt/homebrew/bin/starship init zsh)"
-else
-  # starship_path=$(mise which starship)
-  # echo "Attempting to use $starship_path"
-  # eval "$( $starship_path init zsh)"
-  eval "$( starship init zsh)"
+if [[ -t 0 && -t 1 ]]; then
+  if [[ -x /opt/homebrew/bin/starship ]]; then
+    eval "$( /opt/homebrew/bin/starship init zsh)"
+  else
+    # starship_path=$(mise which starship)
+    # echo "Attempting to use $starship_path"
+    # eval "$( $starship_path init zsh)"
+    eval "$( starship init zsh)"
+  fi
 fi

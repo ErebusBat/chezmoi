@@ -4,8 +4,11 @@ fi
 
 export _ZO_ECHO=1
 export _ZO_DATA_DIR=$HOME/.config/zoxide
-eval "$(zoxide init --cmd=z zsh)"
-eval "$(zoxide init --cmd=cd zsh)"
+
+if [[ -t 0 && -t 1 ]]; then
+  eval "$(zoxide init --cmd=z zsh)"
+  eval "$(zoxide init --cmd=cd zsh)"
+fi
 
 wd() {
   local delay

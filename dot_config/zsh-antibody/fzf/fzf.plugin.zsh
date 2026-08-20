@@ -1,3 +1,4 @@
+[[ -t 0 && -t 1 ]] || return 0
 if [[ `type fzf` =~ 'not found' ]]; then return 0; fi
 
 [ -f ~/.config/fzf.zsh ] && source ~/.config/fzf.zsh
