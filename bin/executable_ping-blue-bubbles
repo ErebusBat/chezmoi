@@ -1,0 +1,60 @@
+#!/usr/bin/env zsh
+# vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
+set -uo pipefail
+
+if [[ -f ~/.config/erebusbat/blue-bubbles ]]; then
+  source ~/.config/erebusbat/blue-bubbles
+fi
+
+BLUEBUBBLES_SERVER_URL=${BLUEBUBBLES_SERVER_URL}
+BLUEBUBBLES_TMP_FILLE=${BLUEBUBBLES_TMP_FILLE:-/tmp/blue-bubbles-ping}
+LOOP=${1:-0}
+
+if [[ -z $BLUEBUBBLES_SERVER_URL ]]; then
+  printf "FATAL: No \$BLUEBUBBLES_SERVER_URL configured!\n"
+  exit 1
+fi
+
+URL=$BLUEBUBBLES_SERVER_URL
+URL="${URL}/api/v1/ping"
+if [[ -n $BLUEBUBBLES_PASSWORD ]]; then
+  URL+="?password=$BLUEBUBBLES_PASSWORD"
+fi
+
+truncate -c -s 0 $BLUEBUBBLES_TMP_FILLE
+
+printf "ping: $BLUEBUBBLES_SERVER_URL\n"
+# curl --fail-with-body -s $URL -o $BLUEBUBBLES_TMP_FILLE
+local HTTP_STATUS=$(
+    curl --silent  --fail-with-body \
+        --output $BLUEBUBBLES_TMP_FILLE \
+        --write-out '%{http_code}' \
+        "$URL"
+)
+ec=$?
+
+if [[ $ec -eq 0 && $HTTP_STATUS -lt 400 ]]; then
+  printf "✅ Blue Bubbles Server returned HTTP $HTTP_STATUS:\n"
+  jq . $BLUEBUBBLES_TMP_FILLE
+  exit 0
+fi
+
+printf "❌ Blue Bubbles Server Is NOT Okay:\n"
+printf "Server Returned HTTP $HTTP_STATUS\tcurl ec=$ec\n"
+if [[ -s $BLUEBUBBLES_TMP_FILLE ]]; then
+  printf "Additional information: \n"
+  cat $BLUEBUBBLES_TMP_FILLE
+fi
+
+printf "\n"
+while (( LOOP > 0 )); do
+  printf "[$(date)] waiting for ${LOOP}s\n"
+  sleep $LOOP
+  $0
+  ec=$?
+  if [[ $ec -eq 0 ]]; then
+    LOOP=0
+    exit 0
+  fi
+done
+exit 1
