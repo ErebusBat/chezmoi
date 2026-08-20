@@ -34,7 +34,7 @@ symbolPreset: nerd
 theme:
   dark: dark-ember
   light: light-gruvbox
-setupVersion: 1
+setupVersion: 2
 terminal:
   showProgress: true
 display:
@@ -68,7 +68,6 @@ statusLine:
     - session_name
     - context_pct
     - cost
-    - usage
     - session
     - time
     - collab
@@ -143,8 +142,12 @@ startup:
 power:
   sleepPrevention: idle
 compaction:
-  strategy: context-full
   thresholdPercent: 70
   handoffSaveToDisk: true
   idleEnabled: true
+  methodOrder:
+    - remote
+    - soft
 personality: pragmatic
+composer:
+  shape: claude
