@@ -1,15 +1,38 @@
-#!/bin/zsh
-# Make sure that mise is there and versioning works
-if command -v mise &> /dev/null; then
-  eval $(mise activate --shims)
+#!/usr/bin/env zsh
+
+# Shell config
+DLOG_IMPL=${DLOG_IMPL:-ts}
+if [[ -x ~/.config/dlog/config.sh ]]; then
+  source ~/.config/dlog/config.sh
 fi
 
-cd $HOME/src/erebusbat/dlog-ruby/
+if [[ $DLOG_IMPL == "ruby" ]]; then
+  # Make sure that mise is there and versioning works
+  if command -v mise &> /dev/null; then
+    eval $(mise activate --shims)
+  fi
 
-# Shortcut to run bundler
-if [[ $1 == "bundle" ]] && [[ $# -eq 1 ]]; then
-  bundle install
-  exit 0
+  cd $HOME/src/erebusbat/dlog-ruby/
+
+  # Shortcut to run bundler
+  if [[ $1 == "bundle" ]] && [[ $# -eq 1 ]]; then
+    bundle install
+    exit 0
+  fi
+
+  mise x -- bundle exec bin/dlog $*
+  exit $?
 fi
 
-mise x -- bundle exec bin/dlog $*
+if [[ $DLOG_IMPL == "ts" ]]; then
+  ts_impl_path="$HOME/src/erebusbat/dlog-ts/dist/darwin-arm64/dlog"
+  if [[ ! -x $ts_impl_path ]]; then
+    printf "*** FATAL: Impl Set to TypeScript but $ts_impl_path not found!" >&2
+    exit 2
+  fi
+  $ts_impl_path append $*
+  exit $?
+fi
+
+printf "*** FATAL: DLOG_IMPL was set to '$DLOG_IMPL' which i don't know what to do with!" >&2
+exit 3
