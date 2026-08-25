@@ -21,4 +21,8 @@
 export PATH=$HOME/bin:$HOME/.bun/bin:$PATH
 
 # This should point to the location of the tools/bin_wrapper.sh script
-~/bin/dlog $*
+if [[ -x ~/bin/dlog-append ]]; then
+  ~/bin/dlog-append $*
+else
+  ~/bin/dlog $*
+fi
