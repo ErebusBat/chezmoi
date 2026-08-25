@@ -1,0 +1,20 @@
+schema = "dlog-rules/v1"
+
+[[plugins]]
+name = "spotify-current-track"
+protocol = "text"
+command = "mise"
+arguments = [
+  "x",
+  "-C",
+  "/Users/andrew.burns/src/erebusbat/dlog-ruby",
+  "--",
+  "bundle",
+  "exec",
+  "./tools/spotify-song.rb",
+]
+
+[[rules]]
+kind = "callback"
+pattern = '^SONG$'
+plugin = "spotify-current-track"

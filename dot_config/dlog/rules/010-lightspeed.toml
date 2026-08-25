@@ -1,0 +1,63 @@
+schema = "dlog-rules/v1"
+
+# Entities
+[[rules]]
+kind = "link"
+match = "LSHQ"
+page = "LightspeedHQ"
+alias = "Lightspeed"
+
+[[rules]]
+kind = "link"
+match = "LSMBP"
+page = "Lightspeed MacBook Pro M4 Pro"
+alias = "LS MBP"
+
+# People
+[[rules]]
+kind = "link"
+match = "BARNABY"
+page = "Barnaby Claydon"
+alias = "Barnaby"
+
+[[rules]]
+kind = "link"
+match = "BARNB"
+page = "Barnaby Claydon"
+alias = "Barnaby"
+
+[[rules]]
+kind = "link"
+match = "KYLE"
+page = "Kyle Oliveira"
+alias = "Kyle"
+
+[[rules]]
+kind = "link"
+match = "DINESH"
+page = "Dinesh Dinesh"
+alias = "Dinesh"
+
+[[rules]]
+kind = "link"
+match = "GARY"
+page = "Gary Lin"
+alias = "Gary"
+
+[[rules]]
+kind = "link"
+match = "RYAN"
+page = "Ryan Yuen"
+alias = "Ryan"
+
+[[rules]]
+kind = "link"
+match = "KEVIN"
+page = "Kevin Wisla"
+alias = "Kevin"
+
+[[rules]]
+kind = "link"
+match = "SHRUTI"
+page = "Shruti"
+alias = "Shruti"

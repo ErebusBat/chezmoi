@@ -1,0 +1,43 @@
+schema = "dlog-rules/v1"
+
+[[plugins]]
+name = "markdown-clipboard"
+protocol = "json"
+command = "~/.config/dlog/plugins/markdown.ts"
+arguments = ["clipboard"]
+
+[[plugins]]
+name = "markdown-match"
+protocol = "json"
+command = "~/.config/dlog/plugins/markdown.ts"
+arguments = ["match"]
+
+# Transform the current clipboard through Markdown Tool.
+[[rules]]
+kind = "callback"
+pattern = '%%'
+plugin = "markdown-clipboard"
+
+# OMP session with context: `; context/019f851e`.
+[[rules]]
+kind = "global"
+pattern = '([!?;])\s+\b([^ /]+)\/([0-9a-f]{8})\b'
+replace = '$1 [🤖 $2/`$3`]'
+
+# OMP session without context: `; 019f851e`.
+[[rules]]
+kind = "global"
+pattern = '([!?;])\s+\b([0-9a-f]{8})\b'
+replace = '$1 [🤖 `$2`]'
+
+# Phone numbers are transformed by Markdown Tool with the match as one argument.
+[[rules]]
+kind = "callback"
+matcher = "phone"
+plugin = "markdown-match"
+
+# Direct issue keys, excluding already-linked or slash-prefixed keys.
+[[rules]]
+kind = "callback"
+pattern = '(?<![\[/A-Z])[A-Z]+-\d+'
+plugin = "markdown-match"

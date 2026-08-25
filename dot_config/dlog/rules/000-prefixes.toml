@@ -1,0 +1,152 @@
+schema = "dlog-rules/v1"
+
+[[rules]]
+kind = "prefix"
+match = "+1"
+replace = "👍"
+
+[[rules]]
+kind = "prefix"
+match = "AI"
+replace = "🤖"
+
+[[rules]]
+kind = "prefix"
+match = "CALL"
+replace = "☎"
+
+[[rules]]
+kind = "prefix"
+match = "CAR"
+replace = "🚕"
+
+[[rules]]
+kind = "prefix"
+match = "CLEAN"
+replace = "🧹"
+
+[[rules]]
+kind = "prefix"
+match = "CODE"
+replace = "💻"
+
+[[rules]]
+kind = "prefix"
+match = "FEEL"
+replace = "🧠"
+
+[[rules]]
+kind = "prefix"
+match = "FOOD"
+replace = "🍱"
+
+[[rules]]
+kind = "prefix"
+match = "GREEN"
+replace = "🟢"
+
+[[rules]]
+kind = "prefix"
+match = "LEARN"
+replace = "🧑‍🎓"
+
+[[rules]]
+kind = "prefix"
+match = "LUNCH"
+replace = "🍱 Lunch"
+
+[[rules]]
+kind = "prefix"
+match = "M"
+replace = ""
+
+[[rules]]
+kind = "prefix"
+match = "MERGE"
+replace = ""
+
+[[rules]]
+kind = "prefix"
+match = "MED"
+replace = "💊"
+
+[[rules]]
+kind = "prefix"
+match = "MEET"
+replace = "👥"
+
+[[rules]]
+kind = "prefix"
+match = "MEM"
+replace = "📝"
+
+[[rules]]
+kind = "prefix"
+match = "PLAN"
+replace = "✍️"
+enabled = false
+
+[[rules]]
+kind = "prefix"
+match = "PR"
+replace = ""
+
+[[rules]]
+kind = "prefix"
+match = "RD"
+replace = "🔍"
+
+[[rules]]
+kind = "prefix"
+match = "READ"
+replace = "👓"
+
+[[rules]]
+kind = "prefix"
+match = "RED"
+replace = "🔴"
+
+[[rules]]
+kind = "prefix"
+match = "REST"
+replace = "🍃 Rest"
+
+[[rules]]
+kind = "prefix"
+match = "REVIEW"
+replace = "🧐 Review"
+
+[[rules]]
+kind = "prefix"
+match = "SHOWER"
+replace = "🚿 Shower"
+
+[[rules]]
+kind = "prefix"
+match = "T"
+replace = "✅"
+
+[[rules]]
+kind = "prefix"
+match = "W"
+replace = "⚒️"
+
+[[rules]]
+kind = "prefix"
+match = "WORK"
+replace = "⚒️"
+
+[[rules]]
+kind = "prefix"
+match = "WALK"
+replace = "🏃‍♂️"
+
+[[rules]]
+kind = "prefix"
+match = "WATCH"
+replace = "📺"
+
+[[rules]]
+kind = "prefix"
+match = "WRITE"
+replace = ""

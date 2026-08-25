@@ -1,0 +1,116 @@
+schema = "dlog-rules/v1"
+
+# Computers and servers
+[[rules]]
+kind = "link"
+match = "DOORM"
+page = "Dormouse"
+
+[[rules]]
+kind = "link"
+match = "M4MBP"
+page = "MacBook Pro M4"
+alias = "m4mbp"
+
+[[rules]]
+kind = "link"
+match = "NUC"
+page = "IntelNUC"
+alias = "nuc01"
+
+[[rules]]
+kind = "link"
+match = "MAZE"
+page = "IntelNUC 2 - Maze"
+alias = "Maze"
+
+[[rules]]
+kind = "link"
+match = "OUTPOST"
+page = "Outpost"
+alias = "Outpost"
+
+[[rules]]
+kind = "link"
+match = "THELIO"
+page = "System76 Thelio Deskop"
+alias = "Thelio"
+
+[[rules]]
+kind = "link"
+match = "DARTP6"
+page = "dartp6"
+
+[[rules]]
+kind = "link"
+match = "DARTER"
+page = "dartp6"
+
+[[rules]]
+kind = "link"
+match = "NAS"
+page = "FreeNAS"
+
+[[rules]]
+kind = "link"
+match = "C3PRO"
+page = "0281.4 Keychron C3 Pro"
+alias = "C3 Pro"
+
+[[rules]]
+kind = "link"
+match = "K2HE"
+page = "0281.6 Keychron K2 HE"
+alias = "K2 HE"
+
+# Projects and pages
+[[rules]]
+kind = "link"
+match = "BACKREST"
+page = "Backrest Restic UI"
+alias = "backrest"
+
+[[rules]]
+kind = "link"
+match = "DLOG"
+page = "Daily Log"
+alias = "dlog"
+
+[[rules]]
+kind = "link"
+match = "FMJ"
+page = "FMJ Discovery"
+alias = "FMJ"
+
+[[rules]]
+kind = "link"
+match = "MDT"
+page = "Markdown Tool"
+
+[[rules]]
+kind = "link"
+match = "NXIVM"
+page = "NXIVM"
+
+[[rules]]
+kind = "link"
+match = "RESTIC"
+page = "Restic"
+
+[[rules]]
+kind = "link"
+match = "TGMD"
+page = "Jira Mark Down Link Tool"
+alias = "tgmd"
+
+[[rules]]
+kind = "link"
+match = "BATBOT"
+page = "Hermes Agent"
+alias = "BatBot"
+
+[[rules]]
+kind = "link"
+match = "HERMES"
+page = "Hermes Agent"
+alias = "Hermes"

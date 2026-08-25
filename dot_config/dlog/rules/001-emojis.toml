@@ -1,0 +1,181 @@
+schema = "dlog-rules/v1"
+
+[[rules]]
+kind = "global"
+match = ":100:"
+replace = "💯"
+
+[[rules]]
+kind = "global"
+match = ":bee:"
+replace = "🐝"
+
+[[rules]]
+kind = "global"
+match = ":book:"
+replace = "📖"
+
+[[rules]]
+kind = "global"
+match = ":broom:"
+replace = "🧹"
+
+[[rules]]
+kind = "global"
+match = ":bun:"
+replace = "🐇"
+
+[[rules]]
+kind = "global"
+match = ":bus:"
+replace = "🚌"
+
+[[rules]]
+kind = "global"
+match = ":check:"
+replace = "✅"
+
+[[rules]]
+kind = "global"
+match = ":cheese:"
+replace = "🧀"
+
+[[rules]]
+kind = "global"
+match = ":cherries:"
+replace = "🍒"
+
+[[rules]]
+kind = "global"
+match = ":cherry:"
+replace = "🍒"
+
+[[rules]]
+kind = "global"
+match = ":coffee:"
+replace = "☕️"
+
+[[rules]]
+kind = "global"
+match = ":cofin:"
+replace = "⚰️"
+
+[[rules]]
+kind = "global"
+match = ":duck:"
+replace = "🦆"
+
+[[rules]]
+kind = "global"
+match = ":evil:"
+replace = "😈"
+
+[[rules]]
+kind = "global"
+match = ":food:"
+replace = "🍱"
+
+[[rules]]
+kind = "global"
+match = ":hot:"
+replace = "🥵"
+
+[[rules]]
+kind = "global"
+match = ":kiss:"
+replace = "😘"
+
+[[rules]]
+kind = "global"
+match = ":meet:"
+replace = "🧑‍🤝‍🧑"
+
+[[rules]]
+kind = "global"
+match = ":memo:"
+replace = "📝"
+
+[[rules]]
+kind = "global"
+match = ":money:"
+replace = "💵"
+
+[[rules]]
+kind = "global"
+match = ":movie:"
+replace = "🎬"
+
+[[rules]]
+kind = "global"
+match = ":music:"
+replace = "🎵"
+
+[[rules]]
+kind = "global"
+match = ":pen:"
+replace = "✒️"
+
+[[rules]]
+kind = "global"
+match = ":phone:"
+replace = "☎"
+
+[[rules]]
+kind = "global"
+match = ":pill:"
+replace = "💊"
+
+[[rules]]
+kind = "global"
+match = ":pin:"
+replace = "📌"
+
+[[rules]]
+kind = "global"
+match = ":pizza:"
+replace = "🍕"
+
+[[rules]]
+kind = "global"
+match = ":ppcot:"
+replace = "🙏🍒"
+
+[[rules]]
+kind = "global"
+match = ":pray:"
+replace = "🙏"
+
+[[rules]]
+kind = "global"
+match = ":puzzle:"
+replace = "🧩"
+
+[[rules]]
+kind = "global"
+match = ":rofl:"
+replace = "🤣"
+
+[[rules]]
+kind = "global"
+match = ":run:"
+replace = "🏃"
+
+[[rules]]
+kind = "global"
+match = ":school:"
+replace = "🎓"
+
+[[rules]]
+kind = "global"
+match = ":shh:"
+replace = "🤫"
+
+[[rules]]
+kind = "global"
+match = ":shower:"
+replace = "🚿"
+
+[[rules]]
+kind = "global"
+match = ":taco:"
+replace = "🌮"
