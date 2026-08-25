@@ -9,3 +9,5 @@ always-auth=true
 //npm.pkg.github.com/:_authToken={{- (gopassRaw "lshq/tokens" | mustFromJson).github }}
 {{ end -}}
 
+//registry.npmjs.org/:_authToken={{- (gopassRaw "erebusbat/tokens" | mustFromJson).npm_registry -}}
+
