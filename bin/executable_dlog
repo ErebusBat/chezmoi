@@ -25,6 +25,7 @@ if [[ $DLOG_IMPL == "ruby" ]]; then
 fi
 
 if [[ $DLOG_IMPL == "ts" ]]; then
+  export
   ts_impl_path="$HOME/src/erebusbat/dlog-ts/dist/darwin-arm64/dlog"
   if [[ ! -x $ts_impl_path ]]; then
     printf "*** FATAL: Impl Set to TypeScript but $ts_impl_path not found!" >&2

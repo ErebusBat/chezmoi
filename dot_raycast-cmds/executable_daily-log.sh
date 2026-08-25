@@ -18,7 +18,7 @@
 # @raycast.author ErebusBat
 
 # Be sure that your environment is setup for any tools you may need/want to use
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/.bun/bin:$PATH
 
 # This should point to the location of the tools/bin_wrapper.sh script
 ~/bin/dlog $*
