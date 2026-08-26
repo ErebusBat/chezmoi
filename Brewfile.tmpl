@@ -70,7 +70,7 @@ cask "tailscale-app"
 {{ end }}
 cask "usb-overdrive"
 brew "zoxide"
-cask "mark-text"                 # Markdown Viewer
+# cask "mark-text"                 # Markdown Viewer
 
 # Dictation
 # brew "whisper-cpp"
@@ -209,13 +209,13 @@ brew "gh"
 brew "rclone"
 brew "s3cmd"
 brew "yt-dlp"
-cask "discord"
+# cask "discord"
 # cask "mark-text"
-cask "messenger"
+# cask "messenger"
 cask "naps2"
 cask "plexamp"
 cask "shottr"
-cask "sonos"
+# cask "sonos"
 cask "spotify"
 cask "steam"
 # cask "telegram"
@@ -224,8 +224,8 @@ cask "tor-browser"
 cask "vlc"
 cask "xnviewmp"
 {{ if eq .focus "personal" }}
-cask "orbstack"
-cask "rubymine"
+# cask "orbstack"
+# cask "rubymine"
 {{ end -}}
 {{ end -}}
 
@@ -238,7 +238,7 @@ cask "session-manager-plugin"
 
 #-- pos-service
 brew "libffi"
-brew "mysql@8.4"
+brew "mysql@8.4" # We want client tools and headers (to compile gems)
 # brew "nvm"    # No longer supported from Homebrew
 brew "pyenv"
 brew "redis"
@@ -258,7 +258,7 @@ brew "psviderski/tap/uncloud"
 
 brew "jenv"
 
-cask "intellij-idea"
+# cask "intellij-idea"
 
 cask "cloudflare-warp"
 
@@ -323,7 +323,8 @@ mas "1Password - Safari",       id: 1569813296
 # mas "Delete Apps: Uninstaller", id: 1033808943   # Pearcleaner is better
 mas "Due",                      id: 524373870
 mas "Hidden Bar",               id: 1452453066
-{{ if eq .area.lshq true }}# LSHQ Manages this install: {{ end -}}
+{{ if eq .area.lshq true }}# LSHQ Manages this install:
+{{ end }}
 mas "Slack",                    id: 803453959
 mas "Velja",                    id: 1607635845      # Browser Router
 
