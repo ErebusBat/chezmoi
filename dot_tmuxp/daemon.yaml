@@ -13,7 +13,7 @@ windows:
   panes:
     - shell_command:
       - cd ~/Documents/Obsidian/vimwiki
-      - dlog tail -f
+      - dlog tail -f -t
 
 - window_name: 🧠
   panes:
