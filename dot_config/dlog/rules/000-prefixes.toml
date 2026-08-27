@@ -72,6 +72,11 @@ replace = ""
 
 [[rules]]
 kind = "prefix"
+match = "MEDB"
+replace = "💊 Benadryl"
+
+[[rules]]
+kind = "prefix"
 match = "MED"
 replace = "💊"
 
