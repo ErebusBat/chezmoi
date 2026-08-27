@@ -1,5 +1,11 @@
 schema = "dlog-rules/v1"
 
+# Miscellaneous replacements
+[[rules]]
+kind = "global"
+pattern = 'BUNLO'
+replace = '🐇 Rita'
+
 # Computers and servers
 [[rules]]
 kind = "link"
