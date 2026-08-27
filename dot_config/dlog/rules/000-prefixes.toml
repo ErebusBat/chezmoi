@@ -32,6 +32,11 @@ replace = "💻"
 
 [[rules]]
 kind = "prefix"
+match = "EMAIL"
+replace = "📧"
+
+[[rules]]
+kind = "prefix"
 match = "FEEL"
 replace = "🧠"
 
