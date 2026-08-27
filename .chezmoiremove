@@ -20,6 +20,14 @@ bin/blue-bubbles-loop.sh
 {{- end }}
 
 ############################################################
+### System76 Darter Laptop
+############################################################
+{{- if ne .chezmoi.hostname "dartp6" }}
+.tmuxp/sys76.yaml
+bin/sys76-*
+{{- end }}
+
+############################################################
 ### ZSH Hooks / Plugins
 ############################################################
 {{- if and (hasKey . "zsh_hooks") (index .zsh_hooks "ignore_base16" | default false) }}

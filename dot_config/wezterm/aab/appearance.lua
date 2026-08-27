@@ -36,6 +36,11 @@ return {
     harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
   }),
 
+  -- The following are set, dynamically in events.lua
+  -- DO NOT set these here!
+  -- font_size = 10
+  -- line_height = 1.0
+
   font_rules = {},
 
   selection_word_boundary = "|│ \t\n{}[]()\"'`<>=:;",

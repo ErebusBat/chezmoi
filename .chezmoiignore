@@ -56,6 +56,7 @@ bin/blue-bubbles-loop.sh
 ### System76 Darter Laptop
 ############################################################
 {{- if ne .chezmoi.hostname "dartp6" }}
+.tmuxp/sys76.yaml
 bin/sys76-*
 {{- end }}
 
