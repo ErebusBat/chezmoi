@@ -16,6 +16,7 @@ local function calc_set_font_size(window)
   local overrides = window:get_config_overrides() or {}
   local monitor_count = tablelength(wezterm.gui.screens()["by_name"])
   overrides.font_size = 10
+  overrides.line_height = 1.0
   wezterm.log_info(hostname .. " monitor_count: " .. monitor_count)
 
   if (hostname == 'm4mbp.local') then
@@ -29,7 +30,8 @@ local function calc_set_font_size(window)
       overrides.font_size = 14
     end
   elseif (hostname == 'USMB-JVK937H909')  then
-      overrides.font_size = 14
+      overrides.font_size = 12
+      overrides.line_height = 1.2
   elseif (hostname == 'thelio')  then
     overrides.font_size = 8
   elseif (hostname == 'dartp6')  then
