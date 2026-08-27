@@ -1,12 +1,12 @@
-providers: 
+providers:
   memoryModel: online
-  maxInFlightRequests: 
+  maxInFlightRequests:
     lm-studio: 1
     llama.cpp: 1
     unsloth: 1
   streamFirstEventTimeoutSeconds: 3600
   streamIdleTimeoutSeconds: 3600
-  webSearchOrder: 
+  webSearchOrder:
     - brave
     - firecrawl
     - perplexity
@@ -31,31 +31,31 @@ providers:
     - mojeek
     - public
 symbolPreset: nerd
-theme: 
-  dark: dark-ember
+theme:
+  dark: dark-gruvbox
   light: light-gruvbox
 setupVersion: 2
-terminal: 
+terminal:
   showProgress: true
-display: 
+display:
   showTokenUsage: true
   cacheMissMarker: true
 steeringMode: all
 interruptMode: immediate
 doubleEscapeAction: tree
-memory: 
+memory:
   backend: mnemopi
-eval: 
+eval:
   rb: true
-vault: 
+vault:
   enabled: true
-github: 
+github:
   enabled: true
-plan: 
+plan:
   defaultOnStartup: false
-statusLine: 
+statusLine:
   preset: custom
-  leftSegments: 
+  leftSegments:
     - pi
     - mode
     - model
@@ -64,7 +64,7 @@ statusLine:
     - pr
     - subagents
     - time_spent
-  rightSegments: 
+  rightSegments:
     - session_name
     - context_pct
     - cost
@@ -73,17 +73,17 @@ statusLine:
     - collab
   transparent: true
   compactThinkingLevel: true
-  segmentOptions: 
-    path: 
+  segmentOptions:
+    path:
       abbreviate: true
       maxLength: 60
       stripWorkPrefix: true
-      workRoots: 
+      workRoots:
         - ~/src/erebusbat
-dev: 
+dev:
   autoqaConsent: granted
 defaultThinkingLevel: auto
-cycleOrder: 
+cycleOrder:
   - default
   - luna
   - terra
@@ -91,7 +91,7 @@ cycleOrder:
   - spark
   - deepseek
   - kimi
-modelRoles: 
+modelRoles:
   tiny: openai-codex/gpt-5.6-luna:high
   commit: openai-codex/gpt-5.6-luna:low
   vision: openai-codex/gpt-5.6-terra
@@ -111,43 +111,43 @@ modelRoles:
   luna: openai-codex/gpt-5.6-luna:high
   terra: openai-codex/gpt-5.6-terra:auto
   sol: openai-codex/gpt-5.6-sol:auto
-task: 
-  agentModelOverrides: 
+task:
+  agentModelOverrides:
     plan: gpt-5.6-sol
     sonic: gpt-5.6-luna
-retry: 
-  fallbackChains: 
-    default: 
+retry:
+  fallbackChains:
+    default:
       - openai-codex/gpt-5.3-codex-spark
-    budget: 
+    budget:
       - kimi-code/k3
       - deepseek/deepseek-v4-pro
-    slow: 
+    slow:
       - openai-codex/gpt-5.3-codex-spark
 hideThinkingBlock: true
-mcp: 
+mcp:
   {}
-autolearn: 
+autolearn:
   enabled: true
-mnemopi: 
+mnemopi:
   scoping: per-project-tagged
   embeddingVariant: en
   noEmbeddings: false
   llmMode: smol
-magicKeywords: 
+magicKeywords:
   ultrathink: false
-startup: 
+startup:
   showSplash: false
   changelogMode: summary
-power: 
+power:
   sleepPrevention: idle
-compaction: 
+compaction:
   thresholdPercent: 70
   handoffSaveToDisk: true
   idleEnabled: true
-  methodOrder: 
+  methodOrder:
     - remote
     - soft
 personality: pragmatic
-composer: 
+composer:
   shape: claude

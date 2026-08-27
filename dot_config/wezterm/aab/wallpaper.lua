@@ -23,14 +23,8 @@ if wallpaper_enabled and file_exists(wallpaper_path) then
     },
   }
 else
-  return {
-    background = {
-      {
-        source = { Color = "#000000" },
-        -- width/height required: Color layers default to 0×0 without explicit dimensions
-        width = "100%",
-        height = "100%",
-      },
-    },
-  }
+  -- Do not restore this fallback: an explicit background masks color_scheme and forces a black window.
+  -- source = { Color = "#000000" },
+  -- Leave background unset so the selected color scheme supplies it.
+  return {}
 end
