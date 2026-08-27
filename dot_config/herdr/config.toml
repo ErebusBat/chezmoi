@@ -10,8 +10,11 @@ delivery = "herdr"
 # allow_nested = true
 
 [theme]
-name = "dracula"
+name = "gruvbox"
 auto_switch = false
+
+[theme.custom]
+sidebar_bg = "#282828"
 
 [keys]
 prefix = "ctrl+a"

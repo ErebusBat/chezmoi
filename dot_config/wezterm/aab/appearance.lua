@@ -20,7 +20,7 @@ return {
   },
   window_close_confirmation = 'NeverPrompt',
 
-  color_scheme = "catppuccin-mocha",
+  color_scheme = "Gruvbox Dark (Gogh)",
 
   font = wezterm.font({
     family="ComicCodeLigatures Nerd Font",
