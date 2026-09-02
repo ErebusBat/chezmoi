@@ -11,6 +11,7 @@ sync-to:
     rsync -av --progress \
        --exclude 'downloading_*' \
        --exclude '.cache/' \
+       --exclude '.locks/' \
        --exclude '*.part' \
        {{ MODELS_DIR }}/ {{ EXT_HDD_MODELS_DIR }}/
 
