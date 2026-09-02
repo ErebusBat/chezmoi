@@ -189,6 +189,13 @@
       "skillPath": "skills/nplh/rita-todoist/SKILL.md",
       "computedHash": "56e904b7ecd5fcc2482e26b10233f7fa4b7beca7cd9ce950342066cf0cc04bdb"
     },
+    "session-ste100": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/session-ste100/SKILL.md",
+      "computedHash": "48a8b7aeef25195a18a9f5767f009753859c65b0e16a43a2a66743a147afa9b3"
+    },
     "setup-matt-pocock-skills": {
       "source": "mattpocock/skills",
       "sourceType": "github",

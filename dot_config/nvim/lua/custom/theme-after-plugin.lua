@@ -19,6 +19,8 @@ vim.cmd('highlight NormalNC ctermbg=NONE guibg=NONE')
 vim.cmd('highlight LineNr ctermbg=NONE guibg=NONE')
 vim.cmd('highlight SignColumn ctermbg=NONE guibg=NONE')
 vim.cmd('highlight EndOfBuffer ctermbg=NONE guibg=NONE')
+-- Use a brighter foreground for Markdown link labels on dark themes.
+vim.api.nvim_set_hl(0, '@markup.link.label', { fg = '#83a598' })
 -- vim.cmd('highlight CursorLine ctermbg=NONE guibg=NONE')
 -- vim.cmd('highlight StatusLine ctermbg=NONE guibg=NONE')
 -- vim.cmd.colorscheme(vim.g.x_vim_colorscheme)
