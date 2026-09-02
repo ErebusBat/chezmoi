@@ -20,3 +20,8 @@ remote_bin = "~/.local/bin/herdr"
 target = "dormouse"
 prefix = "🐭dormouse"
 remote_bin = "~/.local/bin/herdr"
+
+[hosts.sys76]
+target = "dartp6.lan"
+prefix = "🧑‍💻sys76"
+remote_bin = "~/.local/bin/herdr"
