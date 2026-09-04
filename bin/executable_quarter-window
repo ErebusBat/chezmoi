@@ -15,7 +15,18 @@ esac
 # use omits it and targets the currently focused window.
 window_id="${2:-}"
 if [[ -z "$window_id" ]]; then
-    window_id=$(xdotool getactivewindow)
+    # GNOME's media-key launcher can briefly clear _NET_ACTIVE_WINDOW while
+    # starting a custom shortcut. X input focus still identifies the window in
+    # that interval, so use it as the reliable fallback.
+    if ! window_id=$(xdotool getactivewindow 2>/dev/null) || [[ "$window_id" == 0 ]]; then
+        window_id=$(xdotool getwindowfocus)
+    fi
+fi
+
+window_class=$(xprop -id "$window_id" WM_CLASS 2>/dev/null || true)
+if [[ "$window_class" != *' = '* ]]; then
+    echo "quarter-window: no focused application window found" >&2
+    exit 1
 fi
 
 window_type=$(xprop -id "$window_id" _NET_WM_WINDOW_TYPE 2>/dev/null || true)
