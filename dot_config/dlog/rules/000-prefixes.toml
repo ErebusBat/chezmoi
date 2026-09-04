@@ -52,6 +52,11 @@ replace = "🟢"
 
 [[rules]]
 kind = "prefix"
+match = "L"
+replace = "🔍"
+
+[[rules]]
+kind = "prefix"
 match = "LEARN"
 replace = "🧑‍🎓"
 
@@ -100,6 +105,11 @@ enabled = false
 kind = "prefix"
 match = "PR"
 replace = ""
+
+[[rules]]
+kind = "prefix"
+match = "R"
+replace = "→"
 
 [[rules]]
 kind = "prefix"
