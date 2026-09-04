@@ -152,8 +152,16 @@ hosts:
     HostName: 100.92.210.7
 
   dartp6.lan:
-    Inherits: personal-allowpass
+    Inherits: dartp6
     HostName: dartp6.lan.erebusbat.net
+
+  dartp6-eth.lan:
+    Inherits: dartp6
+    HostName: dartp6-eth.lan.erebusbat.net
+
+  dartp6-wifi.lan:
+    Inherits: dartp6
+    HostName: dartp6-wifi.lan.erebusbat.net
 
 #############################################################
 # Raspberry Pis
