@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+set -uo pipefail
+
+# Make the command usable from an SSH session, where these are usually unset.
+export DISPLAY="${DISPLAY:-:0}"
+export XAUTHORITY="${XAUTHORITY:-/run/user/$(id -u)/gdm/Xauthority}"
+
+if ! command -v xdotool >/dev/null 2>&1; then
+    echo "clear-stuck-modifiers: xdotool is not installed" >&2
+    exit 1
+fi
+
+modifiers=(
+    Shift_L Shift_R
+    Control_L Control_R
+    Alt_L Alt_R
+    Meta_L Meta_R
+    Super_L Super_R
+    Hyper_L Hyper_R
+    ISO_Level3_Shift
+)
+
+failed=0
+for modifier in "${modifiers[@]}"; do
+    if ! xdotool keyup "$modifier" 2>/dev/null; then
+        failed=1
+    fi
+done
+
+if (( failed )); then
+    echo "Released available modifiers; one or more key symbols were unavailable." >&2
+else
+    echo "Released all Shift, Control, Alt, Meta, Super, Hyper, and AltGr keys."
+fi

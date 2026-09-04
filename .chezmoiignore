@@ -67,6 +67,8 @@ bin/blue-bubbles-loop.sh
 {{- if ne .chezmoi.hostname "dartp6" }}
 .tmuxp/sys76.yaml
 bin/sys76-*
+bin/clear-stuck-modifiers
+bin/quarter-window
 {{- end }}
 
 ############################################################
