@@ -1,5 +1,5 @@
-providers: 
-  webSearchOrder: 
+providers:
+  webSearchOrder:
     - brave
     - anthropic
     - firecrawl
@@ -23,38 +23,38 @@ providers:
     - mojeek
     - public
 symbolPreset: nerd
-theme: 
+theme:
   dark: dark-retro
   light: light
 setupVersion: 2
 defaultThinkingLevel: auto
-modelRoles: 
-  default: anthropic/claude-opus-5
-  task: anthropic/claude-sonnet-5:high
-  smol: anthropic/claude-sonnet-5:low
-  tiny: anthropic/claude-haiku-4.5:medium
-  commit: anthropic/claude-haiku-4.5
-  slow: anthropic/claude-opus-5:xhigh
-  plan: anthropic/claude-opus-5
-  designer: anthropic/claude-opus-5:auto
-  advisor: anthropic/claude-opus-5:auto
-  vision: anthropic/claude-haiku-4.5:medium
-cycleOrder: 
+modelRoles:
+  default: github-copilot/gpt-5.6-terra:medium
+  task: github-copilot/gpt-5.6-terra:auto
+  smol: github-copilot/gpt-5.6-luna:medium
+  tiny: github-copilot/gpt-5.6-luna:low
+  commit: github-copilot/gpt-5.6-luna:medium
+  slow: github-copilot/claude-fable-5.1:auto
+  plan: github-copilot/gpt-5.6-sol:auto
+  designer: github-copilot/gpt-5.6-sol:auto
+  advisor: github-copilot/claude-fable-5.1:auto
+  vision: github-copilot/gpt-5.6-luna:auto
+cycleOrder:
   - plan
   - default
   - smol
   - task
-plan: 
+plan:
   defaultOnStartup: false
-display: 
+display:
   showTokenUsage: true
   cacheMissMarker: true
 steeringMode: all
 interruptMode: immediate
 doubleEscapeAction: tree
-statusLine: 
+statusLine:
   preset: custom
-  leftSegments: 
+  leftSegments:
     - mode
     - model
     - path
@@ -62,7 +62,7 @@ statusLine:
     - pr
     - subagents
     - time_spent
-  rightSegments: 
+  rightSegments:
     - session_name
     - context_pct
     - cost
@@ -70,20 +70,20 @@ statusLine:
     - session
     - time
     - collab
-memory: 
+memory:
   backend: mnemopi
-mnemopi: 
+mnemopi:
   scoping: per-project-tagged
   embeddingVariant: en
   noEmbeddings: false
   llmMode: smol
-dev: 
+dev:
   autoqaConsent: granted
 hideThinkingBlock: true
-task: 
-  agentModelOverrides: 
+task:
+  agentModelOverrides:
     designer: anthropic/claude-opus-5
     reviewer: anthropic/opus
     task: anthropic/opus:high
-composer: 
+composer:
   shape: box

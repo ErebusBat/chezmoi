@@ -15,27 +15,48 @@ end
 local function calc_set_font_size(window)
   local overrides = window:get_config_overrides() or {}
   local monitor_count = tablelength(wezterm.gui.screens()["by_name"])
+
+  -- Global Defaults, each has an overridable section below
   overrides.font_size = 10
   overrides.line_height = 1.0
+
   wezterm.log_info(hostname .. " monitor_count: " .. monitor_count)
 
+  ------------------------------------------------------------
+  -- .font_size (based on host/monitors)
+  ------------------------------------------------------------
   if (hostname == 'm4mbp.local') then
     -- This can fail on linux, and we don't need it there so only call here
     -- Depends if we are docked or not
-    if (monitor_count == 2)
-    then
+    if (monitor_count == 2) then
       background_hsb["brightness"] = 0.02 -- Note: This likely does nothing in current config, but keep logic or define local table.
       overrides.font_size = 10
     else
       overrides.font_size = 14
     end
   elseif (hostname == 'USMB-JVK937H909')  then
+    if (monitor_count == 1) then
+      overrides.font_size = 15  -- Reg glasses
+      -- overrides.font_size = 14  -- Coding glasses
+    else
       overrides.font_size = 16
-      overrides.line_height = 1.1
+    end
   elseif (hostname == 'thelio')  then
     overrides.font_size = 8
   elseif (hostname == 'dartp6')  then
     overrides.font_size = 10
+  end
+
+  ------------------------------------------------------------
+  -- .line_height (based on font name)
+  ------------------------------------------------------------
+  local font_family = window:effective_config().font.font[1].family
+  if font_family == 'Atkinson Hyperlegible Mono' then
+    overrides.line_height = 1.1
+  elseif font_family == 'ComicCodeLigatures Nerd Font' then
+    overrides.line_height = 1.2
+  elseif font_family == 'Fira Code' then
+    overrides.line_height = 1.0
   end
   wezterm.log_info("Setting font_size to " .. overrides.font_size .. " for " .. hostname .. " monitors=" .. monitor_count)
 
