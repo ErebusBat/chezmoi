@@ -95,8 +95,8 @@ modelRoles:
   tiny: openai-codex/gpt-5.6-luna:medium
   commit: openai-codex/gpt-5.6-luna:low
   vision: openai-codex/gpt-5.6-terra:auto
-  advisor: openai-codex/gpt-5.6-sol
-  default: openai-codex/gpt-5.6-sol
+  advisor: openai-codex/gpt-6-astra:auto
+  default: openai-codex/gpt-5.6-terra:high
   task: openai-codex/gpt-5.6-terra:auto
   smol: openai-codex/gpt-5.6-luna:medium
   slow: openai-codex/gpt-5.6-sol:high
@@ -111,6 +111,7 @@ modelRoles:
   luna: openai-codex/gpt-5.6-luna:high
   terra: openai-codex/gpt-5.6-terra:auto
   sol: openai-codex/gpt-5.6-sol:auto
+  Astra: openai-codex/gpt-6-astra:auto
 task:
   agentModelOverrides:
     plan: gpt-5.6-sol
