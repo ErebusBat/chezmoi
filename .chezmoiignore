@@ -19,6 +19,15 @@ direct/
 # WIP
 .tmux/plugins
 
+# Deskflow: deploy only the server layout, to the platform's config directory.
+# Missing, client, disabled, and unknown modes leave existing files untouched.
+{{- if or (ne (dig "deskflow" "mode" "disabled" .) "server") (ne .chezmoi.os "darwin") }}
+Library/Deskflow/deskflow-server.conf
+{{- end }}
+{{- if or (ne (dig "deskflow" "mode" "disabled" .) "server") (ne .chezmoi.os "linux") }}
+.config/Deskflow/deskflow-server.conf
+{{- end }}
+
 # Ignore disabled files
 .tmuxp/_*.yaml
 

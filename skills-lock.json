@@ -189,6 +189,13 @@
       "skillPath": "skills/nplh/rita-todoist/SKILL.md",
       "computedHash": "56e904b7ecd5fcc2482e26b10233f7fa4b7beca7cd9ce950342066cf0cc04bdb"
     },
+    "sams-club-rx": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/sams-club-rx/SKILL.md",
+      "computedHash": "fb2c8aec4572694caee856081bf25b9601b0a7c93f16b7826d7333c1d7cd1b87"
+    },
     "session-ste100": {
       "source": "maze.lan:git/erebusbat/skills.git",
       "sourceUrl": "maze.lan:git/erebusbat/skills.git",
