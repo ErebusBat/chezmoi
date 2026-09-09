@@ -29,7 +29,7 @@ theme:
 setupVersion: 2
 defaultThinkingLevel: auto
 modelRoles:
-  default: github-copilot/gpt-5.6-terra:medium
+  default: github-copilot/gpt-5.6-terra:high
   task: github-copilot/gpt-5.6-terra:auto
   smol: github-copilot/gpt-5.6-luna:medium
   tiny: github-copilot/gpt-5.6-luna:low
@@ -39,11 +39,19 @@ modelRoles:
   designer: github-copilot/gpt-5.6-sol:auto
   advisor: github-copilot/claude-fable-5.1:auto
   vision: github-copilot/gpt-5.6-luna:auto
+  luna: github-copilot/gpt-5.6-luna:high
+  terra: github-copilot/gpt-5.6-terra:high
+  sol: github-copilot/gpt-5.6-sol:auto
+  astra: github-copilot/gpt-6-astra:auto
 cycleOrder:
   - plan
   - default
   - smol
   - task
+  - luna
+  - terra
+  - sol
+  - astra
 plan:
   defaultOnStartup: false
 display:

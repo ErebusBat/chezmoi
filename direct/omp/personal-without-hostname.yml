@@ -118,7 +118,7 @@ task:
     plan: gpt-5.6-sol
     sonic: gpt-5.6-luna
 retry:
-  fallbackChains:
+  fallbackChains: null
 hideThinkingBlock: true
 mcp:
   {}
