@@ -7,7 +7,7 @@ windows:
       - 'xss-disable $(( 3600 * 13 ))'
 
     - shell_command:
-      - ~/bin/sys76-launch-dashboard
+      # - ~/bin/sys76-launch-dashboard
 
 - window_name: zsh
   focus: true

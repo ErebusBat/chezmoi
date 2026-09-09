@@ -130,4 +130,4 @@ startup:
 power:
   sleepPrevention: idle
 composer:
-  shape: box
+  shape: band
