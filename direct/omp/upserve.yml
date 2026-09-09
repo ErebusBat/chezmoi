@@ -24,8 +24,8 @@ providers:
     - public
 symbolPreset: nerd
 theme:
-  dark: dark-retro
-  light: light
+  dark: dark-gruvbox
+  light: light-gruvbox
 setupVersion: 2
 defaultThinkingLevel: auto
 modelRoles:

@@ -11,10 +11,10 @@ windows:
       - just
 
 - window_name: 📖 dlog
+  layout: "de2f,75x42,0,0[75x5,0,0,2,75x36,0,6,3]"
   panes:
     - shell_command:
-      - "cd ~/src/erebusbat/rnd-flipper"
-      - just run
+        - tuitime 18:00
     - shell_command:
       - cd ~/Documents/Obsidian/vimwiki
       - dlog tail -f -t

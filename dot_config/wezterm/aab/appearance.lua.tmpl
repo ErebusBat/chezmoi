@@ -1,5 +1,16 @@
 local wezterm = require 'wezterm'
 local hostname = wezterm.hostname()
+local light_color_scheme = {{ .theme_modes.light.wezterm | quote }}
+local dark_color_scheme = {{ .theme_modes.dark.wezterm | quote }}
+local function color_scheme_for_appearance()
+  local appearance = wezterm.gui.get_appearance()
+  if appearance:find 'Dark' then
+    return dark_color_scheme
+  else
+    return light_color_scheme
+  end
+end
+
 
 local eb_window_decorations = 'RESIZE'
 if hostname == 'USMB-JVK937H909' then
@@ -20,7 +31,7 @@ return {
   },
   window_close_confirmation = 'NeverPrompt',
 
-  color_scheme = "Gruvbox Dark (Gogh)",
+  color_scheme = color_scheme_for_appearance(),
 
   font = wezterm.font({
     family="ComicCodeLigatures Nerd Font",

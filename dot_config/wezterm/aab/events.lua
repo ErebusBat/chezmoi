@@ -1,6 +1,7 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 local hostname = wezterm.hostname()
+
 local background_hsb = {
   brightness = 0.0125,
 }

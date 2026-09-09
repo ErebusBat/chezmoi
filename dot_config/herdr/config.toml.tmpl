@@ -10,11 +10,10 @@ delivery = "herdr"
 # allow_nested = true
 
 [theme]
-name = "gruvbox"
-auto_switch = false
-
-[theme.custom]
-sidebar_bg = "#282828"
+name = {{ .theme_modes.light.herdr | quote }}
+auto_switch = true
+light_name = {{ .theme_modes.light.herdr | quote }}
+dark_name = {{ .theme_modes.dark.herdr | quote }}
 
 [keys]
 prefix = "ctrl+a"

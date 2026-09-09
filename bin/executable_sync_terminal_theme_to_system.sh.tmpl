@@ -1,0 +1,50 @@
+#!/bin/zsh
+set -eo pipefail
+
+if [[ "$(defaults read -g AppleInterfaceStyle 2>/dev/null)" == "Dark" ]]; then
+  mode=dark
+  base16_theme={{ .theme_modes.dark.base16 | quote }}
+else
+  mode=light
+  base16_theme={{ .theme_modes.light.base16 | quote }}
+fi
+
+# Clear legacy Base16 overrides in the invoking terminal. The active emulator
+# now owns the palette, and Herdr can propagate later host updates into panes.
+if [[ -t 1 ]]; then
+  printf '\e]104\a\e]110\a\e]111\a'
+  sleep 0.05
+fi
+
+# Update every running WezTerm pane at the emulator layer. Applying the palette
+# here lets Herdr inherit and propagate it without making embedded panes own
+# stale OSC color overrides.
+theme_script="$HOME/.config/base16-shell/scripts/base16-${base16_theme}.sh"
+if [[ "$mode" == dark ]]; then
+  appearance_report=$'\e[?997;1n'
+else
+  appearance_report=$'\e[?997;2n'
+fi
+
+if [[ -r "$theme_script" ]] && (( $+commands[wezterm] )) && (( $+commands[jq] )); then
+  wezterm cli list --format json 2>/dev/null |
+    jq -r '.[] | [.pane_id, .tty_name] | @tsv' |
+    while IFS=$'\t' read -r pane_id tty; do
+      [[ -w "$tty" ]] || continue
+      /bin/zsh -c 'source "$1"' _ "$theme_script" >| "$tty"
+
+      # Herdr responds to the terminal appearance report by re-querying the
+      # outer palette and propagating both changes to every embedded pane.
+      integer herdr_client=0
+      for process_name in ${(f)"$(ps -t "${tty:t}" -o comm= 2>/dev/null)"}; do
+        process_name="${process_name//[[:space:]]/}"
+        [[ "$process_name" == herdr ]] && herdr_client=1
+      done
+      if (( herdr_client )); then
+        sleep 0.05
+        wezterm cli send-text --pane-id "$pane_id" --no-paste "$appearance_report"
+      fi
+    done
+fi
+
+echo "System is in ${mode:u} Mode; synchronized terminal-managed palettes"

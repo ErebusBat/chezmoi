@@ -88,6 +88,7 @@ cycleOrder:
   - luna
   - terra
   - sol
+  - astra
   - spark
   - deepseek
   - kimi
@@ -102,8 +103,8 @@ modelRoles:
   slow: openai-codex/gpt-5.6-sol:high
   plan: openai-codex/gpt-5.6-sol:high
   spark: openai-codex/gpt-5.3-codex-spark
-  budget: zai/glm-5.2:high
-  designer: openai-codex/gpt-5.6-sol:high
+  budget: openai-codex/gpt-5.6-terra:high
+  designer: openai-codex/gpt-5.6-astra:auto
   kimi: kimi-code/k3:high
   flash: deepseek/deepseek-v4-flash:high
   deepseek: deepseek/deepseek-v4-pro:high
@@ -111,16 +112,13 @@ modelRoles:
   luna: openai-codex/gpt-5.6-luna:high
   terra: openai-codex/gpt-5.6-terra:auto
   sol: openai-codex/gpt-5.6-sol:auto
-  Astra: openai-codex/gpt-6-astra:auto
+  astra: openai-codex/gpt-6-astra:auto
 task:
   agentModelOverrides:
     plan: gpt-5.6-sol
     sonic: gpt-5.6-luna
 retry:
   fallbackChains:
-    budget:
-      - kimi-code/k3
-      - deepseek/deepseek-v4-pro
 hideThinkingBlock: true
 mcp:
   {}
