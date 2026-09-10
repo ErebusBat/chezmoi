@@ -1,0 +1,13 @@
+#!/bin/zsh
+set -euo pipefail
+
+# Re-run when the central theme pair changes.
+# light={{ .theme_modes.light.omp }} dark={{ .theme_modes.dark.omp }}
+
+command -v omp >/dev/null 2>&1 || exit 0
+
+for profile in personal upserve; do
+  [[ -e "$HOME/.omp/profiles/$profile/agent/config.yml" ]] || continue
+  omp --profile "$profile" config set theme.light "{{ .theme_modes.light.omp }}"
+  omp --profile "$profile" config set theme.dark "{{ .theme_modes.dark.omp }}"
+done

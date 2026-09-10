@@ -13,3 +13,8 @@ import? '.coding.just'
 [group('Unsloth Studio')]
 up *args:
     {{ USS_ROOT }}/launch-studio.sh {{ args }}
+
+# Install / Update Unsloth Studio
+[group('Unsloth Studio')]
+install:
+    curl -fsSL https://unsloth.ai/install.sh | sh

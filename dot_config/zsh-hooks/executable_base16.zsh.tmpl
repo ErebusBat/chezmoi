@@ -1,0 +1,20 @@
+# WezTerm owns the outer palette, and Herdr propagates that palette into each
+# embedded terminal. Base16 OSC overrides make a Herdr pane "child-owned", which
+# prevents later host appearance changes from updating full-screen apps.
+unset BASE16_THEME
+
+if [[ ${HERDR_ENV:-} == 1 ]]; then
+  _herdr_restore_terminal_palette() {
+    # Reset the ANSI palette plus default foreground/background to Herdr's
+    # inherited host values instead of selecting another independent theme.
+    printf '\e]104\a\e]110\a\e]111\a'
+  }
+
+  autoload -Uz add-zsh-hook
+  add-zsh-hook -d precmd _herdr_sync_base16_theme 2>/dev/null
+  unfunction _herdr_sync_base16_theme 2>/dev/null
+  unset _HERDR_BASE16_MODE
+  add-zsh-hook -d precmd _herdr_restore_terminal_palette 2>/dev/null
+  add-zsh-hook precmd _herdr_restore_terminal_palette
+  _herdr_restore_terminal_palette
+fi

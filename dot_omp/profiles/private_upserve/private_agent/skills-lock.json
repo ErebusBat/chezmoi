@@ -2,13 +2,15 @@
   "version": 1,
   "skills": {
     "atlassian-cli-jira": {
-      "source": "../../../../src/lshq/upserve-skills/port-skills",
-      "sourceType": "local",
+      "source": "upserve/skills",
+      "sourceType": "github",
+      "skillPath": "skills/tools/atlassian-cli-jira/SKILL.md",
       "computedHash": "07e013304880d32589895c38aab7a48683821fd855b781c8c44c3787bd7c10e4"
     },
     "check-work-against-jira": {
-      "source": "../../../../src/lshq/upserve-skills/port-skills",
-      "sourceType": "local",
+      "source": "upserve/skills",
+      "sourceType": "github",
+      "skillPath": "skills/tools/check-work-against-jira/SKILL.md",
       "computedHash": "a1e7e38ba53f35563bafcafb53af2361a031a1d18053e7d56a445c590a89ff14"
     },
     "circleci-builds": {
@@ -62,14 +64,16 @@
       "computedHash": "330885846b36d85715bb2c41266f01c851115f0bda963a354701f14a27bc2dc9"
     },
     "lshq-aws-access": {
-      "source": "../../../../src/lshq/upserve-skills/port-skills",
-      "sourceType": "local",
+      "source": "upserve/skills",
+      "sourceType": "github",
+      "skillPath": "skills/tools/lshq-aws-access/SKILL.md",
       "computedHash": "8d02b9a04c0ae5c909230b7d86272ea96c05cec7b4bab6a01f2d4cbde6d7acfa"
     },
     "lshq-browser-use": {
-      "source": "../../../../src/lshq/upserve-skills/port-skills",
-      "sourceType": "local",
-      "computedHash": "9f293f67a94af580cc30c27c30af0a463a93ecd634a4ecb15ecc14fc92505fe3"
+      "source": "upserve/skills",
+      "sourceType": "github",
+      "skillPath": "skills/tools/lshq-browser-use/SKILL.md",
+      "computedHash": "d23327011e4fc7439aefe4028f28593d753b9ce4c98b21c96b2998925aa839bb"
     },
     "onboarding": {
       "source": "CircleCI-Public/skills",
@@ -78,14 +82,16 @@
       "computedHash": "1eeb333518362d5cd5d4fc9f85a3bb9ac1c3d62dc1495f0e6c1e511fa4cd38f3"
     },
     "restaurant-shard-lookup": {
-      "source": "../../../../src/lshq/upserve-skills/port-skills",
-      "sourceType": "local",
-      "computedHash": "20619093aa91de99b52f93714e80f5b17553437334d1bfce2e7ed4df8bf6a9d8"
+      "source": "upserve/skills",
+      "sourceType": "github",
+      "skillPath": "skills/observability/restaurant-shard-lookup/SKILL.md",
+      "computedHash": "9f7844c11b134d1bce6dc4316429778620839e54f4d720c78da3b40a67f3897d"
     },
     "upserve-logs": {
-      "source": "../../../../src/lshq/upserve-skills/port-skills",
-      "sourceType": "local",
-      "computedHash": "e950b00bca9e979cbea804f1053742389c1800bb033db5b924c8b5fb870c0923"
+      "source": "upserve/skills",
+      "sourceType": "github",
+      "skillPath": "skills/observability/upserve-logs/SKILL.md",
+      "computedHash": "1a193b1db52de3dc3d623a45abf2b3c71b6286c383ef4b6452a9e5c99e39808d"
     },
     "work-on-jira-ticket": {
       "source": "maze.lan:git/erebusbat/skills.git",

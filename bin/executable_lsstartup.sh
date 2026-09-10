@@ -43,6 +43,7 @@ APPS=(
   /Applications/Due.app
   /Applications/1Password.app
   /Applications/Docker.app
+  /Applications/Task\ Manager\ TMOG.app
 
   #-- Web
   /Applications/Google\ Chrome.app

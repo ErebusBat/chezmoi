@@ -10,8 +10,10 @@ delivery = "herdr"
 # allow_nested = true
 
 [theme]
-name = "dracula"
-auto_switch = false
+name = {{ .theme_modes.light.herdr | quote }}
+auto_switch = true
+light_name = {{ .theme_modes.light.herdr | quote }}
+dark_name = {{ .theme_modes.dark.herdr | quote }}
 
 [keys]
 prefix = "ctrl+a"
@@ -47,7 +49,7 @@ key = "ctrl+k"
 type = "plugin_action"
 command = "vim-herdr-navigation.up"
 description = "navigate up (vim/herdr)"
-
+# Herder right-pane navigation.
 [[keys.command]]
 key = "ctrl+l"
 type = "plugin_action"

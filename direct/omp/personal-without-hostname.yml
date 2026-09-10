@@ -32,9 +32,9 @@ providers:
     - public
 symbolPreset: nerd
 theme:
-  dark: dark-ember
+  dark: dark-gruvbox
   light: light-gruvbox
-setupVersion: 1
+setupVersion: 2
 terminal:
   showProgress: true
 display:
@@ -68,7 +68,6 @@ statusLine:
     - session_name
     - context_pct
     - cost
-    - usage
     - session
     - time
     - collab
@@ -89,22 +88,23 @@ cycleOrder:
   - luna
   - terra
   - sol
+  - astra
   - spark
   - deepseek
   - kimi
 modelRoles:
-  tiny: openai-codex/gpt-5.6-luna:high
+  tiny: openai-codex/gpt-5.6-luna:medium
   commit: openai-codex/gpt-5.6-luna:low
-  vision: openai-codex/gpt-5.6-terra
-  advisor: openai-codex/gpt-5.6-sol
-  default: openai-codex/gpt-5.6-luna:high
+  vision: openai-codex/gpt-5.6-terra:auto
+  advisor: openai-codex/gpt-6-astra:auto
+  default: openai-codex/gpt-5.6-terra:high
   task: openai-codex/gpt-5.6-terra:auto
   smol: openai-codex/gpt-5.6-luna:medium
-  slow: openai-codex/gpt-5.6-sol
-  plan: openai-codex/gpt-5.6-terra:high
+  slow: openai-codex/gpt-5.6-sol:high
+  plan: openai-codex/gpt-5.6-sol:high
   spark: openai-codex/gpt-5.3-codex-spark
-  budget: zai/glm-5.2:high
-  designer: openai-codex/gpt-5.6-sol:medium
+  budget: openai-codex/gpt-5.6-terra:high
+  designer: openai-codex/gpt-5.6-astra:auto
   kimi: kimi-code/k3:high
   flash: deepseek/deepseek-v4-flash:high
   deepseek: deepseek/deepseek-v4-pro:high
@@ -112,19 +112,13 @@ modelRoles:
   luna: openai-codex/gpt-5.6-luna:high
   terra: openai-codex/gpt-5.6-terra:auto
   sol: openai-codex/gpt-5.6-sol:auto
+  astra: openai-codex/gpt-6-astra:auto
 task:
   agentModelOverrides:
     plan: gpt-5.6-sol
     sonic: gpt-5.6-luna
 retry:
-  fallbackChains:
-    default:
-      - openai-codex/gpt-5.3-codex-spark
-    budget:
-      - kimi-code/k3
-      - deepseek/deepseek-v4-pro
-    slow:
-      - openai-codex/gpt-5.3-codex-spark
+  fallbackChains: null
 hideThinkingBlock: true
 mcp:
   {}
@@ -143,8 +137,12 @@ startup:
 power:
   sleepPrevention: idle
 compaction:
-  strategy: context-full
   thresholdPercent: 70
   handoffSaveToDisk: true
   idleEnabled: true
+  methodOrder:
+    - remote
+    - soft
 personality: pragmatic
+composer:
+  shape: claude

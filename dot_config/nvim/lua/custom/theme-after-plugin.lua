@@ -7,19 +7,24 @@
 -- configure plugins.
 --------------------------------------------------------------------------------
 
+local function apply_highlights()
+  vim.cmd('highlight Comment cterm=italic gui=italic')
+  vim.cmd('set cursorline')
 
-vim.cmd('highlight Comment cterm=italic gui=italic')
+  -- For further Highlight Groups see:
+  -- https://neovim.io/doc/user/syntax.html#highlight-groups
+  vim.cmd('highlight Normal ctermbg=NONE guibg=NONE')
+  vim.cmd('highlight NormalNC ctermbg=NONE guibg=NONE')
+  vim.cmd('highlight LineNr ctermbg=NONE guibg=NONE')
+  vim.cmd('highlight SignColumn ctermbg=NONE guibg=NONE')
+  vim.cmd('highlight EndOfBuffer ctermbg=NONE guibg=NONE')
+end
 
--- vim.cmd('set colorcolumn=80,120')
-vim.cmd('set cursorline')
+local group = vim.api.nvim_create_augroup('theme-after-plugin', { clear = true })
+vim.api.nvim_create_autocmd('ColorScheme', {
+  group = group,
+  callback = apply_highlights,
+  desc = 'Reapply local highlights after a theme change',
+})
 
--- for further Highlight Groups see: https://neovim.io/doc/user/syntax.html#highlight-groups
-vim.cmd('highlight Normal ctermbg=NONE guibg=NONE')
-vim.cmd('highlight NormalNC ctermbg=NONE guibg=NONE')
-vim.cmd('highlight LineNr ctermbg=NONE guibg=NONE')
-vim.cmd('highlight SignColumn ctermbg=NONE guibg=NONE')
-vim.cmd('highlight EndOfBuffer ctermbg=NONE guibg=NONE')
--- vim.cmd('highlight CursorLine ctermbg=NONE guibg=NONE')
--- vim.cmd('highlight StatusLine ctermbg=NONE guibg=NONE')
--- vim.cmd.colorscheme(vim.g.x_vim_colorscheme)
-
+apply_highlights()

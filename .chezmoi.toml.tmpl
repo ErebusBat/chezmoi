@@ -56,6 +56,12 @@
     mode = "client"
     server = "sie-mbp.erebusbat.net"
 
+[data.deskflow]
+    # Only server mode deploys the server layout. Other values deploy nothing.
+    mode = {{ dig "deskflow" "mode" "disabled" . | quote }}
+    # Client connection address; configure this in the Deskflow client GUI.
+    server = {{ dig "deskflow" "server" "" . | quote }}
+
 [data.zsh_hooks]
     ignore_base16 = {{ $ignoreBase16ZshHook }}
 {{- if ne $ompPersonalConfigVariant "" }}

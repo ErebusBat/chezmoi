@@ -1,5 +1,16 @@
 local wezterm = require 'wezterm'
 local hostname = wezterm.hostname()
+local light_color_scheme = {{ .theme_modes.light.wezterm | quote }}
+local dark_color_scheme = {{ .theme_modes.dark.wezterm | quote }}
+local function color_scheme_for_appearance()
+  local appearance = wezterm.gui.get_appearance()
+  if appearance:find 'Dark' then
+    return dark_color_scheme
+  else
+    return light_color_scheme
+  end
+end
+
 
 local eb_window_decorations = 'RESIZE'
 if hostname == 'USMB-JVK937H909' then
@@ -20,7 +31,7 @@ return {
   },
   window_close_confirmation = 'NeverPrompt',
 
-  color_scheme = "catppuccin-mocha",
+  color_scheme = color_scheme_for_appearance(),
 
   font = wezterm.font({
     family="ComicCodeLigatures Nerd Font",
@@ -35,6 +46,11 @@ return {
     -- weight='Medium',
     harfbuzz_features={ 'calt', 'liga', 'dlig', 'ss01', 'ss02', 'ss03', 'ss04', 'ss05', 'ss06', 'ss07', 'ss08' },
   }),
+
+  -- The following are set, dynamically in events.lua
+  -- DO NOT set these here!
+  -- font_size = 10
+  -- line_height = 1.0
 
   font_rules = {},
 

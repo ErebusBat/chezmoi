@@ -5,7 +5,7 @@ export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
 # lskt-onboard: fzf
-source <(fzf --zsh)
+[[ -t 0 && -t 1 ]] && source <(fzf --zsh)
 
 # lskt-onboard: kubectl-krew
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"

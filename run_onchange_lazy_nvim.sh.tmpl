@@ -1,4 +1,5 @@
 #!/bin/bash
+# vim: set ft=bash ts=2 sw=2 sts=2 et ai si sta:
 {{ $filePath := joinPath .chezmoi.homeDir "/.config/nvim/lazy-lock.json" }}
 NVIM_PATH=$(which nvim)
 if [[ $? -ne 0 ]]; then
@@ -7,5 +8,7 @@ if [[ $? -ne 0 ]]; then
         exit 0
 fi
 # Config HASH: {{ include $filePath | sha256sum }} ~/.config/nvim/lazy-lock.json
+echo "Cleaning NeoVim Plugins (Lazy.nvim)..."
+$NVIM_PATH --headless "+Lazy! clean" +qa
 echo "Restoring NeoVim Plugin State (Lazy.nvim)..."
-$NVIM_PATH --headless "+Lazy! sync" +qa
+$NVIM_PATH --headless "+Lazy! restore" +qa

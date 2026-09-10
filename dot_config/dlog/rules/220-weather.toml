@@ -1,0 +1,12 @@
+schema = "dlog-rules/v1"
+
+[[plugins]]
+name = "casper-weather"
+protocol = "json"
+command = "~/.config/dlog/plugins/weather.ts"
+arguments = []
+
+[[rules]]
+kind = "callback"
+pattern = '^WCPR$'
+plugin = "casper-weather"

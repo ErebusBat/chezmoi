@@ -1,0 +1,15 @@
+schema = "dlog-config/v1"
+
+# Support multiple computers; the first existing directory wins.
+vault_roots = [
+  "~/Documents/Obsidian/vimwiki",
+  "~/Documents/vimwiki",
+  "/vault",
+]
+
+daily_path = "logs/%Y/%m-%b/%Y-%m-%d-%a.md"
+entry_prefix = "- *%H:%M* - "
+
+[[includes]]
+path = "rules"
+enabled = true

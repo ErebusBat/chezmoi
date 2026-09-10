@@ -2,7 +2,7 @@
   {
     "plugin_id": "herdr-bar",
     "name": "Bar",
-    "version": "0.1.0",
+    "version": "0.2.1",
     "min_herdr_version": "0.7.4",
     "description": "Cmd+K command bar: fuzzy-jump to any tab or agent",
     "manifest_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-bar-96eebe452a9c/herdr-plugin.toml",
@@ -45,9 +45,9 @@
       "kind": "github",
       "owner": "jeffarese",
       "repo": "herdr-bar",
-      "resolved_commit": "58c23e5c8d7926044f67524f403257bacdf88f6b",
+      "resolved_commit": "01cc0620ec743ee7a62a561551b59d9be81bd563",
       "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-bar-96eebe452a9c",
-      "installed_unix_ms": 1785340565476
+      "installed_unix_ms": 1787860613223
     }
   },
   {
@@ -270,7 +270,7 @@
       "repo": "herdr-harpoon",
       "resolved_commit": "c4ba07e03b961128a9ffe47cacba96ceb63d8a5f",
       "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-harpoon-4ae18a13ec87",
-      "installed_unix_ms": 1786539255859
+      "installed_unix_ms": 1787860620203
     }
   },
   {
@@ -332,13 +332,13 @@
       "repo": "herdr-lazygit",
       "resolved_commit": "a13e12c99e5e469edd73165cabba413c2a2fd698",
       "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-lazygit-b11d62e75f78",
-      "installed_unix_ms": 1785339799426
+      "installed_unix_ms": 1787860622255
     }
   },
   {
     "plugin_id": "herdr-navigator",
     "name": "Herdr Navigator",
-    "version": "0.3.3",
+    "version": "0.3.6",
     "min_herdr_version": "0.7.3",
     "description": "Jump to any Herdr workspace, agent, project, session, remote, directory, or action from one fuzzy navigator.",
     "manifest_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-navigator-3a5a6fa5dfb5/herdr-plugin.toml",
@@ -420,16 +420,15 @@
       "kind": "github",
       "owner": "thanhdat77",
       "repo": "herdr-navigator",
-      "requested_ref": "v0.3.3",
-      "resolved_commit": "03b803a00341d58382b6cda70a7cd618af5b8806",
+      "resolved_commit": "9bdf30f03f53730e6232377a3fca3bdc6ed9f3ca",
       "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/herdr-navigator-3a5a6fa5dfb5",
-      "installed_unix_ms": 1785158802394
+      "installed_unix_ms": 1787860625350
     }
   },
   {
     "plugin_id": "mirror",
     "name": "Herdr Mirror",
-    "version": "0.2.1",
+    "version": "0.4.0",
     "min_herdr_version": "0.7.2",
     "description": "Mirror a remote herdr server's workspaces and agents into the local sidebar",
     "manifest_path": "/Users/andrew.burns/.config/herdr/plugins/github/mirror-00154761637c/herdr-plugin.toml",
@@ -448,6 +447,24 @@
       }
     ],
     "actions": [
+      {
+        "id": "hide",
+        "title": "Mirror: hide",
+        "description": "Hide this connection's mirrored terminals locally — remote keeps running",
+        "command": [
+          "./target/release/herdr-mirror",
+          "hide"
+        ]
+      },
+      {
+        "id": "new-workspace-pick",
+        "title": "Mirror: new workspace — pick host",
+        "description": "Pop up a picker: create the new workspace on this machine or on a configured host",
+        "command": [
+          "./target/release/herdr-mirror",
+          "pick-workspace"
+        ]
+      },
       {
         "id": "once",
         "title": "Mirror: sync once",
@@ -514,6 +531,15 @@
         ]
       },
       {
+        "id": "show",
+        "title": "Mirror: show",
+        "description": "Bring back a connection's mirrored terminals after hiding them",
+        "command": [
+          "./target/release/herdr-mirror",
+          "show"
+        ]
+      },
+      {
         "id": "start",
         "title": "Mirror: start / resume",
         "description": "Start (or resume) the mirror daemon for all configured hosts",
@@ -543,6 +569,30 @@
     ],
     "events": [
       {
+        "on": "pane.created",
+        "command": [
+          "./target/release/herdr-mirror",
+          "intercept-new",
+          "pane"
+        ]
+      },
+      {
+        "on": "tab.created",
+        "command": [
+          "./target/release/herdr-mirror",
+          "intercept-new",
+          "tab"
+        ]
+      },
+      {
+        "on": "workspace.created",
+        "command": [
+          "./target/release/herdr-mirror",
+          "intercept-new",
+          "workspace"
+        ]
+      },
+      {
         "on": "workspace.focused",
         "command": [
           "./target/release/herdr-mirror",
@@ -550,19 +600,31 @@
         ]
       }
     ],
+    "panes": [
+      {
+        "id": "pick-host",
+        "title": "New workspace",
+        "placement": "overlay",
+        "command": [
+          "./target/release/herdr-mirror",
+          "pick-workspace",
+          "--menu"
+        ]
+      }
+    ],
     "source": {
       "kind": "github",
       "owner": "nikok6",
       "repo": "herdr-mirror",
-      "resolved_commit": "b1df5d44e3e10347176c44d6e15b33d829c17d4d",
+      "resolved_commit": "fc879380267a29a86ed64f1b032063b46d82c4b1",
       "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/mirror-00154761637c",
-      "installed_unix_ms": 1786491990510
+      "installed_unix_ms": 1787860649944
     }
   },
   {
     "plugin_id": "persiyanov.reviewr",
     "name": "reviewr",
-    "version": "0.29.0",
+    "version": "0.36.0",
     "min_herdr_version": "0.7.5",
     "description": "Review agent-written diffs beside the chat and add line comments to the agent input.",
     "manifest_path": "/Users/andrew.burns/.config/herdr/plugins/github/persiyanov.reviewr-e87b654a74f8/herdr-plugin.toml",
@@ -647,9 +709,9 @@
       "kind": "github",
       "owner": "persiyanov",
       "repo": "herdr-reviewr",
-      "resolved_commit": "42ccaaa72176937181c82a91484f97466fb5ed59",
+      "resolved_commit": "d172ea257ea39bc0eddc9608df1c405744c19e56",
       "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/persiyanov.reviewr-e87b654a74f8",
-      "installed_unix_ms": 1785860894866
+      "installed_unix_ms": 1787860651931
     }
   },
   {
@@ -719,7 +781,7 @@
       "repo": "herdr-pretty-which",
       "resolved_commit": "c11c6e5af6f866b70f837bdd89157ba7441dc543",
       "managed_path": "/Users/andrew.burns/.config/herdr/plugins/github/ramarivera.pretty-which-9cf671d5751a",
-      "installed_unix_ms": 1785188651934
+      "installed_unix_ms": 1787860654440
     }
   },
   {

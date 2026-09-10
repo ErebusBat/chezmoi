@@ -1,0 +1,41 @@
+local themes = {
+  light = {{ .theme_modes.light.nvim | quote }},
+  dark = {{ .theme_modes.dark.nvim | quote }},
+}
+
+local function system_theme()
+  if vim.fn.has('macunix') == 1 then
+    vim.fn.system({ 'defaults', 'read', '-g', 'AppleInterfaceStyle' })
+    return vim.v.shell_error == 0 and 'dark' or 'light'
+  end
+
+  return vim.o.background == 'light' and 'light' or 'dark'
+end
+
+local function apply_system_theme()
+  local mode = system_theme()
+  local colorscheme = themes[mode]
+  if vim.o.background == mode and vim.g.colors_name == colorscheme then
+    return
+  end
+
+  vim.o.background = mode
+  vim.cmd.colorscheme(colorscheme)
+end
+
+return {
+  'RRethy/nvim-base16',
+  init = function()
+    vim.opt.termguicolors = true
+  end,
+  config = function()
+    apply_system_theme()
+
+    local group = vim.api.nvim_create_augroup('system-theme', { clear = true })
+    vim.api.nvim_create_autocmd('FocusGained', {
+      group = group,
+      callback = apply_system_theme,
+      desc = 'Follow the macOS light or dark appearance',
+    })
+  end,
+}

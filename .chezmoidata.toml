@@ -1,0 +1,17 @@
+# Change the values in these two tables, then run `chezmoi apply`.
+# Each application uses its own theme namespace, so the explicit mappings live here.
+[theme_modes.light]
+base16 = "gruvbox-light"
+wezterm = "Gruvbox Light"
+herdr = "gruvbox-light"
+ghostty = "Gruvbox Light"
+nvim = "base16-gruvbox-light"
+omp = "light-gruvbox"
+
+[theme_modes.dark]
+base16 = "gruvbox-dark-medium"
+wezterm = "Gruvbox Dark (Gogh)"
+herdr = "gruvbox"
+ghostty = "Gruvbox Dark"
+nvim = "base16-gruvbox-dark-medium"
+omp = "dark-gruvbox"
