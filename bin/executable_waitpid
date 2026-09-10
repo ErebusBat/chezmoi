@@ -31,6 +31,7 @@ if (( ! found )); then
   exit 1
 fi
 
+SECONDS=0
 for pid in $pids; do
   [[ "$pid" == $$ ]] && continue
   while process_state=$(ps -p "$pid" -o stat=); do
@@ -39,3 +40,5 @@ for pid in $pids; do
     sleep 1
   done
 done
+
+print -u2 -- "Waited $SECONDS seconds"
