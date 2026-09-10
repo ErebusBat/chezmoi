@@ -1,0 +1,29 @@
+# vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
+PORT := '3773'
+BIND_HOST := '0.0.0.0'
+T3_CMD := 'npx t3@latest'
+BIND_OPTS := '--host ' + BIND_HOST + ' --port ' + PORT
+
+start:
+    {{ T3_CMD }} start --mode web {{ BIND_OPTS }}
+
+serve:
+    {{ T3_CMD }} serve {{ BIND_OPTS }}
+
+install-service:
+    {{ T3_CMD }} service install {{ BIND_OPTS }}
+
+svc-tail-logs *args:
+    tail {{ args }} ~/.t3/userdata/logs/boot-service.log
+
+svc-status:
+    systemctl --user status t3code.service
+
+svc-restart:
+    systemctl --user restart t3code.service
+
+svc-start:
+    systemctl --user start t3code.service
+
+svc-stop:
+    systemctl --user stop t3code.service
