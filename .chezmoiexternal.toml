@@ -41,7 +41,7 @@
   refreshPeriod = "15m"
 [".local/share/mcp-memory-service/src"]
   type = "git-repo"
-  url = "https://codeberg.org/doobidoo/mcp-memory-service.git"
+  url = "https://github.com/doobidoo/mcp-memory-service.git"
   refreshPeriod = "168h"
 [".config/opencode/skill/prompt-master"]
   type = "git-repo"

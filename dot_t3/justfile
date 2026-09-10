@@ -1,0 +1,49 @@
+# vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
+PORT := '3773'
+BIND_HOST := '0.0.0.0'
+T3_CMD := 'npx t3@latest'
+BIND_OPTS := '--host ' + BIND_HOST + ' --port ' + PORT
+
+start:
+    {{ T3_CMD }} start --mode web {{ BIND_OPTS }}
+
+serve:
+    {{ T3_CMD }} serve {{ BIND_OPTS }}
+
+initial-install:
+    {{ T3_CMD }} connect login --headless
+    just install-service
+    just svc-tail-logs -n 100 -f
+
+install-service:
+    {{ T3_CMD }} service install
+
+ssh-port-fwd host port='3773':
+    @printf "Opening SSH Connection to {{ host }} and forwarding port {{ port }}. Ctrl+C to stop...\n"
+    ssh -N -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -L {{ port }}:localhost:{{ port }} {{ host }}
+
+svc-tail-logs *args:
+    tail {{ args }} ~/.t3/userdata/logs/boot-service.log
+
+svc-status:
+    systemctl --user status t3code.service
+
+svc-restart:
+    systemctl --user restart t3code.service
+
+svc-start:
+    systemctl --user start t3code.service
+
+svc-stop:
+    systemctl --user stop t3code.service
+
+edit-svc:
+    systemctl --user stop t3code.service
+    @printf "\n\nAdd the following lines:\vEnvironment=T3CODE_HOST=::\nEnvironment=T3CODE_PORT=3773\n\nPress ENTER to edit service definition\n"
+    @read key
+    vim ~/.config/systemd/user/t3code.service
+    systemctl --user cat t3code.service
+    systemctl --user daemon-reload
+    systemctl --user start t3code.service
+    systemctl --user status t3code.service
+    just svc-tail-logs -n 100 -f
