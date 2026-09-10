@@ -1,21 +1,37 @@
 #!/usr/bin/env zsh
 # vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
 
-# Wait for a PID, or all current processes with an exact matching name.
+# Wait for a PID, a PID file, or all current processes with a matching name.
 if (( $# != 1 )) || [[ "$1" == -* || -z "$1" ]]; then
-  print -u2 -- "Usage: waitpid <pid|process-name>"
+  print -u2 -- "Usage: waitpid <pid|process-name|pid-file>"
   exit 1
 fi
 
+target=$1
+if [[ -e "$target" || "$target" == */* ]]; then
+  if [[ ! -f "$target" || ! -r "$target" ]]; then
+    print -u2 -- "Cannot read PID file: $1"
+    exit 1
+  fi
+  target=$(cat -- "$target") || exit 1
+  # Trim surrounding whitespace, including the usual trailing newline.
+  target=${target#"${target%%[![:space:]]*}"}
+  target=${target%"${target##*[![:space:]]}"}
+  if [[ "$target" != <-> ]]; then
+    print -u2 -- "PID file must contain a single numeric PID: $1"
+    exit 1
+  fi
+fi
+
 typeset -a pids
-if [[ "$1" == <-> ]]; then
-  if (( $1 == 0 )); then
+if [[ "$target" == <-> ]]; then
+  if (( target == 0 )); then
     print -u2 -- "PID must be greater than zero."
     exit 1
   fi
-  pids=("$1")
+  pids=("$target")
 else
-  pids=( ${(f)"$(pgrep -x -- "$1")"} )
+  pids=( ${(f)"$(pgrep -x -- "$target")"} )
 fi
 
 found=0
