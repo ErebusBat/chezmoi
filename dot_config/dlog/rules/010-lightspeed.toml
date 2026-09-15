@@ -58,6 +58,12 @@ alias = "Kevin"
 
 [[rules]]
 kind = "link"
+match = "MATT"
+page = "Matt Fawcett"
+alias = "Matt"
+
+[[rules]]
+kind = "link"
 match = "SHRUTI"
 page = "Shruti"
 alias = "Shruti"
