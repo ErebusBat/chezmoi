@@ -157,7 +157,8 @@ hosts:
 
   dartp6-eth.lan:
     Inherits: dartp6
-    HostName: dartp6-eth.lan.erebusbat.net
+    HostName: 192.168.14.38
+    # HostName: dartp6-eth.lan.erebusbat.net
 
   dartp6-wifi.lan:
     Inherits: dartp6
