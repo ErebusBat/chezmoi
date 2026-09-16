@@ -68,12 +68,17 @@ replace = "🍱 Lunch"
 [[rules]]
 kind = "prefix"
 match = "M"
-replace = ""
+replace = "🔀"
 
 [[rules]]
 kind = "prefix"
 match = "MERGE"
-replace = ""
+replace = "🔀"
+
+[[rules]]
+kind = "prefix"
+match = "MERGED"
+replace = "🔀"
 
 [[rules]]
 kind = "prefix"
@@ -130,6 +135,11 @@ replace = "🔴"
 kind = "prefix"
 match = "REST"
 replace = "🍃 Rest"
+
+[[rules]]
+kind = "prefix"
+match = "REV"
+replace = "🧐 Review"
 
 [[rules]]
 kind = "prefix"
