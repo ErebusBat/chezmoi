@@ -35,7 +35,7 @@ upgrade:
 upgrade-codex:
     codex update
 
-@upgrade-t3:
+upgrade-t3:
     {{ T3_CMD }} update --channel {{ UPDATE_CHANNEL }}
     just status
 
