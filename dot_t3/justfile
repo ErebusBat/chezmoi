@@ -10,6 +10,9 @@ start:
 serve:
     {{ T3_CMD }} serve {{ BIND_OPTS }}
 
+pair:
+    {{ T3_CMD }} pair
+
 initial-install:
     {{ T3_CMD }} connect login --headless
     just install-service
@@ -31,7 +34,6 @@ upgrade-codex:
 @upgrade-t3:
     just install-service
     just status
-
 
 ssh-port-fwd host port='3773':
     @printf "Opening SSH Connection to {{ host }} and forwarding port {{ port }}. Ctrl+C to stop...\n"
@@ -55,6 +57,9 @@ svc-start:
 
 svc-stop:
     systemctl --user stop t3code.service
+
+svc-cat:
+    systemctl --user cat t3code.service
 
 edit-svc:
     systemctl --user stop t3code.service
