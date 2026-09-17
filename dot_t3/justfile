@@ -26,6 +26,9 @@ install-service:
 status:
     {{ T3_CMD }} service status
 
+restart:
+    {{ T3_CMD }} service restart
+
 upgrade:
     @just upgrade-codex upgrade-t3
 
