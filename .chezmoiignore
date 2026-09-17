@@ -3,6 +3,8 @@ justfile
 README.md
 CONTEXT.md
 docs/
+# Repository-only setup instructions and package list.
+bootstrap/
 
 **/.DS_Store
 **/Session.vim
