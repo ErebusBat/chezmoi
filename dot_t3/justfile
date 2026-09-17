@@ -1,7 +1,7 @@
 # vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
 PORT := '3773'
 BIND_HOST := '0.0.0.0'
-T3_CMD := 'npx t3@latest'
+T3_CMD := 'npx --yes t3@latest'
 BIND_OPTS := '--host ' + BIND_HOST + ' --port ' + PORT
 
 start:
@@ -17,6 +17,14 @@ initial-install:
 
 install-service:
     {{ T3_CMD }} service install
+
+status:
+    {{ T3_CMD }} service status
+
+@upgrade:
+    just install-service
+    just status
+
 
 ssh-port-fwd host port='3773':
     @printf "Opening SSH Connection to {{ host }} and forwarding port {{ port }}. Ctrl+C to stop...\n"
