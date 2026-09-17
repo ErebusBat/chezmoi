@@ -36,8 +36,8 @@ skills profile *args: (_skill-ensure-setup profile)
     echo "          Select 'project' to install skills and they will install at the profile level"
     cd $AGENT_DIR
 
-    echo "> npx skills@latest {{args}}"
-    npx skills@latest {{args}}
+    echo "> npx --yes skills@latest {{args}}"
+    npx --yes skills@latest {{args}}
 
 # This sets up a directory structure and links so we can use standard
 # npx install commands and it will install just for this agent in this profile.
