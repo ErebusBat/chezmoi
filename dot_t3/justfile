@@ -1,7 +1,8 @@
 # vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
 PORT := '3773'
 BIND_HOST := '0.0.0.0'
-T3_CMD := 'npx --yes t3@latest'
+UPDATE_CHANNEL := 'nightly'
+T3_CMD := 'npx --yes t3@' + UPDATE_CHANNEL
 BIND_OPTS := '--host ' + BIND_HOST + ' --port ' + PORT
 
 start:
@@ -29,7 +30,7 @@ upgrade-codex:
     codex update
 
 @upgrade-t3:
-    just install-service
+    {{ T3_CMD }} update --channel {{ UPDATE_CHANNEL }}
     just status
 
 
