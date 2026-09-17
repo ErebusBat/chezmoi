@@ -11,8 +11,8 @@ start:
 serve:
     {{ T3_CMD }} serve {{ BIND_OPTS }}
 
-pair:
-    {{ T3_CMD }} pair
+pair *args:
+    {{ T3_CMD }} pair {{ args }}
 
 initial-install:
     {{ T3_CMD }} connect login --headless
@@ -37,7 +37,6 @@ upgrade-codex:
 
 upgrade-t3:
     {{ T3_CMD }} update --channel {{ UPDATE_CHANNEL }}
-    just svc-patch
     just status
 
 ssh-port-fwd host port='3773':
