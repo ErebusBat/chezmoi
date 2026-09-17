@@ -37,6 +37,7 @@ upgrade-codex:
 
 @upgrade-t3:
     {{ T3_CMD }} update --channel {{ UPDATE_CHANNEL }}
+    just svc-patch
     just status
 
 ssh-port-fwd host port='3773':
