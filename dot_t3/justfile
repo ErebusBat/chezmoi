@@ -17,6 +17,7 @@ initial-install:
 
 install-service:
     {{ T3_CMD }} service install
+    just svc-patch
 
 status:
     {{ T3_CMD }} service status
@@ -44,6 +45,10 @@ svc-status:
 
 svc-restart:
     systemctl --user restart t3code.service
+
+# Restore the bind settings, reloading/restarting only when the unit changes.
+svc-patch:
+    python3 "{{ justfile_directory() }}/patch-service.py"
 
 svc-start:
     systemctl --user start t3code.service
