@@ -21,7 +21,13 @@ install-service:
 status:
     {{ T3_CMD }} service status
 
-@upgrade:
+upgrade:
+    @just upgrade-codex upgrade-t3
+
+upgrade-codex:
+    codex update
+
+@upgrade-t3:
     just install-service
     just status
 
