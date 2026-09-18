@@ -58,6 +58,15 @@ bin/blue-bubbles-loop.sh
 .config/erebusbat/blue-bubbles
 {{- end }}
 
+############################################################
+### Outpost Only Files
+############################################################
+{{- if ne .chezmoi.hostname "outpost" }}
+bin/hermes
+bin/albusbot
+bin/daddy-chat
+{{- end }}
+
 ### Base16
 {{- if and (hasKey . "zsh_hooks") (index .zsh_hooks "ignore_base16" | default false) }}
 .config/zsh-hooks/base16.zsh

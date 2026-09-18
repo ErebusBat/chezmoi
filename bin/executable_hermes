@@ -1,0 +1,20 @@
+#!/usr/bin/env zsh
+set -eo pipefail
+
+# vim: set ft=zsh ts=2 sw=2 sts=2 et ai si sta:
+[[ -z $HERMES_USER ]] && HERMES_USER=hermes
+[[ -z $HERMES_BIN ]] && HERMES_BIN=/home/$HERMES_USER/.hermes/hermes-agent/venv/bin/hermes
+# Profile Can be auto sent from a symbolic link name or using the default if it's set explicitly before we get in here then don't do anything.
+if [[ -z $HERMES_PROFILE ]]; then
+  if [[ -L $0 ]]; then
+    HERMES_PROFILE=${0:t}
+    if [[ $HERMES_PROFILE == "hermes" ]]; then
+      HERMES_PROFILE=default
+    fi
+  else
+    HERMES_PROFILE=default
+  fi
+fi
+set -u
+
+exec /usr/bin/sudo -u $HERMES_USER -H -- $HERMES_BIN --profile $HERMES_PROFILE "$@"
