@@ -65,6 +65,7 @@ bin/blue-bubbles-loop.sh
 bin/hermes
 bin/albusbot
 bin/daddy-chat
+bin/nvim-hermes.zsh
 {{- end }}
 
 ### Base16
