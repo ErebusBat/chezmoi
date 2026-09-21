@@ -40,6 +40,13 @@
       "skillPath": "skills/productivity/bluebubbles-messaging/SKILL.md",
       "computedHash": "0d5ffdcf8b7450798c978efa9baff6c199d7fa2d54ff8a90d97f8159fe71b1a9"
     },
+    "boys-custody": {
+      "source": "maze.lan:git/erebusbat/skills.git",
+      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/boys-custody/SKILL.md",
+      "computedHash": "6b8b35f4022a2ec8c810389fdfe601613a081ddf9d4480258d70965200405350"
+    },
     "code-review": {
       "source": "mattpocock/skills",
       "sourceType": "github",
