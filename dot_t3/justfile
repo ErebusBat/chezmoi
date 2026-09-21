@@ -1,7 +1,8 @@
 # vim: set ft=just ts=4 sw=4 sts=4 et ai si sta:
 PORT := '3773'
 BIND_HOST := '0.0.0.0'
-T3_CMD := 'npx t3@latest'
+UPDATE_CHANNEL := 'nightly'
+T3_CMD := 'npx --yes t3@' + UPDATE_CHANNEL
 BIND_OPTS := '--host ' + BIND_HOST + ' --port ' + PORT
 
 start:
@@ -10,6 +11,9 @@ start:
 serve:
     {{ T3_CMD }} serve {{ BIND_OPTS }}
 
+pair *args:
+    {{ T3_CMD }} pair {{ args }}
+
 initial-install:
     {{ T3_CMD }} connect login --headless
     just install-service
@@ -17,6 +21,23 @@ initial-install:
 
 install-service:
     {{ T3_CMD }} service install
+    just svc-patch
+
+status:
+    {{ T3_CMD }} service status
+
+restart:
+    {{ T3_CMD }} service restart
+
+upgrade:
+    @just upgrade-codex upgrade-t3
+
+upgrade-codex:
+    codex update
+
+upgrade-t3:
+    {{ T3_CMD }} update --channel {{ UPDATE_CHANNEL }}
+    just status
 
 ssh-port-fwd host port='3773':
     @printf "Opening SSH Connection to {{ host }} and forwarding port {{ port }}. Ctrl+C to stop...\n"
@@ -31,11 +52,18 @@ svc-status:
 svc-restart:
     systemctl --user restart t3code.service
 
+# Restore the bind settings, reloading/restarting only when the unit changes.
+svc-patch:
+    python3 "{{ justfile_directory() }}/patch-service.py"
+
 svc-start:
     systemctl --user start t3code.service
 
 svc-stop:
     systemctl --user stop t3code.service
+
+svc-cat:
+    systemctl --user cat t3code.service
 
 edit-svc:
     systemctl --user stop t3code.service

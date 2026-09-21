@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+corner="${1:-}"
+case "$corner" in
+    nw | ne | sw | se) ;;
+    *)
+        echo "usage: quarter-window {nw|ne|sw|se} [window-id]" >&2
+        exit 2
+        ;;
+esac
+
+# Supplying a window ID is useful for non-disruptive testing. Normal shortcut
+# use omits it and targets the currently focused window.
+window_id="${2:-}"
+if [[ -z "$window_id" ]]; then
+    # GNOME's media-key launcher can briefly clear _NET_ACTIVE_WINDOW while
+    # starting a custom shortcut. X input focus still identifies the window in
+    # that interval, so use it as the reliable fallback.
+    if ! window_id=$(xdotool getactivewindow 2>/dev/null) || [[ "$window_id" == 0 ]]; then
+        window_id=$(xdotool getwindowfocus)
+    fi
+fi
+
+window_class=$(xprop -id "$window_id" WM_CLASS 2>/dev/null || true)
+if [[ "$window_class" != *' = '* ]]; then
+    echo "quarter-window: no focused application window found" >&2
+    exit 1
+fi
+
+window_type=$(xprop -id "$window_id" _NET_WM_WINDOW_TYPE 2>/dev/null || true)
+if [[ "$window_type" == *'_NET_WM_WINDOW_TYPE_'* && "$window_type" != *'_NET_WM_WINDOW_TYPE_NORMAL'* ]]; then
+    echo "quarter-window: focused window is not a normal application window" >&2
+    exit 1
+fi
+
+eval "$(xdotool getwindowgeometry --shell "$window_id")"
+center_x=$((X + WIDTH / 2))
+center_y=$((Y + HEIGHT / 2))
+
+# Mutter publishes one usable rectangle per monitor here, excluding panels
+# and docks. Select the rectangle containing the focused window's center.
+desktop=$(xdotool get_desktop)
+workareas=$(xprop -root "_GTK_WORKAREAS_D${desktop}" 2>/dev/null || true)
+mapfile -t values < <(
+    printf '%s\n' "$workareas" |
+        sed 's/^[^=]*=//' |
+        tr ',' '\n' |
+        tr -d ' ' |
+        grep -E '^-?[0-9]+$' || true
+)
+
+area_x=''
+for ((i = 0; i + 3 < ${#values[@]}; i += 4)); do
+    x=${values[i]}
+    y=${values[i + 1]}
+    w=${values[i + 2]}
+    h=${values[i + 3]}
+    if ((center_x >= x && center_x < x + w && center_y >= y && center_y < y + h)); then
+        area_x=$x
+        area_y=$y
+        area_w=$w
+        area_h=$h
+        break
+    fi
+done
+
+if [[ -z "$area_x" ]]; then
+    echo "quarter-window: no per-monitor GNOME work area contains the focused window" >&2
+    exit 1
+fi
+
+# Restore a maximized window before applying an explicit size.
+state=$(xprop -id "$window_id" _NET_WM_STATE 2>/dev/null || true)
+if [[ "$state" == *MAXIMIZED_HORZ* || "$state" == *MAXIMIZED_VERT* ]]; then
+    xdotool key --window "$window_id" --clearmodifiers alt+F10
+    sleep 0.12
+fi
+
+left_w=$((area_w / 2))
+right_w=$((area_w - left_w))
+top_h=$((area_h / 2))
+bottom_h=$((area_h - top_h))
+
+case "$corner" in
+    nw) target_x=$area_x;            target_y=$area_y;            target_w=$left_w;  target_h=$top_h ;;
+    ne) target_x=$((area_x+left_w)); target_y=$area_y;            target_w=$right_w; target_h=$top_h ;;
+    sw) target_x=$area_x;            target_y=$((area_y+top_h));  target_w=$left_w;  target_h=$bottom_h ;;
+    se) target_x=$((area_x+left_w)); target_y=$((area_y+top_h));  target_w=$right_w; target_h=$bottom_h ;;
+esac
+
+# xdotool sizes the client area but moves the outer frame. Subtract Mutter's
+# server-side decoration extents so the complete decorated window occupies the
+# exact quarter. Client-side-decorated windows normally publish zero extents.
+frame_extents=$(xprop -id "$window_id" _NET_FRAME_EXTENTS 2>/dev/null || true)
+mapfile -t extents < <(
+    printf '%s\n' "$frame_extents" |
+        sed 's/^[^=]*=//' |
+        tr ',' '\n' |
+        tr -d ' ' |
+        grep -E '^[0-9]+$' || true
+)
+if ((${#extents[@]} == 4)); then
+    target_client_w=$((target_w - extents[0] - extents[1]))
+    target_client_h=$((target_h - extents[2] - extents[3]))
+else
+    target_client_w=$target_w
+    target_client_h=$target_h
+fi
+
+xdotool windowsize --sync "$window_id" "$target_client_w" "$target_client_h"
+xdotool windowmove --sync "$window_id" "$target_x" "$target_y"

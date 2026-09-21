@@ -4,11 +4,49 @@ exit 0
 {{ end }}
 {{ $filePath := joinPath .chezmoi.homeDir "/Aptfile" }}
 {{ if stat $filePath }}
-# {{ include $filePath | sha256sum }} ~/Aptfile
+# {{ includeTemplate "Aptfile.tmpl" . | sha256sum }} ~/Aptfile
 set -euo pipefail
 
 packages=$(grep -v '^\s*#' "$HOME/Aptfile" | grep -v '^\s*$' | grep -v '^ppa:' | tr '\n' ' ' || true)
 ppas=$(grep '^ppa:' "$HOME/Aptfile" | sed 's/^ppa://' | tr '\n' ' ' || true)
+
+# Ubuntu's package named gopass is an unrelated implementation. Configure the
+# upstream repository before installing it, and reject packages from elsewhere.
+if grep -Eq '^gopass[[:space:]]*$' "$HOME/Aptfile"; then
+  if ! command -v curl >/dev/null || [ ! -s /etc/ssl/certs/ca-certificates.crt ]; then
+    sudo apt-get update
+    sudo apt-get install --no-install-recommends -y ca-certificates curl
+  fi
+  keyring=/usr/share/keyrings/gopass-archive-keyring.gpg
+  if [ ! -s "$keyring" ]; then
+    key_tmp=$(mktemp)
+    trap 'rm -f "$key_tmp"' EXIT
+    curl --fail --silent --show-error --location \
+      https://packages.gopass.pw/repos/gopass/gopass-archive-keyring.gpg -o "$key_tmp"
+    sudo install -m 0644 "$key_tmp" "$keyring"
+    rm -f "$key_tmp"
+    trap - EXIT
+  fi
+  sudo tee /etc/apt/sources.list.d/gopass.sources >/dev/null <<'EOF'
+Types: deb
+URIs: https://packages.gopass.pw/repos/gopass
+Suites: stable
+Components: main
+Signed-By: /usr/share/keyrings/gopass-archive-keyring.gpg
+EOF
+  # Separate from the preference file owned by gopass-archive-keyring.
+  # Specific pins use the first matching record: allow upstream before denying
+  # other sources, and sort before the package-provided gopass.pref file.
+  sudo tee /etc/apt/preferences.d/00-chezmoi-gopass.pref >/dev/null <<'EOF'
+Package: gopass gopass-archive-keyring
+Pin: origin packages.gopass.pw
+Pin-Priority: 900
+
+Package: gopass gopass-archive-keyring
+Pin: version *
+Pin-Priority: -1
+EOF
+fi
 
 sudo apt-get update
 

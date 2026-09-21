@@ -1,0 +1,79 @@
+{{- if and (eq .chezmoi.os "linux") (eq .chezmoi.hostname "dartp6") -}}
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if ! command -v gsettings >/dev/null 2>&1; then
+    echo "dartp6 GNOME hotkeys: gsettings is not installed; skipping" >&2
+    exit 0
+fi
+
+# Window placement and lifecycle shortcuts shared with the macOS/QMK layout.
+gsettings set org.gnome.desktop.wm.keybindings minimize "['<Super>h', '<Super>m']"
+gsettings set org.gnome.desktop.wm.keybindings toggle-maximized '@as []'
+gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-left "['<Primary><Shift><Alt><Super>Left']"
+gsettings set org.gnome.desktop.wm.keybindings move-to-monitor-right "['<Primary><Shift><Alt><Super>Right']"
+gsettings set org.gnome.desktop.wm.keybindings maximize "['<Primary><Alt><Super>Return']"
+gsettings set org.gnome.mutter.keybindings toggle-tiled-left "['<Primary><Super>Left', '<Primary><Super>KP_Left', '<Primary><Super>h', '<Primary><Alt><Super>Left']"
+gsettings set org.gnome.mutter.keybindings toggle-tiled-right "['<Primary><Super>Right', '<Primary><Super>KP_Right', '<Primary><Super>l', '<Primary><Alt><Super>Right']"
+
+# Reserve Super-Space for the Raycast-style Pop Shell launcher.
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['XF86Keyboard']"
+gsettings set org.gnome.shell.keybindings toggle-overview "['<Super>d']"
+gsettings set org.gnome.shell.extensions.pop-shell activate-launcher "['<Super>slash']"
+
+# Reuse matching shortcuts when present, otherwise add dedicated paths. The
+# existing list is retained so unrelated entries such as Flameshot and the
+# screensaver are never replaced.
+media_schema='org.gnome.settings-daemon.plugins.media-keys'
+custom_schema='org.gnome.settings-daemon.plugins.media-keys.custom-keybinding'
+mapfile -t custom_paths < <(
+    gsettings get "$media_schema" custom-keybindings |
+        grep -oE "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/[^', ]+/" || true
+)
+custom_paths_changed=0
+
+ensure_custom_shortcut() {
+    local slug=$1
+    local name=$2
+    local command=$3
+    local binding=$4
+    local path=''
+    local existing_path existing_name
+
+    for existing_path in "${custom_paths[@]}"; do
+        existing_name=$(gsettings get "$custom_schema:$existing_path" name 2>/dev/null || true)
+        if [[ "$existing_name" == "'$name'" ]]; then
+            path=$existing_path
+            break
+        fi
+    done
+
+    if [[ -z "$path" ]]; then
+        path="/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/dartp6-${slug}/"
+        custom_paths+=("$path")
+        custom_paths_changed=1
+    fi
+
+    gsettings set "$custom_schema:$path" name "$name"
+    gsettings set "$custom_schema:$path" command "$command"
+    gsettings set "$custom_schema:$path" binding "$binding"
+}
+
+ensure_custom_shortcut \
+    pop-shell-launcher \
+    'Pop Shell Launcher' \
+    'dbus-send --session --dest=com.System76.PopShell --type=method_call /com/System76/PopShell com.System76.PopShell.Launcher' \
+    '<Super>space'
+
+quarter_command='{{ .chezmoi.homeDir }}/bin/quarter-window'
+ensure_custom_shortcut quarter-top-left 'Quarter: top left' "$quarter_command nw" '<Alt><Control><Super>u'
+ensure_custom_shortcut quarter-top-right 'Quarter: top right' "$quarter_command ne" '<Alt><Control><Super>i'
+ensure_custom_shortcut quarter-bottom-left 'Quarter: bottom left' "$quarter_command sw" '<Alt><Control><Super>j'
+ensure_custom_shortcut quarter-bottom-right 'Quarter: bottom right' "$quarter_command se" '<Alt><Control><Super>k'
+
+if ((custom_paths_changed)); then
+    printf -v custom_paths_value "'%s', " "${custom_paths[@]}"
+    gsettings set "$media_schema" custom-keybindings "[${custom_paths_value%, }]"
+fi
+{{- end -}}

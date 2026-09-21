@@ -54,6 +54,31 @@ Needed to clone other repos
 ## gopass
 Used to manage secrets for chezmoi, uses GPG.
 
+### Linux APT recovery
+
+`Aptfile` installs gopass and its archive keyring. The APT installer restores the
+official repository and pins these packages to it, excluding Ubuntu's unrelated
+`gopass` package. This runs when the installer or rendered Aptfile changes
+(including Aptfile's existing three-day time bucket), during `chezmoi apply`.
+
+If gopass is already broken, a normal apply can fail while rendering secrets,
+before scripts run. Recover without rendering secret-dependent files:
+
+```bash
+cd "$(chezmoi source-path)"
+chezmoi execute-template < Aptfile.tmpl > "$HOME/Aptfile"
+repair_script=$(mktemp)
+if chezmoi execute-template < run_onchange_apt_install.sh.tmpl > "$repair_script"; then
+  bash "$repair_script"
+fi
+rm -f "$repair_script"
+chezmoi status
+```
+
+This reconciles all packages listed in Aptfile and may prompt for sudo. A system
+upgrade that removes third-party repositories or these pins can still undo this
+setup; rerun the recovery commands afterward if needed.
+
 ## starship
 Prompt config.  It is MUCH easier if this is installed prior to chezmoi setting up ZSH to use it.
 

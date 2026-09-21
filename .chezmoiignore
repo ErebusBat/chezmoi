@@ -3,6 +3,8 @@ justfile
 README.md
 CONTEXT.md
 docs/
+# Repository-only setup instructions and package list.
+bootstrap/
 
 **/.DS_Store
 **/Session.vim
@@ -56,6 +58,16 @@ bin/blue-bubbles-loop.sh
 .config/erebusbat/blue-bubbles
 {{- end }}
 
+############################################################
+### Outpost Only Files
+############################################################
+{{- if ne .chezmoi.hostname "outpost" }}
+bin/hermes
+bin/albusbot
+bin/daddy-chat
+bin/nvim-hermes.zsh
+{{- end }}
+
 ### Base16
 {{- if and (hasKey . "zsh_hooks") (index .zsh_hooks "ignore_base16" | default false) }}
 .config/zsh-hooks/base16.zsh
@@ -67,6 +79,8 @@ bin/blue-bubbles-loop.sh
 {{- if ne .chezmoi.hostname "dartp6" }}
 .tmuxp/sys76.yaml
 bin/sys76-*
+bin/clear-stuck-modifiers
+bin/quarter-window
 {{- end }}
 
 ############################################################
