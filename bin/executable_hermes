@@ -15,6 +15,16 @@ if [[ -z $HERMES_PROFILE ]]; then
     HERMES_PROFILE=default
   fi
 fi
+
+# Hermes reads HERMES_HOME during startup, before processing --profile.
+if [[ -z $HERMES_HOME ]]; then
+  HERMES_HOME=/home/$HERMES_USER/.hermes
+  if [[ ${HERMES_PROFILE:l} != default ]]; then
+    HERMES_HOME+=/profiles/${HERMES_PROFILE:l}
+  fi
+fi
 set -u
 
-exec /usr/bin/sudo -u $HERMES_USER -H -- $HERMES_BIN --profile $HERMES_PROFILE "$@"
+# Set it after sudo so environment filtering cannot drop the selected home.
+exec /usr/bin/sudo -u "$HERMES_USER" -H -- /usr/bin/env \
+  "HERMES_HOME=$HERMES_HOME" "$HERMES_BIN" --profile "$HERMES_PROFILE" "$@"
