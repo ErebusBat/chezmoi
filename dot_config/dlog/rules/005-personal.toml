@@ -44,12 +44,7 @@ alias = "Thelio"
 
 [[rules]]
 kind = "link"
-match = "DARTP6"
-page = "dartp6"
-
-[[rules]]
-kind = "link"
-match = "DARTER"
+match = ["DARTP6", "DARTER"]
 page = "dartp6"
 
 [[rules]]
