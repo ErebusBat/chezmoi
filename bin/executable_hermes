@@ -25,6 +25,13 @@ if [[ -z $HERMES_HOME ]]; then
 fi
 set -u
 
-# Set it after sudo so environment filtering cannot drop the selected home.
-exec /usr/bin/sudo -u "$HERMES_USER" -H -- /usr/bin/env \
-  "HERMES_HOME=$HERMES_HOME" "$HERMES_BIN" --profile "$HERMES_PROFILE" "$@"
+# Some operations require root, so if user has already sudoed then don't
+# re-sudo to hermes user
+if [[ $EUID -eq 0 ]]; then
+  export "HERMES_HOME=$HERMES_HOME"
+  exec "$HERMES_BIN" --profile "$HERMES_PROFILE" "$@"
+else
+  # Set HERMES_HOME after sudo so environment filtering cannot drop the selected home.
+  exec /usr/bin/sudo -u "$HERMES_USER" -H -- /usr/bin/env \
+    "HERMES_HOME=$HERMES_HOME" "$HERMES_BIN" --profile "$HERMES_PROFILE" "$@"
+fi
