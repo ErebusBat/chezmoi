@@ -1,0 +1,6 @@
+{
+    "version": "1.4.0",
+    "autoload": {
+        "Keychron M3 Mouse": "Browser tabs"
+    }
+}

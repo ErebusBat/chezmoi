@@ -40,6 +40,13 @@
       "skillPath": "skills/productivity/bluebubbles-messaging/SKILL.md",
       "computedHash": "0d5ffdcf8b7450798c978efa9baff6c199d7fa2d54ff8a90d97f8159fe71b1a9"
     },
+    "boys-custody": {
+      "source": "maze:git/erebusbat/skills.git",
+      "sourceUrl": "maze:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/boys-custody/SKILL.md",
+      "computedHash": "6b8b35f4022a2ec8c810389fdfe601613a081ddf9d4480258d70965200405350"
+    },
     "code-review": {
       "source": "mattpocock/skills",
       "sourceType": "github",
@@ -53,8 +60,8 @@
       "computedHash": "5a17552cc1482f1a40124bf4e6c9dbd90ac0dbb47e71c07d47369f9e5f2ae3b5"
     },
     "daily-logs": {
-      "source": "maze.lan:git/erebusbat/skills.git",
-      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "source": "maze:git/erebusbat/skills.git",
+      "sourceUrl": "maze:git/erebusbat/skills.git",
       "sourceType": "git",
       "skillPath": "skills/erebusbat/daily-logs/SKILL.md",
       "computedHash": "f488407735ba60fe476fad5834c210cca13132a0355bbfd4368d768104a0ceaa"
@@ -126,6 +133,20 @@
       "sourceType": "github",
       "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
       "computedHash": "2449db6ab1ded9581f69fcc56c1f64818112d05e271fd4c5da23c6523f9d3d9d"
+    },
+    "jev-email-review": {
+      "source": "maze:git/erebusbat/skills.git",
+      "sourceUrl": "maze:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/jev-email-review/SKILL.md",
+      "computedHash": "d5597b4c3e958f9f4ebe175bfc4612ee456c52dff479cdb2ddfae20876f2cfed"
+    },
+    "jev-paperless-review": {
+      "source": "maze:git/erebusbat/skills.git",
+      "sourceUrl": "maze:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/jev-paperless-review/SKILL.md",
+      "computedHash": "addd654cb7e6d2ee1be875186e23d6b852b2dc18d30c116ff16a4238a5bba5e6"
     },
     "json-canvas": {
       "source": "kepano/obsidian-skills",
