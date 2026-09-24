@@ -42,12 +42,7 @@ replace = "🧀"
 
 [[rules]]
 kind = "global"
-match = ":cherries:"
-replace = "🍒"
-
-[[rules]]
-kind = "global"
-match = ":cherry:"
+match = [":cherries:", ":cherry:"]
 replace = "🍒"
 
 [[rules]]

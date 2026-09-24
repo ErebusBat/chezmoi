@@ -217,10 +217,11 @@ bin/what-has-secure-input
 ############################################################
 #-- OS IS NOT Linux, so don't include
 {{- if ne .chezmoi.os "linux" }}
-.config/Synergy/
 .config/gospt/client.yml
+.config/Synergy/
 .config/systemd
 .local/bin/pinentry-auto
+.t3/patch-service.py
 Aptfile
 bin/lock
 {{- end }}

@@ -52,7 +52,7 @@ replace = "🟢"
 
 [[rules]]
 kind = "prefix"
-match = "L"
+match = ["L", "RD"]
 replace = "🔍"
 
 [[rules]]
@@ -67,17 +67,7 @@ replace = "🍱 Lunch"
 
 [[rules]]
 kind = "prefix"
-match = "M"
-replace = "🔀"
-
-[[rules]]
-kind = "prefix"
-match = "MERGE"
-replace = "🔀"
-
-[[rules]]
-kind = "prefix"
-match = "MERGED"
+match = ["M", "MERGE", "MERGED"]
 replace = "🔀"
 
 [[rules]]
@@ -118,11 +108,6 @@ replace = "→"
 
 [[rules]]
 kind = "prefix"
-match = "RD"
-replace = "🔍"
-
-[[rules]]
-kind = "prefix"
 match = "READ"
 replace = "👓"
 
@@ -138,12 +123,7 @@ replace = "🍃 Rest"
 
 [[rules]]
 kind = "prefix"
-match = "REV"
-replace = "🧐 Review"
-
-[[rules]]
-kind = "prefix"
-match = "REVIEW"
+match = ["REV", "REVIEW"]
 replace = "🧐 Review"
 
 [[rules]]
@@ -158,12 +138,7 @@ replace = "✅"
 
 [[rules]]
 kind = "prefix"
-match = "W"
-replace = "⚒️"
-
-[[rules]]
-kind = "prefix"
-match = "WORK"
+match = ["W", "WORK"]
 replace = "⚒️"
 
 [[rules]]
