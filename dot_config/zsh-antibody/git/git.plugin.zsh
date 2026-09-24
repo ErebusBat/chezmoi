@@ -136,6 +136,39 @@ function git-clone-worktree-repo() {
   printf "\nDone! You are now in the ${defaultBranch} of the ${repoAnchorDir} repository"
 }
 
+function git_worktree_paths_in_main() {
+  local master_branch=$(git_master_branch_name)
+  local current_worktree_path=$(git rev-parse --show-toplevel 2>/dev/null)
+  local worktree_path
+  git worktree list --porcelain |
+    sed -n 's/^worktree //p' |
+    while IFS= read -r worktree_path; do
+      [ -d "$worktree_path" ] || continue
+      [ "$(git -C "$worktree_path" branch --show-current)" = "$master_branch" ] && continue
+      [ -z "$(git -C "$worktree_path" status --porcelain)" ] || continue
+      git -C "$worktree_path" merge-base --is-ancestor HEAD "origin/$master_branch" || continue
+      if [[ -n $current_worktree_path && ${worktree_path:A} == ${current_worktree_path:A} ]]; then
+        printf 'Skipping current worktree: %s\n' "$worktree_path" >&2
+        continue
+      fi
+      printf '%s\n' "$worktree_path"
+    done
+}
+
+function remove_worktrees_in_main() {
+  git_worktree_paths_in_main |
+    while IFS= read -r worktree_path; do
+      echo "Removing ${worktree_path:t}"
+      git worktree remove "$worktree_path"
+    done
+}
+
+function git_worktree_cleanup() {
+  git worktree prune
+  remove_worktrees_in_main
+}
+alias gwtcu=git_worktree_cleanup
+
 # See working/scm-breeze/scm-breeze.plugin.zsh for more aliases
 
 # Is it master or main?  This will find out
@@ -321,4 +354,3 @@ if [[ `type fzf` =~ 'fzf is' ]]; then
     git restore --staged $files
   }
 fi
-
