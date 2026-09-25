@@ -31,7 +31,10 @@ if [[ -r "$theme_script" ]] && (( $+commands[wezterm] )) && (( $+commands[jq] ))
     jq -r '.[] | [.pane_id, .tty_name] | @tsv' |
     while IFS=$'\t' read -r pane_id tty; do
       [[ -w "$tty" ]] || continue
-      /bin/zsh -c 'source "$1"' _ "$theme_script" >| "$tty"
+      # Base16 writes to $TTY itself. This is an outer emulator tty, so do
+      # not inherit the invoking pane's tty or tmux/screen escape wrapping.
+      /bin/zsh -c 'unset TMUX; TERM=xterm-256color; TTY="$2"; source "$1"' \
+        _ "$theme_script" "$tty"
 
       # Herdr responds to the terminal appearance report by re-querying the
       # outer palette and propagating both changes to every embedded pane.
@@ -45,6 +48,17 @@ if [[ -r "$theme_script" ]] && (( $+commands[wezterm] )) && (( $+commands[jq] ))
         wezterm cli send-text --pane-id "$pane_id" --no-paste "$appearance_report"
       fi
     done
+fi
+
+# Tmux caches the terminal's default foreground/background. Palette changes
+# alone do not refresh that cache, so applications can still detect light
+# mode on a dark terminal. Let each emulator report its current colors back
+# to its own tmux client, including clients outside WezTerm (such as Ghostty).
+if (( $+commands[tmux] )); then
+  while IFS= read -r client_tty; do
+    [[ -w "$client_tty" ]] || continue
+    printf '\e]10;?\a\e]11;?\a' > "$client_tty"
+  done < <(tmux list-clients -F '#{client_tty}' 2>/dev/null || true)
 fi
 
 echo "System is in ${mode:u} Mode; synchronized terminal-managed palettes"

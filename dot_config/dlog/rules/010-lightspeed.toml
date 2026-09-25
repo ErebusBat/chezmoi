@@ -16,13 +16,7 @@ alias = "LS MBP"
 # People
 [[rules]]
 kind = "link"
-match = "BARNABY"
-page = "Barnaby Claydon"
-alias = "Barnaby"
-
-[[rules]]
-kind = "link"
-match = "BARNB"
+match = ["BARNABY", "BARNB"]
 page = "Barnaby Claydon"
 alias = "Barnaby"
 

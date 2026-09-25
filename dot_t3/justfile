@@ -23,13 +23,16 @@ install-service:
 status:
     {{ T3_CMD }} service status
 
+restart:
+    {{ T3_CMD }} service restart
+
 upgrade:
     @just upgrade-codex upgrade-t3
 
 upgrade-codex:
     codex update
 
-@upgrade-t3:
+upgrade-t3:
     {{ T3_CMD }} update --channel {{ UPDATE_CHANNEL }}
     just status
 
