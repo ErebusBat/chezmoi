@@ -155,17 +155,53 @@ function git_worktree_paths_in_main() {
     done
 }
 
+# List clean worktrees whose HEAD is reachable from any cached origin branch.
+# Run git fetch origin first if the remote-tracking refs need updating.
+function git_worktree_paths_pushed_to_origin() {
+  local current_worktree_path=$(git rev-parse --show-toplevel 2>/dev/null)
+  local worktree_path head
+  git worktree list --porcelain |
+    sed -n 's/^worktree //p' |
+    while IFS= read -r worktree_path; do
+      [[ -d $worktree_path ]] || continue
+      [[ $(git -C "$worktree_path" rev-parse --is-bare-repository 2>/dev/null) == false ]] || continue
+      [[ -n $current_worktree_path && ${worktree_path:A} == ${current_worktree_path:A} ]] && continue
+      git -C "$worktree_path" symbolic-ref --quiet HEAD >/dev/null || continue
+      [[ -z $(git -C "$worktree_path" status --porcelain) ]] || continue
+      head=$(git -C "$worktree_path" rev-parse HEAD) || continue
+      [[ -n $(git for-each-ref --format='%(refname)' --contains "$head" refs/remotes/origin/) ]] || continue
+      printf '%s\n' "$worktree_path"
+    done
+}
+
 function remove_worktrees_in_main() {
   git_worktree_paths_in_main |
     while IFS= read -r worktree_path; do
-      echo "Removing ${worktree_path:t}"
-      git worktree remove "$worktree_path"
+      if [[ $PWD == $worktree_path ]]; then
+        echo "SKIP $worktree_path"
+      else
+        echo "Removing ${worktree_path:t}"
+        git worktree remove "$worktree_path"
+      fi
+    done
+}
+
+function remove_worktrees_pushed() {
+  git_worktree_paths_pushed_to_origin |
+    while IFS= read -r worktree_path; do
+      if [[ $PWD == $worktree_path ]]; then
+        echo "SKIP $worktree_path"
+      else
+        echo "Removing ${worktree_path:t}"
+        git worktree remove "$worktree_path"
+      fi
     done
 }
 
 function git_worktree_cleanup() {
   git worktree prune
   remove_worktrees_in_main
+  remove_worktrees_pushed
 }
 alias gwtcu=git_worktree_cleanup
 
