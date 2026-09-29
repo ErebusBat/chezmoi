@@ -94,13 +94,13 @@ cd ~/.config/aerospace && just startup-chrome &
 
 # Startup Tmux
 if [[ -x ~/bin/lstmux.sh ]]; then
-  # echo "Starting tmux...."
-  # ~/bin/lstmux.sh
+  echo "Starting tmux...."
+  ~/bin/lstmux.sh daemon
 else
   echo "No tmux sessions available, use 'tmpa' to start one"
 fi
 
 # Let this window be used for dlog-tail
 # Remember that we moved it to the [P]roductivity workspace above
-clear
-tmpa daemon
+# clear
+# tmpa daemon
