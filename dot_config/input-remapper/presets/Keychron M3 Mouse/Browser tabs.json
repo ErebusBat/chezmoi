@@ -1,0 +1,12 @@
+{
+    "mapping": {
+        "1,275,1": [
+            "Control_L + Next",
+            "keyboard"
+        ],
+        "1,276,1": [
+            "Control_L + Prior",
+            "keyboard"
+        ]
+    }
+}

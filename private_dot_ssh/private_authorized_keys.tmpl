@@ -52,10 +52,10 @@ ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBDEm+v8I
 # USMB-JVK937H909
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPYgSc5F3kO+DM6/9xL/bgKaz26zAKjEjLTorDdAeg47 andrew.burns@USMB-JVK937H909
 ### LSHQ #######################################################################
-{{- else }}
+
+{{- end }}
 # Paperclip - AAB Consulting Test
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPoEV9HueKArCoLq+HQkttLVgCeGLch+BENz2q02uHb5 aab-technical-engineer
-{{- end }}
 
 {{ if and $n8n_keys (stat $n8n_gaurd_script_path) }}
 # n8n runner

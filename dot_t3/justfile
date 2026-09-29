@@ -11,9 +11,6 @@ start:
 serve:
     {{ T3_CMD }} serve {{ BIND_OPTS }}
 
-pair *args:
-    {{ T3_CMD }} pair {{ args }}
-
 initial-install:
     {{ T3_CMD }} connect login --headless
     just install-service
@@ -39,6 +36,7 @@ upgrade-t3:
     {{ T3_CMD }} update --channel {{ UPDATE_CHANNEL }}
     just status
 
+
 ssh-port-fwd host port='3773':
     @printf "Opening SSH Connection to {{ host }} and forwarding port {{ port }}. Ctrl+C to stop...\n"
     ssh -N -o ExitOnForwardFailure=yes -o ServerAliveInterval=30 -L {{ port }}:localhost:{{ port }} {{ host }}
@@ -61,9 +59,6 @@ svc-start:
 
 svc-stop:
     systemctl --user stop t3code.service
-
-svc-cat:
-    systemctl --user cat t3code.service
 
 edit-svc:
     systemctl --user stop t3code.service
