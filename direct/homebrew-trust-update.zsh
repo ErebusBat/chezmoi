@@ -4,6 +4,7 @@ set -euo pipefail
 TRUSTED_CASKS=(
   manaflow-ai/cmux/cmux
   nikitabobko/tap/aerospace
+  visigrid/tap/visigrid
 )
 
 TAPS_FULL_TRUST=(
