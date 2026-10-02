@@ -60,8 +60,8 @@
       "computedHash": "5a17552cc1482f1a40124bf4e6c9dbd90ac0dbb47e71c07d47369f9e5f2ae3b5"
     },
     "daily-logs": {
-      "source": "maze.lan:git/erebusbat/skills.git",
-      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
+      "source": "maze:git/erebusbat/skills.git",
+      "sourceUrl": "maze:git/erebusbat/skills.git",
       "sourceType": "git",
       "skillPath": "skills/erebusbat/daily-logs/SKILL.md",
       "computedHash": "f488407735ba60fe476fad5834c210cca13132a0355bbfd4368d768104a0ceaa"
@@ -134,18 +134,25 @@
       "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
       "computedHash": "2449db6ab1ded9581f69fcc56c1f64818112d05e271fd4c5da23c6523f9d3d9d"
     },
+    "jev-email-review": {
+      "source": "maze:git/erebusbat/skills.git",
+      "sourceUrl": "maze:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/jev-email-review/SKILL.md",
+      "computedHash": "d5597b4c3e958f9f4ebe175bfc4612ee456c52dff479cdb2ddfae20876f2cfed"
+    },
+    "jev-paperless-review": {
+      "source": "maze:git/erebusbat/skills.git",
+      "sourceUrl": "maze:git/erebusbat/skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/jev-paperless-review/SKILL.md",
+      "computedHash": "addd654cb7e6d2ee1be875186e23d6b852b2dc18d30c116ff16a4238a5bba5e6"
+    },
     "json-canvas": {
       "source": "kepano/obsidian-skills",
       "sourceType": "github",
       "skillPath": "skills/json-canvas/SKILL.md",
       "computedHash": "56cbac74a93e4fba97f4d44bccfdeaae89e545b223f47df392c7705e01e6c543"
-    },
-    "justfile": {
-      "source": "maze.lan:git/erebusbat/skills.git",
-      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
-      "sourceType": "git",
-      "skillPath": "skills/erebusbat/justfile/SKILL.md",
-      "computedHash": "96658d5d07a412623b5dba02567e595a6656f34a79c4229edabc81c1ad1fef75"
     },
     "ln-11-plan-reviewer": {
       "source": "maze.lan:git/erebusbat/skills.git",
