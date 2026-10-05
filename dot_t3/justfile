@@ -5,6 +5,9 @@ UPDATE_CHANNEL := 'nightly'
 T3_CMD := 'npx --yes t3@' + UPDATE_CHANNEL
 BIND_OPTS := '--host ' + BIND_HOST + ' --port ' + PORT
 
+pair:
+    {{ T3_CMD }} pair
+
 start:
     {{ T3_CMD }} start --mode web {{ BIND_OPTS }}
 
