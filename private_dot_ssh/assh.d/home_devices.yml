@@ -31,6 +31,12 @@ hosts:
   de4062.rsync.net:
     Inherits: rsyncnet
 
+  ### Waypoint ###########################################
+  waypoint4:
+    Hostname: 50.114.206.72
+    Inherits: personal-server
+    User: aburns
+
   ### Outpost ############################################
   outpost46.erebusbat.net:
     Hostname: outpost46.erebusbat.net
