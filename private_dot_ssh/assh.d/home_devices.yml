@@ -32,6 +32,11 @@ hosts:
     Inherits: rsyncnet
 
   ### Waypoint ###########################################
+  waypoint:
+    Hostname: waypoint.erebusbat.net
+    Inherits: personal-server
+    User: aburns
+
   waypoint4:
     Hostname: 50.114.206.72
     Inherits: personal-server
