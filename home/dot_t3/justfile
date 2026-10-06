@@ -5,6 +5,18 @@ UPDATE_CHANNEL := 'nightly'
 T3_CMD := 'npx --yes t3@' + UPDATE_CHANNEL
 BIND_OPTS := '--host ' + BIND_HOST + ' --port ' + PORT
 
+pair:
+    {{ T3_CMD }} pair
+
+qr code host='':
+    #!/usr/bin/env zsh
+    CODE="{{ code }}"
+    PORT="{{ PORT }}"
+    HOST="{{ host }}"
+    [[ -z HOST ]] && HOST=$(hostname)
+    THE_URL="http://$HOST:$PORT/pair#token=$CODE"
+    echo -n $THE_URL | qrencode -t ANSIUTF8
+
 start:
     {{ T3_CMD }} start --mode web {{ BIND_OPTS }}
 
