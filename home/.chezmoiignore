@@ -11,11 +11,6 @@ AGENTS.md
 .syncthing.*
 .config/wezterm/wallpaper.jpg
 
-
-
-# WIP
-.tmux/plugins
-
 # Deskflow: deploy only the server layout, to the platform's config directory.
 # Missing, client, disabled, and unknown modes leave existing files untouched.
 {{- if or (ne (dig "deskflow" "mode" "disabled" .) "server") (ne .chezmoi.os "darwin") }}
@@ -39,7 +34,6 @@ Library/Deskflow/deskflow-server.conf
 .config/buzz-agents/hermes.env
 {{- end }}
 {{- if ne .chezmoi.hostname "USMB-JVK937H909" }}
-.config/buzz-codex
 .config/buzz-codex
 .local/bin/buzz-codex
 {{- end }}
@@ -84,23 +78,17 @@ bin/quarter-window
 ############################################################
 {{- if not .area.lshq }}
 .config/erebusbat/lshq.just
-.config/erebusbat/upserve.just
 .config/jenkins-tool/
-.omp/profiles/lshq/
 .omp/profiles/upserve/
 .restic/.lshq.key
 .restic/lshq-*.sh
-.restic/lsrestic.sh
 .restic/profile-lshq.sh
 .tmuxp/lshq.yaml
 bin/.mcp-opensearch.sh
 bin/ij
-bin/jenkins
 bin/lsrg
 bin/lsstartup.sh
 bin/lstmux.sh
-lshq/ssh/id_lshq_personal
-lshq/ssh/id_lshq_personal.pub
 src/lshq/
 {{- end -}}
 
@@ -124,7 +112,6 @@ src/lshq/
 ### CompanyCam
 ############################################################
 {{- if not .area.companycam }}
-.config/dlog/010_ccam.rb
 .restic/.companycam.key
 .tmuxp/ccam.yaml
 bin/.docker-startup.sh
@@ -143,10 +130,8 @@ bin/rubymine
 .config/wezterm/wallpaper.yaml
 .s3cfg-truenas
 .ssh/id_bat_devices
-.tmuxp/hassio.yaml
 .tmuxp/maze.yaml
 .tmuxp/nuc01-plex.yaml
-bin/ptmux.zsh
 {{- end }}
 
 ############################################################
@@ -154,7 +139,6 @@ bin/ptmux.zsh
 ############################################################
 {{- if not .area.server }}
 .tmuxp/left.yaml
-bin/stmux.zsh
 {{- end }}
 
 ############################################################
@@ -186,13 +170,6 @@ bin/pbpaste
 .config/mise/config.local.toml
 {{- end }}
 
-# ignore these LaunchAgents, for now
-Library/LaunchAgents/local.restart-orbstack.plist
-Library/LaunchAgents/local.bezsel-agent.plist
-Library/LaunchAgents/local.chezmoi-sync.plist
-Library/LaunchAgents/local.erebusbat.vimwiki-gitupload.plist
-Library/LaunchAgents/local.sie.gitlab-push.plist
-
 #-- OS IS NOT MacOS, so DO NOT include these files
 {{- if ne .chezmoi.os "darwin" }}
 .hammerspoon/
@@ -201,7 +178,7 @@ Library/LaunchAgents/local.sie.gitlab-push.plist
 Brewfile
 Library/Application Support/
 Library/LaunchAgents/
-bin./spotify-add-wedding-possible
+bin/spotify-add-wedding-possible
 bin/launchd-watch
 bin/sync_terminal_theme_to_system.sh
 bin/toggle_light_dark.sh
@@ -213,7 +190,6 @@ bin/what-has-secure-input
 ############################################################
 #-- OS IS NOT Linux, so don't include
 {{- if ne .chezmoi.os "linux" }}
-.config/gospt/client.yml
 .config/Synergy/
 .config/systemd
 .local/bin/pinentry-auto
@@ -228,8 +204,5 @@ bin/lock
 {{- if eq .chezmoi.os "linux" }}
   {{- if and (not .synergy.enabled) ( ne .synergy.mode "client" ) }}
 .config/Synergy/Synergy.conf
-  {{- end }}
-  {{- if and (not .synergy.enabled) ( ne .synergy.mode "server" ) }}
-.config/Synergy/Synergy.conf.server
   {{- end }}
 {{- end }}
