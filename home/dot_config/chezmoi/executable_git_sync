@@ -5,7 +5,7 @@ fi
 if [[ ! -x $(which chezmoi) ]]; then
   export PATH=$HOME/bin:$PATH
 fi
-REPO_PATH=$(chezmoi data | jq -r '.chezmoi.sourceDir')
+REPO_PATH=$(chezmoi data | jq -r '.chezmoi.workingTree')
 
 cd ${REPO_PATH}
 

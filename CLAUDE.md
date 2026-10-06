@@ -6,6 +6,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a **chezmoi** dotfiles repository (`~/.local/share/chezmoi`) that manages the home directory for multiple machines and work contexts. The GitHub remote is `ErebusBat/chezmoi`.
 
+## Repository and deployment roots
+
+`.chezmoiroot` contains `home`. Only `home/` is the chezmoi source state; the repository root is not deployed.
+
+- `AGENTS.md` and `CLAUDE.md` describe this repository only.
+- `home/` contains the managed files, run scripts, `.chezmoi.toml.tmpl`, `.chezmoiignore`, `.chezmoiremove`, and other chezmoi special files. Source paths described below are relative to `home/` unless stated otherwise.
+- `direct/`, `bootstrap/`, `docs/`, and the root `justfile` remain at the repository root.
+- Use `.chezmoi.sourceDir` for files inside `home/`; use `.chezmoi.workingTree` for repository-root files such as `direct/`.
+- `home/symlink_AGENTS.md.tmpl` links `~/AGENTS.md` to `direct/AGENTS-<hostname>.md`. A machine without that file leaves `~/AGENTS.md` unmanaged. Repository instructions are never the home-guide fallback.
+- Machine guides contain only guidance for the corresponding home directory and machine. Edit them through `direct/`; Git shows content changes and chezmoi shows symlink-target changes.
+
 ## Key Chezmoi Commands
 
 ```bash

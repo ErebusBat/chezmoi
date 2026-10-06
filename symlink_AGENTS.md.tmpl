@@ -1,6 +1,0 @@
-{{- $machine := joinPath .chezmoi.sourceDir "direct" (printf "AGENTS-%s.md" .chezmoi.hostname) -}}
-{{- if stat $machine -}}
-{{ $machine }}
-{{- else -}}
-{{ joinPath .chezmoi.sourceDir "direct" "AGENTS-default.md" }}
-{{- end }}

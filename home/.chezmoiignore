@@ -1,10 +1,8 @@
-# Root level file
-justfile
-README.md
-CONTEXT.md
-docs/
-# Repository-only setup instructions and package list.
-bootstrap/
+# Home guidance is managed only for machines with a dedicated guide.
+# Repository instructions live outside this source root.
+{{- if not (stat (joinPath .chezmoi.workingTree "direct" (printf "AGENTS-%s.md" .chezmoi.hostname))) }}
+AGENTS.md
+{{- end }}
 
 **/.DS_Store
 **/Session.vim
@@ -12,11 +10,8 @@ bootstrap/
 .local/share/chezmoi/
 .syncthing.*
 .config/wezterm/wallpaper.jpg
-chezmoi_scripts/
 
 
-# Direct is where we store files that are symlinked (like stow)
-direct/
 
 # WIP
 .tmux/plugins
