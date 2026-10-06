@@ -5,8 +5,17 @@ UPDATE_CHANNEL := 'nightly'
 T3_CMD := 'npx --yes t3@' + UPDATE_CHANNEL
 BIND_OPTS := '--host ' + BIND_HOST + ' --port ' + PORT
 
-pair:
+pair-raw:
     {{ T3_CMD }} pair
+
+pair host='':
+    #!/usr/bin/env zsh
+    THE_PORT="{{ PORT }}"
+    THE_HOST="{{ host }}"
+    [[ -z $THE_HOST ]] && THE_HOST=$(hostname)
+    {{ T3_CMD }} pair |
+      sed -n 's|^Pairing URL: http[^/]*/|http://nuc.erebusbat.net:3773/|p' |
+      qrencode -t ANSIUTF8
 
 start:
     {{ T3_CMD }} start --mode web {{ BIND_OPTS }}
