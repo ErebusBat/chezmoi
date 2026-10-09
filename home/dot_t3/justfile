@@ -15,6 +15,7 @@ qr code host='':
     HOST="{{ host }}"
     [[ -z HOST ]] && HOST=$(hostname)
     THE_URL="http://$HOST:$PORT/pair#token=$CODE"
+    printf "\n\nPairing URL: %s\n\n" $THE_URL
     echo -n $THE_URL | qrencode -t ANSIUTF8
 
 start:
