@@ -32,6 +32,10 @@ TAPS_FULL_TRUST=(
 )
 
 FORMULA_TO_TRUST=(
+  antoniorodr/memo/memo
+  signadot/tap/signadot-cli
+  steipete/tap/imsg
+  steipete/tap/remindctl
   common-fate/granted/granted
   nikitabobko/tap/aerospace
   tinted-theming/tinted/tinty
