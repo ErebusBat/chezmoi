@@ -8,6 +8,25 @@ BIND_OPTS := '--host ' + BIND_HOST + ' --port ' + PORT
 pair:
     {{ T3_CMD }} pair
 
+pair-all-perms:
+    {{ T3_CMD }} pair \
+        --scope orchestration:read \
+        --scope orchestration:operate \
+        --scope settings:write \
+        --scope providers:manage \
+        --scope environment:maintain \
+        --scope preview:operate \
+        --scope diagnostics:read \
+        --scope terminal:read \
+        --scope terminal:operate \
+        --scope filesystem:read \
+        --scope filesystem:write \
+        --scope source-control:write \
+        --scope access:read \
+        --scope access:write \
+        --scope relay:read \
+        --scope relay:write
+
 qr code host='':
     #!/usr/bin/env zsh
     CODE="{{ code }}"
