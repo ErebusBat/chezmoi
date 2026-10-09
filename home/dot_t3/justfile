@@ -18,6 +18,9 @@ qr code host='':
     printf "\n\nPairing URL: %s\n\n" $THE_URL
     echo -n $THE_URL | qrencode -t ANSIUTF8
 
+clean-npx-cache:
+    npm cache npx rm --force
+
 start:
     {{ T3_CMD }} start --mode web {{ BIND_OPTS }}
 
