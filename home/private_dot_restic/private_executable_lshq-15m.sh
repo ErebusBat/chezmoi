@@ -11,6 +11,7 @@ restic backup \
   "$HOME/.agents/skills" \
   "$HOME/.omp" \
   "$HOME/.pi" \
+  "$HOME/.t3/worktrees" \
   "$HOME/Documents/meetings" \
   "$HOME/Library/Application Support/OpenOats" \
   "$HOME/src"
