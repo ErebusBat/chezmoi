@@ -94,6 +94,19 @@ hosts:
   #   User: aburns
   #   Inherits: bat-devices
 
+  ### Gitea #################################################
+  gitea.erebusbat.net:
+    Hostname: gitea.erebusbat.net
+    Port: 222
+    User: git
+    ForwardAgent: no
+    IdentityFile: ~/.ssh/id_ed25519
+    AddKeysToAgent: yes
+    GatewayConnectTimeout: 2
+
+  gitea:
+    Inherits: gitea.erebusbat.net
+
   ### MBP ##################################################
   # mbp.lan:
   #   Hostname: 192.168.68.75
