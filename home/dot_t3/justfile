@@ -32,10 +32,16 @@ qr code host='':
     CODE="{{ code }}"
     PORT="{{ PORT }}"
     HOST="{{ host }}"
-    [[ -z HOST ]] && HOST=$(hostname)
+    if [[ -z "$HOST" ]]; then
+        HOST=$(tailscale ip -4) || exit 1
+        if [[ -z "$HOST" ]]; then
+            printf 'Could not determine the Tailscale IPv4 address. Supply a host explicitly.\n' >&2
+            exit 1
+        fi
+    fi
     THE_URL="http://$HOST:$PORT/pair#token=$CODE"
-    printf "\n\nPairing URL: %s\n\n" $THE_URL
-    echo -n $THE_URL | qrencode -t ANSIUTF8
+    printf "\n\nPairing URL: %s\n\n" "$THE_URL"
+    printf '%s' "$THE_URL" | qrencode -t ANSIUTF8
 
 clean-npx-cache:
     npm cache npx rm --force
