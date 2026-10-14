@@ -1,18 +1,6 @@
 {
   "version": 1,
   "skills": {
-    "atlassian-cli-jira": {
-      "source": "upserve/skills",
-      "sourceType": "github",
-      "skillPath": "skills/tools/atlassian-cli-jira/SKILL.md",
-      "computedHash": "07e013304880d32589895c38aab7a48683821fd855b781c8c44c3787bd7c10e4"
-    },
-    "check-work-against-jira": {
-      "source": "upserve/skills",
-      "sourceType": "github",
-      "skillPath": "skills/tools/check-work-against-jira/SKILL.md",
-      "computedHash": "a1e7e38ba53f35563bafcafb53af2361a031a1d18053e7d56a445c590a89ff14"
-    },
     "circleci-builds": {
       "source": "CircleCI-Public/skills",
       "sourceType": "github",
@@ -92,13 +80,6 @@
       "sourceType": "github",
       "skillPath": "skills/observability/upserve-logs/SKILL.md",
       "computedHash": "1a193b1db52de3dc3d623a45abf2b3c71b6286c383ef4b6452a9e5c99e39808d"
-    },
-    "work-on-jira-ticket": {
-      "source": "maze.lan:git/erebusbat/skills.git",
-      "sourceUrl": "maze.lan:git/erebusbat/skills.git",
-      "sourceType": "git",
-      "skillPath": "skills/lshq/work-on-jira-ticket/SKILL.md",
-      "computedHash": "abbf96b36bb97a92f554679f9bc9b961fa7d549b89f708a3a484121897f19a68"
     }
   }
 }
