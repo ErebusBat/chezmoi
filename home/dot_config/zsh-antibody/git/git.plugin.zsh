@@ -29,7 +29,7 @@ alias gbrc='git branch --show-current'
 # alias gu='gpm && gbda && gsu'
 
 # Additional useful aliases
-alias gbda='git branch --merged | command grep -vE "^(\*|\s*master\s*$|\s*main\s*)" | command xargs -n 1 git branch -d'
+alias gbda=git_rm_merged_branches
 # alias gca!='git commit -v -a --amend'
 alias gdw='git diff --word-diff'
 alias glol='git log --oneline --decorate --color'
@@ -52,8 +52,8 @@ alias gremv='git remote -v'
 alias gcu='gfo && gsu'
 alias gcuc='gcu && gbda'
 
-# Git Clean Up Master
-alias gcum='git_checkout_update_master && gsu && gbda'
+# Clean branches merged into upstream main/master without switching worktrees.
+alias gcum=git_rm_merged_branches
 
 # Git WorkTree (now using https://github.com/max-sixty/worktrunk)
 alias gwt='git worktree'
@@ -210,9 +210,52 @@ alias gwtcu=git_worktree_cleanup
 # Is it master or main?  This will find out
 # Usage:
 #   local branch=$(git_master_branch_name)
+function git_main_remote_name() {
+  local branch remote current_branch
+  current_branch=$(command git symbolic-ref --quiet --short HEAD)
+  # Prefer the default branch's upstream (which may differ from a fork's remote).
+  for branch in main master "$current_branch"; do
+    [[ -n $branch ]] || continue
+    remote=$(command git config --get "branch.$branch.remote") || continue
+    [[ $remote != . ]] || continue
+    if command git remote get-url "$remote" >/dev/null 2>&1; then
+      print -r -- "$remote"
+      return 0
+    fi
+  done
+  if command git remote get-url origin >/dev/null 2>&1; then
+    print -r -- origin
+    return 0
+  fi
+  local -a remotes
+  remotes=("${(@f)$(command git remote)}")
+  if (( ${#remotes} == 1 )) && [[ -n $remotes[1] ]]; then
+    print -r -- "$remotes[1]"
+    return 0
+  fi
+  print -u2 -r -- 'Cannot determine upstream remote; configure tracking for main/master.'
+  return 1
+}
+
 function git_master_branch_name() {
-  local default_branch=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
-  echo "$default_branch"
+  local remote=${1-} default_ref branch
+  if [[ -z $remote ]]; then
+    remote=$(git_main_remote_name) || return 1
+  fi
+  default_ref=$(command git symbolic-ref --quiet "refs/remotes/$remote/HEAD")
+  if [[ -n $default_ref ]] && command git show-ref --verify --quiet "$default_ref"; then
+    print -r -- "${default_ref#refs/remotes/$remote/}"
+    return 0
+  fi
+  # Remote HEAD is optional; fetch does not always create it.
+  for branch in main master; do
+    if command git show-ref --verify --quiet "refs/remotes/$remote/$branch"; then
+      print -r -- "$branch"
+      return 0
+    fi
+  done
+  print -u2 -r -- "Cannot find main/master on upstream remote '$remote'."
+  return 1
 }
 
 # What is the current branches name?
@@ -225,7 +268,8 @@ alias gpm=git_checkout_update_master
 function git_checkout_update_master() {
   # Old version:
   # alias gpm='git co master && git pull --prune && git_rm_merged_branches'
-  local branch=$(git_master_branch_name)
+  local branch
+  branch=$(git_master_branch_name) || return 1
   git checkout "$branch" && git pull --prune && git_rm_merged_branches
 }
 
@@ -280,23 +324,64 @@ function git_push_update_origin() {
 
 alias grmmb=git_rm_merged_branches
 function git_rm_merged_branches() {
-  # local branches=$(git branch --merged | grep -Ev '(\*|master)' | awk '{print $1}')
-  local branches=$(git branch --merged | grep -Ev '(\*|master)')
-  branches=$(echo "$branches\n")
-  echo "The following branches have been merged and can be removed:"
-  echo $branches
-  echo "Press ENTER to purge branches."
-  read continue_signal
-  # printf %s "$branches\n" | {
-  #   while read -r br; do
-  #     # echo ">$br<"
-  #     # We don't use -D here as a failsafe
-  #   done
-  # }
-  for br in $(git branch --merged | grep -Ev '(\*|master)' | awk '{print $1}'); do
-    # We don't use -D here as a failsafe
-    git branch -d "$br"
+  local remote default_branch base_ref base_oid records branch oid worktree_path
+  local continue_signal current_oid failures=0
+  local -a branches
+  local -A branch_oids
+  command git rev-parse --git-dir >/dev/null || return 1
+  remote=$(git_main_remote_name) || return 1
+  # Refresh every upstream branch even in bare/single-branch clones whose
+  # configured fetch refspec may omit main/master and leave a stale cached ref.
+  command git fetch --prune "$remote" \
+    "+refs/heads/*:refs/remotes/$remote/*" || return 1
+  default_branch=$(git_master_branch_name "$remote") || return 1
+  base_ref="refs/remotes/$remote/$default_branch"
+  base_oid=$(command git rev-parse --verify "$base_ref^{commit}") || return 1
+
+  # Ref fields contain no display markers or ANSI colors. A worktree path may
+  # contain spaces, so read it as the last field and never split it into words.
+  records=$(command git for-each-ref --merged="$base_oid" \
+    --format='%(refname:strip=2)%09%(objectname)%09%(worktreepath)' refs/heads/) || return 1
+  while IFS=$'\t' read -r branch oid worktree_path; do
+    [[ -n $branch ]] || continue
+    [[ $branch == main || $branch == master || $branch == "$default_branch" ]] && continue
+    if [[ -n $worktree_path ]]; then
+      print -u2 -r -- "Skipping branch '$branch' used by worktree: $worktree_path"
+      continue
+    fi
+    branches+=("$branch")
+    branch_oids[$branch]=$oid
+  done <<< "$records"
+
+  if (( ${#branches} == 0 )); then
+    print -r -- "No unused local branches merged into $remote/$default_branch."
+    return 0
+  fi
+  print -r -- "The following branches are merged into $remote/$default_branch and can be removed:"
+  printf '  %s\n' "${branches[@]}"
+  print -r -- 'Press ENTER to purge branches; any other input cancels.'
+  if ! IFS= read -r continue_signal || [[ -n $continue_signal ]]; then
+    print -r -- 'Branch cleanup cancelled.'
+    return 1
+  fi
+
+  for branch in "${branches[@]}"; do
+    # Only delete the displayed revision, and recheck worktree occupancy after
+    # confirmation. Git's branch deletion also guards against a checkout race.
+    current_oid=$(command git rev-parse --verify "refs/heads/$branch") || continue
+    worktree_path=$(command git for-each-ref --format='%(worktreepath)' \
+      "refs/heads/$branch") || return 1
+    if [[ $current_oid != ${branch_oids[$branch]} || -n $worktree_path ]]; then
+      print -u2 -r -- "Skipping branch '$branch': branch or worktree changed during confirmation."
+      continue
+    fi
+    command git merge-base --is-ancestor "$current_oid" "$base_oid" || return 1
+    # Reachability was checked against the fetched default branch above. -d
+    # instead checks HEAD or this branch's own upstream, which may be unrelated.
+    # -D still refuses to delete a branch checked out in any worktree.
+    command git branch -D -- "$branch" || failures=1
   done
+  return $failures
 }
 
 # If git aliases like gs/ga are not working then make sure that scm-breeze is working
