@@ -1,0 +1,118 @@
+{
+  "name": "LightspeedHQ Dev",
+  "target": "work",
+  "match": [
+    {
+      "kind": "domain",
+      "pattern": "onelogin.com"
+    },
+    {
+      "kind": "domain",
+      "pattern": "service-now.com"
+    },
+    {
+      "kind": "host",
+      "pattern": "lightspeedhq.atlassian.net"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "github.com/upserve/"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "github.com/ls-andrew-burns"
+    },
+    {
+      "kind": "domain",
+      "pattern": "mylightspeed.org"
+    },
+    {
+      "kind": "host",
+      "pattern": "upserve.atlassian.net"
+    },
+    {
+      "kind": "domain",
+      "pattern": "myworkday.com"
+    },
+    {
+      "kind": "host",
+      "pattern": "grid-lightspeedhq.enterprise.slack.com"
+    },
+    {
+      "kind": "host",
+      "pattern": "lightspeedhq.slack.com"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "github.com/upserve"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "github.com/dotswipely/swipely"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "github.com/swipely"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "github.com/dotswipely"
+    },
+    {
+      "kind": "host",
+      "pattern": "lightspeedhq.awsapps.com"
+    },
+    {
+      "kind": "contains",
+      "pattern": "lightspeedhq.com"
+    },
+    {
+      "kind": "host",
+      "pattern": "jenkins.internal.upserve.com"
+    },
+    {
+      "kind": "domain",
+      "pattern": "breadcrumb.com"
+    },
+    {
+      "kind": "domain",
+      "pattern": "honeybadger.io"
+    },
+    {
+      "kind": "domain",
+      "pattern": "upserve.com"
+    },
+    {
+      "kind": "domain",
+      "pattern": "pagerduty.com"
+    },
+    {
+      "kind": "domain",
+      "pattern": "honeybadger.io"
+    },
+    {
+      "kind": "domain",
+      "pattern": "datadoghq.com"
+    },
+    {
+      "kind": "domain",
+      "pattern": "figma.com"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "github.com/upserve"
+    },
+    {
+      "kind": "regex",
+      "pattern": "^dash-\\w+\\.(lan\\.)?erebusbat\\.net/home/upserve"
+    },
+    {
+      "kind": "host",
+      "pattern": "developer.doordash.com"
+    },
+    {
+      "kind": "domain",
+      "pattern": "atlassian.com"
+    }
+  ]
+}

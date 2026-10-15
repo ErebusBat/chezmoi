@@ -1,0 +1,22 @@
+{
+  "name": "Personal DEV",
+  "target": "personal",
+  "match": [
+    {
+      "kind": "prefix",
+      "pattern": "github.com/ErebusBat"
+    },
+    {
+      "kind": "domain",
+      "pattern": "perplexity.ai"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "mail.google.com/mail/u/?authuser=newjourneywy%40gmail.com#"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "mail.google.com/mail/u/?authuser=erebusbat%40gmail.com#"
+    }
+  ]
+}

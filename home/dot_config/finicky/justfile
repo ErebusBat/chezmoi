@@ -1,0 +1,36 @@
+ROOT := justfile_directory()
+SETTINGS := ROOT / 'settings.json'
+RULES_DIR := ROOT / 'rules.d'
+BUILD_SCRIPT := ROOT / 'build.mjs'
+TEST_SCRIPT := ROOT / 'test.mjs'
+EDITOR := env('VISUAL', env('EDITOR', 'nvim'))
+
+[doc('List available recipes')]
+[group('help')]
+default:
+    @just --justfile {{ quote(ROOT / 'justfile') }} --list
+
+[doc('Open settings and all rule files in your editor')]
+[group('edit')]
+edit:
+    {{ quote(EDITOR) }} {{ quote(SETTINGS) }} {{ quote(RULES_DIR) }}/*.json
+
+[doc('Open one rule file, relative to rules.d')]
+[group('edit')]
+edit-rule file='10-work.json':
+    {{ quote(EDITOR) }} {{ quote(RULES_DIR / file) }}
+
+[doc('Generate finicky.js from settings and rule files')]
+[group('build')]
+build:
+    node {{ quote(BUILD_SCRIPT) }}
+
+[doc('Rebuild and run the routing checks without opening browsers')]
+[group('test')]
+test: build
+    node {{ quote(TEST_SCRIPT) }}
+
+[doc('Rebuild, test, and add all Finicky files to chezmoi')]
+[group('sync')]
+chezmoi: test
+    chezmoi add --recursive {{ quote(ROOT) }}

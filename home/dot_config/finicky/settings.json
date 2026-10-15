@@ -1,0 +1,25 @@
+{
+  "defaultBrowser": {
+    "name": "com.google.Chrome",
+    "appType": "bundleId"
+  },
+  "options": {
+    "keepRunning": true,
+    "logRequests": false,
+    "hideIcon": true
+  },
+  "targets": {
+    "work": {
+      "name": "com.google.Chrome",
+      "appType": "bundleId",
+      "profile": "lightspeedhq.com",
+      "openInBackground": false
+    },
+    "personal": {
+      "name": "com.google.Chrome",
+      "appType": "bundleId",
+      "profile": "gmail",
+      "openInBackground": false
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "ErebusBat.net",
+  "target": "personal",
+  "match": [
+    {
+      "kind": "domain",
+      "pattern": "erebusbat.net"
+    }
+  ]
+}
