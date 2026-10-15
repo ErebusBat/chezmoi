@@ -52,8 +52,8 @@ alias gremv='git remote -v'
 alias gcu='gfo && gsu'
 alias gcuc='gcu && gbda'
 
-# Clean branches merged into upstream main/master without switching worktrees.
-alias gcum=git_rm_merged_branches
+# Clean merged branches and their eligible worktrees without switching checkouts.
+alias gcum='git_rm_merged_branches --worktrees'
 
 # Git WorkTree (now using https://github.com/max-sixty/worktrunk)
 alias gwt='git worktree'
@@ -243,8 +243,12 @@ function git_master_branch_name() {
     remote=$(git_main_remote_name) || return 1
   fi
   default_ref=$(command git symbolic-ref --quiet "refs/remotes/$remote/HEAD")
-  if [[ -n $default_ref ]] && command git show-ref --verify --quiet "$default_ref"; then
-    print -r -- "${default_ref#refs/remotes/$remote/}"
+  branch=${default_ref#refs/remotes/$remote/}
+  # Cached remote HEAD can point at a feature branch. This helper specifically
+  # selects main/master; never let an unrelated HEAD become a cleanup target.
+  if [[ $branch == main || $branch == master ]] &&
+     command git show-ref --verify --quiet "$default_ref"; then
+    print -r -- "$branch"
     return 0
   fi
   # Remote HEAD is optional; fetch does not always create it.
@@ -323,12 +327,61 @@ function git_push_update_origin() {
 }
 
 alias grmmb=git_rm_merged_branches
+
+# Only linked worktrees with the reviewed branch/revision and a clean Git
+# status are eligible. Ignored files do not block removal. Keep current,
+# primary, and locked worktrees.
+function git_cleanup_worktree_is_safe() {
+  emulate -L zsh
+  local worktree_path=$1 branch=$2 expected_oid=$3 current_worktree_path=$4
+  local git_dir common_dir worktree_oid worktree_ref worktree_status reason
+  if [[ ! -d $worktree_path ]]; then
+    reason='directory is missing'
+  elif [[ -n $current_worktree_path && ${worktree_path:A} == ${current_worktree_path:A} ]]; then
+    reason='current worktree'
+  elif ! git_dir=$(command git -C "$worktree_path" rev-parse --absolute-git-dir) ||
+       ! common_dir=$(command git -C "$worktree_path" rev-parse --path-format=absolute --git-common-dir); then
+    reason='cannot inspect repository'
+  elif [[ ${git_dir:A} == ${common_dir:A} ]]; then
+    reason='primary worktree'
+  elif [[ -e $git_dir/locked ]]; then
+    reason='locked worktree'
+  elif ! worktree_ref=$(command git -C "$worktree_path" symbolic-ref --quiet HEAD) ||
+       [[ $worktree_ref != "refs/heads/$branch" ]] ||
+       ! worktree_oid=$(command git -C "$worktree_path" rev-parse --verify HEAD) ||
+       [[ $worktree_oid != "$expected_oid" ]]; then
+    reason='branch or revision changed'
+  elif ! worktree_status=$(command git -C "$worktree_path" status --porcelain \
+       --untracked-files=all --ignore-submodules=none); then
+    reason='cannot inspect working tree'
+  elif [[ -n $worktree_status ]]; then
+    reason='local changes or untracked files'
+  else
+    return 0
+  fi
+  print -u2 -r -- "Skipping worktree '$worktree_path': $reason."
+  if [[ -n $worktree_status ]]; then
+    printf '  %s\n' "${(@f)worktree_status}" >&2
+  fi
+  return 1
+}
+
 function git_rm_merged_branches() {
+  emulate -L zsh
   local remote default_branch base_ref base_oid records branch oid worktree_path
-  local continue_signal current_oid failures=0
+  local continue_signal current_oid current_worktree_path failures=0 include_worktrees=0
   local -a branches
-  local -A branch_oids
+  local -A branch_oids branch_worktrees
+  if [[ ${1-} == --worktrees ]]; then
+    include_worktrees=1
+    shift
+  fi
+  if (( $# )); then
+    print -u2 -r -- 'Usage: git_rm_merged_branches [--worktrees]'
+    return 2
+  fi
   command git rev-parse --git-dir >/dev/null || return 1
+  current_worktree_path=$(command git rev-parse --show-toplevel 2>/dev/null)
   remote=$(git_main_remote_name) || return 1
   # Refresh every upstream branch even in bare/single-branch clones whose
   # configured fetch refspec may omit main/master and leave a stale cached ref.
@@ -346,20 +399,30 @@ function git_rm_merged_branches() {
     [[ -n $branch ]] || continue
     [[ $branch == main || $branch == master || $branch == "$default_branch" ]] && continue
     if [[ -n $worktree_path ]]; then
-      print -u2 -r -- "Skipping branch '$branch' used by worktree: $worktree_path"
-      continue
+      if (( ! include_worktrees )); then
+        print -u2 -r -- "Skipping branch '$branch' used by worktree: $worktree_path"
+        continue
+      fi
+      git_cleanup_worktree_is_safe "$worktree_path" "$branch" "$oid" \
+        "$current_worktree_path" || continue
     fi
     branches+=("$branch")
     branch_oids[$branch]=$oid
+    branch_worktrees[$branch]=$worktree_path
   done <<< "$records"
 
   if (( ${#branches} == 0 )); then
-    print -r -- "No unused local branches merged into $remote/$default_branch."
+    print -r -- "No unused local branches or eligible worktrees merged into $remote/$default_branch."
     return 0
   fi
   print -r -- "The following branches are merged into $remote/$default_branch and can be removed:"
-  printf '  %s\n' "${branches[@]}"
-  print -r -- 'Press ENTER to purge branches; any other input cancels.'
+  for branch in "${branches[@]}"; do
+    print -r -- "  $branch"
+    if [[ -n ${branch_worktrees[$branch]} ]]; then
+      print -r -- "    Remove worktree: ${branch_worktrees[$branch]}"
+    fi
+  done
+  print -r -- 'Press ENTER to remove the listed branches and worktrees; any other input cancels.'
   if ! IFS= read -r continue_signal || [[ -n $continue_signal ]]; then
     print -r -- 'Branch cleanup cancelled.'
     return 1
@@ -371,11 +434,20 @@ function git_rm_merged_branches() {
     current_oid=$(command git rev-parse --verify "refs/heads/$branch") || continue
     worktree_path=$(command git for-each-ref --format='%(worktreepath)' \
       "refs/heads/$branch") || return 1
-    if [[ $current_oid != ${branch_oids[$branch]} || -n $worktree_path ]]; then
+    if [[ $current_oid != ${branch_oids[$branch]} || $worktree_path != ${branch_worktrees[$branch]} ]]; then
       print -u2 -r -- "Skipping branch '$branch': branch or worktree changed during confirmation."
       continue
     fi
     command git merge-base --is-ancestor "$current_oid" "$base_oid" || return 1
+    if [[ -n $worktree_path ]]; then
+      git_cleanup_worktree_is_safe "$worktree_path" "$branch" "$current_oid" \
+        "$current_worktree_path" || continue
+      # Never force removal: Git also rejects locks, dirty trees, and submodules.
+      if ! command git worktree remove -- "$worktree_path"; then
+        failures=1
+        continue
+      fi
+    fi
     # Reachability was checked against the fetched default branch above. -d
     # instead checks HEAD or this branch's own upstream, which may be unrelated.
     # -D still refuses to delete a branch checked out in any worktree.
