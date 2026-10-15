@@ -12,9 +12,11 @@ windows:
 
 - window_name: 📖 dlog
   layout: "de2f,75x42,0,0[75x5,0,0,2,75x36,0,6,3]"
+  focus: true
   panes:
     - shell_command:
-        - tuitime --skip-past 0900 1415 1800
+        - cd ~
+        - just timer
     - shell_command:
       - cd ~/Documents/Obsidian/vimwiki
       - dlog tail -f -t
