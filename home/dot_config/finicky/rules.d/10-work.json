@@ -3,48 +3,32 @@
   "target": "work",
   "match": [
     {
-      "kind": "domain",
-      "pattern": "onelogin.com"
+      "kind": "regex",
+      "pattern": "^dash-\\w+\\.(lan\\.)?erebusbat\\.net/home/upserve"
     },
     {
       "kind": "domain",
-      "pattern": "service-now.com"
+      "pattern": "atlassian.com"
+    },
+    {
+      "kind": "domain",
+      "pattern": "breadcrumb.com"
+    },
+    {
+      "kind": "domain",
+      "pattern": "datadoghq.com"
     },
     {
       "kind": "host",
-      "pattern": "lightspeedhq.atlassian.net"
+      "pattern": "developer.doordash.com"
+    },
+    {
+      "kind": "domain",
+      "pattern": "figma.com"
     },
     {
       "kind": "prefix",
-      "pattern": "github.com/upserve/"
-    },
-    {
-      "kind": "prefix",
-      "pattern": "github.com/ls-andrew-burns"
-    },
-    {
-      "kind": "domain",
-      "pattern": "mylightspeed.org"
-    },
-    {
-      "kind": "host",
-      "pattern": "upserve.atlassian.net"
-    },
-    {
-      "kind": "domain",
-      "pattern": "myworkday.com"
-    },
-    {
-      "kind": "host",
-      "pattern": "grid-lightspeedhq.enterprise.slack.com"
-    },
-    {
-      "kind": "host",
-      "pattern": "lightspeedhq.slack.com"
-    },
-    {
-      "kind": "prefix",
-      "pattern": "github.com/upserve"
+      "pattern": "github.com/dotswipely"
     },
     {
       "kind": "prefix",
@@ -52,11 +36,43 @@
     },
     {
       "kind": "prefix",
+      "pattern": "github.com/ls-andrew-burns"
+    },
+    {
+      "kind": "prefix",
       "pattern": "github.com/swipely"
     },
     {
       "kind": "prefix",
-      "pattern": "github.com/dotswipely"
+      "pattern": "github.com/upserve"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "github.com/upserve"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "github.com/upserve/"
+    },
+    {
+      "kind": "host",
+      "pattern": "grid-lightspeedhq.enterprise.slack.com"
+    },
+    {
+      "kind": "domain",
+      "pattern": "honeybadger.io"
+    },
+    {
+      "kind": "domain",
+      "pattern": "honeybadger.io"
+    },
+    {
+      "kind": "host",
+      "pattern": "jenkins.internal.upserve.com"
+    },
+    {
+      "kind": "host",
+      "pattern": "lightspeedhq.atlassian.net"
     },
     {
       "kind": "host",
@@ -68,19 +84,19 @@
     },
     {
       "kind": "host",
-      "pattern": "jenkins.internal.upserve.com"
+      "pattern": "lightspeedhq.slack.com"
     },
     {
       "kind": "domain",
-      "pattern": "breadcrumb.com"
+      "pattern": "mylightspeed.org"
     },
     {
       "kind": "domain",
-      "pattern": "honeybadger.io"
+      "pattern": "myworkday.com"
     },
     {
       "kind": "domain",
-      "pattern": "upserve.com"
+      "pattern": "onelogin.com"
     },
     {
       "kind": "domain",
@@ -88,31 +104,15 @@
     },
     {
       "kind": "domain",
-      "pattern": "honeybadger.io"
-    },
-    {
-      "kind": "domain",
-      "pattern": "datadoghq.com"
-    },
-    {
-      "kind": "domain",
-      "pattern": "figma.com"
-    },
-    {
-      "kind": "prefix",
-      "pattern": "github.com/upserve"
-    },
-    {
-      "kind": "regex",
-      "pattern": "^dash-\\w+\\.(lan\\.)?erebusbat\\.net/home/upserve"
+      "pattern": "service-now.com"
     },
     {
       "kind": "host",
-      "pattern": "developer.doordash.com"
+      "pattern": "upserve.atlassian.net"
     },
     {
       "kind": "domain",
-      "pattern": "atlassian.com"
+      "pattern": "upserve.com"
     }
   ]
 }
