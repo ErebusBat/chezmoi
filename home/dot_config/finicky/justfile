@@ -13,7 +13,7 @@ default:
 [doc('Open settings and all rule files in your editor')]
 [group('edit')]
 edit:
-    {{ quote(EDITOR) }} {{ quote(SETTINGS) }} {{ quote(RULES_DIR) }}/*.json
+    {{ quote(EDITOR) }} {{ quote(SETTINGS) }} {{ quote(RULES_DIR) }}/*.json {{ quote(TEST_SCRIPT) }}
 
 [doc('Open one rule file, relative to rules.d')]
 [group('edit')]

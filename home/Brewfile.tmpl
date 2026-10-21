@@ -142,7 +142,7 @@ brew "anomalyco/tap/opencode"    # Official OpenCode Tap
 
 #-- System Monitoring / Performance
 tap "lablup/tap"
-brew "all-smi" # Requires lablup/tap
+brew "lablup/tap/all-smi" # Keep the upstream tap explicit; homebrew/core also provides all-smi.
 brew "btop"
 brew "dua-cli"
 brew "duf"
@@ -228,6 +228,7 @@ cask "ayugram" # Telegram Fork with Font Support
 cask "tor-browser"
 cask "vlc"
 cask "xnviewmp"
+cask "libation"  # Audible DRM/Downloader
 {{ if eq .focus "personal" }}
 # cask "orbstack"
 # cask "rubymine"
