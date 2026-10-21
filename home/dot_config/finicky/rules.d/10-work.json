@@ -32,27 +32,23 @@
     },
     {
       "kind": "prefix",
-      "pattern": "github.com/dotswipely/swipely"
-    },
-    {
-      "kind": "prefix",
       "pattern": "github.com/ls-andrew-burns"
     },
     {
       "kind": "prefix",
-      "pattern": "github.com/swipely"
-    },
-    {
-      "kind": "prefix",
-      "pattern": "github.com/upserve"
-    },
-    {
-      "kind": "prefix",
-      "pattern": "github.com/upserve"
+      "pattern": "github.com/swipely/"
     },
     {
       "kind": "prefix",
       "pattern": "github.com/upserve/"
+    },
+    {
+      "kind": "prefix",
+      "pattern": "github.com/upserve-extra/"
+    },
+    {
+      "kind": "regex",
+      "pattern": "^(app\\.)?circleci\\.com/(pipelines/)?(gh|github)/(upserve|dotswipely|swipely)/"
     },
     {
       "kind": "host",

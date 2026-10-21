@@ -33,6 +33,8 @@ export const cases = [
   ['https://github.com/dotswipely/swipely', work],
   ['https://github.com/swipely/relbot-2000', work],
   ['https://github.com/ls-andrew-burns', work],
+  ['https://app.circleci.com/pipelines/github/upserve/sub', work],
+  ['https://circleci.com/pipelines/github/upserve/sub', work],
   ['https://github.com/ErebusBat/project', personal],
   ['https://www.github.com/erebusbat/project', personal],
   ['https://github.com/johnste/finicky', ''],
@@ -61,6 +63,6 @@ export const cases = [
 ];
 
 assert.equal(config.handlers.length, 3);
-assert.equal(config.handlers.reduce((n, h) => n + h.match.length, 0), 33);
+assert.equal(config.handlers.reduce((n, h) => n + h.match.length, 0), 32);
 for (const [input, expected] of cases) assert.equal(profileFor(input), expected, input);
 console.log(`Passed ${cases.length} routing cases; 3 rules and 33 matchers present.`);
