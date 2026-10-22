@@ -128,6 +128,7 @@ $HOME/Library/Application Support/Claude/**
 $HOME/Library/Application Support/CloudDocs/**
 $HOME/Library/Application Support/com.apple.ap.promotedcontentd/**
 $HOME/Library/Application Support/com.apple.ap.sbd/**
+$HOME/Library/Application Support/com.apple.AuthenticationServices/CredentialProviders
 $HOME/Library/Application Support/com.apple.avfoundation/**
 $HOME/Library/Application Support/com.apple.sharedfilelist/**
 $HOME/Library/Application Support/com.apple.spotlight/**
