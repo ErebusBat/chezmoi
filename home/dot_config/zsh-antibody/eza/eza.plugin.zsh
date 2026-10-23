@@ -14,6 +14,10 @@ else
 
   alias l='llg'
   alias tree='eza --tree'
+  alias lso='ls --sort=modified'
+  alias lsao='ls -a --sort=modified'
+  alias llo='ll --sort=modified'
+  alias llao='ll -a --sort=modified'
 
   ################################################################################
   ### Common Argument Defs
