@@ -1,0 +1,12 @@
+{{- if and (eq .chezmoi.os "darwin") (eq .chezmoi.hostname "USMB-JVK937H909") }}
+#!/bin/bash
+# Backrest owns the backup schedules on this Mac.
+set -euo pipefail
+user_domain="gui/$(id -u)"
+for label in local.restic.15m local.restic.hourly local.restic.daily local.restic.agent-kick local.restic.seaback; do
+  launchctl disable "$user_domain/$label"
+  if launchctl print "$user_domain/$label" >/dev/null 2>&1; then
+    launchctl bootout "$user_domain/$label"
+  fi
+done
+{{- end }}

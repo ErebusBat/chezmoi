@@ -1,0 +1,347 @@
+{
+  "instance": "USMB-JVK937H909",
+  "plans": [
+    {
+      "id": "erebusbat-15m",
+      "repo": "rsyncnet",
+      "paths": [
+        "/Users/andrew.burns/.agents/skills",
+        "/Users/andrew.burns/.omp",
+        "/Users/andrew.burns/Documents/AI/wiki/llm-vimwiki",
+        "/Users/andrew.burns/Documents/Obsidian"
+      ],
+      "schedule": {
+        "cron": "*/15 * * * *",
+        "clock": "CLOCK_LOCAL"
+      },
+      "retention": {
+        "policyKeepAll": true
+      },
+      "backup_flags": [
+        "--tag vital",
+        "--tag auto",
+        "--exclude-caches",
+        "--exclude-larger-than 50M",
+        "--exclude-file /Users/andrew.burns/.restic/common-excludes.lst",
+        "--exclude-file /Users/andrew.burns/.restic/15m-excludes.lst",
+        "--exclude '**/.git/**/*'"
+      ]
+    },
+    {
+      "id": "erebusbat-daily",
+      "repo": "rsyncnet",
+      "paths": [
+        "/Users/andrew.burns/.config",
+        "/Users/andrew.burns/.local/share/chezmoi",
+        "/Users/andrew.burns/.omp",
+        "/Users/andrew.burns/.restic",
+        "/Users/andrew.burns/Documents",
+        "/Users/andrew.burns/bin",
+        "/Users/andrew.burns/src"
+      ],
+      "schedule": {
+        "cron": "15 14 * * *",
+        "clock": "CLOCK_LOCAL"
+      },
+      "retention": {
+        "policyKeepAll": true
+      },
+      "backup_flags": [
+        "--tag daily",
+        "--tag auto",
+        "--exclude-caches",
+        "--exclude-file=/Users/andrew.burns/.restic/home-excludes.lst",
+        "--exclude-file=/Users/andrew.burns/.restic/src-excludes.lst",
+        "--exclude=/Users/andrew.burns/src/lshq/"
+      ]
+    },
+    {
+      "id": "erebusbat-hourly",
+      "repo": "rsyncnet",
+      "paths": [
+        "/Users/andrew.burns/.local/share/mcp-memory-service/db/backups",
+        "/Users/andrew.burns/Documents/AI",
+        "/Users/andrew.burns/src/erebusbat/"
+      ],
+      "schedule": {
+        "cron": "55 * * * *",
+        "clock": "CLOCK_LOCAL"
+      },
+      "retention": {
+        "policyKeepAll": true
+      },
+      "backup_flags": [
+        "--tag hourly",
+        "--tag auto",
+        "--exclude-caches",
+        "--exclude-file=/Users/andrew.burns/.restic/src-excludes.lst"
+      ]
+    },
+    {
+      "id": "lshq-15m",
+      "repo": "lshq",
+      "paths": [
+        "/Users/andrew.burns/.agents/skills",
+        "/Users/andrew.burns/.omp",
+        "/Users/andrew.burns/.pi",
+        "/Users/andrew.burns/.t3/worktrees",
+        "/Users/andrew.burns/Documents/meetings",
+        "/Users/andrew.burns/Library/Application Support/OpenOats",
+        "/Users/andrew.burns/src"
+      ],
+      "schedule": {
+        "cron": "*/15 * * * *",
+        "clock": "CLOCK_LOCAL"
+      },
+      "retention": {
+        "policyKeepAll": true
+      },
+      "backup_flags": [
+        "--tag 15m",
+        "--tag auto",
+        "--exclude-caches",
+        "--exclude-larger-than 50M",
+        "--exclude-file /Users/andrew.burns/.restic/common-excludes.lst",
+        "--exclude-file /Users/andrew.burns/.restic/15m-excludes.lst",
+        "--exclude '**/.git/**/*'"
+      ]
+    },
+    {
+      "id": "lshq-daily",
+      "repo": "lshq",
+      "paths": [
+        "/Users/andrew.burns"
+      ],
+      "schedule": {
+        "cron": "15 14 * * *",
+        "clock": "CLOCK_LOCAL"
+      },
+      "retention": {
+        "policyKeepAll": true
+      },
+      "backup_flags": [
+        "--tag daily",
+        "--tag auto",
+        "--exclude-caches",
+        "--exclude-file=/Users/andrew.burns/.restic/home-excludes.lst",
+        "--exclude-file=/Users/andrew.burns/.restic/src-excludes.lst"
+      ]
+    },
+    {
+      "id": "lshq-docs",
+      "repo": "lshq",
+      "paths": [
+        "/Users/andrew.burns/Documents/AI/wiki/upserve",
+        "/Users/andrew.burns/src/lshq/docs"
+      ],
+      "schedule": {
+        "cron": "*/15 * * * *",
+        "clock": "CLOCK_LOCAL"
+      },
+      "retention": {
+        "policyKeepAll": true
+      },
+      "backup_flags": [
+        "--tag docs",
+        "--exclude-caches",
+        "--exclude-file=/Users/andrew.burns/.restic/src-excludes.lst"
+      ]
+    },
+    {
+      "id": "lshq-hourly",
+      "repo": "lshq",
+      "paths": [
+        "/Users/andrew.burns/src/lshq/"
+      ],
+      "schedule": {
+        "cron": "55 * * * *",
+        "clock": "CLOCK_LOCAL"
+      },
+      "retention": {
+        "policyKeepAll": true
+      },
+      "backup_flags": [
+        "--tag hourly",
+        "--tag auto",
+        "--exclude-caches",
+        "--exclude-file=/Users/andrew.burns/.restic/src-excludes.lst"
+      ]
+    },
+    {
+      "id": "seaback-daily",
+      "repo": "SeaBack",
+      "paths": [
+        "/Users/andrew.burns/.agents",
+        "/Users/andrew.burns/.codex",
+        "/Users/andrew.burns/.config",
+        "/Users/andrew.burns/.gnupg",
+        "/Users/andrew.burns/.local/share/chezmoi",
+        "/Users/andrew.burns/.omp",
+        "/Users/andrew.burns/.pi",
+        "/Users/andrew.burns/.restic",
+        "/Users/andrew.burns/.ssh",
+        "/Users/andrew.burns/.t3",
+        "/Users/andrew.burns/Desktop",
+        "/Users/andrew.burns/Documents",
+        "/Users/andrew.burns/bin",
+        "/Users/andrew.burns/src"
+      ],
+      "schedule": {
+        "cron": "35 * * * *",
+        "clock": "CLOCK_LOCAL"
+      },
+      "retention": {
+        "policyKeepAll": true
+      },
+      "hooks": [
+        {
+          "conditions": [
+            "CONDITION_SNAPSHOT_START"
+          ],
+          "onError": "ON_ERROR_CANCEL",
+          "actionCommand": {
+            "command": "/Users/andrew.burns/.restic/backrest-seaback-schedule due daily"
+          }
+        }
+      ],
+      "backup_flags": [
+        "--tag seaback",
+        "--tag daily",
+        "--tag auto",
+        "--host USMB-JVK937H909",
+        "--group-by host,paths,tags",
+        "--exclude-caches",
+        "--exclude-file /Users/andrew.burns/.restic/seaback-excludes.lst"
+      ]
+    },
+    {
+      "id": "seaback-weekly",
+      "repo": "SeaBack",
+      "paths": [
+        "/Users/andrew.burns"
+      ],
+      "schedule": {
+        "cron": "35 * * * *",
+        "clock": "CLOCK_LOCAL"
+      },
+      "retention": {
+        "policyKeepAll": true
+      },
+      "hooks": [
+        {
+          "conditions": [
+            "CONDITION_SNAPSHOT_START"
+          ],
+          "onError": "ON_ERROR_CANCEL",
+          "actionCommand": {
+            "command": "/Users/andrew.burns/.restic/backrest-seaback-schedule due weekly"
+          }
+        }
+      ],
+      "backup_flags": [
+        "--tag seaback",
+        "--tag weekly",
+        "--tag auto",
+        "--host USMB-JVK937H909",
+        "--group-by host,paths,tags",
+        "--exclude-caches",
+        "--exclude-file /Users/andrew.burns/.restic/seaback-excludes.lst"
+      ]
+    }
+  ],
+  "repos": [
+    {
+      "id": "SeaBack",
+      "uri": "/Volumes/SeaBack/restic/erebusbat",
+      "guid": "5c3194b3c44c5e2c468e7e6a2b563de5bb449c0798e636fb893605000d5caf2d",
+      "prunePolicy": {
+        "schedule": {
+          "cron": "0 0 1 * *",
+          "clock": "CLOCK_LAST_RUN_TIME"
+        },
+        "maxUnusedPercent": 10
+      },
+      "checkPolicy": {
+        "schedule": {
+          "cron": "0 0 1 * *",
+          "clock": "CLOCK_LAST_RUN_TIME"
+        }
+      },
+      "autoUnlock": true,
+      "commandPrefix": {},
+      "forgetPolicy": {
+        "schedule": {
+          "disabled": true,
+          "clock": "CLOCK_LAST_RUN_TIME"
+        },
+        "retention": {
+          "policyTimeBucketed": {
+            "hourly": 24,
+            "daily": 30,
+            "monthly": 12
+          }
+        }
+      },
+      "env": [
+        "RESTIC_PASSWORD_FILE=/Users/andrew.burns/.restic/.erebusbat.key",
+        "RESTIC_HOST=USMB-JVK937H909"
+      ]
+    },
+    {
+      "id": "lshq",
+      "uri": "sftp://rsyncnet/restic/lshq",
+      "guid": "8a8ff6492edf1e9fe8e1a9650de1fa1abd0511095c0dc2a9f96d088ee7958a00",
+      "prunePolicy": {
+        "schedule": {
+          "disabled": true
+        }
+      },
+      "checkPolicy": {
+        "schedule": {
+          "disabled": true
+        }
+      },
+      "forgetPolicy": {
+        "schedule": {
+          "disabled": true
+        },
+        "retention": {
+          "policyKeepAll": true
+        }
+      },
+      "env": [
+        "RESTIC_PASSWORD_FILE=/Users/andrew.burns/.restic/.lshq.key",
+        "RESTIC_HOST=USMB-JVK937H909"
+      ]
+    },
+    {
+      "id": "rsyncnet",
+      "uri": "sftp://de4062@de4062.rsync.net/restic/erebusbat",
+      "guid": "10277df5a2d01ee8ef02578006d7b45316cfc50b36fc238853ee22ffde95286d",
+      "flags": [
+        "-o sftp.args='-i /opt/creds/id_rsyncnet -o StrictHostKeyChecking=no'"
+      ],
+      "prunePolicy": {
+        "schedule": {
+          "cron": "0 0 1 * *",
+          "clock": "CLOCK_LAST_RUN_TIME"
+        },
+        "maxUnusedPercent": 10
+      },
+      "checkPolicy": {
+        "schedule": {
+          "cron": "0 0 1 * *",
+          "clock": "CLOCK_LAST_RUN_TIME"
+        },
+        "readDataSubsetPercent": 0
+      },
+      "commandPrefix": {},
+      "shared": true,
+      "originInstanceId": "maze",
+      "env": [
+        "RESTIC_PASSWORD_FILE=/Users/andrew.burns/.restic/.erebusbat.key",
+        "RESTIC_HOST=USMB-JVK937H909"
+      ]
+    }
+  ]
+}

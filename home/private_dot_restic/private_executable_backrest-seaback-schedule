@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euo pipefail
+umask 077
+state="$HOME/.restic/seaback/state"
+action="${1:?action required}"
+tier="${2:?tier required}"
+case "$tier" in daily) interval=86400;; weekly) interval=604800;; *) exit 2;; esac
+case "$action" in
+  due)
+    [[ -d /Volumes/SeaBack/restic/erebusbat ]] || { echo 'SeaBack disconnected; retry next hour.'; exit 1; }
+    last=0
+    [[ ! -f "$state/$tier.success" ]] || read -r last < "$state/$tier.success"
+    [[ "$last" =~ ^[0-9]+$ ]] || { echo 'Invalid last-success timestamp' >&2; exit 1; }
+    (( $(date +%s) - last >= interval )) || { echo "SeaBack $tier is not due; retry next hour."; exit 1; }
+    ;;
+  success)
+    mkdir -p "$state"
+    date +%s > "$state/$tier.success.tmp"
+    mv "$state/$tier.success.tmp" "$state/$tier.success"
+    ;;
+  *) exit 2;;
+esac

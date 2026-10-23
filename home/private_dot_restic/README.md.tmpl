@@ -1,3 +1,67 @@
+{{ if and (eq .chezmoi.os "darwin") (eq .chezmoi.hostname "USMB-JVK937H909") -}}
+# Backrest migration — 2026-10-23
+
+Active scheduling now lives in Backrest at http://127.0.0.1:9898/.
+The shell profiles and scripts below remain available for manual use and rollback.
+All five legacy Restic LaunchAgents (15m, hourly, daily, watchdog, Seaback)
+are persistently disabled and unloaded. The in-flight legacy hourly run was
+terminated cleanly during cutover without saving that run; existing snapshots
+were preserved. Backrest's first scheduled personal backup is now running.
+
+- `lshq-15m`, `erebusbat-15m`, and `lshq-docs`: every 15 minutes.
+- `lshq-hourly` and `erebusbat-hourly`: minute 55 of each hour.
+- `lshq-daily` and `erebusbat-daily`: 14:15 local time.
+- `seaback-daily` and `seaback-weekly`: check at minute 35 each hour;
+  run only when 24 hours / 7 days have elapsed since a successful backup.
+  Failed, partial, and dry-run backups do not advance these timestamps.
+  A disconnected disk or a not-yet-due tier cancels that attempt and retries
+  next hour. This gate also applies to Backrest's manual Backup Now button;
+  the existing `seaback/run daily` or `weekly` command can force a manual run.
+
+Seaback's exclusion list is **`~/.restic/seaback-excludes.lst`**.
+The legacy Seaback script and both Backrest plans use this same file.
+The other existing exclusion lists remain in `~/.restic`.
+
+Backrest config: `~/.config/backrest/config.json` (contains secrets, mode 0600).
+Service: `~/Library/LaunchAgents/sh.brew.backrest.plist`.
+`BACKREST_RESTIC_COMMAND` selects `~/.restic/backrest-restic`, which:
+
+- Uses the installed `/opt/homebrew/bin/restic` and prevents idle sleep while it runs.
+- Validates Seaback's volume UUID, mount point, repository ID, and protected-folder
+  readability before a backup; never initializes a repository automatically.
+- Advances Seaback's success markers only after a non-dry-run backup exits zero.
+- Maps the shared `maze` repository's container SSH-key path to this Mac's
+  `~/.ssh/id_rsync_ed25519`, with batch mode and strict host-key checking.
+
+The shared `rsyncnet` repository retains ownership by `maze` and its original
+sync permissions; local personal plans reference it. The `lshq` repository uses
+its existing password file and SSH alias. All nine migrated plans keep all
+snapshots. Existing Seaback maintenance policies are preserved. No new retention
+or automatic deletion policy was added.
+
+The inactive `profile-erebusbat-s3.sh` fallback could not be verified during the
+migration and remains a manual shell profile; it has no Backrest plan.
+
+Validation: repository access/dry runs through the Backrest service; a Seaback
+one-file backup and restore verified byte-for-byte; a real `lshq-docs` plan
+backup; Seaback dry-run cadence-state verification; shell and plist validation.
+Full daily/weekly data coverage and a complete disaster-recovery restore have
+not been tested. A small snapshot tagged `backrest-migration-verification`
+remains in Seaback as validation evidence.
+
+Original config, service plists, Seaback script/excludes, and this README were
+saved under `/Users/andrew.burns/.restic/backrest-migration-20261023-115229` (private directory). The original disabled-service state is
+in `original-disabled.txt`. To roll back, stop Backrest, restore its config and
+service plist from that directory, then re-enable/bootstrap only the desired
+legacy agents. Do not run both scheduling systems concurrently. The old
+Seaback agent was already disabled before this migration.
+
+Homebrew may regenerate its LaunchAgent during service reinstall; preserve the
+`BACKREST_RESTIC_COMMAND` environment setting when doing so.
+
+---
+
+{{ end -}}
 # Simple Shell-Based Backup System
 
 A minimal backup system using shell scripts and restic. Optimized for simplicity and maintainability.

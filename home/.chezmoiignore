@@ -11,6 +11,23 @@ AGENTS.md
 .syncthing.*
 .config/wezterm/wallpaper.jpg
 
+# Backrest runtime secrets and migration archives stay outside source control.
+.config/backrest/config.json
+.config/backrest/config.json.bak.*
+.restic/agent-backrest-creds
+.restic/backrest-migration-*/**
+.restic/seaback/state/**
+.restic/seaback/restore-test/**
+
+# This migration uses USMB-JVK937H909 paths and SeaBack disk identity.
+{{- if or (ne .chezmoi.hostname "USMB-JVK937H909") (ne .chezmoi.os "darwin") }}
+.restic/backrest-restic
+.restic/backrest-seaback-schedule
+.restic/seaback-excludes.lst
+.restic/seaback
+Library/LaunchAgents/sh.brew.backrest.plist
+{{- end }}
+
 # Deskflow: deploy only the server layout, to the platform's config directory.
 # Missing, client, disabled, and unknown modes leave existing files untouched.
 {{- if or (ne (dig "deskflow" "mode" "disabled" .) "server") (ne .chezmoi.os "darwin") }}

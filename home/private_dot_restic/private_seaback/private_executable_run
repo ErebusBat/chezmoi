@@ -1,0 +1,79 @@
+#!/bin/bash
+set -euo pipefail
+umask 077
+export PATH=/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin
+TASK_DIR="$(cd "$(dirname "$0")" && pwd)"
+STATE="$TASK_DIR/state"
+MOUNT=/Volumes/SeaBack
+VOLUME_ID=D2130F16-82A6-43BE-AA5F-C04F81410815
+REPO_ID=5c3194b3c44c5e2c468e7e6a2b563de5bb449c0798e636fb893605000d5caf2d
+export RESTIC_REPOSITORY="$MOUNT/restic/erebusbat"
+export RESTIC_PASSWORD_FILE=/Users/andrew.burns/.restic/.erebusbat.key
+export RESTIC_HOST=USMB-JVK937H909
+MODE="${1:-auto}"
+case "$MODE" in auto|daily|weekly|dry-run) ;; *) echo 'Usage: run [auto|daily|weekly|dry-run]' >&2; exit 2;; esac
+mkdir -p "$STATE"
+if ! /usr/bin/shlock -f "$STATE/run.lock" -p "$$"; then
+  echo "$(date -Iseconds) Another SeaBack job is running; skipped."
+  exit 0
+fi
+trap 'rm -f "$STATE/run.lock"' EXIT
+# Never create a repository or destination directory when the disk is absent.
+if ! disk_info="$(/usr/sbin/diskutil info -plist "$MOUNT" 2>/dev/null)"; then
+  echo "$(date -Iseconds) SeaBack unavailable; will retry next hour."
+  exit 0
+fi
+actual_id="$(printf '%s' "$disk_info" | /usr/bin/plutil -extract VolumeUUID raw -o - -)"
+actual_mount="$(printf '%s' "$disk_info" | /usr/bin/plutil -extract MountPoint raw -o - -)"
+if [[ "$actual_id" != "$VOLUME_ID" || "$actual_mount" != "$MOUNT" ]]; then
+  echo 'Refusing backup: volume identity or mount point mismatch.' >&2
+  exit 1
+fi
+actual_repo="$(restic cat config | /usr/bin/plutil -extract id raw -o - -)"
+[[ "$actual_repo" == "$REPO_ID" ]] || { echo 'Repository identity mismatch.' >&2; exit 1; }
+
+# Fail early if the scheduled execution context lacks macOS Full Disk Access.
+for protected in Library/Mail Library/Messages Library/Safari; do
+  if [[ -d "/Users/andrew.burns/$protected" ]]; then
+    /bin/ls -A "/Users/andrew.burns/$protected" >/dev/null || {
+      echo "Full Disk Access required: $protected" >&2
+      exit 1
+    }
+  fi
+done
+echo "$(date -Iseconds) Protected-folder access check passed."
+
+run_backup() {
+  local tier="$1"
+  local paths=()
+  local backup_args=(backup)
+  if [[ "$tier" == weekly ]]; then
+    paths=(/Users/andrew.burns)
+  else
+    local rel
+    for rel in Desktop Documents src bin .config .ssh .gnupg .restic .agents .codex .t3 .omp .pi .local/share/chezmoi; do
+      [[ ! -e "/Users/andrew.burns/$rel" ]] || paths+=("/Users/andrew.burns/$rel")
+    done
+  fi
+  [[ "$MODE" != dry-run ]] || backup_args+=(--dry-run)
+  echo "$(date -Iseconds) Starting SeaBack $tier backup."
+  # Exit 3 (unreadable files) remains a failure and does not advance the schedule.
+  /usr/bin/caffeinate -i restic "${backup_args[@]}" --tag seaback --tag "$tier" --tag auto \
+    --group-by host,paths,tags --exclude-caches --exclude-file "$HOME/.restic/seaback-excludes.lst" \
+    "${paths[@]}" || return $?
+  if [[ "$MODE" != dry-run ]]; then
+    date +%s > "$STATE/$tier.success.tmp"
+    mv "$STATE/$tier.success.tmp" "$STATE/$tier.success"
+  fi
+}
+if [[ "$MODE" == dry-run ]]; then run_backup weekly; exit; fi
+if [[ "$MODE" != auto ]]; then run_backup "$MODE"; exit; fi
+now="$(date +%s)"
+last_daily=0; last_weekly=0
+[[ ! -f "$STATE/daily.success" ]] || read -r last_daily < "$STATE/daily.success"
+[[ ! -f "$STATE/weekly.success" ]] || read -r last_weekly < "$STATE/weekly.success"
+# Hourly polling catches up after sleep or drive reconnection. No overlapping runs.
+failed=0
+if (( now - last_daily >= 86400 )); then run_backup daily || failed=1; fi
+if (( now - last_weekly >= 604800 )); then run_backup weekly || failed=1; fi
+exit "$failed"

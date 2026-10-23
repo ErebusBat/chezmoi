@@ -1,0 +1,31 @@
+# SeaBack: caches and reproducible dependency/build outputs only.
+# Keep .git, Downloads, Photos, Mail, Messages and other personal/app data.
+**/.DS_Store
+**/.Trash/**
+**/node_modules/**
+**/.venv/**
+**/__pycache__/**
+**/.pytest_cache/**
+**/.mypy_cache/**
+**/.ruff_cache/**
+**/.next/**
+**/.nuxt/**
+**/.turbo/**
+**/.build/**
+**/.zig-cache/**
+**/CMakeFiles/**
+$HOME/.cache/**
+$HOME/.npm/_cacache/**
+$HOME/.cargo/registry/**
+$HOME/.cargo/git/**
+$HOME/Library/Caches/**
+$HOME/Library/Developer/Xcode/DerivedData/**
+$HOME/Library/Logs/restic-seaback/**
+$HOME/.restic/seaback/state/**
+$HOME/Library/Application Support/*/Cache/**
+$HOME/Library/Application Support/*/Caches/**
+$HOME/Library/Application Support/*/Code Cache/**
+$HOME/Library/Application Support/Google/Chrome/*/Cache/**
+$HOME/Library/Application Support/Google/Chrome/*/Code Cache/**
+$HOME/src/**/target/debug/**
+$HOME/src/**/target/release/**

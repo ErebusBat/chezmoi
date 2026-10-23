@@ -1,0 +1,47 @@
+#!/bin/bash
+set -euo pipefail
+export PATH=/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin
+# Maze shares this repository with a container-specific SSH key path.
+# Translate only that known path for this Mac; retain strict host verification.
+if [[ "${RESTIC_REPOSITORY:-}" == sftp://de4062@de4062.rsync.net/restic/erebusbat ]]; then
+  args=()
+  for arg in "$@"; do
+    if [[ "$arg" == sftp.args=* && "$arg" == *"/opt/creds/id_rsyncnet"* ]]; then
+      arg="sftp.args=-i $HOME/.ssh/id_rsync_ed25519 -oBatchMode=yes -oStrictHostKeyChecking=yes"
+    fi
+    args+=("$arg")
+  done
+  set -- "${args[@]}"
+fi
+if [[ "${RESTIC_REPOSITORY:-}" == /Volumes/SeaBack/restic/erebusbat ]]; then
+  info="$(/usr/sbin/diskutil info -plist /Volumes/SeaBack)"
+  uuid="$(printf '%s' "$info" | /usr/bin/plutil -extract VolumeUUID raw -o - -)"
+  mount="$(printf '%s' "$info" | /usr/bin/plutil -extract MountPoint raw -o - -)"
+  [[ "$uuid" == D2130F16-82A6-43BE-AA5F-C04F81410815 && "$mount" == /Volumes/SeaBack ]] || { echo 'SeaBack volume identity mismatch' >&2; exit 1; }
+  repo_id="$(/opt/homebrew/bin/restic cat config | /usr/bin/plutil -extract id raw -o - -)"
+  [[ "$repo_id" == 5c3194b3c44c5e2c468e7e6a2b563de5bb449c0798e636fb893605000d5caf2d ]] || { echo 'SeaBack repository identity mismatch' >&2; exit 1; }
+  for arg in "$@"; do
+    if [[ "$arg" == backup ]]; then
+      for protected in Mail Messages Safari; do
+        [[ ! -d "$HOME/Library/$protected" ]] || /bin/ls -A "$HOME/Library/$protected" >/dev/null
+      done
+      echo 'SeaBack identity and protected-folder access checks passed.' >&2
+      break
+    fi
+  done
+fi
+# Advance the cadence only after a real, fully successful backup. Restic can
+# emit a snapshot ID during a dry run, so hook SnapshotId is not sufficient.
+is_backup=false; dry_run=false; tier=""; previous=""
+for arg in "$@"; do
+  [[ "$arg" != backup ]] || is_backup=true
+  [[ "$arg" != --dry-run ]] || dry_run=true
+  if [[ "$previous" == --tag && ( "$arg" == daily || "$arg" == weekly ) ]]; then tier="$arg"; fi
+  previous="$arg"
+done
+if [[ "${RESTIC_REPOSITORY:-}" == /Volumes/SeaBack/restic/erebusbat && "$is_backup" == true && "$dry_run" == false && -n "$tier" ]]; then
+  /usr/bin/caffeinate -i /opt/homebrew/bin/restic "$@"
+  "$HOME/.restic/backrest-seaback-schedule" success "$tier"
+else
+  exec /usr/bin/caffeinate -i /opt/homebrew/bin/restic "$@"
+fi
