@@ -55,6 +55,9 @@ $HOME/.lmstudio/server-logs/**
 $HOME/.lmstudio/settings.json
 $HOME/.lmstudio/user-files/**
 $HOME/.lmstudio/working-directories/**
+# Caddy-managed TLS certificates and housekeeping state are not user-readable.
+$HOME/.local/share/caddy/certificates
+$HOME/.local/share/caddy/last_clean.json
 $HOME/.local/share/claude/versions/**
 $HOME/.local/share/flatpak/**
 $HOME/.local/share/lutris/**
