@@ -1,4 +1,4 @@
-# SeaBack: caches and reproducible dependency/build outputs only.
+# SeaBack: caches, reproducible outputs, and selected unreadable service state.
 # Keep .git, Downloads, Photos, Mail, Messages and other personal/app data.
 **/.DS_Store
 **/.Trash/**
@@ -15,6 +15,13 @@
 **/.zig-cache/**
 **/CMakeFiles/**
 $HOME/.cache/**
+# Caddy-managed TLS certificates and housekeeping state are not user-readable.
+$HOME/.local/share/caddy/certificates
+$HOME/.local/share/caddy/last_clean.json
+# Root-owned editor undo history and disposable macOS provider/speech state.
+$HOME/.local/state/nvim/undo/%private%etc%sudoers.d%home-ssh-tunnel.tmp
+$HOME/Library/Application Support/FileProvider/*/wharf/tombstone
+$HOME/Library/Group Containers/group.com.apple.CoreSpeech/Caches
 $HOME/.npm/_cacache/**
 $HOME/.cargo/registry/**
 $HOME/.cargo/git/**
