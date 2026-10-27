@@ -22,7 +22,8 @@ AGENTS.md
 # This migration uses USMB-JVK937H909 paths and SeaBack disk identity.
 {{- if or (ne .chezmoi.hostname "USMB-JVK937H909") (ne .chezmoi.os "darwin") }}
 .restic/backrest-restic
-.restic/backrest-seaback-schedule
+.restic/backrest-seaback-catchup
+Library/LaunchAgents/local.backrest.seaback-catchup.plist
 .restic/seaback-excludes.lst
 .restic/seaback
 Library/LaunchAgents/sh.brew.backrest.plist

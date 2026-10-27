@@ -1,7 +1,7 @@
 # Backrest on USMB-JVK937H909
 
-Chezmoi manages the Backrest Restic wrapper, Seaback cadence helper, Seaback
-exclude list, legacy Seaback manual runner, and Backrest LaunchAgent. These files
+Chezmoi manages the Backrest Restic wrapper, Seaback catch-up utility, Seaback
+exclude list, legacy Seaback manual runner, and Backrest/catch-up LaunchAgents. These files
 are restricted to this Mac by `.chezmoiignore`. The README migration section is
 also host-specific. Backrest and Restic were already present in Brewfile.
 
@@ -31,3 +31,52 @@ After restoring the files, load the Backrest LaunchAgent when ready. Its
 `BACKREST_RESTIC_COMMAND` setting must point to `~/.restic/backrest-restic`.
 Homebrew service reinstallation may regenerate that plist; reapply the managed
 plist before loading the service again.
+
+## SeaBack scheduling and catch-up
+
+Backrest owns the native schedules: `seaback-daily` at 17:35 every day and
+`seaback-weekly` at 18:35 Sunday, using the Mac's local clock. Neither plan has
+a cadence-gating hook. The restic wrapper retains disk/repository identity,
+protected-folder access checks, and sleep prevention; it no longer writes
+success markers. Old `daily.success` and `weekly.success` files are unused.
+Existing cancelled history is retained.
+
+`~/.restic/backrest-seaback-catchup` checks the mounted SeaBack UUID before
+contacting `http://127.0.0.1:9898`. It reads each plan's schedule and operation
+history through the API. A successful, non-dry-run backup with a snapshot that
+finished after the most recent scheduled occurrence covers that occurrence.
+Partial backups and snapshot-index operations do not count. Only daily and
+weekly plans are considered; the existing 15-minute plan is unchanged.
+
+`local.backrest.seaback-catchup` runs at login, on volume mounts, and every
+15 minutes. It skips running or due/soon queued jobs, allows the native scheduler
+five minutes, and waits an hour between failed/cancelled attempts or catch-up
+submissions. A lock prevents concurrent utility runs. Before POSTing a backup,
+it records the attempt so a lost response does not cause an immediate duplicate.
+The API may continue a backup after the client's ten-second timeout. Every retry
+checks history again. The native scheduler and API do not provide an atomic
+check-and-enqueue operation; the five-minute guard reduces boundary races.
+
+Credentials come from the existing `~/.restic/agent-backrest-creds` file (username
+and password on separate lines, mode 0600), which remains outside Git. No new
+credentials or successful-backup markers are maintained by this utility.
+Submission cooldown data is private runtime state under `~/.restic/seaback/state`.
+Unsupported schedule formats stop catch-up rather than guessing. Fixed-time
+daily/weekly local cron is supported; changing to other formats requires updating
+the utility. Backrest schedules still run normally if the catch-up API is down.
+
+Inspect without triggering backups:
+
+```sh
+~/.restic/backrest-seaback-catchup --dry-run
+```
+
+Run catch-up immediately:
+
+```sh
+~/.restic/backrest-seaback-catchup
+```
+
+Logs: `~/Library/Logs/backrest-seaback-catchup.log`.
+Tests: `python3 tests/test_backrest_seaback_catchup.py` from the Chezmoi repository.
+API reference: https://garethgeorge.github.io/backrest/docs/api

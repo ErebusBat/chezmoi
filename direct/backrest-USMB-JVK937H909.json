@@ -187,23 +187,13 @@
         "/Users/andrew.burns/src"
       ],
       "schedule": {
-        "cron": "35 * * * *",
+        "cron": "35 17 * * *",
         "clock": "CLOCK_LOCAL"
       },
       "retention": {
         "policyKeepAll": true
       },
-      "hooks": [
-        {
-          "conditions": [
-            "CONDITION_SNAPSHOT_START"
-          ],
-          "onError": "ON_ERROR_CANCEL",
-          "actionCommand": {
-            "command": "/Users/andrew.burns/.restic/backrest-seaback-schedule due daily"
-          }
-        }
-      ],
+      "hooks": [],
       "backup_flags": [
         "--tag seaback",
         "--tag daily",
@@ -221,23 +211,13 @@
         "/Users/andrew.burns"
       ],
       "schedule": {
-        "cron": "35 * * * *",
+        "cron": "35 18 * * 0",
         "clock": "CLOCK_LOCAL"
       },
       "retention": {
         "policyKeepAll": true
       },
-      "hooks": [
-        {
-          "conditions": [
-            "CONDITION_SNAPSHOT_START"
-          ],
-          "onError": "ON_ERROR_CANCEL",
-          "actionCommand": {
-            "command": "/Users/andrew.burns/.restic/backrest-seaback-schedule due weekly"
-          }
-        }
-      ],
+      "hooks": [],
       "backup_flags": [
         "--tag seaback",
         "--tag weekly",

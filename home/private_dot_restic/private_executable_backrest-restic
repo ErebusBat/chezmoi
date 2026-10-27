@@ -30,18 +30,4 @@ if [[ "${RESTIC_REPOSITORY:-}" == /Volumes/SeaBack/restic/erebusbat ]]; then
     fi
   done
 fi
-# Advance the cadence only after a real, fully successful backup. Restic can
-# emit a snapshot ID during a dry run, so hook SnapshotId is not sufficient.
-is_backup=false; dry_run=false; tier=""; previous=""
-for arg in "$@"; do
-  [[ "$arg" != backup ]] || is_backup=true
-  [[ "$arg" != --dry-run ]] || dry_run=true
-  if [[ "$previous" == --tag && ( "$arg" == daily || "$arg" == weekly ) ]]; then tier="$arg"; fi
-  previous="$arg"
-done
-if [[ "${RESTIC_REPOSITORY:-}" == /Volumes/SeaBack/restic/erebusbat && "$is_backup" == true && "$dry_run" == false && -n "$tier" ]]; then
-  /usr/bin/caffeinate -i /opt/homebrew/bin/restic "$@"
-  "$HOME/.restic/backrest-seaback-schedule" success "$tier"
-else
-  exec /usr/bin/caffeinate -i /opt/homebrew/bin/restic "$@"
-fi
+exec /usr/bin/caffeinate -i /opt/homebrew/bin/restic "$@"

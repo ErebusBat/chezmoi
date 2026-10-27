@@ -16,12 +16,15 @@ were preserved. Backrest's first scheduled personal backup is now running.
   is independent of the source plans after creation.
 - `lshq-hourly` and `erebusbat-hourly`: minute 55 of each hour.
 - `lshq-daily` and `erebusbat-daily`: 14:15 local time.
-- `seaback-daily` and `seaback-weekly`: check at minute 35 each hour;
-  run only when 24 hours / 7 days have elapsed since a successful backup.
-  Failed, partial, and dry-run backups do not advance these timestamps.
-  A disconnected disk or a not-yet-due tier cancels that attempt and retries
-  next hour. This gate also applies to Backrest's manual Backup Now button;
-  the existing `seaback/run daily` or `weekly` command can force a manual run.
+- `seaback-daily`: 17:35 local time daily.
+- `seaback-weekly`: 18:35 local time on Sundays.
+  Backrest owns these schedules; no cadence hook cancels normal attempts.
+  Backup Now runs directly. `backrest-seaback-catchup` checks the connected
+  drive and Backrest API history for missed daily/weekly occurrences.
+  `local.backrest.seaback-catchup` runs at login, on mounts, and every 15 minutes.
+  It skips running/due queued jobs and retries at most hourly after failures
+  or uncertain submissions. Partial and dry-run backups do not count as success.
+  Use `~/.restic/backrest-seaback-catchup --dry-run` to inspect its decisions.
 
 Seaback's exclusion list is **`~/.restic/seaback-excludes.lst`**.
 The legacy Seaback script and both Backrest plans use this same file.
@@ -34,7 +37,6 @@ Service: `~/Library/LaunchAgents/sh.brew.backrest.plist`.
 - Uses the installed `/opt/homebrew/bin/restic` and prevents idle sleep while it runs.
 - Validates Seaback's volume UUID, mount point, repository ID, and protected-folder
   readability before a backup; never initializes a repository automatically.
-- Advances Seaback's success markers only after a non-dry-run backup exits zero.
 - Maps the shared `maze` repository's container SSH-key path to this Mac's
   `~/.ssh/id_rsync_ed25519`, with batch mode and strict host-key checking.
 

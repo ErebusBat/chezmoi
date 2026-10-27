@@ -1,0 +1,171 @@
+#!/usr/bin/env python3
+"""Catch up missed SeaBack daily/weekly schedules using Backrest's local API."""
+import argparse
+import base64
+import datetime as dt
+import fcntl
+import json
+import os
+from pathlib import Path
+import plistlib
+import socket
+import subprocess
+import sys
+import time
+import urllib.error
+import urllib.request
+
+HOME = Path.home()
+STATE = HOME / '.restic/seaback/state'
+PLANS = ('seaback-daily', 'seaback-weekly')
+COOLDOWN = 3600
+
+
+def latest_slot(schedule, now):
+    """Support fixed daily/weekly local cron; fail closed on unsupported edits."""
+    if schedule.get('clock') != 'CLOCK_LOCAL':
+        raise ValueError('catch-up requires CLOCK_LOCAL')
+    fields = schedule.get('cron', '').split()
+    if len(fields) != 5:
+        raise ValueError('expected five-field daily/weekly cron')
+    minute, hour, day, month, weekday = fields
+    if not (minute.isdigit() and hour.isdigit() and day == month == '*'
+            and (weekday == '*' or weekday in ('0', '1', '2', '3', '4', '5', '6', '7'))):
+        raise ValueError('catch-up supports only fixed daily/weekly cron')
+    if not (0 <= int(minute) < 60 and 0 <= int(hour) < 24):
+        raise ValueError('invalid schedule time')
+    local = dt.datetime.fromtimestamp(now)
+    for days in range(8):
+        candidate = (local - dt.timedelta(days=days)).replace(
+            hour=int(hour), minute=int(minute), second=0, microsecond=0)
+        if weekday != '*' and (candidate.weekday() + 1) % 7 != int(weekday) % 7:
+            continue
+        stamp = candidate.timestamp()
+        if stamp <= now:
+            return stamp
+    raise ValueError('no recent schedule occurrence')
+
+
+def decision(operations, slot, now, submitted=0):
+    backups = [o for o in operations if 'operationBackup' in o
+               and not o['operationBackup'].get('dryRun', False)]
+    for o in backups:
+        status = o.get('status')
+        start = int(o.get('unixTimeStartMs', 0)) / 1000
+        if status == 'STATUS_INPROGRESS' or (status == 'STATUS_PENDING' and start <= now + 300):
+            return 'backup running or queued'
+        if (status == 'STATUS_SUCCESS' and o.get('snapshotId')
+                and int(o.get('unixTimeEndMs', 0)) / 1000 >= slot):
+            return 'latest scheduled backup covered'
+    attempts = [int(o.get('unixTimeStartMs', 0)) / 1000 for o in backups
+                if o.get('status') in ('STATUS_ERROR', 'STATUS_WARNING',
+                                       'STATUS_USER_CANCELLED', 'STATUS_SYSTEM_CANCELLED')]
+    if now - max([submitted] + attempts) < COOLDOWN:
+        return 'retry cooldown'
+    if now - slot < 300:
+        return 'allow native scheduler five minutes'
+    return None
+
+
+class API:
+    def __init__(self):
+        credential = HOME / '.restic/agent-backrest-creds'
+        if credential.stat().st_mode & 0o077:
+            raise ValueError('credential file must have mode 0600')
+        lines = credential.read_text().splitlines()
+        if len(lines) != 2 or not all(lines):
+            raise ValueError('credential file must contain username then password')
+        self.auth = 'Basic ' + base64.b64encode(':'.join(lines).encode()).decode()
+        self.opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
+
+    def call(self, method, payload, timeout=20):
+        request = urllib.request.Request('http://127.0.0.1:9898/v1.Backrest/' + method,
+            data=json.dumps(payload).encode(), headers={
+                'Content-Type': 'application/json', 'Authorization': self.auth})
+        with self.opener.open(request, timeout=timeout) as response:
+            return json.load(response)
+
+
+def drive_connected():
+    if not Path('/Volumes/SeaBack/restic/erebusbat').is_dir():
+        return False
+    result = subprocess.run(['/usr/sbin/diskutil', 'info', '-plist', '/Volumes/SeaBack'],
+                            capture_output=True, timeout=10, check=True)
+    info = plistlib.loads(result.stdout)
+    return (info.get('VolumeUUID') == 'D2130F16-82A6-43BE-AA5F-C04F81410815'
+            and info.get('MountPoint') == '/Volumes/SeaBack')
+
+
+def run(dry_run):
+    if not drive_connected():
+        print('SeaBack unavailable; no API calls or backups.')
+        return
+    STATE.mkdir(parents=True, exist_ok=True, mode=0o700)
+    with (STATE / 'catchup.lock').open('a') as lock:
+        try:
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            print('Catch-up already running.')
+            return
+        api = API()
+        config = api.call('GetConfig', {})
+        plans = {p['id']: p for p in config['plans']}
+        record = STATE / 'catchup-submissions.json'
+        submissions = json.loads(record.read_text()) if record.exists() else {}
+        for plan_id in PLANS:
+            plan = plans[plan_id]
+            if plan.get('repo') != 'SeaBack' or plan.get('disabled', False):
+                raise ValueError('unexpected or disabled SeaBack plan: ' + plan_id)
+            if any('backrest-seaback-schedule' in h.get('actionCommand', {}).get('command', '')
+                   for h in plan.get('hooks', [])):
+                raise ValueError('remove legacy cadence hook before catch-up')
+            now = time.time()
+            slot = latest_slot(plan['schedule'], now)
+            # No lastN limit: old cancellations must not hide the last success.
+            history = api.call('GetOperations', {'selector': {'planId': plan_id}})
+            operations = [o for o in history.get('operations', [])
+                          if o.get('instanceId') == config['instance']
+                          and o.get('planId') == plan_id]
+            reason = decision(operations, slot, now, submissions.get(plan_id, 0))
+            if reason:
+                print(f'{plan_id}: {reason}.')
+                continue
+            if dry_run:
+                print(f'{plan_id}: overdue; would request backup.')
+                continue
+            if not drive_connected():
+                print('SeaBack disconnected; stopping.')
+                return
+            # Persist BEFORE POST. Timeouts can still mean Backrest accepted it.
+            submissions[plan_id] = now
+            temporary = record.with_suffix('.tmp')
+            temporary.write_text(json.dumps(submissions))
+            temporary.replace(record)
+            try:
+                api.call('Backup', {'value': plan_id}, timeout=10)
+                print(f'{plan_id}: backup request completed.')
+            except (TimeoutError, socket.timeout):
+                print(f'{plan_id}: response timed out; check Backrest history, no immediate retry.')
+            except urllib.error.URLError as exc:
+                if isinstance(exc.reason, (TimeoutError, socket.timeout)):
+                    print(f'{plan_id}: response timed out; check Backrest history, no immediate retry.')
+                else:
+                    raise
+
+
+def main():
+    os.umask(0o077)
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--dry-run', action='store_true', help='query history without starting backups')
+    args = parser.parse_args()
+    try:
+        run(args.dry_run)
+    except Exception as exc:
+        # Do not print response bodies or credentials.
+        print(f'Catch-up stopped: {type(exc).__name__}: {exc}', file=sys.stderr)
+        return 1
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
