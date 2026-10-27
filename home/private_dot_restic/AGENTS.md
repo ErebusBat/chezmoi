@@ -6,6 +6,12 @@ Profile-based restic backup system for macOS. Thin shell scripts wrap restic for
 
 **Primary maintainer:** Andrew Burns
 
+## Documentation completion
+
+Before declaring documentation work complete, persist every changed document in Chezmoi and commit the corresponding source files in its Git repository. Resolve each source with `chezmoi source-path <document>`; preserve template expressions and host conditions when updating `.tmpl` files. For untemplated documents, `chezmoi add <document>` captures the live changes.
+
+Verify that `chezmoi cat <document>` matches the live document and that `chezmoi diff <document>` is empty. Scope the Git commit to the task's documentation changes and report its commit ID.
+
 ---
 
 ## Architecture & Data Flow
@@ -300,7 +306,7 @@ Template for creating new profiles. Copy to `profile-{name}.sh`, set repository 
 
 ### Tooling constraints
 - **No CI/CD** — no CI pipeline or GitHub Actions configured
-- **Not a git repo** — `~/.restic/` is not version controlled; profiles and excludes managed as static files
+- **Chezmoi-managed** — `~/.restic/` is not a Git repository; managed source files are version controlled in Chezmoi. Follow the documentation completion workflow above.
 - **macOS only** — LaunchAgent plists and `launchctl` conventions; Makefile uses `launchctl start` for triggers
 - **Ruby not required** — `restic-multi.rb` is legacy, `~/.restic-multi.yml` does not exist
 

@@ -9,6 +9,11 @@ terminated cleanly during cutover without saving that run; existing snapshots
 were preserved. Backrest's first scheduled personal backup is now running.
 
 - `lshq-15m`, `erebusbat-15m`, and `lshq-docs`: every 15 minutes.
+- `seaback-15m`: every 15 minutes, added 2026-10-27. Backs up the combined
+  personal and work 15-minute folder lists to SeaBack, with duplicate paths
+  removed. Uses `common-excludes.lst`, `15m-excludes.lst`, cache and Git
+  exclusions, and the 50 MB file limit. Keeps all snapshots. The folder list
+  is independent of the source plans after creation.
 - `lshq-hourly` and `erebusbat-hourly`: minute 55 of each hour.
 - `lshq-daily` and `erebusbat-daily`: 14:15 local time.
 - `seaback-daily` and `seaback-weekly`: check at minute 35 each hour;
