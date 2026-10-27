@@ -1,5 +1,7 @@
 # SeaBack: caches, reproducible outputs, and selected unreadable service state.
 # Keep .git, Downloads, Photos, Mail, Messages and other personal/app data.
+# iCloud Drive and app documents are intentionally excluded; retained in iCloud.
+$HOME/Library/Mobile Documents
 **/.DS_Store
 **/.Trash/**
 **/node_modules/**
@@ -22,6 +24,8 @@ $HOME/.local/share/caddy/last_clean.json
 $HOME/.local/state/nvim/undo/%private%etc%sudoers.d%home-ssh-tunnel.tmp
 $HOME/Library/Application Support/FileProvider/*/wharf/tombstone
 $HOME/Library/Group Containers/group.com.apple.CoreSpeech/Caches
+# Root-owned macOS Control Center preferences are not user-readable.
+$HOME/Library/Group Containers/group.com.apple.secure-control-center-preferences/Library/Preferences/group.com.apple.secure-control-center-preferences.av.plist
 $HOME/.npm/_cacache/**
 $HOME/.cargo/registry/**
 $HOME/.cargo/git/**
