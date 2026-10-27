@@ -211,7 +211,7 @@
         "/Users/andrew.burns"
       ],
       "schedule": {
-        "cron": "35 18 * * 0",
+        "cron": "35 18 * * 3",
         "clock": "CLOCK_LOCAL"
       },
       "retention": {

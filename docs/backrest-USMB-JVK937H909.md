@@ -35,7 +35,7 @@ plist before loading the service again.
 ## SeaBack scheduling and catch-up
 
 Backrest owns the native schedules: `seaback-daily` at 17:35 every day and
-`seaback-weekly` at 18:35 Sunday, using the Mac's local clock. Neither plan has
+`seaback-weekly` at 18:35 Wednesday, using the Mac's local clock. Neither plan has
 a cadence-gating hook. The restic wrapper retains disk/repository identity,
 protected-folder access checks, and sleep prevention; it no longer writes
 success markers. Old `daily.success` and `weekly.success` files are unused.
