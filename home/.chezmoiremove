@@ -20,6 +20,17 @@ bin/blue-bubbles-loop.sh
 {{- end }}
 
 ############################################################
+### Retired Restic LaunchAgents (replaced by Backrest)
+############################################################
+{{- if and (eq .chezmoi.os "darwin") (eq .chezmoi.hostname "USMB-JVK937H909") }}
+Library/LaunchAgents/local.restic.15m.plist
+Library/LaunchAgents/local.restic.hourly.plist
+Library/LaunchAgents/local.restic.daily.plist
+Library/LaunchAgents/local.restic.agent-kick.plist
+Library/LaunchAgents/local.restic.seaback.plist
+{{- end }}
+
+############################################################
 ### System76 Darter Laptop
 ############################################################
 {{- if ne .chezmoi.hostname "dartp6" }}
