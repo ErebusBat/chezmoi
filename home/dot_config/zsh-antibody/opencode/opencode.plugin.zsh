@@ -69,13 +69,13 @@ oc_session_select() {
         echo "  -h, --help        Show this help" >&2
         echo "  -g, --global      Query the global opencode database" >&2
         echo "  -a, --all         Same as --global" >&2
-        echo "  -p, --profile     Query a specific ocpersona profile's database" >&2
+        echo "  -p, --profile     Query a specific OpenCode profile's database" >&2
         echo "" >&2
         echo "Examples:" >&2
         echo "  oc_session_select          Current project sessions (profile-aware)" >&2
         echo "  oc_session_select 10       Limit to 10 sessions" >&2
         echo "  oc_session_select --global All global sessions" >&2
-        echo "  oc_session_select -p lshq  All lshq profile sessions" >&2
+        echo "  oc_session_select -p upserve  All work profile sessions" >&2
         return 1
         ;;
       -g|--global)  use_global=1; shift ;;
@@ -87,12 +87,11 @@ oc_session_select() {
 
   local -a cmd
   if [[ -n "$profile_override" ]]; then
-    local pd="$HOME/.config/ocpersona/profiles/$profile_override/data"
-    if [[ ! -d "$pd" ]]; then
-      echo "Profile '$profile_override' not found" >&2
-      return 1
-    fi
-    cmd=(env XDG_DATA_HOME="$pd" opencode session list --format json --print-logs --log-level ERROR)
+    case "$profile_override" in
+      personal) cmd=(opencode-personal session list --format json --print-logs --log-level ERROR) ;;
+      work|lshq|upserve) cmd=(opencode-work session list --format json --print-logs --log-level ERROR) ;;
+      *) echo "Unknown profile: $profile_override" >&2; return 1 ;;
+    esac
   elif [[ $use_global -eq 1 ]]; then
     cmd=(command opencode session list --format json --print-logs --log-level ERROR)
   else
@@ -333,49 +332,24 @@ alias occ=oc_session_continue
 
 
 
-# >>> ocpersona >>>
-export OCP_PATH="${OCP_PATH:-$HOME/src/erebusbat/ocpersona}"
-[ -f "${OCP_PATH}/contrib/ocpersona.plugin.zsh" ] && source "${OCP_PATH}/contrib/ocpersona.plugin.zsh"
-
-_ocpersona_path_context() {
-  if [[ ${_OCP_PERSONA_CONTEXT:-0} == 1 ]]; then
-    if [[ ${_OCP_PERSONA_CONTEXT_PROFILE:-} == ${OCP_PROFILE:-} ]]; then
-      unset OCP_PROFILE
-    fi
-    if [[ ${_OCP_PERSONA_CONTEXT_PROFILE_FILE:-} == ${OCP_PROFILE_FILE:-} ]]; then
-      unset OCP_PROFILE_FILE
-    fi
+# Explicit OpenCode profiles; environment changes stay inside the launcher.
+_opencode_profile() (
+  local profile="$1"
+  shift
+  unset OCP_PROFILE OCP_PROFILE_FILE OCP_PATH
+  unset OPENCODE_CONFIG OPENCODE_CONFIG_DIR OPENCODE_CONFIG_CONTENT
+  export XDG_CONFIG_HOME="$HOME/.config/opencode-profiles/$profile/config"
+  export XDG_DATA_HOME="$HOME/.local/share/opencode-profiles/$profile"
+  export XDG_STATE_HOME="$HOME/.local/state/opencode-profiles/$profile"
+  export XDG_CACHE_HOME="$HOME/.cache/opencode-profiles/$profile"
+  if [[ "$profile" == personal ]]; then
+    [[ ! -f "$HOME/.config/erebusbat/agent-personal-api-keys.sh" ]] || source "$HOME/.config/erebusbat/agent-personal-api-keys.sh"
+  else
+    unset OPENAI_API_KEY
   fi
-  unset _OCP_PERSONA_CONTEXT
-  unset _OCP_PERSONA_CONTEXT_PROFILE
-  unset _OCP_PERSONA_CONTEXT_PROFILE_FILE
-
-  if [[ -f ./.ocpersona ]]; then
-    source ./.ocpersona
-    if [[ -n "${OCP_PROFILE:-}" || -n "${OCP_PROFILE_FILE:-}" ]]; then
-      export _OCP_PERSONA_CONTEXT=1
-      export _OCP_PERSONA_CONTEXT_PROFILE="${OCP_PROFILE:-}"
-      export _OCP_PERSONA_CONTEXT_PROFILE_FILE="${OCP_PROFILE_FILE:-}"
-    fi
-    return
-  fi
-
-  case "${PWD:A}" in
-    "${HOME:A}/src/lshq"|"${HOME:A}/src/lshq"/*)
-      export OCP_PROFILE=lshq
-      export _OCP_PERSONA_CONTEXT=1
-      export _OCP_PERSONA_CONTEXT_PROFILE=lshq
-      export _OCP_PERSONA_CONTEXT_PROFILE_FILE=""
-      ;;
-    "${HOME:A}/src/erebusbat"|"${HOME:A}/src/erebusbat"/*)
-      export OCP_PROFILE=personal
-      export _OCP_PERSONA_CONTEXT=1
-      export _OCP_PERSONA_CONTEXT_PROFILE=personal
-      export _OCP_PERSONA_CONTEXT_PROFILE_FILE=""
-      ;;
-  esac
-}
-autoload -Uz add-zsh-hook
-add-zsh-hook chpwd _ocpersona_path_context
-_ocpersona_path_context
-# <<< ocpersona <<<
+  command opencode "$@"
+)
+opencode-personal() { _opencode_profile personal "$@"; }
+opencode-work() { _opencode_profile upserve "$@"; }
+alias ocp=opencode-personal
+alias ocw=opencode-work
