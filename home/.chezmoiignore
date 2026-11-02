@@ -5,6 +5,11 @@ AGENTS.md
 {{- end }}
 
 **/.DS_Store
+# Python bytecode is generated locally and must never be managed.
+**/__pycache__
+**/__pycache__/**
+**/*.pyc
+**/*.pyo
 **/Session.vim
 .config/nvim/plugin/packer_compiled.lua
 .local/share/chezmoi/
