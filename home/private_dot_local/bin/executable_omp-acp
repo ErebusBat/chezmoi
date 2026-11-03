@@ -1,0 +1,23 @@
+#!/bin/zsh
+# Usage: omp-acp PROFILE [ACP arguments...]
+# Keep stdout clear for ACP protocol traffic.
+if (( $# == 0 )) || [[ -z "$1" || "$1" == -* ]]; then
+  print -u2 'Usage: omp-acp PROFILE [ACP arguments...]'
+  exit 64
+fi
+omp_profile="$1"
+shift
+case "$omp_profile" in
+  personal)
+    if [[ -f "$HOME/.config/erebusbat/agent-personal-api-keys.sh" ]]; then
+      source "$HOME/.config/erebusbat/agent-personal-api-keys.sh" >&2
+    fi
+    if [[ "$OMP_VICTORIAMETRICS_OTLP_METRICS_ENDPOINT" != disabled && -f "$HOME/.omp/victoriametrics-otel.env" ]]; then
+      source "$HOME/.omp/victoriametrics-otel.env" >&2
+    fi
+    ;;
+  upserve)
+    unset OCP_PROFILE OPENAI_API_KEY
+    ;;
+esac
+exec "$HOME/.bun/bin/omp" "--profile=$omp_profile" acp "$@"
