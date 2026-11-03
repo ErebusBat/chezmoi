@@ -1,12 +1,12 @@
 #!/bin/zsh
-# Usage: omp-acp PROFILE [ACP arguments...]
+# Usage: omp-acp [PROFILE] [ACP arguments...]
 # Keep stdout clear for ACP protocol traffic.
-if (( $# == 0 )) || [[ -z "$1" || "$1" == -* ]]; then
-  print -u2 'Usage: omp-acp PROFILE [ACP arguments...]'
-  exit 64
+# PROFILE defaults to "personal" so ACP clients (T3 Code) can launch us with no arguments.
+omp_profile=personal
+if (( $# > 0 )) && [[ -n "$1" && "$1" != -* ]]; then
+  omp_profile="$1"
+  shift
 fi
-omp_profile="$1"
-shift
 case "$omp_profile" in
   personal)
     if [[ -f "$HOME/.config/erebusbat/agent-personal-api-keys.sh" ]]; then
@@ -20,4 +20,11 @@ case "$omp_profile" in
     unset OCP_PROFILE OPENAI_API_KEY
     ;;
 esac
-exec "$HOME/.bun/bin/omp" "--profile=$omp_profile" acp "$@"
+# omp's CLI is a Bun script, and ACP clients (T3 Code's server on Linux) launch us with a
+# minimal PATH. Put Bun/omp back on PATH before resolving the binary.
+for dir in "$HOME/.local/share/mise/shims" "$HOME/.bun/bin"; do
+  [[ -d "$dir" ]] && path=("$dir" $path)
+done
+typeset -U path
+export PATH
+exec omp "--profile=$omp_profile" acp "$@"
