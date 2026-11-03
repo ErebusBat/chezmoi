@@ -38,7 +38,7 @@ npm = { version = "latest", os = ["linux"] }
 restic = "latest"
 ripgrep = "latest"
 ripgrep-all = "latest"
-ruby = "4.0.4"
+ruby = "4.0.9"
 rust = "latest"
 starship = "latest"
 yazi = "latest"
