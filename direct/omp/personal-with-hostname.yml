@@ -91,21 +91,9 @@ task:
     plan: gpt-5.6-sol
     sonic: gpt-5.6-luna
 retry:
-  fallbackChains:
-    default:
-      - openai-codex/gpt-5.3-codex-spark
-      - kimi-code/k3
-    smol:
-      - deepseek/deepseek-v4-flash
-    commit:
-      - deepseek/deepseek-v4-flash
-    cheap:
-      - deepseek/deepseek-v4-pro
-      - kimi-code/k3
-    slow:
-      - openai-codex/gpt-5.3-codex-spark
-    advisor:
-      - zai/glm-5.2
+  modelFallback: false
+  usageAwareFallback: false
+  fallbackChains: {}
 hideThinkingBlock: true
 cycleOrder:
   - cheap
