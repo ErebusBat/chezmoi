@@ -81,7 +81,6 @@ modelRoles:
   slow: openai-codex/gpt-5.6-sol:high
   plan: openai-codex/gpt-5.6-terra:medium
   spark: openai-codex/gpt-5.3-codex-spark
-  budget: zai/glm-5.2:high
   plan_budget: deepseek/deepseek-v4-pro:high
   designer: openai-codex/gpt-5.6-sol:medium
   kimi: kimi-code/k3:high
@@ -119,3 +118,5 @@ power:
   sleepPrevention: idle
 composer:
   shape: band
+disabledProviders:
+  - zai
