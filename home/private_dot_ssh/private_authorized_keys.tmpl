@@ -61,3 +61,8 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPoEV9HueKArCoLq+HQkttLVgCeGLch+BENz2q02uHb5
 # n8n runner
 command="{{ $n8n_gaurd_script_path }}",no-pty,no-agent-forwarding,no-port-forwarding,no-X11-forwarding ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMvBRq5i8lj9De56FL+RkuCLGqLwhX5jlv9QcWdpAAOX n8n@USMB-JVK937H909
 {{- end }}
+
+{{ if eq .chezmoi.hostname "USMB-JVK937H909" }}
+# WUD stack updates - this machine only
+restrict,command="/opt/homebrew/opt/python@3.15/bin/python3.15 /Users/andrew.burns/.local/lib/wud-stack-update/runner.py /Users/andrew.burns/.local/lib/wud-stack-update/projects.json" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMPVLgco35G7/9i6gtajWqKQ225ChI765CsLUxQdsncE wud-stack-update
+{{- end }}
