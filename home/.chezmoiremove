@@ -11,6 +11,14 @@
 .ssh/reload-ssh-agent
 
 ############################################################
+### Finicky
+############################################################
+# Finicky is a macOS-only app; drop any copy deployed here before the gate.
+{{- if ne .chezmoi.os "darwin" }}
+.config/finicky/*
+{{- end }}
+
+############################################################
 ### USMB-JVK937H909 Only Files
 ###   - Minus Buzz Agents (see below)
 ############################################################

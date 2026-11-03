@@ -195,6 +195,8 @@ bin/pbpaste
 
 #-- OS IS NOT MacOS, so DO NOT include these files
 {{- if ne .chezmoi.os "darwin" }}
+# Finicky is a macOS-only app; its config is inert anywhere else.
+.config/finicky
 .hammerspoon/
 .raycast-cmds
 .ssh/cmux-ssh

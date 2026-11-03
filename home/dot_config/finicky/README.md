@@ -31,6 +31,11 @@ commands remain available.
 README, and justfile into chezmoi's source state. It also updates already-managed
 copies with the current local files. Chezmoi's configured Git automation applies.
 
+Chezmoi deploys this directory only on macOS: `.chezmoiignore` drops it when
+`.chezmoi.os` is not `darwin`, and `.chezmoiremove` deletes any copy that landed
+on a non-macOS host earlier. Finicky itself is a macOS app, so the config has no
+effect elsewhere.
+
 Finicky v4.2.2 searches `~/.config/finicky/finicky.js` automatically. Files such as `~/.finicky.js`, `~/.finicky.ts`, `~/.config/finicky.js`, and `~/.config/finicky.ts` take precedence, as does an explicitly selected custom path. No higher-priority config was found during migration.
 
 The generated config has no runtime imports. This makes every rule edit visible to Finicky through the rebuilt entrypoint, avoiding imported-file cache/watcher limitations. Node is needed only to rebuild and run tests.
