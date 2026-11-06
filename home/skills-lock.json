@@ -117,6 +117,13 @@
       "skillPath": "skills/engineering/diagnosing-bugs/SKILL.md",
       "computedHash": "ede7254edbd22fcab97a0941511f7d440d8f9a249348fea97c50987ad5501674"
     },
+    "disk-cleanup": {
+      "source": "ssh://git@gitea.erebusbat.net:222/ErebusBat/my-skills.git",
+      "sourceUrl": "ssh://git@gitea.erebusbat.net:222/ErebusBat/my-skills.git",
+      "sourceType": "git",
+      "skillPath": "skills/erebusbat/disk-cleanup/SKILL.md",
+      "computedHash": "83a14f796a9237e82a5d5871a02c8bfc12f9c8aeb85447e1501db573b4d5ff63"
+    },
     "domain-modeling": {
       "source": "mattpocock/skills",
       "sourceType": "github",
