@@ -327,3 +327,26 @@ unset SUDO_CMDS
 if [[ "$(uname)" == "Darwin" ]]; then
   alias tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
 fi
+
+# Pick an assh host: fssh [search] [remote-command ...]
+fssh() {
+  emulate -L zsh
+  local query=${1-} host candidates
+  (( $# )) && shift
+  if ! (( $+commands[fzf] && $+commands[assh] )); then
+    print -u2 -- 'fssh requires fzf and assh.'
+    return 1
+  fi
+  candidates=$(command assh config list) || return
+  candidates=$(print -r -- "$candidates" |
+    sed -nE 's/^[[:space:]]+([^[:space:]]+)[[:space:]]+->.*/\1/p' |
+    LC_ALL=C grep -vE '[*?\[\](){}|!]|^-' | sort -u)
+  if [[ -z $candidates ]]; then
+    print -u2 -- 'No literal SSH hosts found in assh config.'
+    return 1
+  fi
+  host=$(print -r -- "$candidates" |
+    fzf --height=40% --reverse --no-multi --prompt='SSH host > ' --query="$query") || return
+  [[ -n $host ]] || return 0
+  ssh "$host" "$@"
+}
