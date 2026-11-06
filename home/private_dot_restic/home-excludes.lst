@@ -79,6 +79,10 @@ $HOME/.pyenv/**
 $HOME/.rustup/**
 $HOME/.serena/logs/**
 $HOME/.steam/debian-installation/**
+$HOME/.t3/caches/**
+$HOME/.t3/tools/**
+$HOME/.t3/userdata/logs/**
+$HOME/.t3/userdata/server-browser/**
 $HOME/.vim/plugged/**
 $HOME/.zsh_sessions/**
 $HOME/Dropbox/**

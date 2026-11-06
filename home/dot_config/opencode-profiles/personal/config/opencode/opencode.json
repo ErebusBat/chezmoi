@@ -43,6 +43,40 @@
       ]
     }
   },
+  "providers": {
+    "llama.cpp": {
+      "name": "llama.cpp (Local)",
+      "package": "@opencode/ai/providers/openai-compatible",
+      "settings": {
+        "baseURL": "http://127.0.0.1:8080/v1"
+      },
+      "models": {
+        "qwen38": {
+          "name": "Qwen3.8 27B Q6 (SeaBack)",
+          "capabilities": {
+            "tools": true,
+            "input": ["text"],
+            "output": ["text"],
+            "reasoning": {
+              "supported": true
+            }
+          },
+          "compatibility": {
+            "reasoningField": "reasoning_content",
+            "maxTokensField": "max_tokens"
+          },
+          "limit": {
+            "context": 262144,
+            "output": 8192
+          },
+          "cost": {
+            "input": 0,
+            "output": 0
+          }
+        }
+      }
+    }
+  },
   "provider": {
     "openai": {
       "options": {

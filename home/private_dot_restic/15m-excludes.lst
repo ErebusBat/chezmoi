@@ -1,6 +1,8 @@
 # vim: set ft=zsh:
 
 $HOME/.buzz/archive/**
+$HOME/.t3/userdata/*.sqlite*
+$HOME/.t3/userdata/attachments/**
 
 $HOME/src/erebusbat/hassio/
 $HOME/src/erebusbat/image-marker/imgs/**
