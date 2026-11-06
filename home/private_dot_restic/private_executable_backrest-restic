@@ -1,6 +1,21 @@
 #!/bin/bash
 set -euo pipefail
 export PATH=/opt/homebrew/bin:/usr/bin:/bin:/usr/sbin:/sbin
+# Keep restic caches off the internal disk. Only use the expected mounted volume.
+cache_args=(--no-cache)
+cache_info="$(/usr/sbin/diskutil info -plist /Volumes/SeaBack 2>/dev/null)" || cache_info=''
+cache_uuid="$(printf '%s' "$cache_info" | /usr/bin/plutil -extract VolumeUUID raw -o - - 2>/dev/null)" || cache_uuid=''
+cache_mount="$(printf '%s' "$cache_info" | /usr/bin/plutil -extract MountPoint raw -o - - 2>/dev/null)" || cache_mount=''
+if [[ "$cache_uuid" == D2130F16-82A6-43BE-AA5F-C04F81410815 && "$cache_mount" == /Volumes/SeaBack ]]; then
+  if (umask 077; mkdir -p /Volumes/SeaBack/cache/restic) && [[ -w /Volumes/SeaBack/cache/restic ]]; then
+    export RESTIC_CACHE_DIR=/Volumes/SeaBack/cache/restic
+    cache_args=(--cache-dir "$RESTIC_CACHE_DIR")
+  fi
+fi
+# Do not fall back to an internal-disk cache when SeaBack is unavailable.
+if [[ "${cache_args[0]}" == --no-cache ]]; then
+  unset RESTIC_CACHE_DIR
+fi
 # Maze shares this repository with a container-specific SSH key path.
 # Translate only that known path for this Mac; retain strict host verification.
 if [[ "${RESTIC_REPOSITORY:-}" == sftp://de4062@de4062.rsync.net/restic/erebusbat ]]; then
@@ -18,7 +33,7 @@ if [[ "${RESTIC_REPOSITORY:-}" == /Volumes/SeaBack/restic/erebusbat ]]; then
   uuid="$(printf '%s' "$info" | /usr/bin/plutil -extract VolumeUUID raw -o - -)"
   mount="$(printf '%s' "$info" | /usr/bin/plutil -extract MountPoint raw -o - -)"
   [[ "$uuid" == D2130F16-82A6-43BE-AA5F-C04F81410815 && "$mount" == /Volumes/SeaBack ]] || { echo 'SeaBack volume identity mismatch' >&2; exit 1; }
-  repo_id="$(/opt/homebrew/bin/restic cat config | /usr/bin/plutil -extract id raw -o - -)"
+  repo_id="$(/opt/homebrew/bin/restic "${cache_args[@]}" cat config | /usr/bin/plutil -extract id raw -o - -)"
   [[ "$repo_id" == 5c3194b3c44c5e2c468e7e6a2b563de5bb449c0798e636fb893605000d5caf2d ]] || { echo 'SeaBack repository identity mismatch' >&2; exit 1; }
   for arg in "$@"; do
     if [[ "$arg" == backup ]]; then
@@ -30,4 +45,4 @@ if [[ "${RESTIC_REPOSITORY:-}" == /Volumes/SeaBack/restic/erebusbat ]]; then
     fi
   done
 fi
-exec /usr/bin/caffeinate -i /opt/homebrew/bin/restic "$@"
+exec /usr/bin/caffeinate -i /opt/homebrew/bin/restic "$@" "${cache_args[@]}"
