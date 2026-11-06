@@ -337,8 +337,8 @@ fssh() {
     source ~/.ssh/fssh-exclude.sh || return
   fi
   (( $# )) && shift
-  if ! (( $+commands[fzf] && $+commands[assh] )); then
-    print -u2 -- 'fssh requires fzf and assh.'
+  if ! (( $+commands[fzf] && $+commands[assh] && $+commands[jq] )); then
+    print -u2 -- 'fssh requires fzf, assh, and jq.'
     return 1
   fi
   candidates=$(command assh config list) || return
@@ -363,7 +363,10 @@ fssh() {
     return 1
   fi
   host=$(print -r -- "$candidates" |
-    fzf --height=100% --reverse --no-multi --prompt='SSH host > ' --query="$query") || return
+    fzf --height=100% --reverse --no-multi --select-1 --prompt='SSH host > ' --query="$query" \
+      --preview="assh config json | jq --color-output --arg host {} '.hosts[\$host]'" \
+      --preview-window='right:50%:wrap' \
+      --bind='ctrl-/:toggle-preview') || return
   [[ -n $host ]] || return 0
   ssh "$host" "$@"
 }
