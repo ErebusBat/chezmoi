@@ -331,7 +331,11 @@ fi
 # Pick an assh host: fssh [search] [remote-command ...]
 fssh() {
   emulate -L zsh
-  local query=${1-} host candidates
+  local query=${1-} host candidates pattern excluded
+  local -a visible_hosts
+  if (( ! ${+FSSH_EXCLUDE} )) && [[ -f ~/.ssh/fssh-exclude.sh ]]; then
+    source ~/.ssh/fssh-exclude.sh || return
+  fi
   (( $# )) && shift
   if ! (( $+commands[fzf] && $+commands[assh] )); then
     print -u2 -- 'fssh requires fzf and assh.'
@@ -341,8 +345,21 @@ fssh() {
   candidates=$(print -r -- "$candidates" |
     sed -nE 's/^[[:space:]]+([^[:space:]]+)[[:space:]]+->.*/\1/p' |
     LC_ALL=C grep -vE '[*?\[\](){}|!]|^-' | sort -u)
+  for host in "${(@f)candidates}"; do
+    [[ -n $host ]] || continue
+    excluded=0
+    for pattern in "${FSSH_EXCLUDE[@]}"; do
+      [[ -n $pattern ]] || continue
+      if [[ $host == ${~pattern} ]]; then
+        excluded=1
+        break
+      fi
+    done
+    (( excluded )) || visible_hosts+=("$host")
+  done
+  candidates="${(F)visible_hosts}"
   if [[ -z $candidates ]]; then
-    print -u2 -- 'No literal SSH hosts found in assh config.'
+    print -u2 -- 'No SSH hosts available after exclusions.'
     return 1
   fi
   host=$(print -r -- "$candidates" |
