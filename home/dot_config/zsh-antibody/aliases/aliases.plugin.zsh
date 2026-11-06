@@ -344,7 +344,7 @@ fssh() {
   candidates=$(command assh config list) || return
   candidates=$(print -r -- "$candidates" |
     sed -nE 's/^[[:space:]]+([^[:space:]]+)[[:space:]]+->.*/\1/p' |
-    LC_ALL=C grep -vE '[*?\[\](){}|!]|^-' | sort -u)
+    LC_ALL=C grep -vE '[][?*(){}|!]|^-' | sort -u)
   for host in "${(@f)candidates}"; do
     [[ -n $host ]] || continue
     excluded=0
@@ -363,7 +363,14 @@ fssh() {
     return 1
   fi
   host=$(print -r -- "$candidates" |
-    fzf --height=40% --reverse --no-multi --prompt='SSH host > ' --query="$query") || return
+    fzf --height=100% --reverse --no-multi --prompt='SSH host > ' --query="$query") || return
   [[ -n $host ]] || return 0
   ssh "$host" "$@"
+}
+
+# Show all SSH aliases without changing the usual exclusions.
+fssh-all() {
+  emulate -L zsh
+  local -a FSSH_EXCLUDE=()
+  fssh "$@"
 }
